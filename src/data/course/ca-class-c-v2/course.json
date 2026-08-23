@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "deliveryVersion": "3.2.7",
+  "course": {
+    "courseId": "ca-class-c",
+    "title": "California Knowledge Test Course",
+    "subtitle": "Real situations. Clear explanations. Exam-ready practice.",
+    "jurisdiction": "CA",
+    "state": "California",
+    "language": "en-US",
+    "targetLicense": "ordinary noncommercial Class C passenger driver",
+    "moduleIds": [
+      "ca-your-first-drive",
+      "ca-read-the-road",
+      "ca-everyday-moves",
+      "ca-lanes-passing-freeways",
+      "ca-share-the-road",
+      "ca-hard-driving",
+      "ca-driver-and-vehicle",
+      "ca-pass-the-test"
+    ],
+    "sourceVersionLabel": "CA-2026.08.24-r01",
+    "sourceContentHash": "7b70fb880e264dbf2b5786377e90ceb6218dc7254e6f0186833d546d7d12b9b0",
+    "sourceCheckedAt": "2026-08-24",
+    "sourceReviewStatus": "draft_generated_human_review_required",
+    "publicationAuthorized": false
+  }
+}

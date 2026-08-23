@@ -1,0 +1,676 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0225AD96AE49401DB94EE04A /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FA3174DBF31468DBF4B897D /* Rubik-SemiBold.ttf */; };
+		0C80B921A6F3F58F76C31292 /* libPods-DmvLearning.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-DmvLearning.a */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		1A8EE849A10E4A5A8054EF4C /* PlusJakartaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A166EC17723484FBF27CA73 /* PlusJakartaSans-SemiBold.ttf */; };
+		1D6FF2A9E97E44F7BCDF7DD7 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5C4802713574AC6A643A012 /* Inter-ExtraBold.ttf */; };
+		2330C92CF67A474F82B5BA36 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD3B762B5F18445CB8980090 /* Rubik-ExtraBold.ttf */; };
+		2E03B5053AC048CC941420B7 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DCF1BF2048040C98A349697 /* Inter-Bold.ttf */; };
+		320B7A90D808494DBCD97C60 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8062525ADC47414AB3E5C24E /* Rubik-Bold.ttf */; };
+		36DC7A4969C942B9B9A68922 /* WorkSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B4B30C2045B4D2BB4BB0BD5 /* WorkSans-ExtraBold.ttf */; };
+		479376D8061D481DB8E0D791 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48D9BEDF3BA0408484561ED8 /* Rubik-Regular.ttf */; };
+		4F2DBCB55B544C788FFFB708 /* PlusJakartaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E8E7086444CED82CBEE90 /* PlusJakartaSans-Regular.ttf */; };
+		4FFF544550234EA4B04AF04A /* PlusJakartaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18181E269ACB4AD8BE72C8A3 /* PlusJakartaSans-Medium.ttf */; };
+		503F8C25EB874403B63189F2 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 825E820DAF0E4211944680F9 /* Lato-Black.ttf */; };
+		5204E377DF5642C68139AC65 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8697278803D42AD8DF60873 /* OpenSans-Medium.ttf */; };
+		5CF182BF64C34D6D9B679D81 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB7F1BAAAFFB4DC6A9B902BE /* Rubik-Medium.ttf */; };
+		6016DF086F74487D839127CA /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81ABD8B721CA440FBC4110B5 /* DMSans-Medium.ttf */; };
+		61EE35661550425A998A75BB /* WorkSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CA15A13913C4B2489E15F9B /* WorkSans-Regular.ttf */; };
+		6B987E4F545E42CBB0ABEFAE /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA08CEC5292F4B26862871E2 /* OpenSans-SemiBold.ttf */; };
+		75052BCBF5684056A16B5308 /* WorkSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F18A038244E414F9F576A3C /* WorkSans-Medium.ttf */; };
+		7614BB3174A343F08EE7DF46 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 646EBF17FDDD4C05AE6C7C8D /* NotoSans-Regular.ttf */; };
+		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		777E5F46EBEB4F91916D5E6B /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3307E18338842D99CDB428B /* PlusJakartaSans-Bold.ttf */; };
+		78BB240CEE7A49EDBDDA945B /* WorkSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E143BF9E52D4BDAB3673C62 /* WorkSans-SemiBold.ttf */; };
+		79CF8C2C92864E24B0FBBBD7 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34D16092407C4476AF260FB4 /* Lato-Regular.ttf */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		829542ED04484B48B28FED55 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0791082D2DC6436CA2D9F274 /* Lato-Bold.ttf */; };
+		82B5063337F34CCC9A95605E /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B809F82F5C24BDBAD741485 /* DMSans-Regular.ttf */; };
+		86B1C6EAB15740F79B902E5A /* DMSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1112DDA92A06420C98E8DA00 /* DMSans-SemiBold.ttf */; };
+		88F57DC4D9844B2F9FD5B237 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16A21F62FC2B40E788E4D2FF /* OpenSans-ExtraBold.ttf */; };
+		8B3F2F6D6F554E0F80DF5FB5 /* WorkSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90C8DAC0C3114DF8902C1C4F /* WorkSans-Bold.ttf */; };
+		8BF1E9AA210C45E49A22EA68 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72F8075FB0D34FBEBB21BF5B /* Inter-Regular.ttf */; };
+		9F22A4A3244D45ACA0A274E5 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8724978A582A47809B46E834 /* Inter-SemiBold.ttf */; };
+		B361C2F85AB742479206FEE0 /* DMSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1614E25D0DA46118C71404F /* DMSans-ExtraBold.ttf */; };
+		B7DCD5356BF7405BBA90FF7E /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58FFFA3AF3974F79A06D6333 /* NotoSans-SemiBold.ttf */; };
+		BD189CA03A1341E2AEC2D62A /* NotoSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6066C57793E4456186227B98 /* NotoSans-Medium.ttf */; };
+		CAD814AE27BF4B72BCE0271D /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D35A060D11546509C9123D4 /* OpenSans-Bold.ttf */; };
+		CE2B4017FA144D529DF97628 /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47E067F589764CFE994CC09A /* DMSans-Bold.ttf */; };
+		D8E2F688387C497C8EA98CDC /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 373EADACECAF43A59F0199E9 /* NotoSans-Bold.ttf */; };
+		DD9F26342D792E5C2BC4DDD6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		E4FC67B764574F53B1D27C2C /* PlusJakartaSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7746139CBA043C080D4F138 /* PlusJakartaSans-ExtraBold.ttf */; };
+		E7B39B66384C42E18145F4F4 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 488D6823556C4C7CB7E3506D /* Inter-Medium.ttf */; };
+		E8792E627A244DC998C9B49B /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A741E33FE1C84FBEB2C23E3F /* OpenSans-Regular.ttf */; };
+		E92F4D37ED07476F9EEC3D88 /* NotoSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD4B8C2DCA4C03A1FEFA2D /* NotoSans-ExtraBold.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0791082D2DC6436CA2D9F274 /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		0D35A060D11546509C9123D4 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		0E143BF9E52D4BDAB3673C62 /* WorkSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "WorkSans-SemiBold.ttf"; path = "../assets/fonts/WorkSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		1112DDA92A06420C98E8DA00 /* DMSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-SemiBold.ttf"; path = "../assets/fonts/DMSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* DmvLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DmvLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = DmvLearning/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = DmvLearning/Info.plist; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = DmvLearning/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		16A21F62FC2B40E788E4D2FF /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		18181E269ACB4AD8BE72C8A3 /* PlusJakartaSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Medium.ttf"; path = "../assets/fonts/PlusJakartaSans-Medium.ttf"; sourceTree = "<group>"; };
+		1DCF1BF2048040C98A349697 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
+		2FAD4B8C2DCA4C03A1FEFA2D /* NotoSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSans-ExtraBold.ttf"; path = "../assets/fonts/NotoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		34D16092407C4476AF260FB4 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		373EADACECAF43A59F0199E9 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSans-Bold.ttf"; path = "../assets/fonts/NotoSans-Bold.ttf"; sourceTree = "<group>"; };
+		3B4392A12AC88292D35C810B /* Pods-DmvLearning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DmvLearning.debug.xcconfig"; path = "Target Support Files/Pods-DmvLearning/Pods-DmvLearning.debug.xcconfig"; sourceTree = "<group>"; };
+		3FA3174DBF31468DBF4B897D /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-SemiBold.ttf"; path = "../assets/fonts/Rubik-SemiBold.ttf"; sourceTree = "<group>"; };
+		47E067F589764CFE994CC09A /* DMSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Bold.ttf"; path = "../assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; };
+		488D6823556C4C7CB7E3506D /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
+		48D9BEDF3BA0408484561ED8 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Regular.ttf"; path = "../assets/fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		4A166EC17723484FBF27CA73 /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-SemiBold.ttf"; path = "../assets/fonts/PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		4B809F82F5C24BDBAD741485 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Regular.ttf"; path = "../assets/fonts/DMSans-Regular.ttf"; sourceTree = "<group>"; };
+		4C9E8E7086444CED82CBEE90 /* PlusJakartaSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Regular.ttf"; path = "../assets/fonts/PlusJakartaSans-Regular.ttf"; sourceTree = "<group>"; };
+		4CA15A13913C4B2489E15F9B /* WorkSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "WorkSans-Regular.ttf"; path = "../assets/fonts/WorkSans-Regular.ttf"; sourceTree = "<group>"; };
+		4F18A038244E414F9F576A3C /* WorkSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "WorkSans-Medium.ttf"; path = "../assets/fonts/WorkSans-Medium.ttf"; sourceTree = "<group>"; };
+		5709B34CF0A7D63546082F79 /* Pods-DmvLearning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DmvLearning.release.xcconfig"; path = "Target Support Files/Pods-DmvLearning/Pods-DmvLearning.release.xcconfig"; sourceTree = "<group>"; };
+		58FFFA3AF3974F79A06D6333 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSans-SemiBold.ttf"; path = "../assets/fonts/NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		5DCACB8F33CDC322A6C60F78 /* libPods-DmvLearning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DmvLearning.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6066C57793E4456186227B98 /* NotoSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSans-Medium.ttf"; path = "../assets/fonts/NotoSans-Medium.ttf"; sourceTree = "<group>"; };
+		646EBF17FDDD4C05AE6C7C8D /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSans-Regular.ttf"; path = "../assets/fonts/NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		72F8075FB0D34FBEBB21BF5B /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
+		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = DmvLearning/AppDelegate.swift; sourceTree = "<group>"; };
+		7B4B30C2045B4D2BB4BB0BD5 /* WorkSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "WorkSans-ExtraBold.ttf"; path = "../assets/fonts/WorkSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		8062525ADC47414AB3E5C24E /* Rubik-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Bold.ttf"; path = "../assets/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DmvLearning/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81ABD8B721CA440FBC4110B5 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Medium.ttf"; path = "../assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; };
+		825E820DAF0E4211944680F9 /* Lato-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Black.ttf"; path = "../assets/fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
+		8724978A582A47809B46E834 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		90C8DAC0C3114DF8902C1C4F /* WorkSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "WorkSans-Bold.ttf"; path = "../assets/fonts/WorkSans-Bold.ttf"; sourceTree = "<group>"; };
+		A5C4802713574AC6A643A012 /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraBold.ttf"; path = "../assets/fonts/Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
+		A741E33FE1C84FBEB2C23E3F /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		B8697278803D42AD8DF60873 /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Medium.ttf"; path = "../assets/fonts/OpenSans-Medium.ttf"; sourceTree = "<group>"; };
+		B8C659B9302A34C30088EFE9 /* DmvLearning.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = DmvLearning.entitlements; path = DmvLearning/DmvLearning.entitlements; sourceTree = "<group>"; };
+		BB7F1BAAAFFB4DC6A9B902BE /* Rubik-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Medium.ttf"; path = "../assets/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		BD3B762B5F18445CB8980090 /* Rubik-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-ExtraBold.ttf"; path = "../assets/fonts/Rubik-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C7746139CBA043C080D4F138 /* PlusJakartaSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-ExtraBold.ttf"; path = "../assets/fonts/PlusJakartaSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		CA08CEC5292F4B26862871E2 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		D1614E25D0DA46118C71404F /* DMSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-ExtraBold.ttf"; path = "../assets/fonts/DMSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F3307E18338842D99CDB428B /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Bold.ttf"; path = "../assets/fonts/PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C80B921A6F3F58F76C31292 /* libPods-DmvLearning.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		13B07FAE1A68108700A75B9A /* DmvLearning */ = {
+			isa = PBXGroup;
+			children = (
+				B8C659B9302A34C30088EFE9 /* DmvLearning.entitlements */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				761780EC2CA45674006654EE /* AppDelegate.swift */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
+				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+			);
+			name = DmvLearning;
+			sourceTree = "<group>";
+		};
+		176CA58DB16D4F458D75EBDF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				18181E269ACB4AD8BE72C8A3 /* PlusJakartaSans-Medium.ttf */,
+				4A166EC17723484FBF27CA73 /* PlusJakartaSans-SemiBold.ttf */,
+				4C9E8E7086444CED82CBEE90 /* PlusJakartaSans-Regular.ttf */,
+				F3307E18338842D99CDB428B /* PlusJakartaSans-Bold.ttf */,
+				C7746139CBA043C080D4F138 /* PlusJakartaSans-ExtraBold.ttf */,
+				4CA15A13913C4B2489E15F9B /* WorkSans-Regular.ttf */,
+				488D6823556C4C7CB7E3506D /* Inter-Medium.ttf */,
+				646EBF17FDDD4C05AE6C7C8D /* NotoSans-Regular.ttf */,
+				4B809F82F5C24BDBAD741485 /* DMSans-Regular.ttf */,
+				81ABD8B721CA440FBC4110B5 /* DMSans-Medium.ttf */,
+				CA08CEC5292F4B26862871E2 /* OpenSans-SemiBold.ttf */,
+				47E067F589764CFE994CC09A /* DMSans-Bold.ttf */,
+				8062525ADC47414AB3E5C24E /* Rubik-Bold.ttf */,
+				0791082D2DC6436CA2D9F274 /* Lato-Bold.ttf */,
+				825E820DAF0E4211944680F9 /* Lato-Black.ttf */,
+				7B4B30C2045B4D2BB4BB0BD5 /* WorkSans-ExtraBold.ttf */,
+				6066C57793E4456186227B98 /* NotoSans-Medium.ttf */,
+				34D16092407C4476AF260FB4 /* Lato-Regular.ttf */,
+				373EADACECAF43A59F0199E9 /* NotoSans-Bold.ttf */,
+				1DCF1BF2048040C98A349697 /* Inter-Bold.ttf */,
+				1112DDA92A06420C98E8DA00 /* DMSans-SemiBold.ttf */,
+				4F18A038244E414F9F576A3C /* WorkSans-Medium.ttf */,
+				BB7F1BAAAFFB4DC6A9B902BE /* Rubik-Medium.ttf */,
+				72F8075FB0D34FBEBB21BF5B /* Inter-Regular.ttf */,
+				0E143BF9E52D4BDAB3673C62 /* WorkSans-SemiBold.ttf */,
+				58FFFA3AF3974F79A06D6333 /* NotoSans-SemiBold.ttf */,
+				16A21F62FC2B40E788E4D2FF /* OpenSans-ExtraBold.ttf */,
+				D1614E25D0DA46118C71404F /* DMSans-ExtraBold.ttf */,
+				A5C4802713574AC6A643A012 /* Inter-ExtraBold.ttf */,
+				0D35A060D11546509C9123D4 /* OpenSans-Bold.ttf */,
+				3FA3174DBF31468DBF4B897D /* Rubik-SemiBold.ttf */,
+				B8697278803D42AD8DF60873 /* OpenSans-Medium.ttf */,
+				BD3B762B5F18445CB8980090 /* Rubik-ExtraBold.ttf */,
+				A741E33FE1C84FBEB2C23E3F /* OpenSans-Regular.ttf */,
+				48D9BEDF3BA0408484561ED8 /* Rubik-Regular.ttf */,
+				8724978A582A47809B46E834 /* Inter-SemiBold.ttf */,
+				2FAD4B8C2DCA4C03A1FEFA2D /* NotoSans-ExtraBold.ttf */,
+				90C8DAC0C3114DF8902C1C4F /* WorkSans-Bold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				5DCACB8F33CDC322A6C60F78 /* libPods-DmvLearning.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				13B07FAE1A68108700A75B9A /* DmvLearning */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				176CA58DB16D4F458D75EBDF /* Resources */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* DmvLearning.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3B4392A12AC88292D35C810B /* Pods-DmvLearning.debug.xcconfig */,
+				5709B34CF0A7D63546082F79 /* Pods-DmvLearning.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		13B07F861A680F5B00A75B9A /* DmvLearning */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "DmvLearning" */;
+			buildPhases = (
+				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
+				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DmvLearning;
+			productName = DmvLearning;
+			productReference = 13B07F961A680F5B00A75B9A /* DmvLearning.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1120;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "DmvLearning" */;
+			compatibilityVersion = "Xcode 12.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* DmvLearning */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				4FFF544550234EA4B04AF04A /* PlusJakartaSans-Medium.ttf in Resources */,
+				1A8EE849A10E4A5A8054EF4C /* PlusJakartaSans-SemiBold.ttf in Resources */,
+				4F2DBCB55B544C788FFFB708 /* PlusJakartaSans-Regular.ttf in Resources */,
+				777E5F46EBEB4F91916D5E6B /* PlusJakartaSans-Bold.ttf in Resources */,
+				E4FC67B764574F53B1D27C2C /* PlusJakartaSans-ExtraBold.ttf in Resources */,
+				DD9F26342D792E5C2BC4DDD6 /* PrivacyInfo.xcprivacy in Resources */,
+				61EE35661550425A998A75BB /* WorkSans-Regular.ttf in Resources */,
+				E7B39B66384C42E18145F4F4 /* Inter-Medium.ttf in Resources */,
+				7614BB3174A343F08EE7DF46 /* NotoSans-Regular.ttf in Resources */,
+				82B5063337F34CCC9A95605E /* DMSans-Regular.ttf in Resources */,
+				6016DF086F74487D839127CA /* DMSans-Medium.ttf in Resources */,
+				6B987E4F545E42CBB0ABEFAE /* OpenSans-SemiBold.ttf in Resources */,
+				CE2B4017FA144D529DF97628 /* DMSans-Bold.ttf in Resources */,
+				320B7A90D808494DBCD97C60 /* Rubik-Bold.ttf in Resources */,
+				829542ED04484B48B28FED55 /* Lato-Bold.ttf in Resources */,
+				503F8C25EB874403B63189F2 /* Lato-Black.ttf in Resources */,
+				36DC7A4969C942B9B9A68922 /* WorkSans-ExtraBold.ttf in Resources */,
+				BD189CA03A1341E2AEC2D62A /* NotoSans-Medium.ttf in Resources */,
+				79CF8C2C92864E24B0FBBBD7 /* Lato-Regular.ttf in Resources */,
+				D8E2F688387C497C8EA98CDC /* NotoSans-Bold.ttf in Resources */,
+				2E03B5053AC048CC941420B7 /* Inter-Bold.ttf in Resources */,
+				86B1C6EAB15740F79B902E5A /* DMSans-SemiBold.ttf in Resources */,
+				75052BCBF5684056A16B5308 /* WorkSans-Medium.ttf in Resources */,
+				5CF182BF64C34D6D9B679D81 /* Rubik-Medium.ttf in Resources */,
+				8BF1E9AA210C45E49A22EA68 /* Inter-Regular.ttf in Resources */,
+				78BB240CEE7A49EDBDDA945B /* WorkSans-SemiBold.ttf in Resources */,
+				B7DCD5356BF7405BBA90FF7E /* NotoSans-SemiBold.ttf in Resources */,
+				88F57DC4D9844B2F9FD5B237 /* OpenSans-ExtraBold.ttf in Resources */,
+				B361C2F85AB742479206FEE0 /* DMSans-ExtraBold.ttf in Resources */,
+				1D6FF2A9E97E44F7BCDF7DD7 /* Inter-ExtraBold.ttf in Resources */,
+				CAD814AE27BF4B72BCE0271D /* OpenSans-Bold.ttf in Resources */,
+				0225AD96AE49401DB94EE04A /* Rubik-SemiBold.ttf in Resources */,
+				5204E377DF5642C68139AC65 /* OpenSans-Medium.ttf in Resources */,
+				2330C92CF67A474F82B5BA36 /* Rubik-ExtraBold.ttf in Resources */,
+				E8792E627A244DC998C9B49B /* OpenSans-Regular.ttf in Resources */,
+				479376D8061D481DB8E0D791 /* Rubik-Regular.ttf in Resources */,
+				9F22A4A3244D45ACA0A274E5 /* Inter-SemiBold.ttf in Resources */,
+				E92F4D37ED07476F9EEC3D88 /* NotoSans-ExtraBold.ttf in Resources */,
+				8B3F2F6D6F554E0F80DF5FB5 /* WorkSans-Bold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/.xcode.env",
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"\\\"$WITH_ENVIRONMENT\\\" \\\"$REACT_NATIVE_XCODE\\\"\"\n";
+		};
+		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DmvLearning/Pods-DmvLearning-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DmvLearning/Pods-DmvLearning-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DmvLearning/Pods-DmvLearning-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DmvLearning-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DmvLearning/Pods-DmvLearning-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DmvLearning/Pods-DmvLearning-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DmvLearning/Pods-DmvLearning-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-DmvLearning.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DmvLearning/DmvLearning.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = CF2BUXTC3J;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = DmvLearning/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.permitcoach;
+				PRODUCT_NAME = DmvLearning;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-DmvLearning.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DmvLearning/DmvLearning.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = CF2BUXTC3J;
+				INFOPLIST_FILE = DmvLearning/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.permitcoach;
+				PRODUCT_NAME = DmvLearning;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DFOLLY_NO_CONFIG",
+					"-DFOLLY_MOBILE=1",
+					"-DFOLLY_USE_LIBCPP=1",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
+				PODFILE_DIR = "$(SRCROOT)";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+				USE_HERMES = true;
+			};
+			name = Debug;
+		};
+		83CBBA211A601CBA00E9B192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DFOLLY_NO_CONFIG",
+					"-DFOLLY_MOBILE=1",
+					"-DFOLLY_USE_LIBCPP=1",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
+				PODFILE_DIR = "$(SRCROOT)";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
+				SDKROOT = iphoneos;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+				USE_HERMES = true;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "DmvLearning" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "DmvLearning" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}

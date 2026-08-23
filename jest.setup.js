@@ -1,0 +1,196 @@
+/* eslint-env jest */
+// async-storage v3 ships no jest mock — an in-memory implementation of the
+// API surface the app uses (call AsyncStorage.clear() between tests).
+jest.mock('@react-native-async-storage/async-storage', () => {
+  let store = {};
+  return {
+    __esModule: true,
+    default: {
+      getItem: jest.fn(key => Promise.resolve(store[key] ?? null)),
+      setItem: jest.fn((key, value) => {
+        store[key] = String(value);
+        return Promise.resolve();
+      }),
+      removeItem: jest.fn(key => {
+        delete store[key];
+        return Promise.resolve();
+      }),
+      getMany: jest.fn(keys =>
+        Promise.resolve(
+          Object.fromEntries(keys.map(key => [key, store[key] ?? null])),
+        ),
+      ),
+      setMany: jest.fn(entries => {
+        Object.assign(store, entries);
+        return Promise.resolve();
+      }),
+      removeMany: jest.fn(keys => {
+        keys.forEach(key => delete store[key]);
+        return Promise.resolve();
+      }),
+      getAllKeys: jest.fn(() => Promise.resolve(Object.keys(store))),
+      clear: jest.fn(() => {
+        store = {};
+        return Promise.resolve();
+      }),
+    },
+  };
+});
+
+// The Liquid Glass TurboModule only exists in a real native runtime.
+jest.mock('@callstack/liquid-glass', () => {
+  const { View } = require('react-native');
+  return { LiquidGlassView: View, isLiquidGlassSupported: false };
+});
+
+jest.mock('react-native-url-polyfill/auto', () => ({}));
+
+// Notifee is a native module; onboarding only needs the permission answer.
+jest.mock('@notifee/react-native', () => ({
+  __esModule: true,
+  AuthorizationStatus: {
+    NOT_DETERMINED: -1,
+    DENIED: 0,
+    AUTHORIZED: 1,
+    PROVISIONAL: 2,
+  },
+  default: {
+    getNotificationSettings: jest.fn(() =>
+      Promise.resolve({ authorizationStatus: -1 }),
+    ),
+    requestPermission: jest.fn(() =>
+      Promise.resolve({ authorizationStatus: 1 }),
+    ),
+  },
+}));
+
+// Supabase client, mocked at the SDK boundary: no session, benign no-op auth.
+jest.mock('@supabase/supabase-js', () => ({
+  createClient: jest.fn(() => ({
+    auth: {
+      getSession: jest.fn(() =>
+        Promise.resolve({ data: { session: null }, error: null }),
+      ),
+      onAuthStateChange: jest.fn(() => ({
+        data: { subscription: { unsubscribe: jest.fn() } },
+      })),
+      signInAnonymously: jest.fn(() =>
+        Promise.resolve({ data: { session: null, user: null }, error: null }),
+      ),
+      signInWithPassword: jest.fn(() =>
+        Promise.resolve({ data: {}, error: null }),
+      ),
+      signInWithIdToken: jest.fn(() =>
+        Promise.resolve({ data: {}, error: null }),
+      ),
+      updateUser: jest.fn(() =>
+        Promise.resolve({ data: { user: null }, error: null }),
+      ),
+      verifyOtp: jest.fn(() =>
+        Promise.resolve({ data: { session: null, user: null }, error: null }),
+      ),
+      resetPasswordForEmail: jest.fn(() =>
+        Promise.resolve({ data: {}, error: null }),
+      ),
+      signOut: jest.fn(() => Promise.resolve({ error: null })),
+      startAutoRefresh: jest.fn(),
+      stopAutoRefresh: jest.fn(),
+    },
+    rpc: jest.fn(() => Promise.resolve({ data: null, error: null })),
+  })),
+}));
+
+// Native auth/keychain modules don't exist in the jest runtime.
+jest.mock('react-native-keychain', () => ({
+  ACCESSIBLE: { AFTER_FIRST_UNLOCK: 'AccessibleAfterFirstUnlock' },
+  getGenericPassword: jest.fn(() => Promise.resolve(false)),
+  setGenericPassword: jest.fn(() => Promise.resolve(true)),
+  resetGenericPassword: jest.fn(() => Promise.resolve(true)),
+}));
+
+jest.mock('@invertase/react-native-apple-authentication', () => ({
+  appleAuth: {
+    isSupported: false,
+    Operation: { LOGIN: 1 },
+    Scope: { EMAIL: 0, FULL_NAME: 1 },
+    performRequest: jest.fn(() => Promise.reject(new Error('not supported'))),
+  },
+}));
+
+jest.mock('react-native-purchases', () => ({
+  __esModule: true,
+  LOG_LEVEL: {
+    VERBOSE: 'VERBOSE',
+    DEBUG: 'DEBUG',
+    INFO: 'INFO',
+    ERROR: 'ERROR',
+  },
+  default: {
+    configure: jest.fn(),
+    setLogLevel: jest.fn(),
+    showManageSubscriptions: jest.fn(() => Promise.resolve()),
+    logIn: jest.fn(() =>
+      Promise.resolve({ customerInfo: { entitlements: { active: {} } } }),
+    ),
+    logOut: jest.fn(() => Promise.resolve({ entitlements: { active: {} } })),
+    getCustomerInfo: jest.fn(() =>
+      Promise.resolve({ entitlements: { active: {} } }),
+    ),
+    addCustomerInfoUpdateListener: jest.fn(),
+    removeCustomerInfoUpdateListener: jest.fn(),
+    getOfferings: jest.fn(() => Promise.resolve({ current: null })),
+    purchasePackage: jest.fn(),
+    restorePurchases: jest.fn(() =>
+      Promise.resolve({ entitlements: { active: {} } }),
+    ),
+  },
+}));
+
+jest.mock('react-native-purchases-ui', () => {
+  const { View } = require('react-native');
+  return {
+    __esModule: true,
+    default: {
+      // The native paywall host view, as a plain View like the other native
+      // view mocks.
+      Paywall: View,
+      presentPaywall: jest.fn(() => Promise.resolve('CANCELLED')),
+      presentPaywallIfNeeded: jest.fn(() => Promise.resolve('NOT_PRESENTED')),
+    },
+  };
+});
+
+// The community date-time picker is a native view; render a plain View.
+jest.mock('@react-native-community/datetimepicker', () => {
+  const { View } = require('react-native');
+  return {
+    __esModule: true,
+    default: View,
+    DateTimePickerAndroid: { open: jest.fn(), dismiss: jest.fn() },
+  };
+});
+
+// PostHog: analytics is off in the jest runtime anyway (see analytics/client),
+// but the SDK still pulls in native device/locale modules on import. Mocked at
+// the package boundary so nothing has to be transformed or linked.
+jest.mock('posthog-react-native', () => {
+  const { View } = require('react-native');
+  return {
+    __esModule: true,
+    default: jest.fn(),
+    PostHogProvider: ({ children }) => children,
+    usePostHog: () => undefined,
+    useFeatureFlag: () => undefined,
+    // A plain View, like the real one: screens wrap it in styled(), so it has
+    // to take a style prop.
+    PostHogMaskView: View,
+  };
+});
+
+jest.mock('@react-native-google-signin/google-signin', () => ({
+  GoogleSignin: {
+    configure: jest.fn(),
+    hasPlayServices: jest.fn(() => Promise.resolve(true)),
+    signIn: jest.fn(() => Promise.resolve({ type: 'cancelled', data: null })),
+  },
+}));

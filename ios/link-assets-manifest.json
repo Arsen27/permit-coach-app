@@ -1,0 +1,157 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/DMSans-Bold.ttf",
+      "sha1": "86add8f35d7c3a6a088c575ac140320c7bb52862"
+    },
+    {
+      "path": "assets/fonts/DMSans-ExtraBold.ttf",
+      "sha1": "bbbbcd9f2fdf5c504896b9439703e9bb38defbdc"
+    },
+    {
+      "path": "assets/fonts/DMSans-Medium.ttf",
+      "sha1": "6e8b4c3c899786d5d9b5698c87dc8264e2b818cd"
+    },
+    {
+      "path": "assets/fonts/DMSans-Regular.ttf",
+      "sha1": "982b0e6f1234a1fa364309eb508eb374c27572cf"
+    },
+    {
+      "path": "assets/fonts/DMSans-SemiBold.ttf",
+      "sha1": "74ae0321e69f616713fd7589765fa2124e9d2681"
+    },
+    {
+      "path": "assets/fonts/Inter-Bold.ttf",
+      "sha1": "b7ab5dc5e8d605338223de7a8ffe3ebea409d3bc"
+    },
+    {
+      "path": "assets/fonts/Inter-ExtraBold.ttf",
+      "sha1": "3744a05c5f284a039db6f64dc36185293ad16952"
+    },
+    {
+      "path": "assets/fonts/Inter-Medium.ttf",
+      "sha1": "78f01e4f13a7da5c283f4d0b5d36dc489eb5ab73"
+    },
+    {
+      "path": "assets/fonts/Inter-Regular.ttf",
+      "sha1": "78eae8a823f461192b4df2d67d7eaa818cf09b5a"
+    },
+    {
+      "path": "assets/fonts/Inter-SemiBold.ttf",
+      "sha1": "1048573ec372a0c4a60bd3d5b3ab3b82bc3973da"
+    },
+    {
+      "path": "assets/fonts/Lato-Black.ttf",
+      "sha1": "4fa7d5cfe0774c806f6e69bec9ea0dd6923cae26"
+    },
+    {
+      "path": "assets/fonts/Lato-Bold.ttf",
+      "sha1": "e87d99a300317fd927c0a512be856b3caf52d61f"
+    },
+    {
+      "path": "assets/fonts/Lato-Regular.ttf",
+      "sha1": "06775847c3ad5bdc4525009f41aaf585bfcba4c2"
+    },
+    {
+      "path": "assets/fonts/NotoSans-Bold.ttf",
+      "sha1": "4d98fa05eee56d4434dabcd082288ebeb4c7b010"
+    },
+    {
+      "path": "assets/fonts/NotoSans-ExtraBold.ttf",
+      "sha1": "3bb489c61a13b240444cfb38e32a15e5362e0c3c"
+    },
+    {
+      "path": "assets/fonts/NotoSans-Medium.ttf",
+      "sha1": "624ecb589054ab0a00a32531eed6bfd1007bd88f"
+    },
+    {
+      "path": "assets/fonts/NotoSans-Regular.ttf",
+      "sha1": "8242d2912e31b55a30d88a84d0a86ab02940b3fd"
+    },
+    {
+      "path": "assets/fonts/NotoSans-SemiBold.ttf",
+      "sha1": "19f2cd8e8277f552a5bd8abf33115ae34e74721b"
+    },
+    {
+      "path": "assets/fonts/OpenSans-Bold.ttf",
+      "sha1": "94167913cf8ed4a0e12579ba8f412ab928e5d811"
+    },
+    {
+      "path": "assets/fonts/OpenSans-ExtraBold.ttf",
+      "sha1": "b9d4d931f3281d1ee9543cf1b6841f7bf6ee1e08"
+    },
+    {
+      "path": "assets/fonts/OpenSans-Medium.ttf",
+      "sha1": "fb8ce81425a0ae6c46e38285524fd4f8f2bdbbd0"
+    },
+    {
+      "path": "assets/fonts/OpenSans-Regular.ttf",
+      "sha1": "50d372e0f573fec8909c44aea06a589c697c1695"
+    },
+    {
+      "path": "assets/fonts/OpenSans-SemiBold.ttf",
+      "sha1": "db92063831cc49eec20959a0fd54013b3d915f49"
+    },
+    {
+      "path": "assets/fonts/PlusJakartaSans-Bold.ttf",
+      "sha1": "03a851a9d5462c45ed8b1b866e4c0906d8f2958a"
+    },
+    {
+      "path": "assets/fonts/PlusJakartaSans-ExtraBold.ttf",
+      "sha1": "f9c935ee5154107da0b151357ec0c2ef5701c471"
+    },
+    {
+      "path": "assets/fonts/PlusJakartaSans-Medium.ttf",
+      "sha1": "d8b2dab22913890ab1d113878c9bbf6c837874de"
+    },
+    {
+      "path": "assets/fonts/PlusJakartaSans-Regular.ttf",
+      "sha1": "e7303f3f78889809496c695e34b33577dbb27c35"
+    },
+    {
+      "path": "assets/fonts/PlusJakartaSans-SemiBold.ttf",
+      "sha1": "e4d28236e771b753cee6588c1dcb7c99d2b4f47d"
+    },
+    {
+      "path": "assets/fonts/Rubik-Bold.ttf",
+      "sha1": "6b3d1e4b1a53b5e385d2c4bc47027e58e07f5a92"
+    },
+    {
+      "path": "assets/fonts/Rubik-ExtraBold.ttf",
+      "sha1": "3c1928d0dd7f70edb99d51836c23c77b67d6cb55"
+    },
+    {
+      "path": "assets/fonts/Rubik-Medium.ttf",
+      "sha1": "acf42713cbfaafcaf7a0461e95ce1e719184397e"
+    },
+    {
+      "path": "assets/fonts/Rubik-Regular.ttf",
+      "sha1": "d674e4a1a7241c2f8ccab1a98689c0f44622d218"
+    },
+    {
+      "path": "assets/fonts/Rubik-SemiBold.ttf",
+      "sha1": "5ea1e4d233cbfb04755ac927318597062697d363"
+    },
+    {
+      "path": "assets/fonts/WorkSans-Bold.ttf",
+      "sha1": "5703b69dc953670a92c32335df66c200f8737a6e"
+    },
+    {
+      "path": "assets/fonts/WorkSans-ExtraBold.ttf",
+      "sha1": "5dc1b884a8d7ee62cebefee8cd45fb550e409d0d"
+    },
+    {
+      "path": "assets/fonts/WorkSans-Medium.ttf",
+      "sha1": "1dbef60d446de1f65e3e8864ed9487f975d50f08"
+    },
+    {
+      "path": "assets/fonts/WorkSans-Regular.ttf",
+      "sha1": "382293a29f962714dfbbdb6cf983e496ef234a3f"
+    },
+    {
+      "path": "assets/fonts/WorkSans-SemiBold.ttf",
+      "sha1": "6d9417bc760615c563d332ea51e54f67082265df"
+    }
+  ]
+}

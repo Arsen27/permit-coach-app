@@ -1,0 +1,296 @@
+{
+  "speed-lanes": [
+    {
+      "id": "sl-1",
+      "prompt": "Under California's Basic Speed Law, you may never drive:",
+      "options": [
+        { "id": "a", "text": "Faster than the posted limit, even in an emergency" },
+        { "id": "b", "text": "Slower than the flow of traffic" },
+        { "id": "c", "text": "Faster than is safe for current conditions" },
+        { "id": "d", "text": "Faster than 55 mph on any two-lane road" }
+      ],
+      "correctId": "c",
+      "explanation": "The basic speed law requires driving no faster than is safe for weather, traffic, and road conditions, regardless of the posted limit."
+    },
+    {
+      "id": "sl-2",
+      "prompt": "Unless otherwise posted, the speed limit on a two-lane undivided highway in California is:",
+      "options": [
+        { "id": "a", "text": "45 mph" },
+        { "id": "b", "text": "55 mph" },
+        { "id": "c", "text": "60 mph" },
+        { "id": "d", "text": "65 mph" }
+      ],
+      "correctId": "b",
+      "explanation": "Two-lane undivided highways are limited to 55 mph unless signs show a different limit."
+    },
+    {
+      "id": "sl-3",
+      "prompt": "You are on a freeway posted 65 mph in clear weather with light traffic. You may legally drive:",
+      "options": [
+        { "id": "a", "text": "No faster than 65 mph" },
+        { "id": "b", "text": "70 mph to keep up with faster traffic" },
+        { "id": "c", "text": "As fast as the flow of traffic" },
+        { "id": "d", "text": "75 mph, but only while passing" }
+      ],
+      "correctId": "a",
+      "explanation": "The posted limit is the maximum even when passing or keeping up with traffic; most California freeways are limited to 65 mph unless posted 70."
+    },
+    {
+      "id": "sl-4",
+      "prompt": "What is the speed limit in an alley in California?",
+      "options": [
+        { "id": "a", "text": "25 mph" },
+        { "id": "b", "text": "20 mph" },
+        { "id": "c", "text": "10 mph" },
+        { "id": "d", "text": "15 mph" }
+      ],
+      "correctId": "d",
+      "explanation": "The limit in any alley is 15 mph, the same limit used at blind intersections and blind railroad crossings."
+    },
+    {
+      "id": "sl-5",
+      "prompt": "When children are outside or crossing near a school, the speed limit is usually:",
+      "options": [
+        { "id": "a", "text": "15 mph in all school zones" },
+        { "id": "b", "text": "25 mph unless a lower limit is posted" },
+        { "id": "c", "text": "30 mph during school hours" },
+        { "id": "d", "text": "Whatever the residential limit is" }
+      ],
+      "correctId": "b",
+      "explanation": "Within 500 to 1,000 feet of a school while children are outside, the limit is 25 mph unless posted lower."
+    },
+    {
+      "id": "sl-6",
+      "prompt": "Which vehicles may use an HOV (carpool) lane during its restricted hours?",
+      "options": [
+        { "id": "a", "text": "Any vehicle that is passing slower traffic" },
+        { "id": "b", "text": "Only buses and emergency vehicles" },
+        { "id": "c", "text": "Vehicles with at least the posted number of occupants, motorcycles, and vehicles with an eligible decal" },
+        { "id": "d", "text": "Any vehicle driving at or above the speed limit" }
+      ],
+      "correctId": "c",
+      "explanation": "HOV lanes are for vehicles meeting the posted occupancy minimum, plus motorcycles and decal-eligible clean-air vehicles."
+    },
+    {
+      "id": "sl-7",
+      "prompt": "If you drive slower than the flow of traffic on a multilane freeway, you should:",
+      "options": [
+        { "id": "a", "text": "Use the far right lane" },
+        { "id": "b", "text": "Use the center lane" },
+        { "id": "c", "text": "Turn on your hazard lights and use any lane" },
+        { "id": "d", "text": "Use the left lane so others can pass on the right" }
+      ],
+      "correctId": "a",
+      "explanation": "Slower traffic must keep right; the left lanes are for passing and faster-moving traffic."
+    },
+    {
+      "id": "sl-8",
+      "prompt": "While another vehicle is passing you on the left, you should:",
+      "options": [
+        { "id": "a", "text": "Speed up slightly so the pass is completed sooner" },
+        { "id": "b", "text": "Move onto the shoulder to make room" },
+        { "id": "c", "text": "Honk to warn the other driver" },
+        { "id": "d", "text": "Maintain or slightly reduce your speed and stay in your lane" }
+      ],
+      "correctId": "d",
+      "explanation": "Never speed up while being passed; hold or ease your speed so the other driver can return to the lane safely."
+    }
+  ],
+  "parking-stopping": [
+    {
+      "id": "ps-1",
+      "prompt": "A curb painted red means:",
+      "options": [
+        { "id": "a", "text": "Loading and unloading only" },
+        { "id": "b", "text": "No stopping, standing, or parking at any time" },
+        { "id": "c", "text": "Passenger pickup for up to 5 minutes" },
+        { "id": "d", "text": "Parking allowed after business hours" }
+      ],
+      "correctId": "b",
+      "explanation": "Red curbs prohibit stopping, standing, or parking; buses may stop only at red zones marked for buses."
+    },
+    {
+      "id": "ps-2",
+      "prompt": "You may stop at a white painted curb only:",
+      "options": [
+        { "id": "a", "text": "Long enough to load or unload freight" },
+        { "id": "b", "text": "For up to 30 minutes" },
+        { "id": "c", "text": "If you leave your hazard lights on" },
+        { "id": "d", "text": "Long enough to pick up or drop off passengers or mail" }
+      ],
+      "correctId": "d",
+      "explanation": "White curbs allow only brief stops to pick up or drop off passengers or deposit mail."
+    },
+    {
+      "id": "ps-3",
+      "prompt": "You may not park within what distance of a fire hydrant?",
+      "options": [
+        { "id": "a", "text": "15 feet" },
+        { "id": "b", "text": "5 feet" },
+        { "id": "c", "text": "10 feet" },
+        { "id": "d", "text": "25 feet" }
+      ],
+      "correctId": "a",
+      "explanation": "California law prohibits parking within 15 feet of a fire hydrant."
+    },
+    {
+      "id": "ps-4",
+      "prompt": "A curb painted blue means parking is allowed:",
+      "options": [
+        { "id": "a", "text": "For zero-emission vehicles while charging" },
+        { "id": "b", "text": "For anyone for up to 15 minutes" },
+        { "id": "c", "text": "Only for disabled persons displaying a placard or special plates" },
+        { "id": "d", "text": "For motorcycles and compact cars" }
+      ],
+      "correctId": "c",
+      "explanation": "Blue curbs are reserved for drivers or passengers with a valid disabled placard or disabled license plates."
+    },
+    {
+      "id": "ps-5",
+      "prompt": "When parking downhill next to a curb, you should turn your front wheels:",
+      "options": [
+        { "id": "a", "text": "Straight ahead with the parking brake off" },
+        { "id": "b", "text": "Toward the curb" },
+        { "id": "c", "text": "Away from the curb" },
+        { "id": "d", "text": "In either direction, as long as the parking brake is set" }
+      ],
+      "correctId": "b",
+      "explanation": "Downhill, wheels turn into the curb so the car rolls against it if the brakes fail; uphill with a curb, turn them away."
+    },
+    {
+      "id": "ps-6",
+      "prompt": "A curb painted yellow means:",
+      "options": [
+        { "id": "a", "text": "Stop only long enough to load or unload passengers or freight, usually staying with your vehicle" },
+        { "id": "b", "text": "No parking at any time for any reason" },
+        { "id": "c", "text": "Parking for permit holders only" },
+        { "id": "d", "text": "Free parking for the time posted on the curb" }
+      ],
+      "correctId": "a",
+      "explanation": "Yellow zones are for loading and unloading; drivers of noncommercial vehicles are usually expected to stay with the vehicle."
+    },
+    {
+      "id": "ps-7",
+      "prompt": "Under California law, how close to a crosswalk may you park?",
+      "options": [
+        { "id": "a", "text": "Within 5 feet" },
+        { "id": "b", "text": "Right up to the crosswalk if no sign prohibits it" },
+        { "id": "c", "text": "Within 10 feet" },
+        { "id": "d", "text": "No closer than 20 feet" }
+      ],
+      "correctId": "d",
+      "explanation": "California's daylighting law prohibits parking within 20 feet of any marked or unmarked crosswalk to keep pedestrians visible."
+    },
+    {
+      "id": "ps-8",
+      "prompt": "A curb painted green means:",
+      "options": [
+        { "id": "a", "text": "Parking reserved for electric vehicles" },
+        { "id": "b", "text": "No stopping at any time" },
+        { "id": "c", "text": "Parking for a limited time shown on the curb or a nearby sign" },
+        { "id": "d", "text": "Loading zone for commercial trucks" }
+      ],
+      "correctId": "c",
+      "explanation": "Green curbs allow parking only for the limited time painted on the curb or posted on a sign."
+    }
+  ],
+  "alcohol-penalties": [
+    {
+      "id": "ap-1",
+      "prompt": "For drivers 21 and older, it is illegal to drive with a blood alcohol concentration (BAC) of:",
+      "options": [
+        { "id": "a", "text": "0.10% or higher" },
+        { "id": "b", "text": "0.05% or higher" },
+        { "id": "c", "text": "0.08% or higher" },
+        { "id": "d", "text": "Any measurable amount" }
+      ],
+      "correctId": "c",
+      "explanation": "The legal limit for noncommercial drivers 21 and older is 0.08%; commercial drivers are limited to 0.04%."
+    },
+    {
+      "id": "ap-2",
+      "prompt": "Under California's zero tolerance law, drivers under 21 may not drive with a BAC of:",
+      "options": [
+        { "id": "a", "text": "0.01% or higher" },
+        { "id": "b", "text": "0.05% or higher" },
+        { "id": "c", "text": "0.08% or higher" },
+        { "id": "d", "text": "0.03% or higher" }
+      ],
+      "correctId": "a",
+      "explanation": "Drivers under 21 violate the zero tolerance law with a BAC of just 0.01% or higher."
+    },
+    {
+      "id": "ap-3",
+      "prompt": "California's implied consent law means that by driving in the state you have agreed to:",
+      "options": [
+        { "id": "a", "text": "Carry proof of insurance at all times" },
+        { "id": "b", "text": "Attend DUI school if you are ever stopped" },
+        { "id": "c", "text": "Let officers search your vehicle at any time" },
+        { "id": "d", "text": "Submit to a chemical test of your blood or breath if lawfully arrested for DUI" }
+      ],
+      "correctId": "d",
+      "explanation": "Holding a license and driving in California implies consent to BAC testing after a lawful DUI arrest."
+    },
+    {
+      "id": "ap-4",
+      "prompt": "If you refuse to take a chemical test after a lawful DUI arrest:",
+      "options": [
+        { "id": "a", "text": "The DUI charges must be dropped" },
+        { "id": "b", "text": "Your license will be suspended, and you can still be convicted of DUI" },
+        { "id": "c", "text": "You will only pay a small fine" },
+        { "id": "d", "text": "You may substitute a field sobriety test instead" }
+      ],
+      "correctId": "b",
+      "explanation": "Refusal triggers a license suspension on its own and does not prevent a DUI conviction."
+    },
+    {
+      "id": "ap-5",
+      "prompt": "A driver under 21 caught driving with a BAC of 0.01% or higher will:",
+      "options": [
+        { "id": "a", "text": "Have their driving privilege suspended for one year" },
+        { "id": "b", "text": "Receive only a warning for a first offense" },
+        { "id": "c", "text": "Pay a fine but keep their license if under 0.05%" },
+        { "id": "d", "text": "Be required to retake the written knowledge test" }
+      ],
+      "correctId": "a",
+      "explanation": "Under zero tolerance, a BAC of 0.01% or more results in a one-year suspension of an under-21 driver's license."
+    },
+    {
+      "id": "ap-6",
+      "prompt": "An opened container of alcohol carried in a vehicle must be kept:",
+      "options": [
+        { "id": "a", "text": "In the glove compartment" },
+        { "id": "b", "text": "Under a seat, out of reach" },
+        { "id": "c", "text": "In the back seat next to a sober passenger" },
+        { "id": "d", "text": "In the trunk or another area where passengers do not sit" }
+      ],
+      "correctId": "d",
+      "explanation": "Open containers must be in the trunk or a place not occupied by passengers; the glove box is specifically illegal."
+    },
+    {
+      "id": "ap-7",
+      "prompt": "A DUI conviction stays on your California driving record for:",
+      "options": [
+        { "id": "a", "text": "3 years" },
+        { "id": "b", "text": "10 years" },
+        { "id": "c", "text": "5 years" },
+        { "id": "d", "text": "18 months" }
+      ],
+      "correctId": "b",
+      "explanation": "A DUI remains on your DMV record for 10 years and counts as a prior offense during that period."
+    },
+    {
+      "id": "ap-8",
+      "prompt": "How many points does a DUI conviction add to your California driving record?",
+      "options": [
+        { "id": "a", "text": "1 point" },
+        { "id": "b", "text": "0 points, only a fine" },
+        { "id": "c", "text": "2 points" },
+        { "id": "d", "text": "4 points" }
+      ],
+      "correctId": "c",
+      "explanation": "A DUI counts as a 2-point violation; 4 points in 12 months can classify you as a negligent operator."
+    }
+  ]
+}

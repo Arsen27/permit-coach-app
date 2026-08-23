@@ -1,0 +1,3270 @@
+[
+  {
+    "moduleId": "tx-read-road",
+    "uuid": "3efe1c2e-ebe2-53e0-8856-5bface59937f",
+    "sequence": 1,
+    "title": "Read the Road",
+    "outcome": "Build a useful visual vocabulary for signs, signals, and markings in the first study session.",
+    "lessons": [
+      {
+        "lessonId": "tx-sign-language",
+        "uuid": "4a37ee56-c5c1-5fcb-b878-7e8e5be72a50",
+        "moduleId": "tx-read-road",
+        "globalSequence": 1,
+        "moduleSequence": 1,
+        "title": "How Signs Communicate: Shapes and Colors",
+        "objective": "Identify a sign's general job before reading every word or symbol.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-sign-language-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "An unfamiliar yellow diamond appears ahead. You cannot read its symbol yet, but its family already tells you to prepare for a condition rather than wait for a command.",
+            "questionPreview": "What should you expect from a yellow diamond sign?",
+            "questionId": "tx-sign-language-q01"
+          },
+          {
+            "blockId": "tx-sign-language-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Identify a sign's general job before reading every word or symbol. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-sign-language-b03",
+            "type": "image",
+            "assetId": "tx-sign-language-asset-01"
+          },
+          {
+            "blockId": "tx-sign-language-b04",
+            "type": "core_rule",
+            "title": "Start with the sign family",
+            "bodyMarkdown": "Regulatory signs state requirements or prohibitions. Warning signs call attention to a condition that may require an early adjustment. Guide signs organize routes, destinations, and services. Classifying the family narrows the meaning before you read the details.",
+            "checkpointQuestionId": "tx-sign-language-q02"
+          },
+          {
+            "blockId": "tx-sign-language-b05",
+            "type": "image",
+            "assetId": "tx-sign-language-asset-02"
+          },
+          {
+            "blockId": "tx-sign-language-b06",
+            "type": "visual_example",
+            "title": "Memorize the unique silhouettes",
+            "bodyMarkdown": "An octagon means STOP, a downward-pointing triangle means YIELD, a pennant marks a no-passing zone, and a pentagon identifies a school-related area. These special shapes remain recognizable when text is distant or partly hidden.",
+            "checkpointQuestionId": "tx-sign-language-q03"
+          },
+          {
+            "blockId": "tx-sign-language-b07",
+            "type": "related_rule",
+            "title": "Use color as a second clue",
+            "bodyMarkdown": "Red strongly signals stopping or prohibition. Yellow warns, orange marks temporary traffic control and work activity, and green, blue, or brown usually guide. Color helps you predict the message, but the symbol, words, plaque, lane placement, and operating time control the exact action.",
+            "checkpointQuestionId": "tx-sign-language-q04"
+          },
+          {
+            "blockId": "tx-sign-language-b08",
+            "type": "image",
+            "assetId": "tx-sign-language-asset-03"
+          },
+          {
+            "blockId": "tx-sign-language-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas MUTCD 2025. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-sign-language-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not answer from color alone. Two signs can share a color but demand different actions; finish with the shape, symbol, words, plaque, and placement."
+          },
+          {
+            "blockId": "tx-sign-language-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Practice signs in families. Say whether each sign controls, warns, or guides, then name the driving decision it changes.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-sign-language-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Function first. Exact message second. Driving action third.",
+            "checkpointQuestionId": "tx-sign-language-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-sign-language-q01",
+          "tx-sign-language-q02",
+          "tx-sign-language-q03",
+          "tx-sign-language-q04",
+          "tx-sign-language-q05"
+        ],
+        "assetIds": [
+          "tx-sign-language-asset-01",
+          "tx-sign-language-asset-02",
+          "tx-sign-language-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-regulatory-signs",
+        "uuid": "48ae72ee-9cc0-5761-81d7-dba1b7caa7b7",
+        "moduleId": "tx-read-road",
+        "globalSequence": 2,
+        "moduleSequence": 2,
+        "title": "Signs That Control What You Do",
+        "objective": "Recognize high-priority regulatory signs and select the required action.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-regulatory-signs-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A ramp divides. One branch carries DO NOT ENTER. The red sign removes that branch from your legal choices; it is not a suggestion to be weighed against convenience.",
+            "questionPreview": "What should you do at a DO NOT ENTER sign?",
+            "questionId": "tx-regulatory-signs-q01"
+          },
+          {
+            "blockId": "tx-regulatory-signs-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Recognize high-priority regulatory signs and select the required action. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-regulatory-signs-b03",
+            "type": "image",
+            "assetId": "tx-regulatory-signs-asset-01"
+          },
+          {
+            "blockId": "tx-regulatory-signs-b04",
+            "type": "core_rule",
+            "title": "STOP and YIELD are different",
+            "bodyMarkdown": "STOP requires a complete stop at the lawful stopping point before you evaluate the path. YIELD requires a speed reduction and giving way, with a stop when necessary. In both cases, proceed only when the conflicting path can be entered safely.",
+            "checkpointQuestionId": "tx-regulatory-signs-q02"
+          },
+          {
+            "blockId": "tx-regulatory-signs-b05",
+            "type": "image",
+            "assetId": "tx-regulatory-signs-asset-02"
+          },
+          {
+            "blockId": "tx-regulatory-signs-b06",
+            "type": "visual_example",
+            "title": "Read the target of a restriction",
+            "bodyMarkdown": "Turn, lane-use, speed, entry, and parking signs regulate a particular movement, vehicle, lane, time, or place. Read the arrow, symbol, overhead placement, and plaque. A restriction over one lane does not automatically govern every lane.",
+            "checkpointQuestionId": "tx-regulatory-signs-q03"
+          },
+          {
+            "blockId": "tx-regulatory-signs-b07",
+            "type": "related_rule",
+            "title": "Wrong way means reduce danger now",
+            "bodyMarkdown": "DO NOT ENTER protects an entrance; WRONG WAY warns that your direction conflicts with legal traffic flow. Do not continue farther. Slow, stop in the safest available position, and correct direction only when the maneuver will not create another conflict.",
+            "checkpointQuestionId": "tx-regulatory-signs-q04"
+          },
+          {
+            "blockId": "tx-regulatory-signs-b08",
+            "type": "image",
+            "assetId": "tx-regulatory-signs-asset-03"
+          },
+          {
+            "blockId": "tx-regulatory-signs-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 544.004-.010; Texas MUTCD 2025. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-regulatory-signs-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A STOP sign does not grant right-of-way after the stop. It creates a duty to stop, observe, yield as required, and proceed only when safe."
+          },
+          {
+            "blockId": "tx-regulatory-signs-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Look beyond the sign name. Ask which movement, lane, vehicle, time, or place is actually controlled.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-regulatory-signs-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "A regulatory sign narrows your legal choices.",
+            "checkpointQuestionId": "tx-regulatory-signs-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-regulatory-signs-q01",
+          "tx-regulatory-signs-q02",
+          "tx-regulatory-signs-q03",
+          "tx-regulatory-signs-q04",
+          "tx-regulatory-signs-q05"
+        ],
+        "assetIds": [
+          "tx-regulatory-signs-asset-01",
+          "tx-regulatory-signs-asset-02",
+          "tx-regulatory-signs-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-warning-guide-signs",
+        "uuid": "7811f91f-63aa-580d-ab2c-560c87295ec4",
+        "moduleId": "tx-read-road",
+        "globalSequence": 3,
+        "moduleSequence": 3,
+        "title": "Warning, School, Railroad, Work-Zone, and Guide Signs",
+        "objective": "Turn advance information into an early, controlled response.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-warning-guide-signs-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A warning sign shows a curve before you can see it. The useful response happens now: scan farther, check surrounding traffic, and choose a controllable entry speed before the steering demand arrives.",
+            "questionPreview": "When should you react to an advance warning sign?",
+            "questionId": "tx-warning-guide-signs-q01"
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Turn advance information into an early, controlled response. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b03",
+            "type": "image",
+            "assetId": "tx-warning-guide-signs-asset-01"
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b04",
+            "type": "core_rule",
+            "title": "Warnings buy decision time",
+            "bodyMarkdown": "Warning signs do not usually prescribe one exact speed. They identify a condition—curve, merge, crossing, surface change, narrow road, or another hazard—so you can adjust speed, lane position, and attention before your options shrink.",
+            "checkpointQuestionId": "tx-warning-guide-signs-q02"
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b05",
+            "type": "image",
+            "assetId": "tx-warning-guide-signs-asset-02"
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b06",
+            "type": "visual_example",
+            "title": "Crossings use layered clues",
+            "bodyMarkdown": "School and pedestrian signs announce places where vulnerable road users may enter. Railroad signs, pavement markings, crossbucks, lights, and gates build from advance warning to the crossing itself. Always be able to stop before tracks when a train, signal, gate, or traffic condition makes crossing unsafe.",
+            "checkpointQuestionId": "tx-warning-guide-signs-q03"
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b07",
+            "type": "related_rule",
+            "title": "Orange means the road plan may change",
+            "bodyMarkdown": "Work-zone signs and devices can shift lanes, close shoulders, alter speeds, or place workers near traffic. Follow the temporary path and authorized directions even when they differ from ordinary markings. Guide signs, by contrast, help you choose routes and services but do not erase regulatory controls.",
+            "checkpointQuestionId": "tx-warning-guide-signs-q04"
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b08",
+            "type": "image",
+            "assetId": "tx-warning-guide-signs-asset-03"
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas MUTCD 2025; Texas Transportation Code §§ 545.251-.253. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A railroad crossbuck is not permission to follow the vehicle ahead. Enter only when you have enough room to clear every track without stopping."
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "On each warning sign, name the adjustment it should trigger: slow, scan, create space, change lane, or prepare to stop.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-warning-guide-signs-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Advance information is useful only when you act early.",
+            "checkpointQuestionId": "tx-warning-guide-signs-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-warning-guide-signs-q01",
+          "tx-warning-guide-signs-q02",
+          "tx-warning-guide-signs-q03",
+          "tx-warning-guide-signs-q04",
+          "tx-warning-guide-signs-q05"
+        ],
+        "assetIds": [
+          "tx-warning-guide-signs-asset-01",
+          "tx-warning-guide-signs-asset-02",
+          "tx-warning-guide-signs-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-signals",
+        "uuid": "02013c29-28bf-51ff-839b-e3571619d23f",
+        "moduleId": "tx-read-road",
+        "globalSequence": 4,
+        "moduleSequence": 4,
+        "title": "Traffic Lights, Arrows, and Pedestrian Signals",
+        "objective": "Apply signal indications without confusing permission with priority.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-signals-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "Your light turns green, but a vehicle remains in the intersection. Green permits movement only after you yield to traffic and pedestrians still lawfully occupying the path.",
+            "questionPreview": "What should you do on green when the intersection is blocked?",
+            "questionId": "tx-signals-q01"
+          },
+          {
+            "blockId": "tx-signals-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Apply signal indications without confusing permission with priority. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-signals-b03",
+            "type": "image",
+            "assetId": "tx-signals-asset-01"
+          },
+          {
+            "blockId": "tx-signals-b04",
+            "type": "core_rule",
+            "title": "Green is conditional permission",
+            "bodyMarkdown": "A steady green allows the indicated movement, but a turning driver must yield as required and every driver must avoid entering a blocked intersection. A green arrow protects only the movement shown and does not make careless entry lawful.",
+            "checkpointQuestionId": "tx-signals-q02"
+          },
+          {
+            "blockId": "tx-signals-b05",
+            "type": "image",
+            "assetId": "tx-signals-asset-02"
+          },
+          {
+            "blockId": "tx-signals-b06",
+            "type": "visual_example",
+            "title": "Yellow closes the decision window",
+            "bodyMarkdown": "A steady yellow warns that the related green is ending and red will follow. Do not speed up to beat the signal. Make the controlled choice the law and conditions permit, accounting for whether a safe stop can be completed.",
+            "checkpointQuestionId": "tx-signals-q03"
+          },
+          {
+            "blockId": "tx-signals-b07",
+            "type": "related_rule",
+            "title": "Red still requires a stop",
+            "bodyMarkdown": "A steady red requires a stop at the applicable line, crosswalk, or intersection boundary. A turn on red is allowed only where state law and signs permit, after the stop and required yielding. A red arrow controls the movement it points to.",
+            "checkpointQuestionId": "tx-signals-q04"
+          },
+          {
+            "blockId": "tx-signals-b08",
+            "type": "image",
+            "assetId": "tx-signals-asset-03"
+          },
+          {
+            "blockId": "tx-signals-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code § 544.007. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-signals-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A flashing red is handled like a stop control; a flashing yellow calls for caution. Neither means the signal may be ignored."
+          },
+          {
+            "blockId": "tx-signals-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Before moving on green, scan left-right-left and the crosswalk. The new color does not instantly empty the intersection.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-signals-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "A signal grants a movement, not immunity from conflicts.",
+            "checkpointQuestionId": "tx-signals-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-signals-q01",
+          "tx-signals-q02",
+          "tx-signals-q03",
+          "tx-signals-q04",
+          "tx-signals-q05"
+        ],
+        "assetIds": [
+          "tx-signals-asset-01",
+          "tx-signals-asset-02",
+          "tx-signals-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-markings",
+        "uuid": "43a3c6af-d151-549f-b0db-1bc3b92228cf",
+        "moduleId": "tx-read-road",
+        "globalSequence": 5,
+        "moduleSequence": 5,
+        "title": "Road Lines, Painted Barriers, and Lane Arrows",
+        "objective": "Use pavement markings to predict legal movement and traffic direction.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-markings-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A broken line becomes solid before a curve. The change tells you the passing opportunity is ending before sight distance becomes too short.",
+            "questionPreview": "What should a new solid center line make you reconsider?",
+            "questionId": "tx-markings-q01"
+          },
+          {
+            "blockId": "tx-markings-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Use pavement markings to predict legal movement and traffic direction. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-markings-b03",
+            "type": "image",
+            "assetId": "tx-markings-asset-01"
+          },
+          {
+            "blockId": "tx-markings-b04",
+            "type": "core_rule",
+            "title": "Color separates different traffic relationships",
+            "bodyMarkdown": "Yellow center lines normally separate traffic moving in opposite directions. White lines normally separate lanes moving in the same direction or mark the right edge. Marking color is not a substitute for arrows, signs, or a physical barrier.",
+            "checkpointQuestionId": "tx-markings-q02"
+          },
+          {
+            "blockId": "tx-markings-b05",
+            "type": "image",
+            "assetId": "tx-markings-asset-02"
+          },
+          {
+            "blockId": "tx-markings-b06",
+            "type": "visual_example",
+            "title": "Broken and solid communicate crossing rules",
+            "bodyMarkdown": "A broken line generally permits crossing when the maneuver is otherwise legal and safe. A solid line restricts or discourages crossing depending on the marking and context. Double lines and painted islands demand attention to the full pattern, not one stripe in isolation.",
+            "checkpointQuestionId": "tx-markings-q03"
+          },
+          {
+            "blockId": "tx-markings-b07",
+            "type": "related_rule",
+            "title": "Arrows assign the lane's job",
+            "bodyMarkdown": "Lane-use arrows tell which movements are allowed from that lane. Enter the correct lane early and follow the arrow through the intersection. Do not use a painted island, shoulder, bicycle lane, or turn-only lane as a shortcut unless law and markings specifically allow the movement.",
+            "checkpointQuestionId": "tx-markings-q04"
+          },
+          {
+            "blockId": "tx-markings-b08",
+            "type": "image",
+            "assetId": "tx-markings-asset-03"
+          },
+          {
+            "blockId": "tx-markings-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas MUTCD 2025. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-markings-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A left-side broken line does not automatically make every pass legal. Sight distance, oncoming traffic, signs, intersections, and other prohibitions still matter."
+          },
+          {
+            "blockId": "tx-markings-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Read markings far ahead. Early lane choice prevents the sudden cross-lane move that creates most of the risk.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-markings-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Color shows relationship; pattern and context control crossing.",
+            "checkpointQuestionId": "tx-markings-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-markings-q01",
+          "tx-markings-q02",
+          "tx-markings-q03",
+          "tx-markings-q04",
+          "tx-markings-q05"
+        ],
+        "assetIds": [
+          "tx-markings-asset-01",
+          "tx-markings-asset-02",
+          "tx-markings-asset-03"
+        ],
+        "language": "en-US"
+      }
+    ],
+    "moduleTest": {
+      "testId": "tx-read-road-test",
+      "uuid": "9a497591-d788-5666-91e9-d4bb57a1fa30",
+      "moduleId": "tx-read-road",
+      "questionIds": [
+        "tx-sign-language-q01",
+        "tx-sign-language-q03",
+        "tx-sign-language-q05",
+        "tx-regulatory-signs-q02",
+        "tx-regulatory-signs-q04",
+        "tx-warning-guide-signs-q01",
+        "tx-warning-guide-signs-q03",
+        "tx-warning-guide-signs-q05",
+        "tx-signals-q02",
+        "tx-signals-q04"
+      ]
+    }
+  },
+  {
+    "moduleId": "tx-right-of-way",
+    "uuid": "d93c0536-4939-5c80-b29b-531933875e05",
+    "sequence": 2,
+    "title": "Intersections and Right-of-Way",
+    "outcome": "Decide who yields, where to stop, and how to turn without relying on guesswork.",
+    "lessons": [
+      {
+        "lessonId": "tx-uncontrolled-intersections",
+        "uuid": "cf874565-aca8-5aa9-859c-c539ed519062",
+        "moduleId": "tx-right-of-way",
+        "globalSequence": 6,
+        "moduleSequence": 1,
+        "title": "Who Goes First at an Uncontrolled Intersection?",
+        "objective": "Resolve uncontrolled and simultaneous arrivals without turning right-of-way into a race.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-uncontrolled-intersections-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "Two vehicles reach an unmarked intersection at nearly the same time. The safe answer is not the most aggressive driver; it is the driver whose movement remains after the applicable yielding rules are satisfied.",
+            "questionPreview": "At a simultaneous uncontrolled arrival, whom should you normally yield to?",
+            "questionId": "tx-uncontrolled-intersections-q01"
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Resolve uncontrolled and simultaneous arrivals without turning right-of-way into a race. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b03",
+            "type": "image",
+            "assetId": "tx-uncontrolled-intersections-asset-01"
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b04",
+            "type": "core_rule",
+            "title": "Earlier traffic clears first",
+            "bodyMarkdown": "When one vehicle has already lawfully entered, do not force it to stop inside the intersection. At a true simultaneous arrival, apply the state's right-side yielding rule and communicate through predictable speed and position rather than gestures that conflict with law.",
+            "checkpointQuestionId": "tx-uncontrolled-intersections-q02"
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b05",
+            "type": "image",
+            "assetId": "tx-uncontrolled-intersections-asset-02"
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b06",
+            "type": "visual_example",
+            "title": "Left turns yield across opposing traffic",
+            "bodyMarkdown": "A driver turning left must yield to an oncoming vehicle that is in the intersection or close enough to be an immediate hazard. The turn signal announces intent; it does not reserve a gap or cancel the oncoming driver's priority.",
+            "checkpointQuestionId": "tx-uncontrolled-intersections-q03"
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b07",
+            "type": "related_rule",
+            "title": "A legal priority can still be unsafe",
+            "bodyMarkdown": "Right-of-way rules allocate responsibility, but every driver keeps a duty to avoid a collision when possible. If another road user fails to yield, reduce the conflict instead of using your legal position to prove a point.",
+            "checkpointQuestionId": "tx-uncontrolled-intersections-q04"
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b08",
+            "type": "image",
+            "assetId": "tx-uncontrolled-intersections-asset-03"
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.151-.155. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not rely on eye contact, a wave, or vehicle size as the legal rule. Use arrival, direction, controls, and actual conflict."
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Cover the brake when an uncontrolled approach is hidden. A right-of-way answer is useful only if you can still stop.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-uncontrolled-intersections-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Priority organizes traffic; caution keeps it from becoming a collision.",
+            "checkpointQuestionId": "tx-uncontrolled-intersections-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-uncontrolled-intersections-q01",
+          "tx-uncontrolled-intersections-q02",
+          "tx-uncontrolled-intersections-q03",
+          "tx-uncontrolled-intersections-q04",
+          "tx-uncontrolled-intersections-q05"
+        ],
+        "assetIds": [
+          "tx-uncontrolled-intersections-asset-01",
+          "tx-uncontrolled-intersections-asset-02",
+          "tx-uncontrolled-intersections-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-stop-yield-entry",
+        "uuid": "0a017e22-d2c0-576c-86ee-540b73697801",
+        "moduleId": "tx-right-of-way",
+        "globalSequence": 7,
+        "moduleSequence": 2,
+        "title": "STOP, YIELD, Driveways, and Entering Traffic",
+        "objective": "Choose the correct stopping point and yield when entering a roadway.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-stop-yield-entry-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A stop sign stands before a painted line and crosswalk. Stopping beside the sign may still put your bumper into the protected pedestrian space.",
+            "questionPreview": "Where should you stop when a stop line is present?",
+            "questionId": "tx-stop-yield-entry-q01"
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Choose the correct stopping point and yield when entering a roadway. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b03",
+            "type": "image",
+            "assetId": "tx-stop-yield-entry-asset-01"
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b04",
+            "type": "core_rule",
+            "title": "Use the lawful stopping sequence",
+            "bodyMarkdown": "Stop before the marked stop line. If none exists, stop before entering the crosswalk; if neither exists, stop at the point nearest the intersecting roadway where you can see approaching traffic. Creep forward only after the required stop and without taking someone else's space.",
+            "checkpointQuestionId": "tx-stop-yield-entry-q02"
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b05",
+            "type": "image",
+            "assetId": "tx-stop-yield-entry-asset-02"
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b06",
+            "type": "visual_example",
+            "title": "Yield means create usable space",
+            "bodyMarkdown": "At YIELD, reduce speed enough to decide and stop when needed. Giving way means the other road user can continue without an abrupt evasive action. Rolling through a conflict because the wheels never fully stopped does not satisfy that duty.",
+            "checkpointQuestionId": "tx-stop-yield-entry-q03"
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b07",
+            "type": "related_rule",
+            "title": "Entering traffic carries the burden",
+            "bodyMarkdown": "A driver entering from a driveway, alley, building, parking area, or private road must yield to traffic and pedestrians already using the public roadway or sidewalk. Check both directions and the near-side path before crossing it.",
+            "checkpointQuestionId": "tx-stop-yield-entry-q04"
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b08",
+            "type": "image",
+            "assetId": "tx-stop-yield-entry-asset-03"
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 544.004-.010; Texas Transportation Code §§ 545.151-.155. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A second stop for visibility does not erase the first legal stop. Stop where required, then inch forward only as needed to see."
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Before crossing a sidewalk, pause for people, bicycles, and mobility devices approaching from both directions.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-stop-yield-entry-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Stop at the legal point; yield through the whole conflict.",
+            "checkpointQuestionId": "tx-stop-yield-entry-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-stop-yield-entry-q01",
+          "tx-stop-yield-entry-q02",
+          "tx-stop-yield-entry-q03",
+          "tx-stop-yield-entry-q04",
+          "tx-stop-yield-entry-q05"
+        ],
+        "assetIds": [
+          "tx-stop-yield-entry-asset-01",
+          "tx-stop-yield-entry-asset-02",
+          "tx-stop-yield-entry-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-turns-signals",
+        "uuid": "ead2562d-81f5-5c44-8454-b9df7ed2e9cb",
+        "moduleId": "tx-right-of-way",
+        "globalSequence": 8,
+        "moduleSequence": 3,
+        "title": "Turns, Turn Position, and Signals",
+        "objective": "Set up turns early, signal continuously, and finish in a lawful lane.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-turns-signals-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "Your turn is one block away. The safest preparation is a sequence—mirrors, signal, blind-spot check, lane position, speed—rather than a last-second steering move.",
+            "questionPreview": "When should you begin a turn signal in Texas?",
+            "questionId": "tx-turns-signals-q01"
+          },
+          {
+            "blockId": "tx-turns-signals-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Set up turns early, signal continuously, and finish in a lawful lane. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-turns-signals-b03",
+            "type": "image",
+            "assetId": "tx-turns-signals-asset-01"
+          },
+          {
+            "blockId": "tx-turns-signals-b04",
+            "type": "core_rule",
+            "title": "Signal early and continuously",
+            "bodyMarkdown": "In Texas, signal at least the last 100 feet before the turn. Signal before changing lanes or starting from a parked position when the law requires it. A signal communicates intent; complete the maneuver only after confirming that the space is legal and safe.",
+            "checkpointQuestionId": "tx-turns-signals-q02"
+          },
+          {
+            "blockId": "tx-turns-signals-b05",
+            "type": "image",
+            "assetId": "tx-turns-signals-asset-02"
+          },
+          {
+            "blockId": "tx-turns-signals-b06",
+            "type": "visual_example",
+            "title": "Use the lane assigned to the turn",
+            "bodyMarkdown": "Approach a right turn near the right edge or curb unless controls show another permitted path. Approach a left turn from the lawful left-turn position. Follow signs, arrows, and any marked turn path through the intersection instead of drifting across lanes.",
+            "checkpointQuestionId": "tx-turns-signals-q03"
+          },
+          {
+            "blockId": "tx-turns-signals-b07",
+            "type": "related_rule",
+            "title": "Yield through the full turn",
+            "bodyMarkdown": "Turning drivers must account for pedestrians, bicycles, oncoming vehicles, and traffic already in the receiving roadway. Check the near crosswalk before steering, then check the far side and receiving lane; do not fixate on only the largest vehicle.",
+            "checkpointQuestionId": "tx-turns-signals-q04"
+          },
+          {
+            "blockId": "tx-turns-signals-b08",
+            "type": "image",
+            "assetId": "tx-turns-signals-asset-03"
+          },
+          {
+            "blockId": "tx-turns-signals-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.101-.106; Texas Transportation Code §§ 545.151-.155. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-turns-signals-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not swing wide merely because the receiving road has several lanes. Use the lawful path shown by state law and traffic-control devices."
+          },
+          {
+            "blockId": "tx-turns-signals-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Complete the safety check before the wheel turns. Once steering begins, available correction space shrinks quickly.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-turns-signals-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Signal is notice. Lane position and yielding make the turn safe.",
+            "checkpointQuestionId": "tx-turns-signals-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-turns-signals-q01",
+          "tx-turns-signals-q02",
+          "tx-turns-signals-q03",
+          "tx-turns-signals-q04",
+          "tx-turns-signals-q05"
+        ],
+        "assetIds": [
+          "tx-turns-signals-asset-01",
+          "tx-turns-signals-asset-02",
+          "tx-turns-signals-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-uturn-backing",
+        "uuid": "4e7c75f5-dec0-58b9-9df3-9e9959d796c6",
+        "moduleId": "tx-right-of-way",
+        "globalSequence": 9,
+        "moduleSequence": 4,
+        "title": "U-Turns, Starting, and Backing",
+        "objective": "Treat direction reversals and backward movement as high-visibility, low-speed maneuvers.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-uturn-backing-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "You miss a turn. A U-turn would save a minute, but a curve hides approaching traffic. Convenience never creates the clear view the maneuver needs.",
+            "questionPreview": "When should you avoid a U-turn?",
+            "questionId": "tx-uturn-backing-q01"
+          },
+          {
+            "blockId": "tx-uturn-backing-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Treat direction reversals and backward movement as high-visibility, low-speed maneuvers. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-uturn-backing-b03",
+            "type": "image",
+            "assetId": "tx-uturn-backing-asset-01"
+          },
+          {
+            "blockId": "tx-uturn-backing-b04",
+            "type": "core_rule",
+            "title": "A U-turn needs law and visibility",
+            "bodyMarkdown": "Make a U-turn only where signs and state law allow it and where drivers approaching from both directions can see the maneuver in time. Curves, hill crests, narrow roads, heavy traffic, and limited sight distance can turn a short maneuver into an unsafe one.",
+            "checkpointQuestionId": "tx-uturn-backing-q02"
+          },
+          {
+            "blockId": "tx-uturn-backing-b05",
+            "type": "image",
+            "assetId": "tx-uturn-backing-asset-02"
+          },
+          {
+            "blockId": "tx-uturn-backing-b06",
+            "type": "visual_example",
+            "title": "Starting from the curb is a merge",
+            "bodyMarkdown": "Before leaving a parked position, signal as required, check mirrors, look over the shoulder for the blind spot, and yield to roadway users whose path you will enter. Pulling away slowly does not transfer the yielding duty to them.",
+            "checkpointQuestionId": "tx-uturn-backing-q03"
+          },
+          {
+            "blockId": "tx-uturn-backing-b07",
+            "type": "related_rule",
+            "title": "Back only while the path stays clear",
+            "bodyMarkdown": "Avoid backing into moving traffic when a forward alternative exists. Turn and look through the rear window when possible, scan both sides for people and objects, and move slowly enough to stop immediately. Cameras assist; they do not show every hazard.",
+            "checkpointQuestionId": "tx-uturn-backing-q04"
+          },
+          {
+            "blockId": "tx-uturn-backing-b08",
+            "type": "image",
+            "assetId": "tx-uturn-backing-asset-03"
+          },
+          {
+            "blockId": "tx-uturn-backing-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.101-.106. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-uturn-backing-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A missed turn is not an emergency. Continue to a lawful place to turn around instead of making an abrupt U-turn or reverse movement."
+          },
+          {
+            "blockId": "tx-uturn-backing-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Plan parking so the first movement out is forward whenever practical, especially where children or pedestrians may be present.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-uturn-backing-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Reverse direction only with a clear, lawful, visible path.",
+            "checkpointQuestionId": "tx-uturn-backing-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-uturn-backing-q01",
+          "tx-uturn-backing-q02",
+          "tx-uturn-backing-q03",
+          "tx-uturn-backing-q04",
+          "tx-uturn-backing-q05"
+        ],
+        "assetIds": [
+          "tx-uturn-backing-asset-01",
+          "tx-uturn-backing-asset-02",
+          "tx-uturn-backing-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-pedestrians-roundabouts",
+        "uuid": "8c96637f-d1b2-575b-9c74-47daf87c798c",
+        "moduleId": "tx-right-of-way",
+        "globalSequence": 10,
+        "moduleSequence": 5,
+        "title": "Crosswalks, Blind Pedestrians, and Roundabouts",
+        "objective": "Protect crosswalk users and enter roundabouts without inventing priority.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-pedestrians-roundabouts-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A person steps into a marked crosswalk while the next lane appears open. Passing the stopped vehicle would hide the very person the stop is protecting.",
+            "questionPreview": "What should you do when another vehicle is stopped at a crosswalk?",
+            "questionId": "tx-pedestrians-roundabouts-q01"
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Protect crosswalk users and enter roundabouts without inventing priority. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b03",
+            "type": "image",
+            "assetId": "tx-pedestrians-roundabouts-asset-01"
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b04",
+            "type": "core_rule",
+            "title": "Crosswalks continue across the roadway",
+            "bodyMarkdown": "Yield or stop as state law requires for a pedestrian in the protected portion of a crosswalk. Never crowd, rush, or pass a vehicle stopped for a crosswalk user. Check for people who are small, using mobility devices, or hidden by another vehicle.",
+            "checkpointQuestionId": "tx-pedestrians-roundabouts-q02"
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b05",
+            "type": "image",
+            "assetId": "tx-pedestrians-roundabouts-asset-02"
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b06",
+            "type": "visual_example",
+            "title": "Blind pedestrians require unmistakable space",
+            "bodyMarkdown": "A white cane or guide dog signals that a pedestrian may depend on traffic sounds and predictable yielding. Stop or yield as required, keep the crosswalk clear, and avoid horn use that could confuse unless needed to prevent immediate danger.",
+            "checkpointQuestionId": "tx-pedestrians-roundabouts-q03"
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b07",
+            "type": "related_rule",
+            "title": "Roundabout traffic flows around the center",
+            "bodyMarkdown": "Approach in the correct lane, reduce speed, yield to pedestrians and traffic already circulating, then enter a usable gap. Follow the one-way direction and signal your exit when required or useful. Do not stop in the circle merely to let an entering vehicle go.",
+            "checkpointQuestionId": "tx-pedestrians-roundabouts-q04"
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b08",
+            "type": "image",
+            "assetId": "tx-pedestrians-roundabouts-asset-03"
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code Chapter 552; Texas Transportation Code §§ 545.151-.155. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A marked crosswalk is not the only place pedestrians may have legal protection. Intersections can contain crosswalks even without paint."
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Scan the sidewalk edges before the roadway. It is easier to anticipate a person before they enter your lane.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-pedestrians-roundabouts-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Protect the crosswalk; yield into the circle; keep moving predictably.",
+            "checkpointQuestionId": "tx-pedestrians-roundabouts-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-pedestrians-roundabouts-q01",
+          "tx-pedestrians-roundabouts-q02",
+          "tx-pedestrians-roundabouts-q03",
+          "tx-pedestrians-roundabouts-q04",
+          "tx-pedestrians-roundabouts-q05"
+        ],
+        "assetIds": [
+          "tx-pedestrians-roundabouts-asset-01",
+          "tx-pedestrians-roundabouts-asset-02",
+          "tx-pedestrians-roundabouts-asset-03"
+        ],
+        "language": "en-US"
+      }
+    ],
+    "moduleTest": {
+      "testId": "tx-right-of-way-test",
+      "uuid": "d7f7abc2-89ae-51dc-836c-a575125d13bf",
+      "moduleId": "tx-right-of-way",
+      "questionIds": [
+        "tx-uncontrolled-intersections-q01",
+        "tx-uncontrolled-intersections-q03",
+        "tx-uncontrolled-intersections-q05",
+        "tx-stop-yield-entry-q02",
+        "tx-stop-yield-entry-q04",
+        "tx-turns-signals-q01",
+        "tx-turns-signals-q03",
+        "tx-turns-signals-q05",
+        "tx-uturn-backing-q02",
+        "tx-uturn-backing-q04"
+      ]
+    }
+  },
+  {
+    "moduleId": "tx-lanes-highways",
+    "uuid": "a76eefcb-445b-5d41-a4ac-e4be6995e8f3",
+    "sequence": 3,
+    "title": "Lanes, Passing, and Highways",
+    "outcome": "Choose a lawful lane, pass with a complete safety margin, and enter or leave faster roads smoothly.",
+    "lessons": [
+      {
+        "lessonId": "tx-lane-choice",
+        "uuid": "a78e9e1c-3e7e-5998-a49a-72d40dc039a3",
+        "moduleId": "tx-lanes-highways",
+        "globalSequence": 11,
+        "moduleSequence": 1,
+        "title": "Choosing and Changing Lanes",
+        "objective": "Hold a predictable lane and change only after a complete space check.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-lane-choice-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "Your lane is ending. The signal starts the conversation, but the move happens only after mirrors and a shoulder check show a gap large enough for the whole vehicle.",
+            "questionPreview": "What makes a lane change legal and safe?",
+            "questionId": "tx-lane-choice-q01"
+          },
+          {
+            "blockId": "tx-lane-choice-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Hold a predictable lane and change only after a complete space check. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-lane-choice-b03",
+            "type": "image",
+            "assetId": "tx-lane-choice-asset-01"
+          },
+          {
+            "blockId": "tx-lane-choice-b04",
+            "type": "core_rule",
+            "title": "Stay within one lane",
+            "bodyMarkdown": "Drive as nearly as practical within a single lane and do not leave it until the movement can be made safely. Lane lines are not targets to straddle. Hold a stable position so surrounding road users can predict your path.",
+            "checkpointQuestionId": "tx-lane-choice-q02"
+          },
+          {
+            "blockId": "tx-lane-choice-b05",
+            "type": "image",
+            "assetId": "tx-lane-choice-asset-02"
+          },
+          {
+            "blockId": "tx-lane-choice-b06",
+            "type": "visual_example",
+            "title": "Use the full change sequence",
+            "bodyMarkdown": "Check the inside and side mirrors, signal, check the blind spot in the direction of travel, and reassess the gap. Move smoothly without changing speed so sharply that another driver must brake. Cancel the signal after settling in the lane.",
+            "checkpointQuestionId": "tx-lane-choice-q03"
+          },
+          {
+            "blockId": "tx-lane-choice-b07",
+            "type": "related_rule",
+            "title": "Keep right when moving slower",
+            "bodyMarkdown": "On a multilane road, slower traffic should use the right-hand lane when state law or signs require, except when passing, preparing for a left turn, avoiding an obstruction, or following another lawful lane assignment. Do not use a left lane as a permanent cruising space when it impedes traffic.",
+            "checkpointQuestionId": "tx-lane-choice-q04"
+          },
+          {
+            "blockId": "tx-lane-choice-b08",
+            "type": "image",
+            "assetId": "tx-lane-choice-asset-03"
+          },
+          {
+            "blockId": "tx-lane-choice-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.051-.065. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-lane-choice-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A blind-spot monitor is not a legal clearance signal. Dirt, weather, angle, and fast-closing vehicles can defeat it."
+          },
+          {
+            "blockId": "tx-lane-choice-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "If a gap disappears, cancel the lane change and try again. Missing an exit is safer than forcing a collision path.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-lane-choice-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Signal, see the entire gap, then move once.",
+            "checkpointQuestionId": "tx-lane-choice-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-lane-choice-q01",
+          "tx-lane-choice-q02",
+          "tx-lane-choice-q03",
+          "tx-lane-choice-q04",
+          "tx-lane-choice-q05"
+        ],
+        "assetIds": [
+          "tx-lane-choice-asset-01",
+          "tx-lane-choice-asset-02",
+          "tx-lane-choice-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-passing",
+        "uuid": "335f6ecd-9577-5469-bff1-576c4f25ed20",
+        "moduleId": "tx-lanes-highways",
+        "globalSequence": 12,
+        "moduleSequence": 2,
+        "title": "When Passing Is Legal—and When It Is Not",
+        "objective": "Build a complete passing plan before entering opposing or adjacent space.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-passing-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A slow vehicle is ahead on a two-lane road. A broken line is only the first test; the pass also needs legal location, sight distance, a usable return gap, and no approaching hazard.",
+            "questionPreview": "What does a broken center line mean?",
+            "questionId": "tx-passing-q01"
+          },
+          {
+            "blockId": "tx-passing-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Build a complete passing plan before entering opposing or adjacent space. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-passing-b03",
+            "type": "image",
+            "assetId": "tx-passing-asset-01"
+          },
+          {
+            "blockId": "tx-passing-b04",
+            "type": "core_rule",
+            "title": "Plan the return before the pass",
+            "bodyMarkdown": "Before moving out, see far enough ahead to accelerate, clear the vehicle, and return without forcing anyone to brake. Do not begin when a hill, curve, intersection, railroad crossing, bridge, marking, or sign removes the required legal or visible path.",
+            "checkpointQuestionId": "tx-passing-q02"
+          },
+          {
+            "blockId": "tx-passing-b05",
+            "type": "image",
+            "assetId": "tx-passing-asset-02"
+          },
+          {
+            "blockId": "tx-passing-b06",
+            "type": "visual_example",
+            "title": "Passing on the right is limited",
+            "bodyMarkdown": "Use the right only when state law permits, such as on a roadway with sufficient lawful lanes or around a left-turning vehicle when the surface and space allow. Do not leave the roadway or use a shoulder merely to get around traffic unless law specifically authorizes it.",
+            "checkpointQuestionId": "tx-passing-q03"
+          },
+          {
+            "blockId": "tx-passing-b07",
+            "type": "related_rule",
+            "title": "The passed driver stays predictable",
+            "bodyMarkdown": "A driver being overtaken should not accelerate to block the pass and should maintain a lawful, stable course. The passing driver must still allow safe clearance and may not return until clear of the overtaken vehicle.",
+            "checkpointQuestionId": "tx-passing-q04"
+          },
+          {
+            "blockId": "tx-passing-b08",
+            "type": "image",
+            "assetId": "tx-passing-asset-03"
+          },
+          {
+            "blockId": "tx-passing-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.052-.057. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-passing-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Never assume a long straight-looking road is clear. Dips, driveways, motorcycles, and closing speed can consume the visible distance."
+          },
+          {
+            "blockId": "tx-passing-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "If you need the other driver to brake so you can return, the passing gap was not adequate.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-passing-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Do not borrow opposing space without a complete return plan.",
+            "checkpointQuestionId": "tx-passing-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-passing-q01",
+          "tx-passing-q02",
+          "tx-passing-q03",
+          "tx-passing-q04",
+          "tx-passing-q05"
+        ],
+        "assetIds": [
+          "tx-passing-asset-01",
+          "tx-passing-asset-02",
+          "tx-passing-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-highway-entry-exit",
+        "uuid": "c2a3b2b1-8072-5bc6-aa55-a1f286666072",
+        "moduleId": "tx-lanes-highways",
+        "globalSequence": 13,
+        "moduleSequence": 3,
+        "title": "Merging, Entering, and Leaving Highways",
+        "objective": "Use acceleration, gap choice, and early exit planning on faster roads.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-highway-entry-exit-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "You enter an acceleration lane beside fast traffic. Stopping at the end wastes the lane's purpose unless traffic or a control leaves no safe alternative.",
+            "questionPreview": "What is the acceleration lane for?",
+            "questionId": "tx-highway-entry-exit-q01"
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Use acceleration, gap choice, and early exit planning on faster roads. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b03",
+            "type": "image",
+            "assetId": "tx-highway-entry-exit-asset-01"
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b04",
+            "type": "core_rule",
+            "title": "Entering traffic finds the gap",
+            "bodyMarkdown": "Use the ramp and acceleration lane to observe, signal, and approach the speed of traffic when conditions allow. Drivers already on the highway should cooperate when safe, but the entering driver must not force a vehicle to brake or leave its lane.",
+            "checkpointQuestionId": "tx-highway-entry-exit-q02"
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b05",
+            "type": "image",
+            "assetId": "tx-highway-entry-exit-asset-02"
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b06",
+            "type": "visual_example",
+            "title": "Merge where the lane is designed to merge",
+            "bodyMarkdown": "Do not cross a painted gore or solid boundary to jump early into traffic or recover a missed exit. Follow the marked path and choose a gap that includes room ahead and behind. Large trucks may need more distance and may not be able to change lanes for you.",
+            "checkpointQuestionId": "tx-highway-entry-exit-q03"
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b07",
+            "type": "related_rule",
+            "title": "Exit before slowing sharply",
+            "bodyMarkdown": "Move into the exit lane early, then reduce speed according to ramp signs and conditions. A last-second cross-lane exit is not fixed by signaling. If the exit is missed, continue to the next lawful route rather than stopping or reversing.",
+            "checkpointQuestionId": "tx-highway-entry-exit-q04"
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b08",
+            "type": "image",
+            "assetId": "tx-highway-entry-exit-asset-03"
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.151-.155; Texas MUTCD 2025; Texas Transportation Code §§ 545.051-.065. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A courteous driver may make space, but courtesy is not a guaranteed right-of-way. Confirm the gap yourself."
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Look for the exit before the sign is beside you. Route planning is a safety skill, not only navigation.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-highway-entry-exit-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Match, merge, settle; signal, exit, then slow.",
+            "checkpointQuestionId": "tx-highway-entry-exit-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-highway-entry-exit-q01",
+          "tx-highway-entry-exit-q02",
+          "tx-highway-entry-exit-q03",
+          "tx-highway-entry-exit-q04",
+          "tx-highway-entry-exit-q05"
+        ],
+        "assetIds": [
+          "tx-highway-entry-exit-asset-01",
+          "tx-highway-entry-exit-asset-02",
+          "tx-highway-entry-exit-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-special-lanes",
+        "uuid": "def23edc-16a0-5061-8658-5bbc47eb1cab",
+        "moduleId": "tx-lanes-highways",
+        "globalSequence": 14,
+        "moduleSequence": 4,
+        "title": "Turn Lanes, Bicycle Lanes, HOV Lanes, and Barriers",
+        "objective": "Respect lanes whose legal use depends on movement, user, time, or occupancy.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-special-lanes-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A center lane has left-turn arrows for both directions. It is a shared turning space, not a travel lane for passing a queue.",
+            "questionPreview": "How should a two-way left-turn lane be used?",
+            "questionId": "tx-special-lanes-q01"
+          },
+          {
+            "blockId": "tx-special-lanes-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Respect lanes whose legal use depends on movement, user, time, or occupancy. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-special-lanes-b03",
+            "type": "image",
+            "assetId": "tx-special-lanes-asset-01"
+          },
+          {
+            "blockId": "tx-special-lanes-b04",
+            "type": "core_rule",
+            "title": "Turn lanes have a narrow purpose",
+            "bodyMarkdown": "Enter a turn-only or two-way left-turn lane only for the movement and distance state law and markings permit. Check both directions in a shared center lane. Do not travel in it to overtake vehicles or wait so long that you block another lawful turn.",
+            "checkpointQuestionId": "tx-special-lanes-q02"
+          },
+          {
+            "blockId": "tx-special-lanes-b05",
+            "type": "image",
+            "assetId": "tx-special-lanes-asset-02"
+          },
+          {
+            "blockId": "tx-special-lanes-b06",
+            "type": "visual_example",
+            "title": "Bicycle lanes are travel space",
+            "bodyMarkdown": "Treat a bicycle lane as an occupied lane, even when no cyclist is immediately visible. Enter or cross only where a lawful turn, parking movement, or other authorized action allows, after yielding and checking behind for a fast-approaching bicycle.",
+            "checkpointQuestionId": "tx-special-lanes-q03"
+          },
+          {
+            "blockId": "tx-special-lanes-b07",
+            "type": "related_rule",
+            "title": "Managed-lane rules come from signs",
+            "bodyMarkdown": "HOV, express, reversible, and other managed lanes can limit vehicles, occupancy, entry points, directions, or times. Follow current overhead and roadside controls. A solid buffer or physical barrier is not an invitation to cross when your exit approaches.",
+            "checkpointQuestionId": "tx-special-lanes-q04"
+          },
+          {
+            "blockId": "tx-special-lanes-b08",
+            "type": "image",
+            "assetId": "tx-special-lanes-asset-03"
+          },
+          {
+            "blockId": "tx-special-lanes-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.051-.065; Texas Transportation Code Chapters 545 and 551; Texas MUTCD 2025. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-special-lanes-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not assume yesterday's rules still apply to a reversible or time-controlled lane. Read the active signal and sign."
+          },
+          {
+            "blockId": "tx-special-lanes-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Before entering any special lane, ask who may use it, when it operates, and where crossing is allowed.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-special-lanes-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Special lanes are defined by purpose, users, and entry rules.",
+            "checkpointQuestionId": "tx-special-lanes-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-special-lanes-q01",
+          "tx-special-lanes-q02",
+          "tx-special-lanes-q03",
+          "tx-special-lanes-q04",
+          "tx-special-lanes-q05"
+        ],
+        "assetIds": [
+          "tx-special-lanes-asset-01",
+          "tx-special-lanes-asset-02",
+          "tx-special-lanes-asset-03"
+        ],
+        "language": "en-US"
+      }
+    ],
+    "moduleTest": {
+      "testId": "tx-lanes-highways-test",
+      "uuid": "5efdfb7e-71eb-5b79-b7b6-cff17678e909",
+      "moduleId": "tx-lanes-highways",
+      "questionIds": [
+        "tx-lane-choice-q01",
+        "tx-lane-choice-q03",
+        "tx-lane-choice-q05",
+        "tx-passing-q02",
+        "tx-passing-q04",
+        "tx-highway-entry-exit-q01",
+        "tx-highway-entry-exit-q03",
+        "tx-highway-entry-exit-q05",
+        "tx-special-lanes-q02",
+        "tx-special-lanes-q04"
+      ]
+    }
+  },
+  {
+    "moduleId": "tx-speed-space",
+    "uuid": "0b5987bc-a659-5f15-a413-bd271198d4bc",
+    "sequence": 4,
+    "title": "Speed, Space, and Parking",
+    "outcome": "Match speed and space to conditions, then place a stopped vehicle legally and predictably.",
+    "lessons": [
+      {
+        "lessonId": "tx-speed-laws",
+        "uuid": "8bb4addf-92cc-52a0-bf99-d3bbd98a3a06",
+        "moduleId": "tx-speed-space",
+        "globalSequence": 15,
+        "moduleSequence": 1,
+        "title": "Texas Speed Laws and Speed Limits",
+        "objective": "Separate the posted maximum from the speed that conditions actually allow.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-speed-laws-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "The sign says 55, but rain hides lane lines and traffic is compressing. The number is a ceiling under favorable conditions, not a command to maintain it through a hazard.",
+            "questionPreview": "What speed is lawful when conditions become hazardous?",
+            "questionId": "tx-speed-laws-q01"
+          },
+          {
+            "blockId": "tx-speed-laws-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Separate the posted maximum from the speed that conditions actually allow. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-speed-laws-b03",
+            "type": "image",
+            "assetId": "tx-speed-laws-asset-01"
+          },
+          {
+            "blockId": "tx-speed-laws-b04",
+            "type": "core_rule",
+            "title": "Reasonable speed comes first",
+            "bodyMarkdown": "Texas requires a speed that is reasonable and prudent for actual and potential hazards. Slow before curves, intersections, hill crests, narrow roads, poor visibility, pedestrians, congestion, or weather—not only after losing control.",
+            "checkpointQuestionId": "tx-speed-laws-q02"
+          },
+          {
+            "blockId": "tx-speed-laws-b05",
+            "type": "image",
+            "assetId": "tx-speed-laws-asset-02"
+          },
+          {
+            "blockId": "tx-speed-laws-b06",
+            "type": "visual_example",
+            "title": "Know the default framework",
+            "bodyMarkdown": "When no different limit is lawfully posted, Texas uses this general framework: 30 mph in an urban district, 15 mph in an alley, and generally 70 mph on a numbered highway outside an urban district when no different limit is posted and no hazard requires a lower speed. Local and special-zone limits can differ, and a posted control governs where valid.",
+            "checkpointQuestionId": "tx-speed-laws-q03"
+          },
+          {
+            "blockId": "tx-speed-laws-b07",
+            "type": "related_rule",
+            "title": "Adjust before the hazard",
+            "bodyMarkdown": "Speed choice determines how far the vehicle travels during perception, reaction, and braking. More speed sharply increases the energy that brakes and tires must manage. Create the needed margin early instead of relying on a last-second stop.",
+            "checkpointQuestionId": "tx-speed-laws-q04"
+          },
+          {
+            "blockId": "tx-speed-laws-b08",
+            "type": "image",
+            "assetId": "tx-speed-laws-asset-03"
+          },
+          {
+            "blockId": "tx-speed-laws-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.351-.365. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-speed-laws-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Driving with the flow is not a defense to exceeding a limit or choosing a speed unsafe for visibility, traffic, or road surface."
+          },
+          {
+            "blockId": "tx-speed-laws-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Use a three-part check: legal ceiling, road conditions, and space. The lowest safe result controls.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-speed-laws-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "The limit is a ceiling; conditions can demand less.",
+            "checkpointQuestionId": "tx-speed-laws-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-speed-laws-q01",
+          "tx-speed-laws-q02",
+          "tx-speed-laws-q03",
+          "tx-speed-laws-q04",
+          "tx-speed-laws-q05"
+        ],
+        "assetIds": [
+          "tx-speed-laws-asset-01",
+          "tx-speed-laws-asset-02",
+          "tx-speed-laws-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-space-scanning",
+        "uuid": "583249b2-ce2a-56ea-aac5-862a5692d542",
+        "moduleId": "tx-speed-space",
+        "globalSequence": 16,
+        "moduleSequence": 2,
+        "title": "Following Distance, Stopping Distance, and Scanning",
+        "objective": "Maintain enough time and sight distance to solve a changing traffic problem.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-space-scanning-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "The vehicle ahead passes a marker and you reach it almost immediately. That short time gap leaves little room for perception, reaction, and braking if the driver stops suddenly.",
+            "questionPreview": "What should happen to following space in rain or darkness?",
+            "questionId": "tx-space-scanning-q01"
+          },
+          {
+            "blockId": "tx-space-scanning-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Maintain enough time and sight distance to solve a changing traffic problem. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-space-scanning-b03",
+            "type": "image",
+            "assetId": "tx-space-scanning-asset-01"
+          },
+          {
+            "blockId": "tx-space-scanning-b04",
+            "type": "core_rule",
+            "title": "The law requires an assured clear distance",
+            "bodyMarkdown": "Follow far enough back to stop safely without colliding or swerving into another road user. The usable gap depends on speed, traffic, surface, visibility, vehicle condition, and the type of vehicle ahead—not on one distance that fits every situation.",
+            "checkpointQuestionId": "tx-space-scanning-q02"
+          },
+          {
+            "blockId": "tx-space-scanning-b05",
+            "type": "image",
+            "assetId": "tx-space-scanning-asset-02"
+          },
+          {
+            "blockId": "tx-space-scanning-b06",
+            "type": "visual_example",
+            "title": "Time gaps scale better than car lengths",
+            "bodyMarkdown": "Choose a roadside point, count the time after the vehicle ahead passes it, and increase the interval when traction, visibility, fatigue, load, or escape space is worse. If another driver enters the gap, rebuild it smoothly rather than retaliating.",
+            "checkpointQuestionId": "tx-space-scanning-q03"
+          },
+          {
+            "blockId": "tx-space-scanning-b07",
+            "type": "related_rule",
+            "title": "Look beyond the nearest bumper",
+            "bodyMarkdown": "Scan well ahead for signals, brake lights, lane endings, crossings, and traffic waves. Check mirrors regularly and keep an escape option. Early information turns hard braking into a small speed adjustment and prevents fixation on a single hazard.",
+            "checkpointQuestionId": "tx-space-scanning-q04"
+          },
+          {
+            "blockId": "tx-space-scanning-b08",
+            "type": "image",
+            "assetId": "tx-space-scanning-asset-03"
+          },
+          {
+            "blockId": "tx-space-scanning-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code § 545.062. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-space-scanning-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A fixed slogan is a starting point, not a legal guarantee. Add time whenever the vehicle will need more distance to see, decide, or stop."
+          },
+          {
+            "blockId": "tx-space-scanning-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "When stopped, leave enough visible pavement behind the vehicle ahead to create a small escape option.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-space-scanning-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Space is stored reaction time.",
+            "checkpointQuestionId": "tx-space-scanning-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-space-scanning-q01",
+          "tx-space-scanning-q02",
+          "tx-space-scanning-q03",
+          "tx-space-scanning-q04",
+          "tx-space-scanning-q05"
+        ],
+        "assetIds": [
+          "tx-space-scanning-asset-01",
+          "tx-space-scanning-asset-02",
+          "tx-space-scanning-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-parking",
+        "uuid": "7652d5ed-ebd0-58dd-a3ae-61824d67acbc",
+        "moduleId": "tx-speed-space",
+        "globalSequence": 17,
+        "moduleSequence": 3,
+        "title": "Parking, Curbs, Hills, and Roadside Stops",
+        "objective": "Park without blocking visibility, access, traffic control, or a safe restart.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-parking-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "An open curb is close to a hydrant and crosswalk. Empty pavement is not automatically legal parking; clearances protect access and sight lines.",
+            "questionPreview": "What should you check before using an open curb?",
+            "questionId": "tx-parking-q01"
+          },
+          {
+            "blockId": "tx-parking-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Park without blocking visibility, access, traffic control, or a safe restart. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-parking-b03",
+            "type": "image",
+            "assetId": "tx-parking-asset-01"
+          },
+          {
+            "blockId": "tx-parking-b04",
+            "type": "core_rule",
+            "title": "Some spaces must remain open",
+            "bodyMarkdown": "Do not park where state law, signs, or markings prohibit it, including locations that block driveways, crosswalks, hydrants, traffic-control devices, rail crossings, accessible spaces, or the safe movement of traffic. Exact clearances matter on exam questions.",
+            "checkpointQuestionId": "tx-parking-q02"
+          },
+          {
+            "blockId": "tx-parking-b05",
+            "type": "image",
+            "assetId": "tx-parking-asset-02"
+          },
+          {
+            "blockId": "tx-parking-b06",
+            "type": "visual_example",
+            "title": "Park in the direction of legal traffic",
+            "bodyMarkdown": "On a two-way road, park with the right side of the vehicle near the right curb or edge unless a lawful local arrangement says otherwise. Secure the vehicle, set the parking brake, remove the key as required, and check for traffic before opening a door.",
+            "checkpointQuestionId": "tx-parking-q03"
+          },
+          {
+            "blockId": "tx-parking-b07",
+            "type": "related_rule",
+            "title": "Turn wheels to limit a roll",
+            "bodyMarkdown": "On a slope, combine the parking brake, transmission position, and wheel direction so a moving vehicle is directed away from active traffic or caught by the curb. Verify the local uphill/downhill method and never rely only on the transmission.",
+            "checkpointQuestionId": "tx-parking-q04"
+          },
+          {
+            "blockId": "tx-parking-b08",
+            "type": "image",
+            "assetId": "tx-parking-asset-03"
+          },
+          {
+            "blockId": "tx-parking-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.301-.305. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-parking-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Hazard flashers do not convert a prohibited location into legal parking, and staying inside the vehicle does not erase a stopping restriction."
+          },
+          {
+            "blockId": "tx-parking-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Before opening a door, check the mirror and look over the shoulder for bicycles, motorcycles, and traffic.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-parking-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Legal parking preserves access, visibility, and a safe path.",
+            "checkpointQuestionId": "tx-parking-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-parking-q01",
+          "tx-parking-q02",
+          "tx-parking-q03",
+          "tx-parking-q04",
+          "tx-parking-q05"
+        ],
+        "assetIds": [
+          "tx-parking-asset-01",
+          "tx-parking-asset-02",
+          "tx-parking-asset-03"
+        ],
+        "language": "en-US"
+      }
+    ],
+    "moduleTest": {
+      "testId": "tx-speed-space-test",
+      "uuid": "a6961bb5-c904-5ad9-ba38-afbce50c7b47",
+      "moduleId": "tx-speed-space",
+      "questionIds": [
+        "tx-speed-laws-q01",
+        "tx-speed-laws-q03",
+        "tx-speed-laws-q05",
+        "tx-space-scanning-q02",
+        "tx-space-scanning-q04",
+        "tx-parking-q01",
+        "tx-parking-q03",
+        "tx-parking-q05",
+        "tx-speed-laws-q02",
+        "tx-speed-laws-q04"
+      ]
+    }
+  },
+  {
+    "moduleId": "tx-share-road",
+    "uuid": "75d10e42-2cce-5029-9df6-cdab5e781d6c",
+    "sequence": 5,
+    "title": "Sharing the Road",
+    "outcome": "Protect vulnerable road users and respond correctly around large, slow, school, and emergency vehicles.",
+    "lessons": [
+      {
+        "lessonId": "tx-bikes-motorcycles",
+        "uuid": "c89327e2-be97-53dd-8826-8adbed9176f5",
+        "moduleId": "tx-share-road",
+        "globalSequence": 18,
+        "moduleSequence": 1,
+        "title": "Bicycles and Motorcycles",
+        "objective": "Share lanes without underestimating speed, space, or vulnerability.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-bikes-motorcycles-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A motorcycle looks small in the mirror, so its distance is easy to misjudge. Check again before turning or changing lanes; the full lane may already be occupied.",
+            "questionPreview": "How much lane is a motorcycle entitled to use?",
+            "questionId": "tx-bikes-motorcycles-q01"
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Share lanes without underestimating speed, space, or vulnerability. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b03",
+            "type": "image",
+            "assetId": "tx-bikes-motorcycles-asset-01"
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b04",
+            "type": "core_rule",
+            "title": "Small profile does not mean far away",
+            "bodyMarkdown": "Motorcycles can be hidden by pillars, mirrors, or another vehicle and may appear farther or slower than they are. Check twice at intersections and before lane changes. Allow a full lane and a larger following margin on poor surfaces.",
+            "checkpointQuestionId": "tx-bikes-motorcycles-q02"
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b05",
+            "type": "image",
+            "assetId": "tx-bikes-motorcycles-asset-02"
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b06",
+            "type": "visual_example",
+            "title": "Bicycles are lawful road users",
+            "bodyMarkdown": "Bicycle riders generally follow traffic controls and may use the roadway as state law allows. Expect lateral movement around drains, debris, doors, or rough pavement. Pass only with the clearance required by law and enough space for actual conditions.",
+            "checkpointQuestionId": "tx-bikes-motorcycles-q03"
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b07",
+            "type": "related_rule",
+            "title": "Check the path before every turn",
+            "bodyMarkdown": "Before turning across a bicycle lane or shoulder, scan behind, signal, yield, and make the turn without cutting off a cyclist. At night, search for a single headlamp or reflector rather than waiting for a car-sized light pattern.",
+            "checkpointQuestionId": "tx-bikes-motorcycles-q04"
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b08",
+            "type": "image",
+            "assetId": "tx-bikes-motorcycles-asset-03"
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.051-.065; Texas Transportation Code Chapters 545 and 551. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not share a lane beside a motorcycle unless the rider chooses a lawful arrangement. The unused-looking space is part of the rider's safety margin."
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Search for people, not just cars. A narrow vehicle can occupy the exact conflict point while remaining visually small.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-bikes-motorcycles-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Give vulnerable road users a complete, predictable space.",
+            "checkpointQuestionId": "tx-bikes-motorcycles-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-bikes-motorcycles-q01",
+          "tx-bikes-motorcycles-q02",
+          "tx-bikes-motorcycles-q03",
+          "tx-bikes-motorcycles-q04",
+          "tx-bikes-motorcycles-q05"
+        ],
+        "assetIds": [
+          "tx-bikes-motorcycles-asset-01",
+          "tx-bikes-motorcycles-asset-02",
+          "tx-bikes-motorcycles-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-large-slow-vehicles",
+        "uuid": "8f45caa2-3466-5208-83fc-775cb1bc6e02",
+        "moduleId": "tx-share-road",
+        "globalSequence": 19,
+        "moduleSequence": 2,
+        "title": "Trucks, Buses, Slow Vehicles, and Animals",
+        "objective": "Anticipate size, off-tracking, blind areas, and slow acceleration.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-large-slow-vehicles-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A truck signals right but begins from the left side of its lane. The extra space is often part of a wide-turn setup, not an invitation to squeeze beside it.",
+            "questionPreview": "What should you do beside a large vehicle preparing to turn?",
+            "questionId": "tx-large-slow-vehicles-q01"
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Anticipate size, off-tracking, blind areas, and slow acceleration. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b03",
+            "type": "image",
+            "assetId": "tx-large-slow-vehicles-asset-01"
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b04",
+            "type": "core_rule",
+            "title": "Large vehicles need different geometry",
+            "bodyMarkdown": "Trucks and buses accelerate slowly, require more stopping distance, and may swing wide or off-track through turns. Do not cut closely in front, linger beside them, or enter the space between a turning truck and the curb.",
+            "checkpointQuestionId": "tx-large-slow-vehicles-q02"
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b05",
+            "type": "image",
+            "assetId": "tx-large-slow-vehicles-asset-02"
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b06",
+            "type": "visual_example",
+            "title": "If you cannot see the mirror, assume risk",
+            "bodyMarkdown": "Large vehicles have extensive blind areas along both sides, immediately behind, and sometimes in front. Pass efficiently on the lawful side and return only when the whole front of the vehicle is visible with a safe gap.",
+            "checkpointQuestionId": "tx-large-slow-vehicles-q03"
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b07",
+            "type": "related_rule",
+            "title": "Slow-moving traffic changes closing speed",
+            "bodyMarkdown": "Farm equipment, animal-drawn vehicles, and other slow vehicles can appear stationary until you are close. Reduce speed early and wait for a legal, visible passing path. Around riders or animals, avoid sudden noise and leave generous lateral space.",
+            "checkpointQuestionId": "tx-large-slow-vehicles-q04"
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b08",
+            "type": "image",
+            "assetId": "tx-large-slow-vehicles-asset-03"
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.051-.065; Texas Transportation Code §§ 545.052-.057. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A turn signal on a truck does not reveal the exact wheel path. Watch the vehicle's position and keep out of the entire swept area."
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Do not merge back until the large vehicle is clearly visible in your mirror and the closing distance is stable.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-large-slow-vehicles-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "More size means more blind area, stopping room, and turning space.",
+            "checkpointQuestionId": "tx-large-slow-vehicles-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-large-slow-vehicles-q01",
+          "tx-large-slow-vehicles-q02",
+          "tx-large-slow-vehicles-q03",
+          "tx-large-slow-vehicles-q04",
+          "tx-large-slow-vehicles-q05"
+        ],
+        "assetIds": [
+          "tx-large-slow-vehicles-asset-01",
+          "tx-large-slow-vehicles-asset-02",
+          "tx-large-slow-vehicles-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-school-emergency-work",
+        "uuid": "ab7657ab-21e4-5f2e-b6d5-384952ae68ff",
+        "moduleId": "tx-share-road",
+        "globalSequence": 20,
+        "moduleSequence": 3,
+        "title": "Emergency Vehicles, School Buses, and Work Zones",
+        "objective": "Respond to high-consequence roadside and stopping rules.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-school-emergency-work-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A school bus stops with its warning system active. The center of the road has only a painted turn lane, so you must decide whether it legally separates the roadways.",
+            "questionPreview": "Does a painted center turn lane alone normally remove the duty to stop for a school bus?",
+            "questionId": "tx-school-emergency-work-q01"
+          },
+          {
+            "blockId": "tx-school-emergency-work-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Respond to high-consequence roadside and stopping rules. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-school-emergency-work-b03",
+            "type": "image",
+            "assetId": "tx-school-emergency-work-asset-01"
+          },
+          {
+            "blockId": "tx-school-emergency-work-b04",
+            "type": "core_rule",
+            "title": "School-bus rules depend on the divider",
+            "bodyMarkdown": "Stop before reaching a stopped school bus that is using its required visual signal, whether you approach from the front or rear. Remain stopped until the bus moves, the driver signals you to proceed, or the visual signal stops. You do not stop for a bus on a different roadway separated by a space where vehicles may not drive, a physical barrier, or a divider built to impede traffic; a center left-turn lane alone does not create separate roadways.",
+            "checkpointQuestionId": "tx-school-emergency-work-q02"
+          },
+          {
+            "blockId": "tx-school-emergency-work-b05",
+            "type": "image",
+            "assetId": "tx-school-emergency-work-asset-02"
+          },
+          {
+            "blockId": "tx-school-emergency-work-b06",
+            "type": "visual_example",
+            "title": "Give approaching emergency vehicles a path",
+            "bodyMarkdown": "When an authorized emergency vehicle approaches using the required audible or visual signal, yield as state law directs, move toward the proper edge or position, stop when required, and remain until it has passed. Do not stop in an intersection or follow too closely behind.",
+            "checkpointQuestionId": "tx-school-emergency-work-q03"
+          },
+          {
+            "blockId": "tx-school-emergency-work-b07",
+            "type": "related_rule",
+            "title": "Move over or slow down correctly",
+            "bodyMarkdown": "For a stopped protected vehicle displaying the required lights, leave the lane next to it on a highway with two or more same-direction lanes. If you cannot move over, slow to no more than 20 mph below the posted limit when the limit is at least 25 mph, or to 5 mph when the posted limit is below 25 mph, unless a police officer directs otherwise.",
+            "checkpointQuestionId": "tx-school-emergency-work-q04"
+          },
+          {
+            "blockId": "tx-school-emergency-work-b08",
+            "type": "image",
+            "assetId": "tx-school-emergency-work-asset-03"
+          },
+          {
+            "blockId": "tx-school-emergency-work-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code § 545.066; Texas Transportation Code §§ 545.156-.157. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-school-emergency-work-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A wide painted median or center lane may look like separation but may not satisfy the state's school-bus exception. Use the legal divider test."
+          },
+          {
+            "blockId": "tx-school-emergency-work-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Spot flashing lights early, check mirrors, and choose a smooth path. Panic braking creates a second emergency.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-school-emergency-work-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Stop for the bus; clear the emergency path; protect the roadside.",
+            "checkpointQuestionId": "tx-school-emergency-work-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-school-emergency-work-q01",
+          "tx-school-emergency-work-q02",
+          "tx-school-emergency-work-q03",
+          "tx-school-emergency-work-q04",
+          "tx-school-emergency-work-q05"
+        ],
+        "assetIds": [
+          "tx-school-emergency-work-asset-01",
+          "tx-school-emergency-work-asset-02",
+          "tx-school-emergency-work-asset-03"
+        ],
+        "language": "en-US"
+      }
+    ],
+    "moduleTest": {
+      "testId": "tx-share-road-test",
+      "uuid": "13a0d212-c532-5a04-a721-20c2f25e20c3",
+      "moduleId": "tx-share-road",
+      "questionIds": [
+        "tx-bikes-motorcycles-q01",
+        "tx-bikes-motorcycles-q03",
+        "tx-bikes-motorcycles-q05",
+        "tx-large-slow-vehicles-q02",
+        "tx-large-slow-vehicles-q04",
+        "tx-school-emergency-work-q01",
+        "tx-school-emergency-work-q03",
+        "tx-school-emergency-work-q05",
+        "tx-bikes-motorcycles-q02",
+        "tx-bikes-motorcycles-q04"
+      ]
+    }
+  },
+  {
+    "moduleId": "tx-control",
+    "uuid": "3041a204-2fa3-540e-b562-9a94240bf41c",
+    "sequence": 6,
+    "title": "Staying in Control",
+    "outcome": "Handle visibility, vehicle failures, distraction, fatigue, alcohol, and drugs before they become emergencies.",
+    "lessons": [
+      {
+        "lessonId": "tx-night-weather-lights",
+        "uuid": "1e4278e0-c4fa-590a-94aa-79707a3baba6",
+        "moduleId": "tx-control",
+        "globalSequence": 21,
+        "moduleSequence": 1,
+        "title": "Night, Weather, Visibility, and Lights",
+        "objective": "Use lights and speed to keep the stopping path inside the visible path.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-night-weather-lights-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "Heavy rain begins at dusk. Seeing the taillights ahead does not prove that your own vehicle is visible or that you can stop within what the headlights reveal.",
+            "questionPreview": "What should guide speed in poor visibility?",
+            "questionId": "tx-night-weather-lights-q01"
+          },
+          {
+            "blockId": "tx-night-weather-lights-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Use lights and speed to keep the stopping path inside the visible path. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-night-weather-lights-b03",
+            "type": "image",
+            "assetId": "tx-night-weather-lights-asset-01"
+          },
+          {
+            "blockId": "tx-night-weather-lights-b04",
+            "type": "core_rule",
+            "title": "Know when lights are required",
+            "bodyMarkdown": "Use required headlamps from one-half hour after sunset until one-half hour before sunrise, and whenever people or vehicles cannot be clearly seen at 1,000 feet. Dim high beams within 500 feet of an approaching vehicle and within 300 feet when following.",
+            "checkpointQuestionId": "tx-night-weather-lights-q02"
+          },
+          {
+            "blockId": "tx-night-weather-lights-b05",
+            "type": "image",
+            "assetId": "tx-night-weather-lights-asset-02"
+          },
+          {
+            "blockId": "tx-night-weather-lights-b06",
+            "type": "visual_example",
+            "title": "Avoid overdriving the visible path",
+            "bodyMarkdown": "Reduce speed so the vehicle can stop within the roadway you can see. Rain, fog, smoke, glare, and darkness shorten useful sight distance. Low beams usually reduce reflected glare in fog; high beams can make it worse.",
+            "checkpointQuestionId": "tx-night-weather-lights-q03"
+          },
+          {
+            "blockId": "tx-night-weather-lights-b07",
+            "type": "related_rule",
+            "title": "Traction and visibility fail together",
+            "bodyMarkdown": "Increase following space, make gentle steering and braking inputs, and avoid cruise control when conditions may cause loss of traction. If water becomes too deep or visibility collapses, leave the roadway at a safe place rather than following taillights blindly.",
+            "checkpointQuestionId": "tx-night-weather-lights-q04"
+          },
+          {
+            "blockId": "tx-night-weather-lights-b08",
+            "type": "image",
+            "assetId": "tx-night-weather-lights-asset-03"
+          },
+          {
+            "blockId": "tx-night-weather-lights-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 547.302 and 547.333; Texas Transportation Code §§ 545.351-.365. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-night-weather-lights-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Daytime running lights may not illuminate taillights. Verify the full headlight system instead of assuming the automatic setting handled the weather."
+          },
+          {
+            "blockId": "tx-night-weather-lights-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Clean glass, working wipers, correct tire pressure, and extra time are visibility equipment too.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-night-weather-lights-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Never drive faster than the distance you can see and stop within.",
+            "checkpointQuestionId": "tx-night-weather-lights-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-night-weather-lights-q01",
+          "tx-night-weather-lights-q02",
+          "tx-night-weather-lights-q03",
+          "tx-night-weather-lights-q04",
+          "tx-night-weather-lights-q05"
+        ],
+        "assetIds": [
+          "tx-night-weather-lights-asset-01",
+          "tx-night-weather-lights-asset-02",
+          "tx-night-weather-lights-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-vehicle-emergencies",
+        "uuid": "56df9ed7-3dda-582f-8ae8-e4621341834d",
+        "moduleId": "tx-control",
+        "globalSequence": 22,
+        "moduleSequence": 2,
+        "title": "Skids, Vehicle Failures, and Last-Second Choices",
+        "objective": "Recover control with small, deliberate inputs and prioritize a survivable path.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-vehicle-emergencies-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A tire suddenly fails at highway speed. The instinct to slam the brake can make the vehicle harder to control; the first task is to keep direction stable.",
+            "questionPreview": "What is the first priority after a sudden tire failure?",
+            "questionId": "tx-vehicle-emergencies-q01"
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Recover control with small, deliberate inputs and prioritize a survivable path. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b03",
+            "type": "image",
+            "assetId": "tx-vehicle-emergencies-asset-01"
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b04",
+            "type": "core_rule",
+            "title": "A skid is a traction problem",
+            "bodyMarkdown": "Look and steer toward the safe path, ease off the action causing the skid, and avoid abrupt braking or acceleration. Vehicle systems help, but they cannot create grip that the road and tires do not have.",
+            "checkpointQuestionId": "tx-vehicle-emergencies-q02"
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b05",
+            "type": "image",
+            "assetId": "tx-vehicle-emergencies-asset-02"
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b06",
+            "type": "visual_example",
+            "title": "Stabilize before leaving the lane",
+            "bodyMarkdown": "For a blowout or sudden mechanical problem, hold the wheel firmly, avoid abrupt inputs, let speed decrease, signal, and move off only after control and a safe gap are established. Stop well away from traffic when possible and use warning equipment.",
+            "checkpointQuestionId": "tx-vehicle-emergencies-q03"
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b07",
+            "type": "related_rule",
+            "title": "Choose the option that reduces harm",
+            "bodyMarkdown": "If a collision becomes unavoidable, keep control, reduce speed, and aim for the path with the least severe consequences while protecting people. Do not close your eyes or abandon steering; small changes in speed and angle can matter.",
+            "checkpointQuestionId": "tx-vehicle-emergencies-q04"
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b08",
+            "type": "image",
+            "assetId": "tx-vehicle-emergencies-asset-03"
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.351-.365; Texas Transportation Code Chapter 547. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not stop in a live lane to inspect a minor warning if the vehicle can safely reach a protected location."
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Before a trip, know where hazard controls are and check tires, lights, and fluid warnings. Preparation shortens panic.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-vehicle-emergencies-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Stabilize first; slow next; leave traffic when safe.",
+            "checkpointQuestionId": "tx-vehicle-emergencies-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-vehicle-emergencies-q01",
+          "tx-vehicle-emergencies-q02",
+          "tx-vehicle-emergencies-q03",
+          "tx-vehicle-emergencies-q04",
+          "tx-vehicle-emergencies-q05"
+        ],
+        "assetIds": [
+          "tx-vehicle-emergencies-asset-01",
+          "tx-vehicle-emergencies-asset-02",
+          "tx-vehicle-emergencies-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-distraction-fatigue",
+        "uuid": "d3e42be6-26b7-59c9-9563-fc3237c49276",
+        "moduleId": "tx-control",
+        "globalSequence": 23,
+        "moduleSequence": 3,
+        "title": "Phones, Distraction, Fatigue, and Reckless Choices",
+        "objective": "Remove attention conflicts before the vehicle moves.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-distraction-fatigue-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A message arrives while traffic is moving. A two-second glance combines visual, manual, and mental distraction and can consume an entire stopping gap.",
+            "questionPreview": "What is the safest way to handle a nonurgent message?",
+            "questionId": "tx-distraction-fatigue-q01"
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Remove attention conflicts before the vehicle moves. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b03",
+            "type": "image",
+            "assetId": "tx-distraction-fatigue-asset-01"
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b04",
+            "type": "core_rule",
+            "title": "State law sets the minimum",
+            "bodyMarkdown": "A driver may not use a portable wireless device to read, write, or send an electronic message while operating a motor vehicle unless a statutory exception applies. Drivers under 18 face a broader wireless-device restriction except in an emergency.",
+            "checkpointQuestionId": "tx-distraction-fatigue-q02"
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b05",
+            "type": "image",
+            "assetId": "tx-distraction-fatigue-asset-02"
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b06",
+            "type": "visual_example",
+            "title": "Hands-free is not attention-free",
+            "bodyMarkdown": "Conversation, navigation changes, food, passengers, and searching for objects can pull mental focus from driving even when both hands touch the wheel. Set the route and audio before moving and let a passenger manage tasks.",
+            "checkpointQuestionId": "tx-distraction-fatigue-q03"
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b07",
+            "type": "related_rule",
+            "title": "Fatigue can imitate impairment",
+            "bodyMarkdown": "Warning signs include repeated yawning, lane drift, missed signs, wandering thoughts, and poor memory of recent miles. Coffee, cold air, or loud music cannot reliably replace sleep. Stop at a safe place and rest or change drivers.",
+            "checkpointQuestionId": "tx-distraction-fatigue-q04"
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b08",
+            "type": "image",
+            "assetId": "tx-distraction-fatigue-asset-03"
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.424-.4251; Texas Transportation Code §§ 545.351-.365. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A red light is still part of operating the vehicle and may not make a prohibited device action lawful. Do not build habits around enforcement loopholes."
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Use Do Not Disturb While Driving, mount navigation before moving, and decide that missed turns are acceptable.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-distraction-fatigue-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "If attention leaves the road, control leaves with it.",
+            "checkpointQuestionId": "tx-distraction-fatigue-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-distraction-fatigue-q01",
+          "tx-distraction-fatigue-q02",
+          "tx-distraction-fatigue-q03",
+          "tx-distraction-fatigue-q04",
+          "tx-distraction-fatigue-q05"
+        ],
+        "assetIds": [
+          "tx-distraction-fatigue-asset-01",
+          "tx-distraction-fatigue-asset-02",
+          "tx-distraction-fatigue-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-alcohol-drugs",
+        "uuid": "46bcb782-e5e3-5ac4-9887-1f1a64a9f031",
+        "moduleId": "tx-control",
+        "globalSequence": 24,
+        "moduleSequence": 4,
+        "title": "Alcohol, Drugs, DUI, and Chemical Testing",
+        "objective": "Understand impairment rules without treating a BAC number as a safe-driving target.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-alcohol-drugs-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A driver feels normal after drinking and assumes a number below 0.08 guarantees legality. Impairment can be proven by driving condition and lost faculties, not only by a test result.",
+            "questionPreview": "Does a BAC below 0.08 always make driving legal?",
+            "questionId": "tx-alcohol-drugs-q01"
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Understand impairment rules without treating a BAC number as a safe-driving target. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b03",
+            "type": "image",
+            "assetId": "tx-alcohol-drugs-asset-01"
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b04",
+            "type": "core_rule",
+            "title": "DUI law is broader than one number",
+            "bodyMarkdown": "Texas DWI law applies when a person is intoxicated while operating a motor vehicle in a public place. The Penal Code definition includes an alcohol concentration of 0.08 or more, but loss of normal mental or physical faculties can establish intoxication even without that number.",
+            "checkpointQuestionId": "tx-alcohol-drugs-q02"
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b05",
+            "type": "image",
+            "assetId": "tx-alcohol-drugs-asset-02"
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b06",
+            "type": "visual_example",
+            "title": "Under-21 rules use a lower threshold",
+            "bodyMarkdown": "Texas uses zero tolerance for minors: a minor commits an offense by operating in a public place with any detectable amount of alcohol in the minor's system, subject to the statute's limited defense.",
+            "checkpointQuestionId": "tx-alcohol-drugs-q03"
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b07",
+            "type": "related_rule",
+            "title": "Driving carries testing consequences",
+            "bodyMarkdown": "A person arrested for an offense involving operation while intoxicated is deemed to have consented to provide one or more breath or blood specimens, subject to Chapter 724 procedures and consequences. Prescription medicine, cannabis, and other drugs can impair even when lawfully obtained; combining substances can make effects less predictable.",
+            "checkpointQuestionId": "tx-alcohol-drugs-q04"
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b08",
+            "type": "image",
+            "assetId": "tx-alcohol-drugs-asset-03"
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Penal Code §§ 49.01 and 49.04; Texas Transportation Code Chapter 724; Texas Alcoholic Beverage Code § 106.041. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Food, coffee, showers, and exercise do not rapidly remove alcohol from the body. Time and a sober transportation plan are the dependable controls."
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Plan the ride before the first drink or dose. Once judgment is impaired, the person making the decision is already less reliable.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-alcohol-drugs-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Do not aim for a legal limit; choose a sober driver.",
+            "checkpointQuestionId": "tx-alcohol-drugs-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-alcohol-drugs-q01",
+          "tx-alcohol-drugs-q02",
+          "tx-alcohol-drugs-q03",
+          "tx-alcohol-drugs-q04",
+          "tx-alcohol-drugs-q05"
+        ],
+        "assetIds": [
+          "tx-alcohol-drugs-asset-01",
+          "tx-alcohol-drugs-asset-02",
+          "tx-alcohol-drugs-asset-03"
+        ],
+        "language": "en-US"
+      }
+    ],
+    "moduleTest": {
+      "testId": "tx-control-test",
+      "uuid": "97237ddd-5d6e-5ac6-8594-041b2df0a079",
+      "moduleId": "tx-control",
+      "questionIds": [
+        "tx-night-weather-lights-q01",
+        "tx-night-weather-lights-q03",
+        "tx-night-weather-lights-q05",
+        "tx-vehicle-emergencies-q02",
+        "tx-vehicle-emergencies-q04",
+        "tx-distraction-fatigue-q01",
+        "tx-distraction-fatigue-q03",
+        "tx-distraction-fatigue-q05",
+        "tx-alcohol-drugs-q02",
+        "tx-alcohol-drugs-q04"
+      ]
+    }
+  },
+  {
+    "moduleId": "tx-safety-crashes",
+    "uuid": "1162d509-d34b-50b2-a234-066e7f6766b2",
+    "sequence": 7,
+    "title": "Vehicle Safety and Crashes",
+    "outcome": "Use restraints and required equipment, then know the duties that begin when a crash happens.",
+    "lessons": [
+      {
+        "lessonId": "tx-restraints-children",
+        "uuid": "0faa02ca-147b-56a7-b99a-116d68d9ca4d",
+        "moduleId": "tx-safety-crashes",
+        "globalSequence": 25,
+        "moduleSequence": 1,
+        "title": "Seat Belts and Child Passengers",
+        "objective": "Match every occupant to the restraint required for body size and age.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-restraints-children-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A short trip begins with a child in an adult belt that crosses the neck and abdomen. Distance does not make an incorrectly fitted restraint protective.",
+            "questionPreview": "When should occupants be restrained?",
+            "questionId": "tx-restraints-children-q01"
+          },
+          {
+            "blockId": "tx-restraints-children-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Match every occupant to the restraint required for body size and age. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-restraints-children-b03",
+            "type": "image",
+            "assetId": "tx-restraints-children-asset-01"
+          },
+          {
+            "blockId": "tx-restraints-children-b04",
+            "type": "core_rule",
+            "title": "Belts work before the crash",
+            "bodyMarkdown": "Use a properly adjusted seat belt for every seating position covered by law. The lap portion belongs low across the hips, and the shoulder portion crosses the chest. Air bags supplement belts; they do not replace them.",
+            "checkpointQuestionId": "tx-restraints-children-q02"
+          },
+          {
+            "blockId": "tx-restraints-children-b05",
+            "type": "image",
+            "assetId": "tx-restraints-children-asset-02"
+          },
+          {
+            "blockId": "tx-restraints-children-b06",
+            "type": "visual_example",
+            "title": "Child rules are state-specific",
+            "bodyMarkdown": "A child younger than eight must be secured in a child passenger safety seat system unless the child is taller than 4 feet 9 inches. Seat-belt rules still apply when the child-seat rule no longer does. Follow the child-seat manufacturer's limits and use the rear seat when guidance and vehicle design call for it. Never place a rear-facing child seat in front of an active frontal air bag.",
+            "checkpointQuestionId": "tx-restraints-children-q03"
+          },
+          {
+            "blockId": "tx-restraints-children-b07",
+            "type": "related_rule",
+            "title": "The driver controls departure",
+            "bodyMarkdown": "Do not move until passengers are secured and loose cargo is contained. A passenger who unbuckles, rides in an unsafe area, or shares a belt creates risk for everyone during braking or a crash.",
+            "checkpointQuestionId": "tx-restraints-children-q04"
+          },
+          {
+            "blockId": "tx-restraints-children-b08",
+            "type": "image",
+            "assetId": "tx-restraints-children-asset-03"
+          },
+          {
+            "blockId": "tx-restraints-children-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 545.412-.413. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-restraints-children-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "An adult belt is not automatically safe merely because a child meets the minimum legal age. Correct belt fit remains essential."
+          },
+          {
+            "blockId": "tx-restraints-children-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Make buckling the action that starts the trip, before selecting music or navigation.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-restraints-children-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Right restraint, right fit, every seat, every trip.",
+            "checkpointQuestionId": "tx-restraints-children-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-restraints-children-q01",
+          "tx-restraints-children-q02",
+          "tx-restraints-children-q03",
+          "tx-restraints-children-q04",
+          "tx-restraints-children-q05"
+        ],
+        "assetIds": [
+          "tx-restraints-children-asset-01",
+          "tx-restraints-children-asset-02",
+          "tx-restraints-children-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-equipment-loads",
+        "uuid": "dfe19d6a-e46a-5698-bb4b-70d795ec1339",
+        "moduleId": "tx-safety-crashes",
+        "globalSequence": 26,
+        "moduleSequence": 2,
+        "title": "Vehicle Equipment, Visibility, Loads, and Towing",
+        "objective": "Keep the vehicle roadworthy and prevent equipment or cargo from creating a hazard.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-equipment-loads-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A load fits inside the vehicle but blocks the rear view and can slide during braking. Legal size alone does not make an unsecured load safe.",
+            "questionPreview": "What must be true of cargo before driving?",
+            "questionId": "tx-equipment-loads-q01"
+          },
+          {
+            "blockId": "tx-equipment-loads-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Keep the vehicle roadworthy and prevent equipment or cargo from creating a hazard. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-equipment-loads-b03",
+            "type": "image",
+            "assetId": "tx-equipment-loads-asset-01"
+          },
+          {
+            "blockId": "tx-equipment-loads-b04",
+            "type": "core_rule",
+            "title": "Required equipment must work",
+            "bodyMarkdown": "Maintain brakes, tires, steering, lights, mirrors, windshield, horn, wipers, and other equipment required for the vehicle. A warning light, cracked tire, obstructed plate, or failed lamp can turn an ordinary maneuver into an offense or crash.",
+            "checkpointQuestionId": "tx-equipment-loads-q02"
+          },
+          {
+            "blockId": "tx-equipment-loads-b05",
+            "type": "image",
+            "assetId": "tx-equipment-loads-asset-02"
+          },
+          {
+            "blockId": "tx-equipment-loads-b06",
+            "type": "visual_example",
+            "title": "The driver needs a clear field of view",
+            "bodyMarkdown": "Do not hang, place, tint, or load items so they unlawfully obstruct the windshield, required mirrors, lamps, or plates. Remove ice, fog, dirt, and condensation from the viewing area before moving.",
+            "checkpointQuestionId": "tx-equipment-loads-q03"
+          },
+          {
+            "blockId": "tx-equipment-loads-b07",
+            "type": "related_rule",
+            "title": "Loads and trailers change the vehicle",
+            "bodyMarkdown": "Secure cargo against shifting, falling, leaking, or escaping. Mark projecting loads and use lights or flags exactly as current state law requires. With a trailer, allow more turning, following, and stopping space and verify the hitch, chains, lights, tires, and brakes.",
+            "checkpointQuestionId": "tx-equipment-loads-q04"
+          },
+          {
+            "blockId": "tx-equipment-loads-b08",
+            "type": "image",
+            "assetId": "tx-equipment-loads-asset-03"
+          },
+          {
+            "blockId": "tx-equipment-loads-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code Chapter 547. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-equipment-loads-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not memorize a flag size or lighting rule from another state's handbook. Projecting-load details are jurisdiction-specific and can change."
+          },
+          {
+            "blockId": "tx-equipment-loads-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Walk around the vehicle before a trip with cargo or a trailer; check again after the first few miles.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-equipment-loads-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Roadworthy vehicle, clear view, secured load.",
+            "checkpointQuestionId": "tx-equipment-loads-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-equipment-loads-q01",
+          "tx-equipment-loads-q02",
+          "tx-equipment-loads-q03",
+          "tx-equipment-loads-q04",
+          "tx-equipment-loads-q05"
+        ],
+        "assetIds": [
+          "tx-equipment-loads-asset-01",
+          "tx-equipment-loads-asset-02",
+          "tx-equipment-loads-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-crashes-insurance",
+        "uuid": "20ec3f84-a152-56c5-93e8-6a9b4abf8822",
+        "moduleId": "tx-safety-crashes",
+        "globalSequence": 27,
+        "moduleSequence": 3,
+        "title": "Crashes, Reporting, Insurance, and Financial Responsibility",
+        "objective": "Know the duties that begin immediately after a crash.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-crashes-insurance-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A low-speed crash blocks a travel lane. No one appears injured, but leaving without exchanging required information can turn a small collision into a serious legal problem.",
+            "questionPreview": "What is the first priority after a crash?",
+            "questionId": "tx-crashes-insurance-q01"
+          },
+          {
+            "blockId": "tx-crashes-insurance-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Know the duties that begin immediately after a crash. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-crashes-insurance-b03",
+            "type": "image",
+            "assetId": "tx-crashes-insurance-asset-01"
+          },
+          {
+            "blockId": "tx-crashes-insurance-b04",
+            "type": "core_rule",
+            "title": "Stop and protect people",
+            "bodyMarkdown": "Stop as close as safely possible without unnecessarily blocking traffic, assess injuries, call emergency services when needed, and provide reasonable assistance. Do not move an injured person unless immediate danger requires it and you know how to avoid greater harm.",
+            "checkpointQuestionId": "tx-crashes-insurance-q02"
+          },
+          {
+            "blockId": "tx-crashes-insurance-b05",
+            "type": "image",
+            "assetId": "tx-crashes-insurance-asset-02"
+          },
+          {
+            "blockId": "tx-crashes-insurance-b06",
+            "type": "visual_example",
+            "title": "Exchange and report what law requires",
+            "bodyMarkdown": "Give the required identity, vehicle, license, registration, and insurance information, and show documents when law requires. Notify law enforcement and file reports when the crash meets statutory conditions. A parked or unattended vehicle requires a different notification process.",
+            "checkpointQuestionId": "tx-crashes-insurance-q03"
+          },
+          {
+            "blockId": "tx-crashes-insurance-b07",
+            "type": "related_rule",
+            "title": "Carry valid financial responsibility",
+            "bodyMarkdown": "Texas financial responsibility law generally requires liability coverage of at least $30,000 for injury to one person, $60,000 for one crash, and $25,000 for property damage, or another authorized proof of financial responsibility. Coverage requirements do not determine fault, and an insurance card does not replace crash-reporting duties.",
+            "checkpointQuestionId": "tx-crashes-insurance-q04"
+          },
+          {
+            "blockId": "tx-crashes-insurance-b08",
+            "type": "image",
+            "assetId": "tx-crashes-insurance-asset-03"
+          },
+          {
+            "blockId": "tx-crashes-insurance-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code Chapter 550; Texas Transportation Code §§ 601.051 and 601.072. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-crashes-insurance-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not promise payment, argue fault, or leave because damage looks small. Complete safety, identification, and reporting duties first."
+          },
+          {
+            "blockId": "tx-crashes-insurance-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Photograph the scene from a safe place, record witnesses, and notify the insurer promptly after legal duties are handled.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-crashes-insurance-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Stop, help, exchange, report, document.",
+            "checkpointQuestionId": "tx-crashes-insurance-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-crashes-insurance-q01",
+          "tx-crashes-insurance-q02",
+          "tx-crashes-insurance-q03",
+          "tx-crashes-insurance-q04",
+          "tx-crashes-insurance-q05"
+        ],
+        "assetIds": [
+          "tx-crashes-insurance-asset-01",
+          "tx-crashes-insurance-asset-02",
+          "tx-crashes-insurance-asset-03"
+        ],
+        "language": "en-US"
+      }
+    ],
+    "moduleTest": {
+      "testId": "tx-safety-crashes-test",
+      "uuid": "3e661b30-94b6-5218-97aa-38952f737c90",
+      "moduleId": "tx-safety-crashes",
+      "questionIds": [
+        "tx-restraints-children-q01",
+        "tx-restraints-children-q03",
+        "tx-restraints-children-q05",
+        "tx-equipment-loads-q02",
+        "tx-equipment-loads-q04",
+        "tx-crashes-insurance-q01",
+        "tx-crashes-insurance-q03",
+        "tx-crashes-insurance-q05",
+        "tx-restraints-children-q02",
+        "tx-restraints-children-q04"
+      ]
+    }
+  },
+  {
+    "moduleId": "tx-finish",
+    "uuid": "6230c735-1e7e-5ab9-8627-f4bd60b4f6cc",
+    "sequence": 8,
+    "title": "Texas Finish Line",
+    "outcome": "Connect licensing, residency, ownership, penalties, and exam strategy into a final test-ready review.",
+    "lessons": [
+      {
+        "lessonId": "tx-permits-tests",
+        "uuid": "6feb9733-bda1-5cf8-9c8c-c8a89176a121",
+        "moduleId": "tx-finish",
+        "globalSequence": 28,
+        "moduleSequence": 1,
+        "title": "Learner Licenses, Vision, and Knowledge Tests",
+        "objective": "Understand the path from beginner eligibility to supervised practice and examination.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-permits-tests-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A new learner passes the knowledge test and assumes any adult passenger can supervise. The supervising driver's age, license, seat, and attention can all matter.",
+            "questionPreview": "What should a learner confirm before practicing?",
+            "questionId": "tx-permits-tests-q01"
+          },
+          {
+            "blockId": "tx-permits-tests-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Understand the path from beginner eligibility to supervised practice and examination. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-permits-tests-b03",
+            "type": "image",
+            "assetId": "tx-permits-tests-asset-01"
+          },
+          {
+            "blockId": "tx-permits-tests-b04",
+            "type": "core_rule",
+            "title": "The learner stage has entry requirements",
+            "bodyMarkdown": "A Texas learner license for a person under 18 is generally available from age 15 after the required classroom driver education and knowledge examinations. The learner must carry the license and be accompanied in the adjacent seat by a properly licensed person age 21 or older with at least one year of driving experience. Keep the credential in possession and obey every restriction printed on it.",
+            "checkpointQuestionId": "tx-permits-tests-q02"
+          },
+          {
+            "blockId": "tx-permits-tests-b05",
+            "type": "image",
+            "assetId": "tx-permits-tests-asset-02"
+          },
+          {
+            "blockId": "tx-permits-tests-b06",
+            "type": "visual_example",
+            "title": "Restrictions change with experience",
+            "bodyMarkdown": "Before an ordinary license is issued to an applicant under 18, Texas generally requires the learner or hardship license to have been held for at least six months. A driver under 18 may not drive after midnight and before 5 a.m. except for listed needs, may not carry more than one nonfamily passenger under 21, and may not use a wireless device except in an emergency. Date calculations, course requirements, school documents, and supervised-hour records should be confirmed against current agency instructions before an application appointment.",
+            "checkpointQuestionId": "tx-permits-tests-q03"
+          },
+          {
+            "blockId": "tx-permits-tests-b07",
+            "type": "related_rule",
+            "title": "Tests measure categories, not memorized wording",
+            "bodyMarkdown": "Texas DPS may examine an applicant on traffic laws, highway signs, vehicle operation, vision, and driving ability. Treat handbook practice questions as study aids, not as a promise that the live test will use identical wording. Study signs, traffic law, safe decisions, and state-specific values, then practice applying them to unfamiliar scenarios. Meet the current vision and identification requirements separately.",
+            "checkpointQuestionId": "tx-permits-tests-q04"
+          },
+          {
+            "blockId": "tx-permits-tests-b08",
+            "type": "image",
+            "assetId": "tx-permits-tests-asset-03"
+          },
+          {
+            "blockId": "tx-permits-tests-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 521.204 and 521.222; Texas Transportation Code § 545.424; Texas Transportation Code § 521.161. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-permits-tests-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "A passed practice quiz does not create a license or remove a permit restriction. Eligibility and driving privilege come from the issuing agency."
+          },
+          {
+            "blockId": "tx-permits-tests-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Keep a small checklist of documents, dates, course certificates, and supervised practice so an avoidable paperwork issue does not delay testing.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-permits-tests-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Know the rule, verify eligibility, practice under valid supervision.",
+            "checkpointQuestionId": "tx-permits-tests-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-permits-tests-q01",
+          "tx-permits-tests-q02",
+          "tx-permits-tests-q03",
+          "tx-permits-tests-q04",
+          "tx-permits-tests-q05"
+        ],
+        "assetIds": [
+          "tx-permits-tests-asset-01",
+          "tx-permits-tests-asset-02",
+          "tx-permits-tests-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-residency-transfers",
+        "uuid": "a0621aee-7978-5514-9672-6923ecc0f6ef",
+        "moduleId": "tx-finish",
+        "globalSequence": 29,
+        "moduleSequence": 2,
+        "title": "Licenses, Residency, Registration, and Vehicle Transfers",
+        "objective": "Separate the deadlines for the driver, the vehicle, and ownership records.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-residency-transfers-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "A person moves with a valid out-of-state license and vehicle title. The license, registration, title, tax, inspection, and insurance steps are related but do not share one universal deadline.",
+            "questionPreview": "What is the safest way to handle a move to Texas?",
+            "questionId": "tx-residency-transfers-q01"
+          },
+          {
+            "blockId": "tx-residency-transfers-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Separate the deadlines for the driver, the vehicle, and ownership records. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-residency-transfers-b03",
+            "type": "image",
+            "assetId": "tx-residency-transfers-asset-01"
+          },
+          {
+            "blockId": "tx-residency-transfers-b04",
+            "type": "core_rule",
+            "title": "The driver's deadline is its own rule",
+            "bodyMarkdown": "A new Texas resident age 16 or older with a valid out-of-state or foreign license may drive for no more than 90 days after entering Texas. TxDMV instructs new residents to register and title a vehicle within 30 days of moving to Texas. Residency facts, valid out-of-state credentials, and exemptions can change the analysis, so use the current agency process for the actual move.",
+            "checkpointQuestionId": "tx-residency-transfers-q02"
+          },
+          {
+            "blockId": "tx-residency-transfers-b05",
+            "type": "image",
+            "assetId": "tx-residency-transfers-asset-02"
+          },
+          {
+            "blockId": "tx-residency-transfers-b06",
+            "type": "visual_example",
+            "title": "Registration is not title",
+            "bodyMarkdown": "Registration authorizes operation for a period; title records ownership interests. Insurance, VIN inspection or verification, taxes, liens, plates, and county procedures may be separate prerequisites. Complete the actual transaction through the official motor-vehicle agency.",
+            "checkpointQuestionId": "tx-residency-transfers-q03"
+          },
+          {
+            "blockId": "tx-residency-transfers-b07",
+            "type": "related_rule",
+            "title": "A sale creates duties for both sides",
+            "bodyMarkdown": "A vehicle buyer should promptly complete the title application and filing required by Transportation Code Chapter 501. The statutory title-transfer deadline is generally 30 days after assignment or delivery; different dealer and special-case procedures can apply. A seller should complete required release, plate, odometer, and notice steps; a buyer should verify the title and submit the transfer rather than relying on a signed paper kept at home.",
+            "checkpointQuestionId": "tx-residency-transfers-q04"
+          },
+          {
+            "blockId": "tx-residency-transfers-b08",
+            "type": "image",
+            "assetId": "tx-residency-transfers-asset-03"
+          },
+          {
+            "blockId": "tx-residency-transfers-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code § 521.029; Texas Transportation Code Chapters 501-502; Texas Transportation Code § 501.145. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-residency-transfers-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not turn a general agency slogan into a universal legal deadline. Driver, vehicle, buyer, seller, dealer, and new-resident rules can use different clocks."
+          },
+          {
+            "blockId": "tx-residency-transfers-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "Create one move checklist with columns for driver license, insurance, title, registration, inspection/VIN, tax, and plates.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-residency-transfers-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Driver status, vehicle registration, and ownership are separate records.",
+            "checkpointQuestionId": "tx-residency-transfers-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-residency-transfers-q01",
+          "tx-residency-transfers-q02",
+          "tx-residency-transfers-q03",
+          "tx-residency-transfers-q04",
+          "tx-residency-transfers-q05"
+        ],
+        "assetIds": [
+          "tx-residency-transfers-asset-01",
+          "tx-residency-transfers-asset-02",
+          "tx-residency-transfers-asset-03"
+        ],
+        "language": "en-US"
+      },
+      {
+        "lessonId": "tx-penalties-review",
+        "uuid": "f903f649-9b74-5a2b-b2b2-b900ab5dc358",
+        "moduleId": "tx-finish",
+        "globalSequence": 30,
+        "moduleSequence": 3,
+        "title": "Penalties, Driving Records, and Final Exam Traps",
+        "objective": "Finish with a state-specific consequence map and a method for difficult questions.",
+        "estimatedMinutes": "6-9",
+        "format": "scenario_first_cards",
+        "blocks": [
+          {
+            "blockId": "tx-penalties-review-b01",
+            "type": "quick_challenge",
+            "title": "What would you do?",
+            "scenario": "Two answer choices both sound cautious, but one states the exact legal action and the other adds an invented condition. The exam rewards the rule that fits the facts, not the longest warning.",
+            "questionPreview": "What should you do when two answers seem plausible?",
+            "questionId": "tx-penalties-review-q01"
+          },
+          {
+            "blockId": "tx-penalties-review-b02",
+            "type": "why_it_matters",
+            "title": "Why this matters",
+            "bodyMarkdown": "Finish with a state-specific consequence map and a method for difficult questions. The exam may change the scene or wording, so learn the decision pattern instead of memorizing a screenshot. Start by identifying the road users, controls, and conflict point; then choose the action that preserves a legal path, enough time, and enough space."
+          },
+          {
+            "blockId": "tx-penalties-review-b03",
+            "type": "image",
+            "assetId": "tx-penalties-review-asset-01"
+          },
+          {
+            "blockId": "tx-penalties-review-b04",
+            "type": "core_rule",
+            "title": "Consequences come from the current system",
+            "bodyMarkdown": "Texas no longer uses the former Driver Responsibility Program point surcharge system. Convictions still become part of the driving record, and repeated moving violations or serious offenses can lead to suspension, revocation, fines, or other consequences under current law. Courts and the licensing agency may act through different processes, so a fine, conviction, administrative action, and license suspension are not interchangeable.",
+            "checkpointQuestionId": "tx-penalties-review-q02"
+          },
+          {
+            "blockId": "tx-penalties-review-b05",
+            "type": "image",
+            "assetId": "tx-penalties-review-asset-02"
+          },
+          {
+            "blockId": "tx-penalties-review-b06",
+            "type": "visual_example",
+            "title": "Read for the controlling detail",
+            "bodyMarkdown": "Mark whether the question turns on a signal, divider, age, distance, visibility, direction, lane, timing, or exception. Eliminate answers that invent facts or use absolute words such as always and never when the rule contains conditions.",
+            "checkpointQuestionId": "tx-penalties-review-q03"
+          },
+          {
+            "blockId": "tx-penalties-review-b07",
+            "type": "related_rule",
+            "title": "Use the safety hierarchy",
+            "bodyMarkdown": "When the question asks what to do first, protect people and control the vehicle before paperwork or convenience. When it asks what is legal, use the state rule and exact conditions. When it asks what is safest, choose the option that creates time, visibility, and space without violating law.",
+            "checkpointQuestionId": "tx-penalties-review-q04"
+          },
+          {
+            "blockId": "tx-penalties-review-b08",
+            "type": "image",
+            "assetId": "tx-penalties-review-asset-03"
+          },
+          {
+            "blockId": "tx-penalties-review-b09",
+            "type": "state_specific",
+            "title": "Texas source anchor",
+            "bodyMarkdown": "For Texas, the enforceable details in this lesson were checked against Texas Transportation Code §§ 521.292 and 521.343; Texas Transportation Code Chapter 550. The lesson is an original explanation, not copied handbook text. When a distance, age, divider, deadline, or exception controls the answer, use the state-specific value stated here instead of importing a familiar rule from somewhere else."
+          },
+          {
+            "blockId": "tx-penalties-review-b10",
+            "type": "exam_trap",
+            "title": "Exam trap",
+            "bodyMarkdown": "Do not import a number from another state or from an old handbook edition. If the question depends on a number, connect it to the verified state rule."
+          },
+          {
+            "blockId": "tx-penalties-review-b11",
+            "type": "drive_smarter",
+            "title": "Drive smarter",
+            "bodyMarkdown": "For each missed question, write the controlling fact and the rule in one sentence. Review misses by pattern, not by answer letter.",
+            "optional": true
+          },
+          {
+            "blockId": "tx-penalties-review-b12",
+            "type": "remember_this",
+            "title": "Remember this",
+            "bodyMarkdown": "Read the facts, apply the state rule, choose the safest lawful action.",
+            "checkpointQuestionId": "tx-penalties-review-q05"
+          }
+        ],
+        "questionIds": [
+          "tx-penalties-review-q01",
+          "tx-penalties-review-q02",
+          "tx-penalties-review-q03",
+          "tx-penalties-review-q04",
+          "tx-penalties-review-q05"
+        ],
+        "assetIds": [
+          "tx-penalties-review-asset-01",
+          "tx-penalties-review-asset-02",
+          "tx-penalties-review-asset-03"
+        ],
+        "language": "en-US"
+      }
+    ],
+    "moduleTest": {
+      "testId": "tx-finish-test",
+      "uuid": "c9a675ca-461a-5db1-b63c-66a73fd095de",
+      "moduleId": "tx-finish",
+      "questionIds": [
+        "tx-permits-tests-q01",
+        "tx-permits-tests-q03",
+        "tx-permits-tests-q05",
+        "tx-residency-transfers-q02",
+        "tx-residency-transfers-q04",
+        "tx-penalties-review-q01",
+        "tx-penalties-review-q03",
+        "tx-penalties-review-q05",
+        "tx-permits-tests-q02",
+        "tx-permits-tests-q04"
+      ]
+    }
+  }
+]

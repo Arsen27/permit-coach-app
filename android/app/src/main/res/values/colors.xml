@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App icon background: theme accent "emerald" #059669. -->
+    <color name="ic_launcher_background">#059669</color>
+</resources>
