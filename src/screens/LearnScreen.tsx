@@ -102,7 +102,11 @@ type ModuleLadderProps = {
   currentLessonId: string | undefined;
 };
 
-const ModuleLadder: React.FC<ModuleLadderProps> = ({
+// Memoized below as ModuleLadder: the screen consumes AppState, which
+// changes on every answered question (even mid-quiz, behind the pushed Quiz
+// screen), and the ladders are by far the heaviest thing it renders. Their
+// inputs only change when a lesson or test actually completes.
+const ModuleLadderComponent: React.FC<ModuleLadderProps> = ({
   module,
   moduleUnlocked,
   lessonScores,
@@ -317,6 +321,8 @@ const ModuleLadder: React.FC<ModuleLadderProps> = ({
   );
 };
 
+const ModuleLadder = React.memo(ModuleLadderComponent);
+
 const LearnScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
   const { lessonScores, topicScores, points } = useAppState();
@@ -325,26 +331,36 @@ const LearnScreen: React.FC = () => {
 
   const modules = bundle.modules;
   const courseLessons = orderedCourseLessons();
-  const doneTotal = courseLessons.filter(
-    ref => lessonScores[ref.lesson.lessonId]?.completed,
-  ).length;
+  const doneTotal = React.useMemo(
+    () =>
+      courseLessons.filter(ref => lessonScores[ref.lesson.lessonId]?.completed)
+        .length,
+    [courseLessons, lessonScores],
+  );
   const totalLessons = courseLessons.length;
 
   // A module is unlocked once the previous module's test is done; the current
   // lesson is the first unlocked, not-yet-completed one.
-  const moduleUnlockedById = new Map<string, boolean>();
-  modules.forEach((module, index) => {
-    const previous = modules[index - 1];
-    moduleUnlockedById.set(
-      module.moduleId,
-      index === 0 || topicScores[previous.moduleId] != null,
-    );
-  });
-  const currentLessonId = courseLessons.find(
-    ref =>
-      (devUnlockAll || moduleUnlockedById.get(ref.module.moduleId)) &&
-      !lessonScores[ref.lesson.lessonId]?.completed,
-  )?.lesson.lessonId;
+  const moduleUnlockedById = React.useMemo(() => {
+    const unlocked = new Map<string, boolean>();
+    modules.forEach((module, index) => {
+      const previous = modules[index - 1];
+      unlocked.set(
+        module.moduleId,
+        index === 0 || topicScores[previous.moduleId] != null,
+      );
+    });
+    return unlocked;
+  }, [modules, topicScores]);
+  const currentLessonId = React.useMemo(
+    () =>
+      courseLessons.find(
+        ref =>
+          (devUnlockAll || moduleUnlockedById.get(ref.module.moduleId)) &&
+          !lessonScores[ref.lesson.lessonId]?.completed,
+      )?.lesson.lessonId,
+    [courseLessons, devUnlockAll, moduleUnlockedById, lessonScores],
+  );
 
   return (
     <Screen

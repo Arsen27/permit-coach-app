@@ -7,6 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { AppState as RNAppState } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -116,6 +117,12 @@ type AppStateValue = PersistedState & {
 // Pre-account demo builds persisted under this key; nobody real ever used it.
 const LEGACY_V1_KEY = 'dmv-prep/app-state/v1';
 
+// Trailing-edge delay for the local snapshot write. Serializing the whole
+// state runs on the JS thread, so doing it inside the answer tap made the
+// reveal lag; a short debounce moves it off the interaction. The window is
+// closed by the background/unmount flush below.
+const PERSIST_DEBOUNCE_MS = 500;
+
 const AppStateContext = createContext<AppStateValue | null>(null);
 
 const toggleId = (ids: string[], id: string): string[] =>
@@ -187,16 +194,51 @@ export const AppStateProvider: React.FC<AppStateProviderProps> = ({
     };
   }, [userId]);
 
+  const persistTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const flushPersist = useCallback(() => {
+    if (persistTimer.current == null) {
+      return;
+    }
+    clearTimeout(persistTimer.current);
+    persistTimer.current = null;
+    AsyncStorage.setItem(
+      appStateKey(userId),
+      JSON.stringify(stateRef.current),
+    ).catch(() => undefined);
+  }, [userId]);
+
   useEffect(() => {
     // The first post-hydration render carries the loaded state itself.
     if (!hydrated || skipPersist.current) {
       skipPersist.current = !hydrated;
       return;
     }
-    AsyncStorage.setItem(appStateKey(userId), JSON.stringify(state)).catch(
-      () => undefined,
-    );
+    if (persistTimer.current != null) {
+      clearTimeout(persistTimer.current);
+    }
+    persistTimer.current = setTimeout(() => {
+      persistTimer.current = null;
+      AsyncStorage.setItem(
+        appStateKey(userId),
+        JSON.stringify(stateRef.current),
+      ).catch(() => undefined);
+    }, PERSIST_DEBOUNCE_MS);
   }, [state, hydrated, userId]);
+
+  // Close the debounce window at the moments the snapshot must be current:
+  // backgrounding (the app may be killed there) and unmount (a user switch
+  // stages this blob for adopt-and-merge right after).
+  useEffect(() => {
+    const sub = RNAppState.addEventListener('change', status => {
+      if (status === 'background') {
+        flushPersist();
+      }
+    });
+    return () => {
+      sub.remove();
+      flushPersist();
+    };
+  }, [flushPersist]);
 
   useEffect(() => {
     if (!hydrated) {

@@ -53,6 +53,21 @@ const scoreColor = (theme: AppTheme, percent: number | null): string => {
   return percent < 83 ? theme.colors.warning : theme.colors.done;
 };
 
+type BankCellViewProps = {
+  color: string;
+};
+
+// One square of the bank map. Memoized: the screen stays mounted behind a
+// running quiz and re-renders on every answered question — of the ~hundreds
+// of cells only the one whose mastery changed should pay for it.
+const BankCellViewComponent: React.FC<BankCellViewProps> = ({ color }) => (
+  <BankCell testID="bank-cell">
+    <BankFill style={{ backgroundColor: color }} />
+  </BankCell>
+);
+
+const BankCellView = React.memo(BankCellViewComponent);
+
 const PracticeScreen: React.FC = () => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
@@ -202,16 +217,12 @@ const PracticeScreen: React.FC = () => {
         </SectionHead>
         <BankGrid>
           {bank.states.map((state, index) => (
-            <BankCell
+            <BankCellView
               // Position in the bank is the identity here: the list is a fixed
               // ordered map, never reordered or filtered.
               key={index}
-              testID="bank-cell"
-            >
-              <BankFill
-                style={{ backgroundColor: masteryColor(theme, state) }}
-              />
-            </BankCell>
+              color={masteryColor(theme, state)}
+            />
           ))}
         </BankGrid>
         <Legend>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Animated, Platform } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
 
 import CourseAssetView from '@/components/CourseAssetView';
@@ -16,6 +17,7 @@ import {
 import type { AppTheme } from '@/theme';
 import { shadows } from '@/theme';
 
+import RecallCover from './RecallCover';
 import { CARD_META, UNKNOWN_META, cardMetaFor } from './cards';
 import type { LessonCard } from './cards';
 import type { CardMeta, LessonAnswer, OptionState, Tone } from './types';
@@ -135,32 +137,176 @@ export const Diagram: React.FC<{ asset?: CourseAssetV2; tall?: boolean }> = ({
   </DiagramWrap>
 );
 
+// One [[gap]]: the sharp white word defines the layout; the outlined pill
+// chrome of screen 24 fades in around it on reveal, and a RecallCover hides
+// it until then — Liquid Glass on iOS 26 (the word reads as a blur, screen
+// 19), an opaque pill elsewhere. Revealing is staggered per gap: the glass
+// dematerializes natively while the chrome springs in with a small pop, so
+// the word visibly comes into focus without the sentence ever reflowing.
+const RecallGapPillComponent: React.FC<{
+  word: string;
+  revealed: boolean;
+  order: number;
+}> = ({ word, revealed, order }) => {
+  const progress = React.useRef(new Animated.Value(revealed ? 1 : 0)).current;
+  const [coverRevealed, setCoverRevealed] = React.useState(revealed);
+  const shown = React.useRef(revealed);
+
+  React.useEffect(() => {
+    if (revealed === shown.current) {
+      return;
+    }
+    shown.current = revealed;
+    if (!revealed) {
+      progress.setValue(0);
+      setCoverRevealed(false);
+      return;
+    }
+    // The native glass dissolve is triggered by a prop flip, so the stagger
+    // delays both the flip and the spring by the same amount.
+    const timer = setTimeout(() => setCoverRevealed(true), order * 90);
+    Animated.spring(progress, {
+      toValue: 1,
+      delay: order * 90,
+      friction: 7,
+      tension: 90,
+      useNativeDriver: Platform.OS !== 'web',
+    }).start();
+    return () => {
+      clearTimeout(timer);
+      progress.stopAnimation();
+    };
+  }, [revealed, order, progress]);
+
+  // One interpolation graph per mounted pill: rebuilding these Animated
+  // nodes on every parent re-render made recall cards needlessly heavy.
+  const anim = React.useMemo(
+    () => ({
+      chromeOpacity: progress.interpolate({
+        inputRange: [0, 0.25, 1],
+        outputRange: [0, 0, 1],
+        extrapolate: 'clamp',
+      }),
+      coverFade: progress.interpolate({
+        inputRange: [0, 0.7, 1],
+        outputRange: [1, 0, 0],
+        extrapolate: 'clamp',
+      }),
+      pop: progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0.94, 1],
+      }),
+      coverLift: progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [1, 1.08],
+        extrapolate: 'clamp',
+      }),
+      // Glass alone does not smear 19px glyphs enough to stop reading.
+      // Hidden, the word is dimmed and flanked by two offset ghost copies —
+      // under the glass the three read as one blurred blob. Revealing
+      // converges the ghosts into the word as it comes up to full ink: a
+      // focus pull.
+      wordFocus: progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0.32, 1],
+        extrapolate: 'clamp',
+      }),
+      ghostFade: progress.interpolate({
+        inputRange: [0, 0.6, 1],
+        outputRange: [0.26, 0, 0],
+        extrapolate: 'clamp',
+      }),
+      ghostShift: {
+        [-1]: progress.interpolate({
+          inputRange: [0, 1],
+          outputRange: [-3, 0],
+          extrapolate: 'clamp',
+        }),
+        [1]: progress.interpolate({
+          inputRange: [0, 1],
+          outputRange: [3, 0],
+          extrapolate: 'clamp',
+        }),
+      },
+    }),
+    [progress],
+  );
+  const { chromeOpacity, coverFade, pop, coverLift, wordFocus, ghostFade } =
+    anim;
+  const ghostShift = (direction: 1 | -1) => anim.ghostShift[direction];
+
+  return (
+    <RecallGap>
+      <RecallChrome
+        style={{ opacity: chromeOpacity, transform: [{ scale: pop }] }}
+      />
+      <RecallGapWord style={{ opacity: wordFocus }}>{word}</RecallGapWord>
+      {([-1, 1] as const).map(direction => (
+        <RecallGhost
+          key={direction}
+          pointerEvents="none"
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+          style={{
+            opacity: ghostFade,
+            transform: [{ translateX: ghostShift(direction) }],
+          }}
+        >
+          <RecallGhostWord>{word}</RecallGhostWord>
+        </RecallGhost>
+      ))}
+      <RecallCoverWrap
+        pointerEvents="none"
+        style={{ transform: [{ scale: coverLift }] }}
+      >
+        <RecallCover revealed={coverRevealed} fade={coverFade} word={word} />
+      </RecallCoverWrap>
+    </RecallGap>
+  );
+};
+
+const RecallGapPill = React.memo(RecallGapPillComponent);
+
 // The recall rule as a wrapping row of words so each [[gap]] can be a real
-// pill (padding + radius are not available on nested Text fragments). Hidden
-// gaps keep the word in the layout with transparent ink, so revealing never
-// reflows the sentence.
-const RecallRule: React.FC<{ ruleMarkdown: string; revealed: boolean }> = ({
-  ruleMarkdown,
-  revealed,
-}) => (
-  <RecallLine>
-    {recallSegments(ruleMarkdown).flatMap((segment, index) => {
-      if (segment.gap) {
-        return [
-          <RecallGap key={`gap-${index}`} $revealed={revealed}>
-            <RecallGapWord $revealed={revealed}>{segment.text}</RecallGapWord>
-          </RecallGap>,
-        ];
-      }
-      return segment.text
-        .split(/\s+/)
-        .filter(word => word.length > 0)
-        .map((word, wordIndex) => (
-          <RecallWord key={`word-${index}-${wordIndex}`}>{word}</RecallWord>
-        ));
-    })}
-  </RecallLine>
-);
+// pill (padding + radius are not available on nested Text fragments).
+// Memoized: the parent re-renders on every answer/reveal state change, and
+// re-splitting the markdown plus re-mounting a word per fragment is wasted
+// work unless the rule or the reveal actually changed.
+const RecallRuleComponent: React.FC<{
+  ruleMarkdown: string;
+  revealed: boolean;
+}> = ({ ruleMarkdown, revealed }) => {
+  const segments = React.useMemo(
+    () => recallSegments(ruleMarkdown),
+    [ruleMarkdown],
+  );
+  let gapOrder = -1;
+  return (
+    <RecallLine>
+      {segments.flatMap((segment, index) => {
+        if (segment.gap) {
+          gapOrder += 1;
+          return [
+            <RecallGapPill
+              key={`gap-${index}`}
+              word={segment.text}
+              revealed={revealed}
+              order={gapOrder}
+            />,
+          ];
+        }
+        return segment.text
+          .split(/\s+/)
+          .filter(word => word.length > 0)
+          .map((word, wordIndex) => (
+            <RecallWord key={`word-${index}-${wordIndex}`}>{word}</RecallWord>
+          ));
+      })}
+    </RecallLine>
+  );
+};
+
+const RecallRule = React.memo(RecallRuleComponent);
 
 const TeachingCopy: React.FC<{
   body: string;
@@ -272,7 +418,7 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
         <RecallHint>
           {revealed
             ? 'Just a self-check — either answer moves you forward.'
-            : 'Say the missing words out loud, then reveal.'}
+            : 'The words are there — can you read them from memory?'}
         </RecallHint>
       </>
     );
@@ -532,23 +678,57 @@ const RecallWord = styled.Text`
   color: #ffffff;
 `;
 
-const RecallGap = styled.View<{ $revealed: boolean }>`
-  border-radius: 10px;
-  padding: ${({ $revealed }) => ($revealed ? '1px 10px' : '1px 20px')};
-  background-color: ${({ $revealed }) =>
-    $revealed ? 'rgba(255, 255, 255, 0.16)' : 'rgba(255, 255, 255, 0.26)'};
-  border: 1px solid
-    ${({ $revealed }) =>
-      $revealed ? 'rgba(255, 255, 255, 0.34)' : 'transparent'};
+const RecallGap = styled.View`
+  padding: 1px 10px;
 `;
 
-const RecallGapWord = styled.Text<{ $revealed: boolean }>`
-  ${({ theme, $revealed }) =>
-    $revealed ? theme.fonts.bold : theme.fonts.semiBold}
+// Screen 24's outlined pill, as an absolute layer under the word so the cover
+// above can hide both together.
+const RecallChrome = styled(Animated.View)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 9px;
+  background-color: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+`;
+
+const RecallGapWord = styled(Animated.Text)`
+  ${({ theme }) => theme.fonts.bold}
   font-size: 19px;
   line-height: 25px;
   letter-spacing: -0.15px;
-  color: ${({ $revealed }) => ($revealed ? '#ffffff' : 'transparent')};
+  color: #ffffff;
+`;
+
+// The offset ghost copies that turn the dimmed word into an unreadable blob
+// while the cover is up.
+const RecallGhost = styled(Animated.View)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RecallGhostWord = styled.Text`
+  ${({ theme }) => theme.fonts.bold}
+  font-size: 19px;
+  line-height: 25px;
+  letter-spacing: -0.15px;
+  color: #ffffff;
+`;
+
+const RecallCoverWrap = styled(Animated.View)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 `;
 
 const RecallHint = styled.Text`

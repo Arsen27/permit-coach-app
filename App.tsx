@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Platform, StatusBar, Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import styled, { ThemeProvider, useTheme } from 'styled-components/native';
@@ -15,9 +15,11 @@ import {
 import { captureCurrentScreen } from '@/analytics/screens';
 import { AuthProvider, useAuth } from '@/auth/AuthProvider';
 import AccountDeletionOverlay from '@/components/AccountDeletionOverlay';
+import AppUpdateGate from '@/components/AppUpdateGate';
 import DailyStreakGate from '@/components/DailyStreakGate';
 import GlassTabBar from '@/components/GlassTabBar';
 import { CourseProvider } from '@/data/course/CourseProvider';
+import UpdateManager from '@/data/course/UpdateManager';
 import { isOnboardingDone } from '@/lib/onboardingFlag';
 import { migrateLegacyAgeBand } from '@/lib/onboardingPrefs';
 import { PurchasesProvider } from '@/purchases/PurchasesProvider';
@@ -33,14 +35,13 @@ import PracticeScreen from '@/screens/PracticeScreen';
 import QuizScreen from '@/screens/QuizScreen';
 import SignCategoryScreen from '@/screens/SignCategoryScreen';
 import SignDetailScreen from '@/screens/SignDetailScreen';
-// Temporary: Signs tab hidden
-// import SignsScreen from '@/screens/SignsScreen';
+import SignsScreen from '@/screens/SignsScreen';
 import StatePickerScreen from '@/screens/StatePickerScreen';
 import StreakScreen from '@/screens/StreakScreen';
 import TheoryScreen from '@/screens/TheoryScreen';
 import YouScreen from '@/screens/YouScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
-import { makeTheme } from '@/theme';
+import { AppTheme, makeTheme } from '@/theme';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -67,7 +68,6 @@ const TabsIOS: React.FC = () => {
         component={PracticeScreen}
         options={{ tabBarIcon: { type: 'sfSymbol', name: 'checklist' } }}
       />
-      {/* Temporary: Signs tab hidden
       <NativeTab.Screen
         name="Signs"
         component={SignsScreen}
@@ -78,7 +78,6 @@ const TabsIOS: React.FC = () => {
           },
         }}
       />
-      */}
       <NativeTab.Screen
         name="You"
         component={YouScreen}
@@ -100,9 +99,7 @@ const TabsAndroid: React.FC = () => (
   >
     <Tab.Screen name="Learn" component={LearnScreen} />
     <Tab.Screen name="Practice" component={PracticeScreen} />
-    {/* Temporary: Signs tab hidden
     <Tab.Screen name="Signs" component={SignsScreen} />
-    */}
     <Tab.Screen name="You" component={YouScreen} />
   </Tab.Navigator>
 );
@@ -142,26 +139,33 @@ const IdentityNameSync: React.FC = () => {
   return null;
 };
 
-// Theme depends on the persisted appearance settings, so the provider sits
-// inside AppState. On iOS the stack uses native UINavigationBar headers
-// (system back button and bar items get the iOS 26 glass treatment); Android
-// screens draw their own analog headers, so the base stays headerShown:false.
-const ThemedApp: React.FC = () => {
-  const { accentId, fontId } = useAppState();
-  const theme = makeTheme(accentId, fontId);
-  // Gate on the onboarding flag before the navigator mounts, mirroring the
-  // AppState hydration gate: initialRouteName is fixed at first render.
-  const [onboarded, setOnboarded] = useState<boolean | null>(null);
-  useEffect(() => {
-    // Older installs may hold the retired 'under-18' age band; rewrite it
-    // before anything reads the stored answers.
-    migrateLegacyAgeBand();
-    isOnboardingDone().then(setOnboarded);
-  }, []);
+type AppShellProps = {
+  theme: AppTheme;
+  onboarded: boolean;
+};
 
-  if (onboarded == null) {
-    return null;
-  }
+// Everything below the theme seam, memoized: AppState changes on every
+// answered question, and only the theme actually derives from it here — the
+// navigator and every mounted screen must not pay a re-render for progress
+// updates. On iOS the stack uses native UINavigationBar headers (system back
+// button and bar items get the iOS 26 glass treatment); Android screens draw
+// their own analog headers, so the base stays headerShown:false.
+const AppShellComponent: React.FC<AppShellProps> = ({ theme, onboarded }) => {
+  // Stable object identity: React Navigation publishes this through its own
+  // context, so a fresh object per render would re-render every navigator.
+  const navigationTheme = useMemo(
+    () => ({
+      ...DefaultTheme,
+      colors: {
+        ...DefaultTheme.colors,
+        background: theme.colors.bg,
+        primary: theme.colors.accent,
+        card: theme.colors.bg,
+        text: theme.colors.ink,
+      },
+    }),
+    [theme],
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -170,6 +174,8 @@ const ThemedApp: React.FC = () => {
         <IdentityNameSync />
         <AnalyticsIdentity />
         <DailyStreakGate />
+        <UpdateManager />
+        <AppUpdateGate />
         <NavigationContainer
           ref={navigationRef}
           // @react-navigation/native v7 no longer feeds the PostHog SDK's own
@@ -177,16 +183,7 @@ const ThemedApp: React.FC = () => {
           // callbacks: once when it mounts, then on every navigation.
           onReady={captureCurrentScreen}
           onStateChange={captureCurrentScreen}
-          theme={{
-            ...DefaultTheme,
-            colors: {
-              ...DefaultTheme.colors,
-              background: theme.colors.bg,
-              primary: theme.colors.accent,
-              card: theme.colors.bg,
-              text: theme.colors.ink,
-            },
-          }}
+          theme={navigationTheme}
         >
           <Stack.Navigator
             initialRouteName={onboarded ? 'Tabs' : 'Onboarding'}
@@ -319,6 +316,32 @@ const ThemedApp: React.FC = () => {
       </Container>
     </ThemeProvider>
   );
+};
+
+const AppShell = React.memo(AppShellComponent);
+
+// Theme depends on the persisted appearance settings, so this seam sits
+// inside AppState. The theme is memoized on the two settings it reads:
+// styled-components has no bail-out on deep-equal themes, so a fresh object
+// here would re-run every styled component's css on every state change.
+const ThemedApp: React.FC = () => {
+  const { accentId, fontId } = useAppState();
+  const theme = useMemo(() => makeTheme(accentId, fontId), [accentId, fontId]);
+  // Gate on the onboarding flag before the navigator mounts, mirroring the
+  // AppState hydration gate: initialRouteName is fixed at first render.
+  const [onboarded, setOnboarded] = useState<boolean | null>(null);
+  useEffect(() => {
+    // Older installs may hold the retired 'under-18' age band; rewrite it
+    // before anything reads the stored answers.
+    migrateLegacyAgeBand();
+    isOnboardingDone().then(setOnboarded);
+  }, []);
+
+  if (onboarded == null) {
+    return null;
+  }
+
+  return <AppShell theme={theme} onboarded={onboarded} />;
 };
 
 // Keyed on the user id: switching accounts (including the first anonymous

@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import {
   Alert,
+  LayoutAnimation,
   Modal,
   Platform,
   ScrollView,
@@ -22,6 +23,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { track } from '@/analytics';
 import Icon from '@/components/Icon';
 import PrimaryButton from '@/components/PrimaryButton';
+import ProgressTrack from '@/components/ProgressTrack';
 import LessonCardBody from '@/components/lesson/LessonCardBody';
 import { buildCards, cardAssetId } from '@/components/lesson/cards';
 import type { LessonAnswer } from '@/components/lesson/types';
@@ -79,9 +81,7 @@ const HeaderProgress: React.FC<{
           {index + 1} / {total}
         </ProgressCount>
       </ProgressMeta>
-      <Track>
-        <TrackFill style={{ width: `${((index + 1) / total) * 100}%` }} />
-      </Track>
+      <ProgressTrack progress={(index + 1) / total} />
     </HeaderWrap>
   );
 };
@@ -166,12 +166,17 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
       ? activeLesson.theoryQuestionIds ?? []
       : activeLesson.questionIds;
   }, [courseLesson, splitLesson]);
-  const correctCount = questionIds.filter(id => {
-    const question = findCourseQuestion(id);
-    return (
-      question != null && answers[id]?.selectedId === question.correctAnswerId
-    );
-  }).length;
+  const correctCount = useMemo(
+    () =>
+      questionIds.filter(id => {
+        const question = findCourseQuestion(id);
+        return (
+          question != null &&
+          answers[id]?.selectedId === question.correctAnswerId
+        );
+      }).length,
+    [questionIds, answers],
+  );
 
   const complete = useCallback(() => {
     if (finishedRef.current || courseLesson == null) {
@@ -594,6 +599,9 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
       lesson_id: lessonId,
       block_id: recallBlock.blockId,
     });
+    // Smooths the footer swap (Reveal words → the self-report pair); the gap
+    // pills animate themselves and never change layout.
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setRecallRevealed(prev => ({ ...prev, [recallBlock.blockId]: true }));
   };
 
@@ -628,11 +636,7 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
                 {index + 1} / {cards.length}
               </ProgressCount>
             </ProgressMeta>
-            <Track>
-              <TrackFill
-                style={{ width: `${((index + 1) / cards.length) * 100}%` }}
-              />
-            </Track>
+            <ProgressTrack progress={(index + 1) / cards.length} />
           </Progress>
           <CircleButton onPress={confirmLeave} hitSlop={10}>
             <Icon name="xmark" size={13} color={theme.colors.strong} />
@@ -836,19 +840,6 @@ const ProgressCount = styled.Text`
   font-size: 11.5px;
   color: ${({ theme }) => theme.colors.muted};
   font-variant: tabular-nums;
-`;
-
-const Track = styled.View`
-  height: 5px;
-  border-radius: 3px;
-  background-color: ${({ theme }) => theme.colors.faint};
-  overflow: hidden;
-`;
-
-const TrackFill = styled.View`
-  height: 100%;
-  border-radius: 3px;
-  background-color: ${({ theme }) => theme.colors.accent};
 `;
 
 const Footer = styled.View<{ $bordered?: boolean }>`

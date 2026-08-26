@@ -2,9 +2,19 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useRef,
   useState,
 } from 'react';
-import { Alert, Platform, View, useWindowDimensions } from 'react-native';
+import {
+  Alert,
+  LayoutChangeEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  Platform,
+  ScrollView,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled, { useTheme } from 'styled-components/native';
 
@@ -33,10 +43,15 @@ import {
   topicQuestions,
 } from '@/data/practice';
 import { findSign, shuffle, signQuizQuestions } from '@/data/signs';
+import { revealScrollOffset } from '@/lib/revealScroll';
 import { QuizParams, RootStackParamList } from '@/navigation/types';
 import { useAppState, PersistedState } from '@/state/AppState';
 
 const EXAM_SECONDS = 60 * 60;
+
+// The CTA floats over the bottom of the scroll viewport (22px above the safe
+// area, 54px tall), so that strip does not count as visible.
+const CTA_STRIP = 54 + 22;
 
 const buildQuestions = (
   params: QuizParams,
@@ -105,6 +120,50 @@ const HeaderProgress: React.FC<{ progress: number }> = ({ progress }) => {
   );
 };
 
+type QuizOption = QuizQuestion['options'][number];
+
+type OptionRowProps = {
+  option: QuizOption;
+  state: OptionState;
+  disabled: boolean;
+  onSelect: (optionId: string) => void;
+};
+
+// One answer row. Memoized so rows only re-render when their own visual
+// state changes — not on every screen re-render (exam clock ticks, app-state
+// updates, the feedback reveal re-measuring).
+const OptionRowComponent: React.FC<OptionRowProps> = ({
+  option,
+  state,
+  disabled,
+  onSelect,
+}) => (
+  <Option
+    disabled={disabled}
+    onPress={() => onSelect(option.id)}
+    $state={state}
+  >
+    {state === 'correct' ? (
+      <RadioDone>
+        <Icon name="check" size={12} color="#ffffff" />
+      </RadioDone>
+    ) : (
+      <Radio
+        $state={
+          state === 'wrong'
+            ? 'wrong'
+            : state === 'selected'
+            ? 'selected'
+            : 'default'
+        }
+      />
+    )}
+    <OptionText $emphasis={state !== 'default'}>{option.text}</OptionText>
+  </Option>
+);
+
+const OptionRow = React.memo(OptionRowComponent);
+
 // One quiz engine for every session type. Lesson/topic flows reveal the
 // answer on "Check answer"; the mock exam follows real exam rules — no
 // hints, no reveal, a 60-minute clock.
@@ -137,6 +196,55 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
   const total = questions.length;
   const isLast = index === total - 1;
   const saved = question != null && savedQuestionIds.includes(question.id);
+
+  const scrollRef = useRef<ScrollView>(null);
+  const scrollOffset = useRef(0);
+  const viewportHeight = useRef(0);
+  // At most one auto-scroll per reveal: onLayout also fires when the content
+  // re-measures (image loading, rotation) and scrolling again then would
+  // fight whatever the user has scrolled to in the meantime.
+  const feedbackNudged = useRef(false);
+
+  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    scrollOffset.current = event.nativeEvent.contentOffset.y;
+  };
+
+  const onScrollLayout = (event: LayoutChangeEvent) => {
+    viewportHeight.current = event.nativeEvent.layout.height;
+  };
+
+  // The ScrollView keeps its offset across question changes, and the reveal
+  // above may well have left it scrolled down — every question starts at the
+  // top, like the lesson player does.
+  const goToQuestion = (nextIndex: number) => {
+    setIndex(nextIndex);
+    setSelectedId(null);
+    setChecked(false);
+    feedbackNudged.current = false;
+    scrollOffset.current = 0;
+    scrollRef.current?.scrollTo({ y: 0, animated: false });
+  };
+
+  // A long question can push the answer feedback below the fold. Measure it
+  // as it appears and scroll down only when it does not fit.
+  const onFeedbackLayout = (event: LayoutChangeEvent) => {
+    if (feedbackNudged.current) {
+      return;
+    }
+    const { y, height } = event.nativeEvent.layout;
+    const target = revealScrollOffset({
+      offset: scrollOffset.current,
+      viewport: viewportHeight.current,
+      blockY: y,
+      blockHeight: height,
+      bottomOverlay: CTA_STRIP + insets.bottom,
+    });
+    if (target == null) {
+      return;
+    }
+    feedbackNudged.current = true;
+    scrollRef.current?.scrollTo({ y: target, animated: true });
+  };
 
   useEffect(() => {
     track('quiz_started', {
@@ -226,6 +334,11 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
       ],
     );
   }, [navigation, params.mode, index, total, correctCount]);
+
+  const onSelectOption = useCallback(
+    (optionId: string) => setSelectedId(optionId),
+    [],
+  );
 
   const toggleBookmark = useCallback(
     (questionId: string, wasSaved: boolean) => {
@@ -319,8 +432,7 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
         if (isLast) {
           finish(nextCorrect, total);
         } else {
-          setIndex(index + 1);
-          setSelectedId(null);
+          goToQuestion(index + 1);
         }
         return;
       }
@@ -331,9 +443,7 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
     if (isLast) {
       finish(correctCount, total);
     } else {
-      setIndex(index + 1);
-      setSelectedId(null);
-      setChecked(false);
+      goToQuestion(index + 1);
     }
   };
 
@@ -413,8 +523,12 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
         </Header>
       )}
       <Scroll
+        ref={scrollRef}
         contentContainerStyle={{ paddingBottom: 110 + insets.bottom }}
         showsVerticalScrollIndicator={false}
+        onLayout={onScrollLayout}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
       >
         <Eyebrow style={{ marginBottom: 14 }}>
           Question {index + 1} of {total}
@@ -450,45 +564,32 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
           {question.options.map(option => {
             const isSelected = option.id === selectedId;
             const isCorrect = option.id === question.correctId;
-            const showCorrect = checked && isCorrect;
-            const showWrong = checked && isSelected && !isCorrect;
-            const active = isSelected && !checked;
+            const state: OptionState = checked
+              ? isCorrect
+                ? 'correct'
+                : isSelected
+                ? 'wrong'
+                : 'default'
+              : isSelected
+              ? 'selected'
+              : 'default';
 
             return (
-              <Option
+              <OptionRow
                 key={option.id}
+                option={option}
+                state={state}
                 disabled={checked}
-                onPress={() => setSelectedId(option.id)}
-                $state={
-                  showCorrect
-                    ? 'correct'
-                    : showWrong
-                    ? 'wrong'
-                    : active
-                    ? 'selected'
-                    : 'default'
-                }
-              >
-                {showCorrect ? (
-                  <RadioDone>
-                    <Icon name="check" size={12} color="#ffffff" />
-                  </RadioDone>
-                ) : (
-                  <Radio
-                    $state={
-                      showWrong ? 'wrong' : active ? 'selected' : 'default'
-                    }
-                  />
-                )}
-                <OptionText $emphasis={active || showCorrect || showWrong}>
-                  {option.text}
-                </OptionText>
-              </Option>
+                onSelect={onSelectOption}
+              />
             );
           })}
         </Options>
         {checked && !isExam && (
-          <Feedback $correct={selectedId === question.correctId}>
+          <Feedback
+            $correct={selectedId === question.correctId}
+            onLayout={onFeedbackLayout}
+          >
             <FeedbackTitle $correct={selectedId === question.correctId}>
               {selectedId === question.correctId ? 'Correct' : 'Not quite'}
             </FeedbackTitle>
@@ -537,7 +638,7 @@ const TrackWrap = styled.View`
   flex: 1;
 `;
 
-const Scroll = styled.ScrollView`
+const Scroll = styled(ScrollView)`
   flex: 1;
   padding: 0 20px;
 `;

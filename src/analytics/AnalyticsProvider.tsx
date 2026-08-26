@@ -76,6 +76,14 @@ export const AnalyticsIdentity: React.FC = () => {
   const isPlus = plusActive ?? user.plan === 'plus';
   const plan = isPlus ? 'plus' : 'free';
 
+  // Counts, not the collections themselves: recording an answer builds fresh
+  // objects in AppState, and depending on references below would post a
+  // person-properties update on every answered question.
+  const questionsAnswered = Object.keys(questionStats).length;
+  const savedQuestions = savedQuestionIds.length;
+  const mistakes = mistakeIds.length;
+  const savedSigns = savedSignIds.length;
+
   useEffect(() => {
     registerLearnerContext({ us_state: user.stateCode, plan });
     setLearnerProperties({
@@ -91,10 +99,10 @@ export const AnalyticsIdentity: React.FC = () => {
       lessons_done: lessonsDone,
       points,
       best_exam: bestExam,
-      questions_answered: Object.keys(questionStats).length,
-      saved_questions: savedQuestionIds.length,
-      mistakes: mistakeIds.length,
-      saved_signs: savedSignIds.length,
+      questions_answered: questionsAnswered,
+      saved_questions: savedQuestions,
+      mistakes,
+      saved_signs: savedSigns,
       font_id: fontId,
       accent_id: accentId,
     });
@@ -110,10 +118,10 @@ export const AnalyticsIdentity: React.FC = () => {
     lessonsDone,
     points,
     bestExam,
-    questionStats,
-    savedQuestionIds,
-    mistakeIds,
-    savedSignIds,
+    questionsAnswered,
+    savedQuestions,
+    mistakes,
+    savedSigns,
     fontId,
     accentId,
   ]);
