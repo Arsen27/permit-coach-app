@@ -1,9 +1,9 @@
 import { createLogger, formatBytes } from '@/lib/log';
 import { SERVER_URL } from '@/lib/serverConfig';
 
-// Raw HTTP for the signs catalogue, mirroring the course client: document
-// bodies are hash-verified against /v1/signs/latest before parsing, so
-// nothing here may re-serialize — callers get the exact response text.
+// Raw HTTP for the signs catalogue: the document body is hash-verified
+// against /v1/signs/latest before parsing, so nothing here may re-serialize —
+// callers get the exact response text.
 
 const TIMEOUT_MS = 8000;
 
@@ -46,5 +46,10 @@ const requestRaw = async (path: string): Promise<string> => {
 export const fetchSignsLatestRaw = (): Promise<string> =>
   requestRaw('/v1/signs/latest');
 
-export const fetchSignsDocRaw = (semver: string): Promise<string> =>
-  requestRaw(`/v1/signs/${semver}/doc`);
+export const fetchSignsDocRaw = (): Promise<string> =>
+  requestRaw('/v1/signs/doc');
+
+// Assets are content-addressed, so this URL never changes for a given picture
+// and the platform image cache can hold it indefinitely.
+export const signAssetUrl = (assetId: string, extension: string): string =>
+  `${SERVER_URL}/v1/signs/assets/${assetId}.${extension}`;

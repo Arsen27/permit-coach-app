@@ -7,7 +7,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import GlassCircleButton from '@/components/GlassCircleButton';
 import Icon from '@/components/Icon';
-import SignArt from '@/components/SignArt';
+import SignImage from '@/components/SignImage';
 import { findCategory, signsByCategory } from '@/data/signs';
 import { useSignsCatalog } from '@/data/signs/SignsProvider';
 import { RootStackParamList } from '@/navigation/types';
@@ -61,7 +61,7 @@ const SignCategoryScreen: React.FC<SignCategoryScreenProps> = ({
             }
             style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1 })}
           >
-            <SignArt art={sign.art} size={52} />
+            <SignImage sign={sign} size={52} />
             <CardLabel numberOfLines={2}>{sign.name}</CardLabel>
           </Card>
         ))}

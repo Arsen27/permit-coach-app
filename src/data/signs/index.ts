@@ -18,7 +18,7 @@ export type {
 
 let catalog: SignsCatalog = signsStore.getSnapshot();
 
-export let signsDeliveryVersion = catalog.deliveryVersion;
+export let signsCatalogHash = catalog.sha256;
 export let signCategories: SignCategory[] = catalog.categories;
 export let signs: Sign[] = catalog.signs;
 
@@ -29,7 +29,7 @@ export let categoryColor: Record<string, string> = Object.fromEntries(
 
 signsStore.subscribe(() => {
   catalog = signsStore.getSnapshot();
-  signsDeliveryVersion = catalog.deliveryVersion;
+  signsCatalogHash = catalog.sha256;
   signCategories = catalog.categories;
   signs = catalog.signs;
   categoryColor = Object.fromEntries(

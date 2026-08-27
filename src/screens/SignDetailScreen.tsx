@@ -8,7 +8,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { track } from '@/analytics';
 import GlassCircleButton from '@/components/GlassCircleButton';
 import Icon from '@/components/Icon';
-import SignArt from '@/components/SignArt';
+import SignImage from '@/components/SignImage';
 import { Eyebrow } from '@/components/typography';
 import { categoryColor, findCategory, findSign } from '@/data/signs';
 import { useSignsCatalog } from '@/data/signs/SignsProvider';
@@ -103,7 +103,7 @@ const SignDetailScreen: React.FC<SignDetailScreenProps> = ({
       )}
 
       <Stage>
-        <SignArt art={sign.art} size={150} />
+        <SignImage sign={sign} size={150} variant="full" />
       </Stage>
 
       <Body>

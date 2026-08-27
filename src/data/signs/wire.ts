@@ -7,8 +7,10 @@
 // truth for what a structurally valid signs document is: the app must never
 // trust a TypeScript cast where one of these functions can run instead.
 //
-// Unlike a course, a signs document is small and indivisible — there are no
-// per-entity documents to fetch, so there is one document and one hash.
+// Unlike a course, the catalogue is not versioned: there is one live document
+// and the operator publishes edits directly. Its sha256 is its identity, so
+// the app updates whenever the served bytes differ from the committed ones —
+// which also makes a rollback just another change.
 
 export const SIGNS_SCHEMA_VERSION = 1;
 
@@ -118,6 +120,49 @@ export const SIGN_CATEGORY_GLYPHS = [
 export type SignCategoryGlyph = (typeof SIGN_CATEGORY_GLYPHS)[number];
 
 // ---------------------------------------------------------------------------
+// Uploaded artwork
+//
+// A sign may replace its drawn art with an uploaded picture. Two slots: the
+// full image shown on the detail screen, and an optional thumbnail for the
+// category grid and quiz flashcards — when the thumbnail is absent the full
+// image is drawn at thumbnail size instead.
+//
+// Assets are content-addressed: `assetId` is the file's own sha256, so its
+// URL is immutable, the platform image cache can hold it forever, and
+// re-uploading the same picture cannot fork into two files.
+
+export const SIGN_IMAGE_MIMES = [
+  'image/svg+xml',
+  'image/png',
+  'image/jpeg',
+] as const;
+
+export type SignImageMime = (typeof SIGN_IMAGE_MIMES)[number];
+
+export const SIGN_IMAGE_EXTENSIONS: Record<SignImageMime, string> = {
+  'image/svg+xml': 'svg',
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+};
+
+export type SignImageRef = {
+  assetId: string;
+  mime: SignImageMime;
+  sizeBytes: number;
+};
+
+export type SignImage = {
+  full: SignImageRef;
+  thumb?: SignImageRef;
+};
+
+// The picture a given surface should draw: the thumbnail when one exists,
+// otherwise the full image. Both sides of the wire agree through this
+// function rather than repeating the fallback rule.
+export const signThumbRef = (image: SignImage): SignImageRef =>
+  image.thumb ?? image.full;
+
+// ---------------------------------------------------------------------------
 // Entities
 
 export type SignCategory = {
@@ -140,12 +185,15 @@ export type Sign = {
   description: string;
   steps: string[];
   trap: string;
+  // The drawn fallback. Always present: it is what renders offline, before an
+  // uploaded image has been fetched, and if the upload ever fails to load.
   art: SignArtSpec;
+  // When set, this replaces the drawn art on every surface.
+  image?: SignImage;
 };
 
 export type SignsDoc = {
   schemaVersion: typeof SIGNS_SCHEMA_VERSION;
-  deliveryVersion: string;
   categories: SignCategory[];
   signs: Sign[];
 };
@@ -248,7 +296,6 @@ const optBool = (
   return value;
 };
 
-const SEMVER_PATTERN = /^\d+\.\d+\.\d+$/;
 const SHA256_PATTERN = /^[0-9a-f]{64}$/;
 const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}$/;
 
@@ -421,6 +468,59 @@ const validateCategory = (
   };
 };
 
+const validateImageRef = (
+  errors: string[],
+  value: unknown,
+  path: string,
+): SignImageRef | null => {
+  if (!isRecord(value)) {
+    errors.push(`${path}: expected object`);
+    return null;
+  }
+  const ctx: Ctx = { path, errors };
+  const assetId = str(ctx, value, 'assetId');
+  // Content-addressed: the id must be the asset's own sha256, or the URL is
+  // no longer immutable and the image cache could serve a stale picture.
+  if (assetId && !SHA256_PATTERN.test(assetId)) {
+    errors.push(`${path}.assetId: expected a lowercase sha256`);
+  }
+  const mime = str(ctx, value, 'mime');
+  if (mime && !(SIGN_IMAGE_MIMES as readonly string[]).includes(mime)) {
+    errors.push(
+      `${path}.mime: expected one of ${SIGN_IMAGE_MIMES.join(
+        ', ',
+      )}, got ${mime}`,
+    );
+  }
+  const sizeBytes = num(ctx, value, 'sizeBytes');
+  if (!Number.isInteger(sizeBytes) || sizeBytes <= 0) {
+    errors.push(`${path}.sizeBytes: expected a positive integer`);
+  }
+  return { assetId, mime: mime as SignImageMime, sizeBytes };
+};
+
+const validateImage = (
+  errors: string[],
+  value: unknown,
+  path: string,
+): SignImage | null => {
+  if (!isRecord(value)) {
+    errors.push(`${path}: expected object`);
+    return null;
+  }
+  const full = validateImageRef(errors, value.full, `${path}.full`);
+  if (full == null) {
+    return null;
+  }
+  // The thumbnail is optional by design — absent means "use the full image at
+  // thumbnail size" (signThumbRef), not "no picture".
+  if (value.thumb === undefined) {
+    return { full };
+  }
+  const thumb = validateImageRef(errors, value.thumb, `${path}.thumb`);
+  return thumb == null ? { full } : { full, thumb };
+};
+
 const validateSign = (
   errors: string[],
   value: unknown,
@@ -448,7 +548,11 @@ const validateSign = (
   if (art == null) {
     return null;
   }
-  return { ...fields, art };
+  if (value.image === undefined) {
+    return { ...fields, art };
+  }
+  const image = validateImage(errors, value.image, `${path}.image`);
+  return image == null ? { ...fields, art } : { ...fields, art, image };
 };
 
 // ---------------------------------------------------------------------------
@@ -468,7 +572,6 @@ const duplicates = (ids: string[]): string[] => {
 
 export const validateSignsDoc = (
   input: unknown,
-  expected: { deliveryVersion?: string } = {},
 ): ValidationResult<SignsDoc> => {
   if (!isRecord(input)) {
     return fail(['signs doc: expected object']);
@@ -483,19 +586,6 @@ export const validateSignsDoc = (
       )}`,
     );
   }
-  const deliveryVersion = str(ctx, input, 'deliveryVersion');
-  if (deliveryVersion && !SEMVER_PATTERN.test(deliveryVersion)) {
-    errors.push(`signs doc.deliveryVersion: expected semver`);
-  }
-  if (
-    expected.deliveryVersion !== undefined &&
-    deliveryVersion !== expected.deliveryVersion
-  ) {
-    errors.push(
-      `signs doc.deliveryVersion: expected ${expected.deliveryVersion}, got ${deliveryVersion}`,
-    );
-  }
-
   if (!Array.isArray(input.categories) || input.categories.length === 0) {
     return fail([
       ...errors,
@@ -548,7 +638,6 @@ export const validateSignsDoc = (
   }
   return pass({
     schemaVersion: SIGNS_SCHEMA_VERSION,
-    deliveryVersion,
     categories: okCategories,
     signs: okSigns,
   });
@@ -557,20 +646,17 @@ export const validateSignsDoc = (
 // ---------------------------------------------------------------------------
 // Transport
 //
-// The catalogue travels as one document, so its update check is one request:
-// /v1/signs/latest names the newest released version and the hash the exact
-// document bytes must match. The updater verifies size and sha256 against
-// this reference before parsing, mirroring the course manifest discipline.
+// There is one live document, so the update check is one request:
+// /v1/signs/latest names the exact bytes currently published. The app holds
+// the sha256 of what it committed and refetches whenever the server's differs
+// — no ordering, no version arithmetic, and a rollback updates like any other
+// change.
 
-export type SignsDocumentRef = {
+export type SignsCatalogRef = {
   sha256: string;
   sizeBytes: number;
-};
-
-export type SignsLatestResponse = {
-  latestVersion: string;
-  minAppVersion: string;
-  document: SignsDocumentRef;
+  // Display only; the hash decides whether anything is fetched.
+  updatedAt: string;
 };
 
 const num = (ctx: Ctx, obj: Record<string, unknown>, key: string): number => {
@@ -582,42 +668,27 @@ const num = (ctx: Ctx, obj: Record<string, unknown>, key: string): number => {
   return value;
 };
 
-export const validateSignsLatestResponse = (
+export const validateSignsCatalogRef = (
   input: unknown,
-): ValidationResult<SignsLatestResponse> => {
+): ValidationResult<SignsCatalogRef> => {
   if (!isRecord(input)) {
     return fail(['signs latest: expected object']);
   }
   const errors: string[] = [];
   const ctx: Ctx = { path: 'signs latest', errors };
 
-  const latestVersion = str(ctx, input, 'latestVersion');
-  if (latestVersion && !SEMVER_PATTERN.test(latestVersion)) {
-    errors.push('signs latest.latestVersion: expected semver');
+  const sha256 = str(ctx, input, 'sha256');
+  if (sha256 && !SHA256_PATTERN.test(sha256)) {
+    errors.push('signs latest.sha256: expected lowercase sha256');
   }
-  const minAppVersion = str(ctx, input, 'minAppVersion');
-  if (minAppVersion && !SEMVER_PATTERN.test(minAppVersion)) {
-    errors.push('signs latest.minAppVersion: expected semver');
+  const sizeBytes = num(ctx, input, 'sizeBytes');
+  if (!Number.isInteger(sizeBytes) || sizeBytes <= 0) {
+    errors.push('signs latest.sizeBytes: expected a positive integer');
   }
-
-  let document: SignsDocumentRef = { sha256: '', sizeBytes: 0 };
-  if (!isRecord(input.document)) {
-    errors.push('signs latest.document: expected object');
-  } else {
-    const docCtx: Ctx = { path: 'signs latest.document', errors };
-    const sha256 = str(docCtx, input.document, 'sha256');
-    if (sha256 && !SHA256_PATTERN.test(sha256)) {
-      errors.push('signs latest.document.sha256: expected lowercase sha256');
-    }
-    const sizeBytes = num(docCtx, input.document, 'sizeBytes');
-    if (sizeBytes <= 0 || !Number.isInteger(sizeBytes)) {
-      errors.push('signs latest.document.sizeBytes: expected positive integer');
-    }
-    document = { sha256, sizeBytes };
-  }
+  const updatedAt = str(ctx, input, 'updatedAt');
 
   if (errors.length > 0) {
     return fail(errors);
   }
-  return pass({ latestVersion, minAppVersion, document });
+  return pass({ sha256, sizeBytes, updatedAt });
 };

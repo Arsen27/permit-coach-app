@@ -28,7 +28,7 @@ import Icon from '@/components/Icon';
 import PrimaryButton from '@/components/PrimaryButton';
 import ProgressTrack from '@/components/ProgressTrack';
 import RemoteImage from '@/components/RemoteImage';
-import SignArt from '@/components/SignArt';
+import SignImage from '@/components/SignImage';
 import { Eyebrow } from '@/components/typography';
 import {
   FINAL_EXAM_TOPIC_ID,
@@ -556,7 +556,7 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
         </Eyebrow>
         {sign != null ? (
           <SignStage>
-            <SignArt art={sign.art} size={150} />
+            <SignImage sign={sign} size={150} />
           </SignStage>
         ) : courseAsset != null ? (
           <ImageWrap>

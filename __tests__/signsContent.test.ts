@@ -5,7 +5,7 @@ import {
   signCategories,
   signs,
   signsByCategory,
-  signsDeliveryVersion,
+  signsCatalogHash,
 } from '@/data/signs';
 import {
   SIGN_ART_KINDS,
@@ -18,7 +18,6 @@ import {
 // rule and assert the error it produces.
 const validDoc = () => ({
   schemaVersion: 1,
-  deliveryVersion: '1.0.0',
   categories: [
     {
       id: 'regulatory',
@@ -63,14 +62,10 @@ describe('signs wire contract', () => {
     });
   });
 
-  it('pins the schema version and the delivery version', () => {
+  it('pins the schema version', () => {
     expect(errorsFor(doc => ((doc as any).schemaVersion = 2))).toContain(
       'schemaVersion',
     );
-    expect(errorsFor(doc => (doc.deliveryVersion = 'v1'))).toContain('semver');
-    expect(
-      validateSignsDoc(validDoc(), { deliveryVersion: '2.0.0' }).errors.join(),
-    ).toContain('expected 2.0.0');
   });
 
   // The renderer draws from a closed vocabulary, so a document that names art
@@ -185,7 +180,8 @@ describe('bundled signs catalogue', () => {
   // Importing @/data/signs throws if the seed fails validation, so simply
   // getting here proves the shipped catalogue satisfies every rule above.
   it('is a valid signs document', () => {
-    expect(signsDeliveryVersion).toMatch(/^\d+\.\d+\.\d+$/);
+    // Its own sha256 is its identity now that nothing is versioned.
+    expect(signsCatalogHash).toMatch(/^[0-9a-f]{64}$/);
     expect(signCategories.length).toBeGreaterThan(0);
     expect(signs.length).toBeGreaterThan(0);
   });
