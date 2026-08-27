@@ -11,6 +11,10 @@ import {
   blockStyleId,
   elementsToBullets,
   elementsToMarkdown,
+  MAX_CARD_STYLES_SVG_BYTES,
+  MAX_ICON_SVG_BYTES,
+  cardStylesSvgBytes,
+  utf8Length,
   validateCourseDocV2,
   validateLessonDocV2,
   withoutBlankElements,
@@ -65,6 +69,9 @@ const lessonDoc = (
   questions: [],
   assets,
 });
+
+const GLYPH =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2 2h12v12H2z" fill="currentColor"/></svg>';
 
 const textBlock = (over: Record<string, unknown> = {}): LessonBlockV2 =>
   ({
@@ -379,6 +386,110 @@ describe('slide types', () => {
     ]);
 
     expect(meta.icon).toBe(CARD_META.core_rule.icon);
+  });
+
+  // A glyph shipped with the course is what lets a new icon arrive without an
+  // app release. It rides in the course document, so it is capped as well as
+  // safety-checked.
+  it('accepts a glyph the course ships itself', () => {
+    const result = validateCourseDocV2(
+      courseDoc([
+        {
+          styleId: 'road_hazard',
+          label: 'Road hazard',
+          icon: 'triangle-exclamation',
+          iconSvg: GLYPH,
+        },
+      ]),
+    );
+
+    expect(result.errors).toEqual([]);
+    expect(result.value!.course.cardStyles![0].iconSvg).toBe(GLYPH);
+  });
+
+  it('refuses a glyph that is not inert', () => {
+    const result = validateCourseDocV2(
+      courseDoc([
+        {
+          styleId: 'road_hazard',
+          label: 'Road hazard',
+          icon: 'check',
+          iconSvg: '<svg onload="steal()"></svg>',
+        },
+      ]),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.errors.join(' ')).toContain('forbidden SVG content');
+  });
+
+  it('refuses a glyph bigger than one icon has any business being', () => {
+    const result = validateCourseDocV2(
+      courseDoc([
+        {
+          styleId: 'road_hazard',
+          label: 'Road hazard',
+          icon: 'check',
+          iconSvg: `<svg>${'x'.repeat(MAX_ICON_SVG_BYTES)}</svg>`,
+        },
+      ]),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.errors.join(' ')).toContain(
+      `larger than ${MAX_ICON_SVG_BYTES} bytes`,
+    );
+  });
+
+  it('refuses a set of glyphs over the download budget', () => {
+    const chunky = `<svg>${'x'.repeat(MAX_ICON_SVG_BYTES - 16)}</svg>`;
+    const styles = Array.from(
+      { length: Math.ceil(MAX_CARD_STYLES_SVG_BYTES / MAX_ICON_SVG_BYTES) + 1 },
+      (_unused, index) => ({
+        styleId: `hazard_${index}`,
+        label: 'Hazard',
+        icon: 'check',
+        iconSvg: chunky,
+      }),
+    );
+
+    const result = validateCourseDocV2(courseDoc(styles));
+    expect(result.ok).toBe(false);
+    expect(result.errors.join(' ')).toContain('byte budget');
+  });
+
+  it('counts what the course spends on glyphs', () => {
+    expect(cardStylesSvgBytes([])).toBe(0);
+    expect(
+      cardStylesSvgBytes([
+        { styleId: 'a', label: 'A', icon: 'check' },
+        { styleId: 'b', label: 'B', icon: 'check', iconSvg: GLYPH },
+      ]),
+    ).toBe(GLYPH.length);
+  });
+
+  it('measures UTF-8 length rather than code units', () => {
+    expect(utf8Length('abc')).toBe(3);
+    // Two bytes, three bytes, and a surrogate pair that is one 4-byte glyph.
+    expect(utf8Length('é')).toBe(2);
+    expect(utf8Length('—')).toBe(3);
+    expect(utf8Length('🚗')).toBe(4);
+    expect('🚗'.length).toBe(2);
+  });
+
+  it('hands the course glyph to the card that asked for it', () => {
+    const meta = cardMetaFor(textBlock({ styleId: 'road_hazard' }), 'CA', [
+      {
+        styleId: 'road_hazard',
+        label: 'Road hazard',
+        icon: 'check',
+        iconSvg: GLYPH,
+      },
+    ]);
+
+    expect(meta.iconSvg).toBe(GLYPH);
+    // The built-in name survives as the fallback for builds without the glyph.
+    expect(meta.icon).toBe('check');
   });
 
   it('keeps the state name in an unstyled state_specific kicker', () => {

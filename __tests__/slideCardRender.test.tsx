@@ -5,6 +5,7 @@ import ReactTestRenderer, {
 import { ThemeProvider } from 'styled-components/native';
 
 import CourseAssetView from '@/components/CourseAssetView';
+import Icon from '@/components/Icon';
 import LessonCardBody from '@/components/lesson/LessonCardBody';
 import { buildCards } from '@/components/lesson/cards';
 import type {
@@ -213,6 +214,21 @@ describe('a course styling its own slide types', () => {
 
     const painted = JSON.stringify(tree.toJSON()).includes('#B45309');
     expect(painted).toBe(true);
+  });
+
+  it('draws a glyph the course shipped instead of a built-in one', () => {
+    const glyph =
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2 2h12v12H2z" fill="currentColor"/></svg>';
+    const tree = render(block, {
+      cardStyles: [{ ...styles[0], iconSvg: glyph }],
+    });
+
+    // One Icon, drawing the course's glyph rather than a built-in name.
+    const drawn = tree.root.findAllByType(Icon);
+    expect(drawn).toHaveLength(1);
+    expect(drawn[0].props.xml).toBe(glyph);
+    // And it is tinted, because the glyph is drawn in currentColor.
+    expect(drawn[0].props.color).toBe('#D97706');
   });
 
   it('falls back to the built-in kicker when the course styles nothing', () => {

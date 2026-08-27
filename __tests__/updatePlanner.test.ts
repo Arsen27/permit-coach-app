@@ -86,6 +86,19 @@ const lessonOwner = new Map<string, string>([
 ]);
 
 describe('planContentFetch', () => {
+  // A release that changed only the course document — a slide type, its glyph,
+  // the course title — carries no instruction, because there is no lesson or
+  // module to name. The client still bumps its version and still fetches
+  // course.json (it always does), and this is what makes that cheap: nothing
+  // else is downloaded, and every module is carried forward from the device.
+  it('plans no downloads for a release that carries no instructions', () => {
+    expect(planContentFetch([], lessonOwner)).toEqual({
+      full: false,
+      moduleIds: [],
+      lessonIds: [],
+    });
+  });
+
   it('maps lesson-level ops to single LessonDoc fetches', () => {
     const plan = planContentFetch(
       [

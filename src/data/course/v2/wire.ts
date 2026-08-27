@@ -99,11 +99,61 @@ export type CardStyleV2 = {
   // because this module has no imports; a name this build does not know falls
   // back to the block family's own icon rather than breaking the card.
   icon: string;
+  // A glyph shipped with the course instead of built into the app, so a new
+  // icon needs no app release. It wins over `icon` on builds that understand
+  // it, and `icon` stays the fallback for the ones that do not.
+  //
+  // Colour is decided by the artwork itself, which is ordinary SVG semantics
+  // rather than a rule of ours: paths drawn in `currentColor` take the card's
+  // `iconColor`, and paths with their own fills keep them. Authoring tools
+  // rewrite one into the other; nothing here has to know which was chosen.
+  //
+  // These ride inside the course document, which every update downloads whole,
+  // so they are capped rather than merely validated. See MAX_ICON_SVG_BYTES.
+  iconSvg?: string;
   // Explicit colours win over `tone`, which names a built-in palette slot.
   tone?: CardToneV2;
   textColor?: string;
   iconColor?: string;
 };
+
+// A glyph is a few hundred bytes — the app's own set runs 322 B to 2.1 KB. The
+// per-icon cap is generous against that; the budget is what actually protects
+// the learner, because the course document is refetched in full on every
+// update, however small the update itself was.
+export const MAX_ICON_SVG_BYTES = 4096;
+export const MAX_CARD_STYLES_SVG_BYTES = 32768;
+
+// Byte length of a UTF-8 encoding, counted rather than encoded: this module
+// takes no imports, and TextEncoder is not guaranteed on every runtime it has
+// to run in.
+export const utf8Length = (text: string): number => {
+  let bytes = 0;
+  for (let index = 0; index < text.length; index += 1) {
+    const code = text.charCodeAt(index);
+    if (code < 0x80) {
+      bytes += 1;
+    } else if (code < 0x800) {
+      bytes += 2;
+    } else if (code >= 0xd800 && code <= 0xdbff) {
+      // A surrogate pair is one 4-byte code point; skip its low half.
+      bytes += 4;
+      index += 1;
+    } else {
+      bytes += 3;
+    }
+  }
+  return bytes;
+};
+
+// Every byte a course spends on glyphs. Authoring tools show this against
+// MAX_CARD_STYLES_SVG_BYTES so the cost is visible while it is being incurred.
+export const cardStylesSvgBytes = (styles: CardStyleV2[]): number =>
+  styles.reduce(
+    (total, style) =>
+      total + (style.iconSvg == null ? 0 : utf8Length(style.iconSvg)),
+    0,
+  );
 
 // ---------------------------------------------------------------------------
 // Lesson blocks
@@ -932,10 +982,25 @@ const validateCardStyle = (ctx: Ctx, value: unknown): CardStyleV2 | null => {
     ctx.errors.push(`${ctx.path}: expected card style object`);
     return null;
   }
+  let iconSvg: string | undefined;
+  if (value.iconSvg !== undefined) {
+    iconSvg = str(ctx, value, 'iconSvg');
+    // Course-shipped artwork is untrusted on exactly the same terms as a
+    // lesson illustration.
+    for (const error of svgSafetyErrors(iconSvg)) {
+      ctx.errors.push(`${ctx.path}.iconSvg: ${error}`);
+    }
+    if (utf8Length(iconSvg) > MAX_ICON_SVG_BYTES) {
+      ctx.errors.push(
+        `${ctx.path}.iconSvg: larger than ${MAX_ICON_SVG_BYTES} bytes`,
+      );
+    }
+  }
   return {
     styleId: id(ctx, value, 'styleId'),
     label: str(ctx, value, 'label'),
     icon: str(ctx, value, 'icon'),
+    ...(iconSvg !== undefined && { iconSvg }),
     ...(value.tone !== undefined && { tone: cardTone(ctx, value) }),
     ...(value.textColor !== undefined && {
       textColor: optColor(ctx, value, 'textColor'),
@@ -1339,6 +1404,12 @@ export const validateCourseDocV2 = (
       const styleIds = cardStyles.map(style => style.styleId);
       if (new Set(styleIds).size !== styleIds.length) {
         ctx.errors.push('courseDoc.course.cardStyles: duplicate style ids');
+      }
+      const svgBytes = cardStylesSvgBytes(cardStyles);
+      if (svgBytes > MAX_CARD_STYLES_SVG_BYTES) {
+        ctx.errors.push(
+          `courseDoc.course.cardStyles: glyphs total ${svgBytes} bytes, over the ${MAX_CARD_STYLES_SVG_BYTES} byte budget`,
+        );
       }
     }
   }

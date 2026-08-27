@@ -15,6 +15,8 @@ export type Tone = 'accent' | 'muted' | 'trap' | 'california';
 export type CardMeta = {
   label: string;
   icon: IconName;
+  // Set when the course ships its own glyph for this slide type.
+  iconSvg?: string;
   tone: Tone;
   textColor?: string;
   iconColor?: string;

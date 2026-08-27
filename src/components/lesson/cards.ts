@@ -89,6 +89,7 @@ export const applyCardStyle = (
 ): CardMeta => ({
   label: style.label.length > 0 ? style.label : base.label,
   icon: isIconName(style.icon) ? style.icon : base.icon,
+  ...(style.iconSvg != null && { iconSvg: style.iconSvg }),
   tone: style.tone ?? base.tone,
   ...(style.textColor != null && { textColor: style.textColor }),
   ...(style.iconColor != null && { iconColor: style.iconColor }),

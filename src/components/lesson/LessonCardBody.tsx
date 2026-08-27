@@ -64,7 +64,7 @@ export const Kicker: React.FC<{
 
   return (
     <KickerRow>
-      <Icon name={meta.icon} size={15} color={iconColor} />
+      <Icon name={meta.icon} xml={meta.iconSvg} size={15} color={iconColor} />
       <KickerText $color={textColor}>{label ?? meta.label}</KickerText>
     </KickerRow>
   );
