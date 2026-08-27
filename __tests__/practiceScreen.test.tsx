@@ -4,7 +4,7 @@ import ReactTestRenderer, {
 } from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components/native';
 
-import { questionBankIds } from '@/data/practice';
+import { questionBankIds, topicQuestionIds } from '@/data/practice';
 import PracticeScreen from '@/screens/PracticeScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
 import { defaultTheme } from '@/theme';
@@ -182,6 +182,35 @@ describe('PracticeScreen (variant C)', () => {
       mode: 'topic',
       topicId: 'road-signs',
     });
+  });
+
+  it('scores a topic from answers given outside its own topic test', async () => {
+    const tree = await render();
+    const [first, second, third] = topicQuestionIds('speed-lanes');
+
+    // Three answers on speed-lanes questions, met inside Quick 10 / the exam
+    // rather than the topic test: two right of three is 67%.
+    await ReactTestRenderer.act(async () => {
+      observedState!.recordQuestionAnswer(first, true);
+      observedState!.recordQuestionAnswer(second, true);
+      observedState!.recordQuestionAnswer(third, false);
+    });
+
+    expect(textsOf(tree)).toContain('67%');
+  });
+
+  it('prefers the topic test score over the derived average', async () => {
+    const tree = await render();
+    const [first] = topicQuestionIds('speed-lanes');
+
+    await ReactTestRenderer.act(async () => {
+      observedState!.recordQuestionAnswer(first, false);
+      observedState!.applyTopicResult('speed-lanes', 90);
+    });
+
+    const texts = textsOf(tree);
+    expect(texts).toContain('90%');
+    expect(texts).not.toContain('0%');
   });
 
   it('shows a dash for topics with no score yet', async () => {

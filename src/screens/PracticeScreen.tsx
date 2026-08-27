@@ -9,10 +9,14 @@ import Icon from '@/components/Icon';
 import ScreenHeader from '@/components/ScreenHeader';
 import { useCourse } from '@/data/course/CourseProvider';
 import { Eyebrow } from '@/components/typography';
-import { PRACTICE_TOPICS, questionBankIds } from '@/data/practice';
+import {
+  PRACTICE_TOPICS,
+  questionBankIds,
+  topicQuestionIds,
+} from '@/data/practice';
 import { RootNavigation } from '@/navigation/types';
 import { useAppState } from '@/state/AppState';
-import { MasteryState, summarizeBank } from '@/state/questionStats';
+import { MasteryState, accuracyOf, summarizeBank } from '@/state/questionStats';
 import { AppTheme, rgba, shadows } from '@/theme';
 
 // Bank map geometry: 20 squares per row, matching the handoff.
@@ -83,22 +87,37 @@ const PracticeScreen: React.FC = () => {
     [questionStats, bundle],
   );
 
+  // Where the learner stands per topic. A dedicated topic test is the stronger
+  // signal, so its best score wins; without one the topic is scored from the
+  // answer history over its own questions, wherever they were answered — a
+  // category met only inside Quick 10 or the exam simulator has a real
+  // standing and should not read as untouched.
+  const topicPercents = useMemo(() => {
+    const percents: Record<string, number | null> = {};
+    PRACTICE_TOPICS.forEach(topic => {
+      percents[topic.id] =
+        topicScores[topic.id] ??
+        accuracyOf(topicQuestionIds(topic.id), questionStats);
+    });
+    return percents;
+  }, [topicScores, questionStats]);
+
   // The third mode card is a shortcut to wherever the learner is weakest:
   // the lowest-scoring topic, or the first untouched one if nothing is scored
   // yet. Always defined — PRACTICE_TOPICS is never empty.
   const weakestTopic = useMemo(() => {
     const untouched = PRACTICE_TOPICS.find(
-      topic => topicScores[topic.id] == null,
+      topic => topicPercents[topic.id] == null,
     );
     if (untouched != null) {
       return untouched;
     }
     return [...PRACTICE_TOPICS].sort(
-      (a, b) => (topicScores[a.id] ?? 0) - (topicScores[b.id] ?? 0),
+      (a, b) => (topicPercents[a.id] ?? 0) - (topicPercents[b.id] ?? 0),
     )[0];
-  }, [topicScores]);
+  }, [topicPercents]);
 
-  const weakestScore = topicScores[weakestTopic.id] ?? null;
+  const weakestScore = topicPercents[weakestTopic.id] ?? null;
 
   return (
     <Screen
@@ -241,7 +260,7 @@ const PracticeScreen: React.FC = () => {
         <Eyebrow style={{ marginBottom: 12 }}>Where you stand</Eyebrow>
         <TopicGrid>
           {PRACTICE_TOPICS.map(topic => {
-            const percent = topicScores[topic.id] ?? null;
+            const percent = topicPercents[topic.id] ?? null;
             return (
               <TopicCard
                 key={topic.id}

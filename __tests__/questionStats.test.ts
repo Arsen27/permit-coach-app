@@ -1,5 +1,6 @@
 import {
   QuestionStats,
+  accuracyOf,
   masteryOf,
   mergeQuestionStats,
   recordAnswer,
@@ -102,6 +103,27 @@ describe('summarizeBank', () => {
     const summary = summarizeBank(['a'], answer({}, 'gone', true, true));
     expect(summary.total).toBe(1);
     expect(summary.answered).toBe(0);
+  });
+});
+
+describe('accuracyOf', () => {
+  it('is null until one of the questions has been answered', () => {
+    expect(accuracyOf(['q1', 'q2'], {})).toBeNull();
+    expect(accuracyOf([], answer({}, 'q1', true))).toBeNull();
+  });
+
+  it('averages over the questions it was given, ignoring the rest', () => {
+    let stats = answer({}, 'q1', true, false);
+    stats = answer(stats, 'q2', true);
+    stats = answer(stats, 'other', false, false, false);
+    // 2 of 3 answers on q1/q2 were right.
+    expect(accuracyOf(['q1', 'q2', 'unseen'], stats)).toBe(67);
+  });
+
+  it('weights by attempts, so a repeated question counts each time', () => {
+    let stats = answer({}, 'q1', false, false, false);
+    stats = answer(stats, 'q2', true);
+    expect(accuracyOf(['q1', 'q2'], stats)).toBe(25);
   });
 });
 

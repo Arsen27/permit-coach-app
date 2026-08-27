@@ -87,6 +87,29 @@ export const summarizeBank = (
   };
 };
 
+// Success rate over a set of questions, as a whole percent — null when none
+// of them has ever been answered, which the UI renders as "no standing yet".
+// Weighted by attempts rather than by question: every answer the learner gave
+// on this material counts once, wherever it was given (topic test, quick mix,
+// exam, missed-only), which is what "how am I doing here" means across mixed
+// sessions.
+export const accuracyOf = (
+  ids: string[],
+  stats: QuestionStats,
+): number | null => {
+  let seen = 0;
+  let correct = 0;
+  ids.forEach(id => {
+    const stat = stats[id];
+    if (stat == null) {
+      return;
+    }
+    seen += stat.seen;
+    correct += stat.correct;
+  });
+  return seen === 0 ? null : Math.round((correct / seen) * 100);
+};
+
 // Adopting a device's progress into an account: keep the richer history per
 // question rather than summing, which would double-count shared answers.
 export const mergeQuestionStats = (

@@ -76,6 +76,20 @@ export const topicQuestions = (topicId: string): QuizQuestion[] => {
   return shuffle(practiceBank[topicId] ?? []);
 };
 
+// Every question that belongs to a topic, as stable ids: the whole pool
+// rather than the shuffled draw `topicQuestions` serves. This is what lets a
+// topic be scored from the answer history alone, so a category still reports
+// a standing when its own topic test was never taken.
+export const topicQuestionIds = (topicId: string): string[] => {
+  if (topicId === 'road-signs') {
+    return signs.map(sign => `sq-${sign.id}`);
+  }
+  if (topicId === 'right-of-way') {
+    return lessonBank.map(question => question.id);
+  }
+  return (practiceBank[topicId] ?? []).map(question => question.id);
+};
+
 export const quickMixQuestions = (): QuizQuestion[] =>
   shuffle([...authoredQuestions(), ...signQuizQuestions(10)]).slice(0, 10);
 
