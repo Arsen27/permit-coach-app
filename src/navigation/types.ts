@@ -8,6 +8,9 @@ export type QuizParams =
   | { mode: 'topic'; topicId: string }
   | { mode: 'quickMix' }
   | { mode: 'exam' }
+  // The ladder's finale. Same exam rules as 'exam', but drawn from the course
+  // and scored against the learner's course progress.
+  | { mode: 'finalExam' }
   | { mode: 'signsQuiz' }
   | { mode: 'categoryQuiz'; categoryId: string }
   | { mode: 'saved' }

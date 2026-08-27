@@ -89,6 +89,36 @@ export const findCourseQuestion = (
 export const findCourseAsset = (assetId: string): CourseAssetV2 | undefined =>
   derived().assetById.get(assetId);
 
+// The ladder's final exam is not a module, so it has no module id to score
+// against. Its best score rides the topic-score channel under this reserved
+// id — the same channel module tests and practice topics already share, which
+// keeps it monotonic, synced and wiped on a state change for free.
+export const FINAL_EXAM_TOPIC_ID = 'final-exam';
+
+export type CourseUnitProgress = {
+  doneUnits: number;
+  totalUnits: number;
+};
+
+// A unit counts as done only when every lesson in it is completed AND its
+// module test has been taken — the same bar the ladder already uses to unlock
+// the next module. The final exam opens when every unit clears it, so the
+// count doubles as the honest "unlocks at N" hint on the locked node.
+export const courseUnitProgress = (
+  isLessonDone: (lessonId: string) => boolean,
+  isModuleTestDone: (moduleId: string) => boolean,
+): CourseUnitProgress => {
+  const modules = courseModules();
+  return {
+    doneUnits: modules.filter(
+      module =>
+        module.lessons.every(lesson => isLessonDone(lesson.lessonId)) &&
+        isModuleTestDone(module.moduleId),
+    ).length,
+    totalUnits: modules.length,
+  };
+};
+
 export const courseModuleTestQuiz = (moduleId: string): QuizQuestion[] => {
   const module = courseModules().find(entry => entry.moduleId === moduleId);
   if (module == null) {

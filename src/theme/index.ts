@@ -167,6 +167,11 @@ const makeColors = (accent: string) => {
     doneSoft: rgba(done, 0.14),
     doneLine: rgba(done, 0.45),
     warning: '#F59E0B',
+    // Amber tint / deep amber, for surfaces and text that sit inside a
+    // warning-toned shape (the ladder's final-exam node). Fixed like
+    // `warning` itself — the amber family never takes the accent.
+    warningSoft: '#FFFBEB',
+    warningText: '#B45309',
     error: '#EF4444',
 
     // Answer feedback is deliberately NOT themed: correct and incorrect must

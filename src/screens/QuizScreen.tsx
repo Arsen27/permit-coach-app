@@ -31,13 +31,16 @@ import RemoteImage from '@/components/RemoteImage';
 import SignArt from '@/components/SignArt';
 import { Eyebrow } from '@/components/typography';
 import {
+  FINAL_EXAM_TOPIC_ID,
   courseLessonQuiz,
   courseModuleTestQuiz,
   findCourseAsset,
 } from '@/data/course/learn';
 import { QuizQuestion } from '@/data/curriculum';
 import {
+  EXAM_PASS_PERCENT,
   examQuestions,
+  finalExamQuestions,
   quickMixQuestions,
   resolveQuestions,
   topicQuestions,
@@ -69,6 +72,8 @@ const buildQuestions = (
       return quickMixQuestions();
     case 'exam':
       return examQuestions();
+    case 'finalExam':
+      return finalExamQuestions();
     case 'signsQuiz':
       return signQuizQuestions(20);
     case 'categoryQuiz':
@@ -96,9 +101,6 @@ const quizTargetId = (params: QuizParams): string | null => {
       return null;
   }
 };
-
-// CA (and every state we ship) passes at 83%.
-const EXAM_PASS_PERCENT = 83;
 
 const formatClock = (seconds: number): string => {
   const m = Math.floor(seconds / 60);
@@ -171,7 +173,10 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const params = route.params;
-  const isExam = params.mode === 'exam';
+  // Both exams run under real exam rules: no reveal, no hints, a 60-minute
+  // clock. Only the wording and where the score lands differ.
+  const isFinalExam = params.mode === 'finalExam';
+  const isExam = params.mode === 'exam' || isFinalExam;
   const app = useAppState();
   const {
     toggleSavedQuestion,
@@ -266,7 +271,7 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
         correct,
         question_count: total,
         percent,
-        passed: params.mode === 'exam' ? percent >= EXAM_PASS_PERCENT : null,
+        passed: isExam ? percent >= EXAM_PASS_PERCENT : null,
         timed_out: timedOut,
       });
       if (params.mode === 'lessonTest') {
@@ -290,10 +295,19 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
         applyTopicResult('road-signs', percent);
       } else if (params.mode === 'exam') {
         applyExamResult(percent);
+      } else if (params.mode === 'finalExam') {
+        applyTopicResult(FINAL_EXAM_TOPIC_ID, percent);
       }
       setFinished(true);
     },
-    [params, total, applyLessonResult, applyTopicResult, applyExamResult],
+    [
+      params,
+      total,
+      isExam,
+      applyLessonResult,
+      applyTopicResult,
+      applyExamResult,
+    ],
   );
 
   useEffect(() => {
@@ -466,8 +480,10 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
               <SummaryPercent>{percent}%</SummaryPercent>
               <SummaryTitle>
                 {isExam
-                  ? percent >= 83
-                    ? 'You passed the mock exam'
+                  ? percent >= EXAM_PASS_PERCENT
+                    ? isFinalExam
+                      ? 'You passed the final exam'
+                      : 'You passed the mock exam'
                     : 'Keep practicing'
                   : 'Nice work!'}
               </SummaryTitle>

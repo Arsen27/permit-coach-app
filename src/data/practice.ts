@@ -1,6 +1,10 @@
 import { IconName } from '@/assets/icons';
 
-import { courseQuestionIds, findCourseQuizQuestion } from './course/learn';
+import {
+  courseModules,
+  courseQuestionIds,
+  findCourseQuizQuestion,
+} from './course/learn';
 import { QuizQuestion, currentUnit } from './curriculum';
 import rawPractice from './practiceQuestions.json';
 import {
@@ -81,6 +85,57 @@ export const examQuestions = (): QuizQuestion[] => {
   const authored = shuffle(authoredQuestions());
   const fromSigns = signQuizQuestions(46 - Math.min(authored.length, 24));
   return shuffle([...authored.slice(0, 24), ...fromSigns]).slice(0, 46);
+};
+
+// Exam length and pass mark, shared by the Practice mock exam and the ladder's
+// final exam. CA (and every state we ship) asks 46 questions and passes at 83%.
+export const EXAM_LENGTH = 46;
+export const EXAM_PASS_PERCENT = 83;
+
+// The ladder's final exam: drawn from the course the learner just finished,
+// never from the authored practice bank or the sign flashcards, so passing it
+// means "I know this course".
+//
+// Questions are taken round-robin across modules rather than by a flat
+// shuffle: a flat draw over a course whose modules differ in size can leave a
+// whole unit unexamined, and this is the one test that claims to cover
+// everything. Within a module the order is random, so a retake is a different
+// paper.
+export const finalExamQuestions = (
+  length: number = EXAM_LENGTH,
+): QuizQuestion[] => {
+  const pools = courseModules().map(module =>
+    shuffle([
+      ...module.lessons.flatMap(
+        lesson => lesson.testQuestionIds ?? lesson.questionIds,
+      ),
+      ...module.moduleTest.questionIds,
+    ]),
+  );
+
+  const picked: string[] = [];
+  const seen = new Set<string>();
+  const deepest = pools.reduce((max, pool) => Math.max(max, pool.length), 0);
+  for (let round = 0; round < deepest && picked.length < length; round += 1) {
+    for (const pool of pools) {
+      if (picked.length >= length) {
+        break;
+      }
+      const id = pool[round];
+      // A question referenced by both a lesson test and its module test must
+      // not be asked twice in the same sitting.
+      if (id != null && !seen.has(id)) {
+        seen.add(id);
+        picked.push(id);
+      }
+    }
+  }
+
+  // Shuffled again so the paper does not walk the course module by module.
+  return shuffle(picked).flatMap(id => {
+    const question = findCourseQuizQuestion(id);
+    return question ? [question] : [];
+  });
 };
 
 // Resolves persisted question ids (saved questions / mistakes) back to

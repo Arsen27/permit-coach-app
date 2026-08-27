@@ -119,8 +119,8 @@ describe('LearnScreen (schema-v2 course)', () => {
     const texts = textsOf(tree);
     // Lesson 1 is current.
     expect(texts).toContain('Continue');
-    // 31 locked lessons + 8 locked module tests.
-    expect(lockIconCount(tree)).toBe(39);
+    // 31 locked lessons + 8 locked module tests + the final exam.
+    expect(lockIconCount(tree)).toBe(40);
   });
 
   it('opens every node when the dev unlock override is on', async () => {
@@ -140,7 +140,7 @@ describe('LearnScreen (schema-v2 course)', () => {
     await ReactTestRenderer.act(async () => {
       setDevUnlockAll(false);
     });
-    expect(lockIconCount(tree)).toBe(39);
+    expect(lockIconCount(tree)).toBe(40);
   });
 
   it('unlocks the module test after its lessons, and the next module after the test', async () => {
@@ -158,8 +158,8 @@ describe('LearnScreen (schema-v2 course)', () => {
       }
     });
     // Module 1 done → its test is unlocked (28 locked lessons in modules 2–8,
-    // plus 7 locked tests).
-    expect(lockIconCount(tree)).toBe(35);
+    // plus 7 locked tests, plus the still-locked final exam).
+    expect(lockIconCount(tree)).toBe(36);
 
     await ReactTestRenderer.act(async () => {
       observedState!.applyTopicResult(firstModule.moduleId, 90);
@@ -167,8 +167,9 @@ describe('LearnScreen (schema-v2 course)', () => {
     const texts = textsOf(tree);
     expect(texts).toContain('90%');
     // Test passed → module 2 unlocks: its first lesson becomes current, its
-    // other 3 lessons + its test stay locked, modules 3–8 stay fully locked.
-    expect(lockIconCount(tree)).toBe(34);
+    // other 3 lessons + its test stay locked, modules 3–8 stay fully locked,
+    // and the final exam is still locked.
+    expect(lockIconCount(tree)).toBe(35);
     expect(texts).toContain('4 / 32 lessons · 400 pts');
   });
 });
