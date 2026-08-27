@@ -1,3 +1,24 @@
+// How a session's questions get chosen.
+//
+// Four pools feed everything below: the course bank (state-specific,
+// versioned, updated over the air), the authored practice bank
+// (practiceQuestions.json), the authored right-of-way lesson (curriculum.ts),
+// and one generated flashcard per road sign. "Authored" here means the last
+// two together — the seed content that predates the course pipeline.
+//
+// Every draw is uniform random over its pool: `shuffle()` is Fisher-Yates on
+// Math.random(), unseeded, so a retake is always a fresh paper and no past
+// sitting can be reproduced. The two exams differ only in which pool they
+// draw from and in what order they walk it — see examQuestions() and
+// finalExamQuestions() below.
+//
+// Nothing here reads state/questionStats.ts. That per-question history
+// (seen / correct / lastCorrect, and the mastery label derived from it) is
+// display-only: the Practice bank map, the per-topic accuracy row, and an
+// analytics property. There is no spaced repetition and no weighting toward
+// weak or unseen material; the only history-driven session is `mistakes`,
+// which the learner starts by hand.
+
 import { IconName } from '@/assets/icons';
 
 import {
@@ -95,6 +116,15 @@ export const quickMixQuestions = (): QuizQuestion[] =>
 
 // Mock DMV knowledge test: 46 questions, real exam rules. The pool mixes the
 // authored bank with sign flashcards to reach exam length.
+//
+// The mix is effectively fixed: the authored bank holds 32 questions, so this
+// always takes 24 of them plus 22 signs. Two things follow, both open product
+// questions rather than accidents of this code:
+//   - the course bank never appears here, so the 200-odd state-specific
+//     questions we ship and update are absent from the marquee exam;
+//   - drawing 24 of 32 means two sittings overlap by ~18 questions, and
+//     roughly half the paper is sign identification.
+// Widening the pool is a content decision — see PC-13.
 export const examQuestions = (): QuizQuestion[] => {
   const authored = shuffle(authoredQuestions());
   const fromSigns = signQuizQuestions(46 - Math.min(authored.length, 24));
