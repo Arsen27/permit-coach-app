@@ -1,48 +1,50 @@
-import { SignArtSpec } from '@/components/SignArt';
-import { signColors } from '@/theme';
-
-import { QuizQuestion } from './curriculum';
+import { QuizQuestion } from '../curriculum';
 // Named signsData.json (not signs.json) because Metro resolves `./signs` to a
 // .json file before a .ts one — the data would shadow this module.
 import rawSigns from './signsData.json';
+import { Sign, SignCategory, validateSignsDoc } from './wire';
 
-export type SignCategory = {
-  id: string;
-  name: string;
-  subtitle: string;
-  blurb: string;
-};
+export type {
+  Sign,
+  SignArtSpec,
+  SignCategory,
+  SignCategoryGlyph,
+  SignSymbol,
+} from './wire';
 
-export type Sign = {
-  id: string;
-  categoryId: string;
-  name: string;
-  code: string;
-  description: string;
-  steps: string[];
-  trap: string;
-  art: SignArtSpec;
-};
+// The bundled catalogue goes through the same validator an authored document
+// would: the seed is content like any other, and a cast here is exactly the
+// kind of unchecked trust the wire format exists to remove. A broken seed is
+// a build-time mistake, so it throws rather than degrading — there is no
+// earlier version to fall back to.
+const seed = validateSignsDoc(rawSigns);
 
-export const signCategories = rawSigns.categories as SignCategory[];
-export const signs = rawSigns.signs as Sign[];
+if (!seed.ok) {
+  throw new Error(
+    `bundled signs catalogue is invalid: ${seed.errors.join('; ')}`,
+  );
+}
 
-export const categoryColor: Record<string, string> = {
-  regulatory: signColors.regulatory,
-  warning: signColors.warning,
-  guide: signColors.guide,
-  highway: signColors.highway,
-  workzone: signColors.workzone,
-};
+export const signsDeliveryVersion = seed.value.deliveryVersion;
+export const signCategories: SignCategory[] = seed.value.categories;
+export const signs: Sign[] = seed.value.signs;
+
+const categoriesById = new Map(signCategories.map(c => [c.id, c]));
+const signsById = new Map(signs.map(s => [s.id, s]));
+
+// Category colour is content, not theme: it must read as real-world signage.
+export const categoryColor: Record<string, string> = Object.fromEntries(
+  signCategories.map(category => [category.id, category.color]),
+);
 
 export const signsByCategory = (categoryId: string): Sign[] =>
   signs.filter(sign => sign.categoryId === categoryId);
 
 export const findSign = (signId: string): Sign | undefined =>
-  signs.find(sign => sign.id === signId);
+  signsById.get(signId);
 
 export const findCategory = (categoryId: string): SignCategory | undefined =>
-  signCategories.find(category => category.id === categoryId);
+  categoriesById.get(categoryId);
 
 export const shuffle = <T>(items: T[]): T[] => {
   const result = [...items];

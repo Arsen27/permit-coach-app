@@ -74,6 +74,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-traffic-signals-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Right on red",
+            "ruleMarkdown": "Right on red is usually allowed after a full [[stop]] — unless a [[sign]] prohibits it.",
+            "conceptId": "traffic-signals.recall.01",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-traffic-signals-slide-05",
             "type": "state_specific",
             "title": "Arrows control one direction",
@@ -95,12 +104,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-traffic-signals-recall-01",
+            "blockId": "ca-traffic-signals-recall-02",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · Flashing signals",
             "ruleMarkdown": "Flashing [[red]] works like a STOP sign. Flashing [[yellow]] means slow down and use caution.",
-            "conceptId": "traffic-signals.recall.01",
+            "conceptId": "traffic-signals.recall.02",
             "scope": "state_specific"
           },
           {
@@ -109,6 +118,15 @@
             "title": "A dark signal",
             "bodyMarkdown": "Treat a broken signal like an all-way stop.\n\nMove carefully.\n\nOther drivers may read the dark signal differently, so expect hesitation.\n\nA signal that has lost power needs a cautious, predictable response.\n\nSlow down and prepare to stop.\n\nTreat the intersection like an all-way stop unless a sign or officer directs otherwise.\n\nTake turns and do not assume another driver has noticed the outage.",
             "conceptId": "traffic-signals.slide.07",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-traffic-signals-recall-03",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Dark signal",
+            "ruleMarkdown": "A dark signal? Treat the intersection as an [[all-way stop]].",
+            "conceptId": "traffic-signals.recall.03",
             "scope": "state_specific"
           },
           {
@@ -229,11 +247,29 @@
             "scope": "universal"
           },
           {
+            "blockId": "ca-stop-yield-entering-traffic-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · YIELD meaning",
+            "ruleMarkdown": "YIELD means slow down, judge the [[gap]], and [[stop]] when traffic requires it.",
+            "conceptId": "stop-yield-entering-traffic.recall.02",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-stop-yield-entering-traffic-slide-05",
             "type": "state_specific",
             "title": "Driveways join active traffic",
             "bodyMarkdown": "People already on the road go first.\n\nCheck sidewalks, bikes, and both traffic directions.\n\nOne exam answer may stop in the right place but fail to yield before entering.\n\nAnother may yield but block the crosswalk.\n\nBoth answers ignore part of the required stop-and-yield sequence.\n\nA complete solution must protect the stopping point and the moving path.",
             "conceptId": "stop-yield-entering-traffic.slide.05",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-stop-yield-entering-traffic-recall-03",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Driveways",
+            "ruleMarkdown": "Entering the road from a [[driveway]] or private property? Yield until it is [[safe]].",
+            "conceptId": "stop-yield-entering-traffic.recall.03",
             "scope": "state_specific"
           },
           {
@@ -430,6 +466,15 @@
             ],
             "conceptId": "turns-and-signals.slide.08",
             "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-turns-and-signals-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Hand signals",
+            "ruleMarkdown": "Left arm straight out: [[left]] turn. Arm up: [[right]] turn. Arm down: [[slow]] or stop.",
+            "conceptId": "turns-and-signals.recall.02",
+            "scope": "state_specific"
           }
         ],
         "questionIds": [
@@ -554,15 +599,6 @@
             "scope": "universal"
           },
           {
-            "blockId": "ca-speed-and-space-recall-02",
-            "type": "check_yourself",
-            "title": "Can you finish the rule?",
-            "context": "Recall · Stopping distance",
-            "ruleMarkdown": "You stop in three stages: you [[see]] the problem, you [[react]], and only then the brakes slow the car.",
-            "conceptId": "speed-and-space.recall.02",
-            "scope": "universal"
-          },
-          {
             "blockId": "ca-speed-and-space-image-06",
             "type": "image",
             "assetId": "ca-speed-laws-a03"
@@ -576,11 +612,29 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-speed-and-space-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Space cushion",
+            "ruleMarkdown": "Leave a [[time]] gap to the car ahead and keep an [[escape space]] beside you.",
+            "conceptId": "speed-and-space.recall.02",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-speed-and-space-slide-07",
             "type": "exam_trap",
             "title": "Handle a tailgater calmly",
             "bodyMarkdown": "Create more room ahead.\n\nChange lanes or use a turnout when safe.\n\nDo not brake-check.\n\nTrying to teach a close follower a lesson increases the danger.\n\nIncrease the space ahead so you can slow gradually.\n\nAvoid sudden braking, speeding up, or blocking a pass.",
             "conceptId": "speed-and-space.slide.07",
+            "scope": "universal"
+          },
+          {
+            "blockId": "ca-speed-and-space-recall-03",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Stopping distance",
+            "ruleMarkdown": "You stop in three stages: you [[see]] the problem, you [[react]], and only then the brakes slow the car.",
+            "conceptId": "speed-and-space.recall.03",
             "scope": "universal"
           },
           {
@@ -725,6 +779,15 @@
             "scope": "universal"
           },
           {
+            "blockId": "ca-sign-shapes-and-colors-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Round sign",
+            "ruleMarkdown": "A [[round]] sign warns that [[railroad]] tracks are ahead.",
+            "conceptId": "sign-shapes-and-colors.recall.02",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-sign-shapes-and-colors-slide-05",
             "type": "visual_example",
             "title": "The pentagon marks a school area",
@@ -757,6 +820,15 @@
               "Green guides."
             ],
             "conceptId": "sign-shapes-and-colors.slide.07",
+            "scope": "universal"
+          },
+          {
+            "blockId": "ca-sign-shapes-and-colors-recall-03",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Colors",
+            "ruleMarkdown": "[[Red]] restricts. [[Yellow]] warns. [[Orange]] means work zones.",
+            "conceptId": "sign-shapes-and-colors.recall.03",
             "scope": "universal"
           },
           {
@@ -882,6 +954,15 @@
             "bodyMarkdown": "The road or ramp is closed to your movement.\n\nChoose another legal path.\n\nYou must obey a traffic sign or signal that applies to you unless an authorized officer directs otherwise or a legal exception applies.\n\nFollow an officer who directs you through a red light.\n\nKeep watching for people and drivers who may not expect the temporary traffic pattern.",
             "conceptId": "regulatory-signs.slide.04",
             "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-regulatory-signs-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · One direction",
+            "ruleMarkdown": "DO NOT ENTER protects [[one direction]] of traffic — WRONG WAY means you are already against it.",
+            "conceptId": "regulatory-signs.recall.02",
+            "scope": "universal"
           },
           {
             "blockId": "ca-regulatory-signs-slide-05",
@@ -1051,6 +1132,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-warning-and-guide-signs-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Orange signs",
+            "ruleMarkdown": "[[Orange]] warning signs mean a [[temporary]] work zone ahead.",
+            "conceptId": "warning-and-guide-signs.recall.02",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-warning-and-guide-signs-slide-07",
             "type": "exam_trap",
             "title": "Guide signs help you plan",
@@ -1143,12 +1233,30 @@
             "scope": "universal"
           },
           {
+            "blockId": "ca-road-markings-and-curbs-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Line colors",
+            "ruleMarkdown": "[[Yellow]] lines separate opposite directions. [[White]] lines separate lanes going the same way.",
+            "conceptId": "road-markings-and-curbs.recall.01",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-road-markings-and-curbs-slide-02",
             "type": "state_specific",
             "title": "Pattern tells you about crossing",
             "bodyMarkdown": "Broken lines may allow crossing when safe.\n\nSolid lines warn or restrict it.\n\nA broken line generally marks a place where crossing may be allowed when the maneuver is otherwise legal and safe.\n\nA solid line warns or restricts crossing.\n\nDouble solid white lines form a lane barrier; wait for a permitted opening or broken pattern instead of forcing a lane change.",
             "conceptId": "road-markings-and-curbs.slide.02",
             "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-road-markings-and-curbs-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Line patterns",
+            "ruleMarkdown": "A [[broken]] line allows crossing when safe. A [[solid]] line restricts it.",
+            "conceptId": "road-markings-and-curbs.recall.02",
+            "scope": "universal"
           },
           {
             "blockId": "ca-road-markings-and-curbs-image-03",
@@ -1208,12 +1316,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-road-markings-and-curbs-recall-01",
+            "blockId": "ca-road-markings-and-curbs-recall-03",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · Curb colors",
             "ruleMarkdown": "A [[red]] curb means no stopping, standing, or parking. A [[blue]] curb is only for authorized disabled parking.",
-            "conceptId": "road-markings-and-curbs.recall.01",
+            "conceptId": "road-markings-and-curbs.recall.03",
             "scope": "state_specific"
           },
           {
@@ -1396,6 +1504,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-uncontrolled-intersections-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Mountain roads",
+            "ruleMarkdown": "On a narrow mountain road, the vehicle facing [[downhill]] backs up to make room.",
+            "conceptId": "uncontrolled-intersections.recall.02",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-uncontrolled-intersections-slide-08",
             "type": "remember_this",
             "title": "Right-of-way is never forced",
@@ -1475,6 +1592,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-crosswalks-and-roundabouts-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Unmarked crosswalks",
+            "ruleMarkdown": "A crosswalk can be [[unmarked]] — pedestrian right-of-way still applies.",
+            "conceptId": "crosswalks-and-roundabouts.recall.01",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-crosswalks-and-roundabouts-slide-02",
             "type": "core_rule",
             "title": "Slow before the person appears",
@@ -1525,12 +1651,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-crosswalks-and-roundabouts-recall-01",
+            "blockId": "ca-crosswalks-and-roundabouts-recall-02",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · Crosswalks and circles",
             "ruleMarkdown": "Never pass a vehicle [[stopped]] at a crosswalk. Entering a roundabout, yield to traffic [[already inside]].",
-            "conceptId": "crosswalks-and-roundabouts.recall.01",
+            "conceptId": "crosswalks-and-roundabouts.recall.02",
             "scope": "state_specific"
           },
           {
@@ -1680,6 +1806,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-u-turns-starting-backing-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Fire stations",
+            "ruleMarkdown": "No U-turns in front of a [[fire station]] — ever.",
+            "conceptId": "u-turns-starting-backing.recall.02",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-u-turns-starting-backing-slide-07",
             "type": "state_specific",
             "title": "Fire stations and business districts add limits",
@@ -1803,6 +1938,15 @@
             "bodyMarkdown": "Set the parking brake.\n\nUse Park or the correct gear before leaving.\n\nSection 22500 lists places where stopping, standing, or parking is prohibited, subject to traffic, safety, officer-direction, and other exceptions.\n\nCommon conflicts include sidewalks, crosswalks, driveways, and locations where the vehicle blocks traffic or access.",
             "conceptId": "parking-and-curbs.slide.04",
             "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-parking-and-curbs-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Hill parking",
+            "ruleMarkdown": "Turn the wheels so a rolling car goes toward the [[curb]] or edge, and set the [[parking brake]].",
+            "conceptId": "parking-and-curbs.recall.02",
+            "scope": "universal"
           },
           {
             "blockId": "ca-parking-and-curbs-slide-05",
@@ -1951,6 +2095,15 @@
             "scope": "universal"
           },
           {
+            "blockId": "ca-choosing-changing-lanes-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Lane change",
+            "ruleMarkdown": "Before moving sideways: signal, mirrors, then a head check of the [[blind spot]].",
+            "conceptId": "choosing-changing-lanes.recall.01",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-choosing-changing-lanes-image-03",
             "type": "image",
             "assetId": "ca-choosing-changing-lanes-a02"
@@ -1964,12 +2117,12 @@
             "scope": "universal"
           },
           {
-            "blockId": "ca-choosing-changing-lanes-recall-01",
+            "blockId": "ca-choosing-changing-lanes-recall-02",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
-            "context": "Recall · Lane change",
-            "ruleMarkdown": "Before moving sideways: signal, mirrors, then a head check of the [[blind spot]].",
-            "conceptId": "choosing-changing-lanes.recall.01",
+            "context": "Recall · One at a time",
+            "ruleMarkdown": "Change [[one]] lane at a time — settle, recheck, then move again.",
+            "conceptId": "choosing-changing-lanes.recall.02",
             "scope": "universal"
           },
           {
@@ -2089,15 +2242,6 @@
             "scope": "universal"
           },
           {
-            "blockId": "ca-passing-rules-recall-01",
-            "type": "check_yourself",
-            "title": "Can you finish the rule?",
-            "context": "Recall · Clear-view pass",
-            "ruleMarkdown": "Do not move into oncoming traffic until you can see far enough [[ahead]] to complete the whole pass.",
-            "conceptId": "passing-rules.recall.01",
-            "scope": "universal"
-          },
-          {
             "blockId": "ca-passing-rules-image-03",
             "type": "image",
             "assetId": "ca-passing-rules-a02"
@@ -2140,12 +2284,30 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-passing-rules-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Clear-view pass",
+            "ruleMarkdown": "Do not move into oncoming traffic until you can see far enough [[ahead]] to complete the whole pass.",
+            "conceptId": "passing-rules.recall.01",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-passing-rules-slide-07",
             "type": "state_specific",
             "title": "When someone passes you",
             "bodyMarkdown": "Keep a steady path.\n\nDo not speed up.\n\nCreate room if needed.\n\nThe shoulder and unpaved area are not ordinary passing lanes.\n\nDo not leave the paved or main-traveled part of the roadway to pass.\n\nWhen being passed, hold a steady course and do not increase speed.\n\nMake room when safe instead of competing with the passing driver.",
             "conceptId": "passing-rules.slide.07",
             "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-passing-rules-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · No-pass spots",
+            "ruleMarkdown": "Skip the pass near an intersection, a railroad [[crossing]], or a hidden [[curve]].",
+            "conceptId": "passing-rules.recall.02",
+            "scope": "universal"
           },
           {
             "blockId": "ca-passing-rules-slide-08",
@@ -2289,6 +2451,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-freeway-merging-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Missed exit",
+            "ruleMarkdown": "Missed the exit? Continue to the [[next]] one — never stop or [[back up]] on the freeway.",
+            "conceptId": "freeway-merging.recall.02",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-freeway-merging-slide-08",
             "type": "state_specific",
             "title": "Ramp signals control entry",
@@ -2406,6 +2577,15 @@
             "title": "HOV and toll lanes use posted rules",
             "bodyMarkdown": "Check occupancy, vehicle type, time, toll, and access point.\n\nDo not assume.\n\nUse a preferential lane only when your occupancy, vehicle class, access point, and time meet the signs and markings.\n\nDo not assume yesterday's hours or another freeway's occupancy rule applies here.\n\nEnter and leave only at permitted openings.",
             "conceptId": "special-lanes.slide.05",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-special-lanes-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Posted lane rules",
+            "ruleMarkdown": "HOV and toll lanes work only under their [[posted]] rules — occupancy, hours, and permits.",
+            "conceptId": "special-lanes.recall.02",
             "scope": "state_specific"
           },
           {
@@ -2561,6 +2741,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-bicycles-motorcycles-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Passing a bicycle",
+            "ruleMarkdown": "Give a bicycle at least [[three feet]] of clearance when passing — slow down if you cannot.",
+            "conceptId": "bicycles-motorcycles.recall.01",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-bicycles-motorcycles-slide-05",
             "type": "visual_example",
             "title": "A motorcycle owns its lane",
@@ -2590,12 +2779,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-bicycles-motorcycles-recall-01",
+            "blockId": "ca-bicycles-motorcycles-recall-02",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · Sharing lanes",
             "ruleMarkdown": "A motorcycle is entitled to its [[full lane]]. Lane splitting is [[legal]] in California.",
-            "conceptId": "bicycles-motorcycles.recall.01",
+            "conceptId": "bicycles-motorcycles.recall.02",
             "scope": "state_specific"
           },
           {
@@ -2703,6 +2892,15 @@
             "scope": "universal"
           },
           {
+            "blockId": "ca-trucks-buses-slow-vehicles-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Cutting in",
+            "ruleMarkdown": "Never cut [[closely]] in front of a truck — it needs far more [[stopping room]].",
+            "conceptId": "trucks-buses-slow-vehicles.recall.02",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-trucks-buses-slow-vehicles-slide-04",
             "type": "state_specific",
             "title": "Pass without lingering",
@@ -2806,6 +3004,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-school-buses-emergency-vehicles-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Emergency vehicles",
+            "ruleMarkdown": "Emergency vehicle with lights or siren? Pull to the [[right]] edge and [[stop]] clear of intersections.",
+            "conceptId": "school-buses-emergency-vehicles.recall.01",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-school-buses-emergency-vehicles-slide-02",
             "type": "state_specific",
             "title": "Do not stop in the conflict",
@@ -2827,6 +3034,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-school-buses-emergency-vehicles-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Move over",
+            "ruleMarkdown": "Passing a stopped vehicle with warning lights: move to a [[nonadjacent]] lane, or [[slow]] to a safe speed.",
+            "conceptId": "school-buses-emergency-vehicles.recall.02",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-school-buses-emergency-vehicles-slide-04",
             "type": "state_specific",
             "title": "Do not follow the response",
@@ -2843,12 +3059,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-school-buses-emergency-vehicles-recall-01",
+            "blockId": "ca-school-buses-emergency-vehicles-recall-03",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · School bus",
             "ruleMarkdown": "Flashing [[red]] school-bus lights mean stop — and stay stopped until the signal [[ends]].",
-            "conceptId": "school-buses-emergency-vehicles.recall.01",
+            "conceptId": "school-buses-emergency-vehicles.recall.03",
             "scope": "state_specific"
           },
           {
@@ -2946,6 +3162,15 @@
             "bodyMarkdown": "Never race it.\n\nStop for lights, gates, flaggers, and an approaching train.\n\nRailroad advance signs tell you to look, listen, and prepare for crossing controls.\n\nNever begin across tracks unless space on the far side can hold the entire vehicle.\n\nA train cannot steer away, and entering behind another vehicle can trap you even when the warning equipment was clear at first.\n\nNever go around a gate.\n\nA second train may be hidden.\n\nWait until the control fully allows movement.\n\nIf the vehicle stalls on the tracks, get everyone out immediately.\n\nMove everyone away from the rails.\n\nUse the crossing emergency sign, then call 911.",
             "conceptId": "rail-light-rail-work-zones.slide.02",
             "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-rail-light-rail-work-zones-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Stalled on tracks",
+            "ruleMarkdown": "Stalled on the tracks? Get everyone [[out]] and away immediately.",
+            "conceptId": "rail-light-rail-work-zones.recall.02",
+            "scope": "universal"
           },
           {
             "blockId": "ca-rail-light-rail-work-zones-image-03",
@@ -3094,6 +3319,15 @@
             "scope": "universal"
           },
           {
+            "blockId": "ca-driving-after-dark-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Outdriving your lights",
+            "ruleMarkdown": "Do not outrun your headlights — be able to [[stop]] inside the distance you can [[see]].",
+            "conceptId": "driving-after-dark.recall.01",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-driving-after-dark-image-03",
             "type": "image",
             "assetId": "ca-night-weather-visibility-a02"
@@ -3107,12 +3341,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-driving-after-dark-recall-01",
+            "blockId": "ca-driving-after-dark-recall-02",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · High beams",
             "ruleMarkdown": "Dim within [[500 feet]] of an approaching vehicle and within [[300 feet]] when following.",
-            "conceptId": "driving-after-dark.recall.01",
+            "conceptId": "driving-after-dark.recall.02",
             "scope": "state_specific"
           },
           {
@@ -3211,6 +3445,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-weather-and-mountain-roads-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Rain",
+            "ruleMarkdown": "Rain cuts [[grip]] and [[visibility]] — slow down and smooth every control.",
+            "conceptId": "weather-and-mountain-roads.recall.01",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-weather-and-mountain-roads-slide-02",
             "type": "state_specific",
             "title": "Make every control smoother",
@@ -3237,12 +3480,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-weather-and-mountain-roads-recall-01",
+            "blockId": "ca-weather-and-mountain-roads-recall-02",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · Fog",
             "ruleMarkdown": "In fog, use [[low]] beams — high beams reflect back and reduce what you see.",
-            "conceptId": "weather-and-mountain-roads.recall.01",
+            "conceptId": "weather-and-mountain-roads.recall.02",
             "scope": "universal"
           },
           {
@@ -3341,6 +3584,15 @@
             "scope": "universal"
           },
           {
+            "blockId": "ca-skids-and-emergencies-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Blowout",
+            "ruleMarkdown": "Blowout? [[Grip]] the wheel, ease off the gas, and do not [[slam]] the brakes.",
+            "conceptId": "skids-and-emergencies.recall.01",
+            "scope": "universal"
+          },
+          {
             "blockId": "ca-skids-and-emergencies-image-03",
             "type": "image",
             "assetId": "ca-skids-and-emergencies-a02"
@@ -3354,12 +3606,12 @@
             "scope": "universal"
           },
           {
-            "blockId": "ca-skids-and-emergencies-recall-01",
+            "blockId": "ca-skids-and-emergencies-recall-02",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · Skid response",
             "ruleMarkdown": "In a skid, ease off the cause, look toward your intended [[path]], and steer [[smoothly]].",
-            "conceptId": "skids-and-emergencies.recall.01",
+            "conceptId": "skids-and-emergencies.recall.02",
             "scope": "universal"
           },
           {
@@ -3488,6 +3740,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-crashes-and-insurance-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · After a crash",
+            "ruleMarkdown": "Stop, check [[people]] first, exchange [[information]] — never leave the scene.",
+            "conceptId": "crashes-and-insurance.recall.01",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-crashes-and-insurance-image-03",
             "type": "image",
             "assetId": "ca-crashes-and-insurance-a02"
@@ -3501,12 +3762,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-crashes-and-insurance-recall-01",
+            "blockId": "ca-crashes-and-insurance-recall-02",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · Police report",
             "ruleMarkdown": "After an injury or death, the written police report is due within [[24 hours]].",
-            "conceptId": "crashes-and-insurance.recall.01",
+            "conceptId": "crashes-and-insurance.recall.02",
             "scope": "state_specific"
           },
           {
@@ -3543,12 +3804,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-crashes-and-insurance-recall-02",
+            "blockId": "ca-crashes-and-insurance-recall-03",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · DMV report",
             "ruleMarkdown": "Report to DMV within [[10 days]] after injury, death, or more than [[$1,000]] damage to one person.",
-            "conceptId": "crashes-and-insurance.recall.02",
+            "conceptId": "crashes-and-insurance.recall.03",
             "scope": "state_specific"
           },
           {
@@ -3701,8 +3962,8 @@
             "blockId": "ca-distraction-and-fatigue-recall-01",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
-            "context": "Recall · Under 18",
-            "ruleMarkdown": "A driver under 18 may not use a phone while driving — even [[hands-free]] — except in an emergency.",
+            "context": "Recall · Phones for adults",
+            "ruleMarkdown": "An adult may use a phone only [[hands-free]], activated with a single [[swipe or tap]].",
             "conceptId": "distraction-and-fatigue.recall.01",
             "scope": "state_specific"
           },
@@ -3713,6 +3974,15 @@
             "bodyMarkdown": "Heavy eyes, missed signs, and drifting are warnings.\n\nCoffee may increase alertness briefly, but it does not replace sleep.\n\nAn adult driver may not use a handheld wireless telephone while driving.\n\nAny permitted voice communication must satisfy hands-free conditions and legal exceptions.\n\nHolding the phone at a red light is not a reliable way around a rule tied to driving.",
             "conceptId": "distraction-and-fatigue.slide.05",
             "scope": "universal"
+          },
+          {
+            "blockId": "ca-distraction-and-fatigue-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Under 18",
+            "ruleMarkdown": "A driver under 18 may not use a phone while driving — even [[hands-free]] — except in an emergency.",
+            "conceptId": "distraction-and-fatigue.recall.02",
+            "scope": "state_specific"
           },
           {
             "blockId": "ca-distraction-and-fatigue-image-06",
@@ -3874,20 +4144,20 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-alcohol-drugs-dui-recall-02",
-            "type": "check_yourself",
-            "title": "Can you finish the rule?",
-            "context": "Recall · Implied consent",
-            "ruleMarkdown": "By driving in California, you consent to [[chemical testing]] after a lawful DUI arrest.",
-            "conceptId": "alcohol-drugs-dui.recall.02",
-            "scope": "state_specific"
-          },
-          {
             "blockId": "ca-alcohol-drugs-dui-slide-07",
             "type": "state_specific",
             "title": "Open containers have their own rules",
             "bodyMarkdown": "Keep alcohol and cannabis where California law allows.\n\nThe passenger area is restricted.\n\nThe reliable plan is made before impairment starts.\n\nChoose a sober driver, transit, taxi, or rideshare.\n\nNever ride with a driver you believe is impaired.\n\nKeep alcoholic beverages and cannabis containers where California law allows; an open container does not belong in the passenger area.",
             "conceptId": "alcohol-drugs-dui.slide.07",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-alcohol-drugs-dui-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Open containers",
+            "ruleMarkdown": "An open container never rides in the [[passenger area]] — keep it where the law allows.",
+            "conceptId": "alcohol-drugs-dui.recall.02",
             "scope": "state_specific"
           },
           {
@@ -3897,6 +4167,15 @@
             "bodyMarkdown": "Do not negotiate after impairment starts.\n\nDUI questions become easier when you separate impairment, status-based BAC rules, chemical testing, and container rules.\n\nA number can prove a specific violation; it never guarantees that the person is safe to drive.",
             "conceptId": "alcohol-drugs-dui.slide.08",
             "scope": "universal"
+          },
+          {
+            "blockId": "ca-alcohol-drugs-dui-recall-03",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Implied consent",
+            "ruleMarkdown": "By driving in California, you consent to [[chemical testing]] after a lawful DUI arrest.",
+            "conceptId": "alcohol-drugs-dui.recall.03",
+            "scope": "state_specific"
           }
         ],
         "questionIds": [
@@ -3994,6 +4273,15 @@
             "scope": "universal"
           },
           {
+            "blockId": "ca-seat-belts-child-safety-recall-01",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Under eight",
+            "ruleMarkdown": "A child under [[eight]] rides properly restrained in the [[back seat]], with listed exceptions.",
+            "conceptId": "seat-belts-child-safety.recall.01",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-seat-belts-child-safety-slide-05",
             "type": "state_specific",
             "title": "California uses age and size rules",
@@ -4007,12 +4295,12 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-seat-belts-child-safety-recall-01",
+            "blockId": "ca-seat-belts-child-safety-recall-02",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · Rear-facing",
             "ruleMarkdown": "A child under [[two]] rides rear-facing unless at least [[40 pounds]] or 40 inches tall.",
-            "conceptId": "seat-belts-child-safety.recall.01",
+            "conceptId": "seat-belts-child-safety.recall.02",
             "scope": "state_specific"
           },
           {
@@ -4042,6 +4330,15 @@
             "title": "Smoking with a minor is prohibited",
             "bodyMarkdown": "California covers a moving or parked vehicle.\n\nThe maximum fine is $100 per violation.\n\nDo not leave a child age six or younger alone in a car.\n\nThe rule applies when the engine is running, the keys are inside, or another serious risk exists.\n\nThe law provides a limited exception when qualifying supervision is present.\n\nSmoking a tobacco product in a motor vehicle is prohibited when a minor is present whether the vehicle is moving or at rest.\n\nA violation is an infraction punishable by a fine of up to $100, but an officer may not stop a vehicle solely to investigate this smoking rule.",
             "conceptId": "seat-belts-child-safety.slide.08",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-seat-belts-child-safety-recall-03",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Children alone",
+            "ruleMarkdown": "Never leave a child [[six]] or younger alone in a car — especially with the engine on or [[keys]] inside.",
+            "conceptId": "seat-belts-child-safety.recall.03",
             "scope": "state_specific"
           }
         ],
@@ -4135,8 +4432,8 @@
             "blockId": "ca-equipment-loads-towing-recall-01",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
-            "context": "Recall · Equipment",
-            "ruleMarkdown": "Your horn must be audible from at least [[200 feet]].",
+            "context": "Recall · Tire tread",
+            "ruleMarkdown": "The minimum tire tread is [[1/32 inch]] in two adjacent grooves.",
             "conceptId": "equipment-loads-towing.recall.01",
             "scope": "state_specific"
           },
@@ -4146,6 +4443,15 @@
             "title": "Cargo must stay with the vehicle",
             "bodyMarkdown": "Secure it against shifting, falling, leaking, or blowing out.\n\nStop safely and recheck the load during a long trip.\n\nConstruct, cover, or secure a load so contents do not drop, sift, leak, blow, spill, or escape as prohibited.\n\nRecheck straps after the vehicle has moved and keep loose material contained.\n\nA cover is useful only when it actually prevents the load from escaping.",
             "conceptId": "equipment-loads-towing.slide.04",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-equipment-loads-towing-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Equipment",
+            "ruleMarkdown": "Your horn must be audible from at least [[200 feet]].",
+            "conceptId": "equipment-loads-towing.recall.02",
             "scope": "state_specific"
           },
           {
@@ -4288,8 +4594,8 @@
             "blockId": "ca-permit-and-knowledge-test-recall-01",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
-            "context": "Recall · Knowledge test",
-            "ruleMarkdown": "You get [[three]] attempts per application. DMV publishes an [[80%]] passing score.",
+            "context": "Recall · Vision screening",
+            "ruleMarkdown": "The vision screening standard is [[20/40]] with both eyes together.",
             "conceptId": "permit-and-knowledge-test.recall.01",
             "scope": "state_specific"
           },
@@ -4299,6 +4605,15 @@
             "title": "A new application means starting again",
             "bodyMarkdown": "Reapply and pay the required fees.\n\nDo not assume a fourth attempt appears automatically.\n\nAfter a failed test.\n\nRead the instructions DMV gives you before scheduling again.\n\nUse the eligibility date in your own record instead of guessing.",
             "conceptId": "permit-and-knowledge-test.slide.04",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-permit-and-knowledge-test-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Knowledge test",
+            "ruleMarkdown": "You get [[three]] attempts per application. DMV publishes an [[80%]] passing score.",
+            "conceptId": "permit-and-knowledge-test.recall.02",
             "scope": "state_specific"
           },
           {
@@ -4404,15 +4719,6 @@
             "scope": "state_specific"
           },
           {
-            "blockId": "ca-drivers-under-18-recall-02",
-            "type": "check_yourself",
-            "title": "Can you finish the rule?",
-            "context": "Recall · Practice hours",
-            "ruleMarkdown": "Record [[50]] supervised practice hours, including [[10]] at night.",
-            "conceptId": "drivers-under-18.recall.02",
-            "scope": "state_specific"
-          },
-          {
             "blockId": "ca-drivers-under-18-image-03",
             "type": "image",
             "assetId": "ca-drivers-under-18-ca-permits-provisional-licenses-a02"
@@ -4426,6 +4732,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-drivers-under-18-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Practice hours",
+            "ruleMarkdown": "Record [[50]] supervised practice hours, including [[10]] at night.",
+            "conceptId": "drivers-under-18.recall.02",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-drivers-under-18-image-04",
             "type": "image",
             "assetId": "ca-drivers-under-18-ca-permits-provisional-licenses-a03"
@@ -4436,6 +4751,15 @@
             "title": "Night driving is restricted",
             "bodyMarkdown": "During the first 12 months, 11 p.m. to 5 a.m. is generally restricted.\n\nDocumented exceptions apply in certain situations.\n\nPassengers under 20 generally require qualifying supervision during the first year.\n\nCheck exceptions carefully.\n\nDuring the first 12 months of a provisional license, a driver under 18 generally may not drive from 11 p.m. to 5 a.m.\n\nThe driver also may not transport passengers under 20 without qualifying supervision.\n\nQualifying supervision includes a licensed parent or guardian, a licensed driver age 25 or older, or a licensed or certified driving instructor.\n\nMedical, school, employment, and immediate-family necessity exceptions require specified documentation.\n\nStart with the licensing stage before choosing a number.\n\nAsk which stage the question describes.\n\nThen apply its age, time, practice, or passenger rule.",
             "conceptId": "drivers-under-18.slide.04",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-drivers-under-18-recall-03",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · First 12 months",
+            "ruleMarkdown": "First 12 months: no driving [[11 p.m.]]–5 a.m., and passengers under [[20]] need qualifying supervision.",
+            "conceptId": "drivers-under-18.recall.03",
             "scope": "state_specific"
           }
         ],
@@ -4534,20 +4858,20 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-licenses-and-registration-slide-05",
+            "type": "state_specific",
+            "title": "Residency is more than one address",
+            "bodyMarkdown": "California looks at intent and listed indicators.\n\nA temporary visit does not automatically make someone a California resident.\n\nAdministrative questions become simple when you identify three things: the triggering event, the responsible person, and the deadline.\n\nSimilar-looking clocks belong to different duties.",
+            "conceptId": "licenses-and-registration.slide.05",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-licenses-and-registration-recall-01",
             "type": "check_yourself",
             "title": "Can you finish the rule?",
             "context": "Recall · DMV deadlines",
             "ruleMarkdown": "Address change: [[10 days]]. Seller's notice: [[5 days]]. New California registration: [[20 days]].",
             "conceptId": "licenses-and-registration.recall.01",
-            "scope": "state_specific"
-          },
-          {
-            "blockId": "ca-licenses-and-registration-slide-05",
-            "type": "state_specific",
-            "title": "Residency is more than one address",
-            "bodyMarkdown": "California looks at intent and listed indicators.\n\nA temporary visit does not automatically make someone a California resident.\n\nAdministrative questions become simple when you identify three things: the triggering event, the responsible person, and the deadline.\n\nSimilar-looking clocks belong to different duties.",
-            "conceptId": "licenses-and-registration.slide.05",
             "scope": "state_specific"
           },
           {
@@ -4561,6 +4885,15 @@
             "title": "Out-of-state vehicles have a deadline too",
             "bodyMarkdown": "Registration may be due within 20 days after the obligation arises.\n\nDo not wait for the old registration to expire.\n\nVehicle-registration residency turns on intent to live or remain in California beyond a temporary basis.\n\nPresence for at least six months in a 12-month period creates a rebuttable presumption, but other evidence can establish residency.\n\nWhen California registration becomes required for an out-of-state vehicle after residency or gainful employment, apply within 20 days.",
             "conceptId": "licenses-and-registration.slide.06",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-licenses-and-registration-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Residency",
+            "ruleMarkdown": "Six months of presence in a 12-month period creates a presumption of [[residency]].",
+            "conceptId": "licenses-and-registration.recall.02",
             "scope": "state_specific"
           },
           {
@@ -4678,6 +5011,15 @@
             "scope": "state_specific"
           },
           {
+            "blockId": "ca-penalties-and-points-recall-02",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · DUI points",
+            "ruleMarkdown": "A DUI conviction carries [[two]] points, not one.",
+            "conceptId": "penalties-and-points.recall.02",
+            "scope": "state_specific"
+          },
+          {
             "blockId": "ca-penalties-and-points-slide-04",
             "type": "state_specific",
             "title": "DUI and hit-and-run bring more than points",
@@ -4704,6 +5046,15 @@
             "title": "Make your hands and movements visible",
             "bodyMarkdown": "Keep your hands where they can be seen.\n\nExplain before reaching for documents.\n\nA safe stop protects both the driver and the officer.\n\nSignal, pull to a safe place, stop, and remain in the vehicle unless directed otherwise.\n\nKeep hands visible and explain before reaching for documents.\n\nNever flee; California law treats evading that causes serious bodily injury as a serious offense with possible imprisonment.",
             "conceptId": "penalties-and-points.slide.06",
+            "scope": "state_specific"
+          },
+          {
+            "blockId": "ca-penalties-and-points-recall-03",
+            "type": "check_yourself",
+            "title": "Can you finish the rule?",
+            "context": "Recall · Traffic stops",
+            "ruleMarkdown": "Pulled over? Stop in a safe place, remain in the [[vehicle]], and keep your [[hands]] visible.",
+            "conceptId": "penalties-and-points.recall.03",
             "scope": "state_specific"
           },
           {

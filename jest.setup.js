@@ -45,6 +45,13 @@ jest.mock('@callstack/liquid-glass', () => {
 
 jest.mock('react-native-url-polyfill/auto', () => ({}));
 
+// Native device info: only the build's version string is read (appVersion.ts).
+// Kept a valid semver so the release check behaves like a real build in tests.
+jest.mock('react-native-device-info', () => ({
+  __esModule: true,
+  default: { getVersion: jest.fn(() => '1.2.0') },
+}));
+
 // Notifee is a native module; onboarding only needs the permission answer.
 jest.mock('@notifee/react-native', () => ({
   __esModule: true,

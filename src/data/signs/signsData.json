@@ -1,34 +1,46 @@
 {
+  "schemaVersion": 1,
+  "deliveryVersion": "1.0.0",
   "categories": [
     {
       "id": "regulatory",
       "name": "Regulatory",
       "subtitle": "rules you must obey",
-      "blurb": "White and red signs state traffic laws. Ignoring them is a violation."
+      "blurb": "White and red signs state traffic laws. Ignoring them is a violation.",
+      "color": "#C8102E",
+      "glyph": "octagon"
     },
     {
       "id": "warning",
       "name": "Warning",
       "subtitle": "hazards ahead",
-      "blurb": "Yellow diamonds warn about hazards on the road ahead. Slow down and be ready to react."
+      "blurb": "Yellow diamonds warn about hazards on the road ahead. Slow down and be ready to react.",
+      "color": "#FFB915",
+      "glyph": "diamond"
     },
     {
       "id": "guide",
       "name": "Guide & services",
       "subtitle": "directions & facilities",
-      "blurb": "Blue and green signs give directions, distances and available services along the route."
+      "blurb": "Blue and green signs give directions, distances and available services along the route.",
+      "color": "#003F87",
+      "glyph": "tallRect"
     },
     {
       "id": "highway",
       "name": "Highway & exits",
       "subtitle": "freeway guidance",
-      "blurb": "Green panels guide you along freeways: exits, lane assignments and destinations."
+      "blurb": "Green panels guide you along freeways: exits, lane assignments and destinations.",
+      "color": "#00693C",
+      "glyph": "wideRect"
     },
     {
       "id": "workzone",
       "name": "Work zone",
       "subtitle": "construction areas",
-      "blurb": "Orange signs mark construction zones. Fines are doubled where workers are present."
+      "blurb": "Orange signs mark construction zones. Fines are doubled where workers are present.",
+      "color": "#E67817",
+      "glyph": "diamond"
     }
   ],
   "signs": [
@@ -44,7 +56,10 @@
         "Go only when the intersection is clear and it is your turn"
       ],
       "trap": "Rolling through slowly is still a violation — the exam always requires a complete stop, even with no traffic in sight.",
-      "art": { "kind": "octagon", "label": "STOP" }
+      "art": {
+        "kind": "octagon",
+        "label": "STOP"
+      }
     },
     {
       "id": "yield",
@@ -58,7 +73,9 @@
         "Stop fully if you cannot merge or cross safely"
       ],
       "trap": "Yield does not automatically mean stop — but answers claiming you never have to stop at a yield sign are wrong.",
-      "art": { "kind": "yield" }
+      "art": {
+        "kind": "yield"
+      }
     },
     {
       "id": "do-not-enter",
@@ -72,7 +89,9 @@
         "Turn around safely or choose another route"
       ],
       "trap": "Do Not Enter is posted at the entrance; if you also see Wrong Way, you have already entered against traffic.",
-      "art": { "kind": "doNotEnter" }
+      "art": {
+        "kind": "doNotEnter"
+      }
     },
     {
       "id": "speed-limit-55",
@@ -86,7 +105,14 @@
         "Slow below the limit when conditions are poor"
       ],
       "trap": "A posted limit is a maximum, not a guaranteed safe speed — under the basic speed law, 55 can be illegal in bad weather.",
-      "art": { "kind": "whiteRect", "lines": ["SPEED", "LIMIT"], "big": "55" }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "SPEED",
+          "LIMIT"
+        ],
+        "big": "55"
+      }
     },
     {
       "id": "no-u-turn",
@@ -100,7 +126,10 @@
         "Watch for this sign at intersections and median openings"
       ],
       "trap": "The red ring and slash over a curved arrow bans U-turns only — do not confuse it with No Left Turn.",
-      "art": { "kind": "redRing", "symbol": "uturn" }
+      "art": {
+        "kind": "redRing",
+        "symbol": "uturn"
+      }
     },
     {
       "id": "left-turn-only",
@@ -114,7 +143,13 @@
         "Leave the lane before the intersection if you need to go straight"
       ],
       "trap": "ONLY signs are mandatory — an answer saying you may go straight from a LEFT ONLY lane is always wrong.",
-      "art": { "kind": "whiteRect", "lines": ["ONLY"], "symbol": "turnLeft" }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "ONLY"
+        ],
+        "symbol": "turnLeft"
+      }
     },
     {
       "id": "one-way",
@@ -128,7 +163,13 @@
         "Expect all lanes to flow in the same direction"
       ],
       "trap": "When turning onto a one-way street, turn into the nearest lane moving in your direction — not the far lane.",
-      "art": { "kind": "whiteRect", "lines": ["ONE WAY"], "symbol": "arrowRight" }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "ONE WAY"
+        ],
+        "symbol": "arrowRight"
+      }
     },
     {
       "id": "no-parking",
@@ -142,7 +183,13 @@
         "Find a legal space beyond the zone"
       ],
       "trap": "No Parking is not No Stopping — you may often stop briefly to load passengers, but you may not leave the vehicle.",
-      "art": { "kind": "whiteRect", "lines": ["NO", "PARKING"] }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "NO",
+          "PARKING"
+        ]
+      }
     },
     {
       "id": "wrong-way",
@@ -156,7 +203,13 @@
         "Turn around only when it is safe"
       ],
       "trap": "Wrong Way appears after Do Not Enter — by the time you see it, you must stop and turn around, not drive on to the next exit.",
-      "art": { "kind": "whiteRect", "lines": ["WRONG", "WAY"] }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "WRONG",
+          "WAY"
+        ]
+      }
     },
     {
       "id": "no-right-turn",
@@ -170,7 +223,10 @@
         "Plan a legal right turn at a later intersection"
       ],
       "trap": "The red slash always covers the banned movement — misreading which arrow is crossed out is the common mistake.",
-      "art": { "kind": "redRing", "symbol": "turnRight" }
+      "art": {
+        "kind": "redRing",
+        "symbol": "turnRight"
+      }
     },
     {
       "id": "no-left-turn",
@@ -184,7 +240,10 @@
         "Do not attempt a U-turn instead"
       ],
       "trap": "Where left turns are banned, making a U-turn instead is usually also illegal — a favorite exam follow-up.",
-      "art": { "kind": "redRing", "symbol": "turnLeft" }
+      "art": {
+        "kind": "redRing",
+        "symbol": "turnLeft"
+      }
     },
     {
       "id": "keep-right",
@@ -198,7 +257,14 @@
         "Do not straddle the divider or cross to the left"
       ],
       "trap": "Keep Right marks an obstruction ahead — it is not the freeway rule Slower Traffic Keep Right.",
-      "art": { "kind": "whiteRect", "lines": ["KEEP", "RIGHT"], "symbol": "arrowRight" }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "KEEP",
+          "RIGHT"
+        ],
+        "symbol": "arrowRight"
+      }
     },
     {
       "id": "hov-lane",
@@ -212,7 +278,13 @@
         "Stay out if you do not meet the posted minimum"
       ],
       "trap": "In California a child or infant counts as an occupant, but driving an EV solo requires a valid decal — the car alone is not enough.",
-      "art": { "kind": "whiteRect", "lines": ["HOV 2+", "ONLY"] }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "HOV 2+",
+          "ONLY"
+        ]
+      }
     },
     {
       "id": "no-trucks",
@@ -226,7 +298,10 @@
         "Watch for posted weight or length limits nearby"
       ],
       "trap": "A red ring and slash prohibits the pictured vehicle — it does not merely warn that trucks are present.",
-      "art": { "kind": "redRing", "symbol": "truck" }
+      "art": {
+        "kind": "redRing",
+        "symbol": "truck"
+      }
     },
     {
       "id": "divided-highway-crossing",
@@ -240,7 +315,14 @@
         "Do not stop straddling the median if the gap is too short"
       ],
       "trap": "Each half of a divided highway carries one-way traffic — checking only one direction per roadway is the tested mistake.",
-      "art": { "kind": "whiteRect", "lines": ["DIVIDED", "HIGHWAY"], "symbol": "divided" }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "DIVIDED",
+          "HIGHWAY"
+        ],
+        "symbol": "divided"
+      }
     },
     {
       "id": "do-not-pass",
@@ -254,7 +336,13 @@
         "Keep a safe following distance while you wait"
       ],
       "trap": "A clear road does not make passing legal here — the zone ends only at a Pass With Care sign or new lane markings.",
-      "art": { "kind": "whiteRect", "lines": ["DO NOT", "PASS"] }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "DO NOT",
+          "PASS"
+        ]
+      }
     },
     {
       "id": "no-turn-on-red",
@@ -268,7 +356,13 @@
         "Look for this sign mounted near the signal head"
       ],
       "trap": "Normally you may turn right on red after stopping — this sign removes that permission entirely.",
-      "art": { "kind": "whiteRect", "lines": ["NO TURN", "ON RED"] }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "NO TURN",
+          "ON RED"
+        ]
+      }
     },
     {
       "id": "slower-traffic-keep-right",
@@ -282,7 +376,13 @@
         "Return right after completing a pass"
       ],
       "trap": "The rule applies even if you drive the speed limit — blocking the left lane at the limit is still tested as wrong.",
-      "art": { "kind": "whiteRect", "lines": ["SLOWER TRAFFIC", "KEEP RIGHT"] }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "SLOWER TRAFFIC",
+          "KEEP RIGHT"
+        ]
+      }
     },
     {
       "id": "curve-left",
@@ -296,7 +396,10 @@
         "Accelerate gently only after the road straightens"
       ],
       "trap": "A Curve sign is gradual; the sharper Turn sign (W1-1) demands a much lower speed — exams test the difference.",
-      "art": { "kind": "yellowDiamond", "symbol": "curveLeft" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "curveLeft"
+      }
     },
     {
       "id": "curve-right",
@@ -310,7 +413,10 @@
         "Watch for oncoming traffic drifting wide"
       ],
       "trap": "Braking in the middle of a curve is the classic wrong answer — all slowing should happen before you enter.",
-      "art": { "kind": "yellowDiamond", "symbol": "curveRight" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "curveRight"
+      }
     },
     {
       "id": "winding-road",
@@ -324,7 +430,10 @@
         "Do not pass while the road winds"
       ],
       "trap": "Winding Road means at least three curves in a row — not just one bend.",
-      "art": { "kind": "yellowDiamond", "symbol": "winding" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "winding"
+      }
     },
     {
       "id": "crossroad",
@@ -338,7 +447,10 @@
         "Be ready to yield even on the through road"
       ],
       "trap": "The yellow cross warns of an intersection — do not confuse it with the round yellow railroad sign.",
-      "art": { "kind": "yellowDiamond", "symbol": "crossroad" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "crossroad"
+      }
     },
     {
       "id": "side-road",
@@ -352,7 +464,10 @@
         "Leave room for traffic slowing to turn"
       ],
       "trap": "Side Road shows traffic entering from one side only — a Crossroad sign means both sides.",
-      "art": { "kind": "yellowDiamond", "symbol": "sideRoad" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "sideRoad"
+      }
     },
     {
       "id": "t-intersection",
@@ -366,7 +481,10 @@
         "Yield to all traffic on the through road"
       ],
       "trap": "At a T-intersection the ending road always yields — through traffic does not stop for you.",
-      "art": { "kind": "yellowDiamond", "symbol": "tIntersection" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "tIntersection"
+      }
     },
     {
       "id": "merge",
@@ -380,7 +498,10 @@
         "Let entering traffic blend in smoothly"
       ],
       "trap": "Merging traffic should reach roadway speed — answers telling ramp drivers to stop and wait for a gap are wrong.",
-      "art": { "kind": "yellowDiamond", "symbol": "merge" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "merge"
+      }
     },
     {
       "id": "lane-ends",
@@ -394,7 +515,10 @@
         "Avoid racing to the end of the closing lane"
       ],
       "trap": "Drivers in the ending lane must yield to traffic already in the continuing lane — not the other way around.",
-      "art": { "kind": "yellowDiamond", "symbol": "laneEnds" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "laneEnds"
+      }
     },
     {
       "id": "divided-highway",
@@ -408,7 +532,10 @@
         "Expect one-way traffic on your side"
       ],
       "trap": "Know W6-1 from W6-2: Divided Highway Ends means two-way traffic returns with no median between directions.",
-      "art": { "kind": "yellowDiamond", "symbol": "divided" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "divided"
+      }
     },
     {
       "id": "two-way-traffic",
@@ -422,7 +549,10 @@
         "Recheck oncoming traffic before any left turn"
       ],
       "trap": "After this sign the left side belongs to oncoming cars — casual passing answers become wrong.",
-      "art": { "kind": "yellowDiamond", "symbol": "twoWay" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "twoWay"
+      }
     },
     {
       "id": "signal-ahead",
@@ -436,7 +566,10 @@
         "Treat a long-standing green as likely to change"
       ],
       "trap": "This sign is posted where you cannot yet see the signal — waiting to react until the light appears is the error.",
-      "art": { "kind": "yellowDiamond", "symbol": "signal" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "signal"
+      }
     },
     {
       "id": "stop-ahead",
@@ -450,7 +583,10 @@
         "Come to a complete stop when you reach it"
       ],
       "trap": "The warning itself does not require a stop — the full stop happens at the stop sign it announces.",
-      "art": { "kind": "yellowDiamond", "symbol": "stopAhead" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "stopAhead"
+      }
     },
     {
       "id": "yield-ahead",
@@ -464,7 +600,10 @@
         "Be ready to stop for traffic with the right-of-way"
       ],
       "trap": "The diamond warns of a yield sign coming up — it is not itself the point where you must give way.",
-      "art": { "kind": "yellowDiamond", "symbol": "yieldAhead" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "yieldAhead"
+      }
     },
     {
       "id": "pedestrian-crossing",
@@ -478,7 +617,10 @@
         "Never pass a car stopped at the crosswalk"
       ],
       "trap": "Never pass a vehicle stopped at a crosswalk — it may be yielding to a pedestrian you cannot see.",
-      "art": { "kind": "yellowDiamond", "symbol": "pedestrian" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "pedestrian"
+      }
     },
     {
       "id": "school-crossing",
@@ -492,7 +634,10 @@
         "Watch for children darting out between cars"
       ],
       "trap": "The pentagon shape is used only for school signs — shape-identification questions love it.",
-      "art": { "kind": "pentagon", "symbol": "pedestrian" }
+      "art": {
+        "kind": "pentagon",
+        "symbol": "pedestrian"
+      }
     },
     {
       "id": "bicycle-crossing",
@@ -506,7 +651,10 @@
         "Yield to bikes already in the crossing"
       ],
       "trap": "The sign warns that bikes cross here — it does not create a bike lane or ban cars from the road.",
-      "art": { "kind": "yellowDiamond", "symbol": "bicycle" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "bicycle"
+      }
     },
     {
       "id": "deer-crossing",
@@ -520,7 +668,10 @@
         "Brake firmly in your lane instead of swerving"
       ],
       "trap": "Swerving around an animal is the classic wrong answer — brake hard and stay in your lane.",
-      "art": { "kind": "yellowDiamond", "symbol": "deer" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "deer"
+      }
     },
     {
       "id": "slippery-when-wet",
@@ -534,7 +685,10 @@
         "Avoid sudden braking or sharp steering"
       ],
       "trap": "Roads are most slippery when rain first begins — oil floats on the surface before washing away.",
-      "art": { "kind": "yellowDiamond", "symbol": "slippery" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "slippery"
+      }
     },
     {
       "id": "steep-downgrade",
@@ -548,7 +702,10 @@
         "Brake in short, firm applications"
       ],
       "trap": "Riding the brake pedal downhill causes brake fade — downshifting before the grade is the tested answer.",
-      "art": { "kind": "yellowDiamond", "symbol": "hill" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "hill"
+      }
     },
     {
       "id": "bump",
@@ -562,7 +719,10 @@
         "Avoid braking on top of the bump"
       ],
       "trap": "Do your slowing before the bump — braking on it unloads the suspension and reduces control.",
-      "art": { "kind": "yellowDiamond", "symbol": "bump" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "bump"
+      }
     },
     {
       "id": "dip",
@@ -576,7 +736,10 @@
         "Never stop inside the dip"
       ],
       "trap": "If the dip is flooded, do not drive through — even shallow moving water can float a car off the road.",
-      "art": { "kind": "yellowDiamond", "symbol": "dip" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "dip"
+      }
     },
     {
       "id": "narrow-bridge",
@@ -590,7 +753,10 @@
         "Do not pass while on the bridge"
       ],
       "trap": "Narrow Bridge still has two lanes — One Lane Bridge is a different sign that may require you to yield.",
-      "art": { "kind": "yellowDiamond", "symbol": "narrowBridge" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "narrowBridge"
+      }
     },
     {
       "id": "soft-shoulder",
@@ -604,7 +770,10 @@
         "Slow down, then steer back gently"
       ],
       "trap": "If you drift onto a soft shoulder, slow first and steer back gradually — jerking the wheel back is the trap answer.",
-      "art": { "kind": "yellowDiamond", "symbol": "softShoulder" }
+      "art": {
+        "kind": "yellowDiamond",
+        "symbol": "softShoulder"
+      }
     },
     {
       "id": "railroad-crossing",
@@ -618,7 +787,10 @@
         "Stop 15 to 50 feet from the tracks if a train is coming"
       ],
       "trap": "Round shape means railroad only — this yellow sign is the advance warning; the crossbuck at the track is regulatory.",
-      "art": { "kind": "yellowCircle", "label": "RR" }
+      "art": {
+        "kind": "yellowCircle",
+        "label": "RR"
+      }
     },
     {
       "id": "hospital",
@@ -632,7 +804,11 @@
         "Expect ambulances near hospital driveways"
       ],
       "trap": "Blue service signs only give directions — an H sign does not create a quiet zone or change the speed limit.",
-      "art": { "kind": "blueRect", "label": "HOSPITAL", "big": "H" }
+      "art": {
+        "kind": "blueRect",
+        "label": "HOSPITAL",
+        "big": "H"
+      }
     },
     {
       "id": "gas",
@@ -646,7 +822,10 @@
         "Use the reentry signs to return to your route"
       ],
       "trap": "Service signs promise the service near the exit, not at the ramp itself — you may drive a short distance to reach it.",
-      "art": { "kind": "blueRect", "label": "GAS" }
+      "art": {
+        "kind": "blueRect",
+        "label": "GAS"
+      }
     },
     {
       "id": "food",
@@ -660,7 +839,10 @@
         "Rejoin the route using the entrance signs"
       ],
       "trap": "Blue panels are guidance only — they do not mean the listed businesses are open around the clock.",
-      "art": { "kind": "blueRect", "label": "FOOD" }
+      "art": {
+        "kind": "blueRect",
+        "label": "FOOD"
+      }
     },
     {
       "id": "lodging",
@@ -674,7 +856,10 @@
         "Choose rest over drowsy night driving"
       ],
       "trap": "The bed symbol means hotels or motels, not a rest area — rest areas have their own signs.",
-      "art": { "kind": "blueRect", "label": "LODGING" }
+      "art": {
+        "kind": "blueRect",
+        "label": "LODGING"
+      }
     },
     {
       "id": "rest-area",
@@ -688,7 +873,10 @@
         "Take a real break if you feel drowsy"
       ],
       "trap": "Drowsy drivers should use the rest area — stopping on the freeway shoulder to rest is illegal except in an emergency.",
-      "art": { "kind": "blueRect", "label": "REST AREA" }
+      "art": {
+        "kind": "blueRect",
+        "label": "REST AREA"
+      }
     },
     {
       "id": "airport",
@@ -702,7 +890,10 @@
         "Expect heavy merging around drop-off zones"
       ],
       "trap": "The symbol guides you to the airport — it does not mark an airport speed zone or restricted area.",
-      "art": { "kind": "blueRect", "label": "AIRPORT" }
+      "art": {
+        "kind": "blueRect",
+        "label": "AIRPORT"
+      }
     },
     {
       "id": "interstate-route",
@@ -716,7 +907,10 @@
         "Follow the shields through interchanges to stay on route"
       ],
       "trap": "Even-numbered Interstates run east-west and odd-numbered ones run north-south — a classic knowledge question.",
-      "art": { "kind": "shield", "label": "80" }
+      "art": {
+        "kind": "shield",
+        "label": "80"
+      }
     },
     {
       "id": "us-route",
@@ -730,7 +924,13 @@
         "Follow the shield at each decision point"
       ],
       "trap": "Shape identifies the system: a white shield is a US route, not an Interstate — colors and shape are tested.",
-      "art": { "kind": "whiteRect", "lines": ["US", "101"] }
+      "art": {
+        "kind": "whiteRect",
+        "lines": [
+          "US",
+          "101"
+        ]
+      }
     },
     {
       "id": "state-route",
@@ -744,7 +944,13 @@
         "Use the direction banners to navigate"
       ],
       "trap": "California's spade-shaped Route 1 marker is a route sign, not a guide panel — each state uses its own shape.",
-      "art": { "kind": "greenRect", "lines": ["CA", "1"] }
+      "art": {
+        "kind": "greenRect",
+        "lines": [
+          "CA",
+          "1"
+        ]
+      }
     },
     {
       "id": "bike-route",
@@ -758,7 +964,13 @@
         "Check for bikes before turning or opening doors"
       ],
       "trap": "Bike Route means expect bicycles — it does not ban cars and it does not force bikes onto the shoulder.",
-      "art": { "kind": "greenRect", "lines": ["BIKE", "ROUTE"] }
+      "art": {
+        "kind": "greenRect",
+        "lines": [
+          "BIKE",
+          "ROUTE"
+        ]
+      }
     },
     {
       "id": "telephone",
@@ -772,7 +984,10 @@
         "Park fully off the traveled way before calling"
       ],
       "trap": "Blue means a service is available nearby — the sign does not create an emergency stopping area on the roadway.",
-      "art": { "kind": "blueRect", "label": "PHONE" }
+      "art": {
+        "kind": "blueRect",
+        "label": "PHONE"
+      }
     },
     {
       "id": "tourist-info",
@@ -786,7 +1001,11 @@
         "Plan your route before rejoining traffic"
       ],
       "trap": "Stopping on the shoulder to check a map is the tested wrong move — use the information stop instead.",
-      "art": { "kind": "blueRect", "label": "INFO", "big": "?" }
+      "art": {
+        "kind": "blueRect",
+        "label": "INFO",
+        "big": "?"
+      }
     },
     {
       "id": "exit-sign",
@@ -800,7 +1019,13 @@
         "Do your slowing on the ramp, not on the freeway"
       ],
       "trap": "If you miss an exit, never stop or back up on the freeway — continue to the next exit.",
-      "art": { "kind": "greenExit", "lines": ["Main St", "1 MILE"] }
+      "art": {
+        "kind": "greenExit",
+        "lines": [
+          "Main St",
+          "1 MILE"
+        ]
+      }
     },
     {
       "id": "exit-only-lane",
@@ -814,7 +1039,13 @@
         "Commit to the ramp if you stay in the lane"
       ],
       "trap": "EXIT ONLY means the lane itself departs — unlike a normal exit, you cannot ride that lane past the ramp.",
-      "art": { "kind": "greenExit", "lines": ["Main St", "EXIT ONLY"] }
+      "art": {
+        "kind": "greenExit",
+        "lines": [
+          "Main St",
+          "EXIT ONLY"
+        ]
+      }
     },
     {
       "id": "exit-speed-advisory",
@@ -828,7 +1059,10 @@
         "Go even slower in rain or with a heavy load"
       ],
       "trap": "Ramp speeds are advisory, but crashing above them can still violate the basic speed law — 'just a suggestion' answers are wrong.",
-      "art": { "kind": "yellowDiamond", "label": "25 MPH" }
+      "art": {
+        "kind": "yellowDiamond",
+        "label": "25 MPH"
+      }
     },
     {
       "id": "mile-marker",
@@ -842,7 +1076,13 @@
         "Estimate distance to your exit from the count"
       ],
       "trap": "Mile markers exist for location, not navigation — in California the postmile counts typically reset at county lines.",
-      "art": { "kind": "greenRect", "lines": ["MILE", "124"] }
+      "art": {
+        "kind": "greenRect",
+        "lines": [
+          "MILE",
+          "124"
+        ]
+      }
     },
     {
       "id": "destination-distance",
@@ -856,7 +1096,13 @@
         "Set up your lane position for your destination's exit"
       ],
       "trap": "The top line is always the nearest destination and the bottom the farthest — reading-order questions appear on exams.",
-      "art": { "kind": "greenRect", "lines": ["Sacramento 25", "Reno 132"] }
+      "art": {
+        "kind": "greenRect",
+        "lines": [
+          "Sacramento 25",
+          "Reno 132"
+        ]
+      }
     },
     {
       "id": "freeway-entrance",
@@ -870,7 +1116,13 @@
         "Merge into a gap without stopping if possible"
       ],
       "trap": "Stopping at the end of an on-ramp is the classic wrong answer — merge at or near traffic speed unless forced to stop.",
-      "art": { "kind": "greenRect", "lines": ["FREEWAY", "ENTRANCE"] }
+      "art": {
+        "kind": "greenRect",
+        "lines": [
+          "FREEWAY",
+          "ENTRANCE"
+        ]
+      }
     },
     {
       "id": "hov-lane-ahead",
@@ -884,7 +1136,13 @@
         "Stay out during restricted hours if you do not"
       ],
       "trap": "Outside the posted hours many California HOV lanes open to all traffic — always check the hours plaque before answering.",
-      "art": { "kind": "greenRect", "lines": ["HOV LANE", "AHEAD"] }
+      "art": {
+        "kind": "greenRect",
+        "lines": [
+          "HOV LANE",
+          "AHEAD"
+        ]
+      }
     },
     {
       "id": "toll-road",
@@ -898,7 +1156,13 @@
         "Never stop or back up at a missed toll split"
       ],
       "trap": "Toll express lanes may still be free to qualifying carpools — read the panels, not just the word TOLL.",
-      "art": { "kind": "greenRect", "lines": ["TOLL", "ROAD"] }
+      "art": {
+        "kind": "greenRect",
+        "lines": [
+          "TOLL",
+          "ROAD"
+        ]
+      }
     },
     {
       "id": "rest-area-1-mile",
@@ -912,7 +1176,13 @@
         "Nap or stretch before continuing your trip"
       ],
       "trap": "The rest area, not the shoulder, is where a drowsy driver stops — shoulder stops are for emergencies only.",
-      "art": { "kind": "greenRect", "lines": ["REST AREA", "1 MILE"] }
+      "art": {
+        "kind": "greenRect",
+        "lines": [
+          "REST AREA",
+          "1 MILE"
+        ]
+      }
     },
     {
       "id": "road-work-ahead",
@@ -926,7 +1196,10 @@
         "Merge early when lanes shift or close"
       ],
       "trap": "Work zone speed limits apply even when no workers or machines are visible at the moment.",
-      "art": { "kind": "orangeDiamond", "label": "ROAD WORK" }
+      "art": {
+        "kind": "orangeDiamond",
+        "label": "ROAD WORK"
+      }
     },
     {
       "id": "flagger-ahead",
@@ -940,7 +1213,10 @@
         "Proceed at reduced speed only on SLOW"
       ],
       "trap": "A flagger's instructions override all posted signs and even traffic lights — obey the person, not the sign.",
-      "art": { "kind": "orangeDiamond", "symbol": "flagger" }
+      "art": {
+        "kind": "orangeDiamond",
+        "symbol": "flagger"
+      }
     },
     {
       "id": "lane-closed-ahead",
@@ -954,7 +1230,10 @@
         "Take turns with other drivers at the merge point"
       ],
       "trap": "Merging early and smoothly is expected — accelerating to beat traffic to the closure is the wrong answer.",
-      "art": { "kind": "orangeDiamond", "label": "LANE CLOSED" }
+      "art": {
+        "kind": "orangeDiamond",
+        "label": "LANE CLOSED"
+      }
     },
     {
       "id": "detour",
@@ -968,7 +1247,12 @@
         "Watch for the End Detour sign to rejoin the route"
       ],
       "trap": "Follow the posted detour even when a navigation app disagrees — the closure may not be in its map yet.",
-      "art": { "kind": "orangeRect", "lines": ["DETOUR"] }
+      "art": {
+        "kind": "orangeRect",
+        "lines": [
+          "DETOUR"
+        ]
+      }
     },
     {
       "id": "workers-present",
@@ -982,7 +1266,10 @@
         "Keep scanning for people stepping into your lane"
       ],
       "trap": "Traffic fines double in work zones with workers present — a heavily tested California fact.",
-      "art": { "kind": "orangeDiamond", "symbol": "workers" }
+      "art": {
+        "kind": "orangeDiamond",
+        "symbol": "workers"
+      }
     },
     {
       "id": "shoulder-work",
@@ -996,7 +1283,10 @@
         "Watch for work trucks entering from the shoulder"
       ],
       "trap": "Shoulder Work means the lanes remain open — but you are still expected to slow down and move over where possible.",
-      "art": { "kind": "orangeDiamond", "label": "SHOULDER WORK" }
+      "art": {
+        "kind": "orangeDiamond",
+        "label": "SHOULDER WORK"
+      }
     },
     {
       "id": "uneven-lanes",
@@ -1010,7 +1300,10 @@
         "Grip the wheel firmly over the drop"
       ],
       "trap": "Drifting lazily across the height difference can snag a tire — change lanes deliberately or not at all.",
-      "art": { "kind": "orangeDiamond", "label": "UNEVEN LANES" }
+      "art": {
+        "kind": "orangeDiamond",
+        "label": "UNEVEN LANES"
+      }
     },
     {
       "id": "end-road-work",
@@ -1024,7 +1317,13 @@
         "Look for the regular speed limit sign"
       ],
       "trap": "Until you pass End Road Work, the reduced work zone limit still applies — even where the work looks finished.",
-      "art": { "kind": "orangeRect", "lines": ["END", "ROAD WORK"] }
+      "art": {
+        "kind": "orangeRect",
+        "lines": [
+          "END",
+          "ROAD WORK"
+        ]
+      }
     }
   ]
 }

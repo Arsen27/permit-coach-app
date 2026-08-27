@@ -69,9 +69,14 @@ export type UpdateStatus =
   | 'offline'
   | 'failed'
   | 'app-update-required';
+// A fundamentally new course waiting for the learner's consent: `version` is
+// what accepting downloads (the latest), `notes` are the release notes of the
+// opt-in boundary itself — the words that explain why the new course exists.
+export type CourseOffer = { version: string; notes?: string };
 export type UpdateResult = {
   status: UpdateStatus;
   app?: BootstrapResponseV2['app'];
+  offer?: CourseOffer;
 };
 
 export type UpdaterDeps = {
@@ -87,6 +92,24 @@ const entriesAbove = (
   version: string,
 ): ManifestVersionV2[] =>
   entries.filter(entry => isVersionBelow(version, entry.version));
+
+// Absent or 'auto' downloads on the next check. Anything else is opt-in —
+// including adoption values from a future manifest schema this build does not
+// know: never auto-download what we do not understand.
+const isOptIn = (entry: ManifestVersionV2): boolean =>
+  entry.adoption != null && entry.adoption !== 'auto';
+
+// Splits the pending versions at the first opt-in entry: everything below it
+// still flows automatically; the boundary and everything above only move with
+// the learner's explicit consent (acceptCourseOffer).
+const splitAtOptIn = (
+  pending: ManifestVersionV2[],
+): { auto: ManifestVersionV2[]; boundary: ManifestVersionV2 | null } => {
+  const index = pending.findIndex(isOptIn);
+  return index === -1
+    ? { auto: pending, boundary: null }
+    : { auto: pending.slice(0, index), boundary: pending[index] };
+};
 
 const mapLimit = async <T, R>(
   items: T[],
@@ -532,44 +555,189 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
       bootstrap,
     );
 
-    // Compatibility gate — before any content fetch or commit. An app that is
-    // below the server's floor, cannot speak the target schema, or does not
-    // satisfy the target version's own minAppVersion must not download.
-    const targetEntry = bootstrap.course.pendingVersions.find(
-      entry => entry.version === latest,
-    );
-    const incompatible =
+    // Hard floor first: an app below the server's minimum or unable to speak
+    // the schema must not download anything at all.
+    if (
       isVersionBelow(APP_VERSION, app.minSupportedAppVersion) ||
-      bootstrap.course.schemaVersion > COURSE_SCHEMA_VERSION ||
-      (targetEntry != null &&
-        isVersionBelow(APP_VERSION, targetEntry.minAppVersion));
-    if (incompatible) {
+      bootstrap.course.schemaVersion > COURSE_SCHEMA_VERSION
+    ) {
       log.warn(
         `app ${APP_VERSION} cannot take course ${latest} (min app ${app.minSupportedAppVersion}, schema ${bootstrap.course.schemaVersion}) — update required`,
       );
       return { status: 'app-update-required', app };
     }
 
+    // Automatic updates stop below the first opt-in version: a fundamentally
+    // new course is offered, never imposed. Fresh installs (mode 'full') have
+    // nothing to lose and simply take the latest.
+    const { auto, boundary } =
+      bootstrap.course.mode === 'full'
+        ? { auto: bootstrap.course.pendingVersions, boundary: null }
+        : splitAtOptIn(
+            entriesAbove(bootstrap.course.pendingVersions, contentVersion),
+          );
+    const autoTarget = auto.at(-1) ?? null;
+    const autoLatest = autoTarget?.version ?? contentVersion;
+    // The auto stretch is gated on its own target, not on the offer's: an app
+    // too old for the new course can still take patches to its current one.
+    if (
+      autoTarget != null &&
+      isVersionBelow(APP_VERSION, autoTarget.minAppVersion)
+    ) {
+      log.warn(
+        `app ${APP_VERSION} is below ${autoLatest}'s minAppVersion ${autoTarget.minAppVersion} — update required`,
+      );
+      return { status: 'app-update-required', app };
+    }
+    const latestEntry = bootstrap.course.pendingVersions.find(
+      entry => entry.version === latest,
+    );
+    const offer: CourseOffer | undefined =
+      boundary != null &&
+      latestEntry != null &&
+      !isVersionBelow(APP_VERSION, latestEntry.minAppVersion)
+        ? {
+            version: latest,
+            ...(boundary.notes !== undefined && { notes: boundary.notes }),
+          }
+        : undefined;
+    if (boundary != null && offer == null) {
+      log.info(
+        `opt-in course ${latest} needs app ${latestEntry?.minAppVersion} — offer withheld`,
+      );
+    }
+    // What the automatic pass is allowed to see: the bootstrap cropped at the
+    // opt-in boundary, so the existing phases need no new plumbing.
+    const autoBootstrap: BootstrapResponseV2 =
+      boundary == null
+        ? bootstrap
+        : {
+            ...bootstrap,
+            course: {
+              ...bootstrap.course,
+              latestVersion: autoLatest,
+              pendingVersions: auto,
+            },
+          };
+
     try {
       let updated = false;
-      if (isVersionBelow(contentVersion, latest)) {
-        await runContentPhase(bootstrap, contentVersion, deps.onProgress);
+      if (isVersionBelow(contentVersion, autoLatest)) {
+        await runContentPhase(autoBootstrap, contentVersion, deps.onProgress);
         updated = true;
       } else {
         log.info(`content already at ${contentVersion} — nothing to download`);
       }
-      if (isVersionBelow(seenVersion, latest)) {
-        await runProgressPhase(deps, bootstrap, seenVersion);
+      if (isVersionBelow(seenVersion, autoLatest)) {
+        await runProgressPhase(deps, autoBootstrap, seenVersion);
         updated = true;
       }
       const status = updated ? 'updated' : 'up-to-date';
-      log.info(`done: ${status} (${elapsed()}ms)`);
-      return { status, app };
+      log.info(
+        `done: ${status} (${elapsed()}ms)${
+          offer != null ? ` — offering ${offer.version}` : ''
+        }`,
+      );
+      return { status, app, ...(offer != null && { offer }) };
     } catch (error) {
       // Nothing was committed on a failed content phase; the next run
       // recomputes from the unchanged cursors.
       log.error(
         `failed after ${elapsed()}ms — nothing committed, cursors unchanged`,
+        error instanceof Error ? error.message : error,
+      );
+      return { status: 'failed', app };
+    }
+  })().finally(() => {
+    running = null;
+  });
+  return running;
+};
+
+// The learner said yes to a fundamentally new course: download it all the way
+// to the latest version and start their course progress over. The wipe is the
+// deal they accepted — it replaces the per-instruction progress phase, so no
+// prompt is queued. Progress on practice topics, saved items and the streak
+// is not course content and stays.
+export const acceptCourseOffer = (deps: UpdaterDeps): Promise<UpdateResult> => {
+  if (running != null) {
+    return running;
+  }
+  running = (async (): Promise<UpdateResult> => {
+    if (!isServerConfigured) {
+      return { status: 'up-to-date' };
+    }
+    const elapsed = log.time();
+    await courseStore.hydrate();
+    const contentVersion = courseStore.getSnapshot().deliveryVersion;
+
+    let bootstrapBody: string;
+    try {
+      bootstrapBody = await fetchBootstrapRaw(
+        courseStore.activeCourseId(),
+        contentVersion,
+        APP_VERSION,
+      );
+    } catch {
+      log.warn(`offer accept: bootstrap unreachable (${elapsed()}ms)`);
+      return { status: 'offline' };
+    }
+    let bootstrap: BootstrapResponseV2;
+    try {
+      const check = validateBootstrapResponseV2(JSON.parse(bootstrapBody));
+      if (!check.ok) {
+        throw new Error(check.errors[0]);
+      }
+      bootstrap = check.value;
+    } catch (error) {
+      log.error(
+        'offer accept: bootstrap payload failed validation',
+        error instanceof Error ? error.message : error,
+      );
+      return { status: 'failed' };
+    }
+    const app = bootstrap.app;
+    const latest = bootstrap.course.latestVersion;
+    const latestEntry = bootstrap.course.pendingVersions.find(
+      entry => entry.version === latest,
+    );
+    if (
+      isVersionBelow(APP_VERSION, app.minSupportedAppVersion) ||
+      bootstrap.course.schemaVersion > COURSE_SCHEMA_VERSION ||
+      (latestEntry != null &&
+        isVersionBelow(APP_VERSION, latestEntry.minAppVersion))
+    ) {
+      log.warn(`offer accept: app ${APP_VERSION} cannot take ${latest}`);
+      return { status: 'app-update-required', app };
+    }
+    if (!isVersionBelow(contentVersion, latest)) {
+      log.info(`offer accept: already at ${contentVersion}`);
+      return { status: 'up-to-date', app };
+    }
+
+    // The scope to wipe is whatever the OLD course tracked — captured before
+    // the commit swaps the bundle out from under us.
+    const oldBundle = courseStore.getSnapshot().bundle;
+    const oldLessonIds = oldBundle.modules.flatMap(module =>
+      module.lessons.map(lesson => lesson.lessonId),
+    );
+    const oldModuleIds = oldBundle.modules.map(module => module.moduleId);
+
+    try {
+      await runContentPhase(bootstrap, contentVersion, deps.onProgress);
+      deps.resetLessons(oldLessonIds);
+      deps.resetTopics(oldModuleIds);
+      await AsyncStorage.setItem(seenKey(deps.userId), latest);
+      log.info(
+        `offer accepted: ${contentVersion} → ${latest} with a fresh start (${elapsed()}ms)`,
+        { wipedLessons: oldLessonIds.length, wipedTopics: oldModuleIds.length },
+      );
+      return { status: 'updated', app };
+    } catch (error) {
+      // Nothing committed, nothing wiped — the offer stands and can be
+      // accepted again.
+      log.error(
+        `offer accept failed after ${elapsed()}ms — nothing committed`,
         error instanceof Error ? error.message : error,
       );
       return { status: 'failed', app };

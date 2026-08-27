@@ -24,7 +24,7 @@ const assetById = new Map(bundle.assets.map(a => [a.assetId, a]));
 
 describe('seed course content (ca-class-c schema v2)', () => {
   it('has the expected top-level counts', () => {
-    expect(SEED_DELIVERY_VERSION).toBe('3.2.7');
+    expect(SEED_DELIVERY_VERSION).toBe('3.2.8');
     expect(bundle.course.courseId).toBe('ca-class-c');
     expect(bundle.modules).toHaveLength(8);
     expect(lessons).toHaveLength(32);
@@ -34,7 +34,7 @@ describe('seed course content (ca-class-c schema v2)', () => {
   });
 
   it('keeps source-review metadata without authorizing publication', () => {
-    expect(bundle.course.sourceVersionLabel).toBe('CA-2026.08.24-r01');
+    expect(bundle.course.sourceVersionLabel).toBe('CA-2026.08.24-r02');
     expect(bundle.course.sourceReviewStatus).toBe(
       'draft_generated_human_review_required',
     );
@@ -151,11 +151,11 @@ describe('seed course content (ca-class-c schema v2)', () => {
     }
   });
 
-  it('gives every lesson one or two well-formed check-yourself recall cards', () => {
+  it('gives every lesson one to three well-formed check-yourself recall cards', () => {
     for (const lesson of lessons) {
       const recalls = lesson.blocks.filter(isCheckYourselfBlock);
       expect(recalls.length).toBeGreaterThanOrEqual(1);
-      expect(recalls.length).toBeLessThanOrEqual(2);
+      expect(recalls.length).toBeLessThanOrEqual(3);
       for (const block of recalls) {
         expect(block.title.length).toBeGreaterThan(0);
         expect(block.context).toMatch(/^Recall · /);
@@ -181,11 +181,12 @@ describe('seed course content (ca-class-c schema v2)', () => {
     }
   });
 
-  it('gives every question exactly 3 choices with valid answer + feedback', () => {
+  it('gives every question 3 to 5 choices with valid answer + feedback', () => {
     for (const question of bundle.questions) {
-      expect(question.choices).toHaveLength(3);
+      expect(question.choices.length).toBeGreaterThanOrEqual(3);
+      expect(question.choices.length).toBeLessThanOrEqual(5);
       const ids = question.choices.map(choice => choice.id);
-      expect(new Set(ids).size).toBe(3);
+      expect(new Set(ids).size).toBe(question.choices.length);
       expect(ids).toContain(question.correctAnswerId);
       for (const choice of question.choices) {
         expect(choice.feedback.length).toBeGreaterThan(0);

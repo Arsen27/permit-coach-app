@@ -183,6 +183,13 @@ export type AnalyticsEventMap = {
   // purchase here, a renewal, a lapse, or a restore on another device.
   plus_status_changed: { active: boolean };
 
+  // -------------------------------------------------------------- app releases
+  // The once-a-day new-version check found a newer build in the store and
+  // showed the system alert. `accepted` = the learner tapped Update and was
+  // handed to the store listing (not that the update was installed).
+  app_update_prompted: { latest_version: string };
+  app_update_prompt_answered: { latest_version: string; accepted: boolean };
+
   // ------------------------------------------------------------------- settings
   // Switching state wipes the old course's progress, so this is the one
   // destructive setting in the app.

@@ -14,8 +14,8 @@ import {
 } from '@/data/course/v2/wire';
 import { defaultTheme } from '@/theme';
 
-// The check-yourself recall card (lesson-card handoff screens 17/24): the
-// rule's key words hide behind pills until the host reveals them.
+// The check-yourself recall card (lesson-card handoff screens 19/24): the
+// rule's key words are blurred out until the host reveals them.
 
 const RULE =
   'You may cross a solid yellow line to turn into a [[driveway]] — but never to [[pass]] another car.';
@@ -146,27 +146,48 @@ describe('check_yourself card rendering', () => {
     });
   });
 
-  it('hides the gap words behind pills until revealed', async () => {
+  // The cover hiding each gap word (jest runs the no-glass fallback: an
+  // opaque pill whose animated opacity says which state the gap shows).
+  // Host views only — findAll also returns the styled/Animated composites
+  // wrapping each host view, which would over-count the layers.
+  const covers = (tree: Renderer) =>
+    tree.root.findAll(
+      node =>
+        String(node.type) === 'View' && node.props.testID === 'recall-cover',
+    );
+
+  const opacityOf = (node: {
+    props: { style?: unknown };
+  }): number | undefined => {
+    const opacity = [node.props.style]
+      .flat(Infinity)
+      .map(style => (style as { opacity?: unknown } | null)?.opacity)
+      .find(value => value != null);
+    return typeof opacity === 'number'
+      ? opacity
+      : (opacity as { __getValue: () => number } | undefined)?.__getValue();
+  };
+
+  it('covers the gap words until revealed', async () => {
     const tree = await render(false);
     const texts = textsOf(tree);
     expect(texts).toContain('Check yourself');
     expect(texts).toContain('Can you finish the rule?');
     expect(texts).toContain('Recall · Yellow lines');
-    expect(texts).toContain('Say the missing words out loud, then reveal.');
-    // The words are in the layout (so revealing never reflows the sentence)
-    // but drawn with transparent ink.
+    expect(texts).toContain(
+      'The words are there — can you read them from memory?',
+    );
+    // The word is always mounted beneath the cover (so revealing never
+    // reflows the sentence), flanked by its two blur-ghost copies.
     const driveway = tree.root.findAll(
       node =>
         String(node.type) === 'Text' &&
         node.children.length === 1 &&
         node.children[0] === 'driveway',
     );
-    expect(driveway.length).toBe(1);
-    expect(
-      [driveway[0].props.style]
-        .flat(Infinity)
-        .some(style => style != null && style.color === 'transparent'),
-    ).toBe(true);
+    expect(driveway.length).toBe(3);
+    // Hidden: one fully visible cover per gap.
+    expect(covers(tree).map(opacityOf)).toEqual([1, 1]);
   });
 
   it('shows the words and the self-check helper once revealed', async () => {
@@ -175,17 +196,20 @@ describe('check_yourself card rendering', () => {
     expect(texts).toContain(
       'Just a self-check — either answer moves you forward.',
     );
+    // Revealed: the covers are faded out and the word carries the pill.
+    expect(covers(tree).map(opacityOf)).toEqual([0, 0]);
     const pass = tree.root.findAll(
       node =>
         String(node.type) === 'Text' &&
         node.children.length === 1 &&
         node.children[0] === 'pass',
     );
-    expect(pass.length).toBe(1);
     expect(
-      [pass[0].props.style]
-        .flat(Infinity)
-        .some(style => style != null && style.color === '#ffffff'),
+      pass.some(node =>
+        [node.props.style]
+          .flat(Infinity)
+          .some(style => style != null && style.color === '#ffffff'),
+      ),
     ).toBe(true);
   });
 });

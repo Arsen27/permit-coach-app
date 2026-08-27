@@ -179,6 +179,22 @@ Capabilities** → вибрати **Team**. Для симулятора підп
 
    Про випуск нових версій курсу — `docs/course-integration/server-versioning.md`.
 
+8. **Ендпоінт версії додатку** (`GET /v1/app-release?platform=ios|android`) —
+   його читає модалка «є нова версія» (`src/lib/appUpdate.ts`). Відповідь:
+
+   ```json
+   { "latestVersion": "1.3.0", "storeUrl": "https://apps.apple.com/app/id..." }
+   ```
+
+   `latestVersion` — рівно `major.minor.patch` (те, що лежить у сторі);
+   `storeUrl` — посилання на лістинг для цієї платформи, **обов'язково
+   `https://`** (додаток відкидає будь-яку іншу схему, бо URL іде прямо в
+   `Linking.openURL`). Додаток порівнює це з версією, вшитою в білд
+   (`CFBundleShortVersionString` / `versionName`), і питає сервер не частіше
+   ніж раз на добу. Поки ендпоінта немає — 404 просто нічого не показує.
+   Значення тримати в env (`IOS_LATEST_VERSION`, `IOS_STORE_URL`, …), щоб
+   релізити без деплою коду.
+
 ## Крок 7. Наскрізна перевірка
 
 1. **Анонім + sync**: чиста установка → пройти урок → у Supabase

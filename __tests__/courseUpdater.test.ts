@@ -9,7 +9,11 @@ import {
 } from '@/data/course/client';
 import { loadPrompt } from '@/data/course/promptStore';
 import { courseStore } from '@/data/course/store';
-import { foldLessonIntoModule, runCourseUpdate } from '@/data/course/updater';
+import {
+  acceptCourseOffer,
+  foldLessonIntoModule,
+  runCourseUpdate,
+} from '@/data/course/updater';
 import type {
   BootstrapResponseV2,
   CourseDocV2,
@@ -705,5 +709,133 @@ describe('foldLessonIntoModule (v2)', () => {
         assets: [],
       }),
     ).toThrow(/dangling question reference/);
+  });
+});
+
+describe('opt-in course offers (v2)', () => {
+  const optInEntry = (fixture: Fixture, notes: string): ManifestVersionV2 => ({
+    ...fixture.entry([{ op: 'full', severity: 'soft' }]),
+    adoption: 'opt_in',
+    notes,
+  });
+
+  it('stops automatic updates below the opt-in boundary and surfaces the offer', async () => {
+    const auto = buildFixture(NEXT_VERSION);
+    const offered = buildFixture(LATER_VERSION);
+    serveFixture(auto);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: LATER_VERSION,
+        mode: 'delta',
+        pendingVersions: [
+          auto.entry([{ op: 'full', severity: 'soft' }]),
+          optInEntry(offered, 'A rebuilt course'),
+        ],
+      }),
+    );
+
+    const result = await runCourseUpdate(deps());
+
+    // The automatic stretch still landed…
+    expect(result.status).toBe('updated');
+    expect(courseStore.getSnapshot().deliveryVersion).toBe(NEXT_VERSION);
+    // …but the opt-in version was only offered, never fetched.
+    expect(result.offer).toEqual({
+      version: LATER_VERSION,
+      notes: 'A rebuilt course',
+    });
+  });
+
+  it('downloads nothing when the opt-in version is the only pending one', async () => {
+    const offered = buildFixture(LATER_VERSION);
+    serveFixture(offered);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: LATER_VERSION,
+        mode: 'delta',
+        pendingVersions: [optInEntry(offered, 'A rebuilt course')],
+      }),
+    );
+
+    const result = await runCourseUpdate(deps());
+
+    expect(result.status).toBe('up-to-date');
+    expect(result.offer?.version).toBe(LATER_VERSION);
+    expect(mockCourse).not.toHaveBeenCalled();
+    expect(courseStore.getSnapshot().deliveryVersion).toBe(
+      SEED_DELIVERY_VERSION,
+    );
+  });
+
+  it('withholds the offer from an app below the new course minAppVersion', async () => {
+    const offered = buildFixture(LATER_VERSION);
+    serveFixture(offered);
+    const entry = { ...optInEntry(offered, 'notes'), minAppVersion: '9.9.9' };
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: LATER_VERSION,
+        mode: 'delta',
+        pendingVersions: [entry],
+      }),
+    );
+
+    const result = await runCourseUpdate(deps());
+
+    expect(result.status).toBe('up-to-date');
+    expect(result.offer).toBeUndefined();
+  });
+
+  it('accepting downloads the new course and starts progress fresh', async () => {
+    const offered = buildFixture(LATER_VERSION);
+    serveFixture(offered);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: LATER_VERSION,
+        mode: 'delta',
+        pendingVersions: [optInEntry(offered, 'A rebuilt course')],
+      }),
+    );
+    const oldBundle = courseStore.getSnapshot().bundle;
+    const oldLessonIds = oldBundle.modules.flatMap(module =>
+      module.lessons.map(lesson => lesson.lessonId),
+    );
+    const oldModuleIds = oldBundle.modules.map(module => module.moduleId);
+
+    const d = deps();
+    const result = await acceptCourseOffer(d);
+
+    expect(result.status).toBe('updated');
+    expect(courseStore.getSnapshot().deliveryVersion).toBe(LATER_VERSION);
+    // The fresh start wipes exactly what the OLD course tracked.
+    expect(d.resetLessons).toHaveBeenCalledWith(oldLessonIds);
+    expect(d.resetTopics).toHaveBeenCalledWith(oldModuleIds);
+    // The seen cursor lands on the accepted version: no stray prompts later.
+    expect(await AsyncStorage.getItem('dmv-prep/course-seen/v2/u1')).toBe(
+      LATER_VERSION,
+    );
+    expect(await loadPrompt('u1')).toBeNull();
+  });
+
+  it('a failed accept commits nothing and wipes nothing', async () => {
+    const offered = buildFixture(LATER_VERSION);
+    serveFixture(offered);
+    mockCourse.mockRejectedValue(new Error('network died mid-download'));
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: LATER_VERSION,
+        mode: 'delta',
+        pendingVersions: [optInEntry(offered, 'A rebuilt course')],
+      }),
+    );
+
+    const d = deps();
+    const result = await acceptCourseOffer(d);
+
+    expect(result.status).toBe('failed');
+    expect(courseStore.getSnapshot().deliveryVersion).toBe(
+      SEED_DELIVERY_VERSION,
+    );
+    expect(d.resetLessons).not.toHaveBeenCalled();
+    expect(d.resetTopics).not.toHaveBeenCalled();
   });
 });

@@ -9,8 +9,14 @@ import { Platform } from 'react-native';
 // stays on AppState) so re-introducing alternatives is a data change.
 export type AccentId = 'emerald';
 
+// The brand green. It is the emerald accent, but it is named separately on
+// purpose: success signals ("this answer is correct", "lesson done") must stay
+// green even if the accent picker ever comes back with a non-green option —
+// and when they are green they have to be *this* green, never a nearby one.
+export const BRAND_GREEN = '#059669';
+
 export const ACCENT_OPTIONS: { id: AccentId; hex: string }[] = [
-  { id: 'emerald', hex: '#059669' },
+  { id: 'emerald', hex: BRAND_GREEN },
 ];
 
 export const DEFAULT_ACCENT_ID: AccentId = ACCENT_OPTIONS[0].id;
@@ -145,7 +151,7 @@ const makeColors = (accent: string) => {
   // the screen holds a single green family.
   const hue = hexHue(accent);
   const accentIsGreen = hue >= 80 && hue <= 180;
-  const done = accentIsGreen ? accent : '#22C55E';
+  const done = accentIsGreen ? accent : BRAND_GREEN;
 
   return {
     accent,
@@ -163,7 +169,7 @@ const makeColors = (accent: string) => {
     dim2: '#C5C5C6',
 
     done,
-    doneText: accentIsGreen ? accent : '#1CA24D',
+    doneText: accentIsGreen ? accent : BRAND_GREEN,
     doneSoft: rgba(done, 0.14),
     doneLine: rgba(done, 0.45),
     warning: '#F59E0B',
@@ -177,9 +183,13 @@ const makeColors = (accent: string) => {
     // Answer feedback is deliberately NOT themed: correct and incorrect must
     // read identically whatever accent the user picked, and each always pairs
     // its colour with an icon and a word (lesson-card handoff).
-    correct: '#16A34A',
-    correctText: '#15803D',
-    correctSoft: 'rgba(34, 197, 94, 0.07)',
+    //
+    // The correct side is pinned to the brand green so the tick, the option
+    // border/fill and the "Correct" verdict are the exact same green the rest
+    // of the app uses for success — no second, nearly-identical green.
+    correct: BRAND_GREEN,
+    correctText: BRAND_GREEN,
+    correctSoft: rgba(BRAND_GREEN, 0.07),
     wrong: '#DC2626',
     wrongLine: '#EF4444',
     wrongText: '#B91C1C',

@@ -10,70 +10,18 @@ import Svg, {
 } from 'react-native-svg';
 import styled from 'styled-components/native';
 
+import { SignArtSpec, SignSymbol } from '@/data/signs/wire';
 import { signColors } from '@/theme';
 
-// Stylised MUTCD sign renderings driven by the `art` specs in signs.json.
+// Stylised MUTCD sign renderings driven by the `art` specs in the signs
+// catalogue.
 // Geometric approximations, like the CSS signs in the design reference — swap
 // for licensed artwork if the product ships it. Colours are fixed semantics.
 
-export type SignSymbol =
-  | 'curveLeft'
-  | 'curveRight'
-  | 'winding'
-  | 'crossroad'
-  | 'sideRoad'
-  | 'tIntersection'
-  | 'merge'
-  | 'laneEnds'
-  | 'divided'
-  | 'twoWay'
-  | 'signal'
-  | 'stopAhead'
-  | 'yieldAhead'
-  | 'pedestrian'
-  | 'bicycle'
-  | 'deer'
-  | 'slippery'
-  | 'hill'
-  | 'bump'
-  | 'dip'
-  | 'narrowBridge'
-  | 'softShoulder'
-  | 'uturn'
-  | 'turnLeft'
-  | 'turnRight'
-  | 'arrowUp'
-  | 'arrowLeft'
-  | 'arrowRight'
-  | 'truck'
-  | 'workers'
-  | 'flagger'
-  | 'gas'
-  | 'fork'
-  | 'roundabout';
-
-export type SignArtSpec =
-  | { kind: 'octagon'; label: string }
-  | { kind: 'yield' }
-  | { kind: 'doNotEnter' }
-  | {
-      kind: 'whiteRect';
-      lines?: string[];
-      big?: string;
-      symbol?: SignSymbol;
-      slash?: boolean;
-    }
-  | { kind: 'redRing'; symbol: SignSymbol }
-  | { kind: 'yellowDiamond'; symbol?: SignSymbol; label?: string }
-  | { kind: 'orangeDiamond'; symbol?: SignSymbol; label?: string }
-  | { kind: 'orangeRect'; lines: string[] }
-  | { kind: 'blueRect'; label: string; big?: string }
-  | { kind: 'greenRect'; lines: string[] }
-  | { kind: 'greenExit'; lines: string[] }
-  | { kind: 'shield'; label: string }
-  | { kind: 'pentagon'; symbol: 'pedestrian' }
-  | { kind: 'yellowCircle'; label: string }
-  | { kind: 'pennant'; label: string };
+// The art vocabulary is part of the signs wire contract, not of this
+// renderer: the admin panel builds its pickers from the same lists, and
+// `validateSignsDoc` rejects a spec this switch could not draw.
+export type { SignArtSpec, SignSymbol } from '@/data/signs/wire';
 
 type StrokeSymbol = {
   d: string;

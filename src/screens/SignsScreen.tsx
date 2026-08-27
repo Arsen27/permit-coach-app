@@ -11,30 +11,42 @@ import ScreenHeader from '@/components/ScreenHeader';
 import { Group, Row, RowTile } from '@/components/rows';
 import { Eyebrow } from '@/components/typography';
 import { signCategories, signsByCategory } from '@/data/signs';
+import { SignCategoryGlyph } from '@/data/signs/wire';
 import { RootNavigation } from '@/navigation/types';
-import { rgba, shadows, signColors } from '@/theme';
+import { rgba, shadows } from '@/theme';
 
 // Miniature sign silhouettes for the category rows, mirroring the reference's
-// CSS glyphs.
-const CategoryGlyph: React.FC<{ categoryId: string }> = ({ categoryId }) => {
-  switch (categoryId) {
-    case 'regulatory':
+// CSS glyphs. Both the shape and the colour come from the category record, so
+// adding a category is a content change rather than a code change here.
+const CategoryGlyph: React.FC<{ glyph: SignCategoryGlyph; color: string }> = ({
+  glyph,
+  color,
+}) => {
+  switch (glyph) {
+    case 'octagon':
       return (
         <Svg width={22} height={22} viewBox="0 0 100 100">
           <Polygon
             points="30,0 70,0 100,30 100,70 70,100 30,100 0,70 0,30"
-            fill={signColors.regulatory}
+            fill={color}
           />
         </Svg>
       );
-    case 'warning':
-      return <Diamond style={{ backgroundColor: signColors.warning }} />;
-    case 'guide':
-      return <TallRect />;
-    case 'highway':
-      return <WideRect />;
+    case 'tallRect':
+      return <TallRect style={{ backgroundColor: color }} />;
+    case 'wideRect':
+      return <WideRect style={{ backgroundColor: color }} />;
+    case 'pennant':
+      return (
+        <Svg width={22} height={22} viewBox="0 0 100 100">
+          <Polygon points="2,18 98,50 2,82" fill={color} />
+        </Svg>
+      );
+    case 'circle':
+      return <Circle style={{ backgroundColor: color }} />;
+    case 'diamond':
     default:
-      return <Diamond style={{ backgroundColor: signColors.workzone }} />;
+      return <Diamond style={{ backgroundColor: color }} />;
   }
 };
 
@@ -85,14 +97,11 @@ const SignsScreen: React.FC = () => {
               style={{ gap: 14, paddingVertical: 15 }}
             >
               <RowTile
-                $bg={rgba(
-                  categoryColorHex(category.id),
-                  category.id === 'warning' ? 0.14 : 0.09,
-                )}
+                $bg={rgba(category.color, tintOpacity(category.color))}
                 $size={42}
                 $radius={12}
               >
-                <CategoryGlyph categoryId={category.id} />
+                <CategoryGlyph glyph={category.glyph} color={category.color} />
               </RowTile>
               <View style={{ flex: 1 }}>
                 <CategoryTitle>{category.name}</CategoryTitle>
@@ -110,19 +119,16 @@ const SignsScreen: React.FC = () => {
   );
 };
 
-const categoryColorHex = (categoryId: string): string => {
-  switch (categoryId) {
-    case 'regulatory':
-      return signColors.regulatory;
-    case 'warning':
-      return signColors.warning;
-    case 'guide':
-      return signColors.guide;
-    case 'highway':
-      return signColors.highway;
-    default:
-      return signColors.workzone;
-  }
+// Pale tints read weaker against a light tile, so a bright category gets a
+// touch more of it. Derived from the colour itself rather than a per-category
+// exception, which would need editing every time a category is added.
+const tintOpacity = (hex: string): number => {
+  const value = hex.replace('#', '');
+  const r = parseInt(value.slice(0, 2), 16);
+  const g = parseInt(value.slice(2, 4), 16);
+  const b = parseInt(value.slice(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.6 ? 0.14 : 0.09;
 };
 
 const Screen = styled.ScrollView`
@@ -202,14 +208,18 @@ const TallRect = styled.View`
   width: 18px;
   height: 22px;
   border-radius: 4px;
-  background-color: ${signColors.guide};
 `;
 
 const WideRect = styled.View`
   width: 22px;
   height: 16px;
   border-radius: 3px;
-  background-color: ${signColors.highway};
+`;
+
+const Circle = styled.View`
+  width: 21px;
+  height: 21px;
+  border-radius: 11px;
 `;
 
 export default SignsScreen;

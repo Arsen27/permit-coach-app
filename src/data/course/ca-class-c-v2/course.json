@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "deliveryVersion": "3.2.7",
+  "deliveryVersion": "3.2.8",
   "course": {
     "courseId": "ca-class-c",
     "title": "California Knowledge Test Course",
@@ -19,8 +19,8 @@
       "ca-driver-and-vehicle",
       "ca-pass-the-test"
     ],
-    "sourceVersionLabel": "CA-2026.08.24-r01",
-    "sourceContentHash": "7b70fb880e264dbf2b5786377e90ceb6218dc7254e6f0186833d546d7d12b9b0",
+    "sourceVersionLabel": "CA-2026.08.24-r02",
+    "sourceContentHash": "6c85517a65c5656cb71d4558a9bd1b259f9ddda63290a02ff5e788e651ae4e2d",
     "sourceCheckedAt": "2026-08-24",
     "sourceReviewStatus": "draft_generated_human_review_required",
     "publicationAuthorized": false
