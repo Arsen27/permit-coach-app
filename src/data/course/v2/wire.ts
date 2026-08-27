@@ -315,14 +315,55 @@ export const blockElements = (block: LessonBlockV2): LessonElementV2[] => {
 
 // The flattened copies an element list must be written back as, so the legacy
 // fields never disagree with the authored content.
+// Blank lines are an editing artefact, never content: they are dropped here so
+// the legacy fields, the renderers and the diff all agree on what a body says.
+const isBlank = (text: string): boolean => text.trim().length === 0;
+
 export const elementsToMarkdown = (elements: LessonElementV2[]): string =>
   elements
     .filter(isParagraphElement)
     .map(element => element.text)
+    .filter(text => !isBlank(text))
     .join('\n\n');
 
 export const elementsToBullets = (elements: LessonElementV2[]): string[] =>
-  elements.filter(isBulletsElement).flatMap(element => element.items);
+  elements
+    .filter(isBulletsElement)
+    .flatMap(element => element.items)
+    .filter(item => !isBlank(item));
+
+// The body with every blank line taken out, which is what a renderer draws and
+// what an authoring tool should store once the author stops typing. Returns the
+// same array when there was nothing to drop, so callers can skip a rewrite.
+export const withoutBlankElements = (
+  elements: LessonElementV2[],
+): LessonElementV2[] => {
+  const kept: LessonElementV2[] = [];
+  for (const element of elements) {
+    if (isParagraphElement(element)) {
+      if (!isBlank(element.text)) {
+        kept.push(element);
+      }
+      continue;
+    }
+    if (isBulletsElement(element)) {
+      const items = element.items.filter(item => !isBlank(item));
+      if (items.length > 0) {
+        kept.push(
+          items.length === element.items.length
+            ? element
+            : { ...element, items },
+        );
+      }
+      continue;
+    }
+    kept.push(element);
+  }
+  return kept.length === elements.length &&
+    kept.every((element, index) => element === elements[index])
+    ? elements
+    : kept;
+};
 
 // Artwork a block pulls in on its own: an `image` block's asset plus every
 // inline image element, in reading order.
@@ -905,6 +946,35 @@ const validateCardStyle = (ctx: Ctx, value: unknown): CardStyleV2 | null => {
   };
 };
 
+// A body is edited line by line, so a line may legitimately be empty while it
+// is being written. Renderers skip blank prose rather than drawing a gap, and
+// authoring tools drop it on save; the format only has to tolerate it.
+const looseStr = (
+  ctx: Ctx,
+  obj: Record<string, unknown>,
+  key: string,
+): string => {
+  const value = obj[key];
+  if (typeof value !== 'string') {
+    ctx.errors.push(`${ctx.path}.${key}: expected string`);
+    return '';
+  }
+  return value;
+};
+
+const looseStrArray = (
+  ctx: Ctx,
+  obj: Record<string, unknown>,
+  key: string,
+): string[] => {
+  const value = obj[key];
+  if (!Array.isArray(value) || value.some(item => typeof item !== 'string')) {
+    ctx.errors.push(`${ctx.path}.${key}: expected array of strings`);
+    return [];
+  }
+  return value as string[];
+};
+
 const validateElement = (ctx: Ctx, value: unknown): LessonElementV2 | null => {
   if (!isRecord(value)) {
     ctx.errors.push(`${ctx.path}: expected content element object`);
@@ -913,9 +983,9 @@ const validateElement = (ctx: Ctx, value: unknown): LessonElementV2 | null => {
   const kind = str(ctx, value, 'kind');
   switch (kind) {
     case 'paragraph':
-      return { kind: 'paragraph', text: str(ctx, value, 'text') };
+      return { kind: 'paragraph', text: looseStr(ctx, value, 'text') };
     case 'bullets': {
-      const items = strArray(ctx, value, 'items');
+      const items = looseStrArray(ctx, value, 'items');
       if (items.length === 0) {
         ctx.errors.push(`${ctx.path}.items: expected at least one bullet`);
       }

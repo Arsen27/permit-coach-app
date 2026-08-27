@@ -3,6 +3,7 @@ import type {
   CourseAssetV2,
   LessonBlockV2,
   LessonDocV2,
+  LessonElementV2,
 } from '@/data/course/v2/wire';
 import {
   blockAssetIds,
@@ -12,6 +13,7 @@ import {
   elementsToMarkdown,
   validateCourseDocV2,
   validateLessonDocV2,
+  withoutBlankElements,
 } from '@/data/course/v2/wire';
 import {
   CARD_META,
@@ -119,6 +121,57 @@ describe('slide bodies as element lists', () => {
 
     expect(elementsToMarkdown(elements)).toBe('A.\n\nB.');
     expect(elementsToBullets(elements)).toEqual(['x', 'y']);
+  });
+
+  // A line is edited one at a time, so a blank one is an ordinary state to be
+  // in halfway through writing. It is tolerated, never drawn, and never
+  // reaches the legacy mirror.
+  it('tolerates a line left blank while it is being written', () => {
+    const result = validateLessonDocV2(
+      lessonDoc([
+        textBlock({
+          content: [
+            { kind: 'paragraph', text: 'Kept.' },
+            { kind: 'paragraph', text: '' },
+            { kind: 'bullets', items: ['x', ''] },
+          ],
+        }),
+      ]),
+    );
+
+    expect(result.errors).toEqual([]);
+  });
+
+  it('leaves a blank line out of the flattened copy', () => {
+    const elements = blockElements(
+      textBlock({
+        content: [
+          { kind: 'paragraph', text: 'One.' },
+          { kind: 'paragraph', text: '  ' },
+          { kind: 'bullets', items: ['x', '', ' '] },
+        ],
+      }),
+    );
+
+    expect(elementsToMarkdown(elements)).toBe('One.');
+    expect(elementsToBullets(elements)).toEqual(['x']);
+  });
+
+  it('strips blank lines out of a body, keeping the array when there are none', () => {
+    expect(
+      withoutBlankElements([
+        { kind: 'paragraph', text: 'One.' },
+        { kind: 'paragraph', text: '' },
+        { kind: 'bullets', items: ['x', ' '] },
+        { kind: 'bullets', items: ['  '] },
+      ]),
+    ).toEqual([
+      { kind: 'paragraph', text: 'One.' },
+      { kind: 'bullets', items: ['x'] },
+    ]);
+
+    const clean: LessonElementV2[] = [{ kind: 'paragraph', text: 'One.' }];
+    expect(withoutBlankElements(clean)).toBe(clean);
   });
 
   it('keeps an element kind it does not know instead of dropping it', () => {

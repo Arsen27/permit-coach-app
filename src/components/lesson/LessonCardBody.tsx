@@ -337,12 +337,16 @@ const TeachingCopy: React.FC<{
   <>
     {elements.map((element, index) => {
       if (isParagraphElement(element)) {
-        return <Body key={index}>{element.text}</Body>;
+        // A line left blank while authoring is not a paragraph break.
+        return element.text.trim().length === 0 ? null : (
+          <Body key={index}>{element.text}</Body>
+        );
       }
       if (isBulletsElement(element)) {
-        return (
+        const items = element.items.filter(item => item.trim().length > 0);
+        return items.length === 0 ? null : (
           <BulletList key={index}>
-            {element.items.map((bullet, bulletIndex) => (
+            {items.map((bullet, bulletIndex) => (
               <BulletRow key={bulletIndex}>
                 <BulletMark>•</BulletMark>
                 <BulletText>{bullet}</BulletText>

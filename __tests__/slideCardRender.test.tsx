@@ -141,6 +141,26 @@ describe('a slide body drawn from its elements', () => {
     expect(texts).toContain('A bullet');
   });
 
+  it('draws nothing for a line left blank', () => {
+    const tree = render({
+      blockId: 'l-01-b01',
+      type: 'core_rule',
+      title: 'Stop at the line',
+      bodyMarkdown: 'One.',
+      content: [
+        { kind: 'paragraph', text: 'One.' },
+        { kind: 'paragraph', text: '   ' },
+        { kind: 'bullets', items: ['Kept', ''] },
+      ],
+    } as LessonBlockV2);
+
+    const texts = textsOf(tree);
+    expect(texts).toContain('One.');
+    expect(texts).toContain('Kept');
+    // No empty paragraph and no empty bullet left a gap behind.
+    expect(texts.filter(value => value.trim().length === 0)).toEqual([]);
+  });
+
   it('skips an element kind it does not know without losing the card', () => {
     const tree = render({
       blockId: 'l-01-b01',
