@@ -43,6 +43,71 @@ export type CourseAssetV2 = {
   svgXml: string;
 };
 
+// ---------------------------------------------------------------------------
+// Slide content elements
+//
+// A teaching card's body is an ordered list of elements, so artwork can sit
+// anywhere inside the prose instead of only ahead of the card. Blocks authored
+// before this existed carry `bodyMarkdown` + `bullets` and no `content`;
+// `blockElements()` presents both shapes as one list, and that is what every
+// renderer reads. Authoring tools keep `bodyMarkdown` a true copy of the prose
+// even when `content` is present, so an older app build still shows the text.
+
+export type ParagraphElementV2 = { kind: 'paragraph'; text: string };
+
+export type BulletsElementV2 = { kind: 'bullets'; items: string[] };
+
+export type ImageElementV2 = { kind: 'image'; assetId: string };
+
+export type KnownLessonElementV2 =
+  | ParagraphElementV2
+  | BulletsElementV2
+  | ImageElementV2;
+
+// Forward compatibility, on the same contract as unknown blocks: preserved
+// verbatim, skipped by renderers that do not know the kind.
+export type UnknownLessonElementV2 = { kind: string };
+
+export type LessonElementV2 = KnownLessonElementV2 | UnknownLessonElementV2;
+
+export const isParagraphElement = (
+  element: LessonElementV2,
+): element is ParagraphElementV2 => element.kind === 'paragraph';
+
+export const isBulletsElement = (
+  element: LessonElementV2,
+): element is BulletsElementV2 => element.kind === 'bullets';
+
+export const isImageElement = (
+  element: LessonElementV2,
+): element is ImageElementV2 => element.kind === 'image';
+
+// ---------------------------------------------------------------------------
+// Slide types (card styles)
+
+export type CardToneV2 = 'accent' | 'muted' | 'trap' | 'california';
+
+// An authored slide type: the kicker a card shows above its title. A style
+// whose id matches a built-in block type overrides that family's default
+// presentation; any other id is a new slide type a block opts into through its
+// own `styleId`. Behaviour always stays with the block family — a style only
+// decides the words, the icon and the colours.
+export type CardStyleV2 = {
+  styleId: string;
+  label: string;
+  // An icon name from the app's icon set. Validated as a plain string here
+  // because this module has no imports; a name this build does not know falls
+  // back to the block family's own icon rather than breaking the card.
+  icon: string;
+  // Explicit colours win over `tone`, which names a built-in palette slot.
+  tone?: CardToneV2;
+  textColor?: string;
+  iconColor?: string;
+};
+
+// ---------------------------------------------------------------------------
+// Lesson blocks
+
 export type QuickChallengeBlockV2 = {
   blockId: string;
   type: 'quick_challenge';
@@ -50,12 +115,14 @@ export type QuickChallengeBlockV2 = {
   scenario: string;
   questionPreview: string;
   questionId: string;
+  styleId?: string;
 };
 
 export type ImageBlockV2 = {
   blockId: string;
   type: 'image';
   assetId: string;
+  styleId?: string;
 };
 
 // core_rule / visual_example / related_rule / state_specific carry an
@@ -73,6 +140,10 @@ export type ConceptBlockV2 = {
   title: string;
   bodyMarkdown: string;
   bullets?: string[];
+  // Ordered body. When present it is what renderers draw, and `bodyMarkdown`
+  // /`bullets` are the flattened copy kept for older builds and the diff.
+  content?: LessonElementV2[];
+  styleId?: string;
   conceptId?: string;
   scope?: 'universal' | 'state_specific';
   checkpointQuestionId?: string;
@@ -84,6 +155,8 @@ export type ProseBlockV2 = {
   title: string;
   bodyMarkdown: string;
   bullets?: string[];
+  content?: LessonElementV2[];
+  styleId?: string;
   conceptId?: string;
   scope?: 'universal' | 'state_specific';
   // Newer state packages hang a lesson checkpoint on a prose block too (the
@@ -97,13 +170,15 @@ export type DriveSmarterBlockV2 = {
   title: string;
   bodyMarkdown: string;
   bullets?: string[];
+  content?: LessonElementV2[];
+  styleId?: string;
   conceptId?: string;
   scope?: 'universal' | 'state_specific';
   optional: true;
 };
 
-// Recall card ("Check yourself"): the rule is shown with its key words hidden
-// behind pills; the learner says them out loud, reveals, and self-reports.
+// Recall card ("Check yourself"): the rule is shown with its key words
+// blurred out; the learner reads them from memory, reveals, and self-reports.
 // Unscored — either self-report advances the deck.
 export type CheckYourselfBlockV2 = {
   blockId: string;
@@ -113,6 +188,7 @@ export type CheckYourselfBlockV2 = {
   context: string;
   // The rule sentence with each hidden word wrapped in [[double brackets]].
   ruleMarkdown: string;
+  styleId?: string;
   conceptId?: string;
   scope?: 'universal' | 'state_specific';
 };
@@ -195,6 +271,70 @@ export const isDriveSmarterBlock = (
 export const isCheckYourselfBlock = (
   block: LessonBlockV2,
 ): block is CheckYourselfBlockV2 => block.type === 'check_yourself';
+
+// ---------------------------------------------------------------------------
+// Reading a block's presentation and body
+
+// The slide type a block asks to be drawn as. A block without an explicit
+// `styleId` falls back to a style named after its own type, which is how an
+// author retitles or recolours a built-in card family for the whole course.
+export const blockStyleId = (block: LessonBlockV2): string => {
+  const styleId = (block as { styleId?: unknown }).styleId;
+  return typeof styleId === 'string' && styleId.length > 0
+    ? styleId
+    : block.type;
+};
+
+export const paragraphsOf = (markdown: string): string[] =>
+  markdown
+    .split(/\n{2,}/)
+    .map(part => part.trim())
+    .filter(part => part.length > 0);
+
+// One reading of a teaching block's body, whichever shape it was authored in:
+// the explicit `content` list, or the paragraphs and bullets of the legacy
+// fields. Renderers only ever call this, so both shapes draw identically.
+export const blockElements = (block: LessonBlockV2): LessonElementV2[] => {
+  const content = (block as { content?: unknown }).content;
+  if (Array.isArray(content) && content.length > 0) {
+    return content as LessonElementV2[];
+  }
+  const elements: LessonElementV2[] = [];
+  const bodyMarkdown = (block as { bodyMarkdown?: unknown }).bodyMarkdown;
+  if (typeof bodyMarkdown === 'string') {
+    for (const text of paragraphsOf(bodyMarkdown)) {
+      elements.push({ kind: 'paragraph', text });
+    }
+  }
+  const bullets = (block as { bullets?: unknown }).bullets;
+  if (Array.isArray(bullets) && bullets.length > 0) {
+    elements.push({ kind: 'bullets', items: bullets as string[] });
+  }
+  return elements;
+};
+
+// The flattened copies an element list must be written back as, so the legacy
+// fields never disagree with the authored content.
+export const elementsToMarkdown = (elements: LessonElementV2[]): string =>
+  elements
+    .filter(isParagraphElement)
+    .map(element => element.text)
+    .join('\n\n');
+
+export const elementsToBullets = (elements: LessonElementV2[]): string[] =>
+  elements.filter(isBulletsElement).flatMap(element => element.items);
+
+// Artwork a block pulls in on its own: an `image` block's asset plus every
+// inline image element, in reading order.
+export const blockAssetIds = (block: LessonBlockV2): string[] => {
+  const ids = isImageBlock(block) ? [block.assetId] : [];
+  for (const element of blockElements(block)) {
+    if (isImageElement(element)) {
+      ids.push(element.assetId);
+    }
+  }
+  return ids;
+};
 
 // ---------------------------------------------------------------------------
 // Check-yourself recall gaps
@@ -295,6 +435,9 @@ export type CourseInfoV2 = {
   language: string;
   targetLicense: string;
   moduleIds: string[];
+  // Authored slide types for this course. Absent means "built-in defaults
+  // only", which is every package shipped before slide types were editable.
+  cardStyles?: CardStyleV2[];
   sourceVersionLabel: string;
   sourceContentHash: string;
   sourceCheckedAt: string;
@@ -389,6 +532,13 @@ export type ManifestVersionV2 = {
   status: string;
   minAppVersion: string;
   notes?: string;
+  // How clients take this version. Absent or 'auto': downloaded on the next
+  // check like any release. 'opt_in': a fundamentally new course — automatic
+  // updates stop below it, and the client offers it instead; accepting
+  // downloads the new course and clears the learner's course progress.
+  // Unknown future values are treated as opt-in (never auto-download what
+  // this build does not understand).
+  adoption?: string;
   sourceVersionLabel: string;
   sourceReviewStatus: string;
   publicationAuthorized: boolean;
@@ -499,6 +649,43 @@ const contentScope = (
     return undefined;
   }
   return value;
+};
+
+const HEX_COLOR_PATTERN = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
+
+const optColor = (
+  ctx: Ctx,
+  obj: Record<string, unknown>,
+  key: string,
+): string | undefined => {
+  const value = obj[key];
+  if (value === undefined) {
+    return undefined;
+  }
+  if (typeof value !== 'string' || !HEX_COLOR_PATTERN.test(value)) {
+    ctx.errors.push(`${ctx.path}.${key}: expected a #rgb or #rrggbb colour`);
+    return undefined;
+  }
+  return value;
+};
+
+const CARD_TONES: readonly string[] = ['accent', 'muted', 'trap', 'california'];
+
+const cardTone = (
+  ctx: Ctx,
+  obj: Record<string, unknown>,
+): CardToneV2 | undefined => {
+  const value = obj.tone;
+  if (value === undefined) {
+    return undefined;
+  }
+  if (typeof value !== 'string' || !CARD_TONES.includes(value)) {
+    ctx.errors.push(
+      `${ctx.path}.tone: expected one of ${CARD_TONES.join(', ')}`,
+    );
+    return undefined;
+  }
+  return value as CardToneV2;
 };
 
 const num = (ctx: Ctx, obj: Record<string, unknown>, key: string): number => {
@@ -621,8 +808,12 @@ const validateQuestion = (
   }
   const choicesRaw = value.choices;
   const choices: CourseChoiceV2[] = [];
-  if (!Array.isArray(choicesRaw) || choicesRaw.length !== 3) {
-    ctx.errors.push(`${ctx.path}.choices: expected exactly 3 choices`);
+  if (
+    !Array.isArray(choicesRaw) ||
+    choicesRaw.length < 3 ||
+    choicesRaw.length > 5
+  ) {
+    ctx.errors.push(`${ctx.path}.choices: expected 3 to 5 choices`);
   } else {
     choicesRaw.forEach((choice, index) => {
       const parsed = validateChoice(
@@ -695,6 +886,125 @@ const validateAsset = (ctx: Ctx, value: unknown): CourseAssetV2 | null => {
   };
 };
 
+const validateCardStyle = (ctx: Ctx, value: unknown): CardStyleV2 | null => {
+  if (!isRecord(value)) {
+    ctx.errors.push(`${ctx.path}: expected card style object`);
+    return null;
+  }
+  return {
+    styleId: id(ctx, value, 'styleId'),
+    label: str(ctx, value, 'label'),
+    icon: str(ctx, value, 'icon'),
+    ...(value.tone !== undefined && { tone: cardTone(ctx, value) }),
+    ...(value.textColor !== undefined && {
+      textColor: optColor(ctx, value, 'textColor'),
+    }),
+    ...(value.iconColor !== undefined && {
+      iconColor: optColor(ctx, value, 'iconColor'),
+    }),
+  };
+};
+
+const validateElement = (ctx: Ctx, value: unknown): LessonElementV2 | null => {
+  if (!isRecord(value)) {
+    ctx.errors.push(`${ctx.path}: expected content element object`);
+    return null;
+  }
+  const kind = str(ctx, value, 'kind');
+  switch (kind) {
+    case 'paragraph':
+      return { kind: 'paragraph', text: str(ctx, value, 'text') };
+    case 'bullets': {
+      const items = strArray(ctx, value, 'items');
+      if (items.length === 0) {
+        ctx.errors.push(`${ctx.path}.items: expected at least one bullet`);
+      }
+      return { kind: 'bullets', items };
+    }
+    case 'image':
+      return { kind: 'image', assetId: str(ctx, value, 'assetId') };
+    default:
+      // Unknown element kinds are forward-compatible, like unknown blocks.
+      return { kind };
+  }
+};
+
+const optElements = (
+  ctx: Ctx,
+  obj: Record<string, unknown>,
+): LessonElementV2[] | undefined => {
+  const value = obj.content;
+  if (value === undefined) {
+    return undefined;
+  }
+  if (!Array.isArray(value) || value.length === 0) {
+    ctx.errors.push(`${ctx.path}.content: expected non-empty array`);
+    return undefined;
+  }
+  const elements: LessonElementV2[] = [];
+  value.forEach((element, index) => {
+    const parsed = validateElement(
+      { ...ctx, path: `${ctx.path}.content[${index}]` },
+      element,
+    );
+    if (parsed) {
+      elements.push(parsed);
+    }
+  });
+  return elements;
+};
+
+// Every authored block may name a slide type; `content` only belongs to the
+// families that carry prose.
+const optStyleId = (
+  ctx: Ctx,
+  obj: Record<string, unknown>,
+): { styleId?: string } =>
+  obj.styleId === undefined ? {} : { styleId: id(ctx, obj, 'styleId') };
+
+// The fields every teaching block shares. `bodyMarkdown` is the flattened
+// mirror of `content`, so once a body is authored as elements it is allowed to
+// be empty — a card built only from artwork flattens to no prose at all. A
+// block with no `content` is still required to say something.
+const teachingFields = (
+  ctx: Ctx,
+  value: Record<string, unknown>,
+): {
+  title: string;
+  bodyMarkdown: string;
+  bullets?: string[];
+  content?: LessonElementV2[];
+  styleId?: string;
+  conceptId?: string;
+  scope?: 'universal' | 'state_specific';
+} => {
+  const content =
+    value.content === undefined ? undefined : optElements(ctx, value);
+  const bodyRaw = value.bodyMarkdown;
+  let bodyMarkdown = '';
+  if (
+    typeof bodyRaw !== 'string' ||
+    (bodyRaw.length === 0 && content == null)
+  ) {
+    ctx.errors.push(`${ctx.path}.bodyMarkdown: expected non-empty string`);
+  } else {
+    bodyMarkdown = bodyRaw;
+  }
+  return {
+    title: str(ctx, value, 'title'),
+    bodyMarkdown,
+    ...(value.bullets !== undefined && {
+      bullets: optStrArray(ctx, value, 'bullets'),
+    }),
+    ...(content !== undefined && { content }),
+    ...optStyleId(ctx, value),
+    ...(value.conceptId !== undefined && {
+      conceptId: str(ctx, value, 'conceptId'),
+    }),
+    ...(value.scope !== undefined && { scope: contentScope(ctx, value) }),
+  };
+};
+
 const validateBlock = (ctx: Ctx, value: unknown): LessonBlockV2 | null => {
   if (!isRecord(value)) {
     ctx.errors.push(`${ctx.path}: expected block object`);
@@ -715,45 +1025,27 @@ const validateBlock = (ctx: Ctx, value: unknown): LessonBlockV2 | null => {
         scenario: str(ctx, value, 'scenario'),
         questionPreview: str(ctx, value, 'questionPreview'),
         questionId: str(ctx, value, 'questionId'),
+        ...optStyleId(ctx, value),
       };
     case 'image':
-      return { blockId, type, assetId: str(ctx, value, 'assetId') };
+      return {
+        blockId,
+        type,
+        assetId: str(ctx, value, 'assetId'),
+        ...optStyleId(ctx, value),
+      };
     case 'core_rule':
     case 'visual_example':
     case 'related_rule':
     case 'california_specific':
     case 'state_specific':
-      return {
-        blockId,
-        type,
-        title: str(ctx, value, 'title'),
-        bodyMarkdown: str(ctx, value, 'bodyMarkdown'),
-        ...(value.bullets !== undefined && {
-          bullets: optStrArray(ctx, value, 'bullets'),
-        }),
-        ...(value.conceptId !== undefined && {
-          conceptId: str(ctx, value, 'conceptId'),
-        }),
-        ...(value.scope !== undefined && { scope: contentScope(ctx, value) }),
-        ...(value.checkpointQuestionId !== undefined && {
-          checkpointQuestionId: str(ctx, value, 'checkpointQuestionId'),
-        }),
-      };
     case 'why_it_matters':
     case 'exam_trap':
     case 'remember_this':
       return {
         blockId,
         type,
-        title: str(ctx, value, 'title'),
-        bodyMarkdown: str(ctx, value, 'bodyMarkdown'),
-        ...(value.bullets !== undefined && {
-          bullets: optStrArray(ctx, value, 'bullets'),
-        }),
-        ...(value.conceptId !== undefined && {
-          conceptId: str(ctx, value, 'conceptId'),
-        }),
-        ...(value.scope !== undefined && { scope: contentScope(ctx, value) }),
+        ...teachingFields(ctx, value),
         ...(value.checkpointQuestionId !== undefined && {
           checkpointQuestionId: str(ctx, value, 'checkpointQuestionId'),
         }),
@@ -769,6 +1061,7 @@ const validateBlock = (ctx: Ctx, value: unknown): LessonBlockV2 | null => {
         title: str(ctx, value, 'title'),
         context: str(ctx, value, 'context'),
         ruleMarkdown,
+        ...optStyleId(ctx, value),
         ...(value.conceptId !== undefined && {
           conceptId: str(ctx, value, 'conceptId'),
         }),
@@ -782,15 +1075,7 @@ const validateBlock = (ctx: Ctx, value: unknown): LessonBlockV2 | null => {
       return {
         blockId,
         type,
-        title: str(ctx, value, 'title'),
-        bodyMarkdown: str(ctx, value, 'bodyMarkdown'),
-        ...(value.bullets !== undefined && {
-          bullets: optStrArray(ctx, value, 'bullets'),
-        }),
-        ...(value.conceptId !== undefined && {
-          conceptId: str(ctx, value, 'conceptId'),
-        }),
-        ...(value.scope !== undefined && { scope: contentScope(ctx, value) }),
+        ...teachingFields(ctx, value),
         optional: true,
       };
     }
@@ -966,6 +1251,27 @@ export const validateCourseDocV2 = (
     return fail(ctx.errors);
   }
   const courseCtx: Ctx = { path: 'courseDoc.course', errors: ctx.errors };
+  let cardStyles: CardStyleV2[] | undefined;
+  if (courseRaw.cardStyles !== undefined) {
+    if (!Array.isArray(courseRaw.cardStyles)) {
+      ctx.errors.push('courseDoc.course.cardStyles: expected array');
+    } else {
+      cardStyles = [];
+      courseRaw.cardStyles.forEach((style, index) => {
+        const parsed = validateCardStyle(
+          { path: `courseDoc.course.cardStyles[${index}]`, errors: ctx.errors },
+          style,
+        );
+        if (parsed) {
+          cardStyles!.push(parsed);
+        }
+      });
+      const styleIds = cardStyles.map(style => style.styleId);
+      if (new Set(styleIds).size !== styleIds.length) {
+        ctx.errors.push('courseDoc.course.cardStyles: duplicate style ids');
+      }
+    }
+  }
   const course: CourseInfoV2 = {
     courseId: id(courseCtx, courseRaw, 'courseId'),
     title: str(courseCtx, courseRaw, 'title'),
@@ -975,6 +1281,7 @@ export const validateCourseDocV2 = (
     language: str(courseCtx, courseRaw, 'language'),
     targetLicense: str(courseCtx, courseRaw, 'targetLicense'),
     moduleIds: strArray(courseCtx, courseRaw, 'moduleIds'),
+    ...(cardStyles !== undefined && { cardStyles }),
     sourceVersionLabel: str(courseCtx, courseRaw, 'sourceVersionLabel'),
     sourceContentHash: str(courseCtx, courseRaw, 'sourceContentHash'),
     sourceCheckedAt: str(courseCtx, courseRaw, 'sourceCheckedAt'),
@@ -1039,13 +1346,7 @@ const checkDocQuestionAssetIntegrity = (
             `${ctx.path}: block ${block.blockId} references question ${block.questionId} outside lesson.questionIds`,
           );
         }
-      } else if (isImageBlock(block)) {
-        if (!lesson.assetIds.includes(block.assetId)) {
-          ctx.errors.push(
-            `${ctx.path}: block ${block.blockId} references asset ${block.assetId} outside lesson.assetIds`,
-          );
-        }
-      } else {
+      } else if (!isImageBlock(block)) {
         const checkpointId = checkpointQuestionIdOf(block);
         if (
           checkpointId != null &&
@@ -1053,6 +1354,14 @@ const checkDocQuestionAssetIntegrity = (
         ) {
           ctx.errors.push(
             `${ctx.path}: block ${block.blockId} references question ${checkpointId} outside lesson.questionIds`,
+          );
+        }
+      }
+      // An `image` block's asset and every inline image element alike.
+      for (const assetId of blockAssetIds(block)) {
+        if (!lesson.assetIds.includes(assetId)) {
+          ctx.errors.push(
+            `${ctx.path}: block ${block.blockId} references asset ${assetId} outside lesson.assetIds`,
           );
         }
       }
@@ -1415,6 +1724,9 @@ export const validateManifestVersionV2 = (
     status: str(ctx, input, 'status'),
     minAppVersion,
     ...(input.notes !== undefined && { notes: str(ctx, input, 'notes') }),
+    ...(input.adoption !== undefined && {
+      adoption: str(ctx, input, 'adoption'),
+    }),
     sourceVersionLabel: str(ctx, input, 'sourceVersionLabel'),
     sourceReviewStatus: str(ctx, input, 'sourceReviewStatus'),
     publicationAuthorized: bool(ctx, input, 'publicationAuthorized'),

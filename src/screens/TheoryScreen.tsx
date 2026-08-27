@@ -531,7 +531,8 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
 
   const card = cards[index];
   const { block } = card;
-  const courseState = courseStore.getSnapshot().bundle.course.state;
+  const { course } = courseStore.getSnapshot().bundle;
+  const courseState = course.state;
   const question =
     card.questionId != null ? findCourseQuestion(card.questionId) : undefined;
   const answer = card.questionId != null ? answers[card.questionId] : undefined;
@@ -657,6 +658,8 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
           answer={answer}
           onSelect={select}
           stateLabel={courseState}
+          cardStyles={course.cardStyles}
+          resolveAsset={findCourseAsset}
           checkpointOrdinal={questionOrdinal}
           checkpointTotal={questionIds.length}
           revealed={recallShown}

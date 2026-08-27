@@ -4,12 +4,21 @@ import styled, { useTheme } from 'styled-components/native';
 
 import CourseAssetView from '@/components/CourseAssetView';
 import Icon from '@/components/Icon';
-import type { CourseAssetV2, CourseQuestionV2 } from '@/data/course/v2/wire';
+import type {
+  CardStyleV2,
+  CourseAssetV2,
+  CourseQuestionV2,
+  LessonElementV2,
+} from '@/data/course/v2/wire';
 import {
+  blockElements,
+  isBulletsElement,
   isCheckYourselfBlock,
   isConceptBlock,
   isDriveSmarterBlock,
   isImageBlock,
+  isImageElement,
+  isParagraphElement,
   isProseBlock,
   isQuickChallengeBlock,
   recallSegments,
@@ -18,9 +27,13 @@ import type { AppTheme } from '@/theme';
 import { shadows } from '@/theme';
 
 import RecallCover from './RecallCover';
-import { CARD_META, UNKNOWN_META, cardMetaFor } from './cards';
+import { UNKNOWN_META, cardMetaFor, checkpointMetaFor } from './cards';
 import type { LessonCard } from './cards';
 import type { CardMeta, LessonAnswer, OptionState, Tone } from './types';
+
+// Resolves an inline image element to the asset the host holds. The app reads
+// the course store, the admin the document it is showing.
+export type AssetResolver = (assetId: string) => CourseAssetV2 | undefined;
 
 // The body of one lesson card, with no knowledge of navigation, progress
 // storage or analytics — everything it draws comes in as props. The app's
@@ -43,11 +56,16 @@ export const Kicker: React.FC<{
 }> = ({ meta, label, muted = false }) => {
   const theme = useTheme();
   const tone: Tone = muted ? 'muted' : meta.tone;
+  // A dimmed kicker (an answered question) drops the authored colours too —
+  // the point of the dim is that the card has stopped asking for attention.
+  const fallback = toneColor(theme, tone);
+  const iconColor = muted ? fallback : meta.iconColor ?? fallback;
+  const textColor = muted ? fallback : meta.textColor ?? fallback;
 
   return (
     <KickerRow>
-      <Icon name={meta.icon} size={15} color={toneColor(theme, tone)} />
-      <KickerText $tone={tone}>{label ?? meta.label}</KickerText>
+      <Icon name={meta.icon} size={15} color={iconColor} />
+      <KickerText $color={textColor}>{label ?? meta.label}</KickerText>
     </KickerRow>
   );
 };
@@ -308,22 +326,37 @@ const RecallRuleComponent: React.FC<{
 
 const RecallRule = React.memo(RecallRuleComponent);
 
+// The card body, drawn element by element in authored order so an image can
+// sit between two paragraphs. Legacy blocks come through `blockElements()` as
+// paragraphs followed by their bullets, which is exactly how they used to be
+// drawn — nothing shipped changes shape.
 const TeachingCopy: React.FC<{
-  body: string;
-  bullets?: string[];
-}> = ({ body, bullets }) => (
+  elements: LessonElementV2[];
+  resolveAsset?: AssetResolver;
+}> = ({ elements, resolveAsset }) => (
   <>
-    <Body>{body}</Body>
-    {bullets != null && bullets.length > 0 && (
-      <BulletList>
-        {bullets.map(bullet => (
-          <BulletRow key={bullet}>
-            <BulletMark>•</BulletMark>
-            <BulletText>{bullet}</BulletText>
-          </BulletRow>
-        ))}
-      </BulletList>
-    )}
+    {elements.map((element, index) => {
+      if (isParagraphElement(element)) {
+        return <Body key={index}>{element.text}</Body>;
+      }
+      if (isBulletsElement(element)) {
+        return (
+          <BulletList key={index}>
+            {element.items.map((bullet, bulletIndex) => (
+              <BulletRow key={bulletIndex}>
+                <BulletMark>•</BulletMark>
+                <BulletText>{bullet}</BulletText>
+              </BulletRow>
+            ))}
+          </BulletList>
+        );
+      }
+      if (isImageElement(element)) {
+        return <Diagram key={index} asset={resolveAsset?.(element.assetId)} />;
+      }
+      // An element kind this build does not know: skip it, keep the card.
+      return null;
+    })}
   </>
 );
 
@@ -337,6 +370,10 @@ type LessonCardBodyProps = {
   onSelect: (choiceId: string) => void;
   // The course's own state, for the `state_specific` kicker.
   stateLabel: string;
+  // The course's authored slide types, if it ships any.
+  cardStyles?: CardStyleV2[];
+  // Resolves the artwork of inline image elements.
+  resolveAsset?: AssetResolver;
   // Position of a checkpoint question within the lesson, for its kicker.
   checkpointOrdinal?: number;
   checkpointTotal?: number;
@@ -351,19 +388,22 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
   answer,
   onSelect,
   stateLabel,
+  cardStyles,
+  resolveAsset,
   checkpointOrdinal = 0,
   checkpointTotal = 0,
   revealed = false,
 }) => {
   const { block } = card;
-  const meta = cardMetaFor(block, stateLabel);
+  const meta = cardMetaFor(block, stateLabel, cardStyles);
+  const elements = blockElements(block);
   const checked = answer?.checked ?? false;
 
   if (card.checkpoint && question != null) {
     return (
       <>
         <Kicker
-          meta={CARD_META.core_rule}
+          meta={checkpointMetaFor(cardStyles)}
           label={`Checkpoint · Question ${checkpointOrdinal} of ${checkpointTotal}`}
           muted={checked}
         />
@@ -432,6 +472,12 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
           <RecapText>{block.bodyMarkdown}</RecapText>
         </RecapCard>
         {asset != null && <Diagram asset={asset} />}
+        {/* The recap sentence is the card; any artwork the author added
+            inline still belongs below it. */}
+        <TeachingCopy
+          elements={elements.filter(isImageElement)}
+          resolveAsset={resolveAsset}
+        />
       </>
     );
   }
@@ -445,7 +491,7 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
           Not on the test — skip it if you're short on time.
         </OptionalNote>
         {asset != null && <Diagram asset={asset} />}
-        <TeachingCopy body={block.bodyMarkdown} bullets={block.bullets} />
+        <TeachingCopy elements={elements} resolveAsset={resolveAsset} />
       </>
     );
   }
@@ -456,7 +502,7 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
         <Kicker meta={meta} />
         <Title>{block.title}</Title>
         {asset != null && <Diagram asset={asset} />}
-        <TeachingCopy body={block.bodyMarkdown} bullets={block.bullets} />
+        <TeachingCopy elements={elements} resolveAsset={resolveAsset} />
       </>
     );
   }
@@ -486,12 +532,12 @@ const KickerRow = styled.View`
   margin: 30px 24px 12px;
 `;
 
-const KickerText = styled.Text<{ $tone: Tone }>`
+const KickerText = styled.Text<{ $color: string }>`
   ${({ theme }) => theme.fonts.extraBold}
   font-size: 10.5px;
   letter-spacing: 1.1px;
   text-transform: uppercase;
-  color: ${({ theme, $tone }) => toneColor(theme, $tone)};
+  color: ${({ $color }) => $color};
 `;
 
 const Title = styled.Text<{ $tight?: boolean }>`

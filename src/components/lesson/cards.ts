@@ -1,9 +1,13 @@
+import { iconXml } from '@/assets/icons';
+import type { IconName } from '@/assets/icons';
 import type {
+  CardStyleV2,
   CourseLessonV2,
   KnownBlockType,
   LessonBlockV2,
 } from '@/data/course/v2/wire';
 import {
+  blockStyleId,
   checkpointQuestionIdOf,
   isImageBlock,
   isKnownBlockType,
@@ -57,12 +61,15 @@ export const UNKNOWN_META: CardMeta = {
   tone: 'muted',
 };
 
+// The kicker of the standalone checkpoint card. It is not a block, so it has
+// no type of its own to hang a style on — `checkpoint` is its reserved id.
+export const CHECKPOINT_STYLE_ID = 'checkpoint';
+
+const isIconName = (name: string): name is IconName => name in iconXml;
+
 // `stateLabel` is the course's own state ("California", "Florida", …) — the
 // jurisdiction-neutral `state_specific` card names it in the kicker.
-export const cardMetaFor = (
-  block: LessonBlockV2,
-  stateLabel: string,
-): CardMeta => {
+const builtInMetaFor = (block: LessonBlockV2, stateLabel: string): CardMeta => {
   if (!isKnownBlockType(block.type)) {
     return UNKNOWN_META;
   }
@@ -70,6 +77,44 @@ export const cardMetaFor = (
     return { ...CARD_META.state_specific, label: `${stateLabel} specific` };
   }
   return CARD_META[block.type];
+};
+
+// Folds an authored slide type over a built-in default. Every field the style
+// leaves out keeps the default, and an icon name this build does not know is
+// ignored rather than blanking the kicker — a course may ship a style authored
+// against a newer icon set.
+export const applyCardStyle = (
+  base: CardMeta,
+  style: CardStyleV2,
+): CardMeta => ({
+  label: style.label.length > 0 ? style.label : base.label,
+  icon: isIconName(style.icon) ? style.icon : base.icon,
+  tone: style.tone ?? base.tone,
+  ...(style.textColor != null && { textColor: style.textColor }),
+  ...(style.iconColor != null && { iconColor: style.iconColor }),
+});
+
+export const findCardStyle = (
+  styleId: string,
+  styles?: CardStyleV2[],
+): CardStyleV2 | undefined => styles?.find(style => style.styleId === styleId);
+
+export const cardMetaFor = (
+  block: LessonBlockV2,
+  stateLabel: string,
+  styles?: CardStyleV2[],
+): CardMeta => {
+  const base = builtInMetaFor(block, stateLabel);
+  const style = findCardStyle(blockStyleId(block), styles);
+  return style == null ? base : applyCardStyle(base, style);
+};
+
+// The checkpoint kicker borrows `core_rule`'s look unless the course styles it.
+export const checkpointMetaFor = (styles?: CardStyleV2[]): CardMeta => {
+  const style = findCardStyle(CHECKPOINT_STYLE_ID, styles);
+  return style == null
+    ? CARD_META.core_rule
+    : applyCardStyle(CARD_META.core_rule, style);
 };
 
 export type LessonCard = {

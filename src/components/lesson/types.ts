@@ -10,6 +10,14 @@ export type LessonAnswer = {
 
 export type Tone = 'accent' | 'muted' | 'trap' | 'california';
 
-export type CardMeta = { label: string; icon: IconName; tone: Tone };
+// `tone` names a palette slot; an authored slide type may override either
+// colour outright, which is why both are optional rather than a second tone.
+export type CardMeta = {
+  label: string;
+  icon: IconName;
+  tone: Tone;
+  textColor?: string;
+  iconColor?: string;
+};
 
 export type OptionState = 'idle' | 'selected' | 'correct' | 'wrong' | 'dimmed';
