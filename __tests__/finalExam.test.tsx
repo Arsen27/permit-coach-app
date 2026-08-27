@@ -8,7 +8,7 @@ import { SEED_COURSE_BUNDLE } from '@/data/course';
 import { FINAL_EXAM_TOPIC_ID, courseUnitProgress } from '@/data/course/learn';
 import { courseStore } from '@/data/course/store';
 import { EXAM_LENGTH, finalExamQuestions } from '@/data/practice';
-import { resetDevUnlockAllForTests } from '@/lib/devUnlock';
+import { resetDevUnlockAllForTests, setDevUnlockAll } from '@/lib/devUnlock';
 import LearnScreen from '@/screens/LearnScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
 import { defaultTheme } from '@/theme';
@@ -64,6 +64,18 @@ const finalExamNode = (tree: Renderer) => {
   );
   expect(nodes.length).toBeGreaterThan(0);
   return nodes[nodes.length - 1];
+};
+
+// The dashed continuation drawn from the last module down into the finale.
+const finalConnector = (tree: Renderer) => {
+  // findAll returns the <Path> element and its host descendants, all carrying
+  // the same `d`; the outermost one holds the props as this screen passes them.
+  const paths = tree.root.findAll(
+    node =>
+      typeof node.props.d === 'string' && node.props.d.startsWith('M 196.5 0'),
+  );
+  expect(paths.length).toBeGreaterThan(0);
+  return paths[0];
 };
 
 const completeWholeCourse = async (): Promise<void> => {
@@ -212,5 +224,38 @@ describe('final exam node on the ladder', () => {
       observedState!.applyTopicResult(FINAL_EXAM_TOPIC_ID, 40);
     });
     expect(textsOf(tree)).toContain('Passed · best 88%');
+  });
+});
+
+describe('the track into the final exam', () => {
+  it('stays grey and dashed until the course is actually finished', async () => {
+    const tree = await renderLearn();
+    expect(finalConnector(tree).props.stroke).toBe(defaultTheme.colors.faint);
+    expect(finalConnector(tree).props.strokeDasharray).toBe('2 8');
+  });
+
+  // Regression: the track used to key off `locked`, which the dev override
+  // forces false — so "unlock all lessons" drew a travelled green path to a
+  // finale the learner had not walked a single step towards. Everywhere else
+  // on the ladder the done overlay comes from real scores only.
+  it('is not greened by the dev unlock override', async () => {
+    setDevUnlockAll(true);
+    const tree = await renderLearn();
+
+    // Tappable...
+    expect(finalExamNode(tree).props.disabled).toBe(false);
+    // ...but plainly not travelled.
+    expect(finalConnector(tree).props.stroke).toBe(defaultTheme.colors.faint);
+    expect(finalConnector(tree).props.strokeDasharray).toBe('2 8');
+  });
+
+  it('turns into a travelled path once every unit is done', async () => {
+    const tree = await renderLearn();
+    await completeWholeCourse();
+
+    expect(finalConnector(tree).props.stroke).toBe(
+      defaultTheme.colors.doneLine,
+    );
+    expect(finalConnector(tree).props.strokeDasharray).toBeUndefined();
   });
 });

@@ -377,6 +377,11 @@ const FinalExamBlockComponent: React.FC<FinalExamBlockProps> = ({
 
   const passed = score != null && score >= EXAM_PASS_PERCENT;
   const tone: FinalExamTone = locked ? 'locked' : passed ? 'passed' : 'ready';
+  // Whether the learner actually walked here, which is not the same as being
+  // able to tap the node: the dev override unlocks everything without
+  // completing anything. The travelled path is drawn from real progress only,
+  // exactly as the module ladders draw their own done overlay.
+  const reached = totalUnits > 0 && doneUnits === totalUnits;
   // Counting the questions means drawing a paper, which walks the whole
   // course bank — so do it only once, and only when the node is reachable.
   const questionCount = React.useMemo(
@@ -403,10 +408,10 @@ const FinalExamBlockComponent: React.FC<FinalExamBlockProps> = ({
       >
         <Path
           d={`M ${CENTER_X} 0 V ${FINAL_DASH}`}
-          stroke={locked ? theme.colors.faint : theme.colors.doneLine}
+          stroke={reached ? theme.colors.doneLine : theme.colors.faint}
           strokeWidth={2}
           strokeLinecap="round"
-          strokeDasharray={locked ? '2 8' : undefined}
+          strokeDasharray={reached ? undefined : '2 8'}
           fill="none"
         />
       </Svg>
