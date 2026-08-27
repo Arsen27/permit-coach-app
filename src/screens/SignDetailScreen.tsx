@@ -11,6 +11,7 @@ import Icon from '@/components/Icon';
 import SignArt from '@/components/SignArt';
 import { Eyebrow } from '@/components/typography';
 import { categoryColor, findCategory, findSign } from '@/data/signs';
+import { useSignsCatalog } from '@/data/signs/SignsProvider';
 import { RootStackParamList } from '@/navigation/types';
 import { useAppState } from '@/state/AppState';
 import { rgba } from '@/theme';
@@ -24,6 +25,7 @@ const SignDetailScreen: React.FC<SignDetailScreenProps> = ({
   navigation,
   route,
 }) => {
+  useSignsCatalog();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const { savedSignIds, toggleSavedSign } = useAppState();

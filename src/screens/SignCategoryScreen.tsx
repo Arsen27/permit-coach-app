@@ -9,6 +9,7 @@ import GlassCircleButton from '@/components/GlassCircleButton';
 import Icon from '@/components/Icon';
 import SignArt from '@/components/SignArt';
 import { findCategory, signsByCategory } from '@/data/signs';
+import { useSignsCatalog } from '@/data/signs/SignsProvider';
 import { RootStackParamList } from '@/navigation/types';
 
 type SignCategoryScreenProps = NativeStackScreenProps<
@@ -21,6 +22,7 @@ const SignCategoryScreen: React.FC<SignCategoryScreenProps> = ({
   navigation,
   route,
 }) => {
+  useSignsCatalog();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const category = findCategory(route.params.categoryId);

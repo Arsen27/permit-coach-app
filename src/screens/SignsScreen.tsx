@@ -11,6 +11,7 @@ import ScreenHeader from '@/components/ScreenHeader';
 import { Group, Row, RowTile } from '@/components/rows';
 import { Eyebrow } from '@/components/typography';
 import { signCategories, signsByCategory } from '@/data/signs';
+import { useSignsCatalog } from '@/data/signs/SignsProvider';
 import { SignCategoryGlyph } from '@/data/signs/wire';
 import { RootNavigation } from '@/navigation/types';
 import { rgba, shadows } from '@/theme';
@@ -51,6 +52,9 @@ const CategoryGlyph: React.FC<{ glyph: SignCategoryGlyph; color: string }> = ({
 };
 
 const SignsScreen: React.FC = () => {
+  // Subscribes this screen to the signs store, so a committed catalogue
+  // update re-renders the cheatsheet in place.
+  useSignsCatalog();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<RootNavigation>();

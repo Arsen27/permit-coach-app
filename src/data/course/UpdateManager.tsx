@@ -5,6 +5,7 @@ import { useAuth } from '@/auth/AuthProvider';
 import CourseUpdateOverlay, {
   CourseUpdatePhase,
 } from '@/components/CourseUpdateOverlay';
+import { runSignsUpdate } from '@/data/signs/updater';
 import { createLogger } from '@/lib/log';
 import { isOnboardingDone } from '@/lib/onboardingFlag';
 import { useAppState } from '@/state/AppState';
@@ -81,6 +82,11 @@ const UpdateManager: React.FC = () => {
       return;
     }
     lastRunAt.current = Date.now();
+
+    // The signs catalogue rides the same check cadence but stays silent: one
+    // small document, no progress at stake, no sheet. Fire-and-forget — a
+    // signs failure must never block the course flow below.
+    runSignsUpdate().catch(() => undefined);
 
     // Stays 0 unless the updater decides there is something to fetch, which is
     // the only thing that puts the sheet on screen.

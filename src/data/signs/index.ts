@@ -1,8 +1,6 @@
 import { QuizQuestion } from '../curriculum';
-// Named signsData.json (not signs.json) because Metro resolves `./signs` to a
-// .json file before a .ts one — the data would shadow this module.
-import rawSigns from './signsData.json';
-import { Sign, SignCategory, validateSignsDoc } from './wire';
+import { SignsCatalog, signsStore } from './store';
+import { Sign, SignCategory } from './wire';
 
 export type {
   Sign,
@@ -12,39 +10,41 @@ export type {
   SignSymbol,
 } from './wire';
 
-// The bundled catalogue goes through the same validator an authored document
-// would: the seed is content like any other, and a cast here is exactly the
-// kind of unchecked trust the wire format exists to remove. A broken seed is
-// a build-time mistake, so it throws rather than degrading — there is no
-// earlier version to fall back to.
-const seed = validateSignsDoc(rawSigns);
+// The catalogue lives in signsStore (seed until a downloaded version has been
+// committed — see store.ts). These exports are live bindings kept in step
+// with the store, so every consumer — the screens, the quiz generator, the
+// practice bank — reads the committed catalogue without knowing the store
+// exists. Functions read at call time; the arrays are rebound on commit.
 
-if (!seed.ok) {
-  throw new Error(
-    `bundled signs catalogue is invalid: ${seed.errors.join('; ')}`,
-  );
-}
+let catalog: SignsCatalog = signsStore.getSnapshot();
 
-export const signsDeliveryVersion = seed.value.deliveryVersion;
-export const signCategories: SignCategory[] = seed.value.categories;
-export const signs: Sign[] = seed.value.signs;
-
-const categoriesById = new Map(signCategories.map(c => [c.id, c]));
-const signsById = new Map(signs.map(s => [s.id, s]));
+export let signsDeliveryVersion = catalog.deliveryVersion;
+export let signCategories: SignCategory[] = catalog.categories;
+export let signs: Sign[] = catalog.signs;
 
 // Category colour is content, not theme: it must read as real-world signage.
-export const categoryColor: Record<string, string> = Object.fromEntries(
-  signCategories.map(category => [category.id, category.color]),
+export let categoryColor: Record<string, string> = Object.fromEntries(
+  catalog.categories.map(category => [category.id, category.color]),
 );
 
+signsStore.subscribe(() => {
+  catalog = signsStore.getSnapshot();
+  signsDeliveryVersion = catalog.deliveryVersion;
+  signCategories = catalog.categories;
+  signs = catalog.signs;
+  categoryColor = Object.fromEntries(
+    catalog.categories.map(category => [category.id, category.color]),
+  );
+});
+
 export const signsByCategory = (categoryId: string): Sign[] =>
-  signs.filter(sign => sign.categoryId === categoryId);
+  signsStore.getSnapshot().signsByCategoryId.get(categoryId) ?? [];
 
 export const findSign = (signId: string): Sign | undefined =>
-  signsById.get(signId);
+  signsStore.getSnapshot().signsById.get(signId);
 
 export const findCategory = (categoryId: string): SignCategory | undefined =>
-  categoriesById.get(categoryId);
+  signsStore.getSnapshot().categoriesById.get(categoryId);
 
 export const shuffle = <T>(items: T[]): T[] => {
   const result = [...items];

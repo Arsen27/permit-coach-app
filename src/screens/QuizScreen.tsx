@@ -46,6 +46,7 @@ import {
   topicQuestions,
 } from '@/data/practice';
 import { findSign, shuffle, signQuizQuestions } from '@/data/signs';
+import { useSignsCatalog } from '@/data/signs/SignsProvider';
 import { revealScrollOffset } from '@/lib/revealScroll';
 import { QuizParams, RootStackParamList } from '@/navigation/types';
 import { useAppState, PersistedState } from '@/state/AppState';
@@ -171,6 +172,9 @@ const OptionRow = React.memo(OptionRowComponent);
 // hints, no reveal, a 60-minute clock.
 const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
   const theme = useTheme();
+  // Subscribes to the signs store: sign flashcards render `findSign` art at
+  // render time, so a committed catalogue update must re-render this screen.
+  useSignsCatalog();
   const insets = useSafeAreaInsets();
   const params = route.params;
   // Both exams run under real exam rules: no reveal, no hints, a 60-minute

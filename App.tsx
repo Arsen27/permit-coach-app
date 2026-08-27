@@ -19,6 +19,7 @@ import AppUpdateGate from '@/components/AppUpdateGate';
 import DailyStreakGate from '@/components/DailyStreakGate';
 import GlassTabBar from '@/components/GlassTabBar';
 import { CourseProvider } from '@/data/course/CourseProvider';
+import { SignsProvider } from '@/data/signs/SignsProvider';
 import UpdateManager from '@/data/course/UpdateManager';
 import { isOnboardingDone } from '@/lib/onboardingFlag';
 import { migrateLegacyAgeBand } from '@/lib/onboardingPrefs';
@@ -369,7 +370,9 @@ const App: React.FC = () => (
       <AuthProvider>
         <PurchasesProvider>
           <CourseProvider>
-            <AuthedApp />
+            <SignsProvider>
+              <AuthedApp />
+            </SignsProvider>
           </CourseProvider>
         </PurchasesProvider>
       </AuthProvider>

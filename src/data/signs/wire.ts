@@ -249,6 +249,7 @@ const optBool = (
 };
 
 const SEMVER_PATTERN = /^\d+\.\d+\.\d+$/;
+const SHA256_PATTERN = /^[0-9a-f]{64}$/;
 const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}$/;
 
 export const MAX_ID_LENGTH = 64;
@@ -551,4 +552,72 @@ export const validateSignsDoc = (
     categories: okCategories,
     signs: okSigns,
   });
+};
+
+// ---------------------------------------------------------------------------
+// Transport
+//
+// The catalogue travels as one document, so its update check is one request:
+// /v1/signs/latest names the newest released version and the hash the exact
+// document bytes must match. The updater verifies size and sha256 against
+// this reference before parsing, mirroring the course manifest discipline.
+
+export type SignsDocumentRef = {
+  sha256: string;
+  sizeBytes: number;
+};
+
+export type SignsLatestResponse = {
+  latestVersion: string;
+  minAppVersion: string;
+  document: SignsDocumentRef;
+};
+
+const num = (ctx: Ctx, obj: Record<string, unknown>, key: string): number => {
+  const value = obj[key];
+  if (typeof value !== 'number' || !Number.isFinite(value)) {
+    ctx.errors.push(`${ctx.path}.${key}: expected finite number`);
+    return 0;
+  }
+  return value;
+};
+
+export const validateSignsLatestResponse = (
+  input: unknown,
+): ValidationResult<SignsLatestResponse> => {
+  if (!isRecord(input)) {
+    return fail(['signs latest: expected object']);
+  }
+  const errors: string[] = [];
+  const ctx: Ctx = { path: 'signs latest', errors };
+
+  const latestVersion = str(ctx, input, 'latestVersion');
+  if (latestVersion && !SEMVER_PATTERN.test(latestVersion)) {
+    errors.push('signs latest.latestVersion: expected semver');
+  }
+  const minAppVersion = str(ctx, input, 'minAppVersion');
+  if (minAppVersion && !SEMVER_PATTERN.test(minAppVersion)) {
+    errors.push('signs latest.minAppVersion: expected semver');
+  }
+
+  let document: SignsDocumentRef = { sha256: '', sizeBytes: 0 };
+  if (!isRecord(input.document)) {
+    errors.push('signs latest.document: expected object');
+  } else {
+    const docCtx: Ctx = { path: 'signs latest.document', errors };
+    const sha256 = str(docCtx, input.document, 'sha256');
+    if (sha256 && !SHA256_PATTERN.test(sha256)) {
+      errors.push('signs latest.document.sha256: expected lowercase sha256');
+    }
+    const sizeBytes = num(docCtx, input.document, 'sizeBytes');
+    if (sizeBytes <= 0 || !Number.isInteger(sizeBytes)) {
+      errors.push('signs latest.document.sizeBytes: expected positive integer');
+    }
+    document = { sha256, sizeBytes };
+  }
+
+  if (errors.length > 0) {
+    return fail(errors);
+  }
+  return pass({ latestVersion, minAppVersion, document });
 };

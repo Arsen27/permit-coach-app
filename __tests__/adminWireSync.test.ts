@@ -9,10 +9,17 @@ import path from 'node:path';
 const HEADER_LINES = 7;
 
 const repoRoot = path.join(__dirname, '..');
-const appWire = path.join(repoRoot, 'src/data/course/v2/wire.ts');
-const serverWire = path.join(repoRoot, 'server/src/admin/wire.ts');
 
-describe('admin wire format copy', () => {
+// Each entry: [app-side source of truth, the server's copy].
+const COPIES: [string, string][] = [
+  ['src/data/course/v2/wire.ts', 'server/src/admin/wire.ts'],
+  ['src/data/signs/wire.ts', 'server/src/admin/signsWire.ts'],
+];
+
+describe.each(COPIES)('admin wire format copy: %s', (appPath, serverPath) => {
+  const appWire = path.join(repoRoot, appPath);
+  const serverWire = path.join(repoRoot, serverPath);
+
   it('matches the app wire format byte for byte below its provenance header', () => {
     const app = readFileSync(appWire, 'utf8');
     const server = readFileSync(serverWire, 'utf8');
@@ -27,7 +34,7 @@ describe('admin wire format copy', () => {
       .slice(0, HEADER_LINES)
       .join('\n');
 
-    expect(header).toContain('src/data/course/v2/wire.ts');
+    expect(header).toContain(appPath);
     expect(header).toContain('never patch this file by hand');
   });
 });
