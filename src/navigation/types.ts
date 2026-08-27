@@ -23,6 +23,7 @@ export type RootStackParamList = {
   Theory: { lessonId: string };
   Quiz: QuizParams;
   SignCategory: { categoryId: string };
+  SavedSigns: undefined;
   SignDetail: { signId: string };
   StatePicker: undefined;
   FontPicker: undefined;

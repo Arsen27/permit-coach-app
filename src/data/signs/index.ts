@@ -46,6 +46,17 @@ export const findSign = (signId: string): Sign | undefined =>
 export const findCategory = (categoryId: string): SignCategory | undefined =>
   signsStore.getSnapshot().categoriesById.get(categoryId);
 
+// Bookmarked signs resolved against the live catalogue, in the order they
+// were saved. An id whose sign a later catalogue update dropped resolves to
+// nothing and falls out here, so no screen has to count or render a sign that
+// no longer exists.
+export const savedSigns = (savedSignIds: string[]): Sign[] => {
+  const byId = signsStore.getSnapshot().signsById;
+  return savedSignIds
+    .map(signId => byId.get(signId))
+    .filter((sign): sign is Sign => sign != null);
+};
+
 export const shuffle = <T>(items: T[]): T[] => {
   const result = [...items];
   for (let i = result.length - 1; i > 0; i -= 1) {

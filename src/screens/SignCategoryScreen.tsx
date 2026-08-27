@@ -6,8 +6,9 @@ import styled, { useTheme } from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import GlassCircleButton from '@/components/GlassCircleButton';
+import HeaderCount from '@/components/HeaderCount';
 import Icon from '@/components/Icon';
-import SignImage from '@/components/SignImage';
+import SignGrid from '@/components/SignGrid';
 import { findCategory, signsByCategory } from '@/data/signs';
 import { useSignsCatalog } from '@/data/signs/SignsProvider';
 import { RootStackParamList } from '@/navigation/types';
@@ -48,24 +49,14 @@ const SignCategoryScreen: React.FC<SignCategoryScreenProps> = ({
             onPress={() => navigation.goBack()}
           />
           <HeaderTitle>{category.name}</HeaderTitle>
-          <HeaderCount>{categorySigns.length} signs</HeaderCount>
+          <HeaderCount>{`${categorySigns.length} signs`}</HeaderCount>
         </Header>
       )}
       <Blurb>{category.blurb}</Blurb>
-      <Grid>
-        {categorySigns.map(sign => (
-          <Card
-            key={sign.id}
-            onPress={() =>
-              navigation.navigate('SignDetail', { signId: sign.id })
-            }
-            style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1 })}
-          >
-            <SignImage sign={sign} size={52} />
-            <CardLabel numberOfLines={2}>{sign.name}</CardLabel>
-          </Card>
-        ))}
-      </Grid>
+      <SignGrid
+        signs={categorySigns}
+        onPressSign={signId => navigation.navigate('SignDetail', { signId })}
+      />
       <TestRow
         onPress={() =>
           navigation.navigate('Quiz', {
@@ -104,44 +95,11 @@ const HeaderTitle = styled.Text`
   color: ${({ theme }) => theme.colors.ink};
 `;
 
-const HeaderCount = styled.Text`
-  ${({ theme }) => theme.fonts.semiBold}
-  font-size: 12.5px;
-  color: ${({ theme }) => theme.colors.muted};
-  font-variant: tabular-nums;
-`;
-
 const Blurb = styled.Text`
   ${({ theme }) => theme.fonts.medium}
   padding: 0 20px 18px;
   font-size: 13px;
   line-height: 20px;
-  color: ${({ theme }) => theme.colors.strong};
-`;
-
-const Grid = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 0 20px;
-`;
-
-const Card = styled.Pressable`
-  flex-basis: 30%;
-  flex-grow: 1;
-  max-width: 32%;
-  border: 1px solid ${({ theme }) => theme.colors.line};
-  border-radius: 14px;
-  padding: 16px 8px 12px;
-  align-items: center;
-  gap: 10px;
-`;
-
-const CardLabel = styled.Text`
-  ${({ theme }) => theme.fonts.semiBold}
-  font-size: 11px;
-  text-align: center;
-  line-height: 14px;
   color: ${({ theme }) => theme.colors.strong};
 `;
 

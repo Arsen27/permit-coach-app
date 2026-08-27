@@ -55,6 +55,9 @@ jest.mock('@/data/signs', () => ({
   },
   signsByCategory: (categoryId: string) =>
     categoryId === 'parking' ? [{ id: 'p1' }] : [{ id: 'a' }, { id: 'b' }],
+  // The saved row only needs a count here; savedSigns has its own coverage in
+  // savedSigns.test.tsx.
+  savedSigns: (savedSignIds: string[]) => savedSignIds.map(id => ({ id })),
 }));
 
 const renderSigns = async (): Promise<Renderer> => {
@@ -95,12 +98,14 @@ const polygons = (tree: Renderer): string[] =>
     .findAll(node => typeof node.props?.points === 'string')
     .map(node => node.props.points as string);
 
+// Only the cheatsheet tiles: the saved-signs row above them carries a tile of
+// the same size, tinted from the accent rather than from a category.
 const tileTints = (tree: Renderer): string[] =>
   tree.root
     .findAll(
       node =>
         typeof node.type === 'string' &&
-        node.props?.style?.width === 42 &&
+        node.props?.testID === 'category-tile' &&
         typeof node.props?.style?.backgroundColor === 'string',
     )
     .map(node => node.props.style.backgroundColor as string);

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Platform, StatusBar, Text } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import styled, { ThemeProvider, useTheme } from 'styled-components/native';
 
@@ -18,6 +18,7 @@ import AccountDeletionOverlay from '@/components/AccountDeletionOverlay';
 import AppUpdateGate from '@/components/AppUpdateGate';
 import DailyStreakGate from '@/components/DailyStreakGate';
 import GlassTabBar from '@/components/GlassTabBar';
+import HeaderCount from '@/components/HeaderCount';
 import { CourseProvider } from '@/data/course/CourseProvider';
 import { SignsProvider } from '@/data/signs/SignsProvider';
 import UpdateManager from '@/data/course/UpdateManager';
@@ -34,6 +35,7 @@ import LessonOverviewScreen from '@/screens/LessonOverviewScreen';
 import OnboardingScreen from '@/screens/OnboardingScreen';
 import PracticeScreen from '@/screens/PracticeScreen';
 import QuizScreen from '@/screens/QuizScreen';
+import SavedSignsScreen from '@/screens/SavedSignsScreen';
 import SignCategoryScreen from '@/screens/SignCategoryScreen';
 import SignDetailScreen from '@/screens/SignDetailScreen';
 import SignsScreen from '@/screens/SignsScreen';
@@ -106,23 +108,6 @@ const TabsAndroid: React.FC = () => (
 );
 
 const Tabs = isIOS ? TabsIOS : TabsAndroid;
-
-// Muted "18 signs" count in the native SignCategory header.
-const HeaderCount: React.FC<{ children: string }> = ({ children }) => {
-  const theme = useTheme();
-
-  return (
-    <Text
-      style={{
-        fontSize: 12.5,
-        fontWeight: '600',
-        color: theme.colors.muted,
-      }}
-    >
-      {children}
-    </Text>
-  );
-};
 
 // Adopts the display name from the identity provider (Google/Apple) into the
 // profile once: only while the profile name is still empty, so a name the
@@ -256,6 +241,19 @@ const AppShellComponent: React.FC<AppShellProps> = ({ theme, onboarded }) => {
                       ],
                     }
                   : {}
+              }
+            />
+            <Stack.Screen
+              name="SavedSigns"
+              component={SavedSignsScreen}
+              options={
+                isIOS
+                  ? {
+                      headerShown: true,
+                      title: 'Saved',
+                      headerBackButtonDisplayMode: 'minimal',
+                    }
+                  : undefined
               }
             />
             <Stack.Screen

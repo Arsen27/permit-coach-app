@@ -10,10 +10,11 @@ import Icon from '@/components/Icon';
 import ScreenHeader from '@/components/ScreenHeader';
 import { Group, Row, RowTile } from '@/components/rows';
 import { Eyebrow } from '@/components/typography';
-import { signCategories, signsByCategory } from '@/data/signs';
+import { savedSigns, signCategories, signsByCategory } from '@/data/signs';
 import { useSignsCatalog } from '@/data/signs/SignsProvider';
 import { SignCategoryGlyph } from '@/data/signs/wire';
 import { RootNavigation } from '@/navigation/types';
+import { useAppState } from '@/state/AppState';
 import { rgba, shadows } from '@/theme';
 
 // Miniature sign silhouettes for the category rows, mirroring the reference's
@@ -58,6 +59,10 @@ const SignsScreen: React.FC = () => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<RootNavigation>();
+  const { savedSignIds } = useAppState();
+  // Resolved against the catalogue rather than counting raw ids, so this
+  // matches what the saved list actually shows.
+  const savedCount = savedSigns(savedSignIds).length;
 
   return (
     <Screen
@@ -86,6 +91,34 @@ const SignsScreen: React.FC = () => {
         </StartPill>
       </QuizBanner>
 
+      <Section style={{ marginBottom: 26 }}>
+        <Group>
+          <Row
+            onPress={() => navigation.navigate('SavedSigns')}
+            style={{ gap: 14, paddingVertical: 15 }}
+          >
+            <RowTile $bg={theme.colors.accentSoft} $size={42} $radius={12}>
+              <Icon
+                name="bookmark-filled"
+                size={17}
+                color={theme.colors.accent}
+              />
+            </RowTile>
+            <View style={{ flex: 1 }}>
+              <CategoryTitle>Saved signs</CategoryTitle>
+              <CategoryMeta>
+                {savedCount === 0
+                  ? 'Bookmark a sign to keep it here'
+                  : `${savedCount} sign${
+                      savedCount === 1 ? '' : 's'
+                    } · your bookmarks`}
+              </CategoryMeta>
+            </View>
+            <Icon name="chevron-right" size={12} color={theme.colors.dim2} />
+          </Row>
+        </Group>
+      </Section>
+
       <Section>
         <Eyebrow style={{ marginBottom: 12 }}>Cheatsheet</Eyebrow>
         <Group>
@@ -101,6 +134,7 @@ const SignsScreen: React.FC = () => {
               style={{ gap: 14, paddingVertical: 15 }}
             >
               <RowTile
+                testID="category-tile"
                 $bg={rgba(category.color, tintOpacity(category.color))}
                 $size={42}
                 $radius={12}
