@@ -9,6 +9,7 @@ import { SEED_COURSE_BUNDLE } from '@/data/course';
 import { buildCards } from '@/components/lesson/cards';
 import { courseStore } from '@/data/course/store';
 import type { CourseDocV2, ModuleDocV2 } from '@/data/course/v2/wire';
+import { blockAssetIds } from '@/data/course/v2/wire';
 import LessonOverviewScreen from '@/screens/LessonOverviewScreen';
 import TheoryScreen from '@/screens/TheoryScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
@@ -32,6 +33,9 @@ const correctTheoryChoice = theoryQuestion.choices.find(
   choice => choice.id === theoryQuestion.correctAnswerId,
 )!;
 const CARD_COUNT = buildCards(lesson).length;
+const heroAsset = SEED_COURSE_BUNDLE.assets.find(
+  asset => asset.assetId === lesson.blocks.flatMap(blockAssetIds)[0],
+)!;
 
 let observedState: ReturnType<typeof useAppState> | null = null;
 const Probe: React.FC = () => {
@@ -191,6 +195,13 @@ describe('split lesson experience', () => {
 
     const texts = textsOf(tree);
     expect(texts).toContain(lesson.title);
+    // The lesson's own opening illustration leads the screen.
+    expect(
+      tree.root.findAll(
+        node => node.props.accessibilityLabel === heroAsset.alt,
+      ),
+    ).not.toHaveLength(0);
+    expect(texts.some(text => text.startsWith('Built for the'))).toBe(false);
     expect(texts).toContain(lesson.intro!.summary);
     expect(texts).toContain('Study the theory');
     expect(texts).toContain('Go straight to the test');

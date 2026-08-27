@@ -207,6 +207,8 @@ const AppShellComponent: React.FC<AppShellProps> = ({ theme, onboarded }) => {
                       headerShown: true,
                       title: '',
                       headerBackButtonDisplayMode: 'minimal',
+                      // The lesson hero runs full-bleed under the bar.
+                      headerTransparent: true,
                     }
                   : undefined
               }
