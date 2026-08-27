@@ -6,7 +6,13 @@ import { sha256Hex } from '@/lib/sha256';
 // Named signsData.json (not signs.json) because Metro resolves `./signs` to a
 // .json file before a .ts one — the data would shadow the module.
 import rawSigns from './signsData.json';
-import { Sign, SignCategory, SignsDoc, validateSignsDoc } from './wire';
+import {
+  SIGNS_SCHEMA_VERSION,
+  Sign,
+  SignCategory,
+  SignsDoc,
+  validateSignsDoc,
+} from './wire';
 
 // Device store for the signs catalogue. The bundled seed serves synchronously
 // until a downloaded document has been committed (the seed itself is never
@@ -60,20 +66,23 @@ const toCatalog = (doc: SignsDoc, sha256: string): SignsCatalog => {
 // The bundled catalogue goes through the same validator an authored document
 // would: the seed is content like any other, and a cast here is exactly the
 // kind of unchecked trust the wire format exists to remove. A broken seed is
-// a build-time mistake, so it throws — there is nothing earlier to fall back
-// to.
+// a build-time mistake caught by tests; at runtime we log it and keep the app
+// alive with an empty catalogue so unrelated screens can still render.
 const seedResult = validateSignsDoc(rawSigns);
 if (!seedResult.ok) {
-  throw new Error(
+  // A module-scope throw here makes Metro report `signsStore` as undefined in
+  // SignsProvider and takes down every screen, including those unrelated to
+  // signs.
+  log.error(
     `bundled signs catalogue is invalid: ${seedResult.errors.join('; ')}`,
   );
 }
 // Hashed over the same shape the server publishes, so a device running the
 // seed and a device that downloaded an identical document agree.
-const seedCatalog = toCatalog(
-  seedResult.value,
-  sha256Hex(JSON.stringify(seedResult.value)),
-);
+const seedDoc: SignsDoc = seedResult.ok
+  ? seedResult.value
+  : { schemaVersion: SIGNS_SCHEMA_VERSION, categories: [], signs: [] };
+const seedCatalog = toCatalog(seedDoc, sha256Hex(JSON.stringify(seedDoc)));
 
 let snapshot: SignsCatalog = seedCatalog;
 let hydrated = false;

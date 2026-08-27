@@ -1,6 +1,7 @@
 import React, { useEffect, useSyncExternalStore } from 'react';
 
-import { SignsCatalog, signsStore } from './store';
+import { signsStore } from './store';
+import type { SignsCatalog } from './store';
 
 // Same shape as CourseProvider: no context, just useSyncExternalStore over
 // the module-level store plus a hydrate side effect. Screens that render the

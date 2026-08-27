@@ -1,5 +1,7 @@
 // Signs wire format v1: the catalogue of road signs and the categories that
-// group them. This module is deliberately self-contained (zero imports, pure
+// group them. Every sign's artwork is an uploaded picture — there is no
+// drawn-art vocabulary to keep in step between the renderer, the contract and
+// the panel's pickers. This module is deliberately self-contained (zero imports, pure
 // TS) for the same reason as the course wire format — it is the contract
 // shared by the React Native app, the content server, and the admin panel,
 // each of which keeps its own copy (see __tests__/adminWireSync.test.ts for
@@ -13,97 +15,6 @@
 // which also makes a rollback just another change.
 
 export const SIGNS_SCHEMA_VERSION = 1;
-
-// ---------------------------------------------------------------------------
-// Art vocabulary
-//
-// Sign artwork is drawn, not photographed: `SignArt` renders these specs as
-// SVG. The vocabulary is therefore closed — an author picks from it rather
-// than supplying artwork, and anything outside it cannot be drawn. The
-// runtime arrays exist so the admin panel can build pickers from the contract
-// instead of hard-coding a second copy of the list.
-
-export const SIGN_SYMBOLS = [
-  'curveLeft',
-  'curveRight',
-  'winding',
-  'crossroad',
-  'sideRoad',
-  'tIntersection',
-  'merge',
-  'laneEnds',
-  'divided',
-  'twoWay',
-  'signal',
-  'stopAhead',
-  'yieldAhead',
-  'pedestrian',
-  'bicycle',
-  'deer',
-  'slippery',
-  'hill',
-  'bump',
-  'dip',
-  'narrowBridge',
-  'softShoulder',
-  'uturn',
-  'turnLeft',
-  'turnRight',
-  'arrowUp',
-  'arrowLeft',
-  'arrowRight',
-  'truck',
-  'workers',
-  'flagger',
-  'gas',
-  'fork',
-  'roundabout',
-] as const;
-
-export type SignSymbol = (typeof SIGN_SYMBOLS)[number];
-
-export const SIGN_ART_KINDS = [
-  'octagon',
-  'yield',
-  'doNotEnter',
-  'whiteRect',
-  'redRing',
-  'yellowDiamond',
-  'orangeDiamond',
-  'orangeRect',
-  'blueRect',
-  'greenRect',
-  'greenExit',
-  'shield',
-  'pentagon',
-  'yellowCircle',
-  'pennant',
-] as const;
-
-export type SignArtKind = (typeof SIGN_ART_KINDS)[number];
-
-export type SignArtSpec =
-  | { kind: 'octagon'; label: string }
-  | { kind: 'yield' }
-  | { kind: 'doNotEnter' }
-  | {
-      kind: 'whiteRect';
-      lines?: string[];
-      big?: string;
-      symbol?: SignSymbol;
-      slash?: boolean;
-    }
-  | { kind: 'redRing'; symbol: SignSymbol }
-  | { kind: 'yellowDiamond'; symbol?: SignSymbol; label?: string }
-  | { kind: 'orangeDiamond'; symbol?: SignSymbol; label?: string }
-  | { kind: 'orangeRect'; lines: string[] }
-  | { kind: 'blueRect'; label: string; big?: string }
-  | { kind: 'greenRect'; lines: string[] }
-  | { kind: 'greenExit'; lines: string[] }
-  | { kind: 'shield'; label: string }
-  | { kind: 'pentagon'; symbol: 'pedestrian' }
-  | { kind: 'yellowCircle'; label: string }
-  | { kind: 'pennant'; label: string };
 
 // The miniature silhouette drawn next to a category row on the Signs tab.
 // A category carries its own glyph so that adding one is a content change
@@ -120,12 +31,12 @@ export const SIGN_CATEGORY_GLYPHS = [
 export type SignCategoryGlyph = (typeof SIGN_CATEGORY_GLYPHS)[number];
 
 // ---------------------------------------------------------------------------
-// Uploaded artwork
+// Artwork
 //
-// A sign may replace its drawn art with an uploaded picture. Two slots: the
-// full image shown on the detail screen, and an optional thumbnail for the
-// category grid and quiz flashcards — when the thumbnail is absent the full
-// image is drawn at thumbnail size instead.
+// A sign's picture is an uploaded file. Two slots: the full image shown on the
+// detail screen, and an optional thumbnail for the category grid and quiz
+// flashcards — when the thumbnail is absent the full image is drawn at
+// thumbnail size instead.
 //
 // Assets are content-addressed: `assetId` is the file's own sha256, so its
 // URL is immutable, the platform image cache can hold it forever, and
@@ -185,11 +96,7 @@ export type Sign = {
   description: string;
   steps: string[];
   trap: string;
-  // The drawn fallback. Always present: it is what renders offline, before an
-  // uploaded image has been fetched, and if the upload ever fails to load.
-  art: SignArtSpec;
-  // When set, this replaces the drawn art on every surface.
-  image?: SignImage;
+  image: SignImage;
 };
 
 export type SignsDoc = {
@@ -234,22 +141,6 @@ const str = (ctx: Ctx, obj: Record<string, unknown>, key: string): string => {
   return value;
 };
 
-const optStr = (
-  ctx: Ctx,
-  obj: Record<string, unknown>,
-  key: string,
-): string | undefined => {
-  const value = obj[key];
-  if (value === undefined) {
-    return undefined;
-  }
-  if (typeof value !== 'string' || value.length === 0) {
-    ctx.errors.push(`${ctx.path}.${key}: expected non-empty string`);
-    return undefined;
-  }
-  return value;
-};
-
 const strArray = (
   ctx: Ctx,
   obj: Record<string, unknown>,
@@ -269,33 +160,6 @@ const strArray = (
   return value as string[];
 };
 
-const optStrArray = (
-  ctx: Ctx,
-  obj: Record<string, unknown>,
-  key: string,
-): string[] | undefined => {
-  if (obj[key] === undefined) {
-    return undefined;
-  }
-  return strArray(ctx, obj, key);
-};
-
-const optBool = (
-  ctx: Ctx,
-  obj: Record<string, unknown>,
-  key: string,
-): boolean | undefined => {
-  const value = obj[key];
-  if (value === undefined) {
-    return undefined;
-  }
-  if (typeof value !== 'boolean') {
-    ctx.errors.push(`${ctx.path}.${key}: expected boolean`);
-    return undefined;
-  }
-  return value;
-};
-
 const SHA256_PATTERN = /^[0-9a-f]{64}$/;
 const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}$/;
 
@@ -309,131 +173,6 @@ const id = (ctx: Ctx, obj: Record<string, unknown>, key: string): string => {
     );
   }
   return value;
-};
-
-const symbol = (
-  ctx: Ctx,
-  obj: Record<string, unknown>,
-  key: string,
-): SignSymbol | undefined => {
-  const value = obj[key];
-  if (value === undefined) {
-    return undefined;
-  }
-  if (
-    typeof value !== 'string' ||
-    !(SIGN_SYMBOLS as readonly string[]).includes(value)
-  ) {
-    ctx.errors.push(`${ctx.path}.${key}: unknown sign symbol ${String(value)}`);
-    return undefined;
-  }
-  return value as SignSymbol;
-};
-
-const requiredSymbol = (
-  ctx: Ctx,
-  obj: Record<string, unknown>,
-  key: string,
-): SignSymbol => {
-  if (obj[key] === undefined) {
-    ctx.errors.push(`${ctx.path}.${key}: expected a sign symbol`);
-    return 'arrowUp';
-  }
-  return symbol(ctx, obj, key) ?? 'arrowUp';
-};
-
-// ---------------------------------------------------------------------------
-// Art validation
-//
-// Each kind is checked against exactly the fields SignArt reads for it, so a
-// spec that survives this function is one the renderer can actually draw.
-// Anything the renderer would silently ignore is reported rather than kept:
-// a label that never appears on screen is an authoring mistake, not content.
-
-const validateArt = (parentCtx: Ctx, value: unknown): SignArtSpec | null => {
-  const path = `${parentCtx.path}.art`;
-  if (!isRecord(value)) {
-    parentCtx.errors.push(`${path}: expected object`);
-    return null;
-  }
-  const ctx: Ctx = { path, errors: parentCtx.errors };
-  const kind = value.kind;
-  if (
-    typeof kind !== 'string' ||
-    !(SIGN_ART_KINDS as readonly string[]).includes(kind)
-  ) {
-    ctx.errors.push(`${path}.kind: unknown art kind ${String(kind)}`);
-    return null;
-  }
-
-  switch (kind as SignArtKind) {
-    case 'octagon':
-      return { kind: 'octagon', label: str(ctx, value, 'label') };
-    case 'yield':
-      return { kind: 'yield' };
-    case 'doNotEnter':
-      return { kind: 'doNotEnter' };
-    case 'whiteRect': {
-      const spec: SignArtSpec = { kind: 'whiteRect' };
-      const lines = optStrArray(ctx, value, 'lines');
-      const big = optStr(ctx, value, 'big');
-      const sym = symbol(ctx, value, 'symbol');
-      const slash = optBool(ctx, value, 'slash');
-      if (lines !== undefined) spec.lines = lines;
-      if (big !== undefined) spec.big = big;
-      if (sym !== undefined) spec.symbol = sym;
-      if (slash !== undefined) spec.slash = slash;
-      if (lines === undefined && big === undefined && sym === undefined) {
-        ctx.errors.push(`${path}: whiteRect needs lines, big or symbol`);
-      }
-      return spec;
-    }
-    case 'redRing':
-      return { kind: 'redRing', symbol: requiredSymbol(ctx, value, 'symbol') };
-    case 'yellowDiamond':
-    case 'orangeDiamond': {
-      const sym = symbol(ctx, value, 'symbol');
-      const label = optStr(ctx, value, 'label');
-      if (sym === undefined && label === undefined) {
-        ctx.errors.push(`${path}: ${kind} needs a symbol or a label`);
-      }
-      const spec = { kind } as Extract<
-        SignArtSpec,
-        { kind: 'yellowDiamond' | 'orangeDiamond' }
-      >;
-      if (sym !== undefined) spec.symbol = sym;
-      if (label !== undefined) spec.label = label;
-      return spec;
-    }
-    case 'orangeRect':
-      return { kind: 'orangeRect', lines: strArray(ctx, value, 'lines') };
-    case 'greenRect':
-      return { kind: 'greenRect', lines: strArray(ctx, value, 'lines') };
-    case 'greenExit':
-      return { kind: 'greenExit', lines: strArray(ctx, value, 'lines') };
-    case 'blueRect': {
-      const spec: SignArtSpec = {
-        kind: 'blueRect',
-        label: str(ctx, value, 'label'),
-      };
-      const big = optStr(ctx, value, 'big');
-      if (big !== undefined) spec.big = big;
-      return spec;
-    }
-    case 'shield':
-      return { kind: 'shield', label: str(ctx, value, 'label') };
-    case 'pentagon': {
-      // The renderer only draws the school-crossing pentagon.
-      if (value.symbol !== 'pedestrian') {
-        ctx.errors.push(`${path}.symbol: pentagon only supports pedestrian`);
-      }
-      return { kind: 'pentagon', symbol: 'pedestrian' };
-    }
-    case 'yellowCircle':
-      return { kind: 'yellowCircle', label: str(ctx, value, 'label') };
-    case 'pennant':
-      return { kind: 'pennant', label: str(ctx, value, 'label') };
-  }
 };
 
 // ---------------------------------------------------------------------------
@@ -544,15 +283,11 @@ const validateSign = (
     steps: strArray(ctx, value, 'steps'),
     trap: str(ctx, value, 'trap'),
   };
-  const art = validateArt(ctx, value.art);
-  if (art == null) {
+  const image = validateImage(errors, value.image, `${path}.image`);
+  if (image == null) {
     return null;
   }
-  if (value.image === undefined) {
-    return { ...fields, art };
-  }
-  const image = validateImage(errors, value.image, `${path}.image`);
-  return image == null ? { ...fields, art } : { ...fields, art, image };
+  return { ...fields, image };
 };
 
 // ---------------------------------------------------------------------------
@@ -577,7 +312,6 @@ export const validateSignsDoc = (
     return fail(['signs doc: expected object']);
   }
   const errors: string[] = [];
-  const ctx: Ctx = { path: 'signs doc', errors };
 
   if (input.schemaVersion !== SIGNS_SCHEMA_VERSION) {
     errors.push(

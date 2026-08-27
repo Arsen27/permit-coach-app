@@ -52,7 +52,9 @@ const fixtureDoc = (name = 'Stop (updated)'): SignsDoc => ({
       description: 'Come to a complete stop.',
       steps: ['Stop fully before the limit line'],
       trap: 'Rolling through slowly is still a violation.',
-      art: { kind: 'octagon', label: 'STOP' },
+      image: {
+        full: { assetId: 'a'.repeat(64), mime: 'image/svg+xml', sizeBytes: 512 },
+      },
     },
   ],
 });
@@ -146,7 +148,7 @@ describe('runSignsUpdate', () => {
 
   it('commits nothing when the doc fails structural validation', async () => {
     const doc = fixtureDoc();
-    (doc.signs[0] as { art: unknown }).art = { kind: 'hexagon' };
+    (doc.signs[0] as { image: unknown }).image = { full: { mime: 'image/gif' } };
     serve(doc);
 
     expect((await runSignsUpdate()).status).toBe('failed');
@@ -198,10 +200,10 @@ describe('runSignsUpdate', () => {
   });
 });
 
-describe('uploaded sign images', () => {
+describe('sign artwork', () => {
   const withImage = (image: unknown): SignsDoc => {
     const doc = fixtureDoc();
-    (doc.signs[0] as { image?: unknown }).image = image;
+    (doc.signs[0] as { image: unknown }).image = image;
     return doc;
   };
 
@@ -222,15 +224,24 @@ describe('uploaded sign images', () => {
     expect((await runSignsUpdate()).status).toBe('updated');
 
     const stored = findSign('stop');
-    expect(stored?.image?.full.mime).toBe('image/png');
-    expect(stored?.image?.thumb?.mime).toBe('image/svg+xml');
+    expect(stored?.image.full.mime).toBe('image/png');
+    expect(stored?.image.thumb?.mime).toBe('image/svg+xml');
   });
 
   it('accepts a full image with no thumbnail', async () => {
     serve(withImage({ full: asset('d'.repeat(64), 'image/jpeg') }));
 
     expect((await runSignsUpdate()).status).toBe('updated');
-    expect(findSign('stop')?.image?.thumb).toBeUndefined();
+    expect(findSign('stop')?.image.thumb).toBeUndefined();
+  });
+
+  // Artwork is the sign, so a sign without any is not a sign.
+  it('refuses a sign with no image at all', async () => {
+    const doc = fixtureDoc();
+    delete (doc.signs[0] as { image?: unknown }).image;
+    serve(doc);
+
+    expect((await runSignsUpdate()).status).toBe('failed');
   });
 
   it('refuses an asset id that is not its own sha256', async () => {

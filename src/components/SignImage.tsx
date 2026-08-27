@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
-import { SvgUri } from 'react-native-svg';
+import { SvgUri, SvgXml } from 'react-native-svg';
 
-import SignArt from '@/components/SignArt';
 import { signAssetUrl } from '@/data/signs/client';
+import { SEED_SIGN_SVGS } from '@/data/signs/seedAssets';
 import {
   SIGN_IMAGE_EXTENSIONS,
   Sign,
@@ -11,11 +11,12 @@ import {
   signThumbRef,
 } from '@/data/signs/wire';
 
-// A sign's picture at a given size. An uploaded image replaces the drawn art
-// when the sign has one; the drawn art stays the fallback, so a sign renders
-// correctly offline, before the upload has been fetched, and if the file ever
-// fails to load. Assets are content-addressed, so the platform image cache
-// holds them indefinitely and a re-render costs nothing.
+import PlaceholderImage from './PlaceholderImage';
+
+// A sign's picture at a given size. Every sign carries uploaded artwork, so
+// this is the only thing that draws one. Assets are content-addressed, which
+// means the platform image cache holds them indefinitely and a re-render costs
+// nothing.
 
 type SignImageProps = {
   sign: Sign;
@@ -30,22 +31,26 @@ const SignImage: React.FC<SignImageProps> = ({
   size,
   variant = 'thumb',
 }) => {
-  const ref: SignImageRef | undefined =
-    sign.image == null
-      ? undefined
-      : variant === 'full'
-      ? sign.image.full
-      : signThumbRef(sign.image);
+  const ref: SignImageRef =
+    variant === 'full' ? sign.image.full : signThumbRef(sign.image);
 
   // Keyed by asset id, so a catalogue update that swaps the picture clears a
-  // previous failure instead of leaving this sign permanently on the fallback.
+  // previous failure instead of leaving this sign permanently blank.
   const [failedAssetId, setFailedAssetId] = useState<string | null>(null);
   useEffect(() => {
     setFailedAssetId(null);
-  }, [ref?.assetId]);
+  }, [ref.assetId]);
 
-  if (ref == null || failedAssetId === ref.assetId) {
-    return <SignArt art={sign.art} size={size} />;
+  // The bundled catalogue's artwork ships with the app, so a fresh install
+  // draws every sign with no network. Anything published later is not in here
+  // and comes from the server.
+  const bundled = SEED_SIGN_SVGS[ref.assetId];
+  if (bundled != null) {
+    return <SvgXml xml={bundled} width={size} height={size} />;
+  }
+
+  if (failedAssetId === ref.assetId) {
+    return <PlaceholderImage label={sign.name} height={size} radius={8} />;
   }
 
   const uri = signAssetUrl(ref.assetId, SIGN_IMAGE_EXTENSIONS[ref.mime]);
@@ -65,8 +70,8 @@ const SignImage: React.FC<SignImageProps> = ({
     <Image
       source={{ uri }}
       style={{ width: size, height: size }}
-      // Signs are authored square-ish but must never be cropped: a clipped
-      // shape is the wrong answer on a shape-recognition question.
+      // Signs are authored square but must never be cropped: a clipped shape
+      // is the wrong answer on a shape-recognition question.
       resizeMode="contain"
       onError={() => setFailedAssetId(ref.assetId)}
     />

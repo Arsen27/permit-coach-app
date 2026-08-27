@@ -7,10 +7,11 @@ import {
   signsByCategory,
   signsCatalogHash,
 } from '@/data/signs';
+import { SEED_SIGN_SVGS } from '@/data/signs/seedAssets';
+import { sha256Hex } from '@/lib/sha256';
 import {
-  SIGN_ART_KINDS,
   SIGN_CATEGORY_GLYPHS,
-  SIGN_SYMBOLS,
+  SIGN_IMAGE_MIMES,
   validateSignsDoc,
 } from '@/data/signs/wire';
 
@@ -37,7 +38,13 @@ const validDoc = () => ({
       description: 'The only eight-sided sign on the road.',
       steps: ['Stop fully before the limit line'],
       trap: 'Rolling through slowly is still a violation.',
-      art: { kind: 'octagon', label: 'STOP' },
+      image: {
+        full: {
+          assetId: 'a'.repeat(64),
+          mime: 'image/svg+xml',
+          sizeBytes: 512,
+        },
+      },
     },
   ],
 });
@@ -56,61 +63,13 @@ describe('signs wire contract', () => {
 
     expect(result.errors).toEqual([]);
     expect(result.ok).toBe(true);
-    expect(result.value?.signs[0].art).toEqual({
-      kind: 'octagon',
-      label: 'STOP',
-    });
+    expect(result.value?.signs[0].image.full.mime).toBe('image/svg+xml');
   });
 
   it('pins the schema version', () => {
     expect(errorsFor(doc => ((doc as any).schemaVersion = 2))).toContain(
       'schemaVersion',
     );
-  });
-
-  // The renderer draws from a closed vocabulary, so a document that names art
-  // it cannot draw has to be rejected at the door rather than rendering blank.
-  it('rejects art outside the vocabulary the renderer can draw', () => {
-    expect(
-      errorsFor(doc => ((doc.signs[0].art as any) = { kind: 'hexagon' })),
-    ).toContain('unknown art kind hexagon');
-
-    expect(
-      errorsFor(
-        doc =>
-          ((doc.signs[0].art as any) = {
-            kind: 'redRing',
-            symbol: 'hovercraft',
-          }),
-      ),
-    ).toContain('unknown sign symbol hovercraft');
-
-    expect(
-      errorsFor(doc => ((doc.signs[0].art as any) = { kind: 'redRing' })),
-    ).toContain('expected a sign symbol');
-
-    expect(
-      errorsFor(
-        doc =>
-          ((doc.signs[0].art as any) = { kind: 'pentagon', symbol: 'deer' }),
-      ),
-    ).toContain('pentagon only supports pedestrian');
-  });
-
-  it('rejects art whose content would render empty', () => {
-    expect(
-      errorsFor(doc => ((doc.signs[0].art as any) = { kind: 'whiteRect' })),
-    ).toContain('whiteRect needs lines, big or symbol');
-
-    expect(
-      errorsFor(doc => ((doc.signs[0].art as any) = { kind: 'yellowDiamond' })),
-    ).toContain('needs a symbol or a label');
-
-    expect(
-      errorsFor(
-        doc => ((doc.signs[0].art as any) = { kind: 'orangeRect', lines: [] }),
-      ),
-    ).toContain('lines');
   });
 
   it('enforces the category presentation fields', () => {
@@ -159,14 +118,23 @@ describe('signs wire contract', () => {
     expect(result.errors.length).toBeGreaterThanOrEqual(2);
   });
 
-  it('does not let bad art mask the rest of the record', () => {
-    const errors = errorsFor(doc => {
-      (doc.signs[0] as any).name = '';
-      (doc.signs[0].art as any) = { kind: 'hexagon' };
-    });
+  it('enforces the artwork every sign must carry', () => {
+    expect(errorsFor(doc => delete (doc.signs[0] as any).image)).toContain(
+      'signs[0].image',
+    );
 
-    expect(errors).toContain('unknown art kind hexagon');
-    expect(errors).toContain('signs[0].name');
+    expect(
+      errorsFor(doc => ((doc.signs[0].image.full as any).mime = 'image/gif')),
+    ).toContain('image/gif');
+
+    // Content-addressed, or the immutable asset URL stops being immutable.
+    expect(
+      errorsFor(doc => ((doc.signs[0].image.full as any).assetId = 'nope')),
+    ).toContain('expected a lowercase sha256');
+
+    expect(
+      errorsFor(doc => ((doc.signs[0].image.full as any).sizeBytes = 0)),
+    ).toContain('positive integer');
   });
 
   it('rejects non-documents without throwing', () => {
@@ -210,13 +178,42 @@ describe('bundled signs catalogue', () => {
     }
   });
 
-  it('only uses art the renderer can draw', () => {
+  // The app ships fully offline, so every bundled sign's artwork must ship
+  // with it — otherwise a fresh install with no network is 71 placeholders.
+  it('bundles the artwork every seed sign points at', () => {
     for (const sign of signs) {
-      expect(SIGN_ART_KINDS).toContain(sign.art.kind);
-      const used = (sign.art as { symbol?: string }).symbol;
-      if (used !== undefined) {
-        expect(SIGN_SYMBOLS).toContain(used);
-      }
+      const svg = SEED_SIGN_SVGS[sign.image.full.assetId];
+      expect(svg).toBeDefined();
+      // Content-addressed: the bundled markup must be what the id names, or
+      // the app and the server would disagree about the same asset.
+      expect(sha256Hex(svg)).toBe(sign.image.full.assetId);
+      expect(svg).toContain('<svg');
     }
+  });
+
+  it('bundles nothing the catalogue does not reference', () => {
+    const referenced = new Set(signs.map(sign => sign.image.full.assetId));
+    expect(Object.keys(SEED_SIGN_SVGS).sort()).toEqual([...referenced].sort());
+  });
+
+  // The same rules the server enforces on upload: this markup renders on a
+  // device, so nothing active may ride along.
+  it('bundles only inert artwork', () => {
+    for (const svg of Object.values(SEED_SIGN_SVGS)) {
+      expect(svg).not.toMatch(/<script|<foreignObject|<image[\s>]/i);
+      expect(svg).not.toMatch(/\son\w+\s*=|javascript:/i);
+      expect(svg).not.toMatch(/(?:href|src)\s*=\s*["']https?:/i);
+    }
+  });
+
+  it('gives every sign its own artwork', () => {
+    for (const sign of signs) {
+      expect(SIGN_IMAGE_MIMES).toContain(sign.image.full.mime);
+      expect(sign.image.full.assetId).toMatch(/^[0-9a-f]{64}$/);
+      expect(sign.image.full.sizeBytes).toBeGreaterThan(0);
+    }
+    // Each sign is its own picture — no two share one file.
+    const ids = signs.map(sign => sign.image.full.assetId);
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });

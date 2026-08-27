@@ -4,10 +4,10 @@ import { Sign, SignCategory } from './wire';
 
 export type {
   Sign,
-  SignArtSpec,
   SignCategory,
   SignCategoryGlyph,
-  SignSymbol,
+  SignImage,
+  SignImageRef,
 } from './wire';
 
 // The catalogue lives in signsStore (seed until a downloaded version has been
