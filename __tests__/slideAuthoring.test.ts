@@ -1,3 +1,5 @@
+import { COURSE_SCHEMA_VERSION } from '@/data/course/v2/wire';
+import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 import type {
   CardStyleV2,
   CourseAssetV2,
@@ -35,12 +37,12 @@ const uuid = (n: number) =>
 const asset = (assetId: string, n: number): CourseAssetV2 => ({
   assetId,
   uuid: uuid(n),
-  type: 'svg',
+  mime: 'image/svg+xml' as const,
   width: 320,
   height: 180,
   alt: 'A diagram',
   sha256: 'a'.repeat(64),
-  svgXml: '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
+  sizeBytes: utf8ByteLength('<svg xmlns="http://www.w3.org/2000/svg"></svg>'),
 });
 
 const lessonDoc = (
@@ -48,7 +50,7 @@ const lessonDoc = (
   extra: Partial<LessonDocV2['lesson']> = {},
   assets: CourseAssetV2[] = [],
 ): unknown => ({
-  schemaVersion: 2,
+  schemaVersion: COURSE_SCHEMA_VERSION,
   deliveryVersion: '1.0.0',
   lesson: {
     lessonId: 'l-01',
@@ -269,7 +271,7 @@ describe('inline artwork', () => {
 
 describe('slide types', () => {
   const courseDoc = (cardStyles?: unknown): unknown => ({
-    schemaVersion: 2,
+    schemaVersion: COURSE_SCHEMA_VERSION,
     deliveryVersion: '1.0.0',
     course: {
       courseId: 'ca-class-c',

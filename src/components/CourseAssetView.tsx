@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { Image } from 'react-native';
 import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
 
+import { assetUrl, isVectorAsset, vectorMarkup } from '@/data/assets/store';
+import type { CourseAssetV2 } from '@/data/course/v2/wire';
+
 import PlaceholderImage from './PlaceholderImage';
 
-// Anything that can be drawn as an embedded diagram. CourseAssetV2 satisfies
-// this structurally, so course assets pass straight through; the authored
-// practice questions supply the same pair from their own art registry.
+// Anything that can be drawn. A course asset is a reference to a file the
+// content server holds; the authored practice questions supply their markup
+// inline from their own art registry. Both arrive here.
 export type Diagram = {
   svgXml: string;
   alt: string;
@@ -17,16 +21,23 @@ export type Diagram = {
   height?: number;
 };
 
+type Drawable = Diagram | CourseAssetV2;
+
 type CourseAssetViewProps = {
-  asset?: Diagram;
+  asset?: Drawable;
   radius?: number;
 };
 
-// Course illustration: embedded SVG XML rendered natively, so every diagram
-// works fully offline.
+const inlineMarkup = (asset: Drawable): string | null =>
+  'svgXml' in asset ? asset.svgXml : null;
+
+// Course illustration. A vector is drawn from the markup the updater put on
+// the device, so it works fully offline; a photograph is drawn from its URL,
+// which is the file's own hash and therefore something the platform's image
+// cache can hold forever.
 const DEFAULT_ASPECT_RATIO = 16 / 9;
 
-const aspectRatioOf = (asset: Diagram): number =>
+const aspectRatioOf = (asset: Drawable): number =>
   asset.width != null &&
   asset.height != null &&
   asset.width > 0 &&
@@ -42,9 +53,28 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
   // illustrations through this one mounted view, and a bare `failed` boolean
   // had nothing to reset it — so the first unparseable asset turned every
   // later card's diagram into a placeholder for the rest of the lesson.
-  const [failedXml, setFailedXml] = useState<string | null>(null);
+  const [failedKey, setFailedKey] = useState<string | null>(null);
 
-  if (asset == null || asset.svgXml === failedXml) {
+  // Inline markup wins (registry art); otherwise a course asset is either a
+  // vector whose markup is on the device, or a picture with a URL.
+  const markup =
+    asset == null
+      ? null
+      : inlineMarkup(asset) ??
+        (isVectorAsset(asset as CourseAssetV2)
+          ? vectorMarkup(asset as CourseAssetV2)
+          : null);
+  const uri =
+    asset != null &&
+    inlineMarkup(asset) == null &&
+    !isVectorAsset(asset as CourseAssetV2)
+      ? assetUrl(asset as CourseAssetV2)
+      : null;
+  const key = markup ?? uri;
+
+  // Nothing to draw: a vector that never made it onto the device, or a
+  // drawing that failed. The alt text still says what was meant to be here.
+  if (asset == null || key == null || key === failedKey) {
     return (
       <PlaceholderImage
         label={asset?.alt ?? 'illustration unavailable'}
@@ -68,16 +98,25 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
       {/*
         Keyed by the drawing itself, for the reason spelled out in Icon.tsx:
         on Android a mounted SvgXml can go on blitting a stale cached bitmap,
-        and a diagram is big enough that doing so is impossible to miss. The
-        XML is the identity here because `Diagram` carries no id of its own.
+        and a diagram is big enough that doing so is impossible to miss.
       */}
-      <SvgXml
-        key={asset.svgXml}
-        xml={asset.svgXml}
-        width="100%"
-        height="100%"
-        onError={() => setFailedXml(asset.svgXml)}
-      />
+      {markup != null ? (
+        <SvgXml
+          key={key}
+          xml={markup}
+          width="100%"
+          height="100%"
+          onError={() => setFailedKey(key)}
+        />
+      ) : (
+        <Image
+          key={key}
+          source={{ uri: uri! }}
+          style={{ width: '100%', height: '100%' }}
+          resizeMode="contain"
+          onError={() => setFailedKey(key)}
+        />
+      )}
     </Frame>
   );
 };

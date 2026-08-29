@@ -3,6 +3,11 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { createLogger } from '@/lib/log';
+import {
+  ensureAssets,
+  setAssetsBaseUrl,
+  sweepAssets,
+} from '@/data/assets/store';
 import { APP_VERSION, isServerConfigured } from '@/lib/serverConfig';
 import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 
@@ -427,6 +432,10 @@ const runContentPhase = async (
     }
   }
 
+  // Where the pictures live, so a raster illustration can be drawn from its
+  // URL after a restart with no network.
+  await setAssetsBaseUrl(bootstrap.app.assetsBaseUrl);
+
   // What was not downloaded was assembled here — carried forward whole, or
   // carried forward with a fetched lesson folded in — on the strength of the
   // instructions alone. The manifest says exactly what each document must
@@ -479,7 +488,27 @@ const runContentPhase = async (
       );
     }
   }
+  // Every picture the version shows, before anything is committed: a course
+  // on the device is a course that renders, so a half-fetched one is no
+  // course at all. Vectors are verified against the hashes above.
+  const artwork = [
+    ...new Map(
+      ordered.flatMap(doc => doc.assets.map(asset => [asset.sha256, asset])),
+    ).values(),
+  ];
+  total += artwork.length;
+  onProgress?.({ fetched, total });
+  await ensureAssets(artwork, progress => {
+    onProgress?.({ fetched: fetched + progress.fetched, total });
+  });
+  // Pictures already on the device report no progress of their own, so the
+  // final tick is emitted here rather than left short of the total.
+  fetched += artwork.length;
+  onProgress?.({ fetched, total });
+
   await courseStore.commit(latest, courseDoc, ordered);
+  // What the replaced version used goes with it.
+  await sweepAssets(new Set(artwork.map(asset => asset.sha256)));
 };
 
 const runProgressPhase = async (

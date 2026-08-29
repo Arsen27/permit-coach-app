@@ -6,7 +6,11 @@
 // truth for what a structurally valid v2 document is — the app must never
 // trust a TypeScript cast where one of these functions can run instead.
 
-export const COURSE_SCHEMA_VERSION = 2;
+// 3: artwork left the documents. An asset is a reference to a file the server
+// serves, not embedded markup, so a lesson is a fraction of its old size and a
+// photograph is as ordinary as a diagram. The number is the gate that keeps
+// builds which would not understand that away from the content.
+export const COURSE_SCHEMA_VERSION = 3;
 
 // ---------------------------------------------------------------------------
 // Entities
@@ -32,15 +36,34 @@ export type CourseQuestionV2 = {
   scope?: 'universal' | 'state_specific';
 };
 
+// A picture a card or a question shows. The bytes are not here: `sha256` names
+// a file the content server serves at `<assetsBaseUrl>/<sha256>.<ext>`, which
+// is immutable because the name is the hash. That keeps a lesson small, lets a
+// photograph cost no more to describe than a diagram, and means a picture used
+// by two lessons is downloaded once.
+export const ASSET_MIMES = [
+  'image/svg+xml',
+  'image/png',
+  'image/jpeg',
+] as const;
+
+export type AssetMimeV2 = (typeof ASSET_MIMES)[number];
+
+export const ASSET_EXTENSIONS: Record<AssetMimeV2, string> = {
+  'image/svg+xml': 'svg',
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+};
+
 export type CourseAssetV2 = {
   assetId: string;
   uuid: string;
-  type: 'svg';
+  mime: AssetMimeV2;
   width: number;
   height: number;
   alt: string;
   sha256: string;
-  svgXml: string;
+  sizeBytes: number;
 };
 
 // ---------------------------------------------------------------------------
@@ -654,6 +677,10 @@ export type BootstrapResponseV2 = {
   app: {
     minSupportedAppVersion: string;
     latestAppVersion: string;
+    // Where every picture a document references is served from. The app is
+    // told rather than knowing, so the files can move behind a CDN or an
+    // object store without an app release.
+    assetsBaseUrl: string;
   };
   course: {
     courseId: string;
@@ -949,16 +976,21 @@ const validateAsset = (ctx: Ctx, value: unknown): CourseAssetV2 | null => {
     ctx.errors.push(`${ctx.path}: expected asset object`);
     return null;
   }
-  if (value.type !== 'svg') {
-    ctx.errors.push(`${ctx.path}.type: expected 'svg'`);
+  const mime = str(ctx, value, 'mime');
+  if (!(ASSET_MIMES as readonly string[]).includes(mime)) {
+    ctx.errors.push(
+      `${ctx.path}.mime: expected one of ${ASSET_MIMES.join(', ')}`,
+    );
   }
+  // The name of the file and the proof of what is in it, in one field: the
+  // app verifies a downloaded picture against it before showing anything.
   const sha256 = str(ctx, value, 'sha256');
   if (sha256 && !SHA256_PATTERN.test(sha256)) {
     ctx.errors.push(`${ctx.path}.sha256: expected lowercase sha256 hex`);
   }
-  const svgXml = str(ctx, value, 'svgXml');
-  for (const error of svgSafetyErrors(svgXml)) {
-    ctx.errors.push(`${ctx.path}.svgXml: ${error}`);
+  const sizeBytes = num(ctx, value, 'sizeBytes');
+  if (sizeBytes <= 0) {
+    ctx.errors.push(`${ctx.path}.sizeBytes: expected a positive size`);
   }
   const width = num(ctx, value, 'width');
   const height = num(ctx, value, 'height');
@@ -968,12 +1000,12 @@ const validateAsset = (ctx: Ctx, value: unknown): CourseAssetV2 | null => {
   return {
     assetId: id(ctx, value, 'assetId'),
     uuid: uuid(ctx, value, 'uuid'),
-    type: 'svg',
+    mime: mime as AssetMimeV2,
     width,
     height,
     alt: str(ctx, value, 'alt'),
     sha256,
-    svgXml,
+    sizeBytes,
   };
 };
 
@@ -1892,6 +1924,7 @@ export const validateBootstrapResponseV2 = (
   const app = {
     minSupportedAppVersion: str(appCtx, appRaw, 'minSupportedAppVersion'),
     latestAppVersion: str(appCtx, appRaw, 'latestAppVersion'),
+    assetsBaseUrl: str(appCtx, appRaw, 'assetsBaseUrl'),
   };
   const courseCtx: Ctx = { path: 'bootstrap.course', errors: ctx.errors };
   const mode = str(courseCtx, courseRaw, 'mode');

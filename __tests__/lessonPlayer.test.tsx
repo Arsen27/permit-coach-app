@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import { buildCards } from '@/components/lesson/cards';
 import { courseStore } from '@/data/course/store';
+import { COURSE_SCHEMA_VERSION } from '@/data/course/v2/wire';
 import type { CourseDocV2, ModuleDocV2 } from '@/data/course/v2/wire';
 import { blockAssetIds } from '@/data/course/v2/wire';
 import LessonOverviewScreen from '@/screens/LessonOverviewScreen';
@@ -328,7 +329,7 @@ describe('split lesson experience', () => {
       ] as typeof lesson.blocks,
     };
     const moduleDoc: ModuleDocV2 = {
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       deliveryVersion: '3.1.0',
       module: {
         ...moduleWithLesson,
@@ -340,7 +341,7 @@ describe('split lesson experience', () => {
       assets: FIXTURE_COURSE_BUNDLE.assets,
     };
     const courseDoc: CourseDocV2 = {
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       deliveryVersion: '3.1.0',
       course: {
         ...FIXTURE_COURSE_BUNDLE.course,

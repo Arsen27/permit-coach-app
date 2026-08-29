@@ -10,6 +10,9 @@ module.exports = {
   // The server and the admin SPA have their own runners (node --test in
   // server/, `npm run smoke` in admin/).
   testPathIgnorePatterns: [
+    // Shared helpers, not suites.
+    '<rootDir>/__tests__/support/',
+    '<rootDir>/__tests__/fixtures/',
     '/node_modules/',
     '<rootDir>/server/',
     '<rootDir>/admin/',

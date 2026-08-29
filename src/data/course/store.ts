@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { clearAssets } from '@/data/assets/store';
+
 import { createLogger, formatBytes } from '@/lib/log';
 
 import { CourseId, DEFAULT_COURSE_ID } from './index';
@@ -209,6 +211,7 @@ export const courseStore = {
   // empty as a fresh install. Dev-only in practice: the channel switch calls
   // it, and the caller downloads the new channel's course afterwards.
   wipeDownloadedContent: async (): Promise<void> => {
+    await clearAssets();
     const keys = (await AsyncStorage.getAllKeys()).filter(key =>
       OWNED_PREFIXES.some(prefix => key.startsWith(prefix)),
     );

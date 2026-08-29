@@ -1,6 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
+
 import { courseStore } from '@/data/course/store';
+import { COURSE_SCHEMA_VERSION } from '@/data/course/v2/wire';
 import type {
   CourseDocV2,
   CourseInfoV2,
@@ -29,12 +32,14 @@ const question = (id: string) => ({
 const asset = (id: string) => ({
   assetId: id,
   uuid: `00000000-0000-5000-8000-1000000000${id.length}${id.length}`,
-  type: 'svg' as const,
+  mime: 'image/svg+xml' as const,
   width: 1200,
   height: 675,
   alt: id,
   sha256: '0'.repeat(64),
-  svgXml: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"/>',
+  sizeBytes: utf8ByteLength(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"/>',
+  ),
 });
 
 const moduleDoc = (
@@ -42,7 +47,7 @@ const moduleDoc = (
   questionIds: string[],
   assetIds: string[] = [],
 ): ModuleDocV2 => ({
-  schemaVersion: 2,
+  schemaVersion: COURSE_SCHEMA_VERSION,
   deliveryVersion: '2.1.0',
   module: {
     moduleId,
@@ -84,7 +89,7 @@ const courseInfo = (
 });
 
 const courseDoc: CourseDocV2 = {
-  schemaVersion: 2,
+  schemaVersion: COURSE_SCHEMA_VERSION,
   deliveryVersion: '2.1.0',
   course: courseInfo('ca-class-c', ['m-b', 'm-a']),
 };
@@ -160,7 +165,7 @@ describe('courseStore (v2)', () => {
 
   it('commits into the slot the doc names, not the active course', async () => {
     const florida: CourseDocV2 = {
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       deliveryVersion: '1.0.0',
       course: courseInfo('fl-class-e', ['m-a'], {
         jurisdiction: 'FL',

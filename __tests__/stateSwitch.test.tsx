@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components/native';
 import { courseIdForState } from '@/data/course';
 import { courseStore } from '@/data/course/store';
 import { installCourse } from '@/data/course/updater';
+import { COURSE_SCHEMA_VERSION } from '@/data/course/v2/wire';
 import type { CourseDocV2, ModuleDocV2 } from '@/data/course/v2/wire';
 import { SUPPORTED_STATES } from '@/data/states';
 import StatePickerScreen from '@/screens/StatePickerScreen';
@@ -33,7 +34,7 @@ const mockInstall = installCourse as jest.MockedFunction<typeof installCourse>;
 // A minimal committed course per state, so the picker sees "already on the
 // phone" for some states and "needs a download" for others.
 const moduleDoc = (courseId: string, version: string): ModuleDocV2 => ({
-  schemaVersion: 2,
+  schemaVersion: COURSE_SCHEMA_VERSION,
   deliveryVersion: version,
   module: {
     moduleId: `${courseId}-m1`,
@@ -59,7 +60,7 @@ const courseDoc = (
   state: string,
   version: string,
 ): CourseDocV2 => ({
-  schemaVersion: 2,
+  schemaVersion: COURSE_SCHEMA_VERSION,
   deliveryVersion: version,
   course: {
     courseId,

@@ -10,9 +10,10 @@ import {
   recallGapErrors,
   svgSafetyErrors,
 } from '@/data/course/v2/wire';
-import { sha256Hex } from '@/lib/sha256';
+import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 
 import {
+  FIXTURE_ASSET_BYTES,
   FIXTURE_COURSE_BUNDLE,
   FIXTURE_DELIVERY_VERSION,
 } from './fixtures/courseFixture';
@@ -27,7 +28,7 @@ const lessons = bundle.modules.flatMap(module => module.lessons);
 const questionById = new Map(bundle.questions.map(q => [q.questionId, q]));
 const assetById = new Map(bundle.assets.map(a => [a.assetId, a]));
 
-describe('course content (ca-class-c schema v2, latest release)', () => {
+describe('course content (ca-class-c, latest release)', () => {
   it('has the expected top-level counts', () => {
     expect(FIXTURE_DELIVERY_VERSION).toBe('3.2.11');
     expect(bundle.course.courseId).toBe('ca-class-c');
@@ -296,18 +297,23 @@ describe('course content (ca-class-c schema v2, latest release)', () => {
 
   it('embeds SVG whose bytes match the recorded sha256 and pass safety checks', () => {
     for (const asset of bundle.assets) {
-      expect(asset.type).toBe('svg');
+      expect(asset.mime).toBe('image/svg+xml');
       expect(asset.width / asset.height).toBeCloseTo(16 / 9, 2);
       expect(asset.alt.length).toBeGreaterThan(0);
-      expect(sha256Hex(asset.svgXml)).toBe(asset.sha256);
-      expect(svgSafetyErrors(asset.svgXml)).toEqual([]);
+      // A document only names a picture; the name is the hash of the file,
+      // and the file is still markup a device will render.
+      const markup = FIXTURE_ASSET_BYTES.get(asset.sha256);
+      expect(markup).toBeDefined();
+      expect(sha256Hex(markup!)).toBe(asset.sha256);
+      expect(asset.sizeBytes).toBe(utf8ByteLength(markup!));
+      expect(svgSafetyErrors(markup!)).toEqual([]);
     }
   });
 
   it('ships no audit-only fields in the runtime bundle', () => {
     const runtimeJson = JSON.stringify({
       ...bundle,
-      assets: bundle.assets.map(asset => ({ ...asset, svgXml: '' })),
+      assets: bundle.assets,
     });
     for (const field of [
       'primaryRuleIds',
@@ -340,7 +346,7 @@ describe('course content (ca-class-c schema v2, latest release)', () => {
   });
 
   it('stamps every doc-level schema constant correctly', () => {
-    expect(COURSE_SCHEMA_VERSION).toBe(2);
+    expect(COURSE_SCHEMA_VERSION).toBe(3);
     for (const lesson of lessons) {
       expect(lesson.language).toBe('en-US');
       expect(lesson.format).toBe('intro_conversation_slides_test');

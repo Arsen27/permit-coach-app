@@ -1,5 +1,7 @@
 import React, { useEffect, useSyncExternalStore } from 'react';
 
+import { hydrateAssets } from '@/data/assets/store';
+
 import { StoredCourse, courseStore } from './store';
 
 // The committed course for the active state — null before hydration and when
@@ -36,6 +38,8 @@ type CourseProviderProps = {
 export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   useEffect(() => {
     courseStore.hydrate().catch(() => undefined);
+    // Where pictures live, restored before the first card renders.
+    hydrateAssets().catch(() => undefined);
   }, []);
 
   return <>{children}</>;

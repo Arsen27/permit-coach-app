@@ -2,6 +2,8 @@ import { createHash } from 'crypto';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
+import { convertTreeDoc } from './support/treeContent';
+
 import { assembleBundle } from '@/data/course/store';
 import { moduleDocFromBundle } from '@/data/course/updater';
 import type {
@@ -36,8 +38,15 @@ describeIf('server content tree (ca-class-c)', () => {
   );
   const entryOf = (version: string) =>
     manifest.versions.find(entry => entry.version === version)!;
-  const readDoc = (version: string, relPath: string): string =>
+  // The bytes on disk, which the manifest describes.
+  const readRaw = (version: string, relPath: string): string =>
     readFileSync(join(COURSE_DIR, version, relPath), 'utf8');
+
+  // The committed tree predates artwork-as-a-file; the server converts it on
+  // import, and so does this, so what the validators see is what a release
+  // actually holds.
+  const readDoc = (version: string, relPath: string): string =>
+    convertTreeDoc(readRaw(version, relPath)).body;
 
   // The latest release: what a device downloads today.
   const checked = [manifest.latestVersion].map(version => ({
@@ -63,7 +72,7 @@ describeIf('server content tree (ca-class-c)', () => {
   it.each(checked.map(item => [item.version, item] as const))(
     '%s: document hashes match the exact bytes on disk',
     (_version, { version, entry }) => {
-      const courseBytes = readDoc(version, 'course.json');
+      const courseBytes = readRaw(version, 'course.json');
       expect(sha256(courseBytes)).toBe(entry.documents.course.sha256);
       expect(Buffer.byteLength(courseBytes)).toBe(
         entry.documents.course.sizeBytes,
@@ -71,13 +80,13 @@ describeIf('server content tree (ca-class-c)', () => {
 
       expect(Object.keys(entry.documents.modules)).toHaveLength(8);
       for (const [moduleId, ref] of Object.entries(entry.documents.modules)) {
-        const bytes = readDoc(version, join('modules', `${moduleId}.json`));
+        const bytes = readRaw(version, join('modules', `${moduleId}.json`));
         expect(sha256(bytes)).toBe(ref.sha256);
         expect(Buffer.byteLength(bytes)).toBe(ref.sizeBytes);
       }
       expect(Object.keys(entry.documents.lessons)).toHaveLength(32);
       for (const [lessonId, ref] of Object.entries(entry.documents.lessons)) {
-        const bytes = readDoc(version, join('lessons', `${lessonId}.json`));
+        const bytes = readRaw(version, join('lessons', `${lessonId}.json`));
         expect(sha256(bytes)).toBe(ref.sha256);
         expect(Buffer.byteLength(bytes)).toBe(ref.sizeBytes);
         expect(ref.moduleId in entry.documents.modules).toBe(true);
@@ -159,9 +168,10 @@ describeIf('server content tree (ca-class-c)', () => {
       const rebuilt = moduleDocFromBundle(bundle, moduleId, version);
       expect(rebuilt).not.toBeNull();
       const body = `${JSON.stringify(rebuilt, null, 2)}\n`;
-      expect({ moduleId, sha256: sha256(body) }).toEqual({
+      // Against the document the server would serve, byte for byte.
+      expect({ moduleId, body }).toEqual({
         moduleId,
-        sha256: entry.documents.modules[moduleId].sha256,
+        body: readDoc(version, join('modules', `${moduleId}.json`)),
       });
     }
   });

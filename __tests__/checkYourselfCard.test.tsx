@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import LessonCardBody from '@/components/lesson/LessonCardBody';
 import { CARD_META, buildCards } from '@/components/lesson/cards';
+import { COURSE_SCHEMA_VERSION } from '@/data/course/v2/wire';
 import type { CheckYourselfBlockV2 } from '@/data/course/v2/wire';
 import {
   recallGapErrors,
@@ -29,7 +30,7 @@ const block: CheckYourselfBlockV2 = {
 };
 
 const lessonDoc = (ruleMarkdown: string) => ({
-  schemaVersion: 2,
+  schemaVersion: COURSE_SCHEMA_VERSION,
   deliveryVersion: '1.0.0',
   lesson: {
     lessonId: 'test-lesson',

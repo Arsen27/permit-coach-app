@@ -6,6 +6,7 @@ import {
   fetchLessonDocRaw,
   fetchModuleDocRaw,
 } from '@/data/course/client';
+import { resetAssetsForTests } from '@/data/assets/store';
 import { loadPrompt } from '@/data/course/promptStore';
 import { courseStore } from '@/data/course/store';
 import {
@@ -14,6 +15,7 @@ import {
   installCourse,
   runCourseUpdate,
 } from '@/data/course/updater';
+import { COURSE_SCHEMA_VERSION } from '@/data/course/v2/wire';
 import type {
   BootstrapResponseV2,
   CourseDocV2,
@@ -91,12 +93,12 @@ const SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"/>';
 const assetFx = (assetId: string) => ({
   assetId,
   uuid: uid(assetId),
-  type: 'svg' as const,
+  mime: 'image/svg+xml' as const,
   width: 1200,
   height: 675,
   alt: `alt ${assetId}`,
   sha256: sha256Hex(SVG),
-  svgXml: SVG,
+  sizeBytes: utf8ByteLength(SVG),
 });
 
 const lessonFx = (
@@ -159,7 +161,7 @@ const buildFixture = (
 
   const moduleDocs: ModuleDocV2[] = [
     {
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       deliveryVersion,
       module: {
         moduleId: M1,
@@ -179,7 +181,7 @@ const buildFixture = (
       assets: [a1],
     },
     {
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       deliveryVersion,
       module: {
         moduleId: M2,
@@ -201,14 +203,14 @@ const buildFixture = (
   ];
   const lessonDocs: LessonDocV2[] = [
     {
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       deliveryVersion,
       lesson: lesson1,
       questions: [q1],
       assets: [a1],
     },
     {
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       deliveryVersion,
       lesson: lesson2,
       questions: [q2],
@@ -216,7 +218,7 @@ const buildFixture = (
     },
   ];
   const courseDoc: CourseDocV2 = {
-    schemaVersion: 2,
+    schemaVersion: COURSE_SCHEMA_VERSION,
     deliveryVersion,
     course: {
       courseId: 'ca-class-c',
@@ -279,7 +281,24 @@ const buildFixture = (
   };
 };
 
+// The content server's asset route, for the store that fetches pictures.
+// Fixture artwork is one SVG, so every id answers with it.
+const serveAssets = () => {
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    const url = String(input);
+    if (!url.includes('/v1/assets/')) {
+      throw new Error(`unexpected fetch ${url}`);
+    }
+    return {
+      ok: true,
+      status: 200,
+      text: async () => SVG,
+    } as Response;
+  }) as typeof fetch;
+};
+
 const serveFixture = (fixture: Fixture) => {
+  serveAssets();
   mockCourse.mockImplementation(async () => fixture.bodies.get('course')!);
   mockModule.mockImplementation(async (_c, _v, moduleId) => {
     const body = fixture.bodies.get(`modules/${moduleId}`);
@@ -307,10 +326,11 @@ const bootstrapBody = (
     app: {
       minSupportedAppVersion: minSupportedAppVersion ?? '1.0.0',
       latestAppVersion: '1.0.0',
+      assetsBaseUrl: 'http://test/v1/assets',
     },
     course: {
       courseId: 'ca-class-c',
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       latestVersion: BASE_VERSION,
       mode: 'none',
       pendingVersions: [],
@@ -337,6 +357,7 @@ beforeEach(async () => {
   await AsyncStorage.clear();
   jest.clearAllMocks();
   courseStore.resetForTests();
+  resetAssetsForTests();
 });
 
 // The course the device starts every update test with — what a first
@@ -383,7 +404,7 @@ describe('runCourseUpdate (v2)', () => {
     serveFixture(fixture);
     mockBootstrap.mockResolvedValue(
       bootstrapBody({
-        schemaVersion: 3,
+        schemaVersion: COURSE_SCHEMA_VERSION + 1,
         latestVersion: NEXT_VERSION,
         mode: 'full',
         pendingVersions: [fixture.entry([{ op: 'full', severity: 'soft' }])],
@@ -700,7 +721,7 @@ describe('foldLessonIntoModule (v2)', () => {
       assetIds: [newAsset.assetId],
     };
     const patched: ModuleDocV2 = {
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       deliveryVersion: LATER_VERSION,
       module: {
         ...target.module,
@@ -713,7 +734,7 @@ describe('foldLessonIntoModule (v2)', () => {
       assets: target.assets,
     };
     const folded = foldLessonIntoModule(patched, {
-      schemaVersion: 2,
+      schemaVersion: COURSE_SCHEMA_VERSION,
       deliveryVersion: LATER_VERSION,
       lesson: newLesson,
       questions: [newQuestion],
@@ -737,7 +758,7 @@ describe('foldLessonIntoModule (v2)', () => {
     };
     expect(() =>
       foldLessonIntoModule(target, {
-        schemaVersion: 2,
+        schemaVersion: COURSE_SCHEMA_VERSION,
         deliveryVersion: LATER_VERSION,
         lesson: orphanLesson,
         questions: [],
@@ -914,7 +935,9 @@ describe('installCourse (first download)', () => {
     const snapshot = courseStore.getSnapshot()!;
     expect(snapshot.deliveryVersion).toBe(NEXT_VERSION);
     expect(snapshot.bundle.modules.map(m => m.moduleId)).toEqual([M1, M2]);
-    expect(onProgress).toHaveBeenLastCalledWith({ fetched: 3, total: 3 });
+    // Three documents and the one picture they share: a download is not done
+    // until what it shows is on the device.
+    expect(onProgress).toHaveBeenLastCalledWith({ fetched: 4, total: 4 });
     // A first download reconciles no progress: the seen cursor is untouched.
     expect(await AsyncStorage.getItem('dmv-prep/course-seen/v2/u1')).toBeNull();
   });
@@ -1120,4 +1143,37 @@ test('a module assembled from what the device holds is checked against the manif
   const snapshot = courseStore.getSnapshot()!;
   expect(snapshot.deliveryVersion).toBe(NEXT_VERSION);
   expect(snapshot.bundle.modules[1].title).toBe('Module two, rewritten');
+});
+
+test('a picture that does not match its own hash keeps the version off the device', async () => {
+  const base = buildFixture(BASE_VERSION);
+  await commitFixture(base, BASE_VERSION);
+
+  const fixture = buildFixture(NEXT_VERSION, {
+    lessonTitle: 'Retitled lesson',
+  });
+  serveFixture(fixture);
+  // The server answers the asset route with something else. Documents are
+  // verified against the manifest; artwork is verified the same way, and a
+  // course whose pictures cannot be trusted is not a course to commit.
+  globalThis.fetch = (async () =>
+    ({
+      ok: true,
+      status: 200,
+      text: async () => '<svg xmlns="http://www.w3.org/2000/svg"><line/></svg>',
+    } as Response)) as typeof fetch;
+  mockBootstrap.mockResolvedValue(
+    bootstrapBody({
+      latestVersion: NEXT_VERSION,
+      mode: 'full',
+      pendingVersions: [fixture.entry([{ op: 'full', severity: 'soft' }])],
+      progressFallback: { severity: 'soft' },
+    }),
+  );
+
+  const result = await runCourseUpdate(deps());
+
+  expect(result.status).toBe('failed');
+  // Nothing committed: the device still holds what it had.
+  expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
 });

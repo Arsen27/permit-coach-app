@@ -15,6 +15,7 @@ import type {
   LessonBlockV2,
 } from '@/data/course/v2/wire';
 import { defaultTheme } from '@/theme';
+import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 
 // What the learner actually sees once a slide carries an element body and the
 // course styles its own slide types. The admin previews lessons through this
@@ -23,12 +24,12 @@ import { defaultTheme } from '@/theme';
 const artwork = (assetId: string): CourseAssetV2 => ({
   assetId,
   uuid: '0b9e4c7a-8f21-4d5e-9a3b-2c1d0e9f8a7b',
-  type: 'svg',
+  mime: 'image/svg+xml' as const,
   width: 320,
   height: 180,
   alt: `Diagram ${assetId}`,
   sha256: 'a'.repeat(64),
-  svgXml: '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
+  sizeBytes: utf8ByteLength('<svg xmlns="http://www.w3.org/2000/svg"></svg>'),
 });
 
 const lessonOf = (blocks: LessonBlockV2[]): CourseLessonV2 => ({
