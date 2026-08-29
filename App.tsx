@@ -16,6 +16,7 @@ import { captureCurrentScreen } from '@/analytics/screens';
 import { AuthProvider, useAuth } from '@/auth/AuthProvider';
 import AccountDeletionOverlay from '@/components/AccountDeletionOverlay';
 import AppUpdateGate from '@/components/AppUpdateGate';
+import ChannelBadge from '@/components/ChannelBadge';
 import CourseInstallGate from '@/components/CourseInstallGate';
 import DailyStreakGate from '@/components/DailyStreakGate';
 import GlassTabBar from '@/components/GlassTabBar';
@@ -167,6 +168,7 @@ const AppShellComponent: React.FC<AppShellProps> = ({ theme, onboarded }) => {
         <DailyStreakGate />
         <UpdateManager />
         <AppUpdateGate />
+        <ChannelBadge />
         <NavigationContainer
           ref={navigationRef}
           // @react-navigation/native v7 no longer feeds the PostHog SDK's own

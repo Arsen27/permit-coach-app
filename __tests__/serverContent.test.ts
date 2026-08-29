@@ -2,7 +2,10 @@ import { createHash } from 'crypto';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
+import { assembleBundle } from '@/data/course/store';
+import { moduleDocFromBundle } from '@/data/course/updater';
 import type {
+  CourseDocV2,
   CourseManifestV2,
   LessonDocV2,
   ModuleDocV2,
@@ -137,4 +140,29 @@ describeIf('server content tree (ca-class-c)', () => {
       }
     },
   );
+
+  // The updater carries untouched modules forward instead of downloading
+  // them, and checks the result against the manifest before committing. That
+  // check is only useful while a rebuilt module is byte-identical to the one
+  // the server serves — if the two ever drifted, every delta update would
+  // quietly turn into a full download.
+  it('rebuilds a served module document byte for byte from the bundle', () => {
+    const version = manifest.latestVersion;
+    const entry = entryOf(version);
+    const courseDoc: CourseDocV2 = JSON.parse(readDoc(version, 'course.json'));
+    const moduleDocs: ModuleDocV2[] = courseDoc.course.moduleIds.map(id =>
+      JSON.parse(readDoc(version, join('modules', `${id}.json`))),
+    );
+    const bundle = assembleBundle(courseDoc, moduleDocs);
+
+    for (const moduleId of courseDoc.course.moduleIds) {
+      const rebuilt = moduleDocFromBundle(bundle, moduleId, version);
+      expect(rebuilt).not.toBeNull();
+      const body = `${JSON.stringify(rebuilt, null, 2)}\n`;
+      expect({ moduleId, sha256: sha256(body) }).toEqual({
+        moduleId,
+        sha256: entry.documents.modules[moduleId].sha256,
+      });
+    }
+  });
 });

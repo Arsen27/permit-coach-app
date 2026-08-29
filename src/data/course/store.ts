@@ -178,6 +178,17 @@ const ensureHydrated = (courseId: CourseId): Promise<void> => {
   return promise;
 };
 
+// Every key a downloaded course and its cursors occupy. The channel switch
+// clears them because what they hold came from the other channel — a stale
+// version number there would be read as progress the device had made.
+const OWNED_PREFIXES = [
+  'dmv-prep/course/v2/',
+  V1_PREFIX,
+  'dmv-prep/course-seen/v2/',
+  'dmv-prep/course-offer/v1/',
+  'dmv-prep/course-prompts/v1',
+];
+
 export const courseStore = {
   activeCourseId: (): CourseId => activeCourseId,
   // The committed course for the active state, or null before hydration and
@@ -194,6 +205,21 @@ export const courseStore = {
   // What is in memory for a course right now, hydrated or not.
   storedFor: (courseId: CourseId): StoredCourse | null =>
     snapshots.get(courseId) ?? null,
+  // Forgets every downloaded course and cursor, leaving the store exactly as
+  // empty as a fresh install. Dev-only in practice: the channel switch calls
+  // it, and the caller downloads the new channel's course afterwards.
+  wipeDownloadedContent: async (): Promise<void> => {
+    const keys = (await AsyncStorage.getAllKeys()).filter(key =>
+      OWNED_PREFIXES.some(prefix => key.startsWith(prefix)),
+    );
+    if (keys.length > 0) {
+      await AsyncStorage.removeMany(keys);
+    }
+    snapshots.clear();
+    hydratedCourses.clear();
+    hydratingCourses.clear();
+    notify();
+  },
   // Switches which course the store serves (the learner changed state). The
   // caller makes sure that course is on the device first; a committed
   // version serves the moment its hydration lands.

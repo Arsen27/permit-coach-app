@@ -200,4 +200,19 @@ export const signsStore = {
     hydrating = null;
     notify();
   },
+  // Drops the downloaded catalogue and goes back to the bundled seed. The
+  // committed bytes came from a channel; switching channels makes them
+  // somebody else's.
+  clear: async (): Promise<void> => {
+    const keys = (await AsyncStorage.getAllKeys()).filter(key =>
+      key.startsWith(`${PREFIX}/`),
+    );
+    if (keys.length > 0) {
+      await AsyncStorage.removeMany(keys);
+    }
+    snapshot = seedCatalog;
+    hydrated = false;
+    hydrating = null;
+    notify();
+  },
 };

@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { createLogger } from '@/lib/log';
 import { APP_VERSION, isServerConfigured } from '@/lib/serverConfig';
+import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 
 import {
   fetchBootstrapRaw,
@@ -154,7 +155,13 @@ const dedupeBy = <T>(items: T[], key: (item: T) => string): T[] => {
 
 // Rebuilds a ModuleDocV2 for a module the update did not touch, from the
 // bundle currently in memory, restamped with the new delivery version.
-const moduleDocFromBundle = (
+// The exact form every document hash is taken over — the importer and the
+// admin serialise releases the same way, so a document rebuilt here can be
+// compared with the manifest byte for byte.
+const serializeDoc = (value: unknown): string =>
+  `${JSON.stringify(value, null, 2)}\n`;
+
+export const moduleDocFromBundle = (
   bundle: CourseBundleV2,
   moduleId: string,
   deliveryVersion: string,
@@ -417,6 +424,41 @@ const runContentPhase = async (
       docs.set(owner, await fetchModule(owner));
     } else {
       docs.set(owner, foldLessonIntoModule(target, lessonDoc));
+    }
+  }
+
+  // What was not downloaded was assembled here — carried forward whole, or
+  // carried forward with a fetched lesson folded in — on the strength of the
+  // instructions alone. The manifest says exactly what each document must
+  // hash to, so the assembled bytes are checked against it rather than
+  // trusted: an instruction that failed to mention a change would otherwise
+  // leave the device on stale content while believing it was up to date.
+  // Anything that disagrees is downloaded like everything else.
+  const downloaded = new Set(moduleIdsToFetch);
+  const mismatched = targetModuleIds.filter(id => {
+    if (downloaded.has(id)) {
+      return false;
+    }
+    const doc = docs.get(id);
+    const ref = documents.modules[id];
+    if (doc == null || ref == null) {
+      return doc != null;
+    }
+    const body = serializeDoc(doc);
+    return (
+      sha256Hex(body) !== ref.sha256 || utf8ByteLength(body) !== ref.sizeBytes
+    );
+  });
+  if (mismatched.length > 0) {
+    log.warn(
+      `assembled modules disagree with the manifest — downloading them: ${mismatched.join(
+        ', ',
+      )}`,
+    );
+    total += mismatched.length;
+    onProgress?.({ fetched, total });
+    for (const doc of await mapLimit(mismatched, 4, fetchModule)) {
+      docs.set(doc.module.moduleId, doc);
     }
   }
 

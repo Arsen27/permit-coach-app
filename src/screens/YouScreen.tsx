@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -27,7 +27,17 @@ import {
   RowValue,
 } from '@/components/rows';
 import { Eyebrow } from '@/components/typography';
+import CourseInstallSheet from '@/components/CourseInstallSheet';
+import { courseIdForState } from '@/data/course';
+import { courseStore } from '@/data/course/store';
+import { useCourseInstall } from '@/data/course/useCourseInstall';
 import { findState } from '@/data/states';
+import {
+  getStagingKey,
+  setContentChannel,
+  setStagingKey,
+  useContentChannel,
+} from '@/lib/contentChannel';
 import { setDevUnlockAll, useDevUnlockAll } from '@/lib/devUnlock';
 import {
   PRIVACY_POLICY_URL,
@@ -63,6 +73,20 @@ const YouScreen: React.FC = () => {
   // restoring moved out of Settings for this release.
   const { plusActive } = usePurchases();
   const devUnlockAll = useDevUnlockAll();
+  const contentChannel = useContentChannel();
+  const install = useCourseInstall();
+  const [stagingKeyDraft, setStagingKeyDraft] = useState(getStagingKey);
+  // Switching channels throws away what the other one put on this device and
+  // downloads the course again, so it goes through the same sheet the state
+  // switch and onboarding use.
+  const switchChannel = useCallback(
+    async (toStaging: boolean) => {
+      const next = toStaging ? 'staging' : 'production';
+      await setContentChannel(next, courseStore.wipeDownloadedContent);
+      await install.start(courseIdForState(user.stateCode));
+    },
+    [install, user.stateCode],
+  );
   // Deletion in flight: the ref guards against a second tap racing the state
   // update, the state drives the disabled/spinner treatment.
   const [deleting, setDeleting] = useState(false);
@@ -341,7 +365,7 @@ const YouScreen: React.FC = () => {
               </RowBody>
               <Icon name="chevron-right" size={12} color={theme.colors.dim2} />
             </Row>
-            <Row>
+            <Row $divider>
               <RowTile $bg={theme.colors.faint}>
                 <Icon name="lock" size={15} color={theme.colors.muted} />
               </RowTile>
@@ -355,8 +379,57 @@ const YouScreen: React.FC = () => {
                 trackColor={{ true: theme.colors.accent }}
               />
             </Row>
+            <Row $divider>
+              <RowTile $bg={theme.colors.faint}>
+                <Icon name="file-text" size={15} color={theme.colors.muted} />
+              </RowTile>
+              <RowBody>
+                <RowTitle>Content channel · {contentChannel}</RowTitle>
+                <RowSub>
+                  {stagingKeyDraft.trim().length === 0
+                    ? 'Enter the staging key below first'
+                    : 'Erases the downloaded course and re-downloads from the channel'}
+                </RowSub>
+              </RowBody>
+              <Switch
+                value={contentChannel === 'staging'}
+                disabled={stagingKeyDraft.trim().length === 0}
+                onValueChange={value => void switchChannel(value)}
+                trackColor={{ true: theme.colors.accent }}
+              />
+            </Row>
+            <Row>
+              <RowTile $bg={theme.colors.faint}>
+                <Icon name="lock" size={15} color={theme.colors.muted} />
+              </RowTile>
+              <RowBody>
+                <RowTitle>Staging key</RowTitle>
+                <KeyInput
+                  value={stagingKeyDraft}
+                  onChangeText={next => {
+                    setStagingKeyDraft(next);
+                    setStagingKey(next.trim());
+                  }}
+                  placeholder="STAGING_KEY"
+                  placeholderTextColor={theme.colors.dim2}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  secureTextEntry
+                />
+              </RowBody>
+            </Row>
           </Group>
         </Section>
+      )}
+
+      {__DEV__ && (
+        <CourseInstallSheet
+          phase={install.phase}
+          progress={install.progress}
+          stateName={findState(user.stateCode)?.name ?? 'your state'}
+          onRetry={() => void switchChannel(contentChannel === 'staging')}
+          onCancel={install.reset}
+        />
       )}
 
       {/* Delete Account is offered to every real Supabase account — the
@@ -566,6 +639,14 @@ const Version = styled.Text`
   text-align: center;
   font-size: 11.5px;
   color: ${({ theme }) => theme.colors.dim};
+`;
+
+const KeyInput = styled.TextInput`
+  margin-top: 2px;
+  padding: 0;
+  ${({ theme }) => theme.fonts.medium}
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.muted};
 `;
 
 export default YouScreen;

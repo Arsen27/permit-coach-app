@@ -1,3 +1,4 @@
+import { getContentChannel, getStagingKey } from '@/lib/contentChannel';
 import { createLogger, formatBytes } from '@/lib/log';
 import { SERVER_URL } from '@/lib/serverConfig';
 
@@ -15,8 +16,10 @@ const requestRaw = async (path: string): Promise<string> => {
   const elapsed = log.time();
   log.info(`→ GET ${path}`);
   try {
+    const key = getStagingKey();
     const response = await fetch(`${SERVER_URL}${path}`, {
       signal: controller.signal,
+      headers: key.length > 0 ? { 'X-Staging-Key': key } : {},
     });
     if (!response.ok) {
       log.warn(`← ${response.status} ${path} (${elapsed()}ms)`);
@@ -43,11 +46,13 @@ const requestRaw = async (path: string): Promise<string> => {
   }
 };
 
+// The channel rides along even though the catalogue is not versioned yet:
+// the server ignores it until the signs move into the content database.
 export const fetchSignsLatestRaw = (): Promise<string> =>
-  requestRaw('/v1/signs/latest');
+  requestRaw(`/v1/signs/latest?channel=${getContentChannel()}`);
 
 export const fetchSignsDocRaw = (): Promise<string> =>
-  requestRaw('/v1/signs/doc');
+  requestRaw(`/v1/signs/doc?channel=${getContentChannel()}`);
 
 // Assets are content-addressed, so this URL never changes for a given picture
 // and the platform image cache can hold it indefinitely.

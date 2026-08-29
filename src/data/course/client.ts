@@ -1,3 +1,4 @@
+import { getContentChannel, getStagingKey } from '@/lib/contentChannel';
 import { createLogger, formatBytes } from '@/lib/log';
 import { SERVER_URL } from '@/lib/serverConfig';
 
@@ -7,6 +8,13 @@ const log = createLogger('net');
 
 // Returns the exact response body: document endpoints are hash-verified
 // against the manifest before parsing, so nothing here may re-serialize.
+// The staging channel and the versions only it serves are behind a key the
+// developer enters once; in a release build there is never one to send.
+const stagingHeaders = (): Record<string, string> => {
+  const key = getStagingKey();
+  return key.length > 0 ? { 'X-Staging-Key': key } : {};
+};
+
 const requestRaw = async (path: string): Promise<string> => {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
@@ -15,6 +23,7 @@ const requestRaw = async (path: string): Promise<string> => {
   try {
     const response = await fetch(`${SERVER_URL}${path}`, {
       signal: controller.signal,
+      headers: stagingHeaders(),
     });
     if (!response.ok) {
       log.warn(`← ${response.status} ${path} (${elapsed()}ms)`);
@@ -53,7 +62,7 @@ export const fetchBootstrapRaw = (
   appVersion: string,
 ): Promise<string> =>
   requestRaw(
-    `/v1/bootstrap?course=${courseId}${
+    `/v1/bootstrap?course=${courseId}&channel=${getContentChannel()}${
       courseVersion == null ? '' : `&courseVersion=${courseVersion}`
     }&appVersion=${appVersion}`,
   );

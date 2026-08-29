@@ -56,9 +56,11 @@ const mockLesson = fetchLessonDocRaw as jest.MockedFunction<
 // ---------------------------------------------------------------------------
 // A tiny but wire-valid two-module course fixture.
 
-let uuidCounter = 0;
-const uid = (): string =>
-  `00000000-0000-5000-8000-${String(uuidCounter++).padStart(12, '0')}`;
+// Real content derives a uuid from the entity's stable id, so the same entity
+// carries the same uuid across releases. A counter here would hand every
+// rebuild of a fixture new ids, and an untouched module would look changed.
+const uid = (seed: string): string =>
+  `00000000-0000-5000-8000-${sha256Hex(seed).slice(0, 12)}`;
 
 const M1 = 'ca-mod-one';
 const M2 = 'ca-mod-two';
@@ -71,7 +73,7 @@ const questionFx = (
   prompt = 'Question?',
 ): CourseQuestionV2 => ({
   questionId,
-  uuid: uid(),
+  uuid: uid(questionId),
   kind: 'opening_challenge',
   prompt,
   choices: [
@@ -88,7 +90,7 @@ const SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"/>';
 
 const assetFx = (assetId: string) => ({
   assetId,
-  uuid: uid(),
+  uuid: uid(assetId),
   type: 'svg' as const,
   width: 1200,
   height: 675,
@@ -106,7 +108,7 @@ const lessonFx = (
   title = lessonId,
 ): CourseLessonV2 => ({
   lessonId,
-  uuid: uid(),
+  uuid: uid(lessonId),
   moduleId,
   globalSequence,
   moduleSequence: 1,
@@ -161,14 +163,14 @@ const buildFixture = (
       deliveryVersion,
       module: {
         moduleId: M1,
-        uuid: uid(),
+        uuid: uid(M1),
         sequence: 1,
         title: 'Module one',
         outcome: 'outcome one',
         lessons: [lesson1],
         moduleTest: {
           testId: `${M1}-test`,
-          uuid: uid(),
+          uuid: uid(`${M1}-test`),
           moduleId: M1,
           questionIds: [q1.questionId],
         },
@@ -181,14 +183,14 @@ const buildFixture = (
       deliveryVersion,
       module: {
         moduleId: M2,
-        uuid: uid(),
+        uuid: uid(M2),
         sequence: 2,
         title: 'Module two',
         outcome: 'outcome two',
         lessons: [lesson2],
         moduleTest: {
           testId: `${M2}-test`,
-          uuid: uid(),
+          uuid: uid(`${M2}-test`),
           moduleId: M2,
           questionIds: [q2.questionId],
         },
@@ -233,12 +235,17 @@ const buildFixture = (
     },
   };
 
+  // Exactly how the server writes a document — the hashes in a manifest are
+  // taken over this form, and the updater rebuilds carried-forward modules
+  // into it to check them, so a fixture that serialised differently would
+  // misrepresent the wire format.
+  const serialize = (value: unknown) => `${JSON.stringify(value, null, 2)}\n`;
   const bodies = new Map<string, string>([
-    ['course', JSON.stringify(courseDoc)],
-    [`modules/${M1}`, JSON.stringify(moduleDocs[0])],
-    [`modules/${M2}`, JSON.stringify(moduleDocs[1])],
-    [`lessons/${L1}`, JSON.stringify(lessonDocs[0])],
-    [`lessons/${L2}`, JSON.stringify(lessonDocs[1])],
+    ['course', serialize(courseDoc)],
+    [`modules/${M1}`, serialize(moduleDocs[0])],
+    [`modules/${M2}`, serialize(moduleDocs[1])],
+    [`lessons/${L1}`, serialize(lessonDocs[0])],
+    [`lessons/${L2}`, serialize(lessonDocs[1])],
   ]);
 
   const ref = (key: string) => ({
@@ -1061,4 +1068,56 @@ describe('installCourse (first download)', () => {
       'Retitled',
     );
   });
+});
+
+test('a module assembled from what the device holds is checked against the manifest', async () => {
+  const base = buildFixture(BASE_VERSION);
+  await commitFixture(base, BASE_VERSION);
+
+  // The release says only lesson one changed. Module two is left out of every
+  // instruction, so the device would carry it forward untouched — but the
+  // manifest describes a module two that really did change. That is what an
+  // instruction which failed to mention a change looks like from here, and
+  // carrying it forward would leave the device on stale content believing it
+  // was current.
+  const fixture = buildFixture(NEXT_VERSION, {
+    lessonTitle: 'Retitled lesson',
+  });
+  const movedOn = structuredClone(fixture.moduleDocs[1]);
+  movedOn.module.title = 'Module two, rewritten';
+  const movedOnBody = `${JSON.stringify(movedOn, null, 2)}\n`;
+
+  const entry = fixture.entry([
+    { op: 'lesson-content', lessonId: L1, severity: 'soft' },
+  ]);
+  entry.documents.modules[M2] = {
+    sha256: sha256Hex(movedOnBody),
+    sizeBytes: utf8ByteLength(movedOnBody),
+  };
+
+  serveFixture(fixture);
+  const servedByFixture = mockModule.getMockImplementation()!;
+  mockModule.mockImplementation(async (courseId, version, moduleId) =>
+    moduleId === M2
+      ? movedOnBody
+      : servedByFixture(courseId, version, moduleId),
+  );
+  mockBootstrap.mockResolvedValue(
+    bootstrapBody({
+      latestVersion: NEXT_VERSION,
+      mode: 'delta',
+      pendingVersions: [entry],
+    }),
+  );
+
+  const result = await runCourseUpdate(deps());
+
+  expect(result.status).toBe('updated');
+  // Lesson one came down as instructed; module two came down because what the
+  // device assembled disagreed with the manifest.
+  expect(mockLesson).toHaveBeenCalledWith('ca-class-c', NEXT_VERSION, L1);
+  expect(mockModule).toHaveBeenCalledWith('ca-class-c', NEXT_VERSION, M2);
+  const snapshot = courseStore.getSnapshot()!;
+  expect(snapshot.deliveryVersion).toBe(NEXT_VERSION);
+  expect(snapshot.bundle.modules[1].title).toBe('Module two, rewritten');
 });

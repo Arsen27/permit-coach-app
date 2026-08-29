@@ -245,4 +245,26 @@ describe('courseStore (v2)', () => {
     expect(keys).not.toContain('dmv-prep/course/v1/ca/1.0.0/course');
     expect(keys).toContain('dmv-prep/course/v2/ca-class-c/2.1.0/course');
   });
+
+  it('wipes every downloaded course and cursor when the channel changes', async () => {
+    await courseStore.commit('2.1.0', courseDoc, [moduleDoc('m-a', ['q1'])]);
+    await AsyncStorage.setItem('dmv-prep/course-seen/v2/u1', '2.1.0');
+    await AsyncStorage.setItem(
+      'dmv-prep/course-offer/v1/u1',
+      JSON.stringify({ courseId: 'ca-class-c', version: '3.0.0' }),
+    );
+    await AsyncStorage.setItem('dmv-prep/course-prompts/v1', '{}');
+    expect(courseStore.getSnapshot()).not.toBeNull();
+
+    await courseStore.wipeDownloadedContent();
+
+    // As empty as a fresh install: nothing committed, and no cursor left to
+    // be read as progress the device made on the other channel.
+    expect(courseStore.getSnapshot()).toBeNull();
+    expect(courseStore.isHydrated()).toBe(false);
+    const left = (await AsyncStorage.getAllKeys()).filter(key =>
+      key.startsWith('dmv-prep/course'),
+    );
+    expect(left).toEqual([]);
+  });
 });
