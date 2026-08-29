@@ -97,3 +97,6 @@ __tests__/courseImportV2.test.ts
 /design_handoff_dmv_prep_glass/
 /*_Integration_Handoff_*/
 /*.zip
+
+# Course packages built for the content server; pushed, not committed.
+/out/
