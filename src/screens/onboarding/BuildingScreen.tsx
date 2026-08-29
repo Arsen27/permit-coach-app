@@ -11,8 +11,14 @@ import Icon from '@/components/Icon';
 import PrimaryButton from '@/components/PrimaryButton';
 import ProgressRing from '@/components/ProgressRing';
 import ProgressTrack from '@/components/ProgressTrack';
-import { useCourse } from '@/data/course/CourseProvider';
-import { UpdateProgress, runCourseUpdate } from '@/data/course/updater';
+import { courseIdForState } from '@/data/course';
+import { courseStore } from '@/data/course/store';
+import {
+  UpdateProgress,
+  installCourse,
+  runCourseUpdate,
+} from '@/data/course/updater';
+import { findState } from '@/data/states';
 import { isServerConfigured } from '@/lib/serverConfig';
 import { usePurchases } from '@/purchases/PurchasesProvider';
 import { useAppState } from '@/state/AppState';
@@ -35,21 +41,37 @@ const CHECKLIST = [
 const THRESHOLDS = [0.18, 0.45, 0.7, 0.92];
 
 // Minimum time the loader stays on screen so the checklist reads as real
-// work even when the course is already up to date (or there is no server).
+// work even when the course is already on the device.
 const MIN_RUN_MS = 2400;
 
-type Phase = 'running' | 'failed';
+// Why the download did not land. Each gets its own words below: offline is
+// the one the learner can fix by finding a connection, and the copy has to
+// carry the promise that internet is needed once, not every time.
+type Failure = 'offline' | 'failed' | 'app-update-required';
+type Phase = 'running' | Failure;
 
-// The designed loader doubles as the real first-launch course download: the
-// bar eases toward actual fetch progress and only completes once the update
-// settles. Replaces itself with the step that follows, so back skips it.
+const FAILURE_COPY: Record<Failure, (stateName: string) => string> = {
+  offline: stateName =>
+    `You're offline. Downloading your ${stateName} course for the first time needs an internet connection — after that, the whole course works offline.`,
+  failed: () =>
+    'The download could not finish. Check your connection and try again — nothing on your phone was changed.',
+  'app-update-required': stateName =>
+    `This version of the app is too old for the ${stateName} course. Install the latest update from the store, then try again.`,
+};
+
+// The designed loader is the real first-launch course download: nothing ships
+// in the binary, so the learner's state course comes from the content server
+// here, before the paywall. The bar eases toward actual fetch progress and
+// only completes once the course is committed — there is no continuing
+// without it. Replaces itself with the step that follows, so back skips it.
 const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const { userId } = useAuth();
-  const { bundle } = useCourse();
-  const { lessonScores, topicScores, resetLessons, resetTopics } =
+  const { user, lessonScores, topicScores, resetLessons, resetTopics } =
     useAppState();
   const { purchasesEnabled, plusActive } = usePurchases();
+  const stateName = findState(user.stateCode).name;
+  const courseId = courseIdForState(user.stateCode);
 
   const [phase, setPhase] = useState<Phase>('running');
   const [shown, setShown] = useState(0);
@@ -59,7 +81,7 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
   progressRef.current = { lessonScores, topicScores };
 
   const fetchRef = useRef<UpdateProgress | null>(null);
-  const settledRef = useRef<'ok' | 'failed' | null>(null);
+  const settledRef = useRef<'ok' | Failure | null>(null);
   const doneRef = useRef(false);
 
   // The loader hands off to the paywall step, which hands on to the reminders
@@ -98,27 +120,40 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
     setShown(0);
     setPhase('running');
 
-    if (!isServerConfigured) {
-      settledRef.current = 'ok';
-    } else {
-      runCourseUpdate({
-        userId,
-        getProgress: () => ({
-          lessonIds: Object.keys(progressRef.current.lessonScores),
-          topicIds: Object.keys(progressRef.current.topicScores),
-        }),
-        resetLessons,
-        resetTopics,
-        onProgress: progress => {
-          fetchRef.current = progress;
-        },
-      }).then(result => {
-        settledRef.current =
-          result.status === 'updated' || result.status === 'up-to-date'
-            ? 'ok'
-            : 'failed';
-      });
-    }
+    const onProgress = (progress: UpdateProgress) => {
+      fetchRef.current = progress;
+    };
+    const settle = async (): Promise<'ok' | Failure> => {
+      const stored = await courseStore.hydrateCourse(courseId);
+      if (stored != null) {
+        // Already on the phone — a replayed onboarding, or a first run that
+        // was cut short after the download. Refresh it best-effort; whatever
+        // the server says, the learner can go on with what is there.
+        if (isServerConfigured) {
+          await runCourseUpdate({
+            userId,
+            getProgress: () => ({
+              lessonIds: Object.keys(progressRef.current.lessonScores),
+              topicIds: Object.keys(progressRef.current.topicScores),
+            }),
+            resetLessons,
+            resetTopics,
+            onProgress,
+          });
+        }
+        return 'ok';
+      }
+      const result = await installCourse({ courseId, onProgress });
+      return result.status === 'installed' ? 'ok' : result.status;
+    };
+    settle().then(
+      outcome => {
+        settledRef.current = outcome;
+      },
+      () => {
+        settledRef.current = 'failed';
+      },
+    );
 
     const startedAt = Date.now();
     const timer = setInterval(() => {
@@ -133,14 +168,15 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
           ? Math.min(1, elapsed)
           : Math.min(Math.max(0.08, fetched), elapsed, 0.95);
 
-      if (settledRef.current === 'failed') {
+      const settled = settledRef.current;
+      if (settled != null && settled !== 'ok') {
         clearInterval(timer);
         track('onboarding_course_built', {
-          outcome: 'failed',
+          outcome: settled === 'offline' ? 'offline' : 'failed',
           attempt: attempt + 1,
           duration_ms: Date.now() - startedAt,
         });
-        setPhase('failed');
+        setPhase(settled);
         return;
       }
 
@@ -161,7 +197,7 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
     }, 80);
 
     return () => clearInterval(timer);
-  }, [attempt, finish, resetLessons, resetTopics, userId]);
+  }, [attempt, courseId, finish, resetLessons, resetTopics, userId]);
 
   const pct = Math.round(shown * 100);
   const activeIndex = THRESHOLDS.findIndex(threshold => shown < threshold);
@@ -183,7 +219,7 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
       <Body style={{ paddingTop: insets.top + 120 }}>
         <Kicker>Setting up</Kicker>
         <StepTitle style={{ marginTop: 8 }}>
-          Building your {bundle.course.state} course
+          Building your {stateName} course
         </StepTitle>
 
         <Checklist>
@@ -206,22 +242,16 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
             </ProgressLabel>
           </ProgressBlock>
         ) : (
-          <FailedLabel>
-            Could not reach the course server. You can start with the built-in
-            course — we will update it automatically later.
-          </FailedLabel>
+          <FailedLabel>{FAILURE_COPY[phase](stateName)}</FailedLabel>
         )}
       </Body>
 
-      {phase === 'failed' && (
+      {phase !== 'running' && (
         <Dock style={{ bottom: insets.bottom + 22 }}>
           <PrimaryButton
             label="Try again"
             onPress={() => setAttempt(current => current + 1)}
           />
-          <SecondaryAction onPress={finish}>
-            <SecondaryLabel>Continue offline</SecondaryLabel>
-          </SecondaryAction>
         </Dock>
       )}
     </StepScreen>
@@ -370,17 +400,6 @@ const Dock = styled.View`
   position: absolute;
   left: 25px;
   right: 25px;
-`;
-
-const SecondaryAction = styled.Pressable`
-  align-items: center;
-  padding: 16px 0 0;
-`;
-
-const SecondaryLabel = styled.Text`
-  ${({ theme }) => theme.fonts.bold}
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.muted};
 `;
 
 export default BuildingScreen;

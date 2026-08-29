@@ -4,12 +4,16 @@ import ReactTestRenderer, {
 } from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components/native';
 
-import { SEED_COURSE_BUNDLE } from '@/data/course';
 import { courseStore } from '@/data/course/store';
 import { resetDevUnlockAllForTests, setDevUnlockAll } from '@/lib/devUnlock';
 import LearnScreen from '@/screens/LearnScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
 import { defaultTheme } from '@/theme';
+
+import {
+  FIXTURE_COURSE_BUNDLE,
+  commitFixtureCourse,
+} from './fixtures/courseFixture';
 
 jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
@@ -91,6 +95,7 @@ beforeEach(async () => {
     require('@react-native-async-storage/async-storage').default;
   await AsyncStorage.clear();
   courseStore.resetForTests();
+  await commitFixtureCourse();
   observedState = null;
   mockNavigate.mockClear();
   resetDevUnlockAllForTests();
@@ -101,11 +106,11 @@ describe('LearnScreen (schema-v2 course)', () => {
     const tree = await renderLearn();
     const texts = textsOf(tree);
     expect(texts).toContain('0 / 32 lessons · 0 pts');
-    for (const module of SEED_COURSE_BUNDLE.modules) {
+    for (const module of FIXTURE_COURSE_BUNDLE.modules) {
       expect(texts).toContain(`${module.sequence}. ${module.title}`);
     }
     expect(texts.filter(text => text === 'Module test')).toHaveLength(8);
-    const lessonTitles = SEED_COURSE_BUNDLE.modules.flatMap(module =>
+    const lessonTitles = FIXTURE_COURSE_BUNDLE.modules.flatMap(module =>
       module.lessons.map(lesson => lesson.title),
     );
     expect(lessonTitles).toHaveLength(32);
@@ -129,7 +134,7 @@ describe('LearnScreen (schema-v2 course)', () => {
     expect(lockIconCount(tree)).toBe(0);
 
     // Any lesson, not just the first, is now tappable.
-    const lastModule = SEED_COURSE_BUNDLE.modules[7];
+    const lastModule = FIXTURE_COURSE_BUNDLE.modules[7];
     const lastLesson = lastModule.lessons[lastModule.lessons.length - 1];
     await pressByText(tree, lastLesson.title);
     expect(mockNavigate).toHaveBeenCalledWith('Lesson', {
@@ -145,7 +150,7 @@ describe('LearnScreen (schema-v2 course)', () => {
 
   it('unlocks the module test after its lessons, and the next module after the test', async () => {
     const tree = await renderLearn();
-    const firstModule = SEED_COURSE_BUNDLE.modules[0];
+    const firstModule = FIXTURE_COURSE_BUNDLE.modules[0];
     await ReactTestRenderer.act(async () => {
       for (const lesson of firstModule.lessons) {
         observedState!.applyLessonResult({

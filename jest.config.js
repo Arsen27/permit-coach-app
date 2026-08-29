@@ -13,5 +13,7 @@ module.exports = {
     '/node_modules/',
     '<rootDir>/server/',
     '<rootDir>/admin/',
+    // Shared test data, not suites.
+    '<rootDir>/__tests__/fixtures/',
   ],
 };

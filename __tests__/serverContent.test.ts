@@ -2,9 +2,7 @@ import { createHash } from 'crypto';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
-import { SEED_COURSE_BUNDLE, SEED_DELIVERY_VERSION } from '@/data/course';
 import type {
-  CourseDocV2,
   CourseManifestV2,
   LessonDocV2,
   ModuleDocV2,
@@ -16,11 +14,9 @@ import {
   validateModuleDocV2,
 } from '@/data/course/v2/wire';
 
-// Consistency of the server content tree with its manifest and with the
-// bundled seed. The server may legitimately be ahead of the seed — that is
-// what over-the-air updates are — so the seed is compared against its OWN
-// version directory, while the integrity checks (hashes, validators, lesson
-// copies) run over both that directory and whatever is latest.
+// Consistency of the server content tree with its manifest: the latest
+// release is what every device downloads (the app bundles no course), so its
+// hashes, validators and lesson copies are checked here.
 
 const COURSE_DIR = join(__dirname, '..', 'server', 'content', 'ca-class-c');
 
@@ -40,16 +36,15 @@ describeIf('server content tree (ca-class-c)', () => {
   const readDoc = (version: string, relPath: string): string =>
     readFileSync(join(COURSE_DIR, version, relPath), 'utf8');
 
-  // Checked versions: the one the app bundles (it must never drift from the
-  // seed) and the latest (what a device downloads today). Often the same dir.
-  const checked = [
-    ...new Set([SEED_DELIVERY_VERSION, manifest.latestVersion]),
-  ].map(version => ({ version, entry: entryOf(version) }));
+  // The latest release: what a device downloads today.
+  const checked = [manifest.latestVersion].map(version => ({
+    version,
+    entry: entryOf(version),
+  }));
 
-  it('declares schema 2 and knows which version the app bundles', () => {
+  it('declares schema 2 and a latest release the manifest describes', () => {
     expect(manifest.schemaVersion).toBe(2);
     expect(manifest.courseId).toBe('ca-class-c');
-    expect(manifest.seedVersion).toBe(SEED_DELIVERY_VERSION);
     for (const { entry } of checked) {
       expect(entry).toBeDefined();
     }
@@ -110,25 +105,6 @@ describeIf('server content tree (ca-class-c)', () => {
       }
     },
   );
-
-  it('keeps the seed version data-equivalent to the bundled seed', () => {
-    const version = SEED_DELIVERY_VERSION;
-    const courseDoc: CourseDocV2 = JSON.parse(readDoc(version, 'course.json'));
-    expect(courseDoc.course).toEqual(SEED_COURSE_BUNDLE.course);
-
-    const moduleDocs: ModuleDocV2[] = courseDoc.course.moduleIds.map(id =>
-      JSON.parse(readDoc(version, join('modules', `${id}.json`))),
-    );
-    expect(moduleDocs.map(doc => doc.module)).toEqual(
-      SEED_COURSE_BUNDLE.modules,
-    );
-    expect(moduleDocs.flatMap(doc => doc.questions)).toEqual(
-      SEED_COURSE_BUNDLE.questions,
-    );
-    expect(moduleDocs.flatMap(doc => doc.assets)).toEqual(
-      SEED_COURSE_BUNDLE.assets,
-    );
-  });
 
   it.each(checked.map(item => [item.version, item] as const))(
     '%s: every lesson doc is identical to its module doc copy',

@@ -43,13 +43,19 @@ const requestRaw = async (path: string): Promise<string> => {
 
 // Bootstrap is parsed here but validated by the updater
 // (validateBootstrapResponseV2) before anything acts on it.
+//
+// `courseVersion` is null when the device holds no version of the course at
+// all (a first download); the server then answers mode 'full' with its latest
+// release instead of trying to diff against nothing.
 export const fetchBootstrapRaw = (
   courseId: string,
-  courseVersion: string,
+  courseVersion: string | null,
   appVersion: string,
 ): Promise<string> =>
   requestRaw(
-    `/v1/bootstrap?course=${courseId}&courseVersion=${courseVersion}&appVersion=${appVersion}`,
+    `/v1/bootstrap?course=${courseId}${
+      courseVersion == null ? '' : `&courseVersion=${courseVersion}`
+    }&appVersion=${appVersion}`,
   );
 
 export const fetchCourseDocRaw = (

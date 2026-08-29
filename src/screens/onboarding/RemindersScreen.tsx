@@ -10,7 +10,7 @@ import styled, { useTheme } from 'styled-components/native';
 import Icon from '@/components/Icon';
 import PrimaryButton from '@/components/PrimaryButton';
 import { Group } from '@/components/rows';
-import { useCourse } from '@/data/course/CourseProvider';
+import { useStoredCourse } from '@/data/course/CourseProvider';
 import { bundleLessonCount } from '@/data/course/v2/wire';
 
 import { useOnboarding } from './context';
@@ -51,7 +51,11 @@ const formatDayList = (days: number[]): string => {
 const RemindersScreen: React.FC = () => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const { bundle } = useCourse();
+  // The Building step downloaded the course before this sheet; the fallback
+  // only keeps the mock honest-looking if a replayed flow ever lands here
+  // without one.
+  const course = useStoredCourse();
+  const lessonCount = course == null ? 30 : bundleLessonCount(course.bundle);
   const { finish } = useOnboarding();
 
   const [days, setDays] = useState<number[]>([0, 2, 4]);
@@ -105,7 +109,7 @@ const RemindersScreen: React.FC = () => {
     <StepScreen>
       <Backdrop style={{ paddingTop: insets.top + 12 }}>
         <MockTitle>Permit test</MockTitle>
-        <MockMeta>7 / {bundleLessonCount(bundle)} lessons · 508 pts</MockMeta>
+        <MockMeta>7 / {lessonCount} lessons · 508 pts</MockMeta>
         <MockUnitPill>
           <MockUnitLabel>Road rules I</MockUnitLabel>
         </MockUnitPill>

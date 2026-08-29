@@ -12,12 +12,10 @@ jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
 }));
 
-jest.mock('@/data/course/CourseProvider', () => ({
-  useCourse: () => ({ bundle: { course: { state: 'California' } } }),
-}));
-
-jest.mock('@/data/course/v2/wire', () => ({
-  bundleLessonCount: () => 30,
+// The course is not on the phone yet at this step; the copy only needs the
+// chosen state.
+jest.mock('@/state/AppState', () => ({
+  useAppState: () => ({ user: { stateCode: 'CA' } }),
 }));
 
 const render = async (index: number): Promise<Renderer> => {

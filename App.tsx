@@ -16,10 +16,15 @@ import { captureCurrentScreen } from '@/analytics/screens';
 import { AuthProvider, useAuth } from '@/auth/AuthProvider';
 import AccountDeletionOverlay from '@/components/AccountDeletionOverlay';
 import AppUpdateGate from '@/components/AppUpdateGate';
+import CourseInstallGate from '@/components/CourseInstallGate';
 import DailyStreakGate from '@/components/DailyStreakGate';
 import GlassTabBar from '@/components/GlassTabBar';
 import HeaderCount from '@/components/HeaderCount';
-import { CourseProvider } from '@/data/course/CourseProvider';
+import {
+  CourseProvider,
+  useCourseHydrated,
+  useStoredCourse,
+} from '@/data/course/CourseProvider';
 import { SignsProvider } from '@/data/signs/SignsProvider';
 import UpdateManager from '@/data/course/UpdateManager';
 import { isOnboardingDone } from '@/lib/onboardingFlag';
@@ -331,6 +336,8 @@ const ThemedApp: React.FC = () => {
   // Gate on the onboarding flag before the navigator mounts, mirroring the
   // AppState hydration gate: initialRouteName is fixed at first render.
   const [onboarded, setOnboarded] = useState<boolean | null>(null);
+  const courseHydrated = useCourseHydrated();
+  const course = useStoredCourse();
   useEffect(() => {
     // Older installs may hold the retired 'under-18' age band; rewrite it
     // before anything reads the stored answers.
@@ -340,6 +347,25 @@ const ThemedApp: React.FC = () => {
 
   if (onboarded == null) {
     return null;
+  }
+
+  // Nothing ships in the binary, and every screen under the navigator reads
+  // the course as a given — so an onboarded device must hold its state's
+  // course before the shell mounts. Onboarding downloads it itself (the
+  // Building step), which is why a first run passes straight through; this
+  // catches the installs that never had one (pre-server builds, a store that
+  // failed to hydrate, a state that arrived through profile sync).
+  if (onboarded) {
+    if (!courseHydrated) {
+      return null;
+    }
+    if (course == null) {
+      return (
+        <ThemeProvider theme={theme}>
+          <CourseInstallGate />
+        </ThemeProvider>
+      );
+    }
   }
 
   return <AppShell theme={theme} onboarded={onboarded} />;

@@ -53,7 +53,11 @@ const fixtureDoc = (name = 'Stop (updated)'): SignsDoc => ({
       steps: ['Stop fully before the limit line'],
       trap: 'Rolling through slowly is still a violation.',
       image: {
-        full: { assetId: 'a'.repeat(64), mime: 'image/svg+xml', sizeBytes: 512 },
+        full: {
+          assetId: 'a'.repeat(64),
+          mime: 'image/svg+xml',
+          sizeBytes: 512,
+        },
       },
     },
   ],
@@ -148,7 +152,9 @@ describe('runSignsUpdate', () => {
 
   it('commits nothing when the doc fails structural validation', async () => {
     const doc = fixtureDoc();
-    (doc.signs[0] as { image: unknown }).image = { full: { mime: 'image/gif' } };
+    (doc.signs[0] as { image: unknown }).image = {
+      full: { mime: 'image/gif' },
+    };
     serve(doc);
 
     expect((await runSignsUpdate()).status).toBe('failed');

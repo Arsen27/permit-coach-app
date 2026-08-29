@@ -213,10 +213,9 @@ export type ShowcaseSlide = {
   body: string;
 };
 
-export const makeShowcaseSlides = (
-  lessonCount: number,
-  stateName: string,
-): ShowcaseSlide[] => [
+// Written without a lesson count on purpose: the course is downloaded after
+// the showcases, and the number lives in the release, not in the app.
+export const makeShowcaseSlides = (stateName: string): ShowcaseSlide[] => [
   {
     image: require('@/assets/images/showcase-lesson-ladder.png'),
     title: 'One clear path to your permit',
@@ -225,7 +224,7 @@ export const makeShowcaseSlides = (
   {
     image: require('@/assets/images/showcase-lesson-card.png'),
     title: 'Everything you need, cut down to what matters',
-    body: `Every ${stateName} rule you are tested on, rewritten into ${lessonCount} lessons of a few minutes each. Every lesson ends with a short quiz.`,
+    body: `Every ${stateName} rule you are tested on, rewritten into bite-size lessons of a few minutes each. Every lesson ends with a short quiz.`,
   },
   {
     image: require('@/assets/images/showcase-practice.png'),

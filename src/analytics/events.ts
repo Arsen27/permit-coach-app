@@ -31,10 +31,11 @@ export type AnalyticsEventMap = {
     scheduled: boolean;
     days_until: number | null;
   };
-  // The first-launch course build (the designed loader). Also the app's only
-  // hard failure path during onboarding, so the outcome rides along.
+  // The first-launch course download (the designed loader). Also the app's
+  // only hard failure path during onboarding, so the outcome rides along —
+  // 'offline' separates "no connection" from a download that broke.
   onboarding_course_built: {
-    outcome: 'ok' | 'failed';
+    outcome: 'ok' | 'failed' | 'offline';
     // 1 on the first try, 2+ after a retry tap.
     attempt: number;
     duration_ms: number;
@@ -194,6 +195,14 @@ export type AnalyticsEventMap = {
   // Switching state wipes the old course's progress, so this is the one
   // destructive setting in the app.
   state_changed: { from: string; to: string };
+  // A course download outside onboarding: the new state's course before a
+  // switch in Settings, or the recovery screen an onboarded device shows when
+  // its store holds no course for its state.
+  course_download_finished: {
+    source: 'state_switch' | 'recovery';
+    outcome: 'ok' | 'offline' | 'failed' | 'app_update_required';
+    duration_ms: number;
+  };
   font_changed: { font_id: FontId };
   external_link_opened: { target: string };
 };

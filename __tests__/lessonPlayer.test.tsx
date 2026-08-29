@@ -5,7 +5,6 @@ import ReactTestRenderer, {
 } from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components/native';
 
-import { SEED_COURSE_BUNDLE } from '@/data/course';
 import { buildCards } from '@/components/lesson/cards';
 import { courseStore } from '@/data/course/store';
 import type { CourseDocV2, ModuleDocV2 } from '@/data/course/v2/wire';
@@ -15,25 +14,30 @@ import TheoryScreen from '@/screens/TheoryScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
 import { defaultTheme } from '@/theme';
 
+import {
+  FIXTURE_COURSE_BUNDLE,
+  commitFixtureCourse,
+} from './fixtures/courseFixture';
+
 jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
 }));
 
 const LESSON_ID = 'ca-sign-shapes-and-colors';
-const moduleWithLesson = SEED_COURSE_BUNDLE.modules.find(module =>
+const moduleWithLesson = FIXTURE_COURSE_BUNDLE.modules.find(module =>
   module.lessons.some(entry => entry.lessonId === LESSON_ID),
 )!;
 const lesson = moduleWithLesson.lessons.find(
   entry => entry.lessonId === LESSON_ID,
 )!;
-const theoryQuestion = SEED_COURSE_BUNDLE.questions.find(
+const theoryQuestion = FIXTURE_COURSE_BUNDLE.questions.find(
   question => question.questionId === lesson.theoryQuestionIds?.[0],
 )!;
 const correctTheoryChoice = theoryQuestion.choices.find(
   choice => choice.id === theoryQuestion.correctAnswerId,
 )!;
 const CARD_COUNT = buildCards(lesson).length;
-const heroAsset = SEED_COURSE_BUNDLE.assets.find(
+const heroAsset = FIXTURE_COURSE_BUNDLE.assets.find(
   asset => asset.assetId === lesson.blocks.flatMap(blockAssetIds)[0],
 )!;
 
@@ -175,6 +179,7 @@ beforeEach(async () => {
     require('@react-native-async-storage/async-storage').default;
   await AsyncStorage.clear();
   courseStore.resetForTests();
+  await commitFixtureCourse();
   observedState = null;
 });
 
@@ -331,14 +336,14 @@ describe('split lesson experience', () => {
           entry.lessonId === LESSON_ID ? modifiedLesson : entry,
         ),
       },
-      questions: SEED_COURSE_BUNDLE.questions,
-      assets: SEED_COURSE_BUNDLE.assets,
+      questions: FIXTURE_COURSE_BUNDLE.questions,
+      assets: FIXTURE_COURSE_BUNDLE.assets,
     };
     const courseDoc: CourseDocV2 = {
       schemaVersion: 2,
       deliveryVersion: '3.1.0',
       course: {
-        ...SEED_COURSE_BUNDLE.course,
+        ...FIXTURE_COURSE_BUNDLE.course,
         moduleIds: [moduleWithLesson.moduleId],
       },
     };

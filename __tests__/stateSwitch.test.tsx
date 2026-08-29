@@ -3,8 +3,10 @@ import ReactTestRenderer from 'react-test-renderer';
 import { Alert } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 
-import { COURSE_SEEDS, courseIdForState } from '@/data/course';
+import { courseIdForState } from '@/data/course';
 import { courseStore } from '@/data/course/store';
+import { installCourse } from '@/data/course/updater';
+import type { CourseDocV2, ModuleDocV2 } from '@/data/course/v2/wire';
 import { SUPPORTED_STATES } from '@/data/states';
 import StatePickerScreen from '@/screens/StatePickerScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
@@ -20,6 +22,88 @@ const mockGoBack = jest.fn();
 jest.mock('@react-navigation/native', () => ({
   useNavigation: () => ({ goBack: mockGoBack, navigate: jest.fn() }),
 }));
+
+// The download itself is the updater's business (covered in
+// courseUpdater.test.ts); here it is a switch the test flips per case.
+jest.mock('@/data/course/updater', () => ({
+  installCourse: jest.fn(),
+}));
+const mockInstall = installCourse as jest.MockedFunction<typeof installCourse>;
+
+// A minimal committed course per state, so the picker sees "already on the
+// phone" for some states and "needs a download" for others.
+const moduleDoc = (courseId: string, version: string): ModuleDocV2 => ({
+  schemaVersion: 2,
+  deliveryVersion: version,
+  module: {
+    moduleId: `${courseId}-m1`,
+    uuid: '00000000-0000-5000-8000-2000000000ff',
+    sequence: 1,
+    title: 'Module one',
+    outcome: '',
+    lessons: [],
+    moduleTest: {
+      testId: `${courseId}-m1-test`,
+      uuid: '00000000-0000-5000-8000-3000000000ff',
+      moduleId: `${courseId}-m1`,
+      questionIds: [],
+    },
+  },
+  questions: [],
+  assets: [],
+});
+
+const courseDoc = (
+  courseId: string,
+  jurisdiction: string,
+  state: string,
+  version: string,
+): CourseDocV2 => ({
+  schemaVersion: 2,
+  deliveryVersion: version,
+  course: {
+    courseId,
+    title: `${state} course`,
+    subtitle: 's',
+    jurisdiction,
+    state,
+    language: 'en-US',
+    targetLicense: 'x',
+    moduleIds: [`${courseId}-m1`],
+    sourceVersionLabel: 'TEST',
+    sourceContentHash: 'h'.repeat(64),
+    sourceCheckedAt: '2026-08-10',
+    sourceReviewStatus: 'draft_generated_human_review_required',
+    publicationAuthorized: false,
+  },
+});
+
+const commitCourse = (
+  courseId: string,
+  jurisdiction: string,
+  state: string,
+  version = '1.0.0',
+) =>
+  courseStore.commit(
+    version,
+    courseDoc(courseId, jurisdiction, state, version),
+    [moduleDoc(courseId, version)],
+  );
+
+// What a real download leaves behind: the course committed into its slot.
+const installSucceeds = () =>
+  mockInstall.mockImplementation(async ({ courseId, onProgress }) => {
+    onProgress?.({ fetched: 1, total: 2 });
+    const state =
+      courseId === 'fl-class-e'
+        ? ['FL', 'Florida']
+        : courseId === 'tx-class-c'
+        ? ['TX', 'Texas']
+        : ['CA', 'California'];
+    await commitCourse(courseId, state[0], state[1]);
+    onProgress?.({ fetched: 2, total: 2 });
+    return { status: 'installed' };
+  });
 
 let observedState: ReturnType<typeof useAppState> | null = null;
 const Probe: React.FC = () => {
@@ -45,7 +129,12 @@ const renderPicker = async () => {
   return tree;
 };
 
-const pressState = async (
+const textsOf = (tree: ReactTestRenderer.ReactTestRenderer): string[] =>
+  tree.root
+    .findAll(node => String(node.type) === 'Text')
+    .flatMap(t => t.children.filter(c => typeof c === 'string') as string[]);
+
+const pressWithText = async (
   tree: ReactTestRenderer.ReactTestRenderer,
   name: string,
 ) => {
@@ -64,6 +153,18 @@ const pressState = async (
   });
 };
 
+// The confirm alert's destructive handler is async (it asks the store first);
+// give it a tick to settle.
+const settle = () =>
+  ReactTestRenderer.act(async () => {
+    await new Promise(resolve => setTimeout(resolve, 0));
+  });
+
+const confirmSwitches = () =>
+  jest.spyOn(Alert, 'alert').mockImplementation((_t, _m, buttons) => {
+    buttons?.find(button => button.style === 'destructive')?.onPress?.();
+  });
+
 beforeEach(async () => {
   const AsyncStorage =
     require('@react-native-async-storage/async-storage').default;
@@ -71,7 +172,10 @@ beforeEach(async () => {
   courseStore.resetForTests();
   observedState = null;
   mockGoBack.mockClear();
+  mockInstall.mockReset();
   jest.restoreAllMocks();
+  // Every device in these tests already holds the course it is on.
+  await commitCourse('ca-class-c', 'CA', 'California');
 });
 
 describe('course selection by state', () => {
@@ -88,32 +192,23 @@ describe('course selection by state', () => {
     expect(courseIdForState('NY')).toBe('ca-class-c');
   });
 
-  it('ships a complete seed for each course', () => {
-    for (const [courseId, seed] of Object.entries(COURSE_SEEDS)) {
-      expect(seed.bundle.course.courseId).toBe(courseId);
-      expect(seed.bundle.modules).toHaveLength(8);
-      expect(seed.bundle.questions.length).toBeGreaterThanOrEqual(150);
-      expect(seed.bundle.assets.length).toBeGreaterThanOrEqual(140);
-    }
-    expect(COURSE_SEEDS['ca-class-c'].bundle.questions).toHaveLength(224);
-  });
-
-  it('switches the served bundle when the active course changes', () => {
-    expect(courseStore.getSnapshot().bundle.course.courseId).toBe('ca-class-c');
+  it('switches the served bundle between downloaded courses', async () => {
+    await commitCourse('fl-class-e', 'FL', 'Florida');
+    expect(courseStore.getSnapshot()!.bundle.course.courseId).toBe(
+      'ca-class-c',
+    );
     courseStore.setActiveCourse('fl-class-e');
-    expect(courseStore.getSnapshot().bundle.course.courseId).toBe('fl-class-e');
-    expect(courseStore.getSnapshot().bundle.course.state).toBe('Florida');
+    expect(courseStore.getSnapshot()!.bundle.course.state).toBe('Florida');
+    // A state whose course was never downloaded has nothing to serve.
     courseStore.setActiveCourse('tx-class-c');
-    expect(courseStore.getSnapshot().bundle.course.jurisdiction).toBe('TX');
+    expect(courseStore.getSnapshot()).toBeNull();
   });
 });
 
 describe('switching state in settings', () => {
   it('lists only the three supported states', async () => {
     const tree = await renderPicker();
-    const texts = tree.root
-      .findAll(node => String(node.type) === 'Text')
-      .flatMap(t => t.children.filter(c => typeof c === 'string'));
+    const texts = textsOf(tree);
     expect(texts).toEqual(
       expect.arrayContaining(['California', 'Florida', 'Texas']),
     );
@@ -121,41 +216,32 @@ describe('switching state in settings', () => {
   });
 
   it('warns even when there is no progress yet', async () => {
-    const alertSpy = jest
-      .spyOn(Alert, 'alert')
-      .mockImplementation((_t, _m, buttons) => {
-        buttons?.find(button => button.style === 'destructive')?.onPress?.();
-      });
+    const alertSpy = confirmSwitches();
+    installSucceeds();
     const tree = await renderPicker();
-    await pressState(tree, 'Florida');
+    await pressWithText(tree, 'Florida');
+    await settle();
 
     expect(alertSpy).toHaveBeenCalledWith(
       'Switch to Florida?',
       expect.stringContaining('permanently erased'),
       expect.anything(),
     );
-    expect(observedState!.user.stateCode).toBe('FL');
-    expect(courseStore.activeCourseId()).toBe('fl-class-e');
-    expect(mockGoBack).toHaveBeenCalled();
   });
 
   it('closes without an alert when re-picking the current state', async () => {
     const alertSpy = jest.spyOn(Alert, 'alert');
     const tree = await renderPicker();
-    await pressState(tree, 'California');
+    await pressWithText(tree, 'California');
 
     expect(alertSpy).not.toHaveBeenCalled();
     expect(observedState!.user.stateCode).toBe('CA');
     expect(mockGoBack).toHaveBeenCalled();
   });
 
-  it('asks before erasing and wipes course progress on confirm', async () => {
-    const alertSpy = jest
-      .spyOn(Alert, 'alert')
-      .mockImplementation((_t, _m, buttons) => {
-        buttons?.find(button => button.style === 'destructive')?.onPress?.();
-      });
-
+  it('downloads the new course first, then switches and wipes progress', async () => {
+    confirmSwitches();
+    installSucceeds();
     const tree = await renderPicker();
     await ReactTestRenderer.act(async () => {
       observedState!.applyTopicResult('road-signs', 80);
@@ -166,15 +252,28 @@ describe('switching state in settings', () => {
       observedState!.toggleSavedSign('sign-1');
     });
 
-    await pressState(tree, 'Texas');
+    await pressWithText(tree, 'Texas');
+    await settle();
 
-    expect(alertSpy).toHaveBeenCalledWith(
-      'Switch to Texas?',
-      expect.stringContaining('permanently erased'),
-      expect.anything(),
+    // The sheet went up for the download, and nothing switched until it
+    // landed.
+    expect(mockInstall).toHaveBeenCalledWith(
+      expect.objectContaining({ courseId: 'tx-class-c' }),
     );
+    expect(textsOf(tree)).toContain('Course ready');
+    expect(observedState!.user.stateCode).toBe('CA');
+    expect(courseStore.activeCourseId()).toBe('ca-class-c');
+
+    // The confirmation holds for a beat (real time: the screen's own
+    // timer), then the switch goes through.
+    await ReactTestRenderer.act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 1200));
+    });
+
     expect(observedState!.user.stateCode).toBe('TX');
     expect(courseStore.activeCourseId()).toBe('tx-class-c');
+    expect(courseStore.getSnapshot()!.bundle.course.state).toBe('Texas');
+    expect(mockGoBack).toHaveBeenCalled();
     expect(observedState!.topicScores).toEqual({});
     expect(observedState!.bestExam).toBeNull();
     expect(observedState!.questionStats).toEqual({});
@@ -184,17 +283,74 @@ describe('switching state in settings', () => {
     expect(observedState!.savedSignIds).toEqual(['sign-1']);
   });
 
+  it('switches straight away to a course already on the phone', async () => {
+    confirmSwitches();
+    await commitCourse('fl-class-e', 'FL', 'Florida');
+    const tree = await renderPicker();
+    await pressWithText(tree, 'Florida');
+    await settle();
+
+    expect(mockInstall).not.toHaveBeenCalled();
+    expect(observedState!.user.stateCode).toBe('FL');
+    expect(courseStore.activeCourseId()).toBe('fl-class-e');
+    expect(mockGoBack).toHaveBeenCalled();
+  });
+
+  it('keeps the old state when the download cannot start offline', async () => {
+    confirmSwitches();
+    mockInstall.mockResolvedValue({ status: 'offline' });
+    const tree = await renderPicker();
+    await pressWithText(tree, 'Texas');
+    await settle();
+
+    const texts = textsOf(tree);
+    expect(texts).toContain("You're offline");
+    expect(texts.join(' ')).toContain('needs an internet connection');
+    expect(texts.join(' ')).toContain('everything works offline');
+    expect(observedState!.user.stateCode).toBe('CA');
+    expect(courseStore.activeCourseId()).toBe('ca-class-c');
+    expect(mockGoBack).not.toHaveBeenCalled();
+
+    // Cancel walks away with nothing changed…
+    await pressWithText(tree, 'Cancel');
+    expect(textsOf(tree)).not.toContain("You're offline");
+    expect(observedState!.user.stateCode).toBe('CA');
+
+    // …and a retry after reconnecting goes through the same download.
+    await pressWithText(tree, 'Texas');
+    await settle();
+    expect(mockInstall).toHaveBeenCalledTimes(2);
+  });
+
+  it('offers a retry on an interrupted download', async () => {
+    confirmSwitches();
+    mockInstall.mockResolvedValueOnce({ status: 'failed' });
+    const tree = await renderPicker();
+    await pressWithText(tree, 'Florida');
+    await settle();
+
+    expect(textsOf(tree)).toContain('Download interrupted');
+    expect(observedState!.user.stateCode).toBe('CA');
+
+    installSucceeds();
+    await pressWithText(tree, 'Try again');
+    await settle();
+    expect(mockInstall).toHaveBeenCalledTimes(2);
+    expect(textsOf(tree)).toContain('Course ready');
+  });
+
   it('keeps everything when the alert is cancelled', async () => {
     jest.spyOn(Alert, 'alert').mockImplementation(() => undefined);
     const tree = await renderPicker();
     await ReactTestRenderer.act(async () => {
       observedState!.applyTopicResult('road-signs', 80);
     });
-    await pressState(tree, 'Texas');
+    await pressWithText(tree, 'Texas');
 
     expect(observedState!.user.stateCode).toBe('CA');
     expect(observedState!.topicScores['road-signs']).toBe(80);
     expect(courseStore.activeCourseId()).toBe('ca-class-c');
+    expect(mockInstall).not.toHaveBeenCalled();
   });
 });
 

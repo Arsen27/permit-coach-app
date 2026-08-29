@@ -2,20 +2,23 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { createLogger, formatBytes } from '@/lib/log';
 
-import { COURSE_SEEDS, DEFAULT_COURSE_ID, SeedCourseId } from './index';
+import { CourseId, DEFAULT_COURSE_ID } from './index';
 import type { CourseBundleV2, CourseDocV2, ModuleDocV2 } from './v2/wire';
 import { COURSE_SCHEMA_VERSION } from './v2/wire';
 
-// Device store for the downloaded course (v2 block-based format). The bundled
-// seed serves synchronously until a server version has been committed, so the
-// app works with zero async and fully offline; the seed itself is never
-// written to AsyncStorage. A commit stages all docs, re-reads and verifies
-// what was staged, switches the meta pointer last, then sweeps other versions
-// — a kill at any point leaves a consistent course.
+// Device store for downloaded courses (v2 block-based format). Nothing ships
+// in the binary: until a version of the active course has been committed the
+// store serves null, and the app gates on that — onboarding downloads the
+// learner's state course before the paywall, and an onboarded device whose
+// store holds no course sees the download screen instead of the shell. A
+// commit stages all docs, re-reads and verifies what was staged, switches the
+// meta pointer last, then sweeps other versions of that course — a kill at
+// any point leaves a consistent course.
 //
-// Size note: one committed v2 course (with embedded SVG) is ~1.5MB of JSON.
-// Android's AsyncStorage database defaults to 6MB total; if we ever store
-// multiple courses, bump AsyncStorage_db_size_in_MB in android/gradle.properties.
+// Size note: one committed v2 course (with embedded SVG) is ~2MB of JSON, and
+// the courses of previously chosen states are kept so switching back needs no
+// download. Android's AsyncStorage database is sized for several in
+// android/gradle.properties (AsyncStorage_db_size_in_MB).
 
 const V1_PREFIX = 'dmv-prep/course/v1/';
 const prefixFor = (courseId: string) => `dmv-prep/course/v2/${courseId}`;
@@ -37,16 +40,13 @@ type Meta = {
 
 const log = createLogger('store');
 
-const seedSnapshot = (courseId: SeedCourseId): StoredCourse =>
-  COURSE_SEEDS[courseId];
-
-// One snapshot slot per course; the active course decides what getSnapshot
-// serves. Hydrated slots are kept, so switching state back and forth never
-// re-reads storage.
-let activeCourseId: SeedCourseId = DEFAULT_COURSE_ID;
-const snapshots = new Map<SeedCourseId, StoredCourse>();
-const hydratedCourses = new Set<SeedCourseId>();
-const hydratingCourses = new Map<SeedCourseId, Promise<void>>();
+// One slot per course; the active course decides what getSnapshot serves.
+// Hydrated slots are kept, so switching state back and forth never re-reads
+// storage.
+let activeCourseId: CourseId = DEFAULT_COURSE_ID;
+const snapshots = new Map<CourseId, StoredCourse>();
+const hydratedCourses = new Set<CourseId>();
+const hydratingCourses = new Map<CourseId, Promise<void>>();
 const listeners = new Set<() => void>();
 
 const notify = () => {
@@ -87,10 +87,10 @@ export const assembleBundle = (
   };
 };
 
-// Removes every other v2 version, plus the abandoned v1 namespace (the old
-// article-based course store) best-effort.
+// Removes every other v2 version of the course, plus the abandoned v1
+// namespace (the old article-based course store) best-effort.
 const sweep = async (
-  courseId: SeedCourseId,
+  courseId: CourseId,
   keepSemver: string | null,
 ): Promise<void> => {
   const prefix = prefixFor(courseId);
@@ -106,7 +106,7 @@ const sweep = async (
   }
 };
 
-const hydrateCourse = async (courseId: SeedCourseId): Promise<void> => {
+const hydrateCourse = async (courseId: CourseId): Promise<void> => {
   let committedSemver: string | null = null;
   try {
     const rawMeta = await AsyncStorage.getItem(metaKey(courseId));
@@ -145,22 +145,20 @@ const hydrateCourse = async (courseId: SeedCourseId): Promise<void> => {
           assets: hydratedSnapshot.bundle.assets.length,
         });
       } else {
-        // Corrupted store — fall back to the seed and clear the bad pointer.
+        // Corrupted store — clear the bad pointer; the course has to be
+        // downloaded again.
         log.warn(
-          `corrupted store for ${courseId}@${meta.deliveryVersion}: docs missing — falling back to the seed`,
+          `corrupted store for ${courseId}@${meta.deliveryVersion}: docs missing — the course must be downloaded again`,
         );
+        snapshots.delete(courseId);
         await AsyncStorage.removeItem(metaKey(courseId));
       }
     } else {
-      log.info(
-        `no committed ${courseId} version — serving the bundled seed ${
-          seedSnapshot(courseId).deliveryVersion
-        }`,
-      );
+      log.info(`no committed ${courseId} version on this device`);
     }
   } catch (error) {
     log.error(
-      `hydrate ${courseId} failed — falling back to the bundled seed`,
+      `hydrate ${courseId} failed — the course must be downloaded again`,
       error,
     );
     snapshots.delete(courseId);
@@ -171,7 +169,7 @@ const hydrateCourse = async (courseId: SeedCourseId): Promise<void> => {
   sweep(courseId, committedSemver).catch(() => undefined);
 };
 
-const ensureHydrated = (courseId: SeedCourseId): Promise<void> => {
+const ensureHydrated = (courseId: CourseId): Promise<void> => {
   let promise = hydratingCourses.get(courseId);
   if (promise == null) {
     promise = hydrateCourse(courseId);
@@ -181,15 +179,25 @@ const ensureHydrated = (courseId: SeedCourseId): Promise<void> => {
 };
 
 export const courseStore = {
-  activeCourseId: (): SeedCourseId => activeCourseId,
-  getSnapshot: (): StoredCourse =>
-    snapshots.get(activeCourseId) ?? seedSnapshot(activeCourseId),
+  activeCourseId: (): CourseId => activeCourseId,
+  // The committed course for the active state, or null before hydration and
+  // when nothing has been committed for it.
+  getSnapshot: (): StoredCourse | null => snapshots.get(activeCourseId) ?? null,
   isHydrated: (): boolean => hydratedCourses.has(activeCourseId),
   hydrate: (): Promise<void> => ensureHydrated(activeCourseId),
+  // Hydrates a specific course (active or not) and answers what is committed
+  // for it — what a state switch asks before deciding whether to download.
+  hydrateCourse: async (courseId: CourseId): Promise<StoredCourse | null> => {
+    await ensureHydrated(courseId);
+    return snapshots.get(courseId) ?? null;
+  },
+  // What is in memory for a course right now, hydrated or not.
+  storedFor: (courseId: CourseId): StoredCourse | null =>
+    snapshots.get(courseId) ?? null,
   // Switches which course the store serves (the learner changed state). The
-  // seed for the new course serves synchronously; a committed server version
-  // swaps in when its hydration lands.
-  setActiveCourse: (courseId: SeedCourseId): void => {
+  // caller makes sure that course is on the device first; a committed
+  // version serves the moment its hydration lands.
+  setActiveCourse: (courseId: CourseId): void => {
     if (courseId === activeCourseId) {
       return;
     }
@@ -203,10 +211,10 @@ export const courseStore = {
     moduleDocs: ModuleDocV2[],
   ): Promise<void> => {
     const elapsed = log.time();
-    // A commit belongs to the course named in the doc, which the updater
-    // fetched for the course active at the time — pin it so a state switch
-    // mid-download cannot cross the streams.
-    const courseId = courseDoc.course.courseId as SeedCourseId;
+    // A commit belongs to the course named in the doc, not to whichever
+    // course is active: a state switch mid-download cannot cross the streams,
+    // and a course downloaded ahead of a switch lands in its own slot.
+    const courseId = courseDoc.course.courseId as CourseId;
     const staged: Record<string, string> = {
       [courseKey(courseId, deliveryVersion)]: JSON.stringify(courseDoc),
       ...Object.fromEntries(
@@ -242,6 +250,9 @@ export const courseStore = {
       bundle: assembleBundle(courseDoc, moduleDocs),
     };
     snapshots.set(courseId, committed);
+    // A committed course is by definition hydrated, whether or not storage
+    // was ever read for it.
+    hydratedCourses.add(courseId);
     log.info(
       `committed ${courseId}@${deliveryVersion} (${elapsed()}ms, ${formatBytes(
         bytes,
@@ -265,7 +276,7 @@ export const courseStore = {
       listeners.delete(listener);
     };
   },
-  // Test seam: back to the pristine seed state.
+  // Test seam: back to the pristine empty state.
   resetForTests: (): void => {
     activeCourseId = DEFAULT_COURSE_ID;
     snapshots.clear();

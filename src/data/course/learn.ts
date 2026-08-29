@@ -2,6 +2,11 @@
 // course store: indexes rebuild whenever a new course version is committed
 // (identity-memoized on the bundle reference). React components that must
 // re-render on commit subscribe via useCourse() from ./CourseProvider.
+//
+// With no course on the device (before the first download, or while the
+// store hydrates) every selector answers empty rather than throwing: the
+// practice pools and question banks that read through here are computed
+// before the course gate has necessarily lifted.
 
 import { QuizQuestion } from '@/data/curriculum';
 
@@ -28,8 +33,7 @@ type DerivedIndexes = {
   assetById: Map<string, CourseAssetV2>;
 };
 
-let indexedBundle: CourseBundleV2 | null = null;
-let indexes: DerivedIndexes = {
+const EMPTY_INDEXES: DerivedIndexes = {
   lessonRefs: [],
   lessonRefById: new Map(),
   lessonNumberById: new Map(),
@@ -37,8 +41,16 @@ let indexes: DerivedIndexes = {
   assetById: new Map(),
 };
 
+let indexedBundle: CourseBundleV2 | null = null;
+let indexes: DerivedIndexes = EMPTY_INDEXES;
+
 const derived = (): DerivedIndexes => {
-  const bundle = courseStore.getSnapshot().bundle;
+  const bundle = courseStore.getSnapshot()?.bundle ?? null;
+  if (bundle == null) {
+    indexedBundle = null;
+    indexes = EMPTY_INDEXES;
+    return indexes;
+  }
   if (bundle !== indexedBundle) {
     const lessonRefs = bundle.modules.flatMap(module =>
       module.lessons.map(lesson => ({ lesson, module })),
@@ -60,12 +72,12 @@ const derived = (): DerivedIndexes => {
 };
 
 export const courseModules = (): CourseModuleV2[] =>
-  courseStore.getSnapshot().bundle.modules;
+  courseStore.getSnapshot()?.bundle.modules ?? [];
 
 export const courseQuestionIds = (): string[] =>
   courseStore
     .getSnapshot()
-    .bundle.questions.map(question => question.questionId);
+    ?.bundle.questions.map(question => question.questionId) ?? [];
 
 // Course order, across module boundaries — drives the "continue here" marker.
 export const orderedCourseLessons = (): CourseLessonRef[] =>

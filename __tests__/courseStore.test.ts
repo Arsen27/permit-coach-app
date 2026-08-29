@@ -1,8 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { SEED_COURSE_BUNDLE, SEED_DELIVERY_VERSION } from '@/data/course';
 import { courseStore } from '@/data/course/store';
-import type { CourseDocV2, ModuleDocV2 } from '@/data/course/v2/wire';
+import type {
+  CourseDocV2,
+  CourseInfoV2,
+  ModuleDocV2,
+} from '@/data/course/v2/wire';
 
 const META_KEY = 'dmv-prep/course/v2/ca-class-c/meta';
 
@@ -59,13 +62,31 @@ const moduleDoc = (
   assets: assetIds.map(asset),
 });
 
+const courseInfo = (
+  courseId: string,
+  moduleIds: string[],
+  overrides: Partial<CourseInfoV2> = {},
+): CourseInfoV2 => ({
+  courseId,
+  title: 't',
+  subtitle: 's',
+  jurisdiction: 'CA',
+  state: 'California',
+  language: 'en-US',
+  targetLicense: 'x',
+  moduleIds,
+  sourceVersionLabel: 'TEST',
+  sourceContentHash: 'h'.repeat(64),
+  sourceCheckedAt: '2026-08-10',
+  sourceReviewStatus: 'draft_generated_human_review_required',
+  publicationAuthorized: false,
+  ...overrides,
+});
+
 const courseDoc: CourseDocV2 = {
   schemaVersion: 2,
   deliveryVersion: '2.1.0',
-  course: {
-    ...SEED_COURSE_BUNDLE.course,
-    moduleIds: ['m-b', 'm-a'],
-  },
+  course: courseInfo('ca-class-c', ['m-b', 'm-a']),
 };
 
 beforeEach(async () => {
@@ -75,16 +96,15 @@ beforeEach(async () => {
 });
 
 describe('courseStore (v2)', () => {
-  it('serves the bundled seed synchronously before hydration', () => {
-    const snapshot = courseStore.getSnapshot();
-    expect(snapshot.deliveryVersion).toBe(SEED_DELIVERY_VERSION);
-    expect(snapshot.bundle).toBe(SEED_COURSE_BUNDLE);
+  it('serves nothing before hydration — the app bundles no course', () => {
+    expect(courseStore.getSnapshot()).toBeNull();
+    expect(courseStore.isHydrated()).toBe(false);
   });
 
-  it('never writes the seed to storage', async () => {
+  it('hydrates to nothing on an empty device and writes nothing', async () => {
     await courseStore.hydrate();
     expect(courseStore.isHydrated()).toBe(true);
-    expect(courseStore.getSnapshot().bundle).toBe(SEED_COURSE_BUNDLE);
+    expect(courseStore.getSnapshot()).toBeNull();
     const keys = await AsyncStorage.getAllKeys();
     expect(keys.filter(key => key.startsWith('dmv-prep/course/'))).toEqual([]);
   });
@@ -97,7 +117,7 @@ describe('courseStore (v2)', () => {
       moduleDoc('m-b', ['q2', 'shared'], ['as-1']),
     ]);
 
-    const snapshot = courseStore.getSnapshot();
+    const snapshot = courseStore.getSnapshot()!;
     expect(snapshot.deliveryVersion).toBe('2.1.0');
     expect(snapshot.bundle.modules.map(m => m.moduleId)).toEqual([
       'm-b',
@@ -110,6 +130,8 @@ describe('courseStore (v2)', () => {
     ]);
     expect(snapshot.bundle.assets.map(a => a.assetId)).toEqual(['as-1']);
     expect(listener).toHaveBeenCalled();
+    // A committed course counts as hydrated even if storage was never read.
+    expect(courseStore.isHydrated()).toBe(true);
     expect(JSON.parse((await AsyncStorage.getItem(META_KEY))!)).toEqual({
       deliveryVersion: '2.1.0',
       moduleIds: ['m-b', 'm-a'],
@@ -128,25 +150,64 @@ describe('courseStore (v2)', () => {
     ]);
     courseStore.resetForTests();
 
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(
-      SEED_DELIVERY_VERSION,
-    );
+    expect(courseStore.getSnapshot()).toBeNull();
     await courseStore.hydrate();
-    expect(courseStore.getSnapshot().deliveryVersion).toBe('2.1.0');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe('2.1.0');
     expect(
-      courseStore.getSnapshot().bundle.modules.map(m => m.moduleId),
+      courseStore.getSnapshot()!.bundle.modules.map(m => m.moduleId),
     ).toEqual(['m-b', 'm-a']);
   });
 
-  it('stays on the seed when staged docs exist but the pointer was never written', async () => {
+  it('commits into the slot the doc names, not the active course', async () => {
+    const florida: CourseDocV2 = {
+      schemaVersion: 2,
+      deliveryVersion: '1.0.0',
+      course: courseInfo('fl-class-e', ['m-a'], {
+        jurisdiction: 'FL',
+        state: 'Florida',
+      }),
+    };
+    await courseStore.commit('1.0.0', florida, [moduleDoc('m-a', ['q1'])]);
+
+    // Still no course for the active state…
+    expect(courseStore.activeCourseId()).toBe('ca-class-c');
+    expect(courseStore.getSnapshot()).toBeNull();
+    // …but the downloaded one is ready the moment it becomes active.
+    expect(courseStore.storedFor('fl-class-e')?.bundle.course.state).toBe(
+      'Florida',
+    );
+    expect(await courseStore.hydrateCourse('fl-class-e')).not.toBeNull();
+    courseStore.setActiveCourse('fl-class-e');
+    expect(courseStore.getSnapshot()!.bundle.course.courseId).toBe(
+      'fl-class-e',
+    );
+    expect(
+      await AsyncStorage.getItem('dmv-prep/course/v2/fl-class-e/meta'),
+    ).not.toBeNull();
+    expect(await AsyncStorage.getItem(META_KEY)).toBeNull();
+  });
+
+  it('hydrateCourse answers per course without touching the active one', async () => {
+    await courseStore.commit('2.1.0', courseDoc, [
+      moduleDoc('m-a', ['q1']),
+      moduleDoc('m-b', ['q2']),
+    ]);
+    courseStore.resetForTests();
+
+    expect(await courseStore.hydrateCourse('fl-class-e')).toBeNull();
+    expect(
+      (await courseStore.hydrateCourse('ca-class-c'))?.deliveryVersion,
+    ).toBe('2.1.0');
+    expect(courseStore.activeCourseId()).toBe('ca-class-c');
+  });
+
+  it('serves nothing when staged docs exist but the pointer was never written', async () => {
     // Simulates a kill between staging and the meta write.
     await AsyncStorage.setMany({
       'dmv-prep/course/v2/ca-class-c/2.1.0/course': JSON.stringify(courseDoc),
     });
     await courseStore.hydrate();
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(
-      SEED_DELIVERY_VERSION,
-    );
+    expect(courseStore.getSnapshot()).toBeNull();
     // the orphaned staged doc is swept
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(await AsyncStorage.getAllKeys()).not.toContain(
@@ -154,15 +215,14 @@ describe('courseStore (v2)', () => {
     );
   });
 
-  it('falls back to the seed and clears the pointer on a corrupted store', async () => {
+  it('serves nothing and clears the pointer on a corrupted store', async () => {
     await AsyncStorage.setItem(
       META_KEY,
       JSON.stringify({ deliveryVersion: '9.9.9', moduleIds: ['missing'] }),
     );
     await courseStore.hydrate();
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(
-      SEED_DELIVERY_VERSION,
-    );
+    expect(courseStore.isHydrated()).toBe(true);
+    expect(courseStore.getSnapshot()).toBeNull();
     expect(await AsyncStorage.getItem(META_KEY)).toBeNull();
   });
 

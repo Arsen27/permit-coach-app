@@ -1,4 +1,3 @@
-import { SEED_COURSE_BUNDLE, SEED_DELIVERY_VERSION } from '@/data/course';
 import {
   COURSE_SCHEMA_VERSION,
   MAX_ID_LENGTH,
@@ -13,18 +12,24 @@ import {
 } from '@/data/course/v2/wire';
 import { sha256Hex } from '@/lib/sha256';
 
-// Content contract for the bundled ca-class-c seed: the exact counts and
-// invariants the importer promised. If any of these fail, the generated data
-// under src/data/course/ca-class-c-v2/ is broken, not this test.
+import {
+  FIXTURE_COURSE_BUNDLE,
+  FIXTURE_DELIVERY_VERSION,
+} from './fixtures/courseFixture';
 
-const bundle = SEED_COURSE_BUNDLE;
+// Content contract for the ca-class-c course as a device downloads it (the
+// latest release in server/content): the exact counts and invariants the
+// importer promised. If any of these fail, the generated server tree is
+// broken, not this test.
+
+const bundle = FIXTURE_COURSE_BUNDLE;
 const lessons = bundle.modules.flatMap(module => module.lessons);
 const questionById = new Map(bundle.questions.map(q => [q.questionId, q]));
 const assetById = new Map(bundle.assets.map(a => [a.assetId, a]));
 
-describe('seed course content (ca-class-c schema v2)', () => {
+describe('course content (ca-class-c schema v2, latest release)', () => {
   it('has the expected top-level counts', () => {
-    expect(SEED_DELIVERY_VERSION).toBe('3.2.8');
+    expect(FIXTURE_DELIVERY_VERSION).toBe('3.2.11');
     expect(bundle.course.courseId).toBe('ca-class-c');
     expect(bundle.modules).toHaveLength(8);
     expect(lessons).toHaveLength(32);
@@ -34,7 +39,7 @@ describe('seed course content (ca-class-c schema v2)', () => {
   });
 
   it('keeps source-review metadata without authorizing publication', () => {
-    expect(bundle.course.sourceVersionLabel).toBe('CA-2026.08.24-r02');
+    expect(bundle.course.sourceVersionLabel).toBe('CA-2026.08.24-r03');
     expect(bundle.course.sourceReviewStatus).toBe(
       'draft_generated_human_review_required',
     );
@@ -181,12 +186,11 @@ describe('seed course content (ca-class-c schema v2)', () => {
     }
   });
 
-  it('gives every question 3 to 5 choices with valid answer + feedback', () => {
+  it('gives every question exactly 3 choices with valid answer + feedback', () => {
     for (const question of bundle.questions) {
-      expect(question.choices.length).toBeGreaterThanOrEqual(3);
-      expect(question.choices.length).toBeLessThanOrEqual(5);
+      expect(question.choices).toHaveLength(3);
       const ids = question.choices.map(choice => choice.id);
-      expect(new Set(ids).size).toBe(question.choices.length);
+      expect(new Set(ids).size).toBe(3);
       expect(ids).toContain(question.correctAnswerId);
       for (const choice of question.choices) {
         expect(choice.feedback.length).toBeGreaterThan(0);

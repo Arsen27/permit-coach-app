@@ -11,10 +11,11 @@ import {
   fetchLessonDocRaw,
   fetchModuleDocRaw,
 } from './client';
+import type { CourseId } from './index';
 import { planContentFetch, planProgressActions } from './planner';
 import { clearPrompt, loadPrompt, savePrompt } from './promptStore';
 import { isVersionBelow } from './semver';
-import { courseStore } from './store';
+import { StoredCourse, courseStore } from './store';
 import {
   verifyCourseDocBody,
   verifyLessonDocBody,
@@ -40,6 +41,10 @@ import {
 // deliveryVersion) and the progress pass (per-user, cursor = course-seen) are
 // deliberately separate so a kill in between resumes cleanly and each account
 // gets its own severity pass.
+//
+// installCourse at the bottom is the other entry point: the first download
+// of a course the device does not have (onboarding, a state switch, or the
+// recovery gate). Same fetch-and-verify pipeline, always the full course.
 
 const seenKey = (userId: string) => `dmv-prep/course-seen/v2/${userId}`;
 
@@ -68,7 +73,10 @@ export type UpdateStatus =
   | 'updated'
   | 'offline'
   | 'failed'
-  | 'app-update-required';
+  | 'app-update-required'
+  // The device holds no version of the active course: there is nothing to
+  // update, and the first download belongs to installCourse.
+  | 'no-course';
 // A fundamentally new course waiting for the learner's consent: `version` is
 // what accepting downloads (the latest), `notes` are the release notes of the
 // opt-in boundary itself — the words that explain why the new course exists.
@@ -263,9 +271,14 @@ export const foldLessonIntoModule = (
   };
 };
 
+// Downloads and commits `latest` for `courseId`. `local` is what the device
+// holds of that course — null for a first download, in which case the whole
+// course is fetched regardless of what the bootstrap says: with nothing to
+// diff against there is no such thing as a delta.
 const runContentPhase = async (
+  courseId: CourseId,
   bootstrap: BootstrapResponseV2,
-  localVersion: string,
+  local: StoredCourse | null,
   onProgress?: (progress: UpdateProgress) => void,
 ): Promise<void> => {
   const latest = bootstrap.course.latestVersion;
@@ -276,16 +289,17 @@ const runContentPhase = async (
     throw new Error(`bootstrap carries no manifest entry for ${latest}`);
   }
   const documents = targetEntry.documents;
-  const bundle = courseStore.getSnapshot().bundle;
+  const bundle = local?.bundle ?? null;
+  const localVersion = local?.deliveryVersion ?? null;
   const lessonOwner = new Map(
-    bundle.modules.flatMap(module =>
+    (bundle?.modules ?? []).flatMap(module =>
       module.lessons.map(
         lesson => [lesson.lessonId, module.moduleId] as [string, string],
       ),
     ),
   );
   const plan =
-    bootstrap.course.mode === 'full'
+    bootstrap.course.mode === 'full' || bundle == null || localVersion == null
       ? { full: true, moduleIds: [], lessonIds: [] }
       : planContentFetch(
           entriesAbove(bootstrap.course.pendingVersions, localVersion).flatMap(
@@ -293,7 +307,7 @@ const runContentPhase = async (
           ),
           lessonOwner,
         );
-  log.info(`content phase ${localVersion} → ${latest}`, {
+  log.info(`content phase ${courseId} ${localVersion ?? 'none'} → ${latest}`, {
     fetchPlan: plan.full
       ? 'full course'
       : { modules: plan.moduleIds, lessons: plan.lessonIds },
@@ -323,11 +337,7 @@ const runContentPhase = async (
     if (ref == null) {
       throw new Error(`manifest has no document ref for module ${moduleId}`);
     }
-    const body = await fetchModuleDocRaw(
-      courseStore.activeCourseId(),
-      latest,
-      moduleId,
-    );
+    const body = await fetchModuleDocRaw(courseId, latest, moduleId);
     const doc = verified(
       verifyModuleDocBody(body, ref, latest),
       `module ${moduleId}`,
@@ -337,18 +347,22 @@ const runContentPhase = async (
   };
 
   onProgress?.({ fetched, total });
-  const courseBody = await fetchCourseDocRaw(
-    courseStore.activeCourseId(),
-    latest,
-  );
+  const courseBody = await fetchCourseDocRaw(courseId, latest);
   const courseDoc = verified(
     verifyCourseDocBody(courseBody, documents.course, latest),
     'course doc',
   );
   tick();
 
+  if (courseDoc.course.courseId !== courseId) {
+    throw new Error(
+      `course doc names ${courseDoc.course.courseId}, expected ${courseId}`,
+    );
+  }
   const targetModuleIds = courseDoc.course.moduleIds;
-  const knownModules = new Set(bundle.modules.map(module => module.moduleId));
+  const knownModules = new Set(
+    (bundle?.modules ?? []).map(module => module.moduleId),
+  );
   const moduleIdsToFetch = plan.full
     ? targetModuleIds
     : [
@@ -368,11 +382,7 @@ const runContentPhase = async (
     if (ref == null) {
       throw new Error(`manifest has no document ref for lesson ${lessonId}`);
     }
-    const body = await fetchLessonDocRaw(
-      courseStore.activeCourseId(),
-      latest,
-      lessonId,
-    );
+    const body = await fetchLessonDocRaw(courseId, latest, lessonId);
     const doc = verified(
       verifyLessonDocBody(body, ref, latest),
       `lesson ${lessonId}`,
@@ -382,7 +392,7 @@ const runContentPhase = async (
   });
 
   const docs = new Map<string, ModuleDocV2>();
-  if (!plan.full) {
+  if (!plan.full && bundle != null) {
     for (const id of targetModuleIds) {
       const carried = moduleDocFromBundle(bundle, id, latest);
       if (carried != null) {
@@ -431,11 +441,19 @@ const runContentPhase = async (
 };
 
 const runProgressPhase = async (
+  courseId: CourseId,
   deps: UpdaterDeps,
   bootstrap: BootstrapResponseV2,
   seenVersion: string,
 ): Promise<void> => {
   const latest = bootstrap.course.latestVersion;
+  // The content phase committed this course just before (or an earlier run
+  // did); the slot is read directly so a state switch mid-update cannot
+  // hand the progress pass another course's bundle.
+  const committed = courseStore.storedFor(courseId);
+  if (committed == null) {
+    throw new Error(`progress phase: no committed ${courseId} bundle`);
+  }
   // mode 'full' means the server could not relate our version to the
   // manifest. The progress policy is whatever the server explicitly returned
   // as progressFallback — never inferred here.
@@ -463,7 +481,7 @@ const runProgressPhase = async (
     deps.userId,
     instructions,
     progress,
-    courseStore.getSnapshot().bundle,
+    committed.bundle,
   );
   if (
     plan.hardResets.lessonIds.length > 0 ||
@@ -499,7 +517,15 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
     }
     const elapsed = log.time();
     await courseStore.hydrate();
-    const contentVersion = courseStore.getSnapshot().deliveryVersion;
+    const courseId = courseStore.activeCourseId();
+    const stored = courseStore.getSnapshot();
+    if (stored == null) {
+      log.info(
+        `no ${courseId} course on this device — nothing to update (the first download belongs to installCourse)`,
+      );
+      return { status: 'no-course' };
+    }
+    const contentVersion = stored.deliveryVersion;
     let seenVersion = await AsyncStorage.getItem(seenKey(deps.userId));
     if (seenVersion == null) {
       seenVersion = contentVersion;
@@ -514,6 +540,7 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
       : contentVersion;
     log.info('check start', {
       user: deps.userId,
+      course: courseId,
       contentVersion,
       seenVersion,
       askingServerFrom: floor,
@@ -522,11 +549,7 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
 
     let bootstrapBody: string;
     try {
-      bootstrapBody = await fetchBootstrapRaw(
-        courseStore.activeCourseId(),
-        floor,
-        APP_VERSION,
-      );
+      bootstrapBody = await fetchBootstrapRaw(courseId, floor, APP_VERSION);
     } catch {
       log.warn(
         `offline: bootstrap unreachable (${elapsed()}ms) — retrying later`,
@@ -622,14 +645,20 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
 
     try {
       let updated = false;
-      if (isVersionBelow(contentVersion, autoLatest)) {
-        await runContentPhase(autoBootstrap, contentVersion, deps.onProgress);
+      // mode 'full' means the server cannot place our version in the manifest
+      // at all — it was withdrawn after a bad release, or never published. The
+      // content is replaced wholesale there, so version ordering carries no
+      // information: a withdrawn release has to be able to move us back down.
+      // Comparing versions instead would strand every device that took it.
+      const replaceWholesale = bootstrap.course.mode === 'full';
+      if (replaceWholesale || isVersionBelow(contentVersion, autoLatest)) {
+        await runContentPhase(courseId, autoBootstrap, stored, deps.onProgress);
         updated = true;
       } else {
         log.info(`content already at ${contentVersion} — nothing to download`);
       }
-      if (isVersionBelow(seenVersion, autoLatest)) {
-        await runProgressPhase(deps, autoBootstrap, seenVersion);
+      if (replaceWholesale || isVersionBelow(seenVersion, autoLatest)) {
+        await runProgressPhase(courseId, deps, autoBootstrap, seenVersion);
         updated = true;
       }
       const status = updated ? 'updated' : 'up-to-date';
@@ -669,12 +698,18 @@ export const acceptCourseOffer = (deps: UpdaterDeps): Promise<UpdateResult> => {
     }
     const elapsed = log.time();
     await courseStore.hydrate();
-    const contentVersion = courseStore.getSnapshot().deliveryVersion;
+    const courseId = courseStore.activeCourseId();
+    const stored = courseStore.getSnapshot();
+    if (stored == null) {
+      // An offer is only ever made against a course on the device.
+      return { status: 'no-course' };
+    }
+    const contentVersion = stored.deliveryVersion;
 
     let bootstrapBody: string;
     try {
       bootstrapBody = await fetchBootstrapRaw(
-        courseStore.activeCourseId(),
+        courseId,
         contentVersion,
         APP_VERSION,
       );
@@ -717,14 +752,14 @@ export const acceptCourseOffer = (deps: UpdaterDeps): Promise<UpdateResult> => {
 
     // The scope to wipe is whatever the OLD course tracked — captured before
     // the commit swaps the bundle out from under us.
-    const oldBundle = courseStore.getSnapshot().bundle;
+    const oldBundle = stored.bundle;
     const oldLessonIds = oldBundle.modules.flatMap(module =>
       module.lessons.map(lesson => lesson.lessonId),
     );
     const oldModuleIds = oldBundle.modules.map(module => module.moduleId);
 
     try {
-      await runContentPhase(bootstrap, contentVersion, deps.onProgress);
+      await runContentPhase(courseId, bootstrap, stored, deps.onProgress);
       deps.resetLessons(oldLessonIds);
       deps.resetTopics(oldModuleIds);
       await AsyncStorage.setItem(seenKey(deps.userId), latest);
@@ -746,6 +781,107 @@ export const acceptCourseOffer = (deps: UpdaterDeps): Promise<UpdateResult> => {
     running = null;
   });
   return running;
+};
+
+export type InstallStatus =
+  | 'installed'
+  | 'offline'
+  | 'failed'
+  | 'app-update-required';
+export type InstallResult = {
+  status: InstallStatus;
+  app?: BootstrapResponseV2['app'];
+};
+
+export type InstallDeps = {
+  courseId: CourseId;
+  onProgress?: (progress: UpdateProgress) => void;
+};
+
+const installing = new Map<CourseId, Promise<InstallResult>>();
+
+// The first download of a course the device does not have: the learner's
+// state course during onboarding, a newly chosen state in Settings, or the
+// recovery path for an onboarded device whose store came up empty. Always the
+// full course at the server's latest release — with nothing local there is
+// nothing to diff against — committed into that course's own slot, so a
+// download ahead of a state switch never disturbs the course in use.
+//
+// Progress and the per-user seen cursor are left alone on purpose: a new
+// course has no progress to reconcile, and a re-download after store loss
+// lets the next regular update pass pick up from whatever cursor it finds.
+export const installCourse = (deps: InstallDeps): Promise<InstallResult> => {
+  const { courseId } = deps;
+  const inFlight = installing.get(courseId);
+  if (inFlight != null) {
+    return inFlight;
+  }
+  const run = (async (): Promise<InstallResult> => {
+    if (!isServerConfigured) {
+      log.error(
+        `install ${courseId} impossible: SERVER_URL is empty — the app ships no course`,
+      );
+      return { status: 'failed' };
+    }
+    const elapsed = log.time();
+    log.info(`install start ${courseId}`, { appVersion: APP_VERSION });
+
+    let bootstrapBody: string;
+    try {
+      bootstrapBody = await fetchBootstrapRaw(courseId, null, APP_VERSION);
+    } catch {
+      log.warn(`install ${courseId}: offline (${elapsed()}ms)`);
+      return { status: 'offline' };
+    }
+
+    let bootstrap: BootstrapResponseV2;
+    try {
+      const check = validateBootstrapResponseV2(JSON.parse(bootstrapBody));
+      if (!check.ok) {
+        throw new Error(check.errors[0]);
+      }
+      bootstrap = check.value;
+    } catch (error) {
+      log.error(
+        `install ${courseId}: bootstrap payload failed validation`,
+        error instanceof Error ? error.message : error,
+      );
+      return { status: 'failed' };
+    }
+    const app = bootstrap.app;
+    const latest = bootstrap.course.latestVersion;
+    const latestEntry = bootstrap.course.pendingVersions.find(
+      entry => entry.version === latest,
+    );
+    if (
+      isVersionBelow(APP_VERSION, app.minSupportedAppVersion) ||
+      bootstrap.course.schemaVersion > COURSE_SCHEMA_VERSION ||
+      (latestEntry != null &&
+        isVersionBelow(APP_VERSION, latestEntry.minAppVersion))
+    ) {
+      log.warn(
+        `install ${courseId}: app ${APP_VERSION} cannot take ${latest} — update required`,
+      );
+      return { status: 'app-update-required', app };
+    }
+
+    try {
+      await runContentPhase(courseId, bootstrap, null, deps.onProgress);
+      log.info(`installed ${courseId}@${latest} (${elapsed()}ms)`);
+      return { status: 'installed', app };
+    } catch (error) {
+      // Nothing was committed: the store slot is exactly as empty as before.
+      log.error(
+        `install ${courseId} failed after ${elapsed()}ms — nothing committed`,
+        error instanceof Error ? error.message : error,
+      );
+      return { status: 'failed', app };
+    }
+  })().finally(() => {
+    installing.delete(courseId);
+  });
+  installing.set(courseId, run);
+  return run;
 };
 
 // Shows the persisted aggregated prompt (at most one per user), if any.

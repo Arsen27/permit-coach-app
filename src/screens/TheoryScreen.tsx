@@ -36,7 +36,6 @@ import {
   findCourseQuestion,
   orderedCourseLessons,
 } from '@/data/course/learn';
-import { courseStore } from '@/data/course/store';
 import {
   clearLessonPlace,
   loadLessonPlace,
@@ -87,7 +86,7 @@ const HeaderProgress: React.FC<{
 };
 
 const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
-  useCourse();
+  const { bundle } = useCourse();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const { userId, applyLessonResult, lessonScores, recordQuestionAnswer } =
@@ -531,8 +530,7 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
 
   const card = cards[index];
   const { block } = card;
-  const { course } = courseStore.getSnapshot().bundle;
-  const courseState = course.state;
+  const courseState = bundle.course.state;
   const question =
     card.questionId != null ? findCourseQuestion(card.questionId) : undefined;
   const answer = card.questionId != null ? answers[card.questionId] : undefined;
@@ -658,7 +656,7 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
           answer={answer}
           onSelect={select}
           stateLabel={courseState}
-          cardStyles={course.cardStyles}
+          cardStyles={bundle.course.cardStyles}
           resolveAsset={findCourseAsset}
           checkpointOrdinal={questionOrdinal}
           checkpointTotal={questionIds.length}

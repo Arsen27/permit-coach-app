@@ -4,10 +4,13 @@ import ReactTestRenderer, {
 } from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components/native';
 
+import { courseStore } from '@/data/course/store';
 import { questionBankIds, topicQuestionIds } from '@/data/practice';
 import PracticeScreen from '@/screens/PracticeScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
 import { defaultTheme } from '@/theme';
+
+import { commitFixtureCourse } from './fixtures/courseFixture';
 
 jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
@@ -80,6 +83,8 @@ beforeEach(async () => {
   const AsyncStorage =
     require('@react-native-async-storage/async-storage').default;
   await AsyncStorage.clear();
+  courseStore.resetForTests();
+  await commitFixtureCourse();
   observedState = null;
   mockNavigate.mockClear();
 });

@@ -1,9 +1,9 @@
 import { INSTALLED_APP_VERSION } from './appVersion';
 
 // Base URL of the dmv-prep content/version server (server/ in this repo,
-// deployed on Railway). Public content only — no secrets live here. Leave
-// empty until the server is deployed; the app then runs fully on the bundled
-// course seed and skips update checks.
+// deployed on Railway). Public content only — no secrets live here. The app
+// ships without course content and downloads the learner's state course from
+// here, so an empty value leaves a fresh install with no course at all.
 export const SERVER_URL = 'https://dmv-server-production.up.railway.app';
 
 // The app's own release version, compared against the server's
@@ -15,10 +15,10 @@ export const SERVER_URL = 'https://dmv-server-production.up.railway.app';
 // native module cannot answer.
 export const APP_VERSION = INSTALLED_APP_VERSION ?? '1.2.0';
 
-// Server-driven course updates are on: the three state courses still ship in
-// the bundle (so a fresh install works offline and the seed stays the
-// fallback), and the updater downloads a newer version on top of it when the
-// content server has one.
+// Server-driven course content is on: the learner's state course is
+// downloaded once (onboarding, or a state switch in Settings), served from
+// the device store offline from then on, and updated in place when the
+// content server has a newer version.
 export const isServerConfigured = SERVER_URL.length > 0;
 
 // The new-version check hangs off the server URL alone, not off

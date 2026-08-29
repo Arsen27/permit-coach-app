@@ -4,7 +4,6 @@ import ReactTestRenderer, {
 } from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components/native';
 
-import { SEED_COURSE_BUNDLE } from '@/data/course';
 import { FINAL_EXAM_TOPIC_ID, courseUnitProgress } from '@/data/course/learn';
 import { courseStore } from '@/data/course/store';
 import { EXAM_LENGTH, finalExamQuestions } from '@/data/practice';
@@ -12,6 +11,11 @@ import { resetDevUnlockAllForTests, setDevUnlockAll } from '@/lib/devUnlock';
 import LearnScreen from '@/screens/LearnScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
 import { defaultTheme } from '@/theme';
+
+import {
+  FIXTURE_COURSE_BUNDLE,
+  commitFixtureCourse,
+} from './fixtures/courseFixture';
 
 jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
@@ -80,7 +84,7 @@ const finalConnector = (tree: Renderer) => {
 
 const completeWholeCourse = async (): Promise<void> => {
   await ReactTestRenderer.act(async () => {
-    for (const module of SEED_COURSE_BUNDLE.modules) {
+    for (const module of FIXTURE_COURSE_BUNDLE.modules) {
       for (const lesson of module.lessons) {
         observedState!.applyLessonResult({
           lessonId: lesson.lessonId,
@@ -100,6 +104,7 @@ beforeEach(async () => {
     require('@react-native-async-storage/async-storage').default;
   await AsyncStorage.clear();
   courseStore.resetForTests();
+  await commitFixtureCourse();
   observedState = null;
   mockNavigate.mockClear();
   resetDevUnlockAllForTests();
@@ -109,7 +114,7 @@ describe('final exam paper', () => {
   it('draws only from the course, without repeating a question', () => {
     const questions = finalExamQuestions();
     const courseIds = new Set(
-      SEED_COURSE_BUNDLE.questions.map(question => question.questionId),
+      FIXTURE_COURSE_BUNDLE.questions.map(question => question.questionId),
     );
 
     expect(questions.length).toBeGreaterThan(0);
@@ -124,7 +129,7 @@ describe('final exam paper', () => {
 
   it('represents every module, rather than sampling the bank flat', () => {
     const asked = new Set(finalExamQuestions().map(question => question.id));
-    for (const module of SEED_COURSE_BUNDLE.modules) {
+    for (const module of FIXTURE_COURSE_BUNDLE.modules) {
       const pool = new Set([
         ...module.lessons.flatMap(
           lesson => lesson.testQuestionIds ?? lesson.questionIds,
@@ -142,7 +147,7 @@ describe('final exam paper', () => {
 
 describe('courseUnitProgress', () => {
   it('counts a unit only when its lessons and its test are both done', () => {
-    const [first] = SEED_COURSE_BUNDLE.modules;
+    const [first] = FIXTURE_COURSE_BUNDLE.modules;
     const lessonsDone = new Set(first.lessons.map(lesson => lesson.lessonId));
 
     // Lessons done, test not taken yet.
@@ -169,7 +174,7 @@ describe('final exam node on the ladder', () => {
     expect(textsOf(tree)).toContain('0 of 8 units done');
     expect(finalExamNode(tree).props.disabled).toBe(true);
 
-    const [first] = SEED_COURSE_BUNDLE.modules;
+    const [first] = FIXTURE_COURSE_BUNDLE.modules;
     await ReactTestRenderer.act(async () => {
       for (const lesson of first.lessons) {
         observedState!.applyLessonResult({

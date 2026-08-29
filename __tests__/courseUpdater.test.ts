@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { SEED_DELIVERY_VERSION } from '@/data/course';
 import {
   fetchBootstrapRaw,
   fetchCourseDocRaw,
@@ -12,6 +11,7 @@ import { courseStore } from '@/data/course/store';
 import {
   acceptCourseOffer,
   foldLessonIntoModule,
+  installCourse,
   runCourseUpdate,
 } from '@/data/course/updater';
 import type {
@@ -26,12 +26,12 @@ import type {
 } from '@/data/course/v2/wire';
 import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 
-// Fixture delivery versions must sit above whatever the bundled seed ships,
-// or the updater correctly reports "up-to-date" and the tests never exercise
-// an update. Derived so a seed bump does not silently disable them.
-const SEED_MAJOR = Number(SEED_DELIVERY_VERSION.split('.')[0]);
-const NEXT_VERSION = `${SEED_MAJOR + 1}.0.0`;
-const LATER_VERSION = `${SEED_MAJOR + 2}.0.0`;
+// The app bundles no course: every update test starts from a committed
+// BASE_VERSION (see the beforeEach below), and the fixtures released after it
+// sit above it so the updater actually has something to do.
+const BASE_VERSION = '1.0.0';
+const NEXT_VERSION = '2.0.0';
+const LATER_VERSION = '3.0.0';
 
 jest.mock('@/data/course/client');
 jest.mock('@/lib/serverConfig', () => ({
@@ -304,7 +304,7 @@ const bootstrapBody = (
     course: {
       courseId: 'ca-class-c',
       schemaVersion: 2,
-      latestVersion: SEED_DELIVERY_VERSION,
+      latestVersion: BASE_VERSION,
       mode: 'none',
       pendingVersions: [],
       ...course,
@@ -332,16 +332,24 @@ beforeEach(async () => {
   courseStore.resetForTests();
 });
 
+// The course the device starts every update test with — what a first
+// download (installCourse) left behind.
+const withBaseCourse = () => {
+  beforeEach(async () => {
+    await commitFixture(buildFixture(BASE_VERSION), BASE_VERSION);
+  });
+};
+
 describe('runCourseUpdate (v2)', () => {
+  withBaseCourse();
+
   it('reports offline when bootstrap is unreachable and touches nothing', async () => {
     mockBootstrap.mockRejectedValue(new Error('network'));
     const d = deps();
     const result = await runCourseUpdate(d);
     expect(result.status).toBe('offline');
     expect(mockCourse).not.toHaveBeenCalled();
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(
-      SEED_DELIVERY_VERSION,
-    );
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
   });
 
   it('refuses to download anything when the app is below the version gate', async () => {
@@ -360,9 +368,7 @@ describe('runCourseUpdate (v2)', () => {
     expect(result.status).toBe('app-update-required');
     expect(mockCourse).not.toHaveBeenCalled();
     expect(mockModule).not.toHaveBeenCalled();
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(
-      SEED_DELIVERY_VERSION,
-    );
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
   });
 
   it('refuses a manifest whose schemaVersion the app cannot parse', async () => {
@@ -433,13 +439,35 @@ describe('runCourseUpdate (v2)', () => {
     expect(result.status).toBe('updated');
     expect(mockModule).toHaveBeenCalledTimes(2);
     expect(mockLesson).not.toHaveBeenCalled();
-    const snapshot = courseStore.getSnapshot();
+    const snapshot = courseStore.getSnapshot()!;
     expect(snapshot.deliveryVersion).toBe(NEXT_VERSION);
     expect(snapshot.bundle.modules.map(m => m.moduleId)).toEqual([M1, M2]);
     // soft fallback: no resets, no prompt
     expect(d.resetLessons).toHaveBeenCalledWith([]);
     expect(d.resetTopics).toHaveBeenCalledWith([]);
     expect(await loadPrompt('u1')).toBeNull();
+  });
+
+  it('takes a withdrawn release back down when the server replaces wholesale', async () => {
+    // The device holds a release that was later withdrawn, so the manifest no
+    // longer places it and the server answers 'full' with an older latest.
+    // Version ordering must not veto that: comparing would strand the device
+    // on content nobody can reach any more.
+    const withdrawn = buildFixture(LATER_VERSION);
+    await commitFixture(withdrawn, LATER_VERSION);
+    const fixture = buildFixture(NEXT_VERSION);
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: NEXT_VERSION,
+        mode: 'full',
+        pendingVersions: [fixture.entry([{ op: 'full', severity: 'soft' }])],
+        progressFallback: { severity: 'soft' },
+      }),
+    );
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('updated');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
   });
 
   it('applies the explicit hard progressFallback for unknown client versions', async () => {
@@ -488,7 +516,7 @@ describe('runCourseUpdate (v2)', () => {
     expect(mockLesson).toHaveBeenCalledTimes(1);
     expect(mockLesson).toHaveBeenCalledWith('ca-class-c', LATER_VERSION, L1);
     expect(mockModule).not.toHaveBeenCalled();
-    const snapshot = courseStore.getSnapshot();
+    const snapshot = courseStore.getSnapshot()!;
     expect(snapshot.deliveryVersion).toBe(LATER_VERSION);
     expect(snapshot.bundle.modules[0].lessons[0].title).toBe('Retitled lesson');
     // The untouched module was carried forward, not downloaded.
@@ -544,7 +572,7 @@ describe('runCourseUpdate (v2)', () => {
     const d = deps();
     const result = await runCourseUpdate(d);
     expect(result.status).toBe('failed');
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(NEXT_VERSION);
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
     // Progress phase never ran; the seen cursor stays put for a clean retry.
     expect(d.resetLessons).not.toHaveBeenCalled();
     expect(await AsyncStorage.getItem('dmv-prep/course-seen/v2/u1')).toBe(
@@ -578,7 +606,7 @@ describe('runCourseUpdate (v2)', () => {
     );
     const result = await runCourseUpdate(deps());
     expect(result.status).toBe('failed');
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(NEXT_VERSION);
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
   });
 
   it('commits content before the progress pass and resumes after a kill in between', async () => {
@@ -631,7 +659,7 @@ describe('runCourseUpdate (v2)', () => {
     d.getProgress.mockReturnValue({ lessonIds: [L1], topicIds: [M1] });
     let versionAtReset: string | null = null;
     d.resetLessons.mockImplementation(() => {
-      versionAtReset = courseStore.getSnapshot().deliveryVersion;
+      versionAtReset = courseStore.getSnapshot()!.deliveryVersion;
     });
     const result = await runCourseUpdate(d);
     expect(result.status).toBe('updated');
@@ -713,6 +741,8 @@ describe('foldLessonIntoModule (v2)', () => {
 });
 
 describe('opt-in course offers (v2)', () => {
+  withBaseCourse();
+
   const optInEntry = (fixture: Fixture, notes: string): ManifestVersionV2 => ({
     ...fixture.entry([{ op: 'full', severity: 'soft' }]),
     adoption: 'opt_in',
@@ -738,7 +768,7 @@ describe('opt-in course offers (v2)', () => {
 
     // The automatic stretch still landed…
     expect(result.status).toBe('updated');
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(NEXT_VERSION);
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
     // …but the opt-in version was only offered, never fetched.
     expect(result.offer).toEqual({
       version: LATER_VERSION,
@@ -762,9 +792,7 @@ describe('opt-in course offers (v2)', () => {
     expect(result.status).toBe('up-to-date');
     expect(result.offer?.version).toBe(LATER_VERSION);
     expect(mockCourse).not.toHaveBeenCalled();
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(
-      SEED_DELIVERY_VERSION,
-    );
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
   });
 
   it('withholds the offer from an app below the new course minAppVersion', async () => {
@@ -795,7 +823,7 @@ describe('opt-in course offers (v2)', () => {
         pendingVersions: [optInEntry(offered, 'A rebuilt course')],
       }),
     );
-    const oldBundle = courseStore.getSnapshot().bundle;
+    const oldBundle = courseStore.getSnapshot()!.bundle;
     const oldLessonIds = oldBundle.modules.flatMap(module =>
       module.lessons.map(lesson => lesson.lessonId),
     );
@@ -805,7 +833,7 @@ describe('opt-in course offers (v2)', () => {
     const result = await acceptCourseOffer(d);
 
     expect(result.status).toBe('updated');
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(LATER_VERSION);
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(LATER_VERSION);
     // The fresh start wipes exactly what the OLD course tracked.
     expect(d.resetLessons).toHaveBeenCalledWith(oldLessonIds);
     expect(d.resetTopics).toHaveBeenCalledWith(oldModuleIds);
@@ -832,10 +860,205 @@ describe('opt-in course offers (v2)', () => {
     const result = await acceptCourseOffer(d);
 
     expect(result.status).toBe('failed');
-    expect(courseStore.getSnapshot().deliveryVersion).toBe(
-      SEED_DELIVERY_VERSION,
-    );
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
     expect(d.resetLessons).not.toHaveBeenCalled();
     expect(d.resetTopics).not.toHaveBeenCalled();
+  });
+});
+
+describe('a device with no course', () => {
+  it('runCourseUpdate has nothing to update and asks the server nothing', async () => {
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('no-course');
+    expect(mockBootstrap).not.toHaveBeenCalled();
+    expect(courseStore.getSnapshot()).toBeNull();
+  });
+
+  it('acceptCourseOffer refuses without a course on the device', async () => {
+    const result = await acceptCourseOffer(deps());
+    expect(result.status).toBe('no-course');
+    expect(mockBootstrap).not.toHaveBeenCalled();
+  });
+});
+
+describe('installCourse (first download)', () => {
+  const fullBootstrap = (fixture: Fixture, version: string) =>
+    bootstrapBody({
+      latestVersion: version,
+      mode: 'full',
+      pendingVersions: [fixture.entry([{ op: 'full', severity: 'soft' }])],
+      progressFallback: { severity: 'soft' },
+    });
+
+  it('asks for the latest without a version, fetches the whole course and commits it', async () => {
+    const fixture = buildFixture(NEXT_VERSION);
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(fullBootstrap(fixture, NEXT_VERSION));
+    const onProgress = jest.fn();
+
+    const result = await installCourse({ courseId: 'ca-class-c', onProgress });
+
+    expect(result.status).toBe('installed');
+    // No local version to diff against: the bootstrap carries none.
+    expect(mockBootstrap).toHaveBeenCalledWith('ca-class-c', null, '1.0.0');
+    expect(mockCourse).toHaveBeenCalledWith('ca-class-c', NEXT_VERSION);
+    expect(mockModule).toHaveBeenCalledTimes(2);
+    expect(mockLesson).not.toHaveBeenCalled();
+    const snapshot = courseStore.getSnapshot()!;
+    expect(snapshot.deliveryVersion).toBe(NEXT_VERSION);
+    expect(snapshot.bundle.modules.map(m => m.moduleId)).toEqual([M1, M2]);
+    expect(onProgress).toHaveBeenLastCalledWith({ fetched: 3, total: 3 });
+    // A first download reconciles no progress: the seen cursor is untouched.
+    expect(await AsyncStorage.getItem('dmv-prep/course-seen/v2/u1')).toBeNull();
+  });
+
+  it('downloads the whole course even when the server answers with a delta', async () => {
+    // Nothing local means nothing to apply a delta to — every module comes
+    // down, whatever the instructions say.
+    const fixture = buildFixture(NEXT_VERSION);
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: NEXT_VERSION,
+        mode: 'delta',
+        pendingVersions: [
+          fixture.entry([
+            { op: 'lesson-content', lessonId: L1, severity: 'soft' },
+          ]),
+        ],
+      }),
+    );
+
+    const result = await installCourse({ courseId: 'ca-class-c' });
+
+    expect(result.status).toBe('installed');
+    expect(mockModule).toHaveBeenCalledTimes(2);
+    expect(mockLesson).not.toHaveBeenCalled();
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
+  });
+
+  it("lands in the course's own slot without switching the active course", async () => {
+    const florida = buildFixture(NEXT_VERSION);
+    florida.courseDoc.course.courseId = 'fl-class-e';
+    florida.bodies.set('course', JSON.stringify(florida.courseDoc));
+    serveFixture(florida);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        courseId: 'fl-class-e',
+        latestVersion: NEXT_VERSION,
+        mode: 'full',
+        pendingVersions: [florida.entry([{ op: 'full', severity: 'soft' }])],
+        progressFallback: { severity: 'soft' },
+      }),
+    );
+
+    const result = await installCourse({ courseId: 'fl-class-e' });
+
+    expect(result.status).toBe('installed');
+    expect(mockCourse).toHaveBeenCalledWith('fl-class-e', NEXT_VERSION);
+    expect(courseStore.activeCourseId()).toBe('ca-class-c');
+    expect(courseStore.getSnapshot()).toBeNull();
+    expect(courseStore.storedFor('fl-class-e')?.deliveryVersion).toBe(
+      NEXT_VERSION,
+    );
+  });
+
+  it('reports offline when the server is unreachable and commits nothing', async () => {
+    mockBootstrap.mockRejectedValue(new Error('network'));
+    const result = await installCourse({ courseId: 'ca-class-c' });
+    expect(result.status).toBe('offline');
+    expect(mockCourse).not.toHaveBeenCalled();
+    expect(courseStore.getSnapshot()).toBeNull();
+  });
+
+  it('refuses when the app is below the version gate', async () => {
+    const fixture = buildFixture(NEXT_VERSION);
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        minSupportedAppVersion: '9.9.9',
+        latestVersion: NEXT_VERSION,
+        mode: 'full',
+        pendingVersions: [fixture.entry([{ op: 'full', severity: 'soft' }])],
+        progressFallback: { severity: 'soft' },
+      }),
+    );
+    const result = await installCourse({ courseId: 'ca-class-c' });
+    expect(result.status).toBe('app-update-required');
+    expect(mockCourse).not.toHaveBeenCalled();
+    expect(courseStore.getSnapshot()).toBeNull();
+  });
+
+  it('commits nothing when a document fails verification', async () => {
+    const fixture = buildFixture(NEXT_VERSION);
+    const entry = fixture.entry([{ op: 'full', severity: 'soft' }]);
+    // The manifest describes the intact bytes; the server delivers a
+    // corrupted module.
+    fixture.bodies.set(
+      `modules/${M2}`,
+      fixture.bodies.get(`modules/${M2}`)! + ' ',
+    );
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: NEXT_VERSION,
+        mode: 'full',
+        pendingVersions: [entry],
+        progressFallback: { severity: 'soft' },
+      }),
+    );
+    const result = await installCourse({ courseId: 'ca-class-c' });
+    expect(result.status).toBe('failed');
+    expect(courseStore.getSnapshot()).toBeNull();
+    expect(
+      await AsyncStorage.getItem('dmv-prep/course/v2/ca-class-c/meta'),
+    ).toBeNull();
+  });
+
+  it('coalesces concurrent downloads of the same course', async () => {
+    const fixture = buildFixture(NEXT_VERSION);
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(fullBootstrap(fixture, NEXT_VERSION));
+    const [first, second] = await Promise.all([
+      installCourse({ courseId: 'ca-class-c' }),
+      installCourse({ courseId: 'ca-class-c' }),
+    ]);
+    expect(first.status).toBe('installed');
+    expect(second.status).toBe('installed');
+    expect(mockBootstrap).toHaveBeenCalledTimes(1);
+    expect(mockModule).toHaveBeenCalledTimes(2);
+  });
+
+  it('the regular update pass picks up from an installed course', async () => {
+    const installed = buildFixture(NEXT_VERSION);
+    serveFixture(installed);
+    mockBootstrap.mockResolvedValue(fullBootstrap(installed, NEXT_VERSION));
+    expect((await installCourse({ courseId: 'ca-class-c' })).status).toBe(
+      'installed',
+    );
+
+    const next = buildFixture(LATER_VERSION, { lessonTitle: 'Retitled' });
+    serveFixture(next);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: LATER_VERSION,
+        mode: 'delta',
+        pendingVersions: [
+          next.entry([
+            { op: 'lesson-content', lessonId: L1, severity: 'soft' },
+          ]),
+        ],
+      }),
+    );
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('updated');
+    expect(mockBootstrap).toHaveBeenLastCalledWith(
+      'ca-class-c',
+      NEXT_VERSION,
+      '1.0.0',
+    );
+    expect(courseStore.getSnapshot()!.bundle.modules[0].lessons[0].title).toBe(
+      'Retitled',
+    );
   });
 });

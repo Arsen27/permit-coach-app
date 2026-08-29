@@ -5,8 +5,8 @@ import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import PlaceholderImage from '@/components/PlaceholderImage';
-import { useCourse } from '@/data/course/CourseProvider';
-import { bundleLessonCount } from '@/data/course/v2/wire';
+import { findState } from '@/data/states';
+import { useAppState } from '@/state/AppState';
 
 import {
   LADDER_STEP_COUNT,
@@ -28,11 +28,10 @@ const ShowcaseScreen: React.FC<ShowcaseScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { bundle } = useCourse();
-  const slides = makeShowcaseSlides(
-    bundleLessonCount(bundle),
-    bundle.course.state,
-  );
+  // The course itself is not on the phone yet — it downloads on the Building
+  // step after these — so the copy speaks of the state, not of its contents.
+  const { user } = useAppState();
+  const slides = makeShowcaseSlides(findState(user.stateCode).name);
   const { index } = route.params;
   const slide = slides[index];
 
