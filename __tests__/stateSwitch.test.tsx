@@ -8,7 +8,11 @@ import { courseStore } from '@/data/course/store';
 import { installCourse } from '@/data/course/updater';
 import { COURSE_SCHEMA_VERSION } from '@/data/course/v2/wire';
 import type { CourseDocV2, ModuleDocV2 } from '@/data/course/v2/wire';
-import { SUPPORTED_STATES } from '@/data/states';
+import {
+  SUPPORTED_STATES_FALLBACK,
+  loadStates,
+  resetStatesForTests,
+} from '@/data/states';
 import StatePickerScreen from '@/screens/StatePickerScreen';
 import { AppStateProvider, useAppState } from '@/state/AppState';
 import { buildPushPayload, mergeRemoteIntoLocal } from '@/sync/merge';
@@ -175,13 +179,85 @@ beforeEach(async () => {
   mockGoBack.mockClear();
   mockInstall.mockReset();
   jest.restoreAllMocks();
+  // The states list is fetched once per launch and cached in the module; a
+  // test that saw one server answer must not hand it to the next.
+  // The states list is the server's and is fetched once per launch; these
+  // tests are about switching, so it answers with the three states they were
+  // written against, settled before anything renders.
+  resetStatesForTests();
+  globalThis.fetch = (async () =>
+    ({
+      ok: true,
+      status: 200,
+      text: async () =>
+        JSON.stringify({
+          states: SUPPORTED_STATES_FALLBACK.map(state => ({
+            stateCode: state.code,
+            name: state.name,
+            courseId: state.courseId,
+            domain: state.domain,
+          })),
+        }),
+    } as Response)) as typeof fetch;
+  await loadStates();
   // Every device in these tests already holds the course it is on.
   await commitCourse('ca-class-c', 'CA', 'California');
 });
 
+describe('the picker when the list cannot be fetched', () => {
+  it('says there is no connection and offers a retry', async () => {
+    resetStatesForTests();
+    globalThis.fetch = (async () => {
+      throw new TypeError('Network request failed');
+    }) as typeof fetch;
+    await loadStates();
+    const tree = await renderPicker();
+    const texts = textsOf(tree);
+    expect(texts).toContain('No connection');
+    expect(texts).toContain('Try again');
+    // The states the binary carries are still offered — a picker with
+    // nothing in it would be worse than one that may be incomplete.
+    expect(texts).toEqual(expect.arrayContaining(['California', 'Texas']));
+  });
+
+  it("says nothing about connectivity once the list is the server's", async () => {
+    resetStatesForTests();
+    globalThis.fetch = (async () =>
+      ({
+        ok: true,
+        status: 200,
+        text: async () =>
+          JSON.stringify({
+            states: [
+              {
+                stateCode: 'CA',
+                name: 'California',
+                courseId: 'ca-class-c',
+                domain: 'dmv.ca.gov',
+              },
+              {
+                stateCode: 'NY',
+                name: 'New York',
+                courseId: 'ny-class-d',
+                domain: 'dmv.ny.gov',
+              },
+            ],
+          }),
+      } as Response)) as typeof fetch;
+    await loadStates();
+    const tree = await renderPicker();
+    const texts = textsOf(tree);
+    expect(texts).not.toContain('No connection');
+    // A state added on the server, in a build that never heard of it.
+    expect(texts).toContain('New York');
+  });
+});
+
 describe('course selection by state', () => {
-  it('maps exactly the supported states to their courses', () => {
-    expect(SUPPORTED_STATES.map(state => state.code)).toEqual([
+  it('maps the states the binary carries to their courses', () => {
+    // The list is the server's; these three are the floor a first launch
+    // with no network falls back to.
+    expect(SUPPORTED_STATES_FALLBACK.map(state => state.code)).toEqual([
       'CA',
       'FL',
       'TX',
@@ -189,7 +265,7 @@ describe('course selection by state', () => {
     expect(courseIdForState('CA')).toBe('ca-class-c');
     expect(courseIdForState('FL')).toBe('fl-class-e');
     expect(courseIdForState('TX')).toBe('tx-class-c');
-    // Unknown states fall back rather than crash.
+    // A state this build has never heard of falls back rather than crash.
     expect(courseIdForState('NY')).toBe('ca-class-c');
   });
 

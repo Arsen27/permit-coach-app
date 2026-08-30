@@ -4,7 +4,7 @@ import { clearAssets } from '@/data/assets/store';
 
 import { createLogger, formatBytes } from '@/lib/log';
 
-import { COURSE_IDS, CourseId, DEFAULT_COURSE_ID } from './index';
+import { CourseId, DEFAULT_COURSE_ID } from './index';
 import type { CourseBundleV2, CourseDocV2, ModuleDocV2 } from './v2/wire';
 import { COURSE_SCHEMA_VERSION } from './v2/wire';
 
@@ -209,10 +209,20 @@ export const courseStore = {
     snapshots.get(courseId) ?? null,
   // Every picture any course on this device shows. The courses of previously
   // chosen states are kept so switching back needs no download — a sweep that
-  // only kept the course just committed took their pictures away.
+  // only kept the course just committed took their pictures away. Which
+  // courses those are is read off the store itself: the set of states is the
+  // server's now, and a course downloaded by a later build of the catalogue
+  // is still on this phone.
   artworkOnDevice: async (): Promise<Set<string>> => {
     const shown = new Set<string>();
-    for (const courseId of COURSE_IDS) {
+    const keys = await AsyncStorage.getAllKeys();
+    const owners = new Set(
+      keys.flatMap(key => {
+        const match = /^dmv-prep\/course\/v2\/([^/]+)\/meta$/.exec(key);
+        return match == null ? [] : [match[1] as CourseId];
+      }),
+    );
+    for (const courseId of owners) {
       await ensureHydrated(courseId);
       snapshots
         .get(courseId)

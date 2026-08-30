@@ -6,7 +6,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { track } from '@/analytics';
 import UnofficialDisclaimer from '@/components/UnofficialDisclaimer';
-import { SUPPORTED_STATES } from '@/data/states';
+import { retryStates, useStates } from '@/data/states';
 import { useAppState } from '@/state/AppState';
 
 import { STATE_SELECT_STEP } from './content';
@@ -34,6 +34,9 @@ const StateSelectScreen: React.FC<StateSelectScreenProps> = ({
 }) => {
   const { user, setStateCode } = useAppState();
   const insets = useSafeAreaInsets();
+  // The list is the server's. Until it answers there is nothing honest to
+  // show: the states the binary carries may not be the ones on offer.
+  const { states, source, offline } = useStates();
 
   return (
     <StepScreen>
@@ -43,8 +46,21 @@ const StateSelectScreen: React.FC<StateSelectScreenProps> = ({
           {STATE_SELECT_STEP.title}
         </StepTitle>
         <StepHint style={{ marginTop: 6 }}>{STATE_SELECT_STEP.hint}</StepHint>
+        {offline && (
+          <Notice>
+            <NoticeTitle>No connection</NoticeTitle>
+            <NoticeBody>
+              {source === 'cache'
+                ? 'Showing the states from your last visit. Connect to see the full list.'
+                : 'The list of states is downloaded when you start. Connect and try again.'}
+            </NoticeBody>
+            <NoticeAction onPress={() => void retryStates()}>
+              <NoticeActionLabel>Try again</NoticeActionLabel>
+            </NoticeAction>
+          </Notice>
+        )}
         <Options>
-          {SUPPORTED_STATES.map(state => (
+          {states.map(state => (
             <OptionCard
               key={state.code}
               label={state.name}
@@ -60,6 +76,7 @@ const StateSelectScreen: React.FC<StateSelectScreenProps> = ({
         <Disclaimer style={{ marginBottom: insets.bottom + 96 }} />
       </Body>
       <ContinueDock
+        disabled={states.length === 0}
         onPress={() => {
           // Reported on continue, not on tap: the learner can change their
           // mind on this screen, and only the choice they leave with matters.
@@ -79,6 +96,38 @@ const Body = styled.View`
 const Options = styled.View`
   margin-top: 22px;
   gap: 10px;
+`;
+
+const Notice = styled.View`
+  margin-top: 22px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background-color: ${({ theme }) => theme.colors.faint};
+`;
+
+const NoticeTitle = styled.Text`
+  ${({ theme }) => theme.fonts.bold}
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.ink};
+`;
+
+const NoticeBody = styled.Text`
+  ${({ theme }) => theme.fonts.regular}
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 18px;
+  color: ${({ theme }) => theme.colors.body};
+`;
+
+const NoticeAction = styled.Pressable`
+  margin-top: 10px;
+  align-self: flex-start;
+`;
+
+const NoticeActionLabel = styled.Text`
+  ${({ theme }) => theme.fonts.bold}
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.accent};
 `;
 
 const Disclaimer = styled(UnofficialDisclaimer)`

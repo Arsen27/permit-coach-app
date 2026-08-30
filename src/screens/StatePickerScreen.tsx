@@ -13,7 +13,7 @@ import { Group } from '@/components/rows';
 import { courseIdForState } from '@/data/course';
 import { courseStore } from '@/data/course/store';
 import { useCourseInstall } from '@/data/course/useCourseInstall';
-import { SUPPORTED_STATES, UsState } from '@/data/states';
+import { UsState, retryStates, useStates } from '@/data/states';
 import { RootStackParamList } from '@/navigation/types';
 import { useAppState } from '@/state/AppState';
 
@@ -45,6 +45,9 @@ const StatePickerScreen: React.FC<StatePickerScreenProps> = ({
   const insets = useSafeAreaInsets();
   const { user, changeStateWipingProgress } = useAppState();
   const install = useCourseInstall();
+  // The list is the server's; the phone shows what it last saw while it is
+  // out of reach, and says so rather than looking complete.
+  const { states, source, offline } = useStates();
   // The state whose course is downloading (or failed to); drives the sheet.
   const [target, setTarget] = useState<UsState | null>(null);
 
@@ -137,24 +140,43 @@ const StatePickerScreen: React.FC<StatePickerScreenProps> = ({
           </Header>
         )}
         <Body>
-          <Group>
-            {SUPPORTED_STATES.map((state, index) => {
-              const selected = state.code === user.stateCode;
-              return (
-                <StateRow
-                  key={state.code}
-                  $divider={index < SUPPORTED_STATES.length - 1}
-                  $selected={selected}
-                  onPress={() => pick(state)}
-                >
-                  <StateName $selected={selected}>{state.name}</StateName>
-                  {selected && (
-                    <Icon name="check" size={14} color={theme.colors.accent} />
-                  )}
-                </StateRow>
-              );
-            })}
-          </Group>
+          {offline && (
+            <Notice>
+              <NoticeTitle>No connection</NoticeTitle>
+              <NoticeBody>
+                {source === 'cache'
+                  ? 'Showing the states from your last visit. Connect to see the full list.'
+                  : 'The list of states could not be downloaded. Connect and try again.'}
+              </NoticeBody>
+              <NoticeAction onPress={() => void retryStates()}>
+                <NoticeActionLabel>Try again</NoticeActionLabel>
+              </NoticeAction>
+            </Notice>
+          )}
+          {
+            <Group>
+              {states.map((state, index) => {
+                const selected = state.code === user.stateCode;
+                return (
+                  <StateRow
+                    key={state.code}
+                    $divider={index < states.length - 1}
+                    $selected={selected}
+                    onPress={() => pick(state)}
+                  >
+                    <StateName $selected={selected}>{state.name}</StateName>
+                    {selected && (
+                      <Icon
+                        name="check"
+                        size={14}
+                        color={theme.colors.accent}
+                      />
+                    )}
+                  </StateRow>
+                );
+              })}
+            </Group>
+          }
         </Body>
       </Screen>
       <CourseInstallSheet
@@ -194,6 +216,38 @@ const HeaderTitle = styled.Text`
 
 const Body = styled.View`
   padding: 0 22px;
+`;
+
+const Notice = styled.View`
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background-color: ${({ theme }) => theme.colors.faint};
+`;
+
+const NoticeTitle = styled.Text`
+  ${({ theme }) => theme.fonts.bold}
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.ink};
+`;
+
+const NoticeBody = styled.Text`
+  ${({ theme }) => theme.fonts.regular}
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 18px;
+  color: ${({ theme }) => theme.colors.body};
+`;
+
+const NoticeAction = styled.Pressable`
+  margin-top: 10px;
+  align-self: flex-start;
+`;
+
+const NoticeActionLabel = styled.Text`
+  ${({ theme }) => theme.fonts.bold}
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.accent};
 `;
 
 const StateRow = styled.Pressable<{ $divider: boolean; $selected: boolean }>`
