@@ -3,7 +3,7 @@ import { Image } from 'react-native';
 import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
 
-import { assetUrl, isVectorAsset, vectorMarkup } from '@/data/assets/store';
+import { useAssetSource } from '@/data/assets/store';
 import type { CourseAssetV2 } from '@/data/course/v2/wire';
 
 import PlaceholderImage from './PlaceholderImage';
@@ -31,10 +31,9 @@ type CourseAssetViewProps = {
 const inlineMarkup = (asset: Drawable): string | null =>
   'svgXml' in asset ? asset.svgXml : null;
 
-// Course illustration. A vector is drawn from the markup the updater put on
-// the device, so it works fully offline; a photograph is drawn from its URL,
-// which is the file's own hash and therefore something the platform's image
-// cache can hold forever.
+// Course illustration. Both kinds are drawn from the device: a vector from
+// the markup the updater stored, a photograph from its bytes. Neither needs
+// the network — a course on the phone is a course that renders on a plane.
 const DEFAULT_ASPECT_RATIO = 16 / 9;
 
 const aspectRatioOf = (asset: Drawable): number =>
@@ -55,21 +54,13 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
   // later card's diagram into a placeholder for the rest of the lesson.
   const [failedKey, setFailedKey] = useState<string | null>(null);
 
-  // Inline markup wins (registry art); otherwise a course asset is either a
-  // vector whose markup is on the device, or a picture with a URL.
-  const markup =
-    asset == null
-      ? null
-      : inlineMarkup(asset) ??
-        (isVectorAsset(asset as CourseAssetV2)
-          ? vectorMarkup(asset as CourseAssetV2)
-          : null);
-  const uri =
-    asset != null &&
-    inlineMarkup(asset) == null &&
-    !isVectorAsset(asset as CourseAssetV2)
-      ? assetUrl(asset as CourseAssetV2)
-      : null;
+  // Inline markup wins (registry art); anything else is a stored picture.
+  const inline = asset == null ? null : inlineMarkup(asset);
+  const stored = useAssetSource(
+    asset != null && inline == null ? (asset as CourseAssetV2) : null,
+  );
+  const markup = inline ?? (stored?.kind === 'markup' ? stored.markup : null);
+  const uri = stored?.kind === 'uri' ? stored.uri : null;
   const key = markup ?? uri;
 
   // Nothing to draw: a vector that never made it onto the device, or a

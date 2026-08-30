@@ -10,6 +10,8 @@ import {
   SIGNS_SCHEMA_VERSION,
   Sign,
   SignCategory,
+  SignImageMime,
+  SignImageRef,
   SignsDoc,
   validateSignsDoc,
 } from './wire';
@@ -145,6 +147,42 @@ const hydrateOnce = async (): Promise<void> => {
   hydrated = true;
   notify();
   sweep(committed).catch(() => undefined);
+};
+
+// Every picture the committed catalogue shows, as asset references. The
+// course sweep asks for these too — sign artwork lives in the same store, and
+// a sweep that only knew about courses would take it away.
+export const signsArtwork = (): {
+  sha256: string;
+  mime: SignImageMime;
+  sizeBytes: number;
+  assetId: string;
+  uuid: string;
+  width: number;
+  height: number;
+  alt: string;
+}[] => {
+  const refs = new Map<string, SignImageRef>();
+  for (const sign of snapshot.signs) {
+    if (sign.image == null) {
+      continue;
+    }
+    refs.set(sign.image.full.assetId, sign.image.full);
+    if (sign.image.thumb != null) {
+      refs.set(sign.image.thumb.assetId, sign.image.thumb);
+    }
+  }
+  return [...refs.values()].map(ref => ({
+    sha256: ref.assetId,
+    mime: ref.mime,
+    sizeBytes: ref.sizeBytes,
+    // The course asset shape, so one store serves both.
+    assetId: ref.assetId,
+    uuid: ref.assetId,
+    width: 0,
+    height: 0,
+    alt: '',
+  }));
 };
 
 export const signsStore = {

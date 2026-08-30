@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
-import { SvgUri, SvgXml } from 'react-native-svg';
+import { SvgXml } from 'react-native-svg';
 
-import { signAssetUrl } from '@/data/signs/client';
+import { useAssetSource } from '@/data/assets/store';
 import { SEED_SIGN_SVGS } from '@/data/signs/seedAssets';
 import {
   SIGN_IMAGE_EXTENSIONS,
@@ -14,9 +14,9 @@ import {
 import PlaceholderImage from './PlaceholderImage';
 
 // A sign's picture at a given size. Every sign carries uploaded artwork, so
-// this is the only thing that draws one. Assets are content-addressed, which
-// means the platform image cache holds them indefinitely and a re-render costs
-// nothing.
+// this is the only thing that draws one. The bundled catalogue's artwork ships
+// with the app; anything published later is downloaded with the catalogue and
+// drawn from the device, so a sign learnt on the train draws in a tunnel.
 
 type SignImageProps = {
   sign: Sign;
@@ -41,24 +41,27 @@ const SignImage: React.FC<SignImageProps> = ({
     setFailedAssetId(null);
   }, [ref.assetId]);
 
+  // Content-addressed, so the id is the hash: the same picture in the store
+  // and in the bundle are the same bytes.
+  const downloaded = useAssetSource({ sha256: ref.assetId, mime: ref.mime });
+
   // The bundled catalogue's artwork ships with the app, so a fresh install
   // draws every sign with no network. Anything published later is not in here
   // and comes from the server.
   const bundled = SEED_SIGN_SVGS[ref.assetId];
-  if (bundled != null) {
-    return <SvgXml xml={bundled} width={size} height={size} />;
-  }
 
-  if (failedAssetId === ref.assetId) {
+  // The bundled copy needs no read at all; anything else comes off the device.
+  const stored: ReturnType<typeof useAssetSource> =
+    bundled != null ? { kind: 'markup', markup: bundled } : downloaded;
+
+  if (failedAssetId === ref.assetId || stored == null) {
     return <PlaceholderImage label={sign.name} height={size} radius={8} />;
   }
 
-  const uri = signAssetUrl(ref.assetId, SIGN_IMAGE_EXTENSIONS[ref.mime]);
-
-  if (ref.mime === 'image/svg+xml') {
+  if (stored.kind === 'markup') {
     return (
-      <SvgUri
-        uri={uri}
+      <SvgXml
+        xml={stored.markup}
         width={size}
         height={size}
         onError={() => setFailedAssetId(ref.assetId)}
@@ -68,7 +71,7 @@ const SignImage: React.FC<SignImageProps> = ({
 
   return (
     <Image
-      source={{ uri }}
+      source={{ uri: stored.uri }}
       style={{ width: size, height: size }}
       // Signs are authored square but must never be cropped: a clipped shape
       // is the wrong answer on a shape-recognition question.

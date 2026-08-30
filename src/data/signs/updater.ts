@@ -1,9 +1,10 @@
+import { ensureAssets, setAssetsBaseUrl } from '@/data/assets/store';
 import { createLogger } from '@/lib/log';
-import { isServerConfigured } from '@/lib/serverConfig';
+import { SERVER_URL, isServerConfigured } from '@/lib/serverConfig';
 import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 
 import { fetchSignsDocRaw, fetchSignsLatestRaw } from './client';
-import { signsStore } from './store';
+import { signsArtwork, signsStore } from './store';
 import { validateSignsCatalogRef, validateSignsDoc } from './wire';
 
 // Checks the content server for a newer signs catalogue and commits it.
@@ -85,7 +86,18 @@ const run = async (): Promise<SignsUpdateResult> => {
     if (!doc.ok) {
       throw new Error(`signs doc failed validation: ${doc.errors[0]}`);
     }
+    // The catalogue's pictures come down with it, verified against their own
+    // hashes and kept on the device: a sign studied on the train has to draw
+    // in a tunnel. The bundled artwork is already there and is skipped.
+    await setAssetsBaseUrl(`${SERVER_URL}/v1/assets`);
     await signsStore.commit(doc.value, body, hash);
+    try {
+      await ensureAssets(signsArtwork());
+    } catch (error) {
+      // The catalogue itself is committed and correct; a picture that could
+      // not be fetched is fetched on the next check.
+      log.warn('some sign artwork could not be fetched — next check', error);
+    }
     return { status: 'updated' };
   } catch (error) {
     // Nothing was committed; the unchanged hash retries on the next check.

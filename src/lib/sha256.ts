@@ -1,7 +1,8 @@
-// Pure-JS SHA-256 over UTF-8 text. React Native ships no crypto module and
-// downloaded course documents must be hash-verified against the manifest
-// before they are committed, so we carry the 60-line reference implementation
-// (FIPS 180-4). Verified against node:crypto in __tests__/sha256.test.ts.
+// Pure-JS SHA-256. React Native ships no crypto module and everything
+// downloaded — course documents as text, pictures as bytes — must be
+// hash-verified against the manifest before it is kept, so we carry the
+// 60-line reference implementation (FIPS 180-4). Verified against node:crypto
+// in __tests__/sha256.test.ts.
 
 /* eslint-disable no-bitwise */
 
@@ -57,8 +58,12 @@ export const utf8ByteLength = (text: string): number => utf8Bytes(text).length;
 const rotr = (value: number, bits: number): number =>
   (value >>> bits) | (value << (32 - bits));
 
-export const sha256Hex = (text: string): string => {
-  const input = utf8Bytes(text);
+export const sha256Hex = (text: string): string =>
+  sha256HexOfBytes(utf8Bytes(text));
+
+// The same digest over raw bytes: a photograph is verified exactly the way a
+// document is, against the hash the release named.
+export const sha256HexOfBytes = (input: Uint8Array): string => {
   const bitLength = input.length * 8;
   const paddedLength = (((input.length + 8) >> 6) + 1) << 6;
   const data = new Uint8Array(paddedLength);

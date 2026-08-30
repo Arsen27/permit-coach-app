@@ -8,6 +8,7 @@ import {
   setAssetsBaseUrl,
   sweepAssets,
 } from '@/data/assets/store';
+import { signsArtwork } from '@/data/signs/store';
 import { hydrateContentChannel } from '@/lib/contentChannel';
 import { createLogger } from '@/lib/log';
 import { APP_VERSION, isServerConfigured } from '@/lib/serverConfig';
@@ -514,8 +515,13 @@ const runContentPhase = async (
   await courseStore.commit(latest, courseDoc, ordered);
   // What the replaced version used goes with it — and only that. Other
   // states' courses stay on the device for switching back, and so do their
-  // pictures.
-  await sweepAssets(await courseStore.artworkOnDevice());
+  // pictures; so does the signs catalogue's artwork, which shares this store.
+  await sweepAssets(
+    new Set([
+      ...(await courseStore.artworkOnDevice()),
+      ...signsArtwork().map(asset => asset.sha256),
+    ]),
+  );
 };
 
 // A picture the device lost — an interrupted write, an evicted cache — is
