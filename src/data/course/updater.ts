@@ -2,12 +2,13 @@ import { Alert } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { createLogger } from '@/lib/log';
 import {
   ensureAssets,
   setAssetsBaseUrl,
   sweepAssets,
 } from '@/data/assets/store';
+import { hydrateContentChannel } from '@/lib/contentChannel';
+import { createLogger } from '@/lib/log';
 import { APP_VERSION, isServerConfigured } from '@/lib/serverConfig';
 import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 
@@ -582,6 +583,7 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
     return running;
   }
   running = (async (): Promise<UpdateResult> => {
+    await hydrateContentChannel();
     if (!isServerConfigured) {
       log.info('skipped: SERVER_URL is empty (running on the bundled seed)');
       return { status: 'up-to-date' };
@@ -764,6 +766,7 @@ export const acceptCourseOffer = (deps: UpdaterDeps): Promise<UpdateResult> => {
     return running;
   }
   running = (async (): Promise<UpdateResult> => {
+    await hydrateContentChannel();
     if (!isServerConfigured) {
       return { status: 'up-to-date' };
     }
@@ -888,6 +891,10 @@ export const installCourse = (deps: InstallDeps): Promise<InstallResult> => {
     return inFlight;
   }
   const run = (async (): Promise<InstallResult> => {
+    // Which channel this device belongs to is on disk, and on the install
+    // gate no screen is mounted to read it: without this the recovery
+    // download silently went to production whatever the developer chose.
+    await hydrateContentChannel();
     if (!isServerConfigured) {
       log.error(
         `install ${courseId} impossible: SERVER_URL is empty — the app ships no course`,

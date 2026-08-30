@@ -8,7 +8,7 @@ import { courseIdForState } from '@/data/course';
 import { courseStore } from '@/data/course/store';
 import { useCourseInstall } from '@/data/course/useCourseInstall';
 import { findState } from '@/data/states';
-import { getContentChannel, setContentChannel } from '@/lib/contentChannel';
+import { setContentChannel, useContentChannel } from '@/lib/contentChannel';
 import { useAppState } from '@/state/AppState';
 
 // Full-screen stop for an onboarded device that holds no course for its
@@ -49,7 +49,11 @@ const CourseInstallGate: React.FC = () => {
     run();
   }, [run]);
 
-  const stranded = __DEV__ && getContentChannel() === 'staging';
+  // The hook, not the getter: this screen is mounted alone, so nothing else
+  // has read the stored channel off the disk yet, and the getter would answer
+  // 'production' for a device that is very much on staging.
+  const channel = useContentChannel();
+  const stranded = __DEV__ && channel === 'staging';
   const leaveStaging = useCallback(async () => {
     await setContentChannel('production', courseStore.wipeDownloadedContent);
     run();

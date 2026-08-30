@@ -26,6 +26,10 @@ import type {
   ModuleDocV2,
   UpdateInstructionV2,
 } from '@/data/course/v2/wire';
+import {
+  getContentChannel,
+  resetContentChannelForTests,
+} from '@/lib/contentChannel';
 import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 
 // The app bundles no course: every update test starts from a committed
@@ -358,6 +362,7 @@ beforeEach(async () => {
   jest.clearAllMocks();
   courseStore.resetForTests();
   resetAssetsForTests();
+  resetContentChannelForTests();
 });
 
 // The course the device starts every update test with — what a first
@@ -917,6 +922,28 @@ describe('installCourse (first download)', () => {
       pendingVersions: [fixture.entry([{ op: 'full', severity: 'soft' }])],
       progressFallback: { severity: 'soft' },
     });
+
+  // App.tsx renders the install gate on its own: no badge, no update manager,
+  // no settings screen — so nothing else reads the stored channel off the
+  // disk. The recovery download used to go to production whatever the
+  // developer had chosen, and the only screen that could put that right sits
+  // behind the course it was failing to download.
+  it('waits for the stored channel before asking the server anything', async () => {
+    await AsyncStorage.setItem('dmv-prep/dev-content-channel/v1', 'staging');
+    resetContentChannelForTests();
+    const fixture = buildFixture(NEXT_VERSION);
+    serveFixture(fixture);
+    const asked: string[] = [];
+    mockBootstrap.mockImplementation(async () => {
+      asked.push(getContentChannel());
+      return fullBootstrap(fixture, NEXT_VERSION);
+    });
+
+    const result = await installCourse({ courseId: 'ca-class-c' });
+
+    expect(result.status).toBe('installed');
+    expect(asked).toEqual(['staging']);
+  });
 
   it('asks for the latest without a version, fetches the whole course and commits it', async () => {
     const fixture = buildFixture(NEXT_VERSION);

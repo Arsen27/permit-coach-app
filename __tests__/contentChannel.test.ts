@@ -144,3 +144,18 @@ describe('asking a channel whether it answers', () => {
     ).resolves.toBe(true);
   });
 });
+
+// Every caller gets the same read. A second one used to see the "already
+// started" flag and return at once, while the first was still waiting on the
+// disk — so whoever asked next was told 'production' for a staging device.
+it('makes a second caller wait for the first read, not skip it', async () => {
+  await AsyncStorage.setItem('dmv-prep/dev-content-channel/v1', 'staging');
+  resetContentChannelForTests();
+
+  const first = hydrateContentChannel();
+  const second = hydrateContentChannel();
+  await second;
+
+  expect(getContentChannel()).toBe('staging');
+  await first;
+});

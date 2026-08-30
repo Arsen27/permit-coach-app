@@ -19,7 +19,7 @@ const STAGING_KEY = 'dmv-prep/dev-staging-key/v1';
 
 let channel: ContentChannel = 'production';
 let stagingKey = '';
-let hydrated = false;
+let hydration: Promise<void> | null = null;
 const listeners = new Set<() => void>();
 
 const notify = () => {
@@ -31,27 +31,32 @@ export const getContentChannel = (): ContentChannel =>
 
 export const getStagingKey = (): string => (__DEV__ ? stagingKey : '');
 
-// Restores both once per launch; safe to call from several components.
-export const hydrateContentChannel = async (): Promise<void> => {
-  if (hydrated || !__DEV__) {
-    return;
+// Restores both once per launch. Callers get the *same* promise, so awaiting
+// it means the channel is known — a second caller used to return immediately
+// while the first read was still in flight, and whoever asked next was told
+// 'production' whatever the device had stored.
+export const hydrateContentChannel = (): Promise<void> => {
+  if (!__DEV__) {
+    return Promise.resolve();
   }
-  hydrated = true;
-  try {
-    const [storedChannel, storedKey] = await AsyncStorage.getMany([
-      CHANNEL_KEY,
-      STAGING_KEY,
-    ]).then(entries => [entries[CHANNEL_KEY], entries[STAGING_KEY]]);
-    if (storedChannel === 'staging') {
-      channel = 'staging';
+  hydration ??= (async () => {
+    try {
+      const [storedChannel, storedKey] = await AsyncStorage.getMany([
+        CHANNEL_KEY,
+        STAGING_KEY,
+      ]).then(entries => [entries[CHANNEL_KEY], entries[STAGING_KEY]]);
+      if (storedChannel === 'staging') {
+        channel = 'staging';
+      }
+      if (typeof storedKey === 'string') {
+        stagingKey = storedKey;
+      }
+      notify();
+    } catch {
+      // Unreadable store — stay on production, which is the release behaviour.
     }
-    if (typeof storedKey === 'string') {
-      stagingKey = storedKey;
-    }
-    notify();
-  } catch {
-    // Unreadable store — stay on production, which is the release behaviour.
-  }
+  })();
+  return hydration;
 };
 
 export const setStagingKey = (next: string): void => {
@@ -108,6 +113,6 @@ export const useStagingKey = (): string => {
 export const resetContentChannelForTests = (): void => {
   channel = 'production';
   stagingKey = '';
-  hydrated = false;
+  hydration = null;
   listeners.clear();
 };
