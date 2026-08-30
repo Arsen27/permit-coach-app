@@ -3,10 +3,15 @@ import {
   getContentChannel,
   getStagingKey,
 } from '@/lib/contentChannel';
+import { fetchWithRetry } from '@/lib/fetchWithRetry';
 import { createLogger, formatBytes } from '@/lib/log';
 import { APP_VERSION, SERVER_URL } from '@/lib/serverConfig';
 
-const TIMEOUT_MS = 8000;
+// A bootstrap is a few kilobytes and answers "is there anything to do" — it
+// can afford to be quick. A document is up to a hundred kilobytes and has to
+// arrive whole on a slow connection, so its deadline is a real one.
+const TIMEOUT_MS = 10000;
+const DOC_TIMEOUT_MS = 30000;
 
 const log = createLogger('net');
 
@@ -19,15 +24,16 @@ const stagingHeaders = (): Record<string, string> => {
   return key.length > 0 ? { 'X-Staging-Key': key } : {};
 };
 
-const requestRaw = async (path: string): Promise<string> => {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+const requestRaw = async (
+  path: string,
+  timeoutMs = DOC_TIMEOUT_MS,
+): Promise<string> => {
   const elapsed = log.time();
   log.info(`→ GET ${path}`);
   try {
-    const response = await fetch(`${SERVER_URL}${path}`, {
-      signal: controller.signal,
-      headers: stagingHeaders(),
+    const response = await fetchWithRetry(`${SERVER_URL}${path}`, {
+      timeoutMs,
+      init: { headers: stagingHeaders() },
     });
     if (!response.ok) {
       log.warn(`← ${response.status} ${path} (${elapsed()}ms)`);
@@ -43,14 +49,10 @@ const requestRaw = async (path: string): Promise<string> => {
     );
     return body;
   } catch (error) {
-    if (error instanceof Error && error.name === 'AbortError') {
-      log.error(`× timeout after ${TIMEOUT_MS}ms ${path}`);
-    } else if (error instanceof Error && !error.message.includes('responded')) {
+    if (error instanceof Error && !error.message.includes('responded')) {
       log.error(`× ${path} (${elapsed()}ms)`, error.message);
     }
     throw error;
-  } finally {
-    clearTimeout(timer);
   }
 };
 
@@ -69,6 +71,7 @@ export const fetchBootstrapRaw = (
     `/v1/bootstrap?course=${courseId}&channel=${getContentChannel()}${
       courseVersion == null ? '' : `&courseVersion=${courseVersion}`
     }&appVersion=${appVersion}`,
+    TIMEOUT_MS,
   );
 
 // Does a channel answer, for this key? Asked before a dev build switches

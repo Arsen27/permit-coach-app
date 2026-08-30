@@ -6,7 +6,12 @@ import {
   fetchLessonDocRaw,
   fetchModuleDocRaw,
 } from '@/data/course/client';
-import { resetAssetsForTests } from '@/data/assets/store';
+import {
+  clearAssets,
+  primeVectorsForTests,
+  resetAssetsForTests,
+  vectorMarkup,
+} from '@/data/assets/store';
 import { loadPrompt } from '@/data/course/promptStore';
 import { courseStore } from '@/data/course/store';
 import {
@@ -94,15 +99,18 @@ const questionFx = (
 
 const SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"/>';
 
-const assetFx = (assetId: string) => ({
+const SVG2 =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"><rect/></svg>';
+
+const assetFx = (assetId: string, svg = SVG) => ({
   assetId,
   uuid: uid(assetId),
   mime: 'image/svg+xml' as const,
   width: 1200,
   height: 675,
   alt: `alt ${assetId}`,
-  sha256: sha256Hex(SVG),
-  sizeBytes: utf8ByteLength(SVG),
+  sha256: sha256Hex(svg),
+  sizeBytes: utf8ByteLength(svg),
 });
 
 const lessonFx = (
@@ -147,12 +155,17 @@ type Fixture = {
 
 const buildFixture = (
   deliveryVersion: string,
-  overrides: { lessonTitle?: string } = {},
+  overrides: {
+    lessonTitle?: string;
+    // The picture each lesson shows; the same one unless said otherwise.
+    svgs?: [string, string];
+    courseId?: string;
+  } = {},
 ): Fixture => {
   const q1 = questionFx(`${L1}-q01`, `${L1}-a01`);
   const q2 = questionFx(`${L2}-q01`, `${L2}-a01`);
-  const a1 = assetFx(`${L1}-a01`);
-  const a2 = assetFx(`${L2}-a01`);
+  const a1 = assetFx(`${L1}-a01`, overrides.svgs?.[0]);
+  const a2 = assetFx(`${L2}-a01`, overrides.svgs?.[1]);
   const lesson1 = lessonFx(
     L1,
     M1,
@@ -225,7 +238,7 @@ const buildFixture = (
     schemaVersion: COURSE_SCHEMA_VERSION,
     deliveryVersion,
     course: {
-      courseId: 'ca-class-c',
+      courseId: overrides.courseId ?? 'ca-class-c',
       title: 't',
       subtitle: 's',
       jurisdiction: 'CA',
@@ -285,20 +298,39 @@ const buildFixture = (
   };
 };
 
-// The content server's asset route, for the store that fetches pictures.
-// Fixture artwork is one SVG, so every id answers with it.
-const serveAssets = () => {
+// The content server's asset route, for the store that fetches pictures:
+// each picture answers under the hash of its own bytes.
+const serveAssets = (svgs: string[] = [SVG, SVG2]) => {
+  const byHash = new Map(svgs.map(svg => [sha256Hex(svg), svg]));
   globalThis.fetch = (async (input: RequestInfo | URL) => {
     const url = String(input);
-    if (!url.includes('/v1/assets/')) {
+    const svg = [...byHash.entries()].find(([hash]) => url.includes(hash))?.[1];
+    if (!url.includes('/v1/assets/') || svg == null) {
       throw new Error(`unexpected fetch ${url}`);
     }
-    return {
-      ok: true,
-      status: 200,
-      text: async () => SVG,
-    } as Response;
+    return { ok: true, status: 200, text: async () => svg } as Response;
   }) as typeof fetch;
+};
+
+// Documents of several versions at once, each served under its own number.
+const serveVersions = (fixtures: Record<string, Fixture>) => {
+  serveAssets();
+  const bodyOf = (version: string, key: string) => {
+    const body = fixtures[version]?.bodies.get(key);
+    if (body == null) {
+      throw new Error(`no fixture ${key} for ${version}`);
+    }
+    return body;
+  };
+  mockCourse.mockImplementation(async (_c, version) =>
+    bodyOf(version, 'course'),
+  );
+  mockModule.mockImplementation(async (_c, version, moduleId) =>
+    bodyOf(version, `modules/${moduleId}`),
+  );
+  mockLesson.mockImplementation(async (_c, version, lessonId) =>
+    bodyOf(version, `lessons/${lessonId}`),
+  );
 };
 
 const serveFixture = (fixture: Fixture) => {
@@ -353,8 +385,13 @@ const deps = () => ({
   resetTopics: jest.fn(),
 });
 
+// What a download leaves behind: the documents committed and every picture
+// they show on the device. A check against an up-to-date course fetches
+// pictures it finds missing, so a fixture without them would go to the
+// network where the real thing would not.
 const commitFixture = async (fixture: Fixture, version: string) => {
   await courseStore.commit(version, fixture.courseDoc, fixture.moduleDocs);
+  await primeVectorsForTests([[sha256Hex(SVG), SVG]]);
 };
 
 beforeEach(async () => {
@@ -1180,9 +1217,11 @@ test('a picture that does not match its own hash keeps the version off the devic
     lessonTitle: 'Retitled lesson',
   });
   serveFixture(fixture);
-  // The server answers the asset route with something else. Documents are
+  // The device does not hold the picture yet, so it has to come from the
+  // server — which answers the asset route with something else. Documents are
   // verified against the manifest; artwork is verified the same way, and a
   // course whose pictures cannot be trusted is not a course to commit.
+  await clearAssets();
   globalThis.fetch = (async () =>
     ({
       ok: true,
@@ -1203,4 +1242,350 @@ test('a picture that does not match its own hash keeps the version off the devic
   expect(result.status).toBe('failed');
   // Nothing committed: the device still holds what it had.
   expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
+});
+
+// ---------------------------------------------------------------------------
+// What can go wrong on a phone, and what the device must be left with. The
+// rule under every case: nothing lands until all of it has, and a run that
+// dies leaves the course, the cursors and the pictures exactly as they were —
+// so the next run can simply try again.
+
+const seenOf = () => AsyncStorage.getItem('dmv-prep/course-seen/v2/u1');
+const stagedKeysOf = async (version: string) =>
+  (await AsyncStorage.getAllKeys()).filter(key => key.includes(`/${version}/`));
+
+describe('an update that dies halfway', () => {
+  withBaseCourse();
+
+  const twoModules = (fixture: Fixture) =>
+    bootstrapBody({
+      latestVersion: NEXT_VERSION,
+      mode: 'delta',
+      pendingVersions: [
+        fixture.entry([
+          { op: 'module', moduleId: M1, severity: 'soft' },
+          { op: 'module', moduleId: M2, severity: 'soft' },
+        ]),
+      ],
+    });
+
+  it('the connection drops on the second module: nothing lands, and the next run finishes the job', async () => {
+    const fixture = buildFixture(NEXT_VERSION, { lessonTitle: 'Retitled' });
+    serveFixture(fixture);
+    mockModule
+      .mockImplementationOnce(
+        async (_c, _v, id) => fixture.bodies.get(`modules/${id}`)!,
+      )
+      .mockImplementationOnce(async () => {
+        throw new TypeError('Network request failed');
+      });
+    mockBootstrap.mockResolvedValue(twoModules(fixture));
+
+    const first = await runCourseUpdate(deps());
+    expect(first.status).toBe('failed');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
+    expect(await seenOf()).toBe(BASE_VERSION);
+    expect(await stagedKeysOf(NEXT_VERSION)).toEqual([]);
+
+    // The network is back; the same run completes.
+    const second = await runCourseUpdate(deps());
+    expect(second.status).toBe('updated');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
+    expect(await seenOf()).toBe(NEXT_VERSION);
+  });
+
+  it('the connection drops on the lesson of a patch: the old course stays whole', async () => {
+    const fixture = buildFixture(NEXT_VERSION, { lessonTitle: 'Retitled' });
+    serveFixture(fixture);
+    mockLesson.mockRejectedValue(new TypeError('Network request failed'));
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: NEXT_VERSION,
+        mode: 'delta',
+        pendingVersions: [
+          fixture.entry([
+            { op: 'lesson-content', lessonId: L1, severity: 'soft' },
+          ]),
+        ],
+      }),
+    );
+
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('failed');
+    const held = courseStore.getSnapshot()!;
+    expect(held.deliveryVersion).toBe(BASE_VERSION);
+    expect(held.bundle.modules[0].lessons[0].title).toBe(L1);
+    expect(await seenOf()).toBe(BASE_VERSION);
+  });
+
+  it('the connection drops on one picture: the ones that arrived are kept, and only the rest is fetched next time', async () => {
+    const fixture = buildFixture(NEXT_VERSION, {
+      lessonTitle: 'Retitled',
+      svgs: [SVG, SVG2],
+    });
+    serveFixture(fixture);
+    const wanted = sha256Hex(SVG2);
+    let refused = 0;
+    const served = jest.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes(wanted) && refused === 0) {
+        refused += 1;
+        throw new TypeError('Network request failed');
+      }
+      return {
+        ok: true,
+        status: 200,
+        text: async () => (url.includes(wanted) ? SVG2 : SVG),
+      } as Response;
+    });
+    globalThis.fetch = served as unknown as typeof fetch;
+    mockBootstrap.mockResolvedValue(twoModules(fixture));
+
+    // SVG is already on the device (the base course shows it); SVG2 is new
+    // and its download dies — once and then again on the retry.
+    served.mockImplementationOnce(async () => {
+      throw new TypeError('Network request failed');
+    });
+    const first = await runCourseUpdate(deps());
+    expect(first.status).toBe('failed');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
+    expect(vectorMarkup(fixture.moduleDocs[1].assets[0])).toBeNull();
+
+    const second = await runCourseUpdate(deps());
+    expect(second.status).toBe('updated');
+    expect(vectorMarkup(fixture.moduleDocs[1].assets[0])).toBe(SVG2);
+  });
+
+  it('storage refuses the commit: nothing lands, the old course stays', async () => {
+    const fixture = buildFixture(NEXT_VERSION, { lessonTitle: 'Retitled' });
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(twoModules(fixture));
+    (AsyncStorage.setMany as jest.Mock).mockRejectedValueOnce(
+      new Error('disk full'),
+    );
+
+    const first = await runCourseUpdate(deps());
+    expect(first.status).toBe('failed');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
+    expect(await stagedKeysOf(NEXT_VERSION)).toEqual([]);
+
+    const second = await runCourseUpdate(deps());
+    expect(second.status).toBe('updated');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
+  });
+
+  it('a kill after the documents were staged but before the pointer moved leaves the old version live', async () => {
+    const fixture = buildFixture(NEXT_VERSION, { lessonTitle: 'Retitled' });
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(twoModules(fixture));
+    const metaKey = 'dmv-prep/course/v2/ca-class-c/meta';
+    const realSetItem = AsyncStorage.setItem as jest.Mock;
+    const original = realSetItem.getMockImplementation()!;
+    realSetItem.mockImplementation((key: string, value: string) => {
+      if (key === metaKey && value.includes(NEXT_VERSION)) {
+        // The process is gone before this write.
+        return Promise.reject(new Error('killed'));
+      }
+      return original(key, value);
+    });
+
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('failed');
+    realSetItem.mockImplementation(original);
+
+    // Next launch: the pointer still names the old version, whose documents
+    // are all there; what was staged for the new one is swept.
+    courseStore.resetForTests();
+    await courseStore.hydrate();
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(await stagedKeysOf(NEXT_VERSION)).toEqual([]);
+  });
+
+  it('the pointer is corrupt on the next launch: the store serves nothing and the download starts over', async () => {
+    await AsyncStorage.setItem(
+      'dmv-prep/course/v2/ca-class-c/meta',
+      '{not json',
+    );
+    courseStore.resetForTests();
+    await courseStore.hydrate();
+    expect(courseStore.getSnapshot()).toBeNull();
+    // What the gate does next.
+    const fixture = buildFixture(NEXT_VERSION);
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: NEXT_VERSION,
+        mode: 'full',
+        pendingVersions: [fixture.entry([{ op: 'full', severity: 'soft' }])],
+        progressFallback: { severity: 'soft' },
+      }),
+    );
+    const result = await installCourse({ courseId: 'ca-class-c' });
+    expect(result.status).toBe('installed');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
+  });
+
+  it('the server rolls back while the device downloads: nothing lands, and the next check takes the rollback whole', async () => {
+    const fixture = buildFixture(NEXT_VERSION, { lessonTitle: 'Retitled' });
+    serveFixture(fixture);
+    // The version was withdrawn mid-download: its documents are gone.
+    mockModule.mockRejectedValue(
+      new Error('content server responded 404 for modules'),
+    );
+    mockBootstrap.mockResolvedValue(twoModules(fixture));
+    const first = await runCourseUpdate(deps());
+    expect(first.status).toBe('failed');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
+
+    // The channel now points below where the device is — it is told to take
+    // the current version whole, which is the one it already holds.
+    const base = buildFixture(BASE_VERSION);
+    serveFixture(base);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: BASE_VERSION,
+        mode: 'full',
+        pendingVersions: [base.entry([{ op: 'full', severity: 'soft' }])],
+        progressFallback: { severity: 'soft' },
+      }),
+    );
+    const second = await runCourseUpdate(deps());
+    expect(second.status).toBe('updated');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
+  });
+});
+
+describe('an old build under a raised minAppVersion', () => {
+  withBaseCourse();
+
+  it('takes every version under the raise and asks for the app update alongside', async () => {
+    const v2 = buildFixture(NEXT_VERSION, { lessonTitle: 'Retitled' });
+    const v3 = buildFixture(LATER_VERSION, { lessonTitle: 'Retitled again' });
+    serveVersions({ [NEXT_VERSION]: v2, [LATER_VERSION]: v3 });
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: LATER_VERSION,
+        mode: 'delta',
+        pendingVersions: [
+          v2.entry([{ op: 'module', moduleId: M1, severity: 'soft' }]),
+          {
+            ...v3.entry([{ op: 'module', moduleId: M1, severity: 'soft' }]),
+            minAppVersion: '9.0.0',
+          },
+        ],
+      }),
+    );
+
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('updated');
+    expect(result.appUpdateRequired).toBe(true);
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
+    expect(await seenOf()).toBe(NEXT_VERSION);
+    // Nothing of the version this build cannot take was asked for.
+    expect(mockModule.mock.calls.every(call => call[1] === NEXT_VERSION)).toBe(
+      true,
+    );
+    expect(mockCourse).not.toHaveBeenCalledWith('ca-class-c', LATER_VERSION);
+  });
+
+  it('refuses when the very next version already needs a newer app', async () => {
+    const v2 = buildFixture(NEXT_VERSION, { lessonTitle: 'Retitled' });
+    serveFixture(v2);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: NEXT_VERSION,
+        mode: 'delta',
+        pendingVersions: [
+          {
+            ...v2.entry([{ op: 'module', moduleId: M1, severity: 'soft' }]),
+            minAppVersion: '9.0.0',
+          },
+        ],
+      }),
+    );
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('app-update-required');
+    expect(mockCourse).not.toHaveBeenCalled();
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
+  });
+
+  it('takes the versions under the raise again on the next launch without asking twice for what it has', async () => {
+    // After the run above the device sits on NEXT with LATER still withheld:
+    // the next check must not re-download NEXT.
+    const v2 = buildFixture(NEXT_VERSION, { lessonTitle: 'Retitled' });
+    await commitFixture(v2, NEXT_VERSION);
+    await AsyncStorage.setItem('dmv-prep/course-seen/v2/u1', NEXT_VERSION);
+    const v3 = buildFixture(LATER_VERSION, { lessonTitle: 'Retitled again' });
+    serveVersions({ [LATER_VERSION]: v3 });
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: LATER_VERSION,
+        mode: 'delta',
+        pendingVersions: [
+          {
+            ...v3.entry([{ op: 'module', moduleId: M1, severity: 'soft' }]),
+            minAppVersion: '9.0.0',
+          },
+        ],
+      }),
+    );
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('app-update-required');
+    expect(mockCourse).not.toHaveBeenCalled();
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(NEXT_VERSION);
+  });
+});
+
+describe('pictures that go missing on the device', () => {
+  withBaseCourse();
+
+  it('are fetched again on the next check, without a new version', async () => {
+    await clearAssets();
+    serveAssets();
+    mockBootstrap.mockResolvedValue(bootstrapBody());
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('up-to-date');
+    const asset = courseStore.getSnapshot()!.bundle.assets[0];
+    expect(vectorMarkup(asset)).toBe(SVG);
+  });
+
+  it('and a check that cannot fetch them is still a check', async () => {
+    await clearAssets();
+    globalThis.fetch = (async () => {
+      throw new TypeError('Network request failed');
+    }) as typeof fetch;
+    mockBootstrap.mockResolvedValue(bootstrapBody());
+    const result = await runCourseUpdate(deps());
+    expect(result.status).toBe('up-to-date');
+    expect(courseStore.getSnapshot()!.deliveryVersion).toBe(BASE_VERSION);
+  });
+});
+
+describe('two states on one device', () => {
+  withBaseCourse();
+
+  it("installing a second course keeps the first course's pictures", async () => {
+    const florida = buildFixture(NEXT_VERSION, {
+      courseId: 'fl-class-e',
+      svgs: [SVG2, SVG2],
+    });
+    serveFixture(florida);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        courseId: 'fl-class-e',
+        latestVersion: NEXT_VERSION,
+        mode: 'full',
+        pendingVersions: [florida.entry([{ op: 'full', severity: 'soft' }])],
+        progressFallback: { severity: 'soft' },
+      }),
+    );
+    const result = await installCourse({ courseId: 'fl-class-e' });
+    expect(result.status).toBe('installed');
+    // Florida's picture arrived, and California's is still there.
+    expect(vectorMarkup(florida.moduleDocs[0].assets[0])).toBe(SVG2);
+    expect(
+      await AsyncStorage.getItem(`dmv-prep/assets/v1/${sha256Hex(SVG)}`),
+    ).toBe(SVG);
+  });
 });

@@ -18,6 +18,7 @@ import {
 } from './offerStore';
 import {
   CourseOffer,
+  UpdateResult,
   acceptCourseOffer,
   drainPrompt,
   runCourseUpdate,
@@ -92,25 +93,37 @@ const UpdateManager: React.FC = () => {
     // the only thing that puts the sheet on screen.
     let shownAt = 0;
 
-    const result = await runCourseUpdate({
-      userId,
-      getProgress: () => ({
-        lessonIds: Object.keys(progressRef.current.lessonScores),
-        topicIds: Object.keys(progressRef.current.topicScores),
-      }),
-      resetLessons,
-      resetTopics,
-      onProgress: ({ fetched, total }) => {
-        if (!alive.current) {
-          return;
-        }
-        if (shownAt === 0) {
-          shownAt = Date.now();
-          setPhase('downloading');
-        }
-        setProgress(total === 0 ? 0 : fetched / total);
-      },
-    });
+    let result: UpdateResult;
+    try {
+      result = await runCourseUpdate({
+        userId,
+        getProgress: () => ({
+          lessonIds: Object.keys(progressRef.current.lessonScores),
+          topicIds: Object.keys(progressRef.current.topicScores),
+        }),
+        resetLessons,
+        resetTopics,
+        onProgress: ({ fetched, total }) => {
+          if (!alive.current) {
+            return;
+          }
+          if (shownAt === 0) {
+            shownAt = Date.now();
+            setPhase('downloading');
+          }
+          setProgress(total === 0 ? 0 : fetched / total);
+        },
+      });
+    } catch (error) {
+      // The updater answers with a status for everything it foresaw. Anything
+      // else is a bug — and a bug in the update check must cost a retry, not
+      // the app. The course on the device is whatever it was.
+      log.error(
+        'update check threw — treating it as a failed run',
+        error instanceof Error ? error.message : error,
+      );
+      result = { status: 'failed' };
+    }
 
     if (shownAt > 0) {
       const visible = Date.now() - shownAt;
@@ -147,7 +160,10 @@ const UpdateManager: React.FC = () => {
     //
     // The updater already refused to fetch or commit anything when the app is
     // below the server's compatibility floor; here we only tell the user.
-    if (result.status === 'app-update-required' && !warnedAppVersion.current) {
+    if (
+      (result.status === 'app-update-required' || result.appUpdateRequired) &&
+      !warnedAppVersion.current
+    ) {
       warnedAppVersion.current = true;
       Alert.alert(
         'Update required',

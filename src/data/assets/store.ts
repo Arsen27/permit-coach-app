@@ -2,6 +2,7 @@ import { Image } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { fetchWithRetry } from '@/lib/fetchWithRetry';
 import { createLogger, formatBytes } from '@/lib/log';
 import { sha256Hex } from '@/lib/sha256';
 
@@ -22,6 +23,9 @@ import { ASSET_EXTENSIONS } from '../course/v2/wire';
 const log = createLogger('assets');
 
 const PREFIX = 'dmv-prep/assets/v1';
+// A picture is at most a few tens of kilobytes; this is a slow connection's
+// worth of time for one, not a fast one's.
+const ASSET_TIMEOUT_MS = 30000;
 const bodyKey = (sha256: string) => `${PREFIX}/${sha256}`;
 const BASE_URL_KEY = `${PREFIX}/base-url`;
 
@@ -78,7 +82,7 @@ const fetchAsset = async (asset: CourseAssetV2): Promise<void> => {
     await Image.prefetch(url);
     return;
   }
-  const response = await fetch(url);
+  const response = await fetchWithRetry(url, { timeoutMs: ASSET_TIMEOUT_MS });
   if (!response.ok) {
     throw new Error(`asset ${asset.sha256.slice(0, 12)} → ${response.status}`);
   }
@@ -90,6 +94,20 @@ const fetchAsset = async (asset: CourseAssetV2): Promise<void> => {
   }
   await AsyncStorage.setItem(bodyKey(asset.sha256), body);
   svgCache.set(asset.sha256, body);
+};
+
+// Which of these pictures the device does not hold. Key names only — cheap
+// enough to ask on every check, so a picture lost to an interrupted write or
+// an evicted cache is noticed and fetched again long before a lesson needs it.
+export const missingAssets = async (
+  assets: CourseAssetV2[],
+): Promise<CourseAssetV2[]> => {
+  const vectors = assets.filter(isVectorAsset);
+  if (vectors.length === 0) {
+    return [];
+  }
+  const held = new Set(await AsyncStorage.getAllKeys());
+  return vectors.filter(asset => !held.has(bodyKey(asset.sha256)));
 };
 
 export type AssetProgress = { fetched: number; total: number };

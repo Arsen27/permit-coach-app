@@ -4,7 +4,7 @@ import { clearAssets } from '@/data/assets/store';
 
 import { createLogger, formatBytes } from '@/lib/log';
 
-import { CourseId, DEFAULT_COURSE_ID } from './index';
+import { COURSE_IDS, CourseId, DEFAULT_COURSE_ID } from './index';
 import type { CourseBundleV2, CourseDocV2, ModuleDocV2 } from './v2/wire';
 import { COURSE_SCHEMA_VERSION } from './v2/wire';
 
@@ -207,6 +207,19 @@ export const courseStore = {
   // What is in memory for a course right now, hydrated or not.
   storedFor: (courseId: CourseId): StoredCourse | null =>
     snapshots.get(courseId) ?? null,
+  // Every picture any course on this device shows. The courses of previously
+  // chosen states are kept so switching back needs no download — a sweep that
+  // only kept the course just committed took their pictures away.
+  artworkOnDevice: async (): Promise<Set<string>> => {
+    const shown = new Set<string>();
+    for (const courseId of COURSE_IDS) {
+      await ensureHydrated(courseId);
+      snapshots
+        .get(courseId)
+        ?.bundle.assets.forEach(asset => shown.add(asset.sha256));
+    }
+    return shown;
+  },
   // Forgets every downloaded course and cursor, leaving the store exactly as
   // empty as a fresh install. Dev-only in practice: the channel switch calls
   // it, and the caller downloads the new channel's course afterwards.

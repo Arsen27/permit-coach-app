@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   ensureAssets,
+  missingAssets,
   setAssetsBaseUrl,
   sweepAssets,
 } from '@/data/assets/store';
@@ -92,6 +93,9 @@ export type UpdateResult = {
   status: UpdateStatus;
   app?: BootstrapResponseV2['app'];
   offer?: CourseOffer;
+  // Set when a pending version was withheld because this build is too old
+  // for it — alongside whatever content under it did land.
+  appUpdateRequired?: true;
 };
 
 export type UpdaterDeps = {
@@ -508,8 +512,49 @@ const runContentPhase = async (
   onProgress?.({ fetched, total });
 
   await courseStore.commit(latest, courseDoc, ordered);
-  // What the replaced version used goes with it.
-  await sweepAssets(new Set(artwork.map(asset => asset.sha256)));
+  // What the replaced version used goes with it — and only that. Other
+  // states' courses stay on the device for switching back, and so do their
+  // pictures.
+  await sweepAssets(await courseStore.artworkOnDevice());
+};
+
+// A picture the device lost — an interrupted write, an evicted cache — is
+// fetched again on the next check, so a course on the device stays a course
+// that renders. Missing ones only; what is there was hash-verified on the
+// way in.
+const healArtwork = async (
+  stored: StoredCourse,
+  assetsBaseUrl: string,
+  onProgress?: (progress: UpdateProgress) => void,
+): Promise<boolean> => {
+  const missing = await missingAssets(stored.bundle.assets);
+  if (missing.length === 0) {
+    return false;
+  }
+  // Where to fetch from is told by every bootstrap; the copy on the device
+  // may be as lost as the pictures are.
+  await setAssetsBaseUrl(assetsBaseUrl);
+  log.warn(
+    `${missing.length} picture(s) of ${stored.deliveryVersion} missing from the device — fetching them again`,
+  );
+  await ensureAssets(missing, onProgress);
+  return true;
+};
+
+// The pending run, cut at the first version this build is too old for.
+// Everything under the raise still flows; the raise itself and what sits on
+// top wait for the app update. Cutting rather than refusing outright means a
+// device pinned by an old build keeps taking corrections to what it has.
+export const takeCompatible = (
+  pending: ManifestVersionV2[],
+  appVersion: string,
+): { compatible: ManifestVersionV2[]; cropped: boolean } => {
+  const index = pending.findIndex(entry =>
+    isVersionBelow(appVersion, entry.minAppVersion),
+  );
+  return index === -1
+    ? { compatible: pending, cropped: false }
+    : { compatible: pending.slice(0, index), cropped: true };
 };
 
 const runProgressPhase = async (
@@ -672,19 +717,21 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
         : splitAtOptIn(
             entriesAbove(bootstrap.course.pendingVersions, contentVersion),
           );
-    const autoTarget = auto.at(-1) ?? null;
-    const autoLatest = autoTarget?.version ?? contentVersion;
-    // The auto stretch is gated on its own target, not on the offer's: an app
-    // too old for the new course can still take patches to its current one.
-    if (
-      autoTarget != null &&
-      isVersionBelow(APP_VERSION, autoTarget.minAppVersion)
-    ) {
+    // The auto stretch is cut at the first version this build is too old
+    // for, not refused whole: an app pinned by an old build still takes every
+    // correction under the raise. Nothing at all under it is the old answer.
+    const { compatible, cropped } = takeCompatible(auto, APP_VERSION);
+    if (cropped) {
+      const raise = auto[compatible.length];
       log.warn(
-        `app ${APP_VERSION} is below ${autoLatest}'s minAppVersion ${autoTarget.minAppVersion} — update required`,
+        `app ${APP_VERSION} is below ${raise.version}'s minAppVersion ${raise.minAppVersion} — taking ${compatible.length} version(s) under it, update required for the rest`,
       );
+    }
+    if (cropped && compatible.length === 0) {
       return { status: 'app-update-required', app };
     }
+    const autoTarget = compatible.at(-1) ?? null;
+    const autoLatest = autoTarget?.version ?? contentVersion;
     const latestEntry = bootstrap.course.pendingVersions.find(
       entry => entry.version === latest,
     );
@@ -705,14 +752,14 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
     // What the automatic pass is allowed to see: the bootstrap cropped at the
     // opt-in boundary, so the existing phases need no new plumbing.
     const autoBootstrap: BootstrapResponseV2 =
-      boundary == null
+      boundary == null && !cropped
         ? bootstrap
         : {
             ...bootstrap,
             course: {
               ...bootstrap.course,
               latestVersion: autoLatest,
-              pendingVersions: auto,
+              pendingVersions: compatible,
             },
           };
 
@@ -729,6 +776,15 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
         updated = true;
       } else {
         log.info(`content already at ${contentVersion} — nothing to download`);
+        // Best effort: a picture that cannot be fetched right now is missing
+        // exactly as it was, and the check itself did its job.
+        await healArtwork(stored, app.assetsBaseUrl, deps.onProgress).catch(
+          error =>
+            log.warn(
+              'could not fetch the missing pictures — next check',
+              error instanceof Error ? error.message : error,
+            ),
+        );
       }
       if (replaceWholesale || isVersionBelow(seenVersion, autoLatest)) {
         await runProgressPhase(courseId, deps, autoBootstrap, seenVersion);
@@ -738,9 +794,14 @@ export const runCourseUpdate = (deps: UpdaterDeps): Promise<UpdateResult> => {
       log.info(
         `done: ${status} (${elapsed()}ms)${
           offer != null ? ` — offering ${offer.version}` : ''
-        }`,
+        }${cropped ? ' — app update required for the rest' : ''}`,
       );
-      return { status, app, ...(offer != null && { offer }) };
+      return {
+        status,
+        app,
+        ...(offer != null && { offer }),
+        ...(cropped && { appUpdateRequired: true as const }),
+      };
     } catch (error) {
       // Nothing was committed on a failed content phase; the next run
       // recomputes from the unchanged cursors.
