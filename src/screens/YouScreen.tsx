@@ -29,6 +29,7 @@ import {
 import { Eyebrow } from '@/components/typography';
 import CourseInstallSheet from '@/components/CourseInstallSheet';
 import { courseIdForState } from '@/data/course';
+import { channelAnswers } from '@/data/course/client';
 import { courseStore } from '@/data/course/store';
 import { useCourseInstall } from '@/data/course/useCourseInstall';
 import { findState } from '@/data/states';
@@ -82,8 +83,21 @@ const YouScreen: React.FC = () => {
   const switchChannel = useCallback(
     async (toStaging: boolean) => {
       const next = toStaging ? 'staging' : 'production';
+      const courseId = courseIdForState(user.stateCode);
+      // Ask the channel before throwing anything away. A key one character
+      // short answers exactly like a channel that does not exist, and wiping
+      // first left the phone with no course and no way back to this screen.
+      if (!(await channelAnswers(courseId, next, getStagingKey()))) {
+        Alert.alert(
+          'That channel did not answer',
+          next === 'staging'
+            ? 'The staging key was refused, or the channel has nothing published. Nothing was changed on this phone.'
+            : 'The content server did not answer. Nothing was changed on this phone.',
+        );
+        return;
+      }
       await setContentChannel(next, courseStore.wipeDownloadedContent);
-      await install.start(courseIdForState(user.stateCode));
+      await install.start(courseId);
     },
     [install, user.stateCode],
   );

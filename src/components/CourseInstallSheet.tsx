@@ -24,6 +24,8 @@ type CourseInstallViewProps = {
   // Present when the learner can walk away from a failed download (a state
   // switch keeps the old course); absent when there is nothing to go back to.
   onCancel?: () => void;
+  // What that way out is called, when it is not simply walking away.
+  cancelLabel?: string;
 };
 
 type Copy = {
@@ -90,6 +92,7 @@ export const CourseInstallView: React.FC<CourseInstallViewProps> = ({
   stateName,
   onRetry,
   onCancel,
+  cancelLabel,
 }) => {
   const [shown, setShown] = useState(0);
   const targetRef = useRef(0);
@@ -142,7 +145,8 @@ export const CourseInstallView: React.FC<CourseInstallViewProps> = ({
               onPress={onCancel}
             >
               <CancelLabel>
-                {phase === 'app-update-required' ? 'Not now' : 'Cancel'}
+                {cancelLabel ??
+                  (phase === 'app-update-required' ? 'Not now' : 'Cancel')}
               </CancelLabel>
             </CancelAction>
           )}

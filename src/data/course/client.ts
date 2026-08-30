@@ -1,6 +1,10 @@
-import { getContentChannel, getStagingKey } from '@/lib/contentChannel';
+import {
+  ContentChannel,
+  getContentChannel,
+  getStagingKey,
+} from '@/lib/contentChannel';
 import { createLogger, formatBytes } from '@/lib/log';
-import { SERVER_URL } from '@/lib/serverConfig';
+import { APP_VERSION, SERVER_URL } from '@/lib/serverConfig';
 
 const TIMEOUT_MS = 8000;
 
@@ -66,6 +70,37 @@ export const fetchBootstrapRaw = (
       courseVersion == null ? '' : `&courseVersion=${courseVersion}`
     }&appVersion=${appVersion}`,
   );
+
+// Does a channel answer, for this key? Asked before a dev build switches
+// channels, because switching throws the installed course away first: a key
+// with one character missing would otherwise leave the phone with no course
+// at all, and the only screen that could put the channel back sits behind the
+// course it no longer has.
+export const channelAnswers = async (
+  courseId: string,
+  channel: ContentChannel,
+  key: string,
+): Promise<boolean> => {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  const path = `/v1/bootstrap?course=${courseId}&channel=${channel}&appVersion=${APP_VERSION}`;
+  try {
+    const response = await fetch(`${SERVER_URL}${path}`, {
+      signal: controller.signal,
+      headers: key.length > 0 ? { 'X-Staging-Key': key } : {},
+    });
+    log.info(`← ${response.status} ${path} (channel probe)`);
+    return response.ok;
+  } catch (error) {
+    log.error(
+      `× channel probe ${channel}`,
+      error instanceof Error ? error.message : String(error),
+    );
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+};
 
 export const fetchCourseDocRaw = (
   courseId: string,

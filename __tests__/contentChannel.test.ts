@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { fetchBootstrapRaw } from '@/data/course/client';
+import { channelAnswers, fetchBootstrapRaw } from '@/data/course/client';
 import {
   getContentChannel,
   getStagingKey,
@@ -99,4 +99,48 @@ it('is production in a release build whatever is stored', async () => {
     // @ts-expect-error restoring the global for the rest of the suite.
     globalThis.__DEV__ = true;
   }
+});
+
+// Switching channels wipes the installed course before downloading the new
+// one, so the question "does this channel answer?" has to be asked while
+// there is still something to lose. A key one character short answers exactly
+// like a channel that was never published.
+describe('asking a channel whether it answers', () => {
+  it('sends the key for the channel being asked about, not the stored one', async () => {
+    setStagingKey('the-key');
+    await channelAnswers('ca-class-c', 'staging', 'the-key');
+
+    expect(urlOf()).toContain('channel=staging');
+    expect(urlOf()).toContain('course=ca-class-c');
+    expect(headersOf()['X-Staging-Key']).toBe('the-key');
+  });
+
+  it('sends no key when asking about production', async () => {
+    await channelAnswers('ca-class-c', 'production', '');
+    expect(headersOf()['X-Staging-Key']).toBeUndefined();
+  });
+
+  it('says no when the channel refuses, without throwing', async () => {
+    fetchMock.mockResolvedValue({
+      ok: false,
+      status: 404,
+      text: async () => '',
+    });
+    await expect(
+      channelAnswers('ca-class-c', 'staging', 'wrong'),
+    ).resolves.toBe(false);
+  });
+
+  it('says no when the server cannot be reached at all', async () => {
+    fetchMock.mockRejectedValue(new Error('Network request failed'));
+    await expect(
+      channelAnswers('ca-class-c', 'staging', 'the-key'),
+    ).resolves.toBe(false);
+  });
+
+  it('says yes when the channel answers', async () => {
+    await expect(
+      channelAnswers('ca-class-c', 'staging', 'the-key'),
+    ).resolves.toBe(true);
+  });
 });

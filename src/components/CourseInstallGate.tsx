@@ -5,8 +5,10 @@ import { track } from '@/analytics';
 import { CourseInstallView } from '@/components/CourseInstallSheet';
 import { Sheet } from '@/components/resultSheet';
 import { courseIdForState } from '@/data/course';
+import { courseStore } from '@/data/course/store';
 import { useCourseInstall } from '@/data/course/useCourseInstall';
 import { findState } from '@/data/states';
+import { getContentChannel, setContentChannel } from '@/lib/contentChannel';
 import { useAppState } from '@/state/AppState';
 
 // Full-screen stop for an onboarded device that holds no course for its
@@ -15,6 +17,11 @@ import { useAppState } from '@/state/AppState';
 // on mount; the moment the course commits, the store serves it and App.tsx
 // swaps the real shell in. There is nothing to cancel into — without a course
 // there is no app — so the only way out is a successful download.
+//
+// One exception, in development only. Switching to the staging channel wipes
+// the installed course, so a channel that then refuses to answer strands the
+// device here, retrying against the same channel forever, with the switch
+// that would undo it locked behind this screen. That way out is offered here.
 const CourseInstallGate: React.FC = () => {
   const insets = useSafeAreaInsets();
   const { user } = useAppState();
@@ -42,6 +49,12 @@ const CourseInstallGate: React.FC = () => {
     run();
   }, [run]);
 
+  const stranded = __DEV__ && getContentChannel() === 'staging';
+  const leaveStaging = useCallback(async () => {
+    await setContentChannel('production', courseStore.wipeDownloadedContent);
+    run();
+  }, [run]);
+
   return (
     <Sheet
       style={{ paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }}
@@ -51,6 +64,10 @@ const CourseInstallGate: React.FC = () => {
         progress={progress}
         stateName={stateName}
         onRetry={run}
+        {...(stranded && {
+          onCancel: () => void leaveStaging(),
+          cancelLabel: 'Leave the staging channel',
+        })}
       />
     </Sheet>
   );
