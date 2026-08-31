@@ -15,7 +15,6 @@ import { courseIdForState } from '@/data/course';
 import { courseStore } from '@/data/course/store';
 import { installCourse } from '@/data/course/useCourseInstall';
 import { findState } from '@/data/states';
-import { isServerConfigured } from '@/lib/serverConfig';
 import { usePurchases } from '@/purchases/PurchasesProvider';
 import { useAppState } from '@/state/AppState';
 
