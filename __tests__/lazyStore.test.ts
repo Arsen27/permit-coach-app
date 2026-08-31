@@ -1,6 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { resetAssetsForTests } from '@/data/assets/store';
+import {
+  assetSource,
+  hydrateAssets,
+  primeVectorsForTests,
+  resetAssetsForTests,
+} from '@/data/assets/store';
 import {
   fetchBankDocRaw,
   fetchLessonDocRaw,
@@ -96,6 +101,29 @@ const lessonDoc = (version: string, lessonId: string, title: string) => ({
   questions: [question(`${lessonId}-q01`)],
   assets: [],
 });
+
+const SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"/>';
+const ART_SHA = sha256Hex(SVG);
+
+const lessonDocWithArt = (version: string, lessonId: string, title: string) => {
+  const doc = lessonDoc(version, lessonId, title);
+  return {
+    ...doc,
+    lesson: { ...doc.lesson, assetIds: ['a-road'] },
+    assets: [
+      {
+        assetId: 'a-road',
+        uuid: '00000000-0000-5000-8000-0000000000a1',
+        mime: 'image/svg+xml' as const,
+        width: 800,
+        height: 600,
+        alt: 'the road',
+        sha256: ART_SHA,
+        sizeBytes: utf8ByteLength(SVG),
+      },
+    ],
+  };
+};
 
 const bodyOf = (doc: unknown) => `${JSON.stringify(doc, null, 2)}\n`;
 
@@ -243,6 +271,34 @@ it('an opened lesson arrives verified, stays across a restart, and is never fetc
   expect(lessonLoaded(COURSE, 'l-one')).toBe(true);
   expect(await ensureLesson(COURSE, 'l-one')).toBe('ready');
   expect(mockLesson).toHaveBeenCalledTimes(1);
+});
+
+it('opening a lesson reads every picture it draws into memory', async () => {
+  const withArt = lessonDocWithArt('1.1.1', 'l-one', 'Lesson one');
+  serveVersion('1.1.1', { 'l-one': withArt }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({ current: '1.1.1', bankSha: sha256Hex(BANK1) }),
+  );
+  await syncLazyCourse(deps());
+  expect(await ensureLesson(COURSE, 'l-one')).toBe('ready');
+
+  // The state a second visit starts from: the picture is on the device and
+  // nothing has read it. Card by card, each read is a beat of skeleton.
+  await primeVectorsForTests([[ART_SHA, SVG]]);
+  resetAssetsForTests();
+  await hydrateAssets();
+  expect(assetSource({ sha256: ART_SHA, mime: 'image/svg+xml' })).toBeNull();
+
+  await ensureLesson(COURSE, 'l-one');
+  await new Promise(resolve => setTimeout(resolve, 0));
+  await new Promise(resolve => setTimeout(resolve, 0));
+
+  // Opening the lesson warmed it, so the slide draws in the same frame as
+  // its text.
+  expect(assetSource({ sha256: ART_SHA, mime: 'image/svg+xml' })).toEqual({
+    kind: 'markup',
+    markup: SVG,
+  });
 });
 
 it('a body that does not match the outline hash is refused', async () => {

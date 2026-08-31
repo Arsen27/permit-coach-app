@@ -56,6 +56,34 @@ describe('course asset frame', () => {
   });
 });
 
+describe('a picture that is not here yet', () => {
+  it('holds the shape it will have, and says nothing', async () => {
+    resetAssetsForTests();
+    const asset = {
+      assetId: 'a2',
+      uuid: 'u2',
+      mime: 'image/svg+xml' as const,
+      width: 800,
+      height: 600,
+      alt: 'a diagram still downloading',
+      sha256: sha256Hex('not on this device'),
+      sizeBytes: 128,
+    };
+    let tree!: Renderer;
+    await ReactTestRenderer.act(async () => {
+      tree = ReactTestRenderer.create(
+        <ThemeProvider theme={defaultTheme}>
+          <CourseAssetView asset={asset} />
+        </ThemeProvider>,
+      );
+    });
+    // The frame is already the picture's own shape, so the card does not
+    // reflow when it lands — and no caption describes what is missing.
+    expect(frameRatioOf(tree)).toBeCloseTo(800 / 600);
+    expect(tree.root.findAll(node => String(node.type) === 'Text')).toEqual([]);
+  });
+});
+
 describe('a stored picture', () => {
   it('draws from the device store without a placeholder', async () => {
     resetAssetsForTests();

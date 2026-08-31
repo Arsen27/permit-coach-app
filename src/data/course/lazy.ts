@@ -1,6 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { ensureAssets, setAssetsBaseUrl } from '@/data/assets/store';
+import {
+  ensureAssets,
+  setAssetsBaseUrl,
+  warmAssets,
+} from '@/data/assets/store';
 import { BankQuestionV1, validateQuestionBankDoc } from '@/data/bank/wire';
 import { hydrateContentChannel } from '@/lib/contentChannel';
 import { createLogger } from '@/lib/log';
@@ -481,6 +485,23 @@ export const acceptOffer = async (deps: {
   return syncLazyCourse(deps);
 };
 
+// Every picture this lesson draws, downloaded and read into memory as one
+// batch when the lesson is opened — not card by card as the learner reaches
+// them. A slide whose illustration is already in memory draws it in the same
+// frame as its text; the alternative is a skeleton on every transition.
+// Deliberately not awaited anywhere: the lesson opens on its text.
+const prefetchLessonAssets = (doc: { assets: LessonDocV2['assets'] }): void => {
+  if (doc.assets.length === 0) {
+    return;
+  }
+  ensureAssets(doc.assets)
+    .catch(() => undefined)
+    // Even pictures already on the device cost a storage read each; doing
+    // them together, up front, is what keeps the transitions quiet.
+    .then(() => warmAssets(doc.assets.map(asset => asset.sha256)))
+    .catch(() => undefined);
+};
+
 // The body of one lesson, fetched when the lesson is opened and kept forever
 // under its own hash. Its pictures start downloading in the background at
 // once, so the slides never wait on one.
@@ -489,7 +510,11 @@ export const ensureLesson = async (
   lessonId: string,
 ): Promise<'ready' | 'offline' | 'failed'> => {
   const state = stateOf(courseId);
-  if (state.lessonDocs.has(lessonId)) {
+  const cached = state.lessonDocs.get(lessonId);
+  if (cached != null) {
+    // A lesson opened a second time still needs its pictures in memory: the
+    // cache is small enough that another lesson's may have pushed them out.
+    prefetchLessonAssets(cached);
     return 'ready';
   }
   const outline = state.outline;
@@ -512,7 +537,7 @@ export const ensureLesson = async (
   rememberLesson(state, lessonId, checked.value);
   assemble(state);
   notify();
-  ensureAssets(checked.value.assets).catch(() => undefined);
+  prefetchLessonAssets(checked.value);
   return 'ready';
 };
 

@@ -7,7 +7,7 @@ import { useAssetSource } from '@/data/assets/store';
 import CachedSvg, { svgDrawable } from './CachedSvg';
 import type { CourseAssetV2 } from '@/data/course/v2/wire';
 
-import PlaceholderImage from './PlaceholderImage';
+import ArtworkSkeleton from './ArtworkSkeleton';
 
 // Anything that can be drawn. A course asset is a reference to a file the
 // content server holds; the authored practice questions supply their markup
@@ -72,33 +72,24 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
       ? markup
       : (asset as CourseAssetV2).sha256;
 
-  // A picture the device holds and is still reading keeps its place quietly:
-  // saying "unavailable" for the moment a read takes is both wrong and the
-  // thing a learner notices.
-  if (pending) {
-    return (
-      <Frame
-        style={{ borderRadius: radius, aspectRatio: aspectRatioOf(asset!) }}
-        accessible
-        accessibilityRole="image"
-        accessibilityLabel={asset!.alt}
-      />
-    );
-  }
-
-  // Nothing to draw: a vector that never made it onto the device, or a
-  // drawing that failed. The alt text still says what was meant to be here.
-  if (
+  // Nothing to draw yet, or ever: a picture still being read off the device,
+  // one whose download has not landed, or one that would not decode. All of
+  // them hold the picture's own shape, so the card never reflows when the
+  // illustration arrives — only the failure holds still instead of
+  // shimmering, because nothing is coming for it.
+  const undrawable =
     asset == null ||
-    key == null ||
     key === failedKey ||
-    (markup != null && svgKey != null && !svgDrawable(svgKey, markup))
-  ) {
+    (markup != null && svgKey != null && !svgDrawable(svgKey, markup));
+  if (pending || undrawable || key == null) {
     return (
-      <PlaceholderImage
-        label={asset?.alt ?? 'illustration unavailable'}
-        height={186}
+      <ArtworkSkeleton
+        aspectRatio={asset == null ? undefined : aspectRatioOf(asset)}
         radius={radius}
+        // A card that cannot name its picture at all, or holds one that will
+        // not decode, is not waiting for anything.
+        still={undrawable}
+        label={asset?.alt}
       />
     );
   }

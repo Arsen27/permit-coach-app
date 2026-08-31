@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
-import styled from 'styled-components/native';
 
 import { useAssetSource } from '@/data/assets/store';
 
@@ -8,7 +7,7 @@ import CachedSvg, { svgDrawable } from './CachedSvg';
 import { SEED_SIGN_SVGS } from '@/data/signs/seedAssets';
 import { Sign, SignImageRef, signThumbRef } from '@/data/signs/wire';
 
-import PlaceholderImage from './PlaceholderImage';
+import ArtworkSkeleton from './ArtworkSkeleton';
 
 // A sign's picture at a given size. Every sign carries uploaded artwork, so
 // this is the only thing that draws one. The bundled catalogue's artwork ships
@@ -40,7 +39,7 @@ const SignImage: React.FC<SignImageProps> = ({
 
   // Content-addressed, so the id is the hash: the same picture in the store
   // and in the bundle are the same bytes.
-  const { source: downloaded, pending } = useAssetSource({
+  const { source: downloaded } = useAssetSource({
     sha256: ref.assetId,
     mime: ref.mime,
   });
@@ -56,19 +55,23 @@ const SignImage: React.FC<SignImageProps> = ({
       ? ({ kind: 'markup', markup: bundled } as const)
       : downloaded;
 
-  // Being read off the device: hold the space rather than claim the picture
-  // is missing.
-  if (stored == null && pending) {
-    return <Held style={{ width: size, height: size }} />;
-  }
-
-  if (failedAssetId === ref.assetId || stored == null) {
-    return <PlaceholderImage label={sign.name} height={size} radius={8} />;
+  // Not here yet — being read off the device, or still downloading with the
+  // rest of the catalogue. The tile holds its exact square either way, and
+  // only a picture that failed to draw stops shimmering.
+  if (stored == null || failedAssetId === ref.assetId) {
+    return (
+      <ArtworkSkeleton
+        size={size}
+        radius={8}
+        still={failedAssetId === ref.assetId}
+        label={sign.name}
+      />
+    );
   }
 
   if (stored.kind === 'markup') {
     if (!svgDrawable(ref.assetId, stored.markup)) {
-      return <PlaceholderImage label={sign.name} height={size} radius={8} />;
+      return <ArtworkSkeleton size={size} radius={8} still label={sign.name} />;
     }
     return (
       <CachedSvg
@@ -91,7 +94,5 @@ const SignImage: React.FC<SignImageProps> = ({
     />
   );
 };
-
-const Held = styled.View``;
 
 export default SignImage;

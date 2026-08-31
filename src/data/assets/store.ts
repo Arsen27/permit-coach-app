@@ -265,6 +265,10 @@ const store = async (sha256: string, body: string): Promise<void> => {
   await AsyncStorage.setItem(bodyKey(sha256), body);
   remember(sha256, body);
   held.add(sha256);
+  // Every picture draws the moment it is here. Waiting for the whole batch
+  // meant a card whose own illustration had landed still showed its
+  // skeleton while the rest of the lesson came down.
+  notify();
 };
 
 // Pulls one picture onto the device, verified against the hash the document
