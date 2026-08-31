@@ -394,8 +394,8 @@ const runContentPhase = async (
   total = 1 + moduleIdsToFetch.length + plan.lessonIds.length;
   onProgress?.({ fetched, total });
 
-  const fetchedModuleDocs = await mapLimit(moduleIdsToFetch, 4, fetchModule);
-  const lessonDocs = await mapLimit(plan.lessonIds, 4, async lessonId => {
+  const fetchedModuleDocs = await mapLimit(moduleIdsToFetch, 8, fetchModule);
+  const lessonDocs = await mapLimit(plan.lessonIds, 8, async lessonId => {
     const ref = documents.lessons[lessonId];
     if (ref == null) {
       throw new Error(`manifest has no document ref for lesson ${lessonId}`);
@@ -472,7 +472,7 @@ const runContentPhase = async (
     );
     total += mismatched.length;
     onProgress?.({ fetched, total });
-    for (const doc of await mapLimit(mismatched, 4, fetchModule)) {
+    for (const doc of await mapLimit(mismatched, 8, fetchModule)) {
       docs.set(doc.module.moduleId, doc);
     }
   }

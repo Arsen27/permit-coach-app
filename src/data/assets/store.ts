@@ -345,7 +345,10 @@ export const ensureAssets = async (
       onProgress?.({ fetched, total });
     }
   };
-  await Promise.all([worker(), worker(), worker(), worker()]);
+  // Twelve at once: the files are tiny, so the cost of a download is the
+  // round trip, not the bytes — and HTTP/2 multiplexes them onto one
+  // connection. Four workers made a first install a queue of ocean crossings.
+  await Promise.all(Array.from({ length: 12 }, () => worker()));
   notify();
 };
 
