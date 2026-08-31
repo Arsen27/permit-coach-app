@@ -4,7 +4,9 @@ import ReactTestRenderer, {
 } from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components/native';
 
+import { primeVectorsForTests, resetAssetsForTests } from '@/data/assets/store';
 import CourseAssetView from '@/components/CourseAssetView';
+import { sha256Hex, utf8ByteLength } from '@/lib/sha256';
 import type { Diagram } from '@/components/CourseAssetView';
 import { defaultTheme } from '@/theme';
 
@@ -51,5 +53,37 @@ describe('course asset frame', () => {
   it('keeps 16:9 for registry art without a size', async () => {
     const tree = await render({ svgXml: SVG, alt: 'diagram' });
     expect(frameRatioOf(tree)).toBeCloseTo(16 / 9);
+  });
+});
+
+describe('a stored picture', () => {
+  it('draws from the device store without a placeholder', async () => {
+    resetAssetsForTests();
+    await primeVectorsForTests([[sha256Hex(SVG), SVG]]);
+
+    const asset = {
+      assetId: 'a1',
+      uuid: 'u1',
+      mime: 'image/svg+xml' as const,
+      width: 800,
+      height: 600,
+      alt: 'stored diagram',
+      sha256: sha256Hex(SVG),
+      sizeBytes: utf8ByteLength(SVG),
+    };
+    let tree!: Renderer;
+    await ReactTestRenderer.act(async () => {
+      tree = ReactTestRenderer.create(
+        <ThemeProvider theme={defaultTheme}>
+          <CourseAssetView asset={asset} />
+        </ThemeProvider>,
+      );
+    });
+    // The frame is there with the asset's own ratio, and no placeholder text.
+    expect(frameRatioOf(tree)).toBeCloseTo(800 / 600);
+    const texts = tree.root
+      .findAll(node => String(node.type) === 'Text')
+      .map(node => node.children.join(''));
+    expect(texts.join(' ')).not.toContain('unavailable');
   });
 });

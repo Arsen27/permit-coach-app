@@ -21,6 +21,7 @@ import CourseInstallGate from '@/components/CourseInstallGate';
 import DailyStreakGate from '@/components/DailyStreakGate';
 import GlassTabBar from '@/components/GlassTabBar';
 import HeaderCount from '@/components/HeaderCount';
+import { useArtworkReady } from '@/data/assets/store';
 import {
   CourseProvider,
   useCourseHydrated,
@@ -340,6 +341,7 @@ const ThemedApp: React.FC = () => {
   const [onboarded, setOnboarded] = useState<boolean | null>(null);
   const courseHydrated = useCourseHydrated();
   const course = useStoredCourse();
+  const artReady = useArtworkReady();
   useEffect(() => {
     // Older installs may hold the retired 'under-18' age band; rewrite it
     // before anything reads the stored answers.
@@ -367,6 +369,12 @@ const ThemedApp: React.FC = () => {
           <CourseInstallGate />
         </ThemeProvider>
       );
+    }
+    // The course's pictures too: a shell that mounts before they are in
+    // memory greets the learner with a beat of placeholder on every screen.
+    // The warm-up is a burst of storage reads, well inside the launch.
+    if (!artReady) {
+      return null;
     }
   }
 

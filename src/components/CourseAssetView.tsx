@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
-import { SvgXml } from 'react-native-svg';
+import { SvgAst } from 'react-native-svg';
 
 import { useAssetSource } from '@/data/assets/store';
+
+import { astOf } from './svgAst';
 import type { CourseAssetV2 } from '@/data/course/v2/wire';
 
 import PlaceholderImage from './PlaceholderImage';
@@ -62,6 +64,15 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
   const markup = inline ?? (stored?.kind === 'markup' ? stored.markup : null);
   const uri = stored?.kind === 'uri' ? stored.uri : null;
   const key = markup ?? uri;
+  // Parsed once per picture, never per mount: SvgXml re-parsed its markup on
+  // every visit to a card, and in a debug build that read as a flicker.
+  const ast =
+    markup == null
+      ? null
+      : astOf(
+          'svgXml' in (asset ?? {}) ? markup : (asset as CourseAssetV2).sha256,
+          markup,
+        );
 
   // A picture the device holds and is still reading keeps its place quietly:
   // saying "unavailable" for the moment a read takes is both wrong and the
@@ -79,7 +90,12 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
 
   // Nothing to draw: a vector that never made it onto the device, or a
   // drawing that failed. The alt text still says what was meant to be here.
-  if (asset == null || key == null || key === failedKey) {
+  if (
+    asset == null ||
+    key == null ||
+    key === failedKey ||
+    (markup != null && ast == null)
+  ) {
     return (
       <PlaceholderImage
         label={asset?.alt ?? 'illustration unavailable'}
@@ -106,12 +122,10 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
         and a diagram is big enough that doing so is impossible to miss.
       */}
       {markup != null ? (
-        <SvgXml
+        <SvgAst
           key={key}
-          xml={markup}
-          width="100%"
-          height="100%"
-          onError={() => setFailedKey(key)}
+          ast={ast}
+          override={{ width: '100%', height: '100%' }}
         />
       ) : (
         <Image

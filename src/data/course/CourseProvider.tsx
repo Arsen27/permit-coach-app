@@ -1,6 +1,11 @@
 import React, { useEffect, useSyncExternalStore } from 'react';
 
-import { hydrateAssets, warmAssets } from '@/data/assets/store';
+import {
+  hydrateAssets,
+  markArtworkReady,
+  warmAssets,
+} from '@/data/assets/store';
+import { warmSvgAsts } from '@/components/svgAst';
 import { signsArtwork } from '@/data/signs/store';
 
 import { StoredCourse, courseStore } from './store';
@@ -57,7 +62,17 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     warmAssets([
       ...course.bundle.assets.map(asset => asset.sha256),
       ...signsArtwork().map(asset => asset.sha256),
-    ]).catch(() => undefined);
+    ])
+      .catch(() => undefined)
+      // Ready even on failure: an app that never mounts because one storage
+      // read failed would be the worse bug. Whatever could not be read shows
+      // its placeholder honestly and is healed on the next check.
+      .finally(() => {
+        markArtworkReady();
+        // The parse trees, built while the learner is still on the home
+        // screen — so the first card of any lesson finds its tree ready.
+        warmSvgAsts(course.bundle.assets).catch(() => undefined);
+      });
   }, [course]);
 
   return <>{children}</>;

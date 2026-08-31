@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
+  artworkReady,
   assetPending,
   assetSource,
   readForTests,
@@ -13,6 +14,7 @@ import {
   resetAssetsForTests,
   setAssetsBaseUrl,
   sweepAssets,
+  markArtworkReady,
   vectorMarkup,
   warmAssets,
 } from '@/data/assets/store';
@@ -247,4 +249,14 @@ it('tells "still being read" apart from "not here"', async () => {
   await readForTests(vector.sha256);
   expect(assetPending(vector)).toBe(false);
   expect(assetSource(vector)).not.toBeNull();
+});
+
+it('the shell may mount only after the warm-up has spoken', () => {
+  expect(artworkReady()).toBe(false);
+  // Success or failure, the answer arrives — an app that never mounts
+  // because one read failed would be the worse bug.
+  markArtworkReady();
+  expect(artworkReady()).toBe(true);
+  resetAssetsForTests();
+  expect(artworkReady()).toBe(false);
 });

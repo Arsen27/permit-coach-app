@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
-import { SvgXml } from 'react-native-svg';
+import { SvgAst } from 'react-native-svg';
 
 import { useAssetSource } from '@/data/assets/store';
+
+import { astOf } from './svgAst';
 import { SEED_SIGN_SVGS } from '@/data/signs/seedAssets';
 import { Sign, SignImageRef, signThumbRef } from '@/data/signs/wire';
 
@@ -66,14 +68,11 @@ const SignImage: React.FC<SignImageProps> = ({
   }
 
   if (stored.kind === 'markup') {
-    return (
-      <SvgXml
-        xml={stored.markup}
-        width={size}
-        height={size}
-        onError={() => setFailedAssetId(ref.assetId)}
-      />
-    );
+    const ast = astOf(ref.assetId, stored.markup);
+    if (ast == null) {
+      return <PlaceholderImage label={sign.name} height={size} radius={8} />;
+    }
+    return <SvgAst ast={ast} override={{ width: size, height: size }} />;
   }
 
   return (

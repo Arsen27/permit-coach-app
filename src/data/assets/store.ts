@@ -43,6 +43,11 @@ let cachedChars = 0;
 // so it costs nothing and tells every render what is drawable.
 let held = new Set<string>();
 let baseUrl = '';
+// Whether the launch warm-up has finished. The app shell waits for this the
+// same way it waits for the course itself: a screen that mounts before the
+// pictures are in memory shows a beat of placeholder, and that beat is the
+// whole bug.
+let warmedOnce = false;
 const listeners = new Set<() => void>();
 // One read per picture, however many cards ask for it at once.
 const reads = new Map<string, Promise<string | null>>();
@@ -118,6 +123,17 @@ export const warmAssets = async (shas: string[]): Promise<void> => {
   notify();
 };
 
+// Declares the warm-up finished, success or not: an app that never mounts
+// because a storage read failed would be a far worse bug than a placeholder.
+export const markArtworkReady = (): void => {
+  if (!warmedOnce) {
+    warmedOnce = true;
+    notify();
+  }
+};
+
+export const artworkReady = (): boolean => warmedOnce;
+
 // Whether the device holds this picture but has not read it into memory yet —
 // "not yet", as opposed to "not there". A view that cannot tell the two apart
 // tells the learner an illustration is unavailable while it is being read.
@@ -167,6 +183,9 @@ const sourceOf = (
   isVectorAsset(asset)
     ? { kind: 'markup', markup: body }
     : { kind: 'uri', uri: `data:${asset.mime};base64,${body}` };
+
+export const useArtworkReady = (): boolean =>
+  useSyncExternalStore(subscribe, artworkReady);
 
 // The drawable form of a picture already in memory, or null. Synchronous on
 // purpose: a card renders from what is there and never waits.
@@ -391,6 +410,7 @@ export const resetAssetsForTests = (): void => {
   cachedChars = 0;
   held = new Set();
   baseUrl = '';
+  warmedOnce = false;
   listeners.clear();
   reads.clear();
 };
