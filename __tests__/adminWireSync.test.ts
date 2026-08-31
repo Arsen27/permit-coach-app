@@ -14,6 +14,7 @@ const repoRoot = path.join(__dirname, '..');
 const COPIES: [string, string][] = [
   ['src/data/course/v2/wire.ts', 'server/src/admin/wire.ts'],
   ['src/data/signs/wire.ts', 'server/src/admin/signsWire.ts'],
+  ['src/data/bank/wire.ts', 'server/src/admin/bankWire.ts'],
 ];
 
 describe.each(COPIES)('admin wire format copy: %s', (appPath, serverPath) => {
