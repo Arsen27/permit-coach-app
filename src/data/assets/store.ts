@@ -217,6 +217,12 @@ export const useAssetSource = (
   return asset == null ? null : assetSource(asset);
 };
 
+const store = async (sha256: string, body: string): Promise<void> => {
+  await AsyncStorage.setItem(bodyKey(sha256), body);
+  remember(sha256, body);
+  held.add(sha256);
+};
+
 // Pulls one picture onto the device, verified against the hash the document
 // named — the same rule every document goes through, for bytes as well as
 // markup, so nothing that disagrees with what the release promised is kept.
