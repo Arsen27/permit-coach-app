@@ -1,52 +1,68 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useSyncExternalStore } from 'react';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 
-import { base64ToBytes, bytesToBase64 } from '@/lib/base64';
-import { fetchBase64 } from '@/lib/fetchBinary';
-import { fetchWithRetry } from '@/lib/fetchWithRetry';
+import { bytesToBase64 } from '@/lib/base64';
 import { createLogger, formatBytes } from '@/lib/log';
-import { sha256Hex, sha256HexOfBytes, utf8Bytes } from '@/lib/sha256';
 
-import type { CourseAssetV2 } from '../course/v2/wire';
 import { ASSET_EXTENSIONS } from '../course/v2/wire';
+import type { CourseAssetV2 } from '../course/v2/wire';
 
-// Every picture a lesson or a sign shows. Documents carry a reference — the
-// sha256 of the file and its size — and the file itself comes from the content
-// server at an address the bootstrap hands over.
+// Every picture a lesson or a sign shows, kept as a real file in the app's
+// documents directory, named by the sha256 of its bytes. Documents carry a
+// reference — the hash and the size — and the file itself comes from the
+// content server at an address the bootstrap hands over.
 //
-// Both kinds live on the device, because both have to draw with no network:
-// a vector is stored as its markup, a photograph as base64 of its bytes, and
-// each is verified against the hash the release named before it is kept. The
-// name being the hash is what makes that possible — and what makes a picture
-// two lessons share cost one download.
+// A vector is text: its markup is read into memory to be parsed and drawn.
+// A photograph never crosses the bridge at all — its source is a file://
+// URI, and the platform's own image pipeline does the decoding and caching.
+// That is the point of the file store: base64 in AsyncStorage was fine for
+// SVG and would have been a bridge-choking slow road for PNG.
 //
-// Bodies are read from storage on demand and held in a small cache, so a
-// launch does not pull tens of megabytes into memory to draw one card.
+// Downloads are verified natively (the file is hashed on disk) against the
+// hash the release named, so nothing that disagrees with what was promised
+// is ever kept — and the name being the hash is what makes a picture two
+// lessons share cost one download.
 
 const log = createLogger('assets');
 
+// The AsyncStorage generation of this store. Old installs are migrated off
+// it on first launch; the base-url key stays, it is configuration.
 const PREFIX = 'dmv-prep/assets/v1';
-const bodyKey = (sha256: string) => `${PREFIX}/${sha256}`;
 const BASE_URL_KEY = `${PREFIX}/base-url`;
+
+const DIR = `${ReactNativeBlobUtil.fs.dirs.DocumentDir}/content-assets`;
 
 // A slow connection's worth of time for one picture, not a fast one's.
 const ASSET_TIMEOUT_MS = 30000;
 
-// What the in-memory cache may hold. A lesson shows a handful of pictures at
+// What the in-memory cache may hold — vector markup only; photographs live
+// as files and cost no memory here. A lesson shows a handful of diagrams at
 // a time; this is generous for that and nowhere near a whole course.
 const CACHE_BUDGET = 8 * 1024 * 1024;
 
-// Bodies by sha256: SVG markup for a vector, base64 for a photograph.
+// What the store needs to know about a picture: enough to name the file,
+// fetch it, and verify it. Course assets and sign references both satisfy it.
+export type AssetRef = { sha256: string; mime: string; sizeBytes: number };
+
+export const isVectorAsset = (asset: { mime: string }): boolean =>
+  asset.mime === 'image/svg+xml';
+
+const extOf = (mime: string): string =>
+  ASSET_EXTENSIONS[mime as CourseAssetV2['mime']] ?? 'bin';
+
+const pathOf = (sha256: string, ext: string): string =>
+  `${DIR}/${sha256}.${ext}`;
+
+// Vector markup by sha256, budgeted.
 const bodies = new Map<string, string>();
 let cachedChars = 0;
-// Which pictures are on the device. Read once per launch — key names only,
-// so it costs nothing and tells every render what is drawable.
-let held = new Set<string>();
+// Which pictures are on the device, and each file's extension — learned
+// once per launch from the directory listing, kept true by every write.
+let held = new Map<string, string>();
 let baseUrl = '';
 // Whether the launch warm-up has finished. The app shell waits for this the
-// same way it waits for the course itself: a screen that mounts before the
-// pictures are in memory shows a beat of placeholder, and that beat is the
-// whole bug.
+// same way it waits for the course itself.
 let warmedOnce = false;
 const listeners = new Set<() => void>();
 // One read per picture, however many cards ask for it at once.
@@ -78,83 +94,65 @@ export const setAssetsBaseUrl = async (next: string): Promise<void> => {
   await AsyncStorage.setItem(BASE_URL_KEY, next).catch(() => undefined);
 };
 
-// Reads the pictures a course shows into memory, newest need first, up to the
-// cache budget. Called at launch: a card that had to wait for its own read
-// showed a placeholder first and the picture a moment later, which is the
-// flicker this removes. Chunked, so a course of photographs stops at the
-// budget instead of pulling everything off the disk.
-const WARM_CHUNK = 48;
-
-export const warmAssets = async (shas: string[]): Promise<void> => {
-  const wanted = [...new Set(shas)].filter(sha => !bodies.has(sha));
-  if (wanted.length === 0) {
+// Moves the AsyncStorage generation onto the file system, once. Vectors are
+// recognisable by their markup; a photograph's base64 betrays its format in
+// the first bytes. Anything unrecognisable is dropped and simply
+// re-downloaded — the name is the hash, the server still has the bytes.
+const migrateLegacy = async (): Promise<void> => {
+  const keys = (await AsyncStorage.getAllKeys()).filter(
+    key => key.startsWith(`${PREFIX}/`) && key !== BASE_URL_KEY,
+  );
+  if (keys.length === 0) {
     return;
   }
-  const elapsed = log.time();
-  const chunks: string[][] = [];
-  for (let index = 0; index < wanted.length; index += WARM_CHUNK) {
-    chunks.push(wanted.slice(index, index + WARM_CHUNK));
-  }
-  // All at once, not one round after another: a course's pictures are a
-  // single burst of reads, and waiting for each batch in turn is what a
-  // learner saw as an illustration arriving late.
-  const results = await Promise.all(
-    chunks.map(chunk =>
-      AsyncStorage.getMany(chunk.map(bodyKey)).catch(
-        () => ({} as Record<string, string | null>),
-      ),
-    ),
-  );
-  let read = 0;
-  results.forEach((entries, index) => {
-    for (const sha of chunks[index]) {
-      if (cachedChars >= CACHE_BUDGET) {
-        return;
-      }
-      const body = entries[bodyKey(sha)];
-      if (body != null) {
-        remember(sha, body);
-        held.add(sha);
-        read += 1;
-      }
+  const entries = await AsyncStorage.getMany(keys);
+  let moved = 0;
+  for (const key of keys) {
+    const body = entries[key];
+    const sha256 = key.slice(`${PREFIX}/`.length);
+    if (body == null) {
+      continue;
     }
-  });
-  log.info(`${read} pictures ready (${elapsed()}ms)`);
-  notify();
-};
-
-// Declares the warm-up finished, success or not: an app that never mounts
-// because a storage read failed would be a far worse bug than a placeholder.
-export const markArtworkReady = (): void => {
-  if (!warmedOnce) {
-    warmedOnce = true;
-    notify();
+    const kind = body.trimStart().startsWith('<')
+      ? { ext: 'svg', encoding: 'utf8' as const }
+      : body.startsWith('iVBOR')
+      ? { ext: 'png', encoding: 'base64' as const }
+      : body.startsWith('/9j/')
+      ? { ext: 'jpg', encoding: 'base64' as const }
+      : null;
+    if (kind == null) {
+      continue;
+    }
+    await ReactNativeBlobUtil.fs.writeFile(
+      pathOf(sha256, kind.ext),
+      body,
+      kind.encoding,
+    );
+    moved += 1;
   }
+  await AsyncStorage.removeMany(keys);
+  log.info(`${moved} pictures moved to the file store`);
 };
-
-export const artworkReady = (): boolean => warmedOnce;
-
-// Whether the device holds this picture but has not read it into memory yet —
-// "not yet", as opposed to "not there". A view that cannot tell the two apart
-// tells the learner an illustration is unavailable while it is being read.
-// Whether this picture's body is in memory, ready to draw synchronously.
-export const assetInMemory = (sha256: string): boolean => bodies.has(sha256);
-
-export const assetPending = (asset: { sha256: string }): boolean =>
-  !bodies.has(asset.sha256) && held.has(asset.sha256);
 
 // Restored once per launch: which pictures the device holds, and where new
-// ones come from. Without this a restart drew placeholders — the files were
-// on the device, and nothing had read them.
-export const hydrateAssets = async (): Promise<void> => {
+// ones come from. Runs before anything else touches the store — the other
+// entry points wait on it, so a caller racing the launch is safe.
+let hydration: Promise<void> | null = null;
+
+const hydrate = async (): Promise<void> => {
   try {
-    const keys = await AsyncStorage.getAllKeys();
-    held = new Set(
-      keys.flatMap(key =>
-        key.startsWith(`${PREFIX}/`) && key !== BASE_URL_KEY
-          ? [key.slice(`${PREFIX}/`.length)]
-          : [],
-      ),
+    await ReactNativeBlobUtil.fs.mkdir(DIR).catch(() => undefined);
+    await migrateLegacy().catch(error =>
+      log.warn('could not migrate the old picture store', error),
+    );
+    const names = await ReactNativeBlobUtil.fs.ls(DIR);
+    held = new Map(
+      names.flatMap(name => {
+        const dot = name.lastIndexOf('.');
+        return dot > 0 && !name.endsWith('.part')
+          ? [[name.slice(0, dot), name.slice(dot + 1)]]
+          : [];
+      }),
     );
     if (baseUrl.length === 0) {
       baseUrl =
@@ -167,43 +165,60 @@ export const hydrateAssets = async (): Promise<void> => {
   }
 };
 
-// What the store needs to know about a picture: enough to name the file,
-// fetch it, and verify it. Course assets and sign references both satisfy it.
-export type AssetRef = { sha256: string; mime: string; sizeBytes: number };
+const whenHydrated = (): Promise<void> => {
+  if (hydration == null) {
+    hydration = hydrate();
+  }
+  return hydration;
+};
+
+export const hydrateAssets = (): Promise<void> => whenHydrated();
+
+// Declares the warm-up finished, success or not: an app that never mounts
+// because a storage read failed would be a far worse bug than a placeholder.
+export const markArtworkReady = (): void => {
+  if (!warmedOnce) {
+    warmedOnce = true;
+    notify();
+  }
+};
+
+export const artworkReady = (): boolean => warmedOnce;
+
+// Whether this picture's drawable form is in memory (for a photograph, the
+// file URI needs no memory — being on the device is enough).
+export const assetInMemory = (sha256: string): boolean => bodies.has(sha256);
+
+// Whether the device holds this vector but has not read it into memory yet —
+// "not yet", as opposed to "not there".
+export const assetPending = (asset: {
+  sha256: string;
+  mime: string;
+}): boolean =>
+  isVectorAsset(asset) && !bodies.has(asset.sha256) && held.has(asset.sha256);
 
 export const assetUrl = (asset: AssetRef): string =>
-  `${baseUrl}/${asset.sha256}.${
-    ASSET_EXTENSIONS[asset.mime as CourseAssetV2['mime']]
-  }`;
+  `${baseUrl}/${asset.sha256}.${extOf(asset.mime)}`;
 
-export const isVectorAsset = (asset: { mime: string }): boolean =>
-  asset.mime === 'image/svg+xml';
-
-// What a view draws: markup for a vector, a data URI for a photograph. Null
-// while the body is still being read off the device, or when it is not there.
+// What a view draws: markup for a vector, a file URI for a photograph. Null
+// while a vector is still being read off the device, or when the picture is
+// not there.
 export type AssetSource =
   | { kind: 'markup'; markup: string }
   | { kind: 'uri'; uri: string };
 
-const sourceOf = (
-  asset: { sha256: string; mime: string },
-  body: string,
-): AssetSource =>
-  isVectorAsset(asset)
-    ? { kind: 'markup', markup: body }
-    : { kind: 'uri', uri: `data:${asset.mime};base64,${body}` };
-
-export const useArtworkReady = (): boolean =>
-  useSyncExternalStore(subscribe, artworkReady);
-
-// The drawable form of a picture already in memory, or null. Synchronous on
-// purpose: a card renders from what is there and never waits.
 export const assetSource = (asset: {
   sha256: string;
   mime: string;
 }): AssetSource | null => {
-  const body = bodies.get(asset.sha256);
-  return body == null ? null : sourceOf(asset, body);
+  if (isVectorAsset(asset)) {
+    const body = bodies.get(asset.sha256);
+    return body == null ? null : { kind: 'markup', markup: body };
+  }
+  const ext = held.get(asset.sha256);
+  return ext == null
+    ? null
+    : { kind: 'uri', uri: `file://${pathOf(asset.sha256, ext)}` };
 };
 
 export const vectorMarkup = (asset: {
@@ -214,7 +229,10 @@ export const vectorMarkup = (asset: {
   return source?.kind === 'markup' ? source.markup : null;
 };
 
-// Reads one picture off the device into the cache. Concurrent callers share
+export const useArtworkReady = (): boolean =>
+  useSyncExternalStore(subscribe, artworkReady);
+
+// Reads one vector off the device into the cache. Concurrent callers share
 // the one read.
 const readBody = (sha256: string): Promise<string | null> => {
   const cached = bodies.get(sha256);
@@ -225,15 +243,22 @@ const readBody = (sha256: string): Promise<string | null> => {
   if (existing != null) {
     return existing;
   }
-  const read = AsyncStorage.getItem(bodyKey(sha256))
+  const read = whenHydrated()
+    .then(() => {
+      const ext = held.get(sha256);
+      if (ext == null) {
+        return null;
+      }
+      return ReactNativeBlobUtil.fs.readFile(pathOf(sha256, ext), 'utf8');
+    })
     .catch(() => null)
     .then(body => {
-      if (body != null) {
+      if (typeof body === 'string') {
         remember(sha256, body);
-        held.add(sha256);
         notify();
+        return body;
       }
-      return body;
+      return null;
     })
     .finally(() => {
       reads.delete(sha256);
@@ -249,92 +274,119 @@ const subscribe = (listener: () => void): (() => void) => {
   };
 };
 
-// What to draw for this picture, reading it off the device if it is there and
-// not in memory yet. Re-renders the moment it lands.
+// What to draw for this picture, reading it off the device if it is there
+// and not in memory yet. Re-renders the moment it lands.
 export const useAssetSource = (
   asset: { sha256: string; mime: string } | null | undefined,
 ): { source: AssetSource | null; pending: boolean } => {
   const sha256 = asset?.sha256 ?? '';
-  useSyncExternalStore(
-    subscribe,
-    () => bodies.get(sha256) ?? (held.has(sha256) ? 'pending' : null),
+  const vector = asset != null && isVectorAsset(asset);
+  useSyncExternalStore(subscribe, () =>
+    vector
+      ? bodies.get(sha256) ?? (held.has(sha256) ? 'pending' : null)
+      : held.get(sha256) ?? null,
   );
   useEffect(() => {
-    if (sha256.length > 0 && !bodies.has(sha256)) {
+    if (vector && sha256.length > 0 && !bodies.has(sha256)) {
       void readBody(sha256);
     }
-  }, [sha256]);
+  }, [vector, sha256]);
   return {
     source: asset == null ? null : assetSource(asset),
     pending: asset != null && assetPending(asset),
   };
 };
 
-const store = async (sha256: string, body: string): Promise<void> => {
-  await AsyncStorage.setItem(bodyKey(sha256), body);
-  remember(sha256, body);
-  held.add(sha256);
-  // Every picture draws the moment it is here. Waiting for the whole batch
-  // meant a card whose own illustration had landed still showed its
-  // skeleton while the rest of the lesson came down.
-  notify();
-};
-
-// Pulls one picture onto the device, verified against the hash the document
-// named — the same rule every document goes through, for bytes as well as
-// markup, so nothing that disagrees with what the release promised is kept.
-const fetchAsset = async (asset: AssetRef): Promise<void> => {
-  const url = assetUrl(asset);
-  if (isVectorAsset(asset)) {
-    const response = await fetchWithRetry(url, {
-      timeoutMs: ASSET_TIMEOUT_MS,
-    });
-    if (!response.ok) {
-      throw new Error(
-        `asset ${asset.sha256.slice(0, 12)} → ${response.status}`,
-      );
-    }
-    const body = await response.text();
-    if (sha256Hex(body) !== asset.sha256) {
-      throw new Error(
-        `asset ${asset.sha256.slice(0, 12)} does not match its own hash`,
-      );
-    }
-    await store(asset.sha256, body);
+// Reads the vectors among these pictures into memory in one burst — a card
+// that had to wait for its own read showed a skeleton first and the diagram
+// a moment later. Photographs need no warming: their file URI is free.
+export const warmAssets = async (
+  refs: { sha256: string; mime: string }[],
+): Promise<void> => {
+  await whenHydrated();
+  const wanted = [
+    ...new Map(
+      refs
+        .filter(
+          ref =>
+            isVectorAsset(ref) &&
+            !bodies.has(ref.sha256) &&
+            held.has(ref.sha256),
+        )
+        .map(ref => [ref.sha256, ref] as const),
+    ).values(),
+  ];
+  if (wanted.length === 0) {
     return;
   }
-  const { base64, status } = await fetchBase64(url, ASSET_TIMEOUT_MS);
+  const elapsed = log.time();
+  const read = (
+    await Promise.all(wanted.map(ref => readBody(ref.sha256)))
+  ).filter(body => body != null).length;
+  log.info(`${read} pictures ready (${elapsed()}ms)`);
+};
+
+// One picture onto the device: downloaded to a scratch name, hashed on disk
+// natively, and only then given its real name — so a torn download can never
+// be mistaken for the picture, and the JS thread never hashes a photograph.
+const fetchAsset = async (asset: AssetRef): Promise<void> => {
+  const ext = extOf(asset.mime);
+  const part = `${pathOf(asset.sha256, ext)}.part`;
+  const url = assetUrl(asset);
+  let response: Awaited<
+    ReturnType<ReturnType<typeof ReactNativeBlobUtil.config>['fetch']>
+  >;
+  try {
+    response = await ReactNativeBlobUtil.config({
+      path: part,
+      timeout: ASSET_TIMEOUT_MS,
+    }).fetch('GET', url);
+  } catch (error) {
+    await ReactNativeBlobUtil.fs.unlink(part).catch(() => undefined);
+    throw error;
+  }
+  const status = response.info().status;
   if (status !== 200) {
+    await ReactNativeBlobUtil.fs.unlink(part).catch(() => undefined);
     throw new Error(`asset ${asset.sha256.slice(0, 12)} → ${status}`);
   }
-  const bytes = base64ToBytes(base64);
-  if (bytes == null || sha256HexOfBytes(bytes) !== asset.sha256) {
+  const digest = await ReactNativeBlobUtil.fs.hash(part, 'sha256');
+  if (digest !== asset.sha256) {
+    await ReactNativeBlobUtil.fs.unlink(part).catch(() => undefined);
     throw new Error(
       `asset ${asset.sha256.slice(0, 12)} does not match its own hash`,
     );
   }
-  await store(asset.sha256, base64);
+  const final = pathOf(asset.sha256, ext);
+  await ReactNativeBlobUtil.fs.unlink(final).catch(() => undefined);
+  await ReactNativeBlobUtil.fs.mv(part, final);
+  held.set(asset.sha256, ext);
+  if (isVectorAsset(asset)) {
+    const body = await ReactNativeBlobUtil.fs
+      .readFile(final, 'utf8')
+      .catch(() => null);
+    if (typeof body === 'string') {
+      remember(asset.sha256, body);
+    }
+  }
+  // Every picture draws the moment it is here, not when the batch ends.
+  notify();
 };
 
 export type AssetProgress = { fetched: number; total: number };
 
 // Which of these pictures the device does not hold. Cheap enough to ask on
-// every check, so a picture lost to an interrupted write or a cleared store
-// is noticed and fetched again long before a lesson needs it.
+// every check, so a picture lost to an interrupted write is noticed and
+// fetched again long before a lesson needs it.
 export const missingAssets = async <Ref extends AssetRef>(
   assets: Ref[],
 ): Promise<Ref[]> => {
-  if (assets.length === 0) {
-    return [];
-  }
-  const keys = new Set(await AsyncStorage.getAllKeys());
-  return assets.filter(asset => !keys.has(bodyKey(asset.sha256)));
+  await whenHydrated();
+  return assets.filter(asset => !held.has(asset.sha256));
 };
 
 // Makes sure every picture is on the device, downloading the ones that are
-// not. A version is only committed once this has succeeded, so a course on
-// the device is a course that renders — offline, vectors and photographs
-// alike.
+// not.
 export const ensureAssets = async (
   assets: AssetRef[],
   onProgress?: (progress: AssetProgress) => void,
@@ -358,22 +410,24 @@ export const ensureAssets = async (
       onProgress?.({ fetched, total });
     }
   };
-  // Twelve at once: the files are tiny, so the cost of a download is the
+  // Twelve at once: the files are small, so the cost of a download is the
   // round trip, not the bytes — and HTTP/2 multiplexes them onto one
-  // connection. Four workers made a first install a queue of ocean crossings.
+  // connection.
   await Promise.all(Array.from({ length: 12 }, () => worker()));
   notify();
 };
 
-// Forgets every stored picture except the ones named. Runs after a commit, so
-// what a replaced version used goes with it.
+// Forgets every stored picture except the ones named. Runs after a commit,
+// so what a replaced version used goes with it.
 export const sweepAssets = async (keep: Set<string>): Promise<void> => {
-  const keys = (await AsyncStorage.getAllKeys()).filter(
-    key => key.startsWith(`${PREFIX}/`) && key !== BASE_URL_KEY,
-  );
-  const stale = keys.filter(key => !keep.has(key.slice(`${PREFIX}/`.length)));
-  if (stale.length > 0) {
-    await AsyncStorage.removeMany(stale);
+  await whenHydrated();
+  for (const [sha256, ext] of [...held.entries()]) {
+    if (!keep.has(sha256)) {
+      await ReactNativeBlobUtil.fs
+        .unlink(pathOf(sha256, ext))
+        .catch(() => undefined);
+      held.delete(sha256);
+    }
   }
   for (const sha256 of [...bodies.keys()]) {
     if (!keep.has(sha256)) {
@@ -381,11 +435,15 @@ export const sweepAssets = async (keep: Set<string>): Promise<void> => {
       bodies.delete(sha256);
     }
   }
-  held = new Set([...held].filter(sha256 => keep.has(sha256)));
   notify();
 };
 
 export const clearAssets = async (): Promise<void> => {
+  await whenHydrated();
+  await ReactNativeBlobUtil.fs.unlink(DIR).catch(() => undefined);
+  await ReactNativeBlobUtil.fs.mkdir(DIR).catch(() => undefined);
+  // The AsyncStorage generation's keys, in case a wipe runs before the
+  // migration ever did.
   const keys = (await AsyncStorage.getAllKeys()).filter(key =>
     key.startsWith(`${PREFIX}/`),
   );
@@ -394,7 +452,7 @@ export const clearAssets = async (): Promise<void> => {
   }
   bodies.clear();
   cachedChars = 0;
-  held = new Set();
+  held = new Map();
   baseUrl = '';
   notify();
 };
@@ -403,16 +461,29 @@ export const clearAssets = async (): Promise<void> => {
 export const primeVectorsForTests = async (
   entries: Iterable<[string, string]>,
 ): Promise<void> => {
+  await whenHydrated();
   for (const [sha256, markup] of entries) {
-    await store(sha256, markup);
+    await ReactNativeBlobUtil.fs.writeFile(
+      pathOf(sha256, 'svg'),
+      markup,
+      'utf8',
+    );
+    held.set(sha256, 'svg');
+    remember(sha256, markup);
   }
 };
 
 export const primeRasterForTests = async (
   entries: Iterable<[string, Uint8Array]>,
 ): Promise<void> => {
-  for (const [sha256, bytes] of entries) {
-    await store(sha256, bytesToBase64(bytes));
+  await whenHydrated();
+  for (const [sha256, byteArray] of entries) {
+    await ReactNativeBlobUtil.fs.writeFile(
+      pathOf(sha256, 'png'),
+      bytesToBase64(byteArray),
+      'base64',
+    );
+    held.set(sha256, 'png');
   }
 };
 
@@ -424,12 +495,10 @@ export const readForTests = (sha256: string): Promise<string | null> =>
 export const resetAssetsForTests = (): void => {
   bodies.clear();
   cachedChars = 0;
-  held = new Set();
+  held = new Map();
   baseUrl = '';
   warmedOnce = false;
+  hydration = null;
   listeners.clear();
   reads.clear();
 };
-
-// Exported for a test that checks the UTF-8 path agrees with the byte path.
-export const utf8OfForTests = utf8Bytes;

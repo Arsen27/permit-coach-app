@@ -1,35 +1,50 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 
 import {
   artworkReady,
   assetPending,
   assetSource,
-  readForTests,
   clearAssets,
   ensureAssets,
   hydrateAssets,
+  markArtworkReady,
   missingAssets,
   primeRasterForTests,
   primeVectorsForTests,
+  readForTests,
   resetAssetsForTests,
   setAssetsBaseUrl,
   sweepAssets,
-  markArtworkReady,
   vectorMarkup,
   warmAssets,
 } from '@/data/assets/store';
 import { bytesToBase64 } from '@/lib/base64';
 import { sha256Hex, sha256HexOfBytes, utf8ByteLength } from '@/lib/sha256';
 
-// Every picture a lesson shows lives on the device — a diagram as markup, a
-// photograph as its bytes — because a course on the phone has to render on a
-// plane. Both are verified against the hash the release named.
+// Every picture a lesson shows lives on the device as a file named by the
+// sha256 of its bytes. A diagram's markup is read into memory to be parsed;
+// a photograph never crosses the bridge — its source is a file:// URI and
+// the platform image pipeline does the rest. Both are verified against the
+// hash the release named before they are kept.
 
 jest.mock('@/lib/serverConfig', () => ({
   SERVER_URL: 'http://test',
   isServerConfigured: true,
   APP_VERSION: '1.0.0',
 }));
+
+type BlobDownload = (url: string) => Promise<{
+  status: number;
+  body?: string;
+  encoding?: 'utf8' | 'base64';
+}>;
+const blob = ReactNativeBlobUtil as unknown as { __reset: () => void };
+const setDownload = (handler: BlobDownload): jest.Mock => {
+  const mock = jest.fn(handler);
+  (globalThis as { __blobDownload?: BlobDownload }).__blobDownload = mock;
+  return mock;
+};
 
 const SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"/>';
 // A tiny but real PNG header plus payload — bytes that are not valid UTF-8,
@@ -60,81 +75,69 @@ const raster = {
   sizeBytes: PNG_BYTES.length,
 };
 
-let fetchMock: jest.Mock;
+let downloads: jest.Mock;
 
 beforeEach(async () => {
   await AsyncStorage.clear();
+  blob.__reset();
   resetAssetsForTests();
   await setAssetsBaseUrl('http://test/v1/assets');
-  fetchMock = jest.fn(async (input: RequestInfo | URL) => {
-    const url = String(input);
+  downloads = setDownload(async url => {
     if (url.includes(vector.sha256)) {
-      return { ok: true, status: 200, text: async () => SVG } as Response;
+      return { status: 200, body: SVG, encoding: 'utf8' };
     }
     if (url.includes(raster.sha256)) {
       return {
-        ok: true,
         status: 200,
-        arrayBuffer: async () => PNG_BYTES.buffer.slice(0),
-      } as unknown as Response;
+        body: bytesToBase64(PNG_BYTES),
+        encoding: 'base64',
+      };
     }
-    return { ok: false, status: 404, text: async () => '' } as Response;
+    return { status: 404 };
   });
-  globalThis.fetch = fetchMock as unknown as typeof fetch;
 });
 
-it('keeps a photograph on the device, byte for byte', async () => {
+it('keeps a photograph as a file and serves its URI, no bridge involved', async () => {
   await ensureAssets([raster]);
 
-  const source = assetSource(raster);
-  expect(source).toEqual({
+  expect(assetSource(raster)).toEqual({
     kind: 'uri',
-    uri: `data:image/png;base64,${bytesToBase64(PNG_BYTES)}`,
+    uri: `file:///docs/content-assets/${raster.sha256}.png`,
   });
-  // On the device, not merely in memory.
   expect(await missingAssets([raster])).toEqual([]);
 });
 
 it('draws both kinds after a restart, with no network at all', async () => {
   await ensureAssets([vector, raster]);
 
-  // The app is killed and launched again: storage survives, memory does not,
-  // and there is no connection. This is the bug that put a placeholder on
-  // every illustration — the files were on the device and nothing read them.
+  // The app is killed and launched again: the files survive, memory does
+  // not, and there is no connection.
   resetAssetsForTests();
-  globalThis.fetch = (async () => {
-    throw new TypeError('Network request failed');
-  }) as typeof fetch;
+  delete (globalThis as { __blobDownload?: unknown }).__blobDownload;
   await hydrateAssets();
   expect(await missingAssets([vector, raster])).toEqual([]);
 
-  // What a mounted card does: read the body it needs, then draw.
+  // What a mounted card does: read the markup it needs, then draw. The
+  // photograph needs no read at all — being on the device is enough.
   await readForTests(vector.sha256);
-  await readForTests(raster.sha256);
   expect(vectorMarkup(vector)).toBe(SVG);
-  expect(assetSource(raster)).toEqual({
-    kind: 'uri',
-    uri: `data:image/png;base64,${bytesToBase64(PNG_BYTES)}`,
-  });
+  expect(assetSource(raster)?.kind).toBe('uri');
 });
 
 it('refuses a photograph whose bytes are not what the release promised', async () => {
-  fetchMock.mockImplementation(async () => ({
-    ok: true,
+  setDownload(async () => ({
     status: 200,
-    arrayBuffer: async () => Uint8Array.from([1, 2, 3]).buffer,
+    body: bytesToBase64(Uint8Array.from([1, 2, 3])),
+    encoding: 'base64',
   }));
 
   await expect(ensureAssets([raster])).rejects.toThrow(/does not match/);
   expect(await missingAssets([raster])).toEqual([raster]);
+  expect(assetSource(raster)).toBeNull();
 });
 
 it('refuses a diagram whose markup is not what the release promised', async () => {
-  fetchMock.mockImplementation(async () => ({
-    ok: true,
-    status: 200,
-    text: async () => '<svg/>',
-  }));
+  setDownload(async () => ({ status: 200, body: '<svg/>', encoding: 'utf8' }));
 
   await expect(ensureAssets([vector])).rejects.toThrow(/does not match/);
   expect(await missingAssets([vector])).toEqual([vector]);
@@ -144,9 +147,29 @@ it('fetches only what is missing', async () => {
   await primeVectorsForTests([[vector.sha256, SVG]]);
   await ensureAssets([vector, raster]);
 
-  const asked = fetchMock.mock.calls.map(call => String(call[0]));
+  const asked = downloads.mock.calls.map(call => String(call[0]));
   expect(asked.some(url => url.includes(raster.sha256))).toBe(true);
   expect(asked.some(url => url.includes(vector.sha256))).toBe(false);
+});
+
+it('moves the AsyncStorage generation onto the file system, once', async () => {
+  // An install from before the file store: a diagram as markup, a
+  // photograph as base64, both under the old keys.
+  await AsyncStorage.setItem(`dmv-prep/assets/v1/${vector.sha256}`, SVG);
+  await AsyncStorage.setItem(
+    `dmv-prep/assets/v1/${raster.sha256}`,
+    bytesToBase64(PNG_BYTES),
+  );
+
+  await hydrateAssets();
+
+  expect(await missingAssets([vector, raster])).toEqual([]);
+  await readForTests(vector.sha256);
+  expect(vectorMarkup(vector)).toBe(SVG);
+  expect(assetSource(raster)?.kind).toBe('uri');
+  // The old keys are gone — the migration runs once.
+  const keys = await AsyncStorage.getAllKeys();
+  expect(keys.filter(key => key.includes(vector.sha256))).toEqual([]);
 });
 
 it('a sweep keeps what is named and forgets the rest', async () => {
@@ -167,68 +190,24 @@ it('clearing takes everything, including where pictures come from', async () => 
   expect(assetSource(vector)).toBeNull();
 });
 
-it('stores a photograph through the blob road when arrayBuffer is refused', async () => {
-  // React Native's fetch does not offer arrayBuffer everywhere; the Blob road
-  // is the one that has always worked, and both must end in the same bytes.
-  fetchMock.mockImplementation(async () => ({
-    ok: true,
-    status: 200,
-    arrayBuffer: async () => {
-      throw new Error('not implemented');
-    },
-    blob: async () => 'blob',
-  }));
-  const chunks = `data:image/png;base64,${bytesToBase64(PNG_BYTES)}`;
-  class FakeReader {
-    result: string | null = null;
-    onload: (() => void) | null = null;
-    onerror: (() => void) | null = null;
-    readAsDataURL() {
-      this.result = chunks;
-      this.onload?.();
-    }
-  }
-  (globalThis as unknown as { FileReader: unknown }).FileReader = FakeReader;
-
-  await ensureAssets([raster]);
-  expect(assetSource(raster)).toEqual({
-    kind: 'uri',
-    uri: chunks,
-  });
-});
-
 it('a raster primed on the device needs no network', async () => {
   await primeRasterForTests([[raster.sha256, PNG_BYTES]]);
   expect(assetSource(raster)?.kind).toBe('uri');
-  expect(fetchMock).not.toHaveBeenCalled();
+  expect(downloads).not.toHaveBeenCalled();
 });
 
-it('reads a whole course of pictures in one burst, not batch after batch', async () => {
-  // Enough to need several batches: a sequential read is what a learner saw
-  // as an illustration arriving after the card.
+it('reads a whole course of diagrams in one burst', async () => {
   const many = Array.from({ length: 120 }, (_unused, index) => {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" id="s${index}"/>`;
     return { svg, sha256: sha256Hex(svg) };
   });
   await primeVectorsForTests(many.map(one => [one.sha256, one.svg]));
   resetAssetsForTests();
+  await hydrateAssets();
 
-  let openReads = 0;
-  let peak = 0;
-  const real = AsyncStorage.getMany as jest.Mock;
-  const impl = real.getMockImplementation()!;
-  real.mockImplementation(async (keys: string[]) => {
-    openReads += 1;
-    peak = Math.max(peak, openReads);
-    const result = await impl(keys);
-    openReads -= 1;
-    return result;
-  });
-
-  await warmAssets(many.map(one => one.sha256));
-  real.mockImplementation(impl);
-
-  expect(peak).toBeGreaterThan(1);
+  await warmAssets(
+    many.map(one => ({ sha256: one.sha256, mime: 'image/svg+xml' })),
+  );
   for (const one of many) {
     expect(
       assetSource({ sha256: one.sha256, mime: 'image/svg+xml' }),
@@ -243,6 +222,7 @@ it('tells "still being read" apart from "not here"', async () => {
   await hydrateAssets();
 
   expect(assetPending(vector)).toBe(true);
+  // A photograph is never pending: on the device means drawable.
   expect(assetPending(raster)).toBe(false);
   expect(assetSource(vector)).toBeNull();
 
@@ -253,8 +233,6 @@ it('tells "still being read" apart from "not here"', async () => {
 
 it('the shell may mount only after the warm-up has spoken', () => {
   expect(artworkReady()).toBe(false);
-  // Success or failure, the answer arrives — an app that never mounts
-  // because one read failed would be the worse bug.
   markArtworkReady();
   expect(artworkReady()).toBe(true);
   resetAssetsForTests();

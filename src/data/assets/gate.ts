@@ -46,7 +46,7 @@ export const warmArtwork = async (spec: ArtworkSpec): Promise<void> => {
   // its frame stops shimmering on its own.
   const download = ensureAssets(spec.ensure).catch(() => undefined);
   // Everything already here: bytes into memory, then trees.
-  await warmAssets(spec.ensure.map(ref => ref.sha256)).catch(() => undefined);
+  await warmAssets(spec.ensure).catch(() => undefined);
   const vectors = spec.ensure.flatMap(ref => {
     if (!isVectorAsset(ref)) {
       return [];
@@ -58,7 +58,7 @@ export const warmArtwork = async (spec: ArtworkSpec): Promise<void> => {
   // Whatever the network delivers is warmed as a second pass, so a learner
   // who waits a beat on the first slide still gets free transitions.
   void download.then(async () => {
-    await warmAssets(spec.ensure.map(ref => ref.sha256)).catch(() => undefined);
+    await warmAssets(spec.ensure).catch(() => undefined);
     await warmSvgMarkups(
       spec.ensure.flatMap(ref => {
         if (!isVectorAsset(ref) || svgTreeWarm(ref.sha256)) {

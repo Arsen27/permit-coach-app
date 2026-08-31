@@ -499,7 +499,7 @@ const prefetchLessonAssets = (doc: { assets: LessonDocV2['assets'] }): void => {
     .catch(() => undefined)
     // Even pictures already on the device cost a storage read each; doing
     // them together, up front, is what keeps the transitions quiet.
-    .then(() => warmAssets(doc.assets.map(asset => asset.sha256)))
+    .then(() => warmAssets(doc.assets))
     // And the parse trees too: a vector parsed at slide-mount is a beat of
     // delay on the transition itself, felt hardest in a debug build.
     .then(() => warmSvgAsts(doc.assets))

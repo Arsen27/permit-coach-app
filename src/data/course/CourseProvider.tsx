@@ -59,10 +59,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     if (course == null) {
       return;
     }
-    warmAssets([
-      ...course.bundle.assets.map(asset => asset.sha256),
-      ...signsArtwork().map(asset => asset.sha256),
-    ])
+    warmAssets([...course.bundle.assets, ...signsArtwork()])
       .catch(() => undefined)
       // Ready even on failure: an app that never mounts because one storage
       // read failed would be the worse bug. Whatever could not be read shows
