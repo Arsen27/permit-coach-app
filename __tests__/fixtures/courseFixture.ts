@@ -2,7 +2,8 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 import { primeVectorsForTests } from '@/data/assets/store';
-import { assembleBundle, courseStore } from '@/data/course/store';
+import { primeLazyCourseForTests } from '@/data/course/lazy';
+import { courseStore } from '@/data/course/store';
 import { sha256Hex } from '@/lib/sha256';
 
 import { convertTreeDoc } from '../support/treeContent';
@@ -67,18 +68,47 @@ export const FIXTURE_MODULE_DOCS: ModuleDocV2[] =
     JSON.parse(readDoc(join('modules', `${id}.json`))),
   );
 
-export const FIXTURE_COURSE_BUNDLE: CourseBundleV2 = assembleBundle(
-  FIXTURE_COURSE_DOC,
-  FIXTURE_MODULE_DOCS,
-);
+// The bundle shape the screens read, assembled the way the lazy store does:
+// module order from the course doc, questions and assets deduped in module
+// order.
+const assembleFixtureBundle = (): CourseBundleV2 => {
+  const seenQuestions = new Set<string>();
+  const seenAssets = new Set<string>();
+  return {
+    course: FIXTURE_COURSE_DOC.course,
+    modules: FIXTURE_MODULE_DOCS.map(doc => doc.module),
+    questions: FIXTURE_MODULE_DOCS.flatMap(doc =>
+      doc.questions.filter(question => {
+        if (seenQuestions.has(question.questionId)) {
+          return false;
+        }
+        seenQuestions.add(question.questionId);
+        return true;
+      }),
+    ),
+    assets: FIXTURE_MODULE_DOCS.flatMap(doc =>
+      doc.assets.filter(asset => {
+        if (seenAssets.has(asset.assetId)) {
+          return false;
+        }
+        seenAssets.add(asset.assetId);
+        return true;
+      }),
+    ),
+  };
+};
+
+export const FIXTURE_COURSE_BUNDLE: CourseBundleV2 = assembleFixtureBundle();
 
 export const commitFixtureCourse = async (): Promise<void> => {
-  await courseStore.commit(
-    FIXTURE_DELIVERY_VERSION,
-    FIXTURE_COURSE_DOC,
+  primeLazyCourseForTests(
+    FIXTURE_COURSE_ID,
+    FIXTURE_COURSE_DOC.course.title,
     FIXTURE_MODULE_DOCS,
+    FIXTURE_DELIVERY_VERSION,
   );
-  // A committed course is one whose pictures are on the device, so the
+  courseStore.setActiveCourse(FIXTURE_COURSE_ID);
+  // A course on the device draws its pictures from the device, so the
   // renderer finds them the way it would after a real download.
   await primeVectorsForTests(FIXTURE_ASSET_BYTES);
 };

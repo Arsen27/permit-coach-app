@@ -6,6 +6,7 @@ import ReactTestRenderer, {
 import { ThemeProvider } from 'styled-components/native';
 
 import { buildCards } from '@/components/lesson/cards';
+import { primeLazyCourseForTests } from '@/data/course/lazy';
 import { courseStore } from '@/data/course/store';
 import { COURSE_SCHEMA_VERSION } from '@/data/course/v2/wire';
 import type { CourseDocV2, ModuleDocV2 } from '@/data/course/v2/wire';
@@ -17,6 +18,7 @@ import { defaultTheme } from '@/theme';
 
 import {
   FIXTURE_COURSE_BUNDLE,
+  FIXTURE_COURSE_ID,
   commitFixtureCourse,
 } from './fixtures/courseFixture';
 
@@ -340,15 +342,12 @@ describe('split lesson experience', () => {
       questions: FIXTURE_COURSE_BUNDLE.questions,
       assets: FIXTURE_COURSE_BUNDLE.assets,
     };
-    const courseDoc: CourseDocV2 = {
-      schemaVersion: COURSE_SCHEMA_VERSION,
-      deliveryVersion: '3.1.0',
-      course: {
-        ...FIXTURE_COURSE_BUNDLE.course,
-        moduleIds: [moduleWithLesson.moduleId],
-      },
-    };
-    await courseStore.commit('3.1.0', courseDoc, [moduleDoc]);
+    primeLazyCourseForTests(
+      FIXTURE_COURSE_ID as never,
+      FIXTURE_COURSE_BUNDLE.course.title,
+      [moduleDoc],
+      '3.1.0',
+    );
 
     const player = await renderPlayer();
     expect(textsOf(player.tree)).toContain('One more thing');

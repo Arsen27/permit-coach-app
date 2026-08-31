@@ -13,11 +13,7 @@ import ProgressRing from '@/components/ProgressRing';
 import ProgressTrack from '@/components/ProgressTrack';
 import { courseIdForState } from '@/data/course';
 import { courseStore } from '@/data/course/store';
-import {
-  UpdateProgress,
-  installCourse,
-  runCourseUpdate,
-} from '@/data/course/updater';
+import { installCourse } from '@/data/course/useCourseInstall';
 import { findState } from '@/data/states';
 import { isServerConfigured } from '@/lib/serverConfig';
 import { usePurchases } from '@/purchases/PurchasesProvider';
@@ -80,7 +76,6 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
   const progressRef = useRef({ lessonScores, topicScores });
   progressRef.current = { lessonScores, topicScores };
 
-  const fetchRef = useRef<UpdateProgress | null>(null);
   const settledRef = useRef<'ok' | Failure | null>(null);
   const doneRef = useRef(false);
 
@@ -115,35 +110,18 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
   }, [navigation, purchasesEnabled, plusActive]);
 
   useEffect(() => {
-    fetchRef.current = null;
     settledRef.current = null;
     setShown(0);
     setPhase('running');
 
-    const onProgress = (progress: UpdateProgress) => {
-      fetchRef.current = progress;
-    };
     const settle = async (): Promise<'ok' | Failure> => {
       const stored = await courseStore.hydrateCourse(courseId);
+      // Under the lazy model a download is the outline and the bank; a course
+      // already on the phone still gets a refresh, best-effort.
+      const result = await installCourse(courseId);
       if (stored != null) {
-        // Already on the phone — a replayed onboarding, or a first run that
-        // was cut short after the download. Refresh it best-effort; whatever
-        // the server says, the learner can go on with what is there.
-        if (isServerConfigured) {
-          await runCourseUpdate({
-            userId,
-            getProgress: () => ({
-              lessonIds: Object.keys(progressRef.current.lessonScores),
-              topicIds: Object.keys(progressRef.current.topicScores),
-            }),
-            resetLessons,
-            resetTopics,
-            onProgress,
-          });
-        }
         return 'ok';
       }
-      const result = await installCourse({ courseId, onProgress });
       return result.status === 'installed' ? 'ok' : result.status;
     };
     settle().then(
@@ -158,15 +136,12 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
     const startedAt = Date.now();
     const timer = setInterval(() => {
       const elapsed = (Date.now() - startedAt) / MIN_RUN_MS;
-      const fetch = fetchRef.current;
-      const fetched =
-        fetch == null || fetch.total === 0
-          ? 0
-          : (fetch.fetched / fetch.total) * 0.9;
+      // The download is two small documents now; the ring paces the step
+      // itself rather than pretending to count bytes.
       const target =
         settledRef.current === 'ok'
           ? Math.min(1, elapsed)
-          : Math.min(Math.max(0.08, fetched), elapsed, 0.95);
+          : Math.min(0.6, elapsed, 0.95);
 
       const settled = settledRef.current;
       if (settled != null && settled !== 'ok') {

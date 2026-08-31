@@ -4,8 +4,8 @@ import { Alert } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 
 import { courseIdForState } from '@/data/course';
+import { primeLazyCourseForTests, syncLazyCourse } from '@/data/course/lazy';
 import { courseStore } from '@/data/course/store';
-import { installCourse } from '@/data/course/updater';
 import { COURSE_SCHEMA_VERSION } from '@/data/course/v2/wire';
 import type { CourseDocV2, ModuleDocV2 } from '@/data/course/v2/wire';
 import {
@@ -30,10 +30,15 @@ jest.mock('@react-navigation/native', () => ({
 
 // The download itself is the updater's business (covered in
 // courseUpdater.test.ts); here it is a switch the test flips per case.
-jest.mock('@/data/course/updater', () => ({
-  installCourse: jest.fn(),
+// The download itself is the lazy store's business (covered in
+// lazyStore.test.ts); here the sync is a switch the test flips per case.
+jest.mock('@/data/course/lazy', () => ({
+  ...jest.requireActual('@/data/course/lazy'),
+  syncLazyCourse: jest.fn(),
 }));
-const mockInstall = installCourse as jest.MockedFunction<typeof installCourse>;
+const mockInstall = syncLazyCourse as jest.MockedFunction<
+  typeof syncLazyCourse
+>;
 
 // A minimal committed course per state, so the picker sees "already on the
 // phone" for some states and "needs a download" for others.
@@ -83,22 +88,25 @@ const courseDoc = (
   },
 });
 
-const commitCourse = (
+const commitCourse = async (
   courseId: string,
   jurisdiction: string,
   state: string,
   version = '1.0.0',
-) =>
-  courseStore.commit(
-    version,
-    courseDoc(courseId, jurisdiction, state, version),
+) => {
+  const doc = courseDoc(courseId, jurisdiction, state, version);
+  primeLazyCourseForTests(
+    courseId as never,
+    doc.course.title,
     [moduleDoc(courseId, version)],
+    version,
+    state,
   );
+};
 
-// What a real download leaves behind: the course committed into its slot.
+// What a real download leaves behind: the course on the device.
 const installSucceeds = () =>
-  mockInstall.mockImplementation(async ({ courseId, onProgress }) => {
-    onProgress?.({ fetched: 1, total: 2 });
+  mockInstall.mockImplementation(async ({ courseId }: { courseId: string }) => {
     const state =
       courseId === 'fl-class-e'
         ? ['FL', 'Florida']
@@ -106,8 +114,7 @@ const installSucceeds = () =>
         ? ['TX', 'Texas']
         : ['CA', 'California'];
     await commitCourse(courseId, state[0], state[1]);
-    onProgress?.({ fetched: 2, total: 2 });
-    return { status: 'installed' };
+    return { status: 'ready' };
   });
 
 let observedState: ReturnType<typeof useAppState> | null = null;

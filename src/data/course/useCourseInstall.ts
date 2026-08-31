@@ -1,7 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { CourseId } from './index';
-import { InstallResult, installCourse } from './updater';
+import { syncLazyCourse } from './lazy';
+
+// One first download for a screen: under the lazy model that is the outline
+// and the bank — a few dozen kilobytes — after which the course stands and
+// every lesson fetches itself when opened.
+
+export type InstallStatus =
+  | 'installed'
+  | 'offline'
+  | 'failed'
+  | 'app-update-required';
+export type InstallResult = { status: InstallStatus };
 
 export type CourseInstallPhase =
   | 'idle'
@@ -13,22 +24,39 @@ export type CourseInstallPhase =
 
 export type CourseInstall = {
   phase: CourseInstallPhase;
-  // 0..1 over the documents fetched so far.
   progress: number;
   start: (courseId: CourseId) => Promise<InstallResult>;
   reset: () => void;
 };
 
-// Drives one course download for a screen: the phase its sheet shows and the
-// progress, over installCourse. Never navigates or switches the active course
-// itself — what happens once the course is on the device is the caller's
-// decision (a state switch, or simply letting the gate lift).
+// The sync itself, callable from anywhere a screen is not — onboarding's
+// Building step drives it directly.
+export const installCourse = async (
+  courseId: CourseId,
+): Promise<InstallResult> => {
+  const result = await syncLazyCourse({
+    courseId,
+    // A first download has no learner yet: nothing is completed, nothing can
+    // be marked.
+    userId: 'install',
+    completedLessonIds: [],
+  });
+  return {
+    status:
+      result.status === 'ready'
+        ? 'installed'
+        : result.status === 'offline'
+        ? 'offline'
+        : result.status === 'app-update-required'
+        ? 'app-update-required'
+        : 'failed',
+  };
+};
+
 export const useCourseInstall = (): CourseInstall => {
   const [phase, setPhase] = useState<CourseInstallPhase>('idle');
   const [progress, setProgress] = useState(0);
 
-  // The download outlives a screen that navigates away on success; nothing
-  // may write state into the unmounted one.
   const alive = useRef(true);
   useEffect(() => {
     alive.current = true;
@@ -39,15 +67,8 @@ export const useCourseInstall = (): CourseInstall => {
 
   const start = useCallback(async (courseId: CourseId) => {
     setPhase('downloading');
-    setProgress(0);
-    const result = await installCourse({
-      courseId,
-      onProgress: ({ fetched, total }) => {
-        if (alive.current) {
-          setProgress(total === 0 ? 0 : fetched / total);
-        }
-      },
-    });
+    setProgress(0.2);
+    const result = await installCourse(courseId);
     if (alive.current) {
       if (result.status === 'installed') {
         setProgress(1);

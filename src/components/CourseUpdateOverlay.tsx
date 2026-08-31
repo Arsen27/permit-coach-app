@@ -12,7 +12,9 @@ import {
   SheetMiddle,
   SheetTitle,
 } from '@/components/resultSheet';
-import type { CourseOffer } from '@/data/course/updater';
+
+// What an offer sheet needs to say: the version and the words for it.
+export type CourseOffer = { version: string; notes?: string };
 
 export type CourseUpdatePhase =
   | 'idle'

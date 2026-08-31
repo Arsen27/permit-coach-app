@@ -68,6 +68,10 @@ type CourseState = {
   questions: CourseQuestionV2[];
   lessonDocs: Map<string, LessonDocV2>;
   bundle: CourseBundleV2 | null;
+  // The object handed to React. Rebuilt only when the content changes:
+  // useSyncExternalStore treats a fresh identity as a change, and a snapshot
+  // born new on every read renders forever.
+  snapshot: { deliveryVersion: string; bundle: CourseBundleV2 } | null;
   hydrated: boolean;
 };
 
@@ -84,6 +88,7 @@ const stateOf = (courseId: string): CourseState => {
       questions: [],
       lessonDocs: new Map(),
       bundle: null,
+      snapshot: null,
       hydrated: false,
     };
     states.set(courseId, state);
@@ -125,6 +130,7 @@ const assemble = (state: CourseState): void => {
   const outline = state.outline;
   if (outline == null) {
     state.bundle = null;
+    state.snapshot = null;
     return;
   }
   let globalSequence = 0;
@@ -179,6 +185,10 @@ const assemble = (state: CourseState): void => {
     questions: state.questions,
     assets: [...assets.values()],
   } as CourseBundleV2;
+  state.snapshot = {
+    deliveryVersion: outline.version,
+    bundle: state.bundle!,
+  };
 };
 
 // The hash a lesson's cached body must carry, per the outline in force.
@@ -421,6 +431,34 @@ export const syncLazyCourse = async (deps: {
   }
 };
 
+// The learner said yes to a fundamentally new course: this course's cache is
+// forgotten and the next sync takes the newest whole. The caller wipes the
+// learner's progress — that is the deal the offer stated.
+export const acceptOffer = async (deps: {
+  courseId: CourseId;
+  userId: string;
+  completedLessonIds: string[];
+}): Promise<SyncResult> => {
+  const state = stateOf(deps.courseId);
+  const keys = (await AsyncStorage.getAllKeys()).filter(
+    key =>
+      key.startsWith(`${PREFIX}/outline/${deps.courseId}`) ||
+      key.startsWith(`${PREFIX}/bank/${deps.courseId}`) ||
+      key.startsWith(`${PREFIX}/lesson/${deps.courseId}/`) ||
+      key.startsWith(`${PREFIX}/marks/${deps.userId}/${deps.courseId}`),
+  );
+  if (keys.length > 0) {
+    await AsyncStorage.removeMany(keys);
+  }
+  state.outline = null;
+  state.bankSha = null;
+  state.questions = [];
+  state.lessonDocs.clear();
+  assemble(state);
+  notify();
+  return syncLazyCourse(deps);
+};
+
 // The body of one lesson, fetched when the lesson is opened and kept forever
 // under its own hash. Its pictures start downloading in the background at
 // once, so the slides never wait on one.
@@ -456,12 +494,25 @@ export const ensureLesson = async (
   return 'ready';
 };
 
-export const lazySnapshot = (courseId: CourseId) => {
-  const state = stateOf(courseId);
-  return state.outline == null || state.bundle == null
-    ? null
-    : { deliveryVersion: state.outline.version, bundle: state.bundle };
+// Whether the store has answered for this course yet: a null snapshot is
+// only meaningful once it has.
+export const lazyHydrated = (courseId: CourseId): boolean =>
+  stateOf(courseId).hydrated;
+
+// Forgets every downloaded course, bank, mark and prompt — the dev channel
+// switch calls this; the caller re-syncs afterwards.
+export const wipeLazy = async (): Promise<void> => {
+  const keys = (await AsyncStorage.getAllKeys()).filter(key =>
+    key.startsWith(`${PREFIX}/`),
+  );
+  if (keys.length > 0) {
+    await AsyncStorage.removeMany(keys);
+  }
+  states.clear();
+  notify();
 };
+
+export const lazySnapshot = (courseId: CourseId) => stateOf(courseId).snapshot;
 
 export const lessonLoaded = (courseId: CourseId, lessonId: string): boolean =>
   stateOf(courseId).lessonDocs.has(lessonId);
@@ -522,6 +573,76 @@ export const takePrompt = async (
 
 export const clearPromptFor = async (userId: string): Promise<void> => {
   await AsyncStorage.removeItem(promptKey(userId)).catch(() => undefined);
+};
+
+// Test seam: a course on the device without a server — the outline, the
+// bank and every lesson body derived from the same documents the old
+// fixtures built.
+export const primeLazyCourseForTests = (
+  courseId: CourseId,
+  courseTitle: string,
+  moduleDocs: {
+    module: CourseModuleV2;
+    questions: CourseQuestionV2[];
+    assets: LessonDocV2['assets'];
+  }[],
+  version = '1.0.0',
+  stateName = 'California',
+): void => {
+  const state = stateOf(courseId);
+  state.hydrated = true;
+  state.outline = {
+    courseId,
+    version,
+    title: courseTitle,
+    state: stateName,
+    modules: moduleDocs.map((doc, index) => ({
+      moduleId: doc.module.moduleId,
+      title: doc.module.title,
+      sequence: index + 1,
+      moduleTestQuestionCount: doc.module.moduleTest.questionIds.length,
+      moduleTestQuestionIds: doc.module.moduleTest.questionIds,
+      lessons: doc.module.lessons.map(lesson => ({
+        lessonId: lesson.lessonId,
+        title: lesson.title,
+        objective: lesson.objective,
+        estimatedMinutes: lesson.estimatedMinutes,
+        cardCount: 0,
+        questionCount: lesson.questionIds.length,
+        questionIds: lesson.questionIds,
+        ...(lesson.theoryQuestionIds != null && {
+          theoryQuestionIds: lesson.theoryQuestionIds,
+        }),
+        ...(lesson.testQuestionIds != null && {
+          testQuestionIds: lesson.testQuestionIds,
+        }),
+        doc: { sha256: 'f'.repeat(64), sizeBytes: 1 },
+      })),
+    })),
+  };
+  const questions = new Map<string, CourseQuestionV2>();
+  for (const doc of moduleDocs) {
+    for (const question of doc.questions) {
+      questions.set(question.questionId, question);
+    }
+  }
+  state.questions = [...questions.values()];
+  state.bankSha = 'primed';
+  for (const doc of moduleDocs) {
+    for (const lesson of doc.module.lessons) {
+      state.lessonDocs.set(lesson.lessonId, {
+        schemaVersion: 3,
+        deliveryVersion: version,
+        lesson,
+        questions: doc.questions.filter(question =>
+          lesson.questionIds.includes(question.questionId),
+        ),
+        assets: doc.assets,
+      } as LessonDocV2);
+    }
+  }
+  assemble(state);
+  notify();
 };
 
 // Test seam.

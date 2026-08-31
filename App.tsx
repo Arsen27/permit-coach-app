@@ -28,7 +28,7 @@ import {
   useStoredCourse,
 } from '@/data/course/CourseProvider';
 import { SignsProvider } from '@/data/signs/SignsProvider';
-import UpdateManager from '@/data/course/UpdateManager';
+import SyncManager from '@/data/course/SyncManager';
 import { isOnboardingDone } from '@/lib/onboardingFlag';
 import { migrateLegacyAgeBand } from '@/lib/onboardingPrefs';
 import { PurchasesProvider } from '@/purchases/PurchasesProvider';
@@ -167,7 +167,7 @@ const AppShellComponent: React.FC<AppShellProps> = ({ theme, onboarded }) => {
         <IdentityNameSync />
         <AnalyticsIdentity />
         <DailyStreakGate />
-        <UpdateManager />
+        <SyncManager />
         <AppUpdateGate />
         <ChannelBadge />
         <NavigationContainer
