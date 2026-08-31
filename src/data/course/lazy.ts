@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { warmSvgAsts } from '@/components/CachedSvg';
 import {
   ensureAssets,
   setAssetsBaseUrl,
@@ -499,6 +500,9 @@ const prefetchLessonAssets = (doc: { assets: LessonDocV2['assets'] }): void => {
     // Even pictures already on the device cost a storage read each; doing
     // them together, up front, is what keeps the transitions quiet.
     .then(() => warmAssets(doc.assets.map(asset => asset.sha256)))
+    // And the parse trees too: a vector parsed at slide-mount is a beat of
+    // delay on the transition itself, felt hardest in a debug build.
+    .then(() => warmSvgAsts(doc.assets))
     .catch(() => undefined);
 };
 

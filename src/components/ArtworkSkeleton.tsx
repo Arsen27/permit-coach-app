@@ -66,7 +66,7 @@ const ArtworkSkeleton: React.FC<ArtworkSkeletonProps> = ({
       Animated.timing(sweep, {
         toValue: 1,
         duration: SWEEP_MS,
-        easing: Easing.inOut(Easing.ease),
+        easing: Easing.linear,
         useNativeDriver: true,
       }),
     );
@@ -124,7 +124,9 @@ const ArtworkSkeleton: React.FC<ArtworkSkeletonProps> = ({
 
 const Frame = styled.View`
   overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.faint};
+  /* One step darker than the card's own faint surface: the white sweep has
+     to have something to sweep across, or the animation reads as absent. */
+  background-color: ${({ theme }) => theme.colors.line};
 `;
 
 export default ArtworkSkeleton;

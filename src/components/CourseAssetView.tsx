@@ -79,7 +79,7 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
   // shimmering, because nothing is coming for it.
   const undrawable =
     asset == null ||
-    key === failedKey ||
+    (key != null && key === failedKey) ||
     (markup != null && svgKey != null && !svgDrawable(svgKey, markup));
   if (pending || undrawable || key == null) {
     return (
