@@ -9,6 +9,7 @@ import React, {
 import {
   Alert,
   LayoutAnimation,
+  View,
   Modal,
   Platform,
   ScrollView,
@@ -48,6 +49,7 @@ import { clearMark, narrowMark } from '@/data/course/lazy';
 import { courseStore } from '@/data/course/store';
 import { useLessonBody } from '@/data/course/useLessonBody';
 import { useYellowMarks } from '@/data/course/useYellowMarks';
+import { useMountedWindow } from '@/lib/mountedWindow';
 import { RootStackParamList } from '@/navigation/types';
 import { useAppState } from '@/state/AppState';
 import { shadows } from '@/theme';
@@ -135,6 +137,9 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
     [courseLesson],
   );
   const done = cards.length > 0 && index >= cards.length;
+  // The neighbouring slides stay mounted so a transition never builds a
+  // card — above all never builds an SVG's native tree, which was the lag.
+  const mountedCards = useMountedWindow(index, cards.length, 1);
   const waitingForBody = body.status !== 'ready';
 
   // Snapshots taken at mount for the lesson_opened event: reading them out of
@@ -595,8 +600,6 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
   const answer = card.questionId != null ? answers[card.questionId] : undefined;
   const checked = answer?.checked ?? false;
   const awaitingCheck = question != null && !checked;
-  const assetId = cardAssetId(card, question?.assetId);
-  const asset = assetId != null ? findCourseAsset(assetId) : undefined;
   const selectedChoice = question?.choices.find(
     choice => choice.id === answer?.selectedId,
   );
@@ -639,9 +642,6 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
       [card.questionId!]: { ...prev[card.questionId!], checked: true },
     }));
   };
-
-  const questionOrdinal =
-    card.questionId != null ? questionIds.indexOf(card.questionId) + 1 : 0;
 
   // Check-yourself recall flow: reveal first, then self-report. Unscored —
   // either answer advances, only analytics hears which one it was.
@@ -708,27 +708,57 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
         contentContainerStyle={{ paddingBottom: footerHeight + 12 }}
         showsVerticalScrollIndicator={false}
       >
-        <ChangedTint
-          $on={
-            yellowMark != null &&
-            (yellowMark.blocks == null ||
-              yellowMark.blocks.includes(card.block.blockId))
-          }
-        >
-          <LessonCardBody
-            card={card}
-            question={question}
-            asset={asset}
-            answer={answer}
-            onSelect={select}
-            stateLabel={courseState}
-            cardStyles={bundle.course.cardStyles}
-            resolveAsset={findCourseAsset}
-            checkpointOrdinal={questionOrdinal}
-            checkpointTotal={questionIds.length}
-            revealed={recallShown}
-          />
-        </ChangedTint>
+        {mountedCards.map(place => {
+          const entry = cards[place];
+          const entryQuestion =
+            entry.questionId != null
+              ? findCourseQuestion(entry.questionId)
+              : undefined;
+          const entryAssetId = cardAssetId(entry, entryQuestion?.assetId);
+          return (
+            <View
+              key={entry.key}
+              style={place === index ? undefined : styles.offstage}
+            >
+              <ChangedTint
+                $on={
+                  yellowMark != null &&
+                  (yellowMark.blocks == null ||
+                    yellowMark.blocks.includes(entry.block.blockId))
+                }
+              >
+                <LessonCardBody
+                  card={entry}
+                  question={entryQuestion}
+                  asset={
+                    entryAssetId != null
+                      ? findCourseAsset(entryAssetId)
+                      : undefined
+                  }
+                  answer={
+                    entry.questionId != null
+                      ? answers[entry.questionId]
+                      : undefined
+                  }
+                  onSelect={select}
+                  stateLabel={courseState}
+                  cardStyles={bundle.course.cardStyles}
+                  resolveAsset={findCourseAsset}
+                  checkpointOrdinal={
+                    entry.questionId != null
+                      ? questionIds.indexOf(entry.questionId) + 1
+                      : 0
+                  }
+                  checkpointTotal={questionIds.length}
+                  revealed={
+                    isCheckYourselfBlock(entry.block) &&
+                    recallRevealed[entry.block.blockId] === true
+                  }
+                />
+              </ChangedTint>
+            </View>
+          );
+        })}
       </ScrollView>
 
       <Footer
@@ -847,6 +877,8 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   scroll: { flex: 1 },
+  // A premounted neighbour: real views, no layout, no pixels.
+  offstage: { display: 'none' },
 });
 
 // A light wash over content that changed since the learner studied it —

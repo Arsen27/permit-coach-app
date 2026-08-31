@@ -52,6 +52,7 @@ import { findSign, shuffle, signQuizQuestions } from '@/data/signs';
 import { SEED_SIGN_SVGS } from '@/data/signs/seedAssets';
 import { signThumbRef } from '@/data/signs/wire';
 import { useSignsCatalog } from '@/data/signs/SignsProvider';
+import { useMountedWindow } from '@/lib/mountedWindow';
 import { revealScrollOffset } from '@/lib/revealScroll';
 import { QuizParams, RootStackParamList } from '@/navigation/types';
 import { useAppState, PersistedState } from '@/state/AppState';
@@ -106,6 +107,54 @@ const quizTargetId = (params: QuizParams): string | null => {
     default:
       return null;
   }
+};
+
+// A premounted neighbour: real views, no layout, no pixels.
+const OFFSTAGE = { display: 'none' } as const;
+
+// The artwork a question shows, if any. Rendered for the active question
+// and, hidden, for the next one — so advancing never builds an image's
+// native tree during the transition.
+const questionMediaOf = (question: QuizQuestion): React.ReactElement | null => {
+  const sign = question.signId != null ? findSign(question.signId) : undefined;
+  if (sign != null) {
+    return (
+      <SignStage>
+        <SignImage sign={sign} size={150} />
+      </SignStage>
+    );
+  }
+  const diagram = questionDiagram(question.id);
+  const courseAsset =
+    question.assetId != null
+      ? findCourseAsset(question.assetId)
+      : diagram != null
+      ? { svgXml: diagram.xml, alt: diagram.alt }
+      : undefined;
+  if (courseAsset != null) {
+    return (
+      <ImageWrap>
+        <CourseAssetView asset={courseAsset} />
+      </ImageWrap>
+    );
+  }
+  if (question.imageUrl != null || question.imageCaption != null) {
+    return (
+      <ImageWrap>
+        <RemoteImage
+          image={
+            question.imageUrl != null
+              ? { url: question.imageUrl, caption: question.imageCaption }
+              : undefined
+          }
+          height={question.imageHeight ?? 186}
+          radius={14}
+          placeholderLabel={question.imageCaption ?? ''}
+        />
+      </ImageWrap>
+    );
+  }
+  return null;
 };
 
 const formatClock = (seconds: number): string => {
@@ -246,10 +295,12 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
         })),
       };
       // The question list is built once per mounted session.
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [questions]),
   );
   const [index, setIndex] = useState(0);
+  // The next question's artwork stays mounted, hidden, so "Next" flips a
+  // display style instead of building a sign's SVG tree.
+  const mountedMedia = useMountedWindow(index, questions.length, 0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
@@ -574,18 +625,6 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
     );
   }
 
-  const signId = question.signId;
-  const sign = signId != null ? findSign(signId) : undefined;
-  // Course questions carry a rendered illustration; the authored practice
-  // banks have schematic diagrams keyed by question id instead.
-  const diagram = questionDiagram(question.id);
-  const courseAsset =
-    question.assetId != null
-      ? findCourseAsset(question.assetId)
-      : diagram != null
-      ? { svgXml: diagram.xml, alt: diagram.alt }
-      : undefined;
-
   return (
     <Screen
       style={{ paddingTop: Platform.OS === 'ios' ? 10 : insets.top + 10 }}
@@ -621,31 +660,20 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
           Question {index + 1} of {total}
           {isExam ? ` · ${formatClock(secondsLeft)}` : ''}
         </Eyebrow>
-        {sign != null ? (
-          <SignStage>
-            <SignImage sign={sign} size={150} />
-          </SignStage>
-        ) : courseAsset != null ? (
-          <ImageWrap>
-            <CourseAssetView asset={courseAsset} />
-          </ImageWrap>
-        ) : question.imageUrl != null || question.imageCaption != null ? (
-          <ImageWrap>
-            <RemoteImage
-              image={
-                question.imageUrl != null
-                  ? {
-                      url: question.imageUrl,
-                      caption: question.imageCaption,
-                    }
-                  : undefined
-              }
-              height={question.imageHeight ?? 186}
-              radius={14}
-              placeholderLabel={question.imageCaption ?? ''}
-            />
-          </ImageWrap>
-        ) : null}
+        {mountedMedia.map(place => {
+          const media = questionMediaOf(questions[place]);
+          if (media == null) {
+            return null;
+          }
+          return (
+            <View
+              key={questions[place].id}
+              style={place === index ? undefined : OFFSTAGE}
+            >
+              {media}
+            </View>
+          );
+        })}
         <Prompt>{question.prompt}</Prompt>
         <Options>
           {question.options.map(option => {
