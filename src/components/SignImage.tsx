@@ -5,12 +5,7 @@ import { SvgXml } from 'react-native-svg';
 
 import { useAssetSource } from '@/data/assets/store';
 import { SEED_SIGN_SVGS } from '@/data/signs/seedAssets';
-import {
-  SIGN_IMAGE_EXTENSIONS,
-  Sign,
-  SignImageRef,
-  signThumbRef,
-} from '@/data/signs/wire';
+import { Sign, SignImageRef, signThumbRef } from '@/data/signs/wire';
 
 import PlaceholderImage from './PlaceholderImage';
 
