@@ -105,6 +105,35 @@ export const channelAnswers = async (
   }
 };
 
+// The lazy model's opening call: the verdict, the bank sha and the signs sha.
+export const fetchVerdictRaw = (
+  courseId: string,
+  courseVersion: string | null,
+  appVersion: string,
+): Promise<string> =>
+  requestRaw(
+    `/v2/bootstrap?course=${courseId}&channel=${getContentChannel()}${
+      courseVersion == null ? '' : `&courseVersion=${courseVersion}`
+    }&appVersion=${appVersion}`,
+    TIMEOUT_MS,
+  );
+
+// Every lesson's name, description, question ids and document hash — the
+// structure a course works from before any lesson body has arrived.
+export const fetchOutlineRaw = (
+  courseId: string,
+  version?: string,
+): Promise<string> =>
+  requestRaw(
+    `/v1/course/${courseId}/outline?channel=${getContentChannel()}${
+      version == null ? '' : `&version=${version}`
+    }`,
+  );
+
+// The question bank: one document per course, updated wholesale.
+export const fetchBankDocRaw = (courseId: string): Promise<string> =>
+  requestRaw(`/v1/bank/${courseId}/doc?channel=${getContentChannel()}`);
+
 export const fetchCourseDocRaw = (
   courseId: string,
   semver: string,
