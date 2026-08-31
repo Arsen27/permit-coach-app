@@ -425,20 +425,9 @@ export const syncLazyCourse = async (deps: {
 
     // The bank moves by hash, wholesale, for everyone.
     if (verdict.bank != null && verdict.bank.sha256 !== state.bankSha) {
-      const body = await fetchBankDocRaw(deps.courseId);
-      const sha = sha256Hex(body);
-      if (sha !== verdict.bank.sha256) {
-        throw new Error('bank does not match its published hash');
-      }
-      rememberBank(state, body, sha);
-      await AsyncStorage.setItem(
-        bankKey(deps.courseId),
-        JSON.stringify({ sha, body }),
-      );
-      log.info(
-        `bank → ${sha.slice(0, 12)} (${state.questions.length} questions)`,
-      );
+      await takeBank(state, deps.courseId, verdict.bank.sha256);
     }
+    bankCheckedAt.set(deps.courseId, Date.now());
 
     assemble(state);
     notify();
@@ -506,6 +495,66 @@ const prefetchLessonAssets = (doc: { assets: LessonDocV2['assets'] }): void => {
     .catch(() => undefined);
 };
 
+// Fetches the published bank, checks it against the hash the server declared,
+// and keeps it. The hash is the contract: a bank that does not match it is
+// refused whole, exactly like a lesson body.
+const takeBank = async (
+  state: CourseState,
+  courseId: CourseId,
+  declared: string,
+): Promise<void> => {
+  const body = await fetchBankDocRaw(courseId);
+  const sha = sha256Hex(body);
+  if (sha !== declared) {
+    throw new Error('bank does not match its published hash');
+  }
+  rememberBank(state, body, sha);
+  await AsyncStorage.setItem(bankKey(courseId), JSON.stringify({ sha, body }));
+  log.info(`bank → ${sha.slice(0, 12)} (${state.questions.length} questions)`);
+};
+
+// How long a bank check is trusted before a lesson opening asks again. The
+// full sync runs on launch and on every foreground; this is the shorter
+// leash on the path that matters most, so a published question fix is on the
+// device by the time the learner opens the next lesson rather than up to a
+// foreground check later.
+const BANK_CHECK_MS = 2 * 60 * 1000;
+const bankCheckedAt = new Map<string, number>();
+
+// A bank-only check: the verdict is asked for its bank hash and nothing
+// else. Deliberately never shows a prompt or swaps the outline — opening a
+// lesson is not the moment to hand someone a modal about the course.
+export const refreshBank = async (courseId: CourseId): Promise<void> => {
+  const state = stateOf(courseId);
+  const last = bankCheckedAt.get(courseId) ?? 0;
+  if (Date.now() - last < BANK_CHECK_MS) {
+    return;
+  }
+  bankCheckedAt.set(courseId, Date.now());
+  try {
+    const raw = await fetchVerdictRaw(
+      courseId,
+      state.outline?.version ?? null,
+      APP_VERSION,
+    );
+    const verdict = JSON.parse(raw) as { bank: { sha256: string } | null };
+    if (verdict.bank == null || verdict.bank.sha256 === state.bankSha) {
+      return;
+    }
+    await takeBank(state, courseId, verdict.bank.sha256);
+    assemble(state);
+    notify();
+  } catch (error) {
+    // Offline, or a bank that would not verify: the device keeps the
+    // questions it holds and tries again on the next lesson.
+    log.info(
+      'bank check skipped',
+      error instanceof Error ? error.message : error,
+    );
+    bankCheckedAt.set(courseId, 0);
+  }
+};
+
 // The body of one lesson, fetched when the lesson is opened and kept forever
 // under its own hash. Its pictures start downloading in the background at
 // once, so the slides never wait on one.
@@ -514,6 +563,9 @@ export const ensureLesson = async (
   lessonId: string,
 ): Promise<'ready' | 'offline' | 'failed'> => {
   const state = stateOf(courseId);
+  // The questions this lesson asks live in the bank, not in its body, so a
+  // published fix has to be able to arrive without a course release.
+  void refreshBank(courseId);
   const cached = state.lessonDocs.get(lessonId);
   if (cached != null) {
     // A lesson opened a second time still needs its pictures in memory: the
@@ -560,6 +612,7 @@ export const wipeLazy = async (): Promise<void> => {
     await AsyncStorage.removeMany(keys);
   }
   states.clear();
+  bankCheckedAt.clear();
   notify();
 };
 
@@ -762,6 +815,7 @@ export const primeMarksForTests = (
 export const resetLazyForTests = (): void => {
   states.clear();
   marksCache.clear();
+  bankCheckedAt.clear();
   listeners.clear();
 };
 

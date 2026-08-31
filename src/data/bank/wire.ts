@@ -26,6 +26,12 @@ export type BankQuestionV1 = {
   assetId?: string;
   conceptId?: string;
   scope?: 'universal' | 'state_specific';
+  // Whether the general Practice pool may draw this question. Absent means
+  // yes — the pool is the default and every question extracted before this
+  // field existed belongs to it. Set false for a question that only makes
+  // sense where a lesson or a module test asks it by id: one that leans on
+  // the slide before it, or that would give away a lesson's own answer.
+  inPractice?: boolean;
 };
 
 export type QuestionBankDocV1 = {
@@ -157,6 +163,15 @@ export const validateBankQuestion = (
     ...(value.assetId !== undefined && { assetId: str(ctx, value, 'assetId') }),
     ...(value.conceptId !== undefined && {
       conceptId: str(ctx, value, 'conceptId'),
+    }),
+    ...(value.inPractice !== undefined && {
+      inPractice: ((): boolean => {
+        if (typeof value.inPractice !== 'boolean') {
+          ctx.errors.push(`${ctx.path}.inPractice: expected a boolean`);
+          return true;
+        }
+        return value.inPractice;
+      })(),
     }),
     ...(value.scope !== undefined && {
       scope: ((): BankQuestionV1['scope'] => {

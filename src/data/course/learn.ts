@@ -79,6 +79,16 @@ export const courseQuestionIds = (): string[] =>
     .getSnapshot()
     ?.bundle.questions.map(question => question.questionId) ?? [];
 
+// The course questions the general Practice pool may draw. A question can be
+// kept out of it — one that leans on the slide before it, or that hands over
+// a lesson's own answer — and then only a lesson or a module test asking it
+// by id ever shows it.
+export const coursePracticeQuestionIds = (): string[] =>
+  courseStore
+    .getSnapshot()
+    ?.bundle.questions.filter(question => question.inPractice !== false)
+    .map(question => question.questionId) ?? [];
+
 // Course order, across module boundaries — drives the "continue here" marker.
 export const orderedCourseLessons = (): CourseLessonRef[] =>
   derived().lessonRefs;

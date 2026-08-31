@@ -301,6 +301,58 @@ it('opening a lesson reads every picture it draws into memory', async () => {
   });
 });
 
+it('opening a lesson picks up a republished bank, hash checked', async () => {
+  serveVersion('1.1.1', { 'l-one': L1 }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({ current: '1.1.1', bankSha: sha256Hex(BANK1) }),
+  );
+  await syncLazyCourse(deps());
+  await ensureLesson(COURSE, 'l-one');
+  expect(lazySnapshot(COURSE)!.bundle.questions[0].prompt).toBe('What now?');
+
+  // A question fix is published: the bank's sha moves, the course does not.
+  const FIXED = JSON.stringify({
+    schemaVersion: 1,
+    courseId: COURSE,
+    questions: [{ ...question('l-one-q01'), prompt: 'What now, exactly?' }],
+  });
+  mockBank.mockResolvedValue(FIXED);
+  mockVerdict.mockResolvedValue(
+    verdictBody({ current: '1.1.1', bankSha: sha256Hex(FIXED) }),
+  );
+
+  // Opening the lesson again checks the bank — no course release involved.
+  // The check is on a short leash rather than every open, so the clock moves
+  // past it first.
+  const realNow = Date.now;
+  Date.now = () => realNow() + 5 * 60 * 1000;
+  await ensureLesson(COURSE, 'l-one');
+  await new Promise(resolve => setTimeout(resolve, 0));
+  await new Promise(resolve => setTimeout(resolve, 0));
+  expect(lazySnapshot(COURSE)!.bundle.questions[0].prompt).toBe(
+    'What now, exactly?',
+  );
+
+  // A bank whose bytes disagree with the published hash is refused whole.
+  const TAMPERED = JSON.stringify({
+    schemaVersion: 1,
+    courseId: COURSE,
+    questions: [{ ...question('l-one-q01'), prompt: 'Tampered' }],
+  });
+  mockBank.mockResolvedValue(TAMPERED);
+  mockVerdict.mockResolvedValue(
+    verdictBody({ current: '1.1.1', bankSha: sha256Hex('something else') }),
+  );
+  Date.now = () => realNow() + 20 * 60 * 1000;
+  await ensureLesson(COURSE, 'l-one');
+  await new Promise(resolve => setTimeout(resolve, 0));
+  await new Promise(resolve => setTimeout(resolve, 0));
+  Date.now = realNow;
+  expect(lazySnapshot(COURSE)!.bundle.questions[0].prompt).toBe(
+    'What now, exactly?',
+  );
+});
+
 it('a body that does not match the outline hash is refused', async () => {
   serveVersion('1.1.1', { 'l-one': L1 }, BANK1);
   mockVerdict.mockResolvedValue(

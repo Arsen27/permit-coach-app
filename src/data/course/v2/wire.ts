@@ -34,6 +34,11 @@ export type CourseQuestionV2 = {
   // skill without pretending the state-specific wording is reusable.
   conceptId?: string;
   scope?: 'universal' | 'state_specific';
+  // Whether the general Practice pool may draw this question. Absent means
+  // yes. False keeps it to the lessons and module tests that ask it by id —
+  // a question that leans on the slide before it, or that would hand over a
+  // lesson's own answer, has no business in a shuffled practice set.
+  inPractice?: boolean;
 };
 
 // A picture a card or a question shows. The bytes are not here: `sha256` names
@@ -966,6 +971,15 @@ const validateQuestion = (
     ...(value.assetId !== undefined && { assetId: str(ctx, value, 'assetId') }),
     ...(value.conceptId !== undefined && {
       conceptId: str(ctx, value, 'conceptId'),
+    }),
+    ...(value.inPractice !== undefined && {
+      inPractice: ((): boolean => {
+        if (typeof value.inPractice !== 'boolean') {
+          ctx.errors.push(`${ctx.path}.inPractice: expected a boolean`);
+          return true;
+        }
+        return value.inPractice;
+      })(),
     }),
     ...(value.scope !== undefined && { scope: contentScope(ctx, value) }),
   };

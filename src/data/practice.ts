@@ -23,7 +23,7 @@ import { IconName } from '@/assets/icons';
 
 import {
   courseModules,
-  courseQuestionIds,
+  coursePracticeQuestionIds,
   findCourseQuizQuestion,
 } from './course/learn';
 import { QuizQuestion, currentUnit } from './curriculum';
@@ -200,13 +200,14 @@ export const resolveQuestions = (ids: string[]): QuizQuestion[] =>
     .map(findQuestionById)
     .filter((question): question is QuizQuestion => question != null);
 
-// Every question the app can ask, as stable ids: the course bank, the
-// authored practice/lesson banks, and one flashcard per sign. This is the
+// Every question the general Practice pool can ask, as stable ids: the course
+// bank minus what was kept out of it, the authored practice/lesson banks, and
+// one flashcard per sign. This is the
 // universe the Practice bank map is drawn over, so it must stay in step with
 // what buildQuestions() can serve. Course content is versioned, so the list
 // is rebuilt on each call rather than frozen at module load.
 export const questionBankIds = (): string[] => [
-  ...courseQuestionIds(),
+  ...coursePracticeQuestionIds(),
   ...authoredQuestions().map(question => question.id),
   ...signs.map(sign => `sq-${sign.id}`),
 ];
