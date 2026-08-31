@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState, useSyncExternalStore } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 
 import { base64ToBytes, bytesToBase64 } from '@/lib/base64';
 import { fetchBase64 } from '@/lib/fetchBinary';
@@ -71,6 +71,35 @@ export const setAssetsBaseUrl = async (next: string): Promise<void> => {
   }
   baseUrl = next;
   await AsyncStorage.setItem(BASE_URL_KEY, next).catch(() => undefined);
+};
+
+// Reads the pictures a course shows into memory, newest need first, up to the
+// cache budget. Called at launch: a card that had to wait for its own read
+// showed a placeholder first and the picture a moment later, which is the
+// flicker this removes. Chunked, so a course of photographs stops at the
+// budget instead of pulling everything off the disk.
+const WARM_CHUNK = 32;
+
+export const warmAssets = async (shas: string[]): Promise<void> => {
+  const wanted = [...new Set(shas)].filter(sha => !bodies.has(sha));
+  for (let index = 0; index < wanted.length; index += WARM_CHUNK) {
+    if (cachedChars >= CACHE_BUDGET) {
+      log.info(`warm stopped at the cache budget after ${index} pictures`);
+      return;
+    }
+    const chunk = wanted.slice(index, index + WARM_CHUNK);
+    const entries = await AsyncStorage.getMany(chunk.map(bodyKey)).catch(
+      () => ({} as Record<string, string | null>),
+    );
+    for (const sha of chunk) {
+      const body = entries[bodyKey(sha)];
+      if (body != null) {
+        remember(sha, body);
+        held.add(sha);
+      }
+    }
+  }
+  notify();
 };
 
 // Restored once per launch: which pictures the device holds, and where new
@@ -186,17 +215,6 @@ export const useAssetSource = (
     }
   }, [sha256]);
   return asset == null ? null : assetSource(asset);
-};
-
-// Whether the device is still finding out what it holds, or is fetching this
-// picture — the difference between "not yet" and "not there".
-export const useAssetsHydrated = (): boolean =>
-  useSyncExternalStore(subscribe, () => held.size > 0 || baseUrl.length > 0);
-
-const store = async (sha256: string, body: string): Promise<void> => {
-  await AsyncStorage.setItem(bodyKey(sha256), body);
-  remember(sha256, body);
-  held.add(sha256);
 };
 
 // Pulls one picture onto the device, verified against the hash the document

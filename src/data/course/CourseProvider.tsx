@@ -1,6 +1,7 @@
 import React, { useEffect, useSyncExternalStore } from 'react';
 
-import { hydrateAssets } from '@/data/assets/store';
+import { hydrateAssets, warmAssets } from '@/data/assets/store';
+import { signsArtwork } from '@/data/signs/store';
 
 import { StoredCourse, courseStore } from './store';
 
@@ -36,11 +37,28 @@ type CourseProviderProps = {
 // course; AppState re-points the store at the learner's state as soon as its
 // own snapshot loads.
 export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
+  const course = useStoredCourse();
+
   useEffect(() => {
     courseStore.hydrate().catch(() => undefined);
-    // Where pictures live, restored before the first card renders.
+    // Where pictures live, and which ones are here, before the first card
+    // renders.
     hydrateAssets().catch(() => undefined);
   }, []);
+
+  // The pictures this course shows, read into memory as soon as the course
+  // itself is known — and again when a state switch brings another one. A
+  // card that waited for its own read drew a placeholder first and the
+  // illustration a moment later; there is nothing to wait for now.
+  useEffect(() => {
+    if (course == null) {
+      return;
+    }
+    warmAssets([
+      ...course.bundle.assets.map(asset => asset.sha256),
+      ...signsArtwork().map(asset => asset.sha256),
+    ]).catch(() => undefined);
+  }, [course]);
 
   return <>{children}</>;
 };

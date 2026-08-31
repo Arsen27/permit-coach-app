@@ -1,6 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { missingAssets, resetAssetsForTests } from '@/data/assets/store';
+import {
+  assetSource,
+  missingAssets,
+  resetAssetsForTests,
+  warmAssets,
+} from '@/data/assets/store';
 import {
   fetchBootstrapRaw,
   fetchCourseDocRaw,
@@ -98,6 +103,26 @@ live('the app against the live content server', () => {
     // The instructions, the folding and the manifest safety net together
     // produced the same course a fresh install downloads whole.
     expect(JSON.stringify(held.bundle)).toBe(freshBundle);
+
+    // And it works with the network gone: restart the phone in a tunnel, warm
+    // what the course shows off the device, and every picture draws.
+    resetAssetsForTests();
+    courseStore.resetForTests();
+    const realFetch = globalThis.fetch;
+    globalThis.fetch = (async () => {
+      throw new TypeError('Network request failed');
+    }) as typeof fetch;
+    try {
+      await courseStore.hydrate();
+      const offline = courseStore.getSnapshot()!;
+      await warmAssets(offline.bundle.assets.map(asset => asset.sha256));
+      const undrawable = offline.bundle.assets.filter(
+        asset => assetSource(asset) == null,
+      );
+      expect(undrawable).toEqual([]);
+    } finally {
+      globalThis.fetch = realFetch;
+    }
 
     // And the device is now current: the next check downloads nothing.
     const again = await runCourseUpdate(deps());

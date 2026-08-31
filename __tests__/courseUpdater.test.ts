@@ -7,10 +7,13 @@ import {
   fetchModuleDocRaw,
 } from '@/data/course/client';
 import {
+  assetSource,
   clearAssets,
+  missingAssets,
   primeVectorsForTests,
   resetAssetsForTests,
   vectorMarkup,
+  warmAssets,
 } from '@/data/assets/store';
 import { loadPrompt } from '@/data/course/promptStore';
 import { courseStore } from '@/data/course/store';
@@ -1587,5 +1590,75 @@ describe('two states on one device', () => {
     expect(
       await AsyncStorage.getItem(`dmv-prep/assets/v1/${sha256Hex(SVG)}`),
     ).toBe(SVG);
+  });
+});
+
+describe('a course on the device is a course that works on a plane', () => {
+  it('after installing, every picture is there and draws with the network gone', async () => {
+    const fixture = buildFixture(NEXT_VERSION, { svgs: [SVG, SVG2] });
+    serveFixture(fixture);
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: NEXT_VERSION,
+        mode: 'full',
+        pendingVersions: [fixture.entry([{ op: 'full', severity: 'soft' }])],
+        progressFallback: { severity: 'soft' },
+      }),
+    );
+
+    const result = await installCourse({ courseId: 'ca-class-c' });
+    expect(result.status).toBe('installed');
+
+    const held = courseStore.getSnapshot()!;
+    // Everything the course shows came down with it.
+    expect(await missingAssets(held.bundle.assets)).toEqual([]);
+
+    // The phone is restarted in a tunnel: memory is gone, and nothing can be
+    // fetched. The launch reads what the course shows off the device.
+    resetAssetsForTests();
+    courseStore.resetForTests();
+    globalThis.fetch = (async () => {
+      throw new TypeError('Network request failed');
+    }) as typeof fetch;
+    await courseStore.hydrate();
+    const offline = courseStore.getSnapshot()!;
+    expect(offline.deliveryVersion).toBe(NEXT_VERSION);
+    await warmAssets(offline.bundle.assets.map(asset => asset.sha256));
+
+    // Every illustration the course holds is drawable, with no waiting.
+    for (const asset of offline.bundle.assets) {
+      expect(assetSource(asset)).not.toBeNull();
+    }
+    // And the lessons themselves are all there.
+    expect(
+      offline.bundle.modules.flatMap(module => module.lessons),
+    ).toHaveLength(2);
+  });
+
+  it('a picture that cannot be fetched keeps the version off the device entirely', async () => {
+    const fixture = buildFixture(NEXT_VERSION, { svgs: [SVG, SVG2] });
+    serveFixture(fixture);
+    await clearAssets();
+    // One of the two pictures never arrives.
+    const wanted = sha256Hex(SVG2);
+    globalThis.fetch = (async (input: RequestInfo | URL) => {
+      if (String(input).includes(wanted)) {
+        throw new TypeError('Network request failed');
+      }
+      return { ok: true, status: 200, text: async () => SVG } as Response;
+    }) as typeof fetch;
+    mockBootstrap.mockResolvedValue(
+      bootstrapBody({
+        latestVersion: NEXT_VERSION,
+        mode: 'full',
+        pendingVersions: [fixture.entry([{ op: 'full', severity: 'soft' }])],
+        progressFallback: { severity: 'soft' },
+      }),
+    );
+
+    const result = await installCourse({ courseId: 'ca-class-c' });
+    expect(result.status).toBe('failed');
+    // Half a course is no course: nothing was committed.
+    expect(courseStore.getSnapshot()).toBeNull();
   });
 });
