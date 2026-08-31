@@ -43,7 +43,10 @@ import {
   saveLessonPlace,
 } from '@/data/course/lessonProgressStore';
 import { isCheckYourselfBlock } from '@/data/course/v2/wire';
+import { clearMark, narrowMark } from '@/data/course/lazy';
+import { courseStore } from '@/data/course/store';
 import { useLessonBody } from '@/data/course/useLessonBody';
+import { useYellowMarks } from '@/data/course/useYellowMarks';
 import { RootStackParamList } from '@/navigation/types';
 import { useAppState } from '@/state/AppState';
 import { shadows } from '@/theme';
@@ -114,6 +117,15 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
   // does.
   const body = useLessonBody(lessonId, () => navigation.goBack());
   const courseLesson = findCourseLesson(lessonId);
+  // The learner's yellow: which blocks of this lesson changed under them.
+  const yellowMarks = useYellowMarks(userId);
+  const yellowMark = yellowMarks[lessonId];
+  useEffect(() => {
+    if (body.status === 'ready' && yellowMark?.oldBlockHashes != null) {
+      // The new body is here: the mark narrows to the blocks that differ.
+      void narrowMark(userId, courseStore.activeCourseId(), lessonId);
+    }
+  }, [body.status, yellowMark, userId, lessonId]);
   const splitLesson =
     courseLesson?.lesson.testQuestionIds != null ||
     courseLesson?.lesson.format === 'intro_slides_test';
@@ -203,6 +215,8 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
       points: answered === 0 ? 0 : Math.round((correctCount / answered) * 100),
       completed: true,
     });
+    // Completed again: whatever was yellow here has been seen.
+    void clearMark(userId, courseStore.activeCourseId(), lessonId);
     clearLessonPlace(userId, lessonId);
   }, [
     applyLessonResult,
@@ -674,19 +688,27 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
         contentContainerStyle={{ paddingBottom: footerHeight + 12 }}
         showsVerticalScrollIndicator={false}
       >
-        <LessonCardBody
-          card={card}
-          question={question}
-          asset={asset}
-          answer={answer}
-          onSelect={select}
-          stateLabel={courseState}
-          cardStyles={bundle.course.cardStyles}
-          resolveAsset={findCourseAsset}
-          checkpointOrdinal={questionOrdinal}
-          checkpointTotal={questionIds.length}
-          revealed={recallShown}
-        />
+        <ChangedTint
+          $on={
+            yellowMark != null &&
+            (yellowMark.blocks == null ||
+              yellowMark.blocks.includes(card.block.blockId))
+          }
+        >
+          <LessonCardBody
+            card={card}
+            question={question}
+            asset={asset}
+            answer={answer}
+            onSelect={select}
+            stateLabel={courseState}
+            cardStyles={bundle.course.cardStyles}
+            resolveAsset={findCourseAsset}
+            checkpointOrdinal={questionOrdinal}
+            checkpointTotal={questionIds.length}
+            revealed={recallShown}
+          />
+        </ChangedTint>
       </ScrollView>
 
       <Footer
@@ -806,6 +828,17 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   scroll: { flex: 1 },
 });
+
+// A light wash over content that changed since the learner studied it —
+// enough to notice, not enough to shout. Gone when the lesson is completed
+// again.
+const ChangedTint = styled.View<{ $on: boolean }>`
+  border-radius: 18px;
+  background-color: ${({ $on }) =>
+    $on ? 'rgba(234, 179, 8, 0.08)' : 'transparent'};
+  border-width: ${({ $on }) => ($on ? '1px' : '0px')};
+  border-color: rgba(234, 179, 8, 0.35);
+`;
 
 const Screen = styled.View`
   flex: 1;

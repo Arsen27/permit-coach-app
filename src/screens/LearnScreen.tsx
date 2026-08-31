@@ -10,6 +10,7 @@ import Icon from '@/components/Icon';
 import ProgressRing from '@/components/ProgressRing';
 import ScreenHeader from '@/components/ScreenHeader';
 import { useCourse } from '@/data/course/CourseProvider';
+import { useYellowMarks } from '@/data/course/useYellowMarks';
 import {
   FINAL_EXAM_TOPIC_ID,
   courseLessonNumber,
@@ -128,6 +129,9 @@ type ModuleLadderProps = {
   testScore: number | undefined;
   currentLessonId: string | undefined;
   isLastModule: boolean;
+  // Completed lessons whose content changed under the learner: yellow, not
+  // green, until each is completed again.
+  markedLessons: Record<string, unknown>;
 };
 
 // Memoized below as ModuleLadder: the screen consumes AppState, which
@@ -141,6 +145,7 @@ const ModuleLadderComponent: React.FC<ModuleLadderProps> = ({
   testScore,
   currentLessonId,
   isLastModule,
+  markedLessons,
 }) => {
   const theme = useTheme();
   const navigation = useNavigation<RootNavigation>();
@@ -265,6 +270,7 @@ const ModuleLadderComponent: React.FC<ModuleLadderProps> = ({
         }
 
         if (status === 'done') {
+          const marked = markedLessons[lesson.lessonId] != null;
           return (
             <Node
               key={lesson.lessonId}
@@ -273,9 +279,17 @@ const ModuleLadderComponent: React.FC<ModuleLadderProps> = ({
                 navigation.navigate('Lesson', { lessonId: lesson.lessonId })
               }
             >
-              <DoneCircle>
-                <Icon name="check" size={30} color="#ffffff" />
-              </DoneCircle>
+              {marked ? (
+                // The content under this checkmark changed: yellow until the
+                // learner goes through it again.
+                <RedoCircle testID="lesson-redo">
+                  <Icon name="check" size={30} color="#ffffff" />
+                </RedoCircle>
+              ) : (
+                <DoneCircle>
+                  <Icon name="check" size={30} color="#ffffff" />
+                </DoneCircle>
+              )}
               <DoneLabel numberOfLines={2}>{lesson.title}</DoneLabel>
             </Node>
           );
@@ -464,7 +478,8 @@ const FinalExamBlock = React.memo(FinalExamBlockComponent);
 
 const LearnScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
-  const { lessonScores, topicScores, points } = useAppState();
+  const { userId, lessonScores, topicScores, points } = useAppState();
+  const yellowMarks = useYellowMarks(userId);
   const { bundle } = useCourse();
   const devUnlockAll = useDevUnlockAll();
 
@@ -533,6 +548,7 @@ const LearnScreen: React.FC = () => {
         <ModuleLadder
           key={module.moduleId}
           module={module}
+          markedLessons={yellowMarks}
           moduleUnlocked={moduleUnlockedById.get(module.moduleId) ?? false}
           lessonScores={lessonScores}
           testScore={topicScores[module.moduleId]}
@@ -601,6 +617,11 @@ const DoneCircle = styled.View`
   background-color: ${({ theme }) => theme.colors.done};
   align-items: center;
   justify-content: center;
+`;
+
+const RedoCircle = styled(DoneCircle)`
+  background-color: #eab308;
+  border-color: #ca8a04;
 `;
 
 const DoneLabel = styled.Text`

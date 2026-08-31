@@ -10,6 +10,7 @@ import {
 import {
   clearMark,
   ensureLesson,
+  narrowMark,
   hydrateLazyCourse,
   lazySnapshot,
   lessonLoaded,
@@ -322,7 +323,7 @@ it('an apology fix marks what the learner had completed, and the prompt survives
     message: 'We are sorry — lesson two was wrong.',
     lessonIds: ['l-two'],
   });
-  expect(await readMarks('u1', COURSE)).toEqual({ 'l-two': true });
+  expect(await readMarks('u1', COURSE)).toEqual({ 'l-two': {} });
 
   // A kill before the modal was seen: the prompt is still there.
   expect(await takePrompt('u1')).toEqual(result.prompt);
@@ -372,4 +373,44 @@ it('offline keeps everything and says so; a bad bank changes nothing', async () 
       .bundle.questions.map(q => q.questionId)
       .sort(),
   ).toEqual(['l-one-q01', 'l-two-q01']);
+});
+
+it('a mark narrows to the changed blocks the moment the new body arrives', async () => {
+  serveVersion('1.1.1', { 'l-one': L1, 'l-two': L2 }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({ current: '1.1.1', bankSha: sha256Hex(BANK1) }),
+  );
+  await syncLazyCourse(deps());
+  // The learner had opened and completed lesson two on the old version.
+  await ensureLesson(COURSE, 'l-two');
+
+  const L2FIXED = lessonDoc('1.1.2', 'l-two', 'Lesson two');
+  (L2FIXED.lesson.blocks[0] as { title: string }).title = 'Corrected challenge';
+  serveVersion('1.1.2', { 'l-one': L1, 'l-two': L2FIXED }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({
+      current: '1.1.2',
+      bankSha: sha256Hex(BANK1),
+      replace: {
+        version: '1.1.2',
+        subtype: 'rules',
+        changedLessons: ['l-two'],
+        message: 'The rules changed.',
+      },
+    }),
+  );
+  await syncLazyCourse(deps(['l-two']));
+
+  // Until the new body arrives, the mark remembers the old blocks.
+  const before = await readMarks('u1', COURSE);
+  expect(before['l-two'].oldBlockHashes).toBeDefined();
+
+  await ensureLesson(COURSE, 'l-two');
+  await narrowMark('u1', COURSE, 'l-two');
+  const after = await readMarks('u1', COURSE);
+  expect(after['l-two']).toEqual({ blocks: ['l-two-b01'] });
+
+  // Completing the lesson again clears it.
+  await clearMark('u1', COURSE, 'l-two');
+  expect(await readMarks('u1', COURSE)).toEqual({});
 });

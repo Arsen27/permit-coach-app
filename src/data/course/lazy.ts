@@ -46,6 +46,17 @@ const marksKey = (userId: string, courseId: string) =>
   `${PREFIX}/marks/${userId}/${courseId}`;
 const promptKey = (userId: string) => `${PREFIX}/prompt/${userId}`;
 
+// One yellow mark: a lesson to re-take. Until the new body arrives it keeps
+// the old blocks' hashes; the moment the body is downloaded the mark reduces
+// to exactly the blocks that changed, so the player can tint those and no
+// others. No hashes and no blocks means "treat the whole lesson as changed".
+export type YellowMark = {
+  blocks?: string[];
+  oldBlockHashes?: Record<string, string>;
+};
+
+export type YellowMarks = Record<string, YellowMark>;
+
 // Which lessons a learner should re-take, and why. Kept per user: the yellow
 // is about *their* completion, not about the device.
 export type ReplacePrompt = {
@@ -346,12 +357,23 @@ export const syncLazyCourse = async (deps: {
           };
           const existing = await readMarks(deps.userId, deps.courseId);
           for (const lessonId of affected) {
-            existing[lessonId] = true;
+            // The old body is still here for a beat: keep its blocks'
+            // hashes, so the mark can narrow to the changed blocks the
+            // moment the new body arrives.
+            const old = state.lessonDocs.get(lessonId);
+            existing[lessonId] =
+              old == null
+                ? {}
+                : {
+                    oldBlockHashes: Object.fromEntries(
+                      old.lesson.blocks.map(block => [
+                        block.blockId,
+                        sha256Hex(JSON.stringify(block)),
+                      ]),
+                    ),
+                  };
           }
-          await AsyncStorage.setItem(
-            marksKey(deps.userId, deps.courseId),
-            JSON.stringify(existing),
-          );
+          await writeMarks(deps.userId, deps.courseId, existing);
           await AsyncStorage.setItem(
             promptKey(deps.userId),
             JSON.stringify(prompt),
@@ -528,31 +550,83 @@ export const subscribeLazy = (listener: () => void): (() => void) => {
 // Yellow marks: which lessons this learner should re-take. Cleared one by
 // one as they complete each again.
 
+// In memory too, so a screen can read the marks synchronously and re-render
+// the moment they change.
+const marksCache = new Map<string, YellowMarks>();
+
+const writeMarks = async (
+  userId: string,
+  courseId: string,
+  marks: YellowMarks,
+): Promise<void> => {
+  marksCache.set(`${userId}/${courseId}`, marks);
+  await AsyncStorage.setItem(marksKey(userId, courseId), JSON.stringify(marks));
+  notify();
+};
+
 export const readMarks = async (
   userId: string,
   courseId: string,
-): Promise<Record<string, true>> => {
+): Promise<YellowMarks> => {
+  const cached = marksCache.get(`${userId}/${courseId}`);
+  if (cached != null) {
+    return cached;
+  }
   try {
     const raw = await AsyncStorage.getItem(marksKey(userId, courseId));
-    return raw == null ? {} : (JSON.parse(raw) as Record<string, true>);
+    const marks = raw == null ? {} : (JSON.parse(raw) as YellowMarks);
+    marksCache.set(`${userId}/${courseId}`, marks);
+    notify();
+    return marks;
   } catch {
     return {};
   }
 };
+
+// What a screen reads every render. Pure and identity-stable: a snapshot
+// born new on every call renders forever, and one that starts disk reads is
+// a side effect in a getter. The hook kicks the read; this only answers.
+const EMPTY_MARKS: YellowMarks = {};
+
+export const marksSnapshot = (userId: string, courseId: string): YellowMarks =>
+  marksCache.get(`${userId}/${courseId}`) ?? EMPTY_MARKS;
 
 export const clearMark = async (
   userId: string,
   courseId: string,
   lessonId: string,
 ): Promise<void> => {
-  const marks = await readMarks(userId, courseId);
+  const marks = { ...(await readMarks(userId, courseId)) };
   if (marks[lessonId] != null) {
     delete marks[lessonId];
-    await AsyncStorage.setItem(
-      marksKey(userId, courseId),
-      JSON.stringify(marks),
-    );
+    await writeMarks(userId, courseId, marks);
   }
+};
+
+// When a marked lesson's new body lands, the mark narrows to the blocks that
+// actually differ from the ones the learner saw.
+export const narrowMark = async (
+  userId: string,
+  courseId: string,
+  lessonId: string,
+): Promise<void> => {
+  const doc = stateOf(courseId).lessonDocs.get(lessonId);
+  const marks = await readMarks(userId, courseId);
+  const mark = marks[lessonId];
+  if (doc == null || mark?.oldBlockHashes == null) {
+    return;
+  }
+  const blocks = doc.lesson.blocks
+    .filter(
+      block =>
+        mark.oldBlockHashes![block.blockId] !==
+        sha256Hex(JSON.stringify(block)),
+    )
+    .map(block => block.blockId);
+  await writeMarks(userId, courseId, {
+    ...marks,
+    [lessonId]: { blocks },
+  });
 };
 
 // The persisted prompt, shown once and cleared — a kill while the modal was
@@ -645,9 +719,20 @@ export const primeLazyCourseForTests = (
   notify();
 };
 
+// Test seam: marks as a sync would have written them.
+export const primeMarksForTests = (
+  userId: string,
+  courseId: string,
+  marks: YellowMarks,
+): void => {
+  marksCache.set(`${userId}/${courseId}`, marks);
+  notify();
+};
+
 // Test seam.
 export const resetLazyForTests = (): void => {
   states.clear();
+  marksCache.clear();
   listeners.clear();
 };
 

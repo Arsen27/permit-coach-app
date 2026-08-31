@@ -1,5 +1,7 @@
 import React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
+import ReactTestRenderer, {
+  ReactTestRenderer as Renderer,
+} from 'react-test-renderer';
 import { Alert } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 
@@ -123,6 +125,15 @@ const Probe: React.FC = () => {
   return null;
 };
 
+const mounted: Renderer[] = [];
+afterEach(async () => {
+  for (const tree of mounted.splice(0)) {
+    await ReactTestRenderer.act(async () => {
+      tree.unmount();
+    });
+  }
+});
+
 const renderPicker = async () => {
   let tree!: ReactTestRenderer.ReactTestRenderer;
   await ReactTestRenderer.act(async () => {
@@ -138,6 +149,7 @@ const renderPicker = async () => {
       </ThemeProvider>,
     );
   });
+  mounted.push(tree);
   return tree;
 };
 

@@ -4,6 +4,7 @@ import ReactTestRenderer, {
 } from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components/native';
 
+import { clearMark, primeMarksForTests } from '@/data/course/lazy';
 import { courseStore } from '@/data/course/store';
 import { resetDevUnlockAllForTests, setDevUnlockAll } from '@/lib/devUnlock';
 import LearnScreen from '@/screens/LearnScreen';
@@ -176,5 +177,40 @@ describe('LearnScreen (schema-v2 course)', () => {
     // and the final exam is still locked.
     expect(lockIconCount(tree)).toBe(35);
     expect(texts).toContain('4 / 32 lessons · 400 pts');
+  });
+});
+
+describe('yellow marks on the ladder', () => {
+  it('paints a completed-but-changed lesson yellow until it is retaken', async () => {
+    await commitFixtureCourse();
+    const lesson = FIXTURE_COURSE_BUNDLE.modules[0].lessons[0];
+    const tree = await renderLearn();
+    await ReactTestRenderer.act(async () => {
+      observedState!.applyLessonResult({
+        lessonId: lesson.lessonId,
+        answered: 5,
+        correct: 5,
+        points: 100,
+        completed: true,
+      });
+    });
+    const redoNodes = () =>
+      tree.root.findAll(
+        node =>
+          node.props.testID === 'lesson-redo' && String(node.type) === 'View',
+      );
+    expect(redoNodes()).toHaveLength(0);
+
+    await ReactTestRenderer.act(async () => {
+      primeMarksForTests('test-user', 'ca-class-c', {
+        [lesson.lessonId]: {},
+      });
+    });
+    expect(redoNodes()).toHaveLength(1);
+
+    await ReactTestRenderer.act(async () => {
+      await clearMark('test-user', 'ca-class-c', lesson.lessonId);
+    });
+    expect(redoNodes()).toHaveLength(0);
   });
 });
