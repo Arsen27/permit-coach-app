@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import {
+  ActivityIndicator,
   Alert,
   LayoutAnimation,
   Modal,
@@ -42,6 +43,7 @@ import {
   saveLessonPlace,
 } from '@/data/course/lessonProgressStore';
 import { isCheckYourselfBlock } from '@/data/course/v2/wire';
+import { useLessonBody } from '@/data/course/useLessonBody';
 import { RootStackParamList } from '@/navigation/types';
 import { useAppState } from '@/state/AppState';
 import { shadows } from '@/theme';
@@ -107,6 +109,10 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
   const finishedRef = useRef(false);
   const scrollRef = useRef<ScrollView>(null);
 
+  // The deck cannot exist without its lesson; entered directly (a deep
+  // link, a restore), this screen downloads it the same way the overview
+  // does.
+  const body = useLessonBody(lessonId, () => navigation.goBack());
   const courseLesson = findCourseLesson(lessonId);
   const splitLesson =
     courseLesson?.lesson.testQuestionIds != null ||
@@ -116,6 +122,7 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
     [courseLesson],
   );
   const done = cards.length > 0 && index >= cards.length;
+  const waitingForBody = body.status !== 'ready';
 
   // Snapshots taken at mount for the lesson_opened event: reading them out of
   // refs keeps the restore effect below off lessonScores, which changes the
@@ -342,6 +349,24 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
     }
     goTo(index + 1);
   };
+
+  // -------------------------------------------------------------------------
+  // The lesson's body is still arriving (first open, or a retry): a quiet
+  // spinner, and the hook's alert owns the no-connection conversation.
+
+  if (waitingForBody) {
+    return (
+      <Screen
+        style={{
+          paddingTop: isIOS ? 0 : insets.top + 12,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <ActivityIndicator />
+      </Screen>
+    );
+  }
 
   // -------------------------------------------------------------------------
   // Lesson complete

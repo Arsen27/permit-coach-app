@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { ActivityIndicator, Platform } from 'react-native';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled, { useTheme } from 'styled-components/native';
@@ -17,6 +17,7 @@ import {
 } from '@/data/course/learn';
 import type { CourseAssetV2, CourseLessonV2 } from '@/data/course/v2/wire';
 import { blockAssetIds } from '@/data/course/v2/wire';
+import { useLessonBody } from '@/data/course/useLessonBody';
 import { RootStackParamList } from '@/navigation/types';
 
 type LessonOverviewScreenProps = NativeStackScreenProps<
@@ -45,10 +46,20 @@ const LessonOverviewScreen: React.FC<LessonOverviewScreenProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
+  // The lesson's body, downloaded the first time it is opened and kept for
+  // good. Until it is here there is nothing honest to show.
+  const body = useLessonBody(route.params.lessonId, () => navigation.goBack());
   const ref = findCourseLesson(route.params.lessonId);
 
   if (ref == null) {
     return null;
+  }
+  if (body.status !== 'ready') {
+    return (
+      <Waiting>
+        <ActivityIndicator />
+      </Waiting>
+    );
   }
 
   const { lesson, module } = ref;
@@ -165,6 +176,13 @@ const LessonOverviewScreen: React.FC<LessonOverviewScreenProps> = ({
     </Root>
   );
 };
+
+const Waiting = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.bg};
+`;
 
 export default LessonOverviewScreen;
 
