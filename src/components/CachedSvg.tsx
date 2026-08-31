@@ -23,6 +23,7 @@ const { parse, SvgAst } = RNSvg as unknown as {
 };
 
 const MAX_ENTRIES = 400;
+const PARSE_CHUNK = 12;
 
 // null records a markup that would not parse, so it is not retried per frame.
 const cache = new Map<string, SvgTree | null>();
@@ -50,6 +51,24 @@ const astOf = (key: string, markup: string): SvgTree | null => {
 export const svgDrawable = (key: string, markup: string): boolean =>
   astOf(key, markup) != null;
 
+// Whether the tree for this key is already built — parsed fine or refused,
+// either way drawing it costs nothing now.
+export const svgTreeWarm = (key: string): boolean => cache.has(key);
+
+// Parses a batch of markups whose bytes the caller already holds, a few per
+// tick. The entry gates hand these over so no slide pays a parse mid-lesson.
+export const warmSvgMarkups = async (
+  entries: readonly { key: string; markup: string }[],
+): Promise<void> => {
+  for (let index = 0; index < entries.length; index += PARSE_CHUNK) {
+    for (const entry of entries.slice(index, index + PARSE_CHUNK)) {
+      astOf(entry.key, entry.markup);
+    }
+    // Yield the thread: this is a warm-up, not a race.
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+};
+
 type CachedSvgProps = {
   // The cache key: a content hash where there is one, the markup itself
   // otherwise.
@@ -74,23 +93,15 @@ const CachedSvg: React.FC<CachedSvgProps> = ({
 
 // Parses the course's diagrams in the background after launch, a few per
 // tick, so the first visit to any card finds its tree already built.
-const PARSE_CHUNK = 12;
-
-export const warmSvgAsts = async (
+export const warmSvgAsts = (
   assets: { sha256: string; mime: string }[],
-): Promise<void> => {
-  const vectors = assets.filter(isVectorAsset);
-  for (let index = 0; index < vectors.length; index += PARSE_CHUNK) {
-    for (const asset of vectors.slice(index, index + PARSE_CHUNK)) {
+): Promise<void> =>
+  warmSvgMarkups(
+    assets.filter(isVectorAsset).flatMap(asset => {
       const markup = vectorMarkup(asset);
-      if (markup != null) {
-        astOf(asset.sha256, markup);
-      }
-    }
-    // Yield the thread: this is a warm-up, not a race.
-    await new Promise(resolve => setTimeout(resolve, 0));
-  }
-};
+      return markup == null ? [] : [{ key: asset.sha256, markup }];
+    }),
+  );
 
 // Test seam.
 export const resetSvgAstsForTests = (): void => {

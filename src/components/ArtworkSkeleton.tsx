@@ -19,6 +19,9 @@ type ArtworkSkeletonProps = {
   aspectRatio?: number;
   // A square instead of a ratio: a sign's tile is sized in points.
   size?: number;
+  // The whole screen: the entry gate a lesson or quiz shows while it warms
+  // everything it is about to draw.
+  fill?: boolean;
   radius?: number;
   still?: boolean;
   label?: string;
@@ -33,6 +36,7 @@ const BAND_FRACTION = 0.6;
 const ArtworkSkeleton: React.FC<ArtworkSkeletonProps> = ({
   aspectRatio,
   size,
+  fill = false,
   radius = 0,
   still = false,
   label,
@@ -80,7 +84,9 @@ const ArtworkSkeleton: React.FC<ArtworkSkeletonProps> = ({
     <Frame
       style={[
         { borderRadius: radius },
-        size != null
+        fill
+          ? { flex: 1, width: '100%' }
+          : size != null
           ? { width: size, height: size }
           : { width: '100%', aspectRatio: aspectRatio ?? 16 / 9 },
       ]}

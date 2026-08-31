@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 import {
-  ActivityIndicator,
   Alert,
   LayoutAnimation,
   Modal,
@@ -22,6 +21,7 @@ import styled, { useTheme } from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { track } from '@/analytics';
+import ArtworkSkeleton from '@/components/ArtworkSkeleton';
 import Icon from '@/components/Icon';
 import PrimaryButton from '@/components/PrimaryButton';
 import ProgressTrack from '@/components/ProgressTrack';
@@ -42,6 +42,7 @@ import {
   loadLessonPlace,
   saveLessonPlace,
 } from '@/data/course/lessonProgressStore';
+import { useArtworkGate } from '@/data/assets/gate';
 import { isCheckYourselfBlock } from '@/data/course/v2/wire';
 import { clearMark, narrowMark } from '@/data/course/lazy';
 import { courseStore } from '@/data/course/store';
@@ -184,6 +185,31 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
       ? activeLesson.theoryQuestionIds ?? []
       : activeLesson.questionIds;
   }, [courseLesson, splitLesson]);
+  // Everything this lesson draws, warmed at the door: the slides' assets are
+  // read and parsed behind the entry skeleton, so no transition pays them.
+  const artReady = useArtworkGate(
+    useMemo(() => {
+      const lessonAssets = courseLesson?.lesson.assetIds ?? [];
+      const questionAssets = (courseLesson?.lesson.questionIds ?? []).flatMap(
+        id => {
+          const assetId = findCourseQuestion(id)?.assetId;
+          return assetId == null ? [] : [assetId];
+        },
+      );
+      return {
+        ensure: [...new Set([...lessonAssets, ...questionAssets])].flatMap(
+          assetId => {
+            const asset = findCourseAsset(assetId);
+            return asset == null ? [] : [asset];
+          },
+        ),
+        inline: [],
+      };
+      // A new body (first download, an update) can rename the assets.
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [courseLesson, body.status]),
+  );
+
   const correctCount = useMemo(
     () =>
       questionIds.filter(id => {
@@ -368,16 +394,10 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
   // The lesson's body is still arriving (first open, or a retry): a quiet
   // spinner, and the hook's alert owns the no-connection conversation.
 
-  if (waitingForBody) {
+  if (waitingForBody || !artReady) {
     return (
-      <Screen
-        style={{
-          paddingTop: isIOS ? 0 : insets.top + 12,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <ActivityIndicator />
+      <Screen style={{ paddingTop: isIOS ? 0 : insets.top + 12 }}>
+        <ArtworkSkeleton fill />
       </Screen>
     );
   }

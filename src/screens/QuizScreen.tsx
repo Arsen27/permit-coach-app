@@ -2,6 +2,7 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -22,6 +23,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { track } from '@/analytics';
 import { questionDiagram } from '@/assets/questionDiagrams';
+import ArtworkSkeleton from '@/components/ArtworkSkeleton';
 import CourseAssetView from '@/components/CourseAssetView';
 import GlassCircleButton from '@/components/GlassCircleButton';
 import Icon from '@/components/Icon';
@@ -30,6 +32,7 @@ import ProgressTrack from '@/components/ProgressTrack';
 import RemoteImage from '@/components/RemoteImage';
 import SignImage from '@/components/SignImage';
 import { Eyebrow } from '@/components/typography';
+import { useArtworkGate } from '@/data/assets/gate';
 import {
   FINAL_EXAM_TOPIC_ID,
   courseLessonQuiz,
@@ -46,6 +49,8 @@ import {
   topicQuestions,
 } from '@/data/practice';
 import { findSign, shuffle, signQuizQuestions } from '@/data/signs';
+import { SEED_SIGN_SVGS } from '@/data/signs/seedAssets';
+import { signThumbRef } from '@/data/signs/wire';
 import { useSignsCatalog } from '@/data/signs/SignsProvider';
 import { revealScrollOffset } from '@/lib/revealScroll';
 import { QuizParams, RootStackParamList } from '@/navigation/types';
@@ -194,6 +199,56 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
   } = app;
 
   const [questions] = useState(() => buildQuestions(params, app));
+  // Every picture this session will show — sign tiles, course diagrams,
+  // authored schematics — read and parsed behind the entry skeleton, so
+  // moving between questions costs nothing. Sign art especially: those
+  // vectors were parsed at first draw, and it read as a lag on every "Next".
+  const artReady = useArtworkGate(
+    useMemo(() => {
+      const ensure = new Map<
+        string,
+        { sha256: string; mime: string; sizeBytes: number }
+      >();
+      const inline = new Map<string, string>();
+      for (const entry of questions) {
+        if (entry.signId != null) {
+          const image = findSign(entry.signId)?.image;
+          if (image != null) {
+            const ref = signThumbRef(image);
+            const bundled = SEED_SIGN_SVGS[ref.assetId];
+            if (bundled != null) {
+              inline.set(ref.assetId, bundled);
+            } else {
+              ensure.set(ref.assetId, {
+                sha256: ref.assetId,
+                mime: ref.mime,
+                sizeBytes: ref.sizeBytes,
+              });
+            }
+          }
+        }
+        if (entry.assetId != null) {
+          const asset = findCourseAsset(entry.assetId);
+          if (asset != null) {
+            ensure.set(asset.sha256, asset);
+          }
+        }
+        const schematic = questionDiagram(entry.id);
+        if (schematic != null) {
+          inline.set(schematic.xml, schematic.xml);
+        }
+      }
+      return {
+        ensure: [...ensure.values()],
+        inline: [...inline.entries()].map(([key, markup]) => ({
+          key,
+          markup,
+        })),
+      };
+      // The question list is built once per mounted session.
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [questions]),
+  );
   const [index, setIndex] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
@@ -503,6 +558,18 @@ const QuizScreen: React.FC<QuizScreenProps> = ({ navigation, route }) => {
             onPress={() => navigation.popToTop()}
           />
         </Floating>
+      </Screen>
+    );
+  }
+
+  // Warming up: one full-screen skeleton at the door instead of a beat of
+  // lag on every question. Local work only — this never waits on a network.
+  if (!artReady) {
+    return (
+      <Screen
+        style={{ paddingTop: Platform.OS === 'ios' ? 10 : insets.top + 10 }}
+      >
+        <ArtworkSkeleton fill />
       </Screen>
     );
   }

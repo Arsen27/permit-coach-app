@@ -35,6 +35,13 @@ const renderQuiz = async (): Promise<Renderer> => {
       </ThemeProvider>,
     );
   });
+  // Let the artwork gate warm the sign vectors (it yields between parse
+  // chunks) and lift the entry skeleton.
+  await ReactTestRenderer.act(async () => {
+    for (let i = 0; i < 4; i += 1) {
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
+  });
   return tree;
 };
 

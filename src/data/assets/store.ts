@@ -137,6 +137,9 @@ export const artworkReady = (): boolean => warmedOnce;
 // Whether the device holds this picture but has not read it into memory yet —
 // "not yet", as opposed to "not there". A view that cannot tell the two apart
 // tells the learner an illustration is unavailable while it is being read.
+// Whether this picture's body is in memory, ready to draw synchronously.
+export const assetInMemory = (sha256: string): boolean => bodies.has(sha256);
+
 export const assetPending = (asset: { sha256: string }): boolean =>
   !bodies.has(asset.sha256) && held.has(asset.sha256);
 
@@ -164,8 +167,14 @@ export const hydrateAssets = async (): Promise<void> => {
   }
 };
 
-export const assetUrl = (asset: CourseAssetV2): string =>
-  `${baseUrl}/${asset.sha256}.${ASSET_EXTENSIONS[asset.mime]}`;
+// What the store needs to know about a picture: enough to name the file,
+// fetch it, and verify it. Course assets and sign references both satisfy it.
+export type AssetRef = { sha256: string; mime: string; sizeBytes: number };
+
+export const assetUrl = (asset: AssetRef): string =>
+  `${baseUrl}/${asset.sha256}.${
+    ASSET_EXTENSIONS[asset.mime as CourseAssetV2['mime']]
+  }`;
 
 export const isVectorAsset = (asset: { mime: string }): boolean =>
   asset.mime === 'image/svg+xml';
@@ -274,7 +283,7 @@ const store = async (sha256: string, body: string): Promise<void> => {
 // Pulls one picture onto the device, verified against the hash the document
 // named — the same rule every document goes through, for bytes as well as
 // markup, so nothing that disagrees with what the release promised is kept.
-const fetchAsset = async (asset: CourseAssetV2): Promise<void> => {
+const fetchAsset = async (asset: AssetRef): Promise<void> => {
   const url = assetUrl(asset);
   if (isVectorAsset(asset)) {
     const response = await fetchWithRetry(url, {
@@ -312,9 +321,9 @@ export type AssetProgress = { fetched: number; total: number };
 // Which of these pictures the device does not hold. Cheap enough to ask on
 // every check, so a picture lost to an interrupted write or a cleared store
 // is noticed and fetched again long before a lesson needs it.
-export const missingAssets = async (
-  assets: CourseAssetV2[],
-): Promise<CourseAssetV2[]> => {
+export const missingAssets = async <Ref extends AssetRef>(
+  assets: Ref[],
+): Promise<Ref[]> => {
   if (assets.length === 0) {
     return [];
   }
@@ -327,7 +336,7 @@ export const missingAssets = async (
 // the device is a course that renders — offline, vectors and photographs
 // alike.
 export const ensureAssets = async (
-  assets: CourseAssetV2[],
+  assets: AssetRef[],
   onProgress?: (progress: AssetProgress) => void,
 ): Promise<void> => {
   const wanted = new Map(assets.map(asset => [asset.sha256, asset]));
