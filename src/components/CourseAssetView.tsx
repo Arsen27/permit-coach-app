@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
-import { SvgAst } from 'react-native-svg';
 
 import { useAssetSource } from '@/data/assets/store';
 
-import { astOf } from './svgAst';
+import CachedSvg, { svgDrawable } from './CachedSvg';
 import type { CourseAssetV2 } from '@/data/course/v2/wire';
 
 import PlaceholderImage from './PlaceholderImage';
@@ -66,13 +65,12 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
   const key = markup ?? uri;
   // Parsed once per picture, never per mount: SvgXml re-parsed its markup on
   // every visit to a card, and in a debug build that read as a flicker.
-  const ast =
+  const svgKey =
     markup == null
       ? null
-      : astOf(
-          'svgXml' in (asset ?? {}) ? markup : (asset as CourseAssetV2).sha256,
-          markup,
-        );
+      : 'svgXml' in (asset ?? {})
+      ? markup
+      : (asset as CourseAssetV2).sha256;
 
   // A picture the device holds and is still reading keeps its place quietly:
   // saying "unavailable" for the moment a read takes is both wrong and the
@@ -94,7 +92,7 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
     asset == null ||
     key == null ||
     key === failedKey ||
-    (markup != null && ast == null)
+    (markup != null && svgKey != null && !svgDrawable(svgKey, markup))
   ) {
     return (
       <PlaceholderImage
@@ -121,11 +119,13 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
         on Android a mounted SvgXml can go on blitting a stale cached bitmap,
         and a diagram is big enough that doing so is impossible to miss.
       */}
-      {markup != null ? (
-        <SvgAst
+      {markup != null && svgKey != null ? (
+        <CachedSvg
           key={key}
-          ast={ast}
-          override={{ width: '100%', height: '100%' }}
+          cacheKey={svgKey}
+          markup={markup}
+          width="100%"
+          height="100%"
         />
       ) : (
         <Image

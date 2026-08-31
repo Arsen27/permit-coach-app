@@ -5,7 +5,7 @@ import {
   markArtworkReady,
   warmAssets,
 } from '@/data/assets/store';
-import { warmSvgAsts } from '@/components/svgAst';
+import { warmSvgAsts } from '@/components/CachedSvg';
 import { signsArtwork } from '@/data/signs/store';
 
 import { StoredCourse, courseStore } from './store';

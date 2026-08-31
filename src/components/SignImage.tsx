@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
-import { SvgAst } from 'react-native-svg';
 
 import { useAssetSource } from '@/data/assets/store';
 
-import { astOf } from './svgAst';
+import CachedSvg, { svgDrawable } from './CachedSvg';
 import { SEED_SIGN_SVGS } from '@/data/signs/seedAssets';
 import { Sign, SignImageRef, signThumbRef } from '@/data/signs/wire';
 
@@ -68,11 +67,17 @@ const SignImage: React.FC<SignImageProps> = ({
   }
 
   if (stored.kind === 'markup') {
-    const ast = astOf(ref.assetId, stored.markup);
-    if (ast == null) {
+    if (!svgDrawable(ref.assetId, stored.markup)) {
       return <PlaceholderImage label={sign.name} height={size} radius={8} />;
     }
-    return <SvgAst ast={ast} override={{ width: size, height: size }} />;
+    return (
+      <CachedSvg
+        cacheKey={ref.assetId}
+        markup={stored.markup}
+        width={size}
+        height={size}
+      />
+    );
   }
 
   return (
