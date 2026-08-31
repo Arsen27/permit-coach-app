@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
+import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
 
 import { useAssetSource } from '@/data/assets/store';
@@ -43,7 +44,10 @@ const SignImage: React.FC<SignImageProps> = ({
 
   // Content-addressed, so the id is the hash: the same picture in the store
   // and in the bundle are the same bytes.
-  const downloaded = useAssetSource({ sha256: ref.assetId, mime: ref.mime });
+  const { source: downloaded, pending } = useAssetSource({
+    sha256: ref.assetId,
+    mime: ref.mime,
+  });
 
   // The bundled catalogue's artwork ships with the app, so a fresh install
   // draws every sign with no network. Anything published later is not in here
@@ -51,8 +55,16 @@ const SignImage: React.FC<SignImageProps> = ({
   const bundled = SEED_SIGN_SVGS[ref.assetId];
 
   // The bundled copy needs no read at all; anything else comes off the device.
-  const stored: ReturnType<typeof useAssetSource> =
-    bundled != null ? { kind: 'markup', markup: bundled } : downloaded;
+  const stored =
+    bundled != null
+      ? ({ kind: 'markup', markup: bundled } as const)
+      : downloaded;
+
+  // Being read off the device: hold the space rather than claim the picture
+  // is missing.
+  if (stored == null && pending) {
+    return <Held style={{ width: size, height: size }} />;
+  }
 
   if (failedAssetId === ref.assetId || stored == null) {
     return <PlaceholderImage label={sign.name} height={size} radius={8} />;
@@ -80,5 +92,7 @@ const SignImage: React.FC<SignImageProps> = ({
     />
   );
 };
+
+const Held = styled.View``;
 
 export default SignImage;

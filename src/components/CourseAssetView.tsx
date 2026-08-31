@@ -56,12 +56,26 @@ const CourseAssetView: React.FC<CourseAssetViewProps> = ({
 
   // Inline markup wins (registry art); anything else is a stored picture.
   const inline = asset == null ? null : inlineMarkup(asset);
-  const stored = useAssetSource(
+  const { source: stored, pending } = useAssetSource(
     asset != null && inline == null ? (asset as CourseAssetV2) : null,
   );
   const markup = inline ?? (stored?.kind === 'markup' ? stored.markup : null);
   const uri = stored?.kind === 'uri' ? stored.uri : null;
   const key = markup ?? uri;
+
+  // A picture the device holds and is still reading keeps its place quietly:
+  // saying "unavailable" for the moment a read takes is both wrong and the
+  // thing a learner notices.
+  if (pending) {
+    return (
+      <Frame
+        style={{ borderRadius: radius, aspectRatio: aspectRatioOf(asset!) }}
+        accessible
+        accessibilityRole="image"
+        accessibilityLabel={asset!.alt}
+      />
+    );
+  }
 
   // Nothing to draw: a vector that never made it onto the device, or a
   // drawing that failed. The alt text still says what was meant to be here.

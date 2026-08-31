@@ -78,29 +78,51 @@ export const setAssetsBaseUrl = async (next: string): Promise<void> => {
 // showed a placeholder first and the picture a moment later, which is the
 // flicker this removes. Chunked, so a course of photographs stops at the
 // budget instead of pulling everything off the disk.
-const WARM_CHUNK = 32;
+const WARM_CHUNK = 48;
 
 export const warmAssets = async (shas: string[]): Promise<void> => {
   const wanted = [...new Set(shas)].filter(sha => !bodies.has(sha));
+  if (wanted.length === 0) {
+    return;
+  }
+  const elapsed = log.time();
+  const chunks: string[][] = [];
   for (let index = 0; index < wanted.length; index += WARM_CHUNK) {
-    if (cachedChars >= CACHE_BUDGET) {
-      log.info(`warm stopped at the cache budget after ${index} pictures`);
-      return;
-    }
-    const chunk = wanted.slice(index, index + WARM_CHUNK);
-    const entries = await AsyncStorage.getMany(chunk.map(bodyKey)).catch(
-      () => ({} as Record<string, string | null>),
-    );
-    for (const sha of chunk) {
+    chunks.push(wanted.slice(index, index + WARM_CHUNK));
+  }
+  // All at once, not one round after another: a course's pictures are a
+  // single burst of reads, and waiting for each batch in turn is what a
+  // learner saw as an illustration arriving late.
+  const results = await Promise.all(
+    chunks.map(chunk =>
+      AsyncStorage.getMany(chunk.map(bodyKey)).catch(
+        () => ({} as Record<string, string | null>),
+      ),
+    ),
+  );
+  let read = 0;
+  results.forEach((entries, index) => {
+    for (const sha of chunks[index]) {
+      if (cachedChars >= CACHE_BUDGET) {
+        return;
+      }
       const body = entries[bodyKey(sha)];
       if (body != null) {
         remember(sha, body);
         held.add(sha);
+        read += 1;
       }
     }
-  }
+  });
+  log.info(`${read} pictures ready (${elapsed()}ms)`);
   notify();
 };
+
+// Whether the device holds this picture but has not read it into memory yet —
+// "not yet", as opposed to "not there". A view that cannot tell the two apart
+// tells the learner an illustration is unavailable while it is being read.
+export const assetPending = (asset: { sha256: string }): boolean =>
+  !bodies.has(asset.sha256) && held.has(asset.sha256);
 
 // Restored once per launch: which pictures the device holds, and where new
 // ones come from. Without this a restart drew placeholders — the files were
@@ -203,7 +225,7 @@ const subscribe = (listener: () => void): (() => void) => {
 // not in memory yet. Re-renders the moment it lands.
 export const useAssetSource = (
   asset: { sha256: string; mime: string } | null | undefined,
-): AssetSource | null => {
+): { source: AssetSource | null; pending: boolean } => {
   const sha256 = asset?.sha256 ?? '';
   useSyncExternalStore(
     subscribe,
@@ -214,7 +236,10 @@ export const useAssetSource = (
       void readBody(sha256);
     }
   }, [sha256]);
-  return asset == null ? null : assetSource(asset);
+  return {
+    source: asset == null ? null : assetSource(asset),
+    pending: asset != null && assetPending(asset),
+  };
 };
 
 const store = async (sha256: string, body: string): Promise<void> => {

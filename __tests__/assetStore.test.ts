@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
+  assetPending,
   assetSource,
   readForTests,
   clearAssets,
@@ -13,6 +14,7 @@ import {
   setAssetsBaseUrl,
   sweepAssets,
   vectorMarkup,
+  warmAssets,
 } from '@/data/assets/store';
 import { bytesToBase64 } from '@/lib/base64';
 import { sha256Hex, sha256HexOfBytes, utf8ByteLength } from '@/lib/sha256';
@@ -197,4 +199,52 @@ it('a raster primed on the device needs no network', async () => {
   await primeRasterForTests([[raster.sha256, PNG_BYTES]]);
   expect(assetSource(raster)?.kind).toBe('uri');
   expect(fetchMock).not.toHaveBeenCalled();
+});
+
+it('reads a whole course of pictures in one burst, not batch after batch', async () => {
+  // Enough to need several batches: a sequential read is what a learner saw
+  // as an illustration arriving after the card.
+  const many = Array.from({ length: 120 }, (_unused, index) => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" id="s${index}"/>`;
+    return { svg, sha256: sha256Hex(svg) };
+  });
+  await primeVectorsForTests(many.map(one => [one.sha256, one.svg]));
+  resetAssetsForTests();
+
+  let openReads = 0;
+  let peak = 0;
+  const real = AsyncStorage.getMany as jest.Mock;
+  const impl = real.getMockImplementation()!;
+  real.mockImplementation(async (keys: string[]) => {
+    openReads += 1;
+    peak = Math.max(peak, openReads);
+    const result = await impl(keys);
+    openReads -= 1;
+    return result;
+  });
+
+  await warmAssets(many.map(one => one.sha256));
+  real.mockImplementation(impl);
+
+  expect(peak).toBeGreaterThan(1);
+  for (const one of many) {
+    expect(
+      assetSource({ sha256: one.sha256, mime: 'image/svg+xml' }),
+    ).not.toBeNull();
+  }
+});
+
+it('tells "still being read" apart from "not here"', async () => {
+  await primeVectorsForTests([[vector.sha256, SVG]]);
+  // A launch that has seen what the device holds but not read the bodies.
+  resetAssetsForTests();
+  await hydrateAssets();
+
+  expect(assetPending(vector)).toBe(true);
+  expect(assetPending(raster)).toBe(false);
+  expect(assetSource(vector)).toBeNull();
+
+  await readForTests(vector.sha256);
+  expect(assetPending(vector)).toBe(false);
+  expect(assetSource(vector)).not.toBeNull();
 });
