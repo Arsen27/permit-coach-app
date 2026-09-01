@@ -34,10 +34,29 @@ export type BankQuestionV1 = {
   inPractice?: boolean;
 };
 
+// A picture one of these questions shows. The bytes are not here: `sha256`
+// names a file the content server serves, immutably, because the name is the
+// hash. The bank carries them because a question is asked wherever its id is
+// referenced — a final exam draws from lessons the learner never opened, and
+// a question whose picture only travelled inside a lesson document would
+// have nothing to draw there.
+export type BankAssetV1 = {
+  assetId: string;
+  mime: 'image/svg+xml' | 'image/png' | 'image/jpeg';
+  sha256: string;
+  sizeBytes: number;
+  width: number;
+  height: number;
+  alt: string;
+};
+
 export type QuestionBankDocV1 = {
   schemaVersion: typeof BANK_SCHEMA_VERSION;
   courseId: string;
   questions: BankQuestionV1[];
+  // Absent in a bank published before pictures travelled with it; the app
+  // then falls back to the copies inside the lesson documents it holds.
+  assets?: BankAssetV1[];
 };
 
 export type ValidationResult<T> =
@@ -186,6 +205,49 @@ export const validateBankQuestion = (
   };
 };
 
+const BANK_ASSET_MIMES = ['image/svg+xml', 'image/png', 'image/jpeg'];
+
+export const validateBankAsset = (
+  ctx: Ctx,
+  value: unknown,
+): BankAssetV1 | null => {
+  if (!isRecord(value)) {
+    ctx.errors.push(`${ctx.path}: expected asset object`);
+    return null;
+  }
+  const mime = str(ctx, value, 'mime');
+  if (mime && !BANK_ASSET_MIMES.includes(mime)) {
+    ctx.errors.push(`${ctx.path}.mime: unsupported ${mime}`);
+  }
+  const sha256 = str(ctx, value, 'sha256');
+  if (sha256 && !/^[0-9a-f]{64}$/.test(sha256)) {
+    ctx.errors.push(`${ctx.path}.sha256: expected lowercase sha256 hex`);
+  }
+  const sizeBytes = value.sizeBytes;
+  const width = value.width;
+  const height = value.height;
+  if (typeof sizeBytes !== 'number' || sizeBytes <= 0) {
+    ctx.errors.push(`${ctx.path}.sizeBytes: expected a positive size`);
+  }
+  if (
+    typeof width !== 'number' ||
+    typeof height !== 'number' ||
+    width <= 0 ||
+    height <= 0
+  ) {
+    ctx.errors.push(`${ctx.path}: expected positive width/height`);
+  }
+  return {
+    assetId: str(ctx, value, 'assetId'),
+    mime: mime as BankAssetV1['mime'],
+    sha256,
+    sizeBytes: typeof sizeBytes === 'number' ? sizeBytes : 0,
+    width: typeof width === 'number' ? width : 0,
+    height: typeof height === 'number' ? height : 0,
+    alt: str(ctx, value, 'alt'),
+  };
+};
+
 export const validateQuestionBankDoc = (
   input: unknown,
 ): ValidationResult<QuestionBankDocV1> => {
@@ -218,6 +280,39 @@ export const validateQuestionBankDoc = (
   for (const dupe of duplicates(okQuestions.map(q => q.questionId))) {
     errors.push(`bank doc.questions: duplicate question id ${dupe}`);
   }
+  let assets: BankAssetV1[] | null = null;
+  if (input.assets !== undefined) {
+    if (!Array.isArray(input.assets)) {
+      errors.push('bank doc.assets: expected an array');
+    } else {
+      const parsed = input.assets.map((value, index) =>
+        validateBankAsset(
+          { path: `bank doc.assets[${index}]`, errors },
+          value,
+        ),
+      );
+      if (!parsed.some(asset => asset == null)) {
+        assets = parsed as BankAssetV1[];
+        for (const dupe of duplicates(assets.map(asset => asset.assetId))) {
+          errors.push(`bank doc.assets: duplicate asset id ${dupe}`);
+        }
+        // A picture nothing asks for is an authoring mistake, not a
+        // harmless extra: it would be downloaded by every device forever.
+        const asked = new Set(
+          okQuestions.flatMap(question =>
+            question.assetId != null ? [question.assetId] : [],
+          ),
+        );
+        for (const asset of assets) {
+          if (!asked.has(asset.assetId)) {
+            errors.push(
+              `bank doc.assets: no question asks for ${asset.assetId}`,
+            );
+          }
+        }
+      }
+    }
+  }
   if (errors.length > 0) {
     return fail(errors);
   }
@@ -225,6 +320,7 @@ export const validateQuestionBankDoc = (
     schemaVersion: BANK_SCHEMA_VERSION,
     courseId,
     questions: okQuestions,
+    ...(assets != null && { assets }),
   });
 };
 

@@ -22,6 +22,7 @@ import type { CourseId } from './index';
 import { CourseOutlineV1, validateCourseOutline } from './outlineWire';
 import { verifyLessonDocBody } from './v2/verify';
 import type {
+  CourseAssetV2,
   CourseBundleV2,
   CourseLessonV2,
   CourseModuleV2,
@@ -81,6 +82,7 @@ export type SyncResult = {
 type CourseState = {
   outline: CourseOutlineV1 | null;
   bankSha: string | null;
+  bankAssets: CourseAssetV2[];
   questions: CourseQuestionV2[];
   lessonDocs: Map<string, LessonDocV2>;
   bundle: CourseBundleV2 | null;
@@ -101,6 +103,7 @@ const stateOf = (courseId: string): CourseState => {
     state = {
       outline: null,
       bankSha: null,
+      bankAssets: [],
       questions: [],
       lessonDocs: new Map(),
       bundle: null,
@@ -176,10 +179,15 @@ const assemble = (state: CourseState): void => {
       questionIds: module.moduleTestQuestionIds,
     },
   }));
+  // Bank artwork first, lesson artwork over it: a downloaded lesson names
+  // the same picture with the same id, and either copy draws the same file.
   const assets = new Map(
-    [...state.lessonDocs.values()].flatMap(doc =>
-      doc.assets.map(asset => [asset.assetId, asset] as const),
-    ),
+    [
+      ...state.bankAssets.map(asset => [asset.assetId, asset] as const),
+      ...[...state.lessonDocs.values()].flatMap(doc =>
+        doc.assets.map(asset => [asset.assetId, asset] as const),
+      ),
+    ],
   );
   state.bundle = {
     course: {
@@ -225,6 +233,11 @@ const rememberBank = (state: CourseState, body: string, sha: string): void => {
   }
   state.bankSha = sha;
   state.questions = checked.value.questions as unknown as CourseQuestionV2[];
+  // The pictures those questions show. A final exam draws from lessons the
+  // learner never opened, so a question's artwork cannot depend on a lesson
+  // body being on the device.
+  state.bankAssets = (checked.value.assets ??
+    []) as unknown as CourseAssetV2[];
 };
 
 const rememberLesson = (
@@ -468,6 +481,7 @@ export const acceptOffer = async (deps: {
   }
   state.outline = null;
   state.bankSha = null;
+  state.bankAssets = [];
   state.questions = [];
   state.lessonDocs.clear();
   assemble(state);
