@@ -40,6 +40,28 @@ export type AssetResolver = (assetId: string) => CourseAssetV2 | undefined;
 // player and the admin preview both render lessons through this component, so
 // what an editor sees is what a learner gets.
 
+// A recap is the line the learner carries away, so it is set large — but a
+// paragraph set at hero size is a wall, and an author who wrote several
+// points meant several points. Past this much text the card splits into one
+// per paragraph and the type comes down; a short closing line is left
+// exactly as it was.
+const RECAP_SPLIT_CHARS = 150;
+const RECAP_TIGHT_CHARS = 90;
+
+const recapPoints = (elements: LessonElementV2[]): string[] => {
+  const paragraphs = elements
+    .filter(isParagraphElement)
+    .map(element => element.text.trim())
+    .filter(text => text.length > 0);
+  if (paragraphs.length === 0) {
+    return [''];
+  }
+  const total = paragraphs.join(' ').length;
+  return paragraphs.length > 1 && total > RECAP_SPLIT_CHARS
+    ? paragraphs
+    : [paragraphs.join('\n\n')];
+};
+
 export const toneColor = (theme: AppTheme, tone: Tone): string =>
   tone === 'accent'
     ? theme.colors.accent
@@ -469,12 +491,21 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
   }
 
   if (isProseBlock(block) && block.type === 'remember_this') {
+    const points = recapPoints(elements);
+    const longest = points.reduce(
+      (most, point) => Math.max(most, point.length),
+      0,
+    );
     return (
       <>
         <Kicker meta={meta} />
-        <RecapCard>
-          <RecapText>{block.bodyMarkdown}</RecapText>
-        </RecapCard>
+        {points.map((point, index) => (
+          <RecapCard key={index} testID="recap-card" $stacked={index > 0}>
+            <RecapText testID="recap-text" $long={longest > RECAP_TIGHT_CHARS}>
+              {point}
+            </RecapText>
+          </RecapCard>
+        ))}
         {asset != null && <Diagram asset={asset} />}
         {/* The recap sentence is the card; any artwork the author added
             inline still belongs below it. */}
@@ -794,18 +825,18 @@ const RecallAssetGap = styled.View`
   margin-top: 16px;
 `;
 
-const RecapCard = styled.View`
-  margin: 0 20px 20px;
-  padding: 26px 22px;
+const RecapCard = styled.View<{ $stacked: boolean }>`
+  margin: 0 20px ${({ $stacked }) => ($stacked ? '12px' : '16px')};
+  padding: 20px;
   border-radius: 20px;
   border: 1px solid ${({ theme }) => theme.colors.accentSoft};
   background-color: ${({ theme }) => theme.colors.accentSoft};
 `;
 
-const RecapText = styled.Text`
+const RecapText = styled.Text<{ $long: boolean }>`
   ${({ theme }) => theme.fonts.extraBold}
-  font-size: 26px;
-  line-height: 33px;
-  letter-spacing: -0.7px;
+  font-size: ${({ $long }) => ($long ? '19px' : '23px')};
+  line-height: ${({ $long }) => ($long ? '26px' : '30px')};
+  letter-spacing: -0.6px;
   color: ${({ theme }) => theme.colors.ink};
 `;

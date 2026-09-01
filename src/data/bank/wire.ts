@@ -286,10 +286,7 @@ export const validateQuestionBankDoc = (
       errors.push('bank doc.assets: expected an array');
     } else {
       const parsed = input.assets.map((value, index) =>
-        validateBankAsset(
-          { path: `bank doc.assets[${index}]`, errors },
-          value,
-        ),
+        validateBankAsset({ path: `bank doc.assets[${index}]`, errors }, value),
       );
       if (!parsed.some(asset => asset == null)) {
         assets = parsed as BankAssetV1[];
