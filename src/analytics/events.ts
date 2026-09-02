@@ -203,6 +203,9 @@ export type AnalyticsEventMap = {
     outcome: 'ok' | 'offline' | 'failed' | 'app_update_required';
     duration_ms: number;
   };
+  // Starting the course over: scores, streak and the downloaded course all
+  // go, and the newest version comes back. The other destructive setting.
+  progress_reset: { state_code: string; lessons_done: number };
   font_changed: { font_id: FontId };
   external_link_opened: { target: string };
 };

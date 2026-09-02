@@ -84,6 +84,19 @@ export const saveLessonPlace = async (
   scheduleWrite(userId, { ...all, [lessonId]: place });
 };
 
+// Every saved place, gone: what a progress reset means for the one thing
+// that lives outside the synced progress rows.
+export const clearAllLessonPlaces = async (userId: string): Promise<void> => {
+  if (writeTimer != null) {
+    clearTimeout(writeTimer);
+    writeTimer = null;
+  }
+  cache = null;
+  await AsyncStorage.removeItem(key(userId)).catch(error =>
+    log.warn('could not clear saved places', error),
+  );
+};
+
 export const clearLessonPlace = async (
   userId: string,
   lessonId: string,

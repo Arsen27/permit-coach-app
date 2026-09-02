@@ -109,6 +109,7 @@ type AppStateValue = PersistedState & {
   clearMistake: (questionId: string) => void;
   setStateCode: (stateCode: string) => void;
   changeStateWipingProgress: (stateCode: string) => void;
+  resetProgress: () => void;
   setAccent: (accentId: AccentId) => void;
   setFont: (fontId: FontId) => void;
   upgrade: () => void;
@@ -486,6 +487,28 @@ export const AppStateProvider: React.FC<AppStateProviderProps> = ({
     [update],
   );
 
+  // Start over. Everything the learner earned goes — lesson and topic scores,
+  // the answer history behind the Practice map, the best exam, the mistakes
+  // and the questions bookmarked out of them, and the streak — on this device
+  // and, through the wipe mark, on every other one. What is not progress
+  // stays: the state, the name, the plan, the saved signs, the settings.
+  const resetProgress = useCallback(() => {
+    update(
+      prev => ({
+        ...prev,
+        streak: initialState.streak,
+        lessonScores: {},
+        topicScores: {},
+        questionStats: {},
+        bestExam: null,
+        mistakeIds: [],
+        savedQuestionIds: [],
+      }),
+      { kind: 'wipe' },
+      { kind: 'streak' },
+    );
+  }, [update]);
+
   const setAccent = useCallback(
     (accentId: AccentId) => {
       update(prev => ({ ...prev, accentId }), { kind: 'profile' });
@@ -526,6 +549,7 @@ export const AppStateProvider: React.FC<AppStateProviderProps> = ({
       clearMistake,
       setStateCode,
       changeStateWipingProgress,
+      resetProgress,
       setAccent,
       setFont,
       upgrade,
@@ -546,6 +570,7 @@ export const AppStateProvider: React.FC<AppStateProviderProps> = ({
     clearMistake,
     setStateCode,
     changeStateWipingProgress,
+    resetProgress,
     setAccent,
     setFont,
     upgrade,

@@ -181,14 +181,12 @@ const assemble = (state: CourseState): void => {
   }));
   // Bank artwork first, lesson artwork over it: a downloaded lesson names
   // the same picture with the same id, and either copy draws the same file.
-  const assets = new Map(
-    [
-      ...state.bankAssets.map(asset => [asset.assetId, asset] as const),
-      ...[...state.lessonDocs.values()].flatMap(doc =>
-        doc.assets.map(asset => [asset.assetId, asset] as const),
-      ),
-    ],
-  );
+  const assets = new Map([
+    ...state.bankAssets.map(asset => [asset.assetId, asset] as const),
+    ...[...state.lessonDocs.values()].flatMap(doc =>
+      doc.assets.map(asset => [asset.assetId, asset] as const),
+    ),
+  ]);
   state.bundle = {
     course: {
       courseId: outline.courseId,
@@ -236,8 +234,7 @@ const rememberBank = (state: CourseState, body: string, sha: string): void => {
   // The pictures those questions show. A final exam draws from lessons the
   // learner never opened, so a question's artwork cannot depend on a lesson
   // body being on the device.
-  state.bankAssets = (checked.value.assets ??
-    []) as unknown as CourseAssetV2[];
+  state.bankAssets = (checked.value.assets ?? []) as unknown as CourseAssetV2[];
 };
 
 const rememberLesson = (

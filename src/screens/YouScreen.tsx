@@ -29,6 +29,7 @@ import {
 import { Eyebrow } from '@/components/typography';
 import CourseInstallSheet from '@/components/CourseInstallSheet';
 import { courseIdForState } from '@/data/course';
+import { clearAllLessonPlaces } from '@/data/course/lessonProgressStore';
 import { channelAnswers } from '@/data/course/client';
 import { courseStore } from '@/data/course/store';
 import { useCourseInstall } from '@/data/course/useCourseInstall';
@@ -68,8 +69,10 @@ const YouScreen: React.FC = () => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<RootNavigation>();
-  const { user, points, lessonsDone, bestExam, fontId } = useAppState();
-  const { signedIn, hasAccount, email, logOut, deleteAccount } = useAuth();
+  const { user, points, lessonsDone, bestExam, fontId, resetProgress } =
+    useAppState();
+  const { signedIn, hasAccount, email, logOut, deleteAccount, userId } =
+    useAuth();
   // Plus status still gates content and shows on the profile; buying and
   // restoring moved out of Settings for this release.
   const { plusActive } = usePurchases();
@@ -101,6 +104,36 @@ const YouScreen: React.FC = () => {
     },
     [install, user.stateCode],
   );
+  // Starting over: the scores go, and so does the course on this device —
+  // which is the point of doing both together. With nothing held, the next
+  // check is told to take whatever the channel serves now, so a learner who
+  // resets lands on the newest version rather than back on the one they had.
+  const startOver = useCallback(async () => {
+    resetProgress();
+    await clearAllLessonPlaces(userId);
+    await courseStore.wipeDownloadedContent();
+    await install.start(courseIdForState(user.stateCode));
+    track('progress_reset', {
+      state_code: user.stateCode,
+      lessons_done: lessonsDone,
+    });
+  }, [install, lessonsDone, resetProgress, user.stateCode, userId]);
+
+  const confirmReset = useCallback(() => {
+    Alert.alert(
+      'Reset all progress?',
+      'Your lessons, tests, streak, mistakes and saved questions are cleared on every device you use. Your state, your settings and your saved signs stay. The course is downloaded again at its newest version.',
+      [
+        {
+          text: 'Reset Progress',
+          style: 'destructive',
+          onPress: () => void startOver(),
+        },
+        { text: 'Cancel', style: 'cancel' },
+      ],
+    );
+  }, [startOver]);
+
   // Deletion in flight: the ref guards against a second tap racing the state
   // update, the state drives the disabled/spinner treatment.
   const [deleting, setDeleting] = useState(false);
@@ -263,6 +296,7 @@ const YouScreen: React.FC = () => {
             <Icon name="chevron-right" size={12} color={theme.colors.dim2} />
           </Row>
           <Row
+            $divider
             onPress={() => openUrl(`https://www.${usState.domain}`, 'handbook')}
           >
             <RowTile $bg={theme.colors.faint}>
@@ -273,6 +307,24 @@ const YouScreen: React.FC = () => {
               <RowSub>{usState.domain} — opens in browser</RowSub>
             </RowBody>
             <Icon name="arrow-up-right" size={13} color={theme.colors.dim2} />
+          </Row>
+          <Row
+            accessibilityRole="button"
+            accessibilityLabel="Reset progress"
+            onPress={confirmReset}
+          >
+            <RowTile $bg={theme.colors.faint}>
+              <Icon
+                name="triangle-exclamation"
+                size={15}
+                color={theme.colors.wrongText}
+              />
+            </RowTile>
+            <RowBody>
+              <RowTitle>Reset progress</RowTitle>
+              <RowSub>Start the course over on its newest version</RowSub>
+            </RowBody>
+            <Icon name="chevron-right" size={12} color={theme.colors.dim2} />
           </Row>
         </Group>
       </Section>
