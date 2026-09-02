@@ -13,25 +13,16 @@ jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
 }));
 
-// The overlay itself: what each phase puts on screen. The manager driving it
-// (SyncManager) is exercised through the lazy store's own tests — the sync,
-// the prompt and the offer all come from there.
+// The overlay itself: a download in flight and how it ended. The offer that
+// starts one is its own sheet (courseUpdateSheet.test.tsx), and the manager
+// driving both is exercised through the lazy store's tests.
 
-const render = async (
-  phase: CourseUpdatePhase,
-  offer: { version: string; notes?: string } | null = null,
-): Promise<Renderer> => {
+const render = async (phase: CourseUpdatePhase): Promise<Renderer> => {
   let tree!: Renderer;
   await ReactTestRenderer.act(async () => {
     tree = ReactTestRenderer.create(
       <ThemeProvider theme={defaultTheme}>
-        <CourseUpdateOverlay
-          phase={phase}
-          progress={0.5}
-          offer={offer}
-          onAcceptOffer={() => undefined}
-          onDeclineOffer={() => undefined}
-        />
+        <CourseUpdateOverlay phase={phase} progress={0.5} />
       </ThemeProvider>,
     );
   });
@@ -54,14 +45,7 @@ it('owns up to an interrupted update instead of vanishing', async () => {
   expect(texts.join(' ')).toContain('Your course is untouched');
 });
 
-it('shows the offer with its notes and the fresh-start warning', async () => {
-  const texts = textsOf(
-    await render('offer', {
-      version: '2.0.0',
-      notes: 'A brand-new course for 2027.',
-    }),
-  );
-  expect(texts.join(' ')).toContain('A new course is ready');
-  expect(texts.join(' ')).toContain('A brand-new course for 2027.');
-  expect(texts.join(' ')).toMatch(/progress .*(erased|start)/i);
+it('leaves the offer to the sheet that can say what it costs', async () => {
+  const tree = await render('offer');
+  expect(tree.toJSON()).toBeNull();
 });

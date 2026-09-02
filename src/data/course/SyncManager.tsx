@@ -8,6 +8,10 @@ import CourseUpdateOverlay, {
 import { runSignsUpdate } from '@/data/signs/updater';
 import { createLogger } from '@/lib/log';
 import { isOnboardingDone } from '@/lib/onboardingFlag';
+import CourseUpdateSheet from '@/components/CourseUpdateSheet';
+import { findCourseLesson } from '@/data/course/learn';
+import { findState } from '@/data/states';
+import { navigationRef } from '@/navigation/rootNavigation';
 import { useAppState } from '@/state/AppState';
 
 import {
@@ -29,7 +33,14 @@ const log = createLogger('course');
 // non-silent fix, and the offer of a new course.
 const SyncManager: React.FC = () => {
   const { userId } = useAuth();
-  const { user, lessonScores, changeStateWipingProgress } = useAppState();
+  const {
+    user,
+    lessonScores,
+    points,
+    lessonsDone,
+    bestExam,
+    changeStateWipingProgress,
+  } = useAppState();
 
   const completedRef = useRef<string[]>([]);
   completedRef.current = Object.entries(lessonScores)
@@ -43,6 +54,9 @@ const SyncManager: React.FC = () => {
     version: string;
     message: string;
   } | null>(null);
+  // The fix sheet, held until the learner closes it: it names lessons they
+  // finished, so it has to survive the sync that raised it.
+  const [prompt, setPrompt] = useState<ReplacePrompt | null>(null);
 
   const alive = useRef(true);
   useEffect(() => {
@@ -51,28 +65,6 @@ const SyncManager: React.FC = () => {
       alive.current = false;
     };
   }, []);
-
-  const showPrompt = useCallback(
-    (prompt: ReplacePrompt) => {
-      const lessons = prompt.lessonIds.length;
-      const counted =
-        lessons === 1 ? 'one of your lessons' : `${lessons} of your lessons`;
-      Alert.alert(
-        prompt.kind === 'apology'
-          ? 'We corrected the course'
-          : 'The rules changed',
-        `${
-          prompt.message.length > 0
-            ? prompt.message
-            : prompt.kind === 'apology'
-            ? 'We are sorry — some content you already studied had to be corrected.'
-            : 'Some rules you already studied have changed.'
-        }\n\nThe updated content in ${counted} is marked in yellow — it is worth going through it again.`,
-        [{ text: 'OK', onPress: () => void clearPromptFor(userId) }],
-      );
-    },
-    [userId],
-  );
 
   const check = useCallback(async () => {
     const sinceLast = Date.now() - lastRunAt.current;
@@ -113,9 +105,9 @@ const SyncManager: React.FC = () => {
         );
       }
       // A prompt persisted by this sync — or by one a kill interrupted.
-      const prompt = result.prompt ?? (await takePrompt(userId));
-      if (prompt != null && alive.current) {
-        showPrompt(prompt);
+      const pending = result.prompt ?? (await takePrompt(userId));
+      if (pending != null && alive.current) {
+        setPrompt(pending);
       }
       if (result.offer != null && alive.current) {
         setOffer(result.offer);
@@ -128,7 +120,7 @@ const SyncManager: React.FC = () => {
       );
       lastRunAt.current = 0;
     }
-  }, [userId, showPrompt]);
+  }, [userId]);
 
   const onAcceptOffer = useCallback(async () => {
     setPhase('downloading');
@@ -162,6 +154,42 @@ const SyncManager: React.FC = () => {
     }
   }, [userId, user.stateCode, changeStateWipingProgress]);
 
+  // The lessons the fix touched, named where naming them helps: one or two
+  // titles are worth more than a number, more than that and the number is.
+  const markedLessons = useCallback((lessonIds: string[]): string => {
+    const titles = lessonIds.flatMap(lessonId => {
+      const title = findCourseLesson(lessonId)?.lesson.title;
+      return title == null ? [] : [title];
+    });
+    if (titles.length === 1) {
+      return `“${titles[0]}” is marked in yellow`;
+    }
+    if (titles.length === 2) {
+      return `“${titles[0]}” and “${titles[1]}” are marked in yellow`;
+    }
+    return `${lessonIds.length} finished lessons are marked in yellow`;
+  }, []);
+
+  const closePrompt = useCallback(() => {
+    setPrompt(null);
+    void clearPromptFor(userId);
+  }, [userId]);
+
+  // Straight to the first lesson that changed: the marks are on the ladder,
+  // but the sheet is where the learner is looking.
+  const redoMarked = useCallback(
+    (lessonIds: string[]) => {
+      closePrompt();
+      const first = lessonIds.find(
+        lessonId => findCourseLesson(lessonId) != null,
+      );
+      if (first != null && navigationRef.isReady()) {
+        navigationRef.navigate('Lesson', { lessonId: first });
+      }
+    },
+    [closePrompt],
+  );
+
   const onDeclineOffer = useCallback(() => {
     setOffer(null);
     setPhase('idle');
@@ -177,16 +205,81 @@ const SyncManager: React.FC = () => {
     return () => subscription.remove();
   }, [check]);
 
+  const finished = prompt?.lessonIds.length ?? 0;
+  const lessonWord = finished === 1 ? 'lesson' : 'lessons';
+  const stateName = findState(user.stateCode)?.name ?? 'your state';
+
   return (
-    <CourseUpdateOverlay
-      phase={phase}
-      progress={phase === 'downloading' ? 0.4 : 1}
-      offer={
-        offer == null ? null : { version: offer.version, notes: offer.message }
-      }
-      onAcceptOffer={() => void onAcceptOffer()}
-      onDeclineOffer={onDeclineOffer}
-    />
+    <>
+      {prompt != null && (
+        <CourseUpdateSheet
+          visible
+          variant={prompt.kind}
+          eyebrow={
+            prompt.kind === 'apology'
+              ? 'WE GOT SOMETHING WRONG'
+              : `${stateName.toUpperCase()} · THE RULES MOVED`
+          }
+          title={
+            prompt.kind === 'apology'
+              ? `We fixed ${finished} ${lessonWord} you had finished`
+              : `The rules changed in ${finished} ${lessonWord} you finished`
+          }
+          body={
+            prompt.message.length > 0
+              ? prompt.message
+              : prompt.kind === 'apology'
+              ? 'Some of what you already studied was wrong. We have corrected the lessons and the questions — sorry: you trusted us to get this right.'
+              : 'Your course already matches the new wording. What you studied before it changed is worth another look.'
+          }
+          points={[
+            prompt.kind === 'apology'
+              ? 'Lessons and questions already corrected'
+              : 'Lessons and questions already updated',
+            markedLessons(prompt.lessonIds),
+            'Your points and streak are untouched',
+          ]}
+          primaryLabel={
+            finished === 1 ? 'Redo that lesson' : `Redo the ${finished} lessons`
+          }
+          onPrimary={() => redoMarked(prompt.lessonIds)}
+          secondaryLabel={prompt.kind === 'apology' ? 'Not now' : 'Got it'}
+          onSecondary={closePrompt}
+        />
+      )}
+
+      {/* One sheet at a time: a fix that named finished lessons is read
+          before an offer to throw those lessons away. */}
+      {offer != null && phase === 'offer' && prompt == null && (
+        <CourseUpdateSheet
+          visible
+          variant="offer"
+          eyebrow={`COURSE VERSION ${offer.version} AVAILABLE`}
+          title="A rebuilt course is ready"
+          body={
+            offer.message.length > 0
+              ? offer.message
+              : 'This version reorders the course and rewrites its questions. The structure changed too much to carry your progress across.'
+          }
+          cost={{
+            lessonsDone,
+            points,
+            bestExam,
+            note: 'You start again from the first lesson. This cannot be undone, and you cannot go back to your current course later.',
+            keeps: 'Your day streak and your saved signs stay with you.',
+          }}
+          primaryLabel="Update and reset my progress"
+          onPrimary={() => void onAcceptOffer()}
+          secondaryLabel="Keep my current course"
+          onSecondary={onDeclineOffer}
+        />
+      )}
+
+      <CourseUpdateOverlay
+        phase={phase}
+        progress={phase === 'downloading' ? 0.4 : 1}
+      />
+    </>
   );
 };
 

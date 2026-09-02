@@ -3,7 +3,6 @@ import { Modal } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
-import PrimaryButton from '@/components/PrimaryButton';
 import ProgressRing from '@/components/ProgressRing';
 import {
   Sheet,
@@ -12,9 +11,6 @@ import {
   SheetMiddle,
   SheetTitle,
 } from '@/components/resultSheet';
-
-// What an offer sheet needs to say: the version and the words for it.
-export type CourseOffer = { version: string; notes?: string };
 
 export type CourseUpdatePhase =
   | 'idle'
@@ -26,10 +22,6 @@ export type CourseUpdatePhase =
 type CourseUpdateOverlayProps = {
   phase: CourseUpdatePhase;
   progress: number;
-  // The opt-in course waiting for consent; rendered only in the offer phase.
-  offer?: CourseOffer | null;
-  onAcceptOffer?: () => void;
-  onDeclineOffer?: () => void;
 };
 
 // The raw progress ticks once per fetched document and documents land in
@@ -46,19 +38,17 @@ const SNAP = 0.002;
 // A ring at true zero looks stalled before the first document lands.
 const FLOOR = 0.06;
 
-// The sheet for course updates that actually involve the user: a download in
-// flight, its outcome, or an opt-in offer of a fundamentally new course. The
-// far more common check — the server has nothing newer — never reaches this,
-// so a normal launch stays untouched.
+// A download in flight and how it ended. The offer that starts one is its own
+// sheet (CourseUpdateSheet) — it has to name what the learner is giving up,
+// which is a conversation, not a progress ring. The far more common check —
+// the server has nothing newer — never reaches this, so a normal launch stays
+// untouched.
 //
 // The ring and the success disc are both 62px, so settling into the
 // confirmation swaps the mark without moving the title under it.
 const CourseUpdateOverlay: React.FC<CourseUpdateOverlayProps> = ({
   phase,
   progress,
-  offer,
-  onAcceptOffer,
-  onDeclineOffer,
 }) => {
   const insets = useSafeAreaInsets();
 
@@ -73,7 +63,8 @@ const CourseUpdateOverlay: React.FC<CourseUpdateOverlayProps> = ({
       return undefined;
     }
     if (phase === 'failed' || phase === 'offer') {
-      // No ring on screen; nothing to animate.
+      // No ring on screen: the offer is another sheet's business, and a
+      // failure has nothing to fill.
       return undefined;
     }
     const timer = setInterval(() => {
@@ -93,25 +84,15 @@ const CourseUpdateOverlay: React.FC<CourseUpdateOverlayProps> = ({
 
   return (
     <Modal
-      visible={phase !== 'idle'}
+      visible={phase !== 'idle' && phase !== 'offer'}
       animationType="fade"
-      // The offer is declinable; every other phase has no coherent screen to
-      // return to until the update settles, so back does nothing there.
-      onRequestClose={phase === 'offer' ? onDeclineOffer : () => undefined}
+      // Once a download is in flight there is no coherent screen to return
+      // to until it settles, so back does nothing here.
+      onRequestClose={() => undefined}
     >
       <Sheet style={{ paddingBottom: insets.bottom + 24 }}>
         <SheetMiddle>
-          {phase === 'offer' ? (
-            <>
-              <SheetTitle>A new course is ready</SheetTitle>
-              {offer?.notes ? <SheetBody>{offer.notes}</SheetBody> : null}
-              <SheetBody>
-                Your current course keeps working as it is. Starting the new one
-                clears your course progress — lessons and module tests begin
-                fresh.
-              </SheetBody>
-            </>
-          ) : confirmed ? (
+          {confirmed ? (
             <>
               <SheetMark tone="success" />
               <SheetTitle>Course updated</SheetTitle>
@@ -142,22 +123,6 @@ const CourseUpdateOverlay: React.FC<CourseUpdateOverlayProps> = ({
             </>
           )}
         </SheetMiddle>
-
-        {phase === 'offer' && (
-          <>
-            <PrimaryButton
-              label="Start the new course"
-              onPress={onAcceptOffer ?? (() => undefined)}
-            />
-            <DeclineAction
-              accessibilityRole="button"
-              accessibilityLabel="Not now"
-              onPress={onDeclineOffer}
-            >
-              <DeclineLabel>Not now</DeclineLabel>
-            </DeclineAction>
-          </>
-        )}
       </Sheet>
     </Modal>
   );
@@ -168,17 +133,6 @@ const RingLabel = styled.Text`
   font-size: 15px;
   color: ${({ theme }) => theme.colors.ink};
   font-variant: tabular-nums;
-`;
-
-const DeclineAction = styled.Pressable`
-  align-items: center;
-  padding: 16px 0 0;
-`;
-
-const DeclineLabel = styled.Text`
-  ${({ theme }) => theme.fonts.bold}
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.muted};
 `;
 
 export default CourseUpdateOverlay;
