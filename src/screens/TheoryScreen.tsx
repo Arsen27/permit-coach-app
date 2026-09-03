@@ -721,11 +721,11 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
               style={place === index ? undefined : styles.offstage}
             >
               <ChangedTint
-                $on={
-                  yellowMark != null &&
-                  (yellowMark.blocks == null ||
-                    yellowMark.blocks.includes(entry.block.blockId))
-                }
+                // Only the slides that actually changed. A mark with no
+                // block list means we could not tell which ones — the
+                // lesson's circle on the ladder says something changed, and
+                // washing every card yellow says nothing except "alarm".
+                $on={yellowMark?.blocks?.includes(entry.block.blockId) === true}
               >
                 <LessonCardBody
                   card={entry}

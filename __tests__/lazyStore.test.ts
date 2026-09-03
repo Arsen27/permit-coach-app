@@ -522,3 +522,80 @@ it('a mark narrows to the changed blocks the moment the new body arrives', async
   await clearMark('u1', COURSE, 'l-two');
   expect(await readMarks('u1', COURSE)).toEqual({});
 });
+
+it('a slide inserted above does not make the rest of the lesson changed', async () => {
+  serveVersion('1.1.1', { 'l-one': L1, 'l-two': L2 }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({ current: '1.1.1', bankSha: sha256Hex(BANK1) }),
+  );
+  await syncLazyCourse(deps());
+  await ensureLesson(COURSE, 'l-two');
+
+  // The fix adds one slide at the top. Block ids are positional, so the
+  // slide the learner already read is now called b02 — its words did not
+  // change, and neither should its colour.
+  const L2ADDED = lessonDoc('1.1.2', 'l-two', 'Lesson two');
+  const original = L2ADDED.lesson.blocks[0];
+  L2ADDED.lesson.blocks = [
+    {
+      ...original,
+      blockId: 'l-two-b01',
+      title: 'A new opening slide',
+      questionId: 'l-two-q01',
+    },
+    { ...original, blockId: 'l-two-b02' },
+  ] as typeof L2ADDED.lesson.blocks;
+  L2ADDED.lesson.questionIds = ['l-two-q01'];
+  serveVersion('1.1.2', { 'l-one': L1, 'l-two': L2ADDED }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({
+      current: '1.1.2',
+      bankSha: sha256Hex(BANK1),
+      replace: {
+        version: '1.1.2',
+        subtype: 'apology',
+        changedLessons: ['l-two'],
+        message: 'We added a slide.',
+      },
+    }),
+  );
+  await syncLazyCourse(deps(['l-two']));
+  await ensureLesson(COURSE, 'l-two');
+  await narrowMark('u1', COURSE, 'l-two');
+
+  // Only the slide whose words are new to this learner.
+  expect((await readMarks('u1', COURSE))['l-two']).toEqual({
+    blocks: ['l-two-b01'],
+  });
+});
+
+it('a lesson whose old body was gone is marked, but nothing inside it is', async () => {
+  serveVersion('1.1.1', { 'l-one': L1, 'l-two': L2 }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({ current: '1.1.1', bankSha: sha256Hex(BANK1) }),
+  );
+  await syncLazyCourse(deps());
+  // Completed on another device: the progress says so, the body was never
+  // downloaded here, so there is nothing to compare against.
+  const L2FIXED = lessonDoc('1.1.2', 'l-two', 'Lesson two, fixed');
+  serveVersion('1.1.2', { 'l-one': L1, 'l-two': L2FIXED }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({
+      current: '1.1.2',
+      bankSha: sha256Hex(BANK1),
+      replace: {
+        version: '1.1.2',
+        subtype: 'apology',
+        changedLessons: ['l-two'],
+        message: 'Fixed.',
+      },
+    }),
+  );
+  await syncLazyCourse(deps(['l-two']));
+
+  // The mark exists — the ladder paints the circle — and it names no blocks,
+  // so the player tints nothing rather than washing the whole lesson.
+  const marks = await readMarks('u1', COURSE);
+  expect(marks['l-two']).toEqual({});
+  expect(marks['l-two'].blocks).toBeUndefined();
+});

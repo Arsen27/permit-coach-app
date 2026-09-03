@@ -27,6 +27,7 @@ import type {
   CourseLessonV2,
   CourseModuleV2,
   CourseQuestionV2,
+  LessonBlockV2,
   LessonDocV2,
 } from './v2/wire';
 
@@ -395,7 +396,7 @@ export const syncLazyCourse = async (deps: {
                     oldBlockHashes: Object.fromEntries(
                       old.lesson.blocks.map(block => [
                         block.blockId,
-                        sha256Hex(JSON.stringify(block)),
+                        blockFingerprint(block),
                       ]),
                     ),
                   };
@@ -715,6 +716,16 @@ export const clearMark = async (
   }
 };
 
+// What a slide says, with no regard for where it sits. Block ids are
+// positional (…-slide-02), so a fix that inserts one slide renames every
+// slide under it: comparing by id would call the whole rest of the lesson
+// changed, which is exactly the wash of yellow this avoids.
+const blockFingerprint = (block: LessonBlockV2): string => {
+  const content = { ...block } as Partial<LessonBlockV2>;
+  delete content.blockId;
+  return sha256Hex(JSON.stringify(content));
+};
+
 // When a marked lesson's new body lands, the mark narrows to the blocks that
 // actually differ from the ones the learner saw.
 export const narrowMark = async (
@@ -728,12 +739,11 @@ export const narrowMark = async (
   if (doc == null || mark?.oldBlockHashes == null) {
     return;
   }
+  // A slide the learner already read is one whose words are among the ones
+  // they read — wherever it sits now. Everything else is new to them.
+  const seen = new Set(Object.values(mark.oldBlockHashes));
   const blocks = doc.lesson.blocks
-    .filter(
-      block =>
-        mark.oldBlockHashes![block.blockId] !==
-        sha256Hex(JSON.stringify(block)),
-    )
+    .filter(block => !seen.has(blockFingerprint(block)))
     .map(block => block.blockId);
   await writeMarks(userId, courseId, {
     ...marks,
