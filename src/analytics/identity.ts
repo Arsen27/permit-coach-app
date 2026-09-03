@@ -90,9 +90,12 @@ export type LearnerProperties = {
   course_id: string | null;
   course_version: string | null;
   content_channel: 'production' | 'staging';
-  // ISO-8601. PostHog keeps its own last-seen from event timestamps; this is
-  // the same fact in the person list, where it can be filtered and exported.
-  last_opened_at: string;
+  // The local date of the last open (YYYY-MM-DD), not a timestamp. PostHog
+  // keeps its own last-seen from event timestamps; this is the same fact in
+  // the person list, where it can be filtered and exported — and a date
+  // changes at most once a day, so it costs one person update per active
+  // day rather than one per foreground.
+  last_opened_on: string;
 };
 
 // Person properties, refreshed whenever the underlying state changes. The SDK

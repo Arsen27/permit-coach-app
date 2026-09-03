@@ -9,6 +9,7 @@ import { getContentChannel } from '@/lib/contentChannel';
 import { ANALYTICS_CAPTURE_TOUCHES } from '@/lib/analyticsConfig';
 import { usePurchases } from '@/purchases/PurchasesProvider';
 import { useAppState } from '@/state/AppState';
+import { localToday } from '@/state/streak';
 
 import { posthog } from './client';
 import {
@@ -81,11 +82,11 @@ export const AnalyticsIdentity: React.FC = () => {
   // that is a query. As a person property it sits in the list beside the
   // course version, which is where the question is actually asked — "who is
   // on 3.2.11 and has not been back since".
-  const [openedAt, setOpenedAt] = useState(() => new Date().toISOString());
+  const [openedOn, setOpenedOn] = useState(localToday);
   useEffect(() => {
     const subscription = RNAppState.addEventListener('change', status => {
       if (status === 'active') {
-        setOpenedAt(new Date().toISOString());
+        setOpenedOn(localToday());
       }
     });
     return () => subscription.remove();
@@ -137,7 +138,7 @@ export const AnalyticsIdentity: React.FC = () => {
       course_id: courseId,
       course_version: courseVersion,
       content_channel: channel,
-      last_opened_at: openedAt,
+      last_opened_on: openedOn,
     });
   }, [
     email,
@@ -160,7 +161,7 @@ export const AnalyticsIdentity: React.FC = () => {
     courseId,
     courseVersion,
     channel,
-    openedAt,
+    openedOn,
   ]);
 
   return null;
