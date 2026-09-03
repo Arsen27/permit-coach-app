@@ -28,6 +28,7 @@ import {
 } from '@/components/rows';
 import { Eyebrow } from '@/components/typography';
 import CourseInstallSheet from '@/components/CourseInstallSheet';
+import CourseUpdateSheet from '@/components/CourseUpdateSheet';
 import { courseIdForState } from '@/data/course';
 import { useStoredCourse } from '@/data/course/CourseProvider';
 import { clearAllLessonPlaces } from '@/data/course/lessonProgressStore';
@@ -123,20 +124,26 @@ const YouScreen: React.FC = () => {
     });
   }, [install, lessonsDone, resetProgress, user.stateCode, userId]);
 
-  const confirmReset = useCallback(() => {
-    Alert.alert(
-      'Reset all progress?',
-      'Your lessons, tests, streak, mistakes and saved questions are cleared on every device you use. Your state, your settings and your saved signs stay. The course is downloaded again at its newest version.',
-      [
-        {
-          text: 'Reset Progress',
-          style: 'destructive',
-          onPress: () => void startOver(),
-        },
-        { text: 'Cancel', style: 'cancel' },
-      ],
-    );
+  // The confirmation is a sheet, not an Alert: an Alert's buttons cannot be
+  // held disabled, and this one has to sit greyed-out behind a five-second
+  // countdown before it will take a tap. The actual reset starts only after
+  // the sheet has finished dismissing — the install sheet is a modal too,
+  // and iOS goes black when one presents while another is mid-dismissal.
+  const [resetAsking, setResetAsking] = useState(false);
+  const pendingReset = useRef(false);
+  const startPendingReset = useCallback(() => {
+    if (!pendingReset.current) {
+      return;
+    }
+    pendingReset.current = false;
+    void startOver();
   }, [startOver]);
+  const confirmReset = useCallback(() => setResetAsking(true), []);
+  const onResetConfirmed = useCallback(() => {
+    pendingReset.current = true;
+    setResetAsking(false);
+    setTimeout(startPendingReset, 700);
+  }, [startPendingReset]);
 
   // Deletion in flight: the ref guards against a second tap racing the state
   // update, the state drives the disabled/spinner treatment.
@@ -505,6 +512,27 @@ const YouScreen: React.FC = () => {
           </Group>
         </Section>
       )}
+
+      <CourseUpdateSheet
+        visible={resetAsking}
+        variant="offer"
+        eyebrow="START OVER"
+        title="Reset all progress?"
+        body="Your lessons, tests, streak, mistakes and saved questions are cleared, and the course is downloaded again at its newest version."
+        cost={{
+          lessonsDone,
+          points,
+          bestExam,
+          note: 'Cleared on every device you use — this cannot be undone.',
+          keeps: 'Your state, your settings and your saved signs stay.',
+        }}
+        primaryLabel="Reset my progress"
+        onPrimary={onResetConfirmed}
+        secondaryLabel="Cancel"
+        onSecondary={() => setResetAsking(false)}
+        onDismissed={startPendingReset}
+        armSeconds={5}
+      />
 
       {__DEV__ && (
         <CourseInstallSheet

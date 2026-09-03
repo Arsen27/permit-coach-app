@@ -1,5 +1,4 @@
 import React from 'react';
-import { Alert } from 'react-native';
 import ReactTestRenderer, {
   ReactTestRenderer as Renderer,
 } from 'react-test-renderer';
@@ -96,18 +95,23 @@ const press = async (tree: Renderer, label: string): Promise<void> => {
   });
 };
 
-// The destructive choice inside the confirmation the row raises.
-const confirm = async (alert: jest.SpyInstance): Promise<void> => {
-  const [, , buttons] = alert.mock.calls.at(-1) as [
-    string,
-    string,
-    { text: string; style?: string; onPress?: () => void }[],
-  ];
-  const destructive = buttons.find(button => button.style === 'destructive');
-  expect(destructive).toBeDefined();
-  await ReactTestRenderer.act(async () => {
-    destructive!.onPress?.();
-  });
+// Every string the confirmation sheet shows, joined for copy assertions.
+const sheetText = (tree: Renderer): string =>
+  tree.root
+    .findAll(node => String(node.type) === 'Text')
+    .map(node => node.children.filter(c => typeof c === 'string').join(''))
+    .join(' | ');
+
+// The confirmation's filled button, wherever it is in its countdown.
+const resetButton = (tree: Renderer) => {
+  const found = tree.root.findAll(
+    node =>
+      typeof node.type !== 'string' &&
+      typeof node.props.onPress === 'function' &&
+      /^Reset my progress/.test(String(node.props.accessibilityLabel ?? '')),
+  );
+  expect(found.length).toBeGreaterThan(0);
+  return found[found.length - 1];
 };
 
 const wipe = jest.spyOn(courseStore, 'wipeDownloadedContent');
@@ -155,31 +159,36 @@ it('names the course version this phone is running, for a developer', async () =
   expect(texts).toContain('Nothing downloaded for this state yet');
 });
 
-it('asks before it takes anything, and takes nothing on cancel', async () => {
-  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
+it('asks behind a countdown, and takes nothing on cancel', async () => {
   const tree = await render();
   await earnSomething();
   expect(observed!.lessonsDone).toBe(1);
 
   await press(tree, 'Reset progress');
-  const [title, message] = alert.mock.calls.at(-1) as [string, string];
-  expect(title).toMatch(/reset all progress/i);
+  const copy = sheetText(tree);
+  expect(copy).toMatch(/reset all progress/i);
   // The words have to say what goes and what stays, and that the course is
   // downloaded again — this is the one screen where that is decided.
-  expect(message).toMatch(/streak/i);
-  expect(message).toMatch(/every device/i);
-  expect(message).toMatch(/saved signs stay/i);
-  expect(message).toMatch(/newest version/i);
+  expect(copy).toMatch(/streak/i);
+  expect(copy).toMatch(/every device/i);
+  expect(copy).toMatch(/saved signs stay/i);
+  expect(copy).toMatch(/newest version/i);
 
-  // Nothing happened yet: the alert is the whole action so far.
+  // The filled button is not a reflex tap: it opens greyed out, counting
+  // down five seconds in its own label.
+  const armed = resetButton(tree);
+  expect(armed.props.accessibilityState).toEqual({ disabled: true });
+  expect(armed.props.accessibilityLabel).toMatch(/· 5$/);
+
+  await press(tree, 'Cancel');
+
+  // Nothing happened: the sheet was the whole action so far.
   expect(observed!.lessonsDone).toBe(1);
   expect(wipe).not.toHaveBeenCalled();
   expect(mockStart).not.toHaveBeenCalled();
-  alert.mockRestore();
 });
 
 it('clears what was earned and brings the course back at its newest', async () => {
-  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
   const tree = await render();
   await earnSomething();
   await saveLessonPlace('test-user', 'ca-sign-shapes-and-colors', {
@@ -187,8 +196,24 @@ it('clears what was earned and brings the course back at its newest', async () =
     answers: {},
   });
 
+  // Fake timers before the sheet opens, so its countdown interval is ours
+  // to advance. Sit out the countdown, confirm, then sit out the dismissal
+  // delay the confirm waits before starting the reset (a modal may not
+  // present while another is dismissing).
+  jest.useFakeTimers();
   await press(tree, 'Reset progress');
-  await confirm(alert);
+  await ReactTestRenderer.act(async () => {
+    jest.advanceTimersByTime(5000);
+  });
+  expect(resetButton(tree).props.accessibilityState).toEqual({
+    disabled: false,
+  });
+  await press(tree, 'Reset my progress');
+  await ReactTestRenderer.act(async () => {
+    jest.advanceTimersByTime(700);
+  });
+  jest.useRealTimers();
+  await ReactTestRenderer.act(async () => {});
 
   // Everything the learner earned is gone.
   expect(observed!.lessonsDone).toBe(0);
@@ -211,5 +236,4 @@ it('clears what was earned and brings the course back at its newest', async () =
   // whatever the channel serves now.
   expect(wipe).toHaveBeenCalledTimes(1);
   expect(mockStart).toHaveBeenCalledWith('ca-class-c');
-  alert.mockRestore();
 });

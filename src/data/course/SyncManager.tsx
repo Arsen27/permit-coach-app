@@ -372,6 +372,7 @@ const SyncManager: React.FC = () => {
           }}
           primaryLabel="Update and reset my progress"
           onPrimary={onAcceptOffer}
+          armSeconds={5}
           secondaryLabel="Keep my current course"
           onSecondary={onDeclineOffer}
           onDismissed={startAcceptedOffer}

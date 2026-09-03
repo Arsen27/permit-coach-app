@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled, { useTheme } from 'styled-components/native';
@@ -49,6 +49,10 @@ type CourseUpdateSheetProps = {
   // modal while another is still dismissing leaves iOS with a dead black
   // window until the app is relaunched.
   onDismissed?: () => void;
+  // Destructive actions hold the door: the filled button stays grey for this
+  // many seconds, counting down in its label, so the choice cannot be a
+  // reflex tap. The countdown restarts each time the sheet is shown.
+  armSeconds?: number;
 };
 
 const MEDALLION: Record<CourseUpdateVariant, IconName> = {
@@ -70,9 +74,25 @@ const CourseUpdateSheet: React.FC<CourseUpdateSheetProps> = ({
   secondaryLabel,
   onSecondary,
   onDismissed,
+  armSeconds = 0,
 }) => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const [secondsLeft, setSecondsLeft] = useState(armSeconds);
+  useEffect(() => {
+    if (!visible) {
+      return undefined;
+    }
+    setSecondsLeft(armSeconds);
+    if (armSeconds <= 0) {
+      return undefined;
+    }
+    const timer = setInterval(
+      () => setSecondsLeft(prev => Math.max(0, prev - 1)),
+      1000,
+    );
+    return () => clearInterval(timer);
+  }, [visible, armSeconds]);
   // Amber is ours to own — we got it wrong. A rule that changed under the
   // learner is nobody's fault, so it stays in the app's own ink.
   const accent =
@@ -170,7 +190,13 @@ const CourseUpdateSheet: React.FC<CourseUpdateSheetProps> = ({
           )}
         </ScrollView>
 
-        <PrimaryButton label={primaryLabel} onPress={onPrimary} />
+        <PrimaryButton
+          label={
+            secondsLeft > 0 ? `${primaryLabel} · ${secondsLeft}` : primaryLabel
+          }
+          onPress={onPrimary}
+          disabled={secondsLeft > 0}
+        />
         <Secondary
           accessibilityRole="button"
           accessibilityLabel={secondaryLabel}

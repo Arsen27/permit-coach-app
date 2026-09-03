@@ -138,6 +138,34 @@ it('hands its Modal the dismissal callback the accept flow waits on', async () =
   expect(modal.props.onDismiss).toBe(onDismissed);
 });
 
+it('holds a destructive button behind its countdown', async () => {
+  jest.useFakeTimers();
+  const onPrimary = jest.fn();
+  const tree = await render({ armSeconds: 5, onPrimary });
+  const button = () =>
+    tree.root.findAll(
+      node =>
+        typeof node.type !== 'string' &&
+        typeof node.props.onPress === 'function' &&
+        /^Redo the 2 lessons/.test(String(node.props.accessibilityLabel ?? '')),
+    )[0];
+
+  expect(button().props.accessibilityState).toEqual({ disabled: true });
+  expect(button().props.accessibilityLabel).toBe('Redo the 2 lessons · 5');
+
+  await ReactTestRenderer.act(async () => {
+    jest.advanceTimersByTime(2000);
+  });
+  expect(button().props.accessibilityLabel).toBe('Redo the 2 lessons · 3');
+
+  await ReactTestRenderer.act(async () => {
+    jest.advanceTimersByTime(3000);
+  });
+  expect(button().props.accessibilityState).toEqual({ disabled: false });
+  expect(button().props.accessibilityLabel).toBe('Redo the 2 lessons');
+  jest.useRealTimers();
+});
+
 it('shows nothing at all when it is not its turn', async () => {
   const tree = await render({ visible: false });
   expect(tree.root.findAll(node => String(node.type) === 'Text').length).toBe(
