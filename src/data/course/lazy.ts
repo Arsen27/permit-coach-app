@@ -49,7 +49,15 @@ const outlineKey = (courseId: string) => `${PREFIX}/outline/${courseId}`;
 const bankKey = (courseId: string) => `${PREFIX}/bank/${courseId}`;
 const lessonKey = (courseId: string, sha256: string) =>
   `${PREFIX}/lesson/${courseId}/${sha256}`;
+// v2: every mark v1 ever wrote was wrong twice over — an over-broad
+// changedLessons painted lessons that never changed, and the fingerprints
+// were taken over the whole block, id included, so they can never match the
+// current format and the marks can never narrow themselves away. Moving the
+// key abandons them all; the guards above mean v2 only ever holds earned
+// ones.
 const marksKey = (userId: string, courseId: string) =>
+  `${PREFIX}/marks2/${userId}/${courseId}`;
+const legacyMarksKey = (userId: string, courseId: string) =>
   `${PREFIX}/marks/${userId}/${courseId}`;
 const promptKey = (userId: string) => `${PREFIX}/prompt/${userId}`;
 
@@ -504,7 +512,7 @@ export const acceptOffer = async (deps: {
       key.startsWith(`${PREFIX}/outline/${deps.courseId}`) ||
       key.startsWith(`${PREFIX}/bank/${deps.courseId}`) ||
       key.startsWith(`${PREFIX}/lesson/${deps.courseId}/`) ||
-      key.startsWith(`${PREFIX}/marks/${deps.userId}/${deps.courseId}`),
+      key.startsWith(`${PREFIX}/marks2/${deps.userId}/${deps.courseId}`),
   );
   if (keys.length > 0) {
     await AsyncStorage.removeMany(keys);
@@ -699,6 +707,10 @@ export const readMarks = async (
     return cached;
   }
   try {
+    // The v1 key is dead data on any device that wrote it; gone on sight.
+    void AsyncStorage.removeItem(legacyMarksKey(userId, courseId)).catch(
+      () => undefined,
+    );
     const raw = await AsyncStorage.getItem(marksKey(userId, courseId));
     const marks = raw == null ? {} : (JSON.parse(raw) as YellowMarks);
     marksCache.set(`${userId}/${courseId}`, marks);
