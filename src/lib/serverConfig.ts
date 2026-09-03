@@ -1,10 +1,12 @@
 import { INSTALLED_APP_VERSION } from './appVersion';
 
 // Base URL of the dmv-prep content/version server (server/ in this repo,
-// deployed on Railway). Public content only — no secrets live here. The app
-// ships without course content and downloads the learner's state course from
-// here, so an empty value leaves a fresh install with no course at all.
-export const SERVER_URL = 'https://dmv-server-production.up.railway.app';
+// deployed on Railway behind our own domain, so the host can be re-pointed
+// without shipping an app build). Public content only — no secrets live
+// here. The app ships without course content and downloads the learner's
+// state course from here, so an empty value leaves a fresh install with no
+// course at all.
+export const SERVER_URL = 'https://permitcoach.app';
 
 // The app's own release version, compared against the server's
 // minSupportedAppVersion gate and against the latest release in the store. A
