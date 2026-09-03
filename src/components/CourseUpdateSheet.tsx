@@ -44,6 +44,11 @@ type CourseUpdateSheetProps = {
   onPrimary: () => void;
   secondaryLabel: string;
   onSecondary: () => void;
+  // Fired when the sheet has finished dismissing (iOS). The accept flow
+  // waits for it before presenting the download overlay: presenting one
+  // modal while another is still dismissing leaves iOS with a dead black
+  // window until the app is relaunched.
+  onDismissed?: () => void;
 };
 
 const MEDALLION: Record<CourseUpdateVariant, IconName> = {
@@ -64,6 +69,7 @@ const CourseUpdateSheet: React.FC<CourseUpdateSheetProps> = ({
   onPrimary,
   secondaryLabel,
   onSecondary,
+  onDismissed,
 }) => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
@@ -78,6 +84,7 @@ const CourseUpdateSheet: React.FC<CourseUpdateSheetProps> = ({
       transparent
       animationType="slide"
       onRequestClose={onSecondary}
+      onDismiss={onDismissed}
     >
       <Backdrop onPress={onSecondary} />
       <Sheet style={{ paddingBottom: Math.max(insets.bottom, 16) + 24 }}>

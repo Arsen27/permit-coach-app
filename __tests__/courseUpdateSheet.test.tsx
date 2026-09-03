@@ -129,6 +129,15 @@ it('leaves out a best exam nobody has sat', async () => {
   expect(texts).toContain('7 | Lessons done');
 });
 
+it('hands its Modal the dismissal callback the accept flow waits on', async () => {
+  // iOS goes black if the download overlay presents while this sheet is
+  // still dismissing; SyncManager sequences the two through onDismissed.
+  const onDismissed = jest.fn();
+  const tree = await render({ onDismissed });
+  const modal = tree.root.findByType(require('react-native').Modal);
+  expect(modal.props.onDismiss).toBe(onDismissed);
+});
+
 it('shows nothing at all when it is not its turn', async () => {
   const tree = await render({ visible: false });
   expect(tree.root.findAll(node => String(node.type) === 'Text').length).toBe(

@@ -178,8 +178,7 @@ const SyncManager: React.FC = () => {
     [],
   );
 
-  const onAcceptOffer = useCallback(async () => {
-    answered('offer', 'accepted', offer?.version ?? null);
+  const runAcceptedOffer = useCallback(async () => {
     setPhase('downloading');
     const result = await acceptOffer({
       courseId: courseStore.activeCourseId(),
@@ -219,7 +218,27 @@ const SyncManager: React.FC = () => {
         }
       }, 2600);
     }
-  }, [answered, offer, userId, user.stateCode, changeStateWipingProgress]);
+  }, [userId, user.stateCode, changeStateWipingProgress]);
+
+  // iOS cannot present the download overlay while the offer sheet is still
+  // dismissing - doing both in one frame leaves a dead black window until the
+  // app is relaunched. So accepting only hides the sheet; the download starts
+  // from the sheet's onDismissed (with a timer as the Android/safety net).
+  const pendingAccept = useRef(false);
+  const startAcceptedOffer = useCallback(() => {
+    if (!pendingAccept.current || !alive.current) {
+      return;
+    }
+    pendingAccept.current = false;
+    void runAcceptedOffer();
+  }, [runAcceptedOffer]);
+
+  const onAcceptOffer = useCallback(() => {
+    answered('offer', 'accepted', offer?.version ?? null);
+    pendingAccept.current = true;
+    setPhase('idle');
+    setTimeout(startAcceptedOffer, 700);
+  }, [answered, offer, startAcceptedOffer]);
 
   // The lessons the fix touched, named where naming them helps: one or two
   // titles are worth more than a number, more than that and the number is.
@@ -333,9 +352,9 @@ const SyncManager: React.FC = () => {
 
       {/* One sheet at a time: a fix that named finished lessons is read
           before an offer to throw those lessons away. */}
-      {offer != null && phase === 'offer' && prompt == null && (
+      {offer != null && prompt == null && (
         <CourseUpdateSheet
-          visible
+          visible={phase === 'offer'}
           variant="offer"
           eyebrow={`COURSE VERSION ${offer.version} AVAILABLE`}
           title="A rebuilt course is ready"
@@ -352,9 +371,10 @@ const SyncManager: React.FC = () => {
             keeps: 'Your day streak and your saved signs stay with you.',
           }}
           primaryLabel="Update and reset my progress"
-          onPrimary={() => void onAcceptOffer()}
+          onPrimary={onAcceptOffer}
           secondaryLabel="Keep my current course"
           onSecondary={onDeclineOffer}
+          onDismissed={startAcceptedOffer}
         />
       )}
 
