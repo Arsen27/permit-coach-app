@@ -1,6 +1,7 @@
 import { ImageSourcePropType } from 'react-native';
 
 import { IconName } from '@/assets/icons';
+import { EXAM_LENGTH } from '@/data/practice';
 
 // Copy and option sets for the onboarding flow (design: "DMV Prep —
 // Onboarding" board). Icon tints reuse the app's soft-tile palette.
@@ -229,7 +230,9 @@ export const makeShowcaseSlides = (stateName: string): ShowcaseSlide[] => [
   {
     image: require('@/assets/images/showcase-practice.png'),
     title: 'Mistakes come back until they stick',
-    body: "Anything you miss returns for review at the right moment — and a 46-question exam simulator shows you're ready before the real test.",
+    // The simulator's own length, not a copywritten number — the two can
+    // never drift apart.
+    body: `Anything you miss returns for review at the right moment — and a ${EXAM_LENGTH}-question exam simulator shows you're ready before the real test.`,
   },
 ];
 
