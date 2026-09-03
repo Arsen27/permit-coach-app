@@ -822,11 +822,6 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
             onPress={awaitingCheck ? check : advance}
           />
         )}
-        {block.type === 'drive_smarter' && (
-          <SecondaryAction onPress={advance}>
-            <SecondaryText>Skip this card</SecondaryText>
-          </SecondaryAction>
-        )}
       </Footer>
 
       <Modal
