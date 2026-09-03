@@ -25,10 +25,19 @@ type LessonOverviewScreenProps = NativeStackScreenProps<
   'Lesson'
 >;
 
-// The lesson's own opening illustration, as the screen's hero. Reading order
-// over the blocks — not `lesson.assetIds`, which is a flat bag that also
-// carries the quiz diagrams and is not ordered by where the art appears.
+// The lesson's own opening illustration, as the screen's hero. The authored
+// one wins; without it, reading order over the blocks — not
+// `lesson.assetIds`, which is a flat bag that also carries the quiz diagrams
+// and is not ordered by where the art appears. The fallback is why an
+// authored hero exists at all: the first block picture moves the moment an
+// author adds artwork to an early slide.
 const lessonHeroAsset = (lesson: CourseLessonV2): CourseAssetV2 | undefined => {
+  if (lesson.heroAssetId != null) {
+    const authored = findCourseAsset(lesson.heroAssetId);
+    if (authored != null) {
+      return authored;
+    }
+  }
   for (const block of lesson.blocks) {
     for (const assetId of blockAssetIds(block)) {
       const asset = findCourseAsset(assetId);

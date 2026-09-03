@@ -186,6 +186,58 @@ beforeEach(async () => {
   observedState = null;
 });
 
+describe('the lesson screen hero', () => {
+  it('an authored hero wins over the first picture a slide shows', async () => {
+    const pinned = FIXTURE_COURSE_BUNDLE.assets.find(
+      asset => asset.assetId !== heroAsset.assetId,
+    )!;
+    const modifiedLesson = {
+      ...lesson,
+      heroAssetId: pinned.assetId,
+      assetIds: [...new Set([...lesson.assetIds, pinned.assetId])],
+    };
+    const moduleDoc: ModuleDocV2 = {
+      schemaVersion: COURSE_SCHEMA_VERSION,
+      deliveryVersion: '3.1.0',
+      module: {
+        ...moduleWithLesson,
+        lessons: moduleWithLesson.lessons.map(entry =>
+          entry.lessonId === LESSON_ID ? modifiedLesson : entry,
+        ),
+      },
+      questions: FIXTURE_COURSE_BUNDLE.questions,
+      assets: FIXTURE_COURSE_BUNDLE.assets,
+    };
+    primeLazyCourseForTests(
+      FIXTURE_COURSE_ID as never,
+      FIXTURE_COURSE_BUNDLE.course.title,
+      [moduleDoc],
+      '3.1.0',
+    );
+
+    const navigation = { navigate: jest.fn(), goBack: jest.fn() } as any;
+    const route = { params: { lessonId: LESSON_ID } } as any;
+    let tree!: Renderer;
+    await ReactTestRenderer.act(async () => {
+      tree = ReactTestRenderer.create(
+        <ThemeProvider theme={defaultTheme}>
+          <LessonOverviewScreen navigation={navigation} route={route} />
+        </ThemeProvider>,
+      );
+    });
+
+    // The pinned picture leads the screen; the derived one does not.
+    expect(
+      tree.root.findAll(node => node.props.accessibilityLabel === pinned.alt),
+    ).not.toHaveLength(0);
+    expect(
+      tree.root.findAll(
+        node => node.props.accessibilityLabel === heroAsset.alt,
+      ),
+    ).toHaveLength(0);
+  });
+});
+
 describe('split lesson experience', () => {
   it('opens with a summary and two independent paths', async () => {
     const navigate = jest.fn();

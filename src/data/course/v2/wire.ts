@@ -516,6 +516,10 @@ export type CourseLessonV2 = {
   conceptId?: string;
   objective: string;
   intro?: LessonIntroV2;
+  // The overview screen's opening illustration, authored. Absent, the screen
+  // falls back to the first picture a block shows — which moves the moment an
+  // author adds artwork to an early slide, so an authored hero pins it.
+  heroAssetId?: string;
   estimatedMinutes: string;
   format: string;
   blocks: LessonBlockV2[];
@@ -1312,6 +1316,9 @@ const validateLesson = (ctx: Ctx, value: unknown): CourseLessonV2 | null => {
     }),
     objective: str(ctx, value, 'objective'),
     ...(intro !== undefined && { intro }),
+    ...(value.heroAssetId !== undefined && {
+      heroAssetId: str(ctx, value, 'heroAssetId'),
+    }),
     estimatedMinutes: str(ctx, value, 'estimatedMinutes'),
     format: str(ctx, value, 'format'),
     blocks,
@@ -1525,6 +1532,14 @@ const checkDocQuestionAssetIntegrity = (
           `${ctx.path}: lesson ${lesson.lessonId} references missing asset ${assetId}`,
         );
       }
+    }
+    if (
+      lesson.heroAssetId != null &&
+      !lesson.assetIds.includes(lesson.heroAssetId)
+    ) {
+      ctx.errors.push(
+        `${ctx.path}: lesson ${lesson.lessonId} hero ${lesson.heroAssetId} is outside lesson.assetIds`,
+      );
     }
     for (const block of lesson.blocks) {
       if (isQuickChallengeBlock(block)) {

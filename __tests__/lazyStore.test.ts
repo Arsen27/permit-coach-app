@@ -569,6 +569,41 @@ it('a slide inserted above does not make the rest of the lesson changed', async 
   });
 });
 
+it('an over-broad changedLessons cannot mark a lesson whose body did not change', async () => {
+  serveVersion('1.1.1', { 'l-one': L1, 'l-two': L2 }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({ current: '1.1.1', bankSha: sha256Hex(BANK1) }),
+  );
+  await syncLazyCourse(deps());
+  // Both lessons opened and completed; only l-two actually changes.
+  await ensureLesson(COURSE, 'l-one');
+  await ensureLesson(COURSE, 'l-two');
+
+  const L2FIXED = lessonDoc('1.1.2', 'l-two', 'Lesson two, fixed');
+  serveVersion('1.1.2', { 'l-one': L1, 'l-two': L2FIXED }, BANK1);
+  mockVerdict.mockResolvedValue(
+    verdictBody({
+      current: '1.1.2',
+      bankSha: sha256Hex(BANK1),
+      replace: {
+        version: '1.1.2',
+        subtype: 'apology',
+        // The lineage-wide union an old server sends: l-one changed in some
+        // earlier patch this device already has.
+        changedLessons: ['l-one', 'l-two'],
+        message: 'Sorry.',
+      },
+    }),
+  );
+  const result = await syncLazyCourse(deps(['l-one', 'l-two']));
+
+  // Only the lesson whose bytes moved is marked — and only it is counted in
+  // the sheet the learner reads.
+  const marks = await readMarks('u1', COURSE);
+  expect(Object.keys(marks)).toEqual(['l-two']);
+  expect(result.prompt?.lessonIds).toEqual(['l-two']);
+});
+
 it('a lesson whose old body was gone is marked, but nothing inside it is', async () => {
   serveVersion('1.1.1', { 'l-one': L1, 'l-two': L2 }, BANK1);
   mockVerdict.mockResolvedValue(

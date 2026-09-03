@@ -376,7 +376,20 @@ export const syncLazyCourse = async (deps: {
             module.lessons.map(lesson => lesson.lessonId),
           );
         const completed = new Set(deps.completedLessonIds);
-        const affected = changed.filter(lessonId => completed.has(lessonId));
+        // A cached body whose bytes are what the new outline names did not
+        // change for THIS device, whatever an over-broad changedLessons (an
+        // old server, a lineage-wide union) claims — it gets neither the
+        // yellow nor a place in the sheet's count.
+        const moved = changed.filter(lessonId => {
+          const old = state.lessonDocs.get(lessonId);
+          const ref = lessonRefOf(next, lessonId);
+          return !(
+            old != null &&
+            ref != null &&
+            sha256Hex(`${JSON.stringify(old, null, 2)}\n`) === ref.sha256
+          );
+        });
+        const affected = moved.filter(lessonId => completed.has(lessonId));
         if (affected.length > 0) {
           prompt = {
             kind: replace.subtype,
@@ -385,14 +398,14 @@ export const syncLazyCourse = async (deps: {
           };
           const existing = await readMarks(deps.userId, deps.courseId);
           for (const lessonId of affected) {
-            // The old body is still here for a beat: keep its blocks'
-            // hashes, so the mark can narrow to the changed blocks the
-            // moment the new body arrives.
+            // The old body is still here for a beat.
             const old = state.lessonDocs.get(lessonId);
             existing[lessonId] =
               old == null
                 ? {}
                 : {
+                    // Kept so the mark can narrow to the changed blocks the
+                    // moment the new body arrives.
                     oldBlockHashes: Object.fromEntries(
                       old.lesson.blocks.map(block => [
                         block.blockId,
@@ -745,6 +758,14 @@ export const narrowMark = async (
   const blocks = doc.lesson.blocks
     .filter(block => !seen.has(blockFingerprint(block)))
     .map(block => block.blockId);
+  if (blocks.length === 0) {
+    // Nothing the learner sees differs: the mark was never earned, so it
+    // comes off the ladder rather than narrowing to an empty highlight.
+    const rest = { ...marks };
+    delete rest[lessonId];
+    await writeMarks(userId, courseId, rest);
+    return;
+  }
   await writeMarks(userId, courseId, {
     ...marks,
     [lessonId]: { blocks },
