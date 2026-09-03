@@ -6,9 +6,7 @@ import { INSTALLED_APP_VERSION } from './appVersion';
 // here. The app ships without course content and downloads the learner's
 // state course from here, so an empty value leaves a fresh install with no
 // course at all.
-// Transition parking spot: the apex is going back to the Vercel site and the
-// server is moving to api.permitcoach.app — this host answers throughout.
-export const SERVER_URL = 'https://dmv-server-production.up.railway.app';
+export const SERVER_URL = 'https://api.permitcoach.app';
 
 // The app's own release version, compared against the server's
 // minSupportedAppVersion gate and against the latest release in the store. A
