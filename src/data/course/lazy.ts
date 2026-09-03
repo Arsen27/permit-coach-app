@@ -77,6 +77,17 @@ export type SyncResult = {
   status: SyncStatus;
   offer?: { version: string; message: string };
   prompt?: ReplacePrompt;
+  // What this run actually changed on the device, when it changed anything.
+  // The caller reports it: the store has no business knowing about analytics,
+  // and "which version is this person on" is a question asked from outside.
+  applied?: {
+    from: string | null;
+    to: string;
+    // A fix replaces the lineage the device holds; wholesale is a device the
+    // channel does not recognise — a fresh install, or one above a rollback.
+    kind: 'fix' | 'wholesale';
+    subtype: 'silent' | 'apology' | 'rules' | null;
+  };
 };
 
 type CourseState = {
@@ -341,6 +352,7 @@ export const syncLazyCourse = async (deps: {
       verdict.course.replace?.version ??
       (state.outline == null ? verdict.course.current : null);
     let prompt: ReplacePrompt | undefined;
+    let applied: SyncResult['applied'];
 
     if (target != null && target !== held) {
       const outlineRaw = await fetchOutlineRaw(
@@ -431,6 +443,12 @@ export const syncLazyCourse = async (deps: {
           verdict.course.replace?.subtype ?? 'first'
         })`,
       );
+      applied = {
+        from: held,
+        to: next.version,
+        kind: verdict.course.replace != null ? 'fix' : 'wholesale',
+        subtype: verdict.course.replace?.subtype ?? null,
+      };
     }
 
     // The bank moves by hash, wholesale, for everyone.
@@ -447,6 +465,7 @@ export const syncLazyCourse = async (deps: {
         : 'ready',
       ...(verdict.course.offer != null && { offer: verdict.course.offer }),
       ...(prompt != null && { prompt }),
+      ...(applied != null && { applied }),
     };
   } catch (error) {
     log.error(

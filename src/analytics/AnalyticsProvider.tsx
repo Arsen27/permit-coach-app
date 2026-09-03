@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { AppState as RNAppState } from 'react-native';
 
 import { PostHogProvider } from 'posthog-react-native';
 
 import { useAuth } from '@/auth/AuthProvider';
+import { useStoredCourse } from '@/data/course/CourseProvider';
+import { getContentChannel } from '@/lib/contentChannel';
 import { ANALYTICS_CAPTURE_TOUCHES } from '@/lib/analyticsConfig';
 import { usePurchases } from '@/purchases/PurchasesProvider';
 import { useAppState } from '@/state/AppState';
@@ -53,6 +56,9 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
 export const AnalyticsIdentity: React.FC = () => {
   const { userId, email, signedIn } = useAuth();
   const { plusActive } = usePurchases();
+  // Which content this device is actually running — the whole point of
+  // asking "who is still on the old course".
+  const course = useStoredCourse();
   const {
     user,
     streak,
@@ -71,6 +77,20 @@ export const AnalyticsIdentity: React.FC = () => {
     syncIdentity(userId);
   }, [userId]);
 
+  // Last opened: PostHog derives its own last-seen from event timestamps, but
+  // that is a query. As a person property it sits in the list beside the
+  // course version, which is where the question is actually asked — "who is
+  // on 3.2.11 and has not been back since".
+  const [openedAt, setOpenedAt] = useState(() => new Date().toISOString());
+  useEffect(() => {
+    const subscription = RNAppState.addEventListener('change', status => {
+      if (status === 'active') {
+        setOpenedAt(new Date().toISOString());
+      }
+    });
+    return () => subscription.remove();
+  }, []);
+
   // RevenueCat is the live source of truth for Plus; the synced profiles.plan
   // mirror is the fallback while the entitlement is still unknown.
   const isPlus = plusActive ?? user.plan === 'plus';
@@ -84,8 +104,17 @@ export const AnalyticsIdentity: React.FC = () => {
   const mistakes = mistakeIds.length;
   const savedSigns = savedSignIds.length;
 
+  const courseId = course?.bundle.course.courseId ?? null;
+  const courseVersion = course?.deliveryVersion ?? null;
+  const channel = getContentChannel();
+
   useEffect(() => {
-    registerLearnerContext({ us_state: user.stateCode, plan });
+    registerLearnerContext({
+      us_state: user.stateCode,
+      plan,
+      course_version: courseVersion,
+      content_channel: channel,
+    });
     setLearnerProperties({
       email,
       // The profile name — adopted from Apple/Google or typed in later.
@@ -105,6 +134,10 @@ export const AnalyticsIdentity: React.FC = () => {
       saved_signs: savedSigns,
       font_id: fontId,
       accent_id: accentId,
+      course_id: courseId,
+      course_version: courseVersion,
+      content_channel: channel,
+      last_opened_at: openedAt,
     });
   }, [
     email,
@@ -124,6 +157,10 @@ export const AnalyticsIdentity: React.FC = () => {
     savedSigns,
     fontId,
     accentId,
+    courseId,
+    courseVersion,
+    channel,
+    openedAt,
   ]);
 
   return null;

@@ -52,6 +52,16 @@ export const forgetIdentity = async (): Promise<void> => {
   identified = null;
 };
 
+// A breadcrumb attached to whatever exception comes next — where the learner
+// was, what the app was doing. Kept in memory and sent only with an
+// exception, so it costs nothing until something breaks.
+export const noteStep = (
+  message: string,
+  properties?: Record<string, string | number | boolean | null>,
+): void => {
+  posthog?.addExceptionStep(message, properties);
+};
+
 export type LearnerProperties = {
   // PostHog's own display properties: they are what the person list and the
   // replay viewer show instead of a bare uuid. null for anonymous learners —
@@ -73,6 +83,16 @@ export type LearnerProperties = {
   saved_signs: number;
   font_id: string;
   accent_id: string;
+  // Which content this person is actually running. `course_version` is the
+  // answer to "who is still on the old course", and it has to be a person
+  // property rather than only an event: a learner who never opens the app
+  // again is exactly the one worth finding.
+  course_id: string | null;
+  course_version: string | null;
+  content_channel: 'production' | 'staging';
+  // ISO-8601. PostHog keeps its own last-seen from event timestamps; this is
+  // the same fact in the person list, where it can be filtered and exported.
+  last_opened_at: string;
 };
 
 // Person properties, refreshed whenever the underlying state changes. The SDK
@@ -90,7 +110,10 @@ export const setLearnerProperties = (properties: LearnerProperties): void => {
 // Super properties: attached to every event, so any insight can break down by
 // state and plan without joining onto the person.
 export const registerLearnerContext = (
-  properties: Pick<LearnerProperties, 'us_state' | 'plan'>,
+  properties: Pick<
+    LearnerProperties,
+    'us_state' | 'plan' | 'course_version' | 'content_channel'
+  >,
 ): void => {
   posthog?.register(properties);
 };

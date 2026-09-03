@@ -56,6 +56,25 @@ export const posthog: PostHog | null = analyticsEnabled
         captureNetworkTelemetry: true,
         sampleRate: ANALYTICS_REPLAY_SAMPLE_RATE,
       },
+      // Crashes, on the same account as everything else. Autocapture is off
+      // by default in the SDK, so this is the whole of it: an uncaught error
+      // or a rejected promise nobody caught becomes an exception with its
+      // stack, the person it happened to, and whatever steps were recorded
+      // before it.
+      //
+      // Console capture stays off on purpose: it turns every console.error
+      // into a billable exception, and this app logs failures it has already
+      // handled (an offline check, a picture that will not parse) through
+      // exactly that channel. What is worth reporting is reported by hand
+      // with trackError.
+      //
+      // Native crashes (a Swift/Kotlin fault, not a JS one) need
+      // @posthog/react-native-plugin, which is not installed — a JS-only
+      // build cannot produce them, so the day we add a native module is the
+      // day to add it.
+      errorTracking: {
+        autocapture: { uncaughtExceptions: true, unhandledRejections: true },
+      },
       // Every learner gets a person profile, including the ones who never
       // sign in — they are the majority, and their progress properties are
       // the whole point of the funnel.

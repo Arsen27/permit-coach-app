@@ -12,6 +12,9 @@ import CourseUpdateSheet from '@/components/CourseUpdateSheet';
 import { findCourseLesson } from '@/data/course/learn';
 import { findState } from '@/data/states';
 import { navigationRef } from '@/navigation/rootNavigation';
+import { track, trackError } from '@/analytics';
+import { noteStep } from '@/analytics/identity';
+import { getContentChannel } from '@/lib/contentChannel';
 import { useAppState } from '@/state/AppState';
 
 import {
@@ -75,6 +78,9 @@ const SyncManager: React.FC = () => {
       return;
     }
     lastRunAt.current = Date.now();
+    noteStep('course sync started', {
+      version: courseStore.getSnapshot()?.deliveryVersion ?? null,
+    });
 
     // The signs ride the same cadence, silently; a signs failure never blocks
     // the course.
@@ -91,8 +97,27 @@ const SyncManager: React.FC = () => {
       }
       if (result.status === 'offline' || result.status === 'failed') {
         // Nothing changed on the device; the next foreground retries.
+        track('course_sync_failed', {
+          reason: result.status,
+          version: courseStore.getSnapshot()?.deliveryVersion ?? null,
+        });
         lastRunAt.current = 0;
         return;
+      }
+      if (result.applied != null) {
+        track('course_version_changed', {
+          from: result.applied.from,
+          to: result.applied.to,
+          kind: result.applied.kind,
+          subtype: result.applied.subtype,
+          channel: getContentChannel(),
+        });
+      }
+      if (result.status === 'app-update-required') {
+        track('course_sync_failed', {
+          reason: 'app_update_required',
+          version: courseStore.getSnapshot()?.deliveryVersion ?? null,
+        });
       }
       if (
         result.status === 'app-update-required' &&
@@ -108,21 +133,53 @@ const SyncManager: React.FC = () => {
       const pending = result.prompt ?? (await takePrompt(userId));
       if (pending != null && alive.current) {
         setPrompt(pending);
+        track('course_update_sheet_shown', {
+          kind: pending.kind,
+          version: courseStore.getSnapshot()?.deliveryVersion ?? null,
+          lessons: pending.lessonIds.length,
+        });
       }
       if (result.offer != null && alive.current) {
         setOffer(result.offer);
         setPhase('offer');
+        track('course_update_sheet_shown', {
+          kind: 'offer',
+          version: result.offer.version,
+          lessons: completedRef.current.length,
+        });
       }
     } catch (error) {
       log.error(
         'sync threw — treating it as a failed run',
         error instanceof Error ? error.message : error,
       );
+      // Not an offline check and not a refusal the store already handled:
+      // something got past every guard, which is exactly what error tracking
+      // is for.
+      trackError(error, {
+        where: 'course_sync',
+        version: courseStore.getSnapshot()?.deliveryVersion ?? null,
+      });
       lastRunAt.current = 0;
     }
   }, [userId]);
 
+  // What the learner did with what we told them — the other half of
+  // course_update_sheet_shown, and the only way to know whether a correction
+  // ever sent anyone back to the lesson.
+  const answered = useCallback(
+    (
+      kind: 'apology' | 'rules' | 'offer',
+      action: 'redo' | 'dismissed' | 'accepted' | 'declined',
+      version: string | null,
+    ) => {
+      track('course_update_sheet_answered', { kind, version, action });
+    },
+    [],
+  );
+
   const onAcceptOffer = useCallback(async () => {
+    answered('offer', 'accepted', offer?.version ?? null);
     setPhase('downloading');
     const result = await acceptOffer({
       courseId: courseStore.activeCourseId(),
@@ -136,6 +193,16 @@ const SyncManager: React.FC = () => {
       // The deal the learner accepted: the new course starts clean. Wiping is
       // the same move a state switch makes — to the same state.
       changeStateWipingProgress(user.stateCode);
+      track('course_version_changed', {
+        from: result.applied?.from ?? null,
+        to:
+          result.applied?.to ??
+          courseStore.getSnapshot()?.deliveryVersion ??
+          '',
+        kind: 'offer',
+        subtype: null,
+        channel: getContentChannel(),
+      });
       setOffer(null);
       setPhase('done');
       setTimeout(() => {
@@ -152,7 +219,7 @@ const SyncManager: React.FC = () => {
         }
       }, 2600);
     }
-  }, [userId, user.stateCode, changeStateWipingProgress]);
+  }, [answered, offer, userId, user.stateCode, changeStateWipingProgress]);
 
   // The lessons the fix touched, named where naming them helps: one or two
   // titles are worth more than a number, more than that and the number is.
@@ -171,15 +238,30 @@ const SyncManager: React.FC = () => {
   }, []);
 
   const closePrompt = useCallback(() => {
+    if (prompt != null) {
+      answered(
+        prompt.kind,
+        'dismissed',
+        courseStore.getSnapshot()?.deliveryVersion ?? null,
+      );
+    }
     setPrompt(null);
     void clearPromptFor(userId);
-  }, [userId]);
+  }, [answered, prompt, userId]);
 
   // Straight to the first lesson that changed: the marks are on the ladder,
   // but the sheet is where the learner is looking.
   const redoMarked = useCallback(
     (lessonIds: string[]) => {
-      closePrompt();
+      if (prompt != null) {
+        answered(
+          prompt.kind,
+          'redo',
+          courseStore.getSnapshot()?.deliveryVersion ?? null,
+        );
+      }
+      setPrompt(null);
+      void clearPromptFor(userId);
       const first = lessonIds.find(
         lessonId => findCourseLesson(lessonId) != null,
       );
@@ -187,13 +269,14 @@ const SyncManager: React.FC = () => {
         navigationRef.navigate('Lesson', { lessonId: first });
       }
     },
-    [closePrompt],
+    [answered, prompt, userId],
   );
 
   const onDeclineOffer = useCallback(() => {
+    answered('offer', 'declined', offer?.version ?? null);
     setOffer(null);
     setPhase('idle');
-  }, []);
+  }, [answered, offer]);
 
   useEffect(() => {
     check();

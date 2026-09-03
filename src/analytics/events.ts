@@ -206,6 +206,37 @@ export type AnalyticsEventMap = {
   // Starting the course over: scores, streak and the downloaded course all
   // go, and the newest version comes back. The other destructive setting.
   progress_reset: { state_code: string; lessons_done: number };
+  // ------------------------------------------------------------ course updates
+  // Which version a device ended up on, and how it got there. The person
+  // property `course_version` answers "who is on what" for everyone at once;
+  // this is the trail of how each one moved, including the silent fixes
+  // nobody is told about.
+  course_version_changed: {
+    from: string | null;
+    to: string;
+    // A fix replaces the lineage the device held; wholesale is a device the
+    // channel does not recognise (a fresh install, or one above a rollback);
+    // an offer is a new course the learner consented to.
+    kind: 'fix' | 'wholesale' | 'offer';
+    subtype: 'silent' | 'apology' | 'rules' | null;
+    channel: 'production' | 'staging';
+  };
+  // A check that changed nothing on the device and why.
+  course_sync_failed: {
+    reason: 'offline' | 'failed' | 'app_update_required';
+    version: string | null;
+  };
+  // The two sheets a learner is actually shown, and what they did with them.
+  course_update_sheet_shown: {
+    kind: 'apology' | 'rules' | 'offer';
+    version: string | null;
+    lessons: number;
+  };
+  course_update_sheet_answered: {
+    kind: 'apology' | 'rules' | 'offer';
+    version: string | null;
+    action: 'redo' | 'dismissed' | 'accepted' | 'declined';
+  };
   font_changed: { font_id: FontId };
   external_link_opened: { target: string };
 };
