@@ -29,6 +29,7 @@ import {
 import { Eyebrow } from '@/components/typography';
 import CourseInstallSheet from '@/components/CourseInstallSheet';
 import { courseIdForState } from '@/data/course';
+import { useStoredCourse } from '@/data/course/CourseProvider';
 import { clearAllLessonPlaces } from '@/data/course/lessonProgressStore';
 import { channelAnswers } from '@/data/course/client';
 import { courseStore } from '@/data/course/store';
@@ -78,6 +79,9 @@ const YouScreen: React.FC = () => {
   const { plusActive } = usePurchases();
   const devUnlockAll = useDevUnlockAll();
   const contentChannel = useContentChannel();
+  // Which content this phone is actually running — the first thing worth
+  // knowing when a fix "did not arrive".
+  const course = useStoredCourse();
   const install = useCourseInstall();
   const [stagingKeyDraft, setStagingKeyDraft] = useState(getStagingKey);
   // Switching channels throws away what the other one put on this device and
@@ -444,6 +448,20 @@ const YouScreen: React.FC = () => {
                 onValueChange={setDevUnlockAll}
                 trackColor={{ true: theme.colors.accent }}
               />
+            </Row>
+            <Row $divider>
+              <RowTile $bg={theme.colors.faint}>
+                <Icon name="list-check" size={15} color={theme.colors.muted} />
+              </RowTile>
+              <RowBody>
+                <RowTitle>Course version</RowTitle>
+                <RowSub>
+                  {course == null
+                    ? 'Nothing downloaded for this state yet'
+                    : `${course.bundle.course.courseId} · ${course.deliveryVersion}`}
+                </RowSub>
+              </RowBody>
+              <RowValue>{course?.deliveryVersion ?? '—'}</RowValue>
             </Row>
             <Row $divider>
               <RowTile $bg={theme.colors.faint}>

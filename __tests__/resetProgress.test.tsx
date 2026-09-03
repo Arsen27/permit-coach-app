@@ -142,6 +142,19 @@ const earnSomething = async (): Promise<void> => {
   });
 };
 
+it('names the course version this phone is running, for a developer', async () => {
+  const tree = await render();
+  const texts = tree.root
+    .findAll(node => String(node.type) === 'Text')
+    .map(node => node.children.filter(c => typeof c === 'string').join(''))
+    .join(' | ');
+  // __DEV__ is true under jest, so the developer section renders. Nothing is
+  // downloaded in this test, and saying so is the point: a blank row would
+  // read as "1.0.0" to whoever is debugging.
+  expect(texts).toContain('Course version');
+  expect(texts).toContain('Nothing downloaded for this state yet');
+});
+
 it('asks before it takes anything, and takes nothing on cancel', async () => {
   const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
   const tree = await render();
