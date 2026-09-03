@@ -56,9 +56,15 @@ const lessonKey = (courseId: string, sha256: string) =>
 // key abandons them all; the guards above mean v2 only ever holds earned
 // ones.
 const marksKey = (userId: string, courseId: string) =>
-  `${PREFIX}/marks2/${userId}/${courseId}`;
-const legacyMarksKey = (userId: string, courseId: string) =>
-  `${PREFIX}/marks/${userId}/${courseId}`;
+  `${PREFIX}/marks3/${userId}/${courseId}`;
+// v1 fingerprinted whole blocks, ids included; v2 was written while the
+// server called every lesson changed on every release. Both generations are
+// wrong to the last mark, and neither can heal itself.
+const LEGACY_MARK_PREFIXES = ['marks', 'marks2'];
+const legacyMarkKeys = (userId: string, courseId: string) =>
+  LEGACY_MARK_PREFIXES.map(
+    prefix => `${PREFIX}/${prefix}/${userId}/${courseId}`,
+  );
 const promptKey = (userId: string) => `${PREFIX}/prompt/${userId}`;
 
 // One yellow mark: a lesson to re-take. Until the new body arrives it keeps
@@ -512,7 +518,7 @@ export const acceptOffer = async (deps: {
       key.startsWith(`${PREFIX}/outline/${deps.courseId}`) ||
       key.startsWith(`${PREFIX}/bank/${deps.courseId}`) ||
       key.startsWith(`${PREFIX}/lesson/${deps.courseId}/`) ||
-      key.startsWith(`${PREFIX}/marks2/${deps.userId}/${deps.courseId}`),
+      key.startsWith(`${PREFIX}/marks3/${deps.userId}/${deps.courseId}`),
   );
   if (keys.length > 0) {
     await AsyncStorage.removeMany(keys);
@@ -707,8 +713,8 @@ export const readMarks = async (
     return cached;
   }
   try {
-    // The v1 key is dead data on any device that wrote it; gone on sight.
-    void AsyncStorage.removeItem(legacyMarksKey(userId, courseId)).catch(
+    // The dead generations go on sight.
+    void AsyncStorage.removeMany(legacyMarkKeys(userId, courseId)).catch(
       () => undefined,
     );
     const raw = await AsyncStorage.getItem(marksKey(userId, courseId));
@@ -745,10 +751,27 @@ export const clearMark = async (
 // positional (…-slide-02), so a fix that inserts one slide renames every
 // slide under it: comparing by id would call the whole rest of the lesson
 // changed, which is exactly the wash of yellow this avoids.
+// Key order canonicalised: a block that round-trips through the panel's
+// editor can come back with the same fields in a different order, and a
+// fingerprint that noticed would paint an untouched slide yellow.
+const canonical = (value: unknown): unknown => {
+  if (Array.isArray(value)) {
+    return value.map(canonical);
+  }
+  if (value != null && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>)
+        .sort(([a], [b]) => (a < b ? -1 : 1))
+        .map(([key, inner]) => [key, canonical(inner)]),
+    );
+  }
+  return value;
+};
+
 const blockFingerprint = (block: LessonBlockV2): string => {
   const content = { ...block } as Partial<LessonBlockV2>;
   delete content.blockId;
-  return sha256Hex(JSON.stringify(content));
+  return sha256Hex(JSON.stringify(canonical(content)));
 };
 
 // When a marked lesson's new body lands, the mark narrows to the blocks that

@@ -569,18 +569,22 @@ it('a slide inserted above does not make the rest of the lesson changed', async 
   });
 });
 
-it('marks written by the buggy format are abandoned, not trusted', async () => {
-  // A v1 mark as the old code left it: painted by an over-broad list, with
-  // fingerprints no current code can ever match.
-  await AsyncStorage.setItem(
-    `dmv-prep/lazy/v1/marks/u1/${COURSE}`,
-    JSON.stringify({ 'l-one': { oldBlockHashes: { 'l-one-b01': 'stale' } } }),
-  );
+it('marks written by the buggy generations are abandoned, not trusted', async () => {
+  // v1 fingerprinted whole blocks; v2 was painted while the server called
+  // every lesson changed on every release. Neither can heal itself.
+  for (const prefix of ['marks', 'marks2']) {
+    await AsyncStorage.setItem(
+      `dmv-prep/lazy/v1/${prefix}/u1/${COURSE}`,
+      JSON.stringify({ 'l-one': { oldBlockHashes: { 'l-one-b01': 'stale' } } }),
+    );
+  }
   expect(await readMarks('u1', COURSE)).toEqual({});
   await new Promise(resolve => setTimeout(resolve, 0));
-  expect(
-    await AsyncStorage.getItem(`dmv-prep/lazy/v1/marks/u1/${COURSE}`),
-  ).toBeNull();
+  for (const prefix of ['marks', 'marks2']) {
+    expect(
+      await AsyncStorage.getItem(`dmv-prep/lazy/v1/${prefix}/u1/${COURSE}`),
+    ).toBeNull();
+  }
 });
 
 it('an over-broad changedLessons cannot mark a lesson whose body did not change', async () => {
