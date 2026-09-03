@@ -352,16 +352,49 @@ const RecallRule = React.memo(RecallRuleComponent);
 // sit between two paragraphs. Legacy blocks come through `blockElements()` as
 // paragraphs followed by their bullets, which is exactly how they used to be
 // drawn — nothing shipped changes shape.
+// Words the latest fix rewrote, highlighted exactly — never a washed slide.
+// Matching is by word, punctuation-insensitively, so "yield," lights up when
+// the diff recorded "yield".
+const bare = (word: string): string =>
+  word.toLowerCase().replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '');
+
+// A function, not a component, so the untouched case hands back the plain
+// string and nothing about an unmarked card's tree changes shape.
+export const highlightWords = (
+  text: string,
+  words?: string[],
+): React.ReactNode => {
+  if (words == null || words.length === 0) {
+    return text;
+  }
+  const changed = new Set(words.map(bare));
+  return text
+    .split(/(\s+)/)
+    .map((part, index) =>
+      part.trim().length > 0 && changed.has(bare(part)) ? (
+        <ChangedWord key={index}>{part}</ChangedWord>
+      ) : (
+        part
+      ),
+    );
+};
+
+const ChangedWord = styled.Text`
+  background-color: rgba(234, 179, 8, 0.28);
+  border-radius: 3px;
+`;
+
 const TeachingCopy: React.FC<{
   elements: LessonElementV2[];
   resolveAsset?: AssetResolver;
-}> = ({ elements, resolveAsset }) => (
+  changedWords?: string[];
+}> = ({ elements, resolveAsset, changedWords }) => (
   <>
     {elements.map((element, index) => {
       if (isParagraphElement(element)) {
         // A line left blank while authoring is not a paragraph break.
         return element.text.trim().length === 0 ? null : (
-          <Body key={index}>{element.text}</Body>
+          <Body key={index}>{highlightWords(element.text, changedWords)}</Body>
         );
       }
       if (isBulletsElement(element)) {
@@ -371,7 +404,7 @@ const TeachingCopy: React.FC<{
             {items.map((bullet, bulletIndex) => (
               <BulletRow key={bulletIndex}>
                 <BulletMark>•</BulletMark>
-                <BulletText>{bullet}</BulletText>
+                <BulletText>{highlightWords(bullet, changedWords)}</BulletText>
               </BulletRow>
             ))}
           </BulletList>
@@ -403,6 +436,9 @@ type LessonCardBodyProps = {
   // Position of a checkpoint question within the lesson, for its kicker.
   checkpointOrdinal?: number;
   checkpointTotal?: number;
+  // Words the latest fix rewrote in this block, highlighted in place. The
+  // rule is specific words or nothing — a whole slide is never washed.
+  changedWords?: string[];
   // check_yourself only: whether the host has revealed the hidden words.
   revealed?: boolean;
 };
@@ -419,6 +455,7 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
   checkpointOrdinal = 0,
   checkpointTotal = 0,
   revealed = false,
+  changedWords,
 }) => {
   const { block } = card;
   const meta = cardMetaFor(block, stateLabel, cardStyles);
@@ -502,7 +539,7 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
         {points.map((point, index) => (
           <RecapCard key={index} testID="recap-card" $stacked={index > 0}>
             <RecapText testID="recap-text" $long={longest > RECAP_TIGHT_CHARS}>
-              {point}
+              {highlightWords(point, changedWords)}
             </RecapText>
           </RecapCard>
         ))}
@@ -521,12 +558,16 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
     return (
       <>
         <Kicker meta={meta} />
-        <Title $tight>{block.title}</Title>
+        <Title $tight>{highlightWords(block.title, changedWords)}</Title>
         <OptionalNote>
           Not on the test — skip it if you're short on time.
         </OptionalNote>
         {asset != null && <Diagram asset={asset} />}
-        <TeachingCopy elements={elements} resolveAsset={resolveAsset} />
+        <TeachingCopy
+          elements={elements}
+          resolveAsset={resolveAsset}
+          changedWords={changedWords}
+        />
       </>
     );
   }
@@ -535,9 +576,13 @@ const LessonCardBody: React.FC<LessonCardBodyProps> = ({
     return (
       <>
         <Kicker meta={meta} />
-        <Title>{block.title}</Title>
+        <Title>{highlightWords(block.title, changedWords)}</Title>
         {asset != null && <Diagram asset={asset} />}
-        <TeachingCopy elements={elements} resolveAsset={resolveAsset} />
+        <TeachingCopy
+          elements={elements}
+          resolveAsset={resolveAsset}
+          changedWords={changedWords}
+        />
       </>
     );
   }

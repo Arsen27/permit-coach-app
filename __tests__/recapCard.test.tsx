@@ -89,3 +89,18 @@ it('one long paragraph cannot be split, so it is only set smaller', async () => 
   expect(cards(tree)).toHaveLength(1);
   expect(sizeOf(tree)).toBe(19);
 });
+
+it('a rewritten word is highlighted alone — never the whole card', async () => {
+  const { highlightWords } = require('@/components/lesson/LessonCardBody');
+  const parts = highlightWords('Right of way is given, never taken.', [
+    'given,',
+  ]);
+  // The changed word is its own highlighted element; the rest stays text.
+  expect(Array.isArray(parts)).toBe(true);
+  const highlighted = (parts as unknown[]).filter(
+    part => typeof part !== 'string',
+  );
+  expect(highlighted).toHaveLength(1);
+  // Nothing to say → the string comes back untouched, no wrappers at all.
+  expect(highlightWords('Stop means stop.')).toBe('Stop means stop.');
+});

@@ -516,7 +516,13 @@ it('a mark narrows to the changed blocks the moment the new body arrives', async
   await ensureLesson(COURSE, 'l-two');
   await narrowMark('u1', COURSE, 'l-two');
   const after = await readMarks('u1', COURSE);
-  expect(after['l-two']).toEqual({ blocks: ['l-two-b01'] });
+  expect(after['l-two'].blocks).toEqual(['l-two-b01']);
+  // And the exact words that are new: the title went from "What would you
+  // do?" to "Corrected challenge" — those two words, nothing else.
+  expect(after['l-two'].words?.['l-two-b01']?.sort()).toEqual([
+    'Corrected',
+    'challenge',
+  ]);
 
   // Completing the lesson again clears it.
   await clearMark('u1', COURSE, 'l-two');
@@ -563,10 +569,12 @@ it('a slide inserted above does not make the rest of the lesson changed', async 
   await ensureLesson(COURSE, 'l-two');
   await narrowMark('u1', COURSE, 'l-two');
 
-  // Only the slide whose words are new to this learner.
-  expect((await readMarks('u1', COURSE))['l-two']).toEqual({
-    blocks: ['l-two-b01'],
-  });
+  // Only the slide whose words are new to this learner — and since the
+  // inserted slide took over an id the old lesson used, its new wording is
+  // what gets highlighted there.
+  const mark = (await readMarks('u1', COURSE))['l-two'];
+  expect(mark.blocks).toEqual(['l-two-b01']);
+  expect(mark.words?.['l-two-b01']).toContain('opening');
 });
 
 it('marks written by the buggy generations are abandoned, not trusted', async () => {

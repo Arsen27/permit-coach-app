@@ -720,42 +720,39 @@ const TheoryScreen: React.FC<TheoryScreenProps> = ({ route, navigation }) => {
               key={entry.key}
               style={place === index ? undefined : styles.offstage}
             >
-              <ChangedTint
-                // Only the slides that actually changed. A mark with no
-                // block list means we could not tell which ones — the
-                // lesson's circle on the ladder says something changed, and
-                // washing every card yellow says nothing except "alarm".
-                $on={yellowMark?.blocks?.includes(entry.block.blockId) === true}
-              >
-                <LessonCardBody
-                  card={entry}
-                  question={entryQuestion}
-                  asset={
-                    entryAssetId != null
-                      ? findCourseAsset(entryAssetId)
-                      : undefined
-                  }
-                  answer={
-                    entry.questionId != null
-                      ? answers[entry.questionId]
-                      : undefined
-                  }
-                  onSelect={select}
-                  stateLabel={courseState}
-                  cardStyles={bundle.course.cardStyles}
-                  resolveAsset={findCourseAsset}
-                  checkpointOrdinal={
-                    entry.questionId != null
-                      ? questionIds.indexOf(entry.questionId) + 1
-                      : 0
-                  }
-                  checkpointTotal={questionIds.length}
-                  revealed={
-                    isCheckYourselfBlock(entry.block) &&
-                    recallRevealed[entry.block.blockId] === true
-                  }
-                />
-              </ChangedTint>
+              <LessonCardBody
+                // The exact words the latest fix rewrote in this slide —
+                // specific words or nothing; a whole slide is never
+                // washed. The lesson's circle on the ladder carries the
+                // "something changed here" signal.
+                changedWords={yellowMark?.words?.[entry.block.blockId]}
+                card={entry}
+                question={entryQuestion}
+                asset={
+                  entryAssetId != null
+                    ? findCourseAsset(entryAssetId)
+                    : undefined
+                }
+                answer={
+                  entry.questionId != null
+                    ? answers[entry.questionId]
+                    : undefined
+                }
+                onSelect={select}
+                stateLabel={courseState}
+                cardStyles={bundle.course.cardStyles}
+                resolveAsset={findCourseAsset}
+                checkpointOrdinal={
+                  entry.questionId != null
+                    ? questionIds.indexOf(entry.questionId) + 1
+                    : 0
+                }
+                checkpointTotal={questionIds.length}
+                revealed={
+                  isCheckYourselfBlock(entry.block) &&
+                  recallRevealed[entry.block.blockId] === true
+                }
+              />
             </View>
           );
         })}
@@ -880,17 +877,6 @@ const styles = StyleSheet.create({
   // A premounted neighbour: real views, no layout, no pixels.
   offstage: { display: 'none' },
 });
-
-// A light wash over content that changed since the learner studied it —
-// enough to notice, not enough to shout. Gone when the lesson is completed
-// again.
-const ChangedTint = styled.View<{ $on: boolean }>`
-  border-radius: 18px;
-  background-color: ${({ $on }) =>
-    $on ? 'rgba(234, 179, 8, 0.08)' : 'transparent'};
-  border-width: ${({ $on }) => ($on ? '1px' : '0px')};
-  border-color: rgba(234, 179, 8, 0.35);
-`;
 
 const Screen = styled.View`
   flex: 1;

@@ -74,6 +74,12 @@ const promptKey = (userId: string) => `${PREFIX}/prompt/${userId}`;
 export type YellowMark = {
   blocks?: string[];
   oldBlockHashes?: Record<string, string>;
+  // The old wording, kept only until the new body arrives and the word diff
+  // replaces it with `words`.
+  oldTexts?: Record<string, string>;
+  // Per changed block: the words of the new wording that were not in the
+  // old. The player highlights exactly these — never a whole slide.
+  words?: Record<string, string[]>;
 };
 
 export type YellowMarks = Record<string, YellowMark>;
@@ -418,12 +424,19 @@ export const syncLazyCourse = async (deps: {
               old == null
                 ? {}
                 : {
-                    // Kept so the mark can narrow to the changed blocks the
-                    // moment the new body arrives.
+                    // Kept so the mark can narrow to the changed blocks —
+                    // and their changed words — the moment the new body
+                    // arrives.
                     oldBlockHashes: Object.fromEntries(
                       old.lesson.blocks.map(block => [
                         block.blockId,
                         blockFingerprint(block),
+                      ]),
+                    ),
+                    oldTexts: Object.fromEntries(
+                      old.lesson.blocks.map(block => [
+                        block.blockId,
+                        blockText(block),
                       ]),
                     ),
                   };
@@ -768,6 +781,73 @@ const canonical = (value: unknown): unknown => {
   return value;
 };
 
+// The words a learner actually reads off a block: the title and every prose
+// field, in reading order. Questions and pictures are not here — a changed
+// question has no old wording on this device to diff against.
+const blockText = (block: LessonBlockV2): string => {
+  const raw = block as Record<string, unknown>;
+  const pieces: string[] = [];
+  for (const key of ['title', 'scenario', 'ruleMarkdown', 'bodyMarkdown']) {
+    if (typeof raw[key] === 'string') {
+      pieces.push(raw[key] as string);
+    }
+  }
+  const content = raw.content;
+  if (Array.isArray(content)) {
+    for (const element of content as Record<string, unknown>[]) {
+      if (typeof element.text === 'string') {
+        pieces.push(element.text);
+      }
+      if (Array.isArray(element.items)) {
+        pieces.push(...(element.items as string[]));
+      }
+    }
+  }
+  if (Array.isArray(raw.bullets)) {
+    pieces.push(...(raw.bullets as string[]));
+  }
+  return pieces.join('\n');
+};
+
+// The new wording's words that were not in the old — a word-level LCS, so a
+// sentence that merely moved highlights nothing. Gap markers come off recall
+// rules so [[key words]] compare as words.
+const changedWordsOf = (oldText: string, newText: string): string[] => {
+  const tokens = (text: string): string[] =>
+    text
+      .replace(/\[\[|\]\]/g, '')
+      .split(/\s+/)
+      .filter(Boolean);
+  const before = tokens(oldText);
+  const after = tokens(newText);
+  const table: number[][] = Array.from({ length: before.length + 1 }, () =>
+    new Array<number>(after.length + 1).fill(0),
+  );
+  for (let i = before.length - 1; i >= 0; i -= 1) {
+    for (let j = after.length - 1; j >= 0; j -= 1) {
+      table[i][j] =
+        before[i] === after[j]
+          ? table[i + 1][j + 1] + 1
+          : Math.max(table[i + 1][j], table[i][j + 1]);
+    }
+  }
+  const kept = new Set<number>();
+  let i = 0;
+  let j = 0;
+  while (i < before.length && j < after.length) {
+    if (before[i] === after[j]) {
+      kept.add(j);
+      i += 1;
+      j += 1;
+    } else if (table[i + 1][j] >= table[i][j + 1]) {
+      i += 1;
+    } else {
+      j += 1;
+    }
+  }
+  return [...new Set(after.filter((_word, index) => !kept.has(index)))];
+};
+
 const blockFingerprint = (block: LessonBlockV2): string => {
   const content = { ...block } as Partial<LessonBlockV2>;
   delete content.blockId;
@@ -790,9 +870,24 @@ export const narrowMark = async (
   // A slide the learner already read is one whose words are among the ones
   // they read — wherever it sits now. Everything else is new to them.
   const seen = new Set(Object.values(mark.oldBlockHashes));
-  const blocks = doc.lesson.blocks
-    .filter(block => !seen.has(blockFingerprint(block)))
-    .map(block => block.blockId);
+  const changedBlocks = doc.lesson.blocks.filter(
+    block => !seen.has(blockFingerprint(block)),
+  );
+  const blocks = changedBlocks.map(block => block.blockId);
+  // The exact words that are new, per block. A block with no old wording on
+  // this device (an inserted slide) highlights nothing — the rule is
+  // specific words or nothing, never a wash.
+  const words: Record<string, string[]> = {};
+  for (const block of changedBlocks) {
+    const before = mark.oldTexts?.[block.blockId];
+    if (before == null) {
+      continue;
+    }
+    const changed = changedWordsOf(before, blockText(block));
+    if (changed.length > 0) {
+      words[block.blockId] = changed;
+    }
+  }
   if (blocks.length === 0) {
     // Nothing the learner sees differs: the mark was never earned, so it
     // comes off the ladder rather than narrowing to an empty highlight.
@@ -803,7 +898,7 @@ export const narrowMark = async (
   }
   await writeMarks(userId, courseId, {
     ...marks,
-    [lessonId]: { blocks },
+    [lessonId]: { blocks, ...(Object.keys(words).length > 0 && { words }) },
   });
 };
 
