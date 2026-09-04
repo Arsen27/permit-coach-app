@@ -78,6 +78,19 @@ const BuildingScreen: React.FC<BuildingScreenProps> = ({ navigation }) => {
   const settledRef = useRef<'ok' | Failure | null>(null);
   const doneRef = useRef(false);
 
+  // The last point of the ladder: beforeRemove covers every retreat at once
+  // (iOS swipe, Android hardware back, a stray goBack) while letting the
+  // finish() replace through once the course is committed.
+  useEffect(
+    () =>
+      navigation.addListener('beforeRemove', event => {
+        if (!doneRef.current) {
+          event.preventDefault();
+        }
+      }),
+    [navigation],
+  );
+
   // The loader hands off to the paywall step, which hands on to the reminders
   // sheet. Both are replace()d in, so back never lands on the finished loader.
   //

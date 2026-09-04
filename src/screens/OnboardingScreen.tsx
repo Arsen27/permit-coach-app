@@ -111,7 +111,14 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ navigation }) => {
             headerTransparent: true,
           }}
         />
-        <Steps.Screen name="Building" component={BuildingScreen} />
+        {/* The point of no return: once the course is building there is no
+            slide to go back to — the ladder is answered and the loader
+            replaces itself forward. Same hard gate as the paywall. */}
+        <Steps.Screen
+          name="Building"
+          component={BuildingScreen}
+          options={{ gestureEnabled: false }}
+        />
         {/* A hard gate: full-bleed, and the back gesture is switched off at
             the navigator so it never even starts animating. The screen also
             refuses the removal itself, which is what stops Android's

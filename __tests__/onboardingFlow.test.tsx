@@ -24,7 +24,14 @@ jest.mock('react-native-safe-area-context', () => ({
 }));
 
 const push = jest.fn();
-const navigation = { push } as never;
+// pushNextStep reads the stack top to swallow a double-tap; the mock's stack
+// is whatever push() has accumulated since the last mockClear.
+const navigation = {
+  push,
+  getState: () => ({
+    routes: push.mock.calls.map(([name, params]) => ({ name, params })),
+  }),
+} as never;
 
 const renderStep = async (node: React.ReactNode): Promise<Renderer> => {
   let tree!: Renderer;
@@ -136,6 +143,20 @@ describe('onboarding flow definition', () => {
 });
 
 describe('pushNextStep', () => {
+  it('swallows the double-tap: the same screen is never pushed twice', () => {
+    push.mockClear();
+    pushNextStep(navigation, 0);
+    pushNextStep(navigation, 0);
+    expect(push).toHaveBeenCalledTimes(1);
+
+    // The loader is the one a real thumb raced most often.
+    push.mockClear();
+    pushNextStep(navigation, LADDER_STEP_COUNT - 1);
+    pushNextStep(navigation, LADDER_STEP_COUNT - 1);
+    expect(push).toHaveBeenCalledTimes(1);
+    expect(push).toHaveBeenLastCalledWith('Building');
+  });
+
   it('walks each route in order and leaves for the loader at the end', () => {
     pushNextStep(navigation, 0);
     expect(push).toHaveBeenLastCalledWith('Question', { index: 0 });
