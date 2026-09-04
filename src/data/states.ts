@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState, useSyncExternalStore } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 
 import { fetchWithRetry } from '@/lib/fetchWithRetry';
 import { createLogger } from '@/lib/log';
@@ -207,17 +207,13 @@ export const useStates = (): StatesState => {
   return useSyncExternalStore(subscribe, statesSnapshot);
 };
 
-// Whether the picker is still waiting on its first answer — a spinner rather
-// than a list that is about to change under the learner's finger.
+// Whether the picker may show its list: only after this launch's server
+// round-trip has finished. A spinner is better than a list that grows a new
+// state under the learner's finger — the cache and the bundled fallback are
+// shown only once the server has actually failed to answer.
 export const useStatesReady = (): boolean => {
-  const { source, loading } = useStates();
-  const [settled, setSettled] = useState(source !== 'fallback');
-  useEffect(() => {
-    if (source !== 'fallback' || !loading) {
-      setSettled(true);
-    }
-  }, [source, loading]);
-  return settled;
+  const { source, offline } = useStates();
+  return source === 'server' || offline;
 };
 
 // Test seam.

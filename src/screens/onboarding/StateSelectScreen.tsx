@@ -1,4 +1,5 @@
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
@@ -6,7 +7,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { track } from '@/analytics';
 import UnofficialDisclaimer from '@/components/UnofficialDisclaimer';
-import { retryStates, useStates } from '@/data/states';
+import { retryStates, useStates, useStatesReady } from '@/data/states';
 import { useAppState } from '@/state/AppState';
 
 import { STATE_SELECT_STEP } from './content';
@@ -37,6 +38,7 @@ const StateSelectScreen: React.FC<StateSelectScreenProps> = ({
   // The list is the server's. Until it answers there is nothing honest to
   // show: the states the binary carries may not be the ones on offer.
   const { states, source, offline } = useStates();
+  const ready = useStatesReady();
 
   return (
     <StepScreen>
@@ -46,7 +48,7 @@ const StateSelectScreen: React.FC<StateSelectScreenProps> = ({
           {STATE_SELECT_STEP.title}
         </StepTitle>
         <StepHint style={{ marginTop: 6 }}>{STATE_SELECT_STEP.hint}</StepHint>
-        {offline && (
+        {ready && offline && (
           <Notice>
             <NoticeTitle>No connection</NoticeTitle>
             <NoticeBody>
@@ -59,24 +61,30 @@ const StateSelectScreen: React.FC<StateSelectScreenProps> = ({
             </NoticeAction>
           </Notice>
         )}
-        <Options>
-          {states.map(state => (
-            <OptionCard
-              key={state.code}
-              label={state.name}
-              multi={false}
-              selected={user.stateCode === state.code}
-              onPress={() => setStateCode(state.code)}
-            />
-          ))}
-        </Options>
+        {!ready ? (
+          <Waiting>
+            <ActivityIndicator />
+          </Waiting>
+        ) : (
+          <Options>
+            {states.map(state => (
+              <OptionCard
+                key={state.code}
+                label={state.name}
+                multi={false}
+                selected={user.stateCode === state.code}
+                onPress={() => setStateCode(state.code)}
+              />
+            ))}
+          </Options>
+        )}
         {/* On the first step the learner sees before anything is bought or
             promised — kept clear of the floating CTA (54px button + 22px
             float) so neither ever covers the other. */}
         <Disclaimer style={{ marginBottom: insets.bottom + 96 }} />
       </Body>
       <ContinueDock
-        disabled={states.length === 0}
+        disabled={!ready || states.length === 0}
         onPress={() => {
           // Reported on continue, not on tap: the learner can change their
           // mind on this screen, and only the choice they leave with matters.
@@ -91,6 +99,13 @@ const StateSelectScreen: React.FC<StateSelectScreenProps> = ({
 const Body = styled.View`
   flex: 1;
   padding: 24px 24px 0;
+`;
+
+// Holds the picker's place while the server list is on its way — the same
+// height ballpark as a few option cards, so the layout does not jump.
+const Waiting = styled.View`
+  padding: 48px 0;
+  align-items: center;
 `;
 
 const Options = styled.View`

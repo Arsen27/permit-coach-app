@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Alert, Platform } from 'react-native';
+import { ActivityIndicator, Alert, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled, { useTheme } from 'styled-components/native';
 
@@ -13,7 +13,7 @@ import { Group } from '@/components/rows';
 import { courseIdForState } from '@/data/course';
 import { courseStore } from '@/data/course/store';
 import { useCourseInstall } from '@/data/course/useCourseInstall';
-import { UsState, retryStates, useStates } from '@/data/states';
+import { UsState, retryStates, useStates, useStatesReady } from '@/data/states';
 import { RootStackParamList } from '@/navigation/types';
 import { useAppState } from '@/state/AppState';
 
@@ -48,6 +48,7 @@ const StatePickerScreen: React.FC<StatePickerScreenProps> = ({
   // The list is the server's; the phone shows what it last saw while it is
   // out of reach, and says so rather than looking complete.
   const { states, source, offline } = useStates();
+  const ready = useStatesReady();
   // The state whose course is downloading (or failed to); drives the sheet.
   const [target, setTarget] = useState<UsState | null>(null);
 
@@ -140,7 +141,7 @@ const StatePickerScreen: React.FC<StatePickerScreenProps> = ({
           </Header>
         )}
         <Body>
-          {offline && (
+          {ready && offline && (
             <Notice>
               <NoticeTitle>No connection</NoticeTitle>
               <NoticeBody>
@@ -153,7 +154,11 @@ const StatePickerScreen: React.FC<StatePickerScreenProps> = ({
               </NoticeAction>
             </Notice>
           )}
-          {
+          {!ready ? (
+            <Waiting>
+              <ActivityIndicator />
+            </Waiting>
+          ) : (
             <Group>
               {states.map((state, index) => {
                 const selected = state.code === user.stateCode;
@@ -176,7 +181,7 @@ const StatePickerScreen: React.FC<StatePickerScreenProps> = ({
                 );
               })}
             </Group>
-          }
+          )}
         </Body>
       </Screen>
       <CourseInstallSheet
@@ -197,6 +202,11 @@ const StatePickerScreen: React.FC<StatePickerScreenProps> = ({
 const Screen = styled.ScrollView`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.bg};
+`;
+
+const Waiting = styled.View`
+  padding: 48px 0;
+  align-items: center;
 `;
 
 const Header = styled.View`
