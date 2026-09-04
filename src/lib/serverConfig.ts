@@ -15,7 +15,7 @@ export const SERVER_URL = 'https://api.permitcoach.app';
 // (MARKETING_VERSION / versionName — see appVersion.ts) rather than kept in
 // sync by hand. The literal is only the last resort for a runtime where the
 // native module cannot answer.
-export const APP_VERSION = INSTALLED_APP_VERSION ?? '1.2.0';
+export const APP_VERSION = INSTALLED_APP_VERSION ?? '1.1.0';
 
 // Server-driven course content is on: the learner's state course is
 // downloaded once (onboarding, or a state switch in Settings), served from
