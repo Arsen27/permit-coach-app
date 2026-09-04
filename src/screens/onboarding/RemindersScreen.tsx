@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import DateTimePicker, {
   DateTimePickerAndroid,
@@ -48,6 +48,12 @@ const formatDayList = (days: number[]): string => {
 // (per the onboarding board). Preset times are list rows; "Custom time…"
 // opens the platform's standard time picker — inline spinner on iOS, the
 // system clock dialog on Android.
+// Parked, not deleted: the screen collects days and a time, but nothing
+// schedules a notification yet, so showing it would be a promise the app
+// does not keep. Flip back on once reminders are actually planned
+// (notifee trigger notifications) — the whole screen below is ready.
+const REMINDERS_STEP_ENABLED = false;
+
 const RemindersScreen: React.FC = () => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
@@ -57,6 +63,14 @@ const RemindersScreen: React.FC = () => {
   const course = useStoredCourse();
   const lessonCount = course == null ? 30 : bundleLessonCount(course.bundle);
   const { finish } = useOnboarding();
+
+  // While the step is parked it completes itself the way Skip would:
+  // onboarding ends, nothing is promised, nothing is saved.
+  useEffect(() => {
+    if (!REMINDERS_STEP_ENABLED) {
+      void finish(null);
+    }
+  }, [finish]);
 
   const [days, setDays] = useState<number[]>([0, 2, 4]);
   const [choice, setChoice] = useState<PresetId>('evening');
@@ -104,6 +118,10 @@ const RemindersScreen: React.FC = () => {
     setDraft(timeAsDate(start.hour, start.minute));
     setPicking(true);
   };
+
+  if (!REMINDERS_STEP_ENABLED) {
+    return null;
+  }
 
   return (
     <StepScreen>
