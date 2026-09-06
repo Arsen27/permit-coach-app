@@ -1,0 +1,627 @@
+{
+  "stateCode": "CA",
+  "courseId": "ca-class-c",
+  "idPrefix": "ca",
+  "ruleCatalog": "scripts/california-rule-catalog.json",
+  "vars": {
+    "state": "California",
+    "agency": "DMV",
+    "agencyLong": "Department of Motor Vehicles",
+    "highwayPatrol": "CHP"
+  },
+  "course": {
+    "title": "California Knowledge Test Course",
+    "subtitle": "Real situations. Clear explanations. Exam-ready practice.",
+    "targetLicense": "ordinary noncommercial Class C passenger driver"
+  },
+  "release": {
+    "version": "2.1.0",
+    "minAppVersion": "1.1.1",
+    "sourceVersionLabel": "CA-2026.09.06-r02",
+    "releasedAt": "2026-09-06",
+    "notes": "California on the universal skeleton, with the concept emoji layer applied the same way as Texas: every mention of a marked concept carries its emoji, not only the first one in a card. Same 33 lessons, same lesson and question ids as 2.0.0; card text is unchanged apart from the emoji.",
+    "updateKind": "course",
+    "updateSubtype": "offer",
+    "updateMessage": "The California course has been refreshed: the same lessons, with the concept icons now shown on every mention instead of only the first. Your progress in the previous version will not carry over."
+  },
+  "params": {
+    "signal.turnDistanceFeet": {
+      "value": 100,
+      "rule": "CA_VEH_22108_TURN_SIGNAL_DISTANCE"
+    },
+    "speed.maxMph": {
+      "value": 65,
+      "rule": "CA_VEH_22349_MAXIMUM_SPEED"
+    },
+    "speed.twoLaneUndividedMph": {
+      "value": 55,
+      "rule": "CA_VEH_22349_MAXIMUM_SPEED"
+    },
+    "speed.residentialMph": {
+      "value": 25,
+      "rule": "CA_VEH_22352_TWENTY_FIVE_MPH"
+    },
+    "following.seconds": {
+      "value": 3,
+      "status": "needs_review",
+      "note": "California Driver's Handbook three-second following rule; no catalog rule yet"
+    },
+    "uturn.visibilityFeet": {
+      "value": 200,
+      "rule": "CA_VEH_22105_U_TURN_VISIBILITY"
+    },
+    "parking.hydrantFeet": {
+      "value": 15,
+      "rule": "CA_VEH_22514_FIRE_HYDRANT"
+    },
+    "parking.curbInches": {
+      "value": 18,
+      "rule": "CA_VEH_22502_CURB_PARKING"
+    },
+    "centerLane.maxTravelFeet": {
+      "value": 200,
+      "rule": "CA_VEH_21460_5_MEDIAN_AND_CENTER_TURN"
+    },
+    "bikeLane.turnEntryFeet": {
+      "value": 200,
+      "rule": "CA_VEH_21209_MOTOR_VEHICLE_BIKE_LANE"
+    },
+    "bicycle.passingFeet": {
+      "value": 3,
+      "rule": "CA_VEH_21760_PASS_BICYCLE"
+    },
+    "smv.maxMph": {
+      "value": 25,
+      "rule": "CA_VEH_24615_SLOW_MOVING_EMBLEM"
+    },
+    "emergency.followFeet": {
+      "value": 300,
+      "rule": "CA_VEH_21706_FOLLOW_EMERGENCY"
+    },
+    "lights.afterSunsetMinutes": {
+      "value": 30,
+      "rule": "CA_VEH_24250_24400_HEADLIGHT_USE"
+    },
+    "lights.beforeSunriseMinutes": {
+      "value": 30,
+      "rule": "CA_VEH_24250_24400_HEADLIGHT_USE"
+    },
+    "lights.visibilityFeet": {
+      "value": 1000,
+      "rule": "CA_VEH_24250_24400_HEADLIGHT_USE"
+    },
+    "highBeam.approachingFeet": {
+      "value": 500,
+      "rule": "CA_VEH_24409_HIGH_BEAM_DIMMING"
+    },
+    "highBeam.followingFeet": {
+      "value": 300,
+      "rule": "CA_VEH_24409_HIGH_BEAM_DIMMING"
+    },
+    "crash.reportDamagePhrase": {
+      "value": "more than $1,000 in damage to one person’s property",
+      "rule": "CA_VEH_16000_COLLISION_DMV_REPORT"
+    },
+    "insurance.perPerson": {
+      "value": 30000,
+      "rule": "CA_VEH_16056_LIABILITY_LIMITS"
+    },
+    "insurance.perCrash": {
+      "value": 60000,
+      "rule": "CA_VEH_16056_LIABILITY_LIMITS"
+    },
+    "insurance.property": {
+      "value": 15000,
+      "rule": "CA_VEH_16056_LIABILITY_LIMITS"
+    },
+    "phone.minorNoDeviceAge": {
+      "value": 18,
+      "rule": "CA_VEH_23124_MINOR_WIRELESS"
+    },
+    "bac.adult": {
+      "value": 0.08,
+      "rule": "CA_VEH_23152_BAC"
+    },
+    "bac.under21Age": {
+      "value": 21,
+      "rule": "CA_VEH_23136_UNDER_21_ZERO_TOLERANCE"
+    },
+    "bac.under21": {
+      "value": 0.01,
+      "rule": "CA_VEH_23136_UNDER_21_ZERO_TOLERANCE"
+    },
+    "refusal.firstSuspension": {
+      "value": "1 year",
+      "rule": "CA_VEH_13353_TEST_REFUSAL"
+    },
+    "child.restraintAge": {
+      "value": 8,
+      "rule": "CA_VEH_27360_27363_CHILD_RESTRAINT"
+    },
+    "child.beltHeight": {
+      "value": "4 feet 9 inches",
+      "equivalent": "57 inches",
+      "rule": "CA_VEH_27360_27363_CHILD_RESTRAINT"
+    },
+    "equipment.hornFeet": {
+      "value": 200,
+      "rule": "CA_VEH_27000_HORN"
+    },
+    "equipment.treadInches": {
+      "value": "1/32",
+      "rule": "CA_VEH_27465_TIRE_TREAD"
+    }
+  },
+  "notes": [
+    {
+      "after": "distraction-and-fatigue-slide-03",
+      "title": "California’s adult phone rule",
+      "lines": [
+        "An adult may not hold a phone or a wireless device while driving. Voice calls must be hands-free.",
+        "A mounted device may be operated only with a single swipe or tap — a long message, a search, a video, or repeated input is not allowed because the mount is legal."
+      ],
+      "rules": [
+        "CA_VEH_23123_HANDHELD_PHONE",
+        "CA_VEH_23123_5_WIRELESS_DEVICE"
+      ]
+    },
+    {
+      "after": "alcohol-drugs-dui-slide-03",
+      "title": "California’s other BAC lines",
+      "image": "alcohol-drugs-dui-a02",
+      "lines": [
+        "A person under 21 also commits a separate offense at 0.05%.",
+        "A person on DUI probation may not drive with 0.01% or more.",
+        "Match the limit to the driver: adult per se 0.08%, under 21 zero tolerance at 0.01%, DUI probation 0.01%."
+      ],
+      "rules": [
+        "CA_VEH_23140_UNDER_21_BAC",
+        "CA_VEH_23154_DUI_PROBATION_BAC",
+        "CA_VEH_23152_BAC",
+        "CA_VEH_23136_UNDER_21_ZERO_TOLERANCE"
+      ]
+    },
+    {
+      "after": "alcohol-drugs-dui-slide-08",
+      "title": "The glove compartment counts",
+      "lines": [
+        "In California an opened alcohol container may not be kept anywhere in the passenger compartment — the glove compartment included. Opened cannabis follows the same idea.",
+        "The trunk is the right place."
+      ],
+      "rules": [
+        "CA_VEH_23225_OPEN_CONTAINER_STORAGE",
+        "CA_VEH_23222_OPEN_CONTAINER"
+      ]
+    },
+    {
+      "after": "seat-belts-child-safety-slide-05",
+      "title": "California’s age and size rules",
+      "image": "seat-belts-child-safety-a02",
+      "lines": [
+        "A child under two rides rear-facing unless the child is at least 40 pounds or at least 40 inches tall.",
+        "A child under eight rides in a child restraint in the back seat; at 4 feet 9 inches a properly fitted seat belt is allowed.",
+        "A child at least eight but under sixteen must use an appropriate child restraint or the seat belt."
+      ],
+      "rules": [
+        "CA_VEH_27360_27363_CHILD_RESTRAINT",
+        "CA_VEH_27360_5_CHILD_PASSENGER"
+      ]
+    },
+    {
+      "after": "seat-belts-child-safety-slide-06",
+      "title": "Children alone, and smoking with a minor",
+      "lines": [
+        "Do not leave a child six or younger alone in a car when the engine is running, the keys are inside, or another serious risk exists, unless someone at least 12 supervises.",
+        "Smoking a tobacco product in a vehicle with a minor present is prohibited, moving or parked — a fine of up to $100."
+      ],
+      "rules": [
+        "CA_VEH_15620_UNATTENDED_CHILD",
+        "CA_HSC_118948_118949_SMOKING_WITH_MINOR"
+      ]
+    },
+    {
+      "after": "equipment-loads-towing-slide-06",
+      "title": "Pickup beds in California",
+      "lines": [
+        "People may not ride in the load area of a pickup or flatbed truck unless a legal restraint or another statutory exception applies.",
+        "An animal in a load space must be protected by an enclosure, side and tail racks at least 46 inches high, a cross-tether, or a secured container."
+      ],
+      "rules": [
+        "CA_VEH_23116_TRUCK_BED_PASSENGERS",
+        "CA_VEH_23117_ANIMALS_IN_LOAD_SPACE"
+      ]
+    },
+    {
+      "after": "driving-after-dark-slide-02",
+      "title": "Wipers on, lights on",
+      "lines": [
+        "California also requires headlights whenever the windshield wipers are in continuous use because of weather — daytime included."
+      ],
+      "rules": [
+        "CA_VEH_24250_24400_HEADLIGHT_USE"
+      ]
+    },
+    {
+      "after": "crashes-and-insurance-slide-06",
+      "title": "California uses two separate clocks",
+      "image": "crashes-and-insurance-a03",
+      "lines": [
+        "Injury or death: a written report to the CHP or local police within 24 hours, unless an officer at the scene has already made one.",
+        "Injury, death, or more than $1,000 in damage to one person’s property: a report to the DMV within 10 days, even if police or the other driver also report.",
+        "Do not swap the two: 24 hours is the police clock, 10 days is the DMV clock."
+      ],
+      "rules": [
+        "CA_VEH_20008_POLICE_REPORT",
+        "CA_VEH_16000_COLLISION_DMV_REPORT"
+      ]
+    },
+    {
+      "after": "crashes-and-insurance-slide-07",
+      "title": "The 30/60/15 minimums",
+      "image": "crashes-and-insurance-a02",
+      "lines": [
+        "For policies issued or renewed on or after January 1, 2025, California’s minimums are $30,000 for one person’s injury or death, $60,000 for two or more, and $15,000 for property damage.",
+        "A driver in a reportable crash who cannot show financial responsibility faces a DMV suspension."
+      ],
+      "rules": [
+        "CA_VEH_16056_LIABILITY_LIMITS",
+        "CA_VEH_16070_UNINSURED_COLLISION"
+      ]
+    },
+    {
+      "after": "bicycles-motorcycles-slide-06",
+      "title": "Lane splitting is legal in California",
+      "lines": [
+        "California law defines lane splitting as a two-wheeled motorcycle traveling between rows of stopped or moving vehicles.",
+        "Do not block, chase, or deliberately narrow the space of a rider doing it lawfully. Check before opening a door or moving sideways, even in slow traffic."
+      ],
+      "rules": [
+        "CA_VEH_21658_1_LANE_SPLITTING"
+      ]
+    },
+    {
+      "after": "school-buses-emergency-vehicles-slide-03",
+      "title": "Move over — now for any vehicle with hazard lights",
+      "lines": [
+        "Since 2026, California extends the move-over duty to any stopped vehicle displaying emergency, amber, hazard, or other warning lights — not only emergency vehicles.",
+        "The rule does not apply when a barrier separates the vehicle or it is not next to the highway."
+      ],
+      "rules": [
+        "CA_VEH_21809_MOVE_OVER"
+      ]
+    },
+    {
+      "after": "traffic-signals-slide-04",
+      "title": "Red arrows and limit lines in California",
+      "lines": [
+        "A red arrow means no turn at all until a green arrow or a green light appears — not even after a stop.",
+        "California calls the painted stop line a limit line. Exam questions use that name."
+      ],
+      "rules": [
+        "CA_VEH_21451_21453_ARROW_SIGNAL",
+        "CA_VEH_21453_RED_SIGNAL"
+      ]
+    },
+    {
+      "after": "turns-and-signals-slide-08",
+      "title": "Bicycle lanes before a right turn",
+      "lines": [
+        "California lets you enter the bicycle lane within 200 feet of the corner to prepare a right turn.",
+        "Yield first to any cyclist already in the lane, then merge into it and turn from there."
+      ],
+      "rules": [
+        "CA_VEH_21209_MOTOR_VEHICLE_BIKE_LANE",
+        "CA_VEH_21717_CROSS_BIKE_LANE_TO_TURN"
+      ]
+    },
+    {
+      "after": "speed-and-space-slide-03",
+      "title": "California’s 15 and 25 mph zones",
+      "image": "speed-laws-a03",
+      "lines": [
+        "15 mph at blind intersections, in alleys, and within 100 feet of a railroad crossing you cannot see for 400 feet in both directions.",
+        "Gates, a warning signal, or a flagman at the crossing lift that railroad limit.",
+        "25 mph near a school when children are outside or crossing, unless a lower limit is posted."
+      ],
+      "rules": [
+        "CA_VEH_22352_FIFTEEN_MPH",
+        "CA_VEH_22352_TWENTY_FIVE_MPH"
+      ]
+    },
+    {
+      "after": "speed-and-space-slide-03",
+      "title": "Above 65, and when towing",
+      "image": "speed-laws-a02",
+      "lines": [
+        "70 mph applies only on highways where it has been approved and posted.",
+        "When towing a trailer or another vehicle, the maximum is 55 mph on any road."
+      ],
+      "rules": [
+        "CA_VEH_22356_POSTED_70",
+        "CA_VEH_22406_TOWING_SPEED"
+      ]
+    },
+    {
+      "after": "road-markings-and-curbs-slide-06",
+      "title": "Double lines that form a barrier",
+      "lines": [
+        "Two sets of double yellow lines spaced two feet or more apart form a barrier. Do not drive on or across it.",
+        "A two-way left-turn lane in the center may be used for no more than 200 feet before the turn."
+      ],
+      "rules": [
+        "CA_VEH_21460_5_MEDIAN_AND_CENTER_TURN"
+      ]
+    },
+    {
+      "after": "road-markings-and-curbs-slide-07",
+      "title": "California curb colors",
+      "lines": [
+        "California paints curbs in five colors, and the exam asks about them.",
+        "Each color has a different job:"
+      ],
+      "bullets": [
+        "Red: no stopping, standing, or parking, except at a marked bus zone.",
+        "Yellow: loading or unloading within the local time limit.",
+        "White: passengers or a marked mail area only.",
+        "Green: parking for a limited time.",
+        "Blue: only authorized disabled parking."
+      ],
+      "rules": [
+        "CA_VEH_21458_CURB_COLORS"
+      ]
+    },
+    {
+      "after": "uncontrolled-intersections-slide-07",
+      "title": "Steep roads in California",
+      "lines": [
+        "On a steep, narrow road where neither vehicle can pass, California puts the duty on the driver facing downhill: yield and back up to the nearest safe place."
+      ]
+    },
+    {
+      "after": "uncontrolled-intersections-slide-08",
+      "title": "Funeral processions",
+      "lines": [
+        "A funeral procession led by a traffic officer has the right-of-way. Vehicles in it carry windshield markers or flags.",
+        "Never cut into or through a procession — interrupting one can bring a ticket."
+      ],
+      "rules": [
+        "CA_HANDBOOK_FUNERAL_PROCESSION"
+      ]
+    },
+    {
+      "after": "parking-and-curbs-slide-03",
+      "title": "California’s parking distances at a glance",
+      "image": "parking-and-curbs-a02",
+      "lines": [
+        "Within 18 inches of the curb. At least 15 feet from a fire hydrant.",
+        "The exam likes to swap the two numbers; the smaller one belongs to the curb."
+      ],
+      "rules": [
+        "CA_VEH_22502_CURB_PARKING",
+        "CA_VEH_22514_FIRE_HYDRANT"
+      ]
+    },
+    {
+      "after": "u-turns-starting-backing-slide-06",
+      "title": "Where California bans the U-turn",
+      "lines": [
+        "Residence district: no U-turn when another vehicle is approaching within 200 feet from either direction, unless a signal controls that vehicle at the intersection.",
+        "Business district: only at an intersection or through a provided opening in a divided highway.",
+        "Never in front of a fire station, and never using its driveway to turn around."
+      ],
+      "rules": [
+        "CA_VEH_22103_U_TURN_RESIDENCE",
+        "CA_VEH_22102_U_TURN_BUSINESS",
+        "CA_VEH_22104_U_TURN_FIRE_STATION"
+      ]
+    },
+    {
+      "after": "choosing-changing-lanes-slide-01",
+      "title": "The five-vehicle turnout rule",
+      "lines": [
+        "On a two-lane road where passing is unsafe, a slow vehicle followed by five or more vehicles must use a turnout or another safe area to let them pass."
+      ],
+      "rules": [
+        "CA_VEH_21656_USE_TURNOUT"
+      ]
+    },
+    {
+      "after": "special-lanes-slide-02",
+      "title": "Exam trap: the number 200",
+      "lines": [
+        "The number 200 appears in several California rules: center-lane travel, U-turn visibility, and bicycle-lane turn entry.",
+        "The exam may swap one for another. Read what the distance is measuring."
+      ],
+      "rules": [
+        "CA_VEH_21460_5_MEDIAN_AND_CENTER_TURN",
+        "CA_VEH_22105_U_TURN_VISIBILITY",
+        "CA_VEH_21209_MOTOR_VEHICLE_BIKE_LANE"
+      ]
+    }
+  ],
+  "overrides": {
+    "cards": {},
+    "questions": {
+      "distraction-and-fatigue-q02": {
+        "prompt": "May an adult driver hold a phone for an ordinary call while driving?",
+        "choices": [
+          "Yes, with hazard lights",
+          "No",
+          "Yes, below 25 mph"
+        ],
+        "correct": 1,
+        "explanation": "Ordinary handheld phone use while driving is prohibited; calls must be hands-free.",
+        "rules": [
+          "CA_VEH_23123_HANDHELD_PHONE"
+        ]
+      },
+      "distraction-and-fatigue-q03": {
+        "prompt": "Which interaction best fits the mounted-device exception?",
+        "choices": [
+          "A single tap on a properly mounted device",
+          "Typing an address while moving",
+          "Watching a video"
+        ],
+        "correct": 0,
+        "explanation": "The exception is limited to a single swipe or tap under the placement conditions.",
+        "rules": [
+          "CA_VEH_23123_5_WIRELESS_DEVICE"
+        ]
+      },
+      "seat-belts-child-safety-q04": {
+        "prompt": "Which fact can satisfy the rear-facing size exception for a child under two?",
+        "choices": [
+          "Being able to speak",
+          "Sitting in front",
+          "At least 40 pounds or at least 40 inches"
+        ],
+        "correct": 2,
+        "explanation": "The exception uses 40 pounds or 40 inches.",
+        "rules": [
+          "CA_VEH_27360_27363_CHILD_RESTRAINT"
+        ]
+      },
+      "seat-belts-child-safety-q05": {
+        "prompt": "Does the smoking-with-a-minor rule apply while the vehicle is parked?",
+        "choices": [
+          "Only on a freeway",
+          "Yes",
+          "No"
+        ],
+        "correct": 1,
+        "explanation": "The rule covers a motor vehicle moving or at rest when a minor is present.",
+        "rules": [
+          "CA_HSC_118948_118949_SMOKING_WITH_MINOR"
+        ]
+      },
+      "equipment-loads-towing-q05": {
+        "prompt": "May a dog ride loose in an open pickup load space?",
+        "choices": [
+          "Yes, if the tailgate is closed",
+          "No, use a compliant enclosure or restraint",
+          "Yes, at low speed"
+        ],
+        "correct": 1,
+        "explanation": "The animal must be protected from falling, jumping, or being thrown out.",
+        "rules": [
+          "CA_VEH_23117_ANIMALS_IN_LOAD_SPACE"
+        ]
+      },
+      "crashes-and-insurance-q04": {
+        "prompt": "What is the police-report period after an injury or death collision?",
+        "choices": [
+          "Within 24 hours",
+          "Within 10 days",
+          "Within 30 days"
+        ],
+        "correct": 0,
+        "explanation": "The written police report is due within 24 hours, unless an officer at the scene has made the report.",
+        "rules": [
+          "CA_VEH_20008_POLICE_REPORT"
+        ]
+      },
+      "crashes-and-insurance-q06": {
+        "prompt": "After a reportable California collision, does a police report automatically replace the required DMV report?",
+        "choices": [
+          "Yes, in every case",
+          "No, the DMV reporting duty can be separate",
+          "Only when both vehicles are insured"
+        ],
+        "correct": 1,
+        "explanation": "The DMV report can be a separate duty from police and insurance reports.",
+        "rules": [
+          "CA_VEH_16000_COLLISION_DMV_REPORT"
+        ]
+      },
+      "bicycles-motorcycles-q05": {
+        "prompt": "Traffic is nearly stopped. Before changing lanes, what motorcycle risk remains?",
+        "choices": [
+          "Mirrors cover every possible position",
+          "A lane-splitting motorcycle may be between rows",
+          "Motorcycles are prohibited from moving"
+        ],
+        "correct": 1,
+        "explanation": "California recognizes lane splitting, so direct blind-spot observation remains important in slow traffic.",
+        "rules": [
+          "CA_VEH_21658_1_LANE_SPLITTING"
+        ]
+      },
+      "special-lanes-q03": {
+        "prompt": "What is the maximum distance you may travel in a two-way left-turn lane for the permitted maneuver?",
+        "choices": [
+          "500 feet",
+          "One mile",
+          "200 feet"
+        ],
+        "correct": 2,
+        "explanation": "The maximum travel distance in a two-way left-turn lane is 200 feet.",
+        "rules": [
+          "CA_VEH_21460_5_MEDIAN_AND_CENTER_TURN"
+        ]
+      },
+      "road-markings-and-curbs-q04": {
+        "prompt": "Two sets of double yellow lines are separated by at least two feet. What do they form?",
+        "choices": [
+          "A regular passing lane",
+          "A bicycle lane",
+          "A barrier"
+        ],
+        "correct": 2,
+        "explanation": "Two separated sets of double yellow lines form a barrier; never drive on or across it.",
+        "rules": [
+          "CA_VEH_21460_5_MEDIAN_AND_CENTER_TURN"
+        ]
+      },
+      "road-markings-and-curbs-q05": {
+        "prompt": "What does a red curb generally indicate?",
+        "choices": [
+          "Passenger loading only",
+          "No stopping, standing, or parking",
+          "Short-term parking"
+        ],
+        "correct": 1,
+        "explanation": "Red generally prohibits stopping, standing, and parking, subject to the bus-zone exception.",
+        "rules": [
+          "CA_VEH_21458_CURB_COLORS"
+        ]
+      },
+      "uncontrolled-intersections-q06": {
+        "prompt": "Two vehicles meet on a steep, narrow California road where neither can pass. Which driver normally yields and backs up?",
+        "choices": [
+          "The driver facing uphill",
+          "The driver facing downhill",
+          "The driver in the larger vehicle"
+        ],
+        "correct": 1,
+        "explanation": "California law generally places this duty on the descending driver when backing is necessary to pass safely."
+      },
+      "u-turns-starting-backing-q01": {
+        "prompt": "Is the U-turn allowed?",
+        "choices": [
+          "Yes, residential U-turns are always allowed",
+          "Yes, if you do not signal",
+          "No, the approaching vehicle is within 200 feet"
+        ],
+        "correct": 2,
+        "explanation": "In a residence district, an approaching vehicle within 200 feet makes the U-turn prohibited unless the signal-control exception applies.",
+        "rules": [
+          "CA_VEH_22103_U_TURN_RESIDENCE"
+        ]
+      },
+      "u-turns-starting-backing-q04": {
+        "prompt": "You have a clear 200-foot view but are directly in front of a fire station. May you U-turn?",
+        "choices": [
+          "Only with hazard lights",
+          "No",
+          "Yes, visibility overrides the location"
+        ],
+        "correct": 1,
+        "explanation": "The fire-station prohibition remains even when visibility is adequate.",
+        "rules": [
+          "CA_VEH_22104_U_TURN_FIRE_STATION",
+          "CA_VEH_22105_U_TURN_VISIBILITY"
+        ]
+      }
+    }
+  }
+}
