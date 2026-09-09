@@ -1872,19 +1872,22 @@ if (process.env.UI_DUMP) {
   console.log((dialog?.textContent ?? '(none)').slice(0, 700));
 }
 check('it reports what changed', /\d+ lesson/.test(dialog?.textContent ?? ''));
-// A module test was edited earlier in this run, so the change is module-wide
-// and the contract demands a minor bump rather than a patch.
+// A module test was edited earlier in this run. Recomposing a test is a change
+// of content, not of shape — server-versioning.md and releaseDiff.ts both put
+// it under patch, alongside lesson content and questions — so the dialog asks
+// for the last digit. Only module metadata or lesson membership would make it
+// minor.
 const dialogText = () =>
   [...dom.window.document.querySelectorAll('div')]
     .filter(node => (node.textContent ?? '').startsWith('Release v1.0.1'))
     .pop()?.textContent ?? '';
 check(
   'it states the bump the changes need',
-  /a minor bump from 1\.0\.0/.test(dialogText()),
+  /a patch bump from 1\.0\.0/.test(dialogText()),
 );
 check(
   'it suggests the next free number',
-  dialogText().includes('Suggested 1.1.0'),
+  dialogText().includes('Suggested 1.0.1'),
 );
 // The old soft/optional/hard instruction plan fed a client that no longer
 // exists; the dialog carries the Delivery taxonomy and nothing else.
@@ -1908,19 +1911,36 @@ if (noteField != null) {
   await settle(200);
 }
 
-// What this release means for the field: a minor bump is a course update,
-// and by default only new users see it.
+// What this release means for the field. A patch version is a fix: devices on
+// the versions it covers take it, and the only choice is how loudly they are
+// told. The course-update wording belongs to a minor or major bump and must
+// not be offered here.
 check(
   'the dialog says what the release means for devices',
   dialogText().includes('Delivery'),
 );
+// The buttons, not the dialog's prose: the explanatory line names both
+// taxonomies on purpose, so only what is actually offered can be asserted.
+const deliveryOffered = () =>
+  [...dom.window.document.querySelectorAll('button')]
+    .map(node => (node.textContent ?? '').trim())
+    .filter(label =>
+      [
+        'silent fix',
+        'fix + apology',
+        'fix + rules changed',
+        'new users only',
+        'offer to everyone',
+      ].includes(label),
+    );
 check(
-  'a minor bump defaults to new-users-only',
-  dialogText().includes('new users only') &&
-    dialogText().includes('offer to everyone'),
+  'a patch bump offers the fix taxonomy, not the course-update one',
+  deliveryOffered().join(' | ') ===
+    'silent fix | fix + apology | fix + rules changed',
+  deliveryOffered().join(' | '),
 );
-await click(button('Release 1.1.0'), 2500);
-check('the release succeeds', text().includes('Released v1.1.0'));
+await click(button('Release 1.0.1'), 2500);
+check('the release succeeds', text().includes('Released v1.0.1'));
 check('the new version is now a release', !text().includes('Release…'));
 check('released versions offer publishing', text().includes('Publish…'));
 
@@ -1948,7 +1968,7 @@ check(
   text().includes('Points a channel at this release'),
 );
 await click(button('Publish to staging'), 1200);
-check('staging takes the release', text().includes('Staging now serves v1.1.0'));
+check('staging takes the release', text().includes('Staging now serves v1.0.1'));
 await click(button('Done'), 500);
 
 const afterStaging = await bootstrapOf();
@@ -1960,7 +1980,7 @@ check(
 await click(button('Publish…'), 700);
 await click(find('span, div, button', 'Production'), 400);
 const confirmField = [...dom.window.document.querySelectorAll('input')].find(
-  node => node.placeholder === '1.1.0',
+  node => node.placeholder === '1.0.1',
 );
 check('production asks the version to be typed out', confirmField != null);
 if (confirmField != null) {
@@ -1968,14 +1988,14 @@ if (confirmField != null) {
     dom.window.HTMLInputElement.prototype,
     'value',
   ).set;
-  setter.call(confirmField, '1.1.0');
+  setter.call(confirmField, '1.0.1');
   confirmField.dispatchEvent(new dom.window.Event('input', { bubbles: true }));
   await settle(200);
 }
 await click(button('Publish to production'), 1500);
 check(
   'production takes the release',
-  text().includes('Production now serves v1.1.0'),
+  text().includes('Production now serves v1.0.1'),
 );
 await click(button('Done'), 500);
 
@@ -2005,12 +2025,12 @@ check(
 );
 check(
   'the dialog warns that this is a rollback',
-  text().includes('Rollback: devices on v1.1.0 will download v1.0.0 whole'),
+  text().includes('Rollback: devices on v1.0.1 will download v1.0.0 whole'),
 );
 await click(button('Roll back staging'), 1200);
 check(
   'staging rolls back',
-  text().includes('Staging now serves v1.0.0 (was v1.1.0)'),
+  text().includes('Staging now serves v1.0.0 (was v1.0.1)'),
 );
 await click(button('Done'), 500);
 await click(button('Publish…'), 700);
@@ -2018,7 +2038,7 @@ await typeConfirm('1.0.0');
 await click(button('Roll back production'), 1500);
 check(
   'production rolls back',
-  text().includes('Production now serves v1.0.0 (was v1.1.0)'),
+  text().includes('Production now serves v1.0.0 (was v1.0.1)'),
 );
 await click(button('Done'), 500);
 check(
@@ -2041,7 +2061,7 @@ check(
 check(
   'newest first, with the rollback on top',
   (dom.window.document.querySelector('[data-history-row]')?.textContent ?? '')
-    .includes('v1.1.0 → v1.0.0'),
+    .includes('v1.0.1 → v1.0.0'),
 );
 check(
   'each move names who made it',
@@ -2052,27 +2072,31 @@ check(
 await click(button('History'), 400);
 
 // Forward again, so the rest of the run sees the newer release live.
-await click(versionCard('v1.1.0'), 1100);
+await click(versionCard('v1.0.1'), 1100);
 await click(button('Publish…'), 700);
 await click(button('Publish to staging'), 1200);
 await click(button('Done'), 500);
 await click(button('Publish…'), 700);
-await typeConfirm('1.1.0');
+await typeConfirm('1.0.1');
 await click(button('Publish to production'), 1500);
 await click(button('Done'), 500);
 check(
   'and forward again',
-  (await bootstrapNow()).course.latestVersion === '1.1.0',
+  (await bootstrapNow()).course.latestVersion === '1.0.1',
 );
 
-// End to end through the verdict: 1.1.0 released as new-users-only, so an
-// existing device on 1.0.0 hears nothing while a fresh one starts on it.
+// End to end through the verdict: 1.0.1 is a fix, so a device on 1.0.0 is
+// given it — quietly, because the subtype is silent — and a fresh one starts
+// on it. (A course update, minor or major, is the case where an existing
+// device hears nothing; that is a different bump.)
 const verdictHeld = await fetch(
   `http://localhost:${PORT}/v2/bootstrap?course=ca-class-c&courseVersion=1.0.0&appVersion=9.0.0`,
 ).then(response => response.json());
 check(
-  'a new-users-only release is never mentioned to existing devices',
-  verdictHeld.course.replace == null && verdictHeld.course.offer == null,
+  'a fix replaces what an existing device holds, without a modal',
+  verdictHeld.course.replace?.version === '1.0.1' &&
+    verdictHeld.course.replace?.subtype === 'silent' &&
+    verdictHeld.course.offer == null,
   JSON.stringify(verdictHeld.course).slice(0, 200),
 );
 const verdictFresh = await fetch(
@@ -2080,14 +2104,14 @@ const verdictFresh = await fetch(
 ).then(response => response.json());
 check(
   'while a fresh device starts on it',
-  verdictFresh.course.replace?.version === '1.1.0',
+  verdictFresh.course.replace?.version === '1.0.1',
 );
 
 // Only now does the app see it.
 const published = await bootstrapOf();
 check(
   'the app is offered the new version',
-  published.course.latestVersion === '1.1.0',
+  published.course.latestVersion === '1.0.1',
 );
 check(
   'it is offered as a delta on the legacy route',
@@ -2549,7 +2573,12 @@ check(
   'a chip says what each state fills in',
   chips().some(node => /CA:/.test(node.getAttribute('title') ?? '')),
 );
-check('nothing here offers to edit', !text().includes('Edit lesson'));
+// The skeleton is edited through its own actions, not through the course
+// editor's draft flow — there is no draft behind it.
+check(
+  'the course editor\'s draft actions are not offered here',
+  !text().includes('Edit lesson') && !text().includes('Duplicate as draft'),
+);
 
 // The state module: four lessons per state, all of them state-specific.
 const stateLesson = find('span, div', 'Points, Penalties, and Police Stops');
@@ -2564,6 +2593,242 @@ check(
   skeletonBlocks('state_specific').length > 0 &&
     skeletonBlocks('universal').length === 0,
 );
+
+// --- the skeleton is editable now -----------------------------------------
+// A card of a universal lesson belongs to the skeleton, so saving it changes
+// every state; a yellow one belongs to one state. The editor has to say which
+// before the save button — getting that wrong used to be possible and silent.
+const editButton = key =>
+  dom.window.document.querySelector(`[data-skeleton-edit="${key}"]`);
+const sharedCardKey = () => {
+  const slot = [
+    ...dom.window.document.querySelectorAll('[data-skeleton-block="universal"]'),
+  ].find(node => node.querySelector('[data-skeleton-edit]'));
+  return slot?.querySelector('[data-skeleton-edit]')?.dataset.skeletonEdit;
+};
+
+await click(find('span, div', 'Phones, Fatigue, and Road Rage'), 700);
+check('shared cards offer an edit', sharedCardKey() != null);
+await click(editButton(sharedCardKey()), 500);
+check(
+  'editing a shared card says it changes every state',
+  text().includes('saving changes this card in every state'),
+);
+check(
+  'the editor is open on that card',
+  dom.window.document.querySelector('[data-skeleton-editing]') != null,
+);
+await click(button('Cancel'), 400);
+
+const stateCardKey = () => {
+  const slot = [
+    ...dom.window.document.querySelectorAll(
+      '[data-skeleton-block="state_specific"]',
+    ),
+  ].find(node => node.querySelector('[data-skeleton-edit]'));
+  return slot?.querySelector('[data-skeleton-edit]')?.dataset.skeletonEdit;
+};
+check('a yellow block offers an edit too', stateCardKey() != null);
+await click(editButton(stateCardKey()), 500);
+check(
+  'editing a yellow block names the state it will change',
+  /(CA|TX) only — saving changes (CA|TX) and no other state/.test(text()),
+);
+
+// The save reaches the server and comes back on the card.
+const titleField = [...dom.window.document.querySelectorAll('input')].find(
+  node => node.getAttribute('aria-label') === 'Card title',
+);
+check('the note title is editable', titleField != null);
+setInput(titleField, 'A note title typed by the ui check');
+await click(button('Save'), 1500);
+check(
+  'a saved state note comes back on the card',
+  text().includes('A note title typed by the ui check'),
+);
+check(
+  'and the editor closed',
+  dom.window.document.querySelector('[data-skeleton-editing]') == null,
+);
+
+// --- parameters ------------------------------------------------------------
+await click(button('Parameters'), 900);
+check('the parameters panel lists them per state', /Parameters/.test(text()));
+const paramRow = dom.window.document.querySelector('[data-param-row]');
+check('a parameter row is offered', paramRow != null);
+await click(paramRow?.querySelector('button'), 500);
+check(
+  'a parameter opens with its value and its citation',
+  [...dom.window.document.querySelectorAll('input')].some(
+    node => (node.getAttribute('aria-label') ?? '').endsWith(' value'),
+  ),
+);
+check(
+  'the cited rule shows the numbers it states',
+  /states: /.test(text()) || text().includes('— none —'),
+);
+
+// --- revisions -------------------------------------------------------------
+await click(button('Revisions'), 700);
+check('revisions start empty', text().includes('No revision has been cut yet'));
+const messageField = [...dom.window.document.querySelectorAll('input')].find(
+  node => node.getAttribute('aria-label') === 'Revision message',
+);
+setInput(messageField, 'ui check revision');
+await click(button('Cut revision'), 1500);
+check(
+  'a revision is cut and listed with its message',
+  text().includes('ui check revision'),
+);
+check(
+  'the status line counts what has accumulated',
+  /revision \d+ · \d+ edit\(s\) since it/.test(
+    dom.window.document.querySelector('[data-authoring-status]')?.textContent ??
+      '',
+  ),
+);
+check(
+  'and how far each course has drifted since its last release',
+  /ca-class-c \d+ edit\(s\) since its last release/.test(text()),
+);
+
+await click(button('Lesson'), 500);
+// --- the train ------------------------------------------------------------
+// Generation is one action for every member at once. A per-state number would
+// let two states drift and both still call themselves current, so the whole
+// train moves or none of it does.
+await click(button('Train'), 1200);
+check('the train panel opens', text().includes('move together'));
+const trainRow = courseId =>
+  dom.window.document.querySelector(`[data-train-member="${courseId}"]`);
+check('California is in the train', trainRow('ca-class-c')?.dataset.trainMembership === 'member');
+check('Texas is in the train', trainRow('tx-class-c')?.dataset.trainMembership === 'member');
+// Florida has no state package: it is still the imported course, on a version
+// line of its own, and the panel has to say so rather than imply it is behind.
+check(
+  'Florida is shown as not a member',
+  trainRow('fl-class-e')?.dataset.trainMembership === 'outside',
+);
+check(
+  'and says why it is outside',
+  (trainRow('fl-class-e')?.textContent ?? '').includes('no state package'),
+);
+
+const trainResult = () =>
+  dom.window.document.querySelector('[data-train-result]');
+const trainRefusal = () =>
+  dom.window.document.querySelector('[data-train-refusal]');
+// Building both states takes seconds, and a fixed wait raced it: the Generate
+// click landed on a disabled button and the preview's own result arrived after
+// it, which read as a generation that had cut nothing.
+const settleUntil = async (ready, limitMs = 60000) => {
+  const started = Date.now();
+  while (!ready() && Date.now() - started < limitMs) {
+    await settle(500);
+  }
+  return ready();
+};
+
+await click(button('Preview'), 500);
+check(
+  'a preview reports what a generation would cut',
+  await settleUntil(() => trainResult() != null || trainRefusal() != null),
+  trainRefusal()?.textContent?.slice(0, 300),
+);
+// A preview writes nothing: the version it names is still not a release.
+const previewVersion = trainResult()?.dataset.trainResult ?? '';
+const afterPreview = await fetch(
+  `http://localhost:${PORT}/v1/admin/courses/ca-class-c/versions`,
+).then(response => response.json());
+check(
+  'and nothing was cut by it',
+  !afterPreview.released.some(entry => entry.version === previewVersion),
+);
+
+const previewed = trainResult()?.dataset.trainResult ?? '';
+await click(button('Generate'), 500);
+// The preview's own card is still on screen until the generation replaces it,
+// so this waits for the release to exist rather than for the card to change.
+const cutExists = async () =>
+  (
+    await fetch(
+      `http://localhost:${PORT}/v1/admin/courses/ca-class-c/versions`,
+    ).then(response => response.json())
+  ).released.some(entry => entry.version === previewed);
+const started = Date.now();
+while (!(await cutExists()) && Date.now() - started < 60000) {
+  await settle(500);
+}
+const version = trainResult()?.dataset.trainResult ?? '';
+check('generating cuts one version', /^\d+\.\d+\.\d+$/.test(version), version);
+check(
+  'the same version for every member',
+  (trainResult()?.textContent ?? '').includes(`cut ${version} for 2 states`),
+);
+const releasedIn = async courseId =>
+  (
+    await fetch(
+      `http://localhost:${PORT}/v1/admin/courses/${courseId}/versions`,
+    ).then(response => response.json())
+  ).released;
+for (const courseId of ['ca-class-c', 'tx-class-c']) {
+  const released = await releasedIn(courseId);
+  const cut = released.find(entry => entry.version === version);
+  check(`${courseId} reached ${version}`, cut != null);
+  check(
+    `${courseId} records what built it`,
+    cut?.provenance?.trainVersion === version,
+    JSON.stringify(cut?.provenance ?? null).slice(0, 200),
+  );
+}
+// Florida did not move.
+const fl = await releasedIn('fl-class-e');
+check(
+  'Florida was left alone',
+  !fl.some(entry => entry.version === version),
+);
+
+await click(button('Publish to staging'), 3000);
+const channelsOf = async courseId =>
+  (
+    await fetch(
+      `http://localhost:${PORT}/v1/admin/courses/${courseId}/versions`,
+    ).then(response => response.json())
+  ).channels;
+for (const courseId of ['ca-class-c', 'tx-class-c']) {
+  const channels = await channelsOf(courseId);
+  check(`${courseId} staging takes the train's version`, channels.staging === version);
+  check(
+    `${courseId} production is not moved from here`,
+    channels.production !== version,
+  );
+}
+
+// Never `full`: the app walks the instructions of every pending version, and
+// one `full` anywhere in that slice makes it refetch the whole course — for a
+// change some other state made. Asked of staging, which is where the train
+// publishes; the git-era releases underneath do carry `full`, and retiring
+// them is what the cutover is for.
+for (const courseId of ['ca-class-c', 'tx-class-c']) {
+  const bootstrap = await fetch(
+    `http://localhost:${PORT}/v1/bootstrap?course=${courseId}&channel=staging&courseVersion=0.0.1`,
+    { headers: { 'X-Staging-Key': TEST_STAGING_KEY } },
+  ).then(response => response.json());
+  const cut = (bootstrap.course.pendingVersions ?? []).find(
+    entry => entry.version === version,
+  );
+  const ops = (cut?.instructions ?? []).map(instruction => instruction.op);
+  check(
+    `${courseId} is offered the train's version on staging`,
+    cut != null,
+    JSON.stringify(bootstrap.course).slice(0, 200),
+  );
+  check(
+    `${courseId} never asks for a full refetch`,
+    ops.length > 0 && !ops.includes('full'),
+    ops.join(', '),
+  );
+}
 
 await click(button('State course'), 1200);
 check('the header switches back to the state course', /STATE\s*CA/.test(text()));

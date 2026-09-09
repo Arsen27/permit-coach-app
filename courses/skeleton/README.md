@@ -20,11 +20,13 @@ courses/skeleton/
   helpers.mjs           } from. Editing one changes nothing until
   modules/module-0N.mjs } scripts/convert-skeleton-to-json.mjs is re-run;
   assets/index.json     } --check says whether the document is current.
-server/skeleton/states.json    the state packages as data, for the admin panel:
-                        parameter values, the notes each state anchors, and the
-                        state module's lessons. Regenerate with
-                        scripts/export-state-packages.mjs. Nothing builds from
-                        it — the builder reads courses/states/ directly.
+server/skeleton/states.json    the state packages as data: parameter values,
+                        the notes each state anchors, its overrides, and the
+                        state module's lessons.
+server/skeleton/rules.json     each state's rule catalogue, projected to what
+                        citing and validating a rule needs — the sentence and
+                        the numbers the rule states. Regenerate both with
+                        scripts/export-state-packages.mjs.
 courses/states/<xx>/
   state.json            vars, params (each backed by a catalog rule), notes,
                         overrides, release metadata
@@ -73,22 +75,38 @@ without emoji. Titles, recall rules, and questions never get emoji.
 
 ## Building
 
+The builder moved into the server: `server/src/admin/buildStateCourse.mjs`, the
+same file, reading the authoring documents out of Postgres instead of off this
+disk. Generation is an action in the panel — the **Train** tab — not a command
+on somebody's laptop. What is left here are the two converters that feed it:
+
 ```
 node scripts/convert-skeleton-to-json.mjs           # .mjs → server/skeleton/skeleton.json
 node scripts/convert-skeleton-to-json.mjs --check   # is the document current?
-node scripts/export-state-packages.mjs             # state packages → server/skeleton/states.json
-node scripts/build-state-course.mjs ca --check      # validate, write nothing
-node scripts/build-state-course.mjs ca              # write server/content/ca-class-c/<version>
-SKELETON_MODULES=1,2 node scripts/build-state-course.mjs ca --check   # while authoring
+node scripts/export-state-packages.mjs              # state packages → states.json + rules.json
 ```
 
-Output: `server/content/<courseId>/<version>/{course.json,modules/*.json,lessons/*.json}`
-in the schemaVersion-2 tree format, the manifest entry, `build-report.md`,
-and `release.json`. The tree is delivered through git: commit it in the
-dmv-server repo, deploy, then from the connector run `import_content_tree`
-(registers the release and merges its questions into the working bank),
-`publish_staging`, and `publish_bank_staging`. Production stays a button in
-the admin panel.
+and, in the server repo:
+
+```
+npm run assets:upload      # the picture library into the asset store, once per database
+npm run authoring:export    # the working documents back to these files
+```
+
+Output goes straight into the database as a release, no tree and no git step.
+The builder still emits the schemaVersion-2 form — artwork inline, which is
+what the fingerprints were taken over — and the server converts it to
+schemaVersion 3 on the way in, exactly as the importer does for a tree.
+
+**Lockstep.** CA and TX move together on one version: if either fails to build,
+no version is cut for anyone, and the failure names the state, the lesson and
+the reason. Florida is not a member — it has no state package and keeps its own
+1.0.0, which is a different course's number. Instructions are computed by
+diffing each state's new documents against its previous release, so a state
+whose content did not move gets `instructions: []`; nothing ever emits `full`,
+because one `full` in a pending slice makes a device refetch the whole course.
+Publishing from the panel reaches staging; production stays a button a human
+presses.
 
 ## Adding a state
 
@@ -117,16 +135,48 @@ Warnings (reported): card outside 42–135 words; sentence over 38 words;
 a message with more than two sentences; lesson theory outside 285–560 words;
 lesson without a recall card; parameter declared but unused.
 
+## Where the sources actually live
+
+Since step 2 the working documents live in **Postgres**, not in these files:
+`authoring_documents` holds one row per subject (the skeleton, and one per state
+package), `authoring_revisions` holds the named snapshots, and
+`authoring_edits` is the log a release will be stamped against. The files above
+are the **seed** — they populate a subject that has no row yet — and the
+**mirror**: `npm run authoring:export` in the server repo writes the working
+documents back to them and to `courses/states/<xx>/state.json`. Run it after a
+session in the panel and commit what changed; the round trip is byte-exact, so
+an untouched export rewrites nothing.
+
 ## What the panel shows
 
 The admin's **Skeleton** tab (the switch in the header, next to *State course*)
-renders `server/skeleton/skeleton.json` read-only with the same card components
-the course editor uses. Two things are marked, because they are the two ways a
+renders the skeleton with the same card components the course editor uses, and
+edits it. Two things are marked, because they are the two ways a
 state's course stops being the skeleton: a yellow border on every
 `state_specific` block — the notes a state anchors onto a shared card and the
 lessons of the state module — and a chip in place of every `{{param}}`, so a
 number or a state's name reads as the variable it is. The tab is fed by
 `GET /v1/admin/skeleton` and `GET /v1/admin/skeleton/parameters`.
+
+Three places an edit can land, and exactly three:
+
+- a **shared card**, in the Skeleton tab — every state gets it;
+- **one state's disagreement** with a shared card, made on that state's own
+  screen — it becomes `overrides.cards[<bare block id>]` in that state's
+  package, which is what this builder already reads. *Promote into the
+  skeleton* moves it the other way and clears the override;
+- a **state's own material** — its notes and its module-8 lessons — edited in
+  the Skeleton tab on a yellow block, which writes to that state and nothing
+  else.
+
+A course version generated from this builder can no longer be patched block by
+block through a draft: the next build would discard the edit, so the edit
+endpoints refuse it and say which of the three places it belongs in. Versions
+nothing regenerates — the git-era imports — are edited exactly as before.
+
+The panel refuses on save what the builder would refuse on build: no literal
+number and no state name in shared text, a rule citation for every number in a
+state's own text, and every digit of a parameter stated by the rule it cites.
 
 Every release records what produced it — the skeleton document's revision, the
 state package's, and the builder's version — in its manifest entry and in the

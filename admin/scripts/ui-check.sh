@@ -35,6 +35,12 @@ if [ -d ../server/content-admin/competitors ]; then
   cp -R ../server/content-admin/competitors "$workdir/competitors"
 fi
 
+# The panel generates courses now, and a generated document carries its artwork
+# inline — so the picture library has to be in the asset store before the server
+# opens the database (PGlite takes one writer at a time).
+(cd ../server && DATABASE_URL="pglite://$workdir/db" \
+  npx tsx scripts/upload-skeleton-assets.ts >/dev/null)
+
 (cd ../server && NODE_ENV=development PORT="$PORT" \
   DATABASE_URL="pglite://$workdir/db" UI_CHECK_VERSIONS=1.0.0 \
   STAGING_KEY=ui-check-staging-key \

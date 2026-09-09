@@ -20,10 +20,18 @@ import type {
   UpdateInstruction,
   DraftInfo,
   LessonDocV2,
+  AuthoringRevision,
+  AuthoringStatus,
+  CardPatch,
   Outline,
   ParameterCatalogue,
   QuestionBankDoc,
+  QuestionPatch,
   SkeletonView,
+  GenerateResult,
+  StateOrigins,
+  StateParamValue,
+  TrainStatus,
   StructureOp,
   VersionsResponse,
   Workspace,
@@ -39,6 +47,100 @@ export const adminApi = {
   skeleton: () => api.get<SkeletonView>('/skeleton'),
 
   skeletonParameters: () => api.get<ParameterCatalogue>('/skeleton/parameters'),
+
+  skeletonStatus: () => api.get<AuthoringStatus>('/skeleton/status'),
+
+  train: () => api.get<TrainStatus>('/train'),
+
+  // All members or none. A refusal comes back as a 400/409 carrying one line
+  // per reason, which is what the panel shows instead of a version number.
+  generateTrain: (body: {
+    bump?: 'patch' | 'minor' | 'major';
+    notes?: string;
+    message?: string;
+    dryRun?: boolean;
+  }) => api.post<GenerateResult>('/train/generate', body),
+
+  publishTrainStaging: (version: string, reason: string) =>
+    api.post<{ channel: string; version: string }>('/train/publish', {
+      version,
+      reason,
+    }),
+
+  skeletonRevisions: (subject: string) =>
+    api.get<{ subject: string; revisions: AuthoringRevision[] }>(
+      `/skeleton/revisions?subject=${enc(subject)}`,
+    ),
+
+  skeletonRevision: (subject: string, revision: number) =>
+    api.get<SkeletonView>(
+      `/skeleton/revisions/${revision}?subject=${enc(subject)}`,
+    ),
+
+  cutSkeletonRevision: (subject: string, message: string) =>
+    api.post<AuthoringRevision>('/skeleton/revisions', { subject, message }),
+
+  restoreSkeletonRevision: (subject: string, revision: number) =>
+    api.post<{ restored: number }>('/skeleton/restore', { subject, revision }),
+
+  exportAuthoring: () => api.post<{ written: string[] }>('/skeleton/export'),
+
+  // The skeleton itself: an edit here reaches every state.
+  saveSkeletonCard: (anchor: string, patch: CardPatch) =>
+    api.put<{ anchor: string }>(`/skeleton/cards/${enc(anchor)}`, patch),
+
+  saveSkeletonQuestion: (questionId: string, patch: QuestionPatch) =>
+    api.put<{ questionId: string }>(
+      `/skeleton/questions/${enc(questionId)}`,
+      patch,
+    ),
+
+  // One state's own: an override on a shared card, or a note or state lesson
+  // the state owns outright. The server decides which by what the anchor names.
+  saveStateCard: (stateCode: string, anchor: string, patch: CardPatch) =>
+    api.put<{ stateCode: string; anchor: string; wrote: string }>(
+      `/skeleton/states/${enc(stateCode)}/cards/${enc(anchor)}`,
+      patch,
+    ),
+
+  revertStateCard: (stateCode: string, anchor: string) =>
+    api.delete<{ wrote: string }>(
+      `/skeleton/states/${enc(stateCode)}/cards/${enc(anchor)}`,
+    ),
+
+  saveStateQuestion: (
+    stateCode: string,
+    questionId: string,
+    patch: QuestionPatch,
+  ) =>
+    api.put<{ stateCode: string }>(
+      `/skeleton/states/${enc(stateCode)}/questions/${enc(questionId)}`,
+      patch,
+    ),
+
+  revertStateQuestion: (stateCode: string, questionId: string) =>
+    api.delete<{ wrote: string }>(
+      `/skeleton/states/${enc(stateCode)}/questions/${enc(questionId)}`,
+    ),
+
+  promoteToSkeleton: (
+    stateCode: string,
+    kind: 'card' | 'question',
+    target: string,
+  ) =>
+    api.post<{ promoted: string }>(
+      `/skeleton/states/${enc(stateCode)}/promote`,
+      { kind, target },
+    ),
+
+  stateOrigins: (stateCode: string) =>
+    api.get<StateOrigins>(`/skeleton/states/${enc(stateCode)}/origins`),
+
+  saveStateParam: (stateCode: string, key: string, param: StateParamValue) =>
+    api.put<{ key: string; param: StateParamValue }>(
+      `/skeleton/states/${enc(stateCode)}/params/${enc(key)}`,
+      param,
+    ),
 
   saveSettings: (patch: Partial<AdminSettings>) =>
     api.put<AdminSettings>('/settings', patch),

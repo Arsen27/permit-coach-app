@@ -41,6 +41,8 @@ import { useSimilar, type SimilarTarget } from '@admin/store/similarStore';
 import { useUi } from '@admin/store/uiStore';
 import { referenceLessonId, useSelection } from '@admin/store/selectionStore';
 import { stateOfCourse, useWorkspace } from '@admin/store/workspaceStore';
+import { useSkeleton } from '@admin/store/skeletonStore';
+import type { StateOrigins } from '@admin/api/types';
 import { admin } from '@admin/styles/theme';
 
 // The course screen. The sidebars on the left drive the main pane — that is
@@ -91,6 +93,35 @@ const CourseEditorScreen: React.FC = () => {
   const openModal = useUi(state => state.openModal);
   const closeModal = useUi(state => state.closeModal);
   const showToast = useUi(state => state.showToast);
+
+  // Where each block of this state's course comes from. A version generated
+  // from the skeleton is regenerated wholesale by the next build, so a shared
+  // card edited here would be discarded — the badge says so before the edit,
+  // and the two actions are what can be done instead.
+  const [origins, setOrigins] = useState<StateOrigins | null>(null);
+  const skeletonSaving = useSkeleton(state => state.saving);
+  const revertShared = useSkeleton(state => state.revert);
+  const promoteShared = useSkeleton(state => state.promote);
+  const usStateCode = stateOfCourse(courses, courseId);
+
+  useEffect(() => {
+    if (usStateCode.length === 0) {
+      setOrigins(null);
+      return;
+    }
+    let live = true;
+    void adminApi
+      .stateOrigins(usStateCode)
+      .then(value => {
+        if (live) {
+          setOrigins(value);
+        }
+      })
+      .catch(() => setOrigins(null));
+    return () => {
+      live = false;
+    };
+  }, [usStateCode]);
 
   const [suggestedVersion, setSuggestedVersion] = useState('');
   const [moduleTest, setModuleTest] = useState<{
@@ -258,7 +289,14 @@ const CourseEditorScreen: React.FC = () => {
     }
     resumeEditFor.current = lessonId;
     cancelEdit();
-  }, [editing, editLessonId, lessonId, editChanges, cancelEdit, selectLessonId]);
+  }, [
+    editing,
+    editLessonId,
+    lessonId,
+    editChanges,
+    cancelEdit,
+    selectLessonId,
+  ]);
 
   useEffect(() => {
     if (
@@ -578,6 +616,20 @@ const CourseEditorScreen: React.FC = () => {
               ]
                 .filter(Boolean)
                 .join(' · ')}
+              origins={origins}
+              busy={skeletonSaving}
+              onRevert={async bareId => {
+                if (await revertShared(usStateCode, bareId)) {
+                  setOrigins(await adminApi.stateOrigins(usStateCode));
+                  showToast(`${bareId} follows the shared card again`);
+                }
+              }}
+              onPromote={async bareId => {
+                if (await promoteShared(usStateCode, 'card', bareId)) {
+                  setOrigins(await adminApi.stateOrigins(usStateCode));
+                  showToast(`${bareId} is now the shared text in every state`);
+                }
+              }}
             />
           )}
         </Scroll>

@@ -101,6 +101,24 @@ const withIdentity = (lessonId, cards) => {
   });
 };
 
+// The picture's own bytes, hashed the way the asset store keys them.
+const withAssetHashes = index =>
+  Object.fromEntries(
+    Object.entries(index).map(([assetId, meta]) => {
+      const file = path.join(SKELETON, 'assets', `${assetId}.svg`);
+      if (!fs.existsSync(file)) {
+        throw new Error(`asset ${assetId} is in the index but not on disk`);
+      }
+      return [
+        assetId,
+        {
+          ...meta,
+          sha256: crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'),
+        },
+      ];
+    }),
+  );
+
 const modules = [];
 for (const spec of course.MODULES) {
   // A module marked `state: true` has no universal lessons at all — every
@@ -139,11 +157,12 @@ const document = {
     moduleTestPicks: course.MODULE_TEST_PICKS,
   },
   modules,
-  // Alt text and dimensions of the shared picture library. The SVG files stay
-  // files (courses/skeleton/assets/*.svg); only what was authored about them —
-  // the alt sentence, the numbers baked into the drawing — becomes data, so
-  // that the server can describe a picture it does not hold.
-  assets: readJson(path.join(SKELETON, 'assets/index.json')),
+  // Alt text and dimensions of the shared picture library, plus the sha256 of
+  // each SVG. The files stay files — but the server generates courses now, and
+  // a generated document carries the picture inline, so it has to be able to
+  // fetch the bytes. The hash is how: the asset store is content-addressed, and
+  // `npm run assets:upload` in the server repo puts anything missing into it.
+  assets: withAssetHashes(readJson(path.join(SKELETON, 'assets/index.json'))),
 };
 
 const body = json(document);

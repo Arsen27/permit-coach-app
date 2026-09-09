@@ -5,6 +5,7 @@ import { buildCompare } from '../src/model/compare.js';
 import { diffWords, runsForSide } from '../src/model/diff.js';
 import type { RenderCard } from '../src/model/renderCard.js';
 import { failureFor } from '../src/store/loadFailure.js';
+import { originOf } from '../src/model/blockOrigin.js';
 
 // The diff and the pairing decide what an editor believes changed, so they are
 // covered directly rather than only through the UI.
@@ -185,4 +186,39 @@ test('the empty pane can say why it is empty', () => {
   // that never failed says nothing at all.
   assert.equal(failureFor(errors, 'draft:ca-class-c:9-9-9', null), null);
   assert.equal(failureFor(errors, null, 'ca-traffic-signals'), null);
+});
+
+// --- where a block of a state's course comes from --------------------------
+// The badge on the state screen is the whole warning: a shared card edited
+// there would be regenerated away. The mapping is bare-id based, the same way
+// the state package and the skeleton both key their material.
+
+test('originOf reads a block id against the skeleton and the state overrides', () => {
+  const origins = {
+    stateCode: 'CA',
+    idPrefix: 'ca',
+    sharedCards: ['traffic-signals-slide-01', 'traffic-signals-slide-02'],
+    sharedQuestions: [],
+    overriddenCards: ['traffic-signals-slide-02'],
+    overriddenQuestions: [],
+    overridableQuestions: [],
+  };
+
+  assert.deepEqual(originOf(origins, 'ca-traffic-signals-slide-01'), {
+    origin: 'shared',
+    bareId: 'traffic-signals-slide-01',
+  });
+  // An override wins: the shared text no longer reaches this state.
+  assert.deepEqual(originOf(origins, 'ca-traffic-signals-slide-02'), {
+    origin: 'overridden',
+    bareId: 'traffic-signals-slide-02',
+  });
+  // A note, a state lesson, or a course nothing regenerates.
+  assert.deepEqual(originOf(origins, 'ca-permit-and-knowledge-test-slide-01'), {
+    origin: 'own',
+    bareId: 'permit-and-knowledge-test-slide-01',
+  });
+  // A block id that already lacks the prefix is read as it stands.
+  assert.equal(originOf(origins, 'traffic-signals-slide-01')?.origin, 'shared');
+  assert.equal(originOf(null, 'ca-anything'), null);
 });

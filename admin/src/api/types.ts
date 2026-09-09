@@ -418,10 +418,127 @@ export type ParameterEntry = {
   }[];
 };
 
+export type CatalogueRule = {
+  ruleId: string;
+  conceptId: string;
+  authoringRule: string;
+  status: string;
+  numbers: string[];
+};
+
 export type ParameterCatalogue = {
   revision: string;
   skeletonVersion: string;
   states: { stateCode: string; name: string; courseId: string }[];
   parameters: ParameterEntry[];
   unusedByState: { stateCode: string; keys: string[] }[];
+  // What a citation may name, and the numbers each rule states — the same set
+  // the builder checks a parameter's digits against.
+  catalogues: Record<
+    string,
+    { catalogId: string; source: string; rules: CatalogueRule[] }
+  >;
+};
+
+// One parameter as a state holds it, which is what the editor writes back.
+export type StateParamValue = {
+  value: string | number | null;
+  equivalent?: string | number;
+  unit?: string;
+  rule?: string;
+  rules?: string[];
+  status?: string;
+  note?: string;
+};
+
+export type AuthoringSubjectStatus = {
+  subject: string;
+  revision: number;
+  contentSha: string;
+  updatedAt: string;
+  updatedBy: string;
+  editsSinceRevision: number;
+};
+
+export type AuthoringStatus = {
+  subjects: AuthoringSubjectStatus[];
+  // How far the sources have moved since each course was last generated.
+  courses: { courseId: string; since: string | null; edits: number }[];
+};
+
+export type AuthoringRevision = {
+  subject: string;
+  revision: number;
+  contentSha: string;
+  message: string;
+  author: string;
+  createdAt: string;
+};
+
+// Which blocks of a state's own course come from the skeleton, and which of
+// those the state has taken over.
+export type StateOrigins = {
+  stateCode: string;
+  idPrefix: string;
+  sharedCards: string[];
+  sharedQuestions: string[];
+  overriddenCards: string[];
+  overriddenQuestions: string[];
+  overridableQuestions: string[];
+};
+
+export type CardPatch = {
+  title?: string;
+  lines?: string[];
+  bullets?: string[] | null;
+  context?: string;
+  ruleMarkdown?: string;
+  assetId?: string;
+  rules?: string[];
+};
+
+export type QuestionPatch = {
+  prompt?: string;
+  choices?: string[];
+  correct?: number;
+  explanation?: string;
+  image?: string | null;
+  rules?: string[];
+};
+
+// ---------------------------------------------------------------------------
+// The train: the state courses that move together. One version across every
+// member or none at all, so a member list is also a list of what would block a
+// release. Florida is in it as a non-member — it has no state package and keeps
+// its own version line.
+
+export type TrainMember = {
+  stateCode: string;
+  courseId: string;
+  member: boolean;
+  reason?: string;
+  latest: string | null;
+  staging: string | null;
+  production: string | null;
+  pending: number;
+  packageRevision: string | null;
+};
+
+export type TrainStatus = {
+  train: string[];
+  nextVersion: string;
+  members: TrainMember[];
+  skeletonRevision: string | null;
+};
+
+export type GenerateResult = {
+  version: string;
+  states: {
+    stateCode: string;
+    courseId: string;
+    changed: boolean;
+    instructions: UpdateInstruction[];
+    warnings: string[];
+    documents: number;
+  }[];
 };
