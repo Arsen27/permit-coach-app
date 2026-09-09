@@ -7,5 +7,12 @@
   "notes": "California on the universal skeleton, with the concept emoji layer applied the same way as Texas: every mention of a marked concept carries its emoji, not only the first one in a card. Same 33 lessons, same lesson and question ids as 2.0.0; card text is unchanged apart from the emoji.",
   "updateKind": "course",
   "updateSubtype": "offer",
-  "updateMessage": "The California course has been refreshed: the same lessons, with the concept icons now shown on every mention instead of only the first. Your progress in the previous version will not carry over."
+  "updateMessage": "The California course has been refreshed: the same lessons, with the concept icons now shown on every mention instead of only the first. Your progress in the previous version will not carry over.",
+  "provenance": {
+    "skeletonVersion": "SK-2026.09.06-r01",
+    "skeletonRevision": "4b6aa56389f8d8bda01704c901a582baf336c0fd365a9cb94c96e43d2e30c874",
+    "statePackageLabel": "CA-2026.09.06-r02",
+    "statePackageRevision": "fb61760dd71c18e7d81058a655f8d462a6ed7600c7edfd97eda4fdff68a3390e",
+    "builderVersion": "build-state-course/2.0.0"
+  }
 }

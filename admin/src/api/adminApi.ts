@@ -21,7 +21,9 @@ import type {
   DraftInfo,
   LessonDocV2,
   Outline,
+  ParameterCatalogue,
   QuestionBankDoc,
+  SkeletonView,
   StructureOp,
   VersionsResponse,
   Workspace,
@@ -31,6 +33,12 @@ const enc = encodeURIComponent;
 
 export const adminApi = {
   workspace: () => api.get<Workspace>('/workspace'),
+
+  // The universal skeleton and its parameter catalogue. Read-only: the panel
+  // shows what every state's course is built from; editing it is a later step.
+  skeleton: () => api.get<SkeletonView>('/skeleton'),
+
+  skeletonParameters: () => api.get<ParameterCatalogue>('/skeleton/parameters'),
 
   saveSettings: (patch: Partial<AdminSettings>) =>
     api.put<AdminSettings>('/settings', patch),

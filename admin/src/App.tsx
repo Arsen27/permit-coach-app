@@ -6,6 +6,7 @@ import QuestionsScreen from './features/questions/QuestionsScreen';
 import SignsScreen from './features/signs/SignsScreen';
 import FormatsScreen from './features/formats/FormatsScreen';
 import SettingsScreen from './features/settings/SettingsScreen';
+import SkeletonScreen from './features/skeleton/SkeletonScreen';
 import LoginScreen from './features/shell/LoginScreen';
 import NavRail from './features/shell/NavRail';
 import ToastHost from './features/shell/ToastHost';
@@ -21,6 +22,7 @@ const App: React.FC = () => {
   const error = useWorkspace(state => state.error);
   const load = useWorkspace(state => state.load);
   const screen = useUi(state => state.screen);
+  const tab = useUi(state => state.tab);
 
   const authConfig = useAuth(state => state.config);
   const session = useAuth(state => state.session);
@@ -74,11 +76,20 @@ const App: React.FC = () => {
         ) : (
           <Body>
             <NavRail />
-            {screen === 'course' && <CourseEditorScreen />}
-            {screen === 'questions' && <QuestionsScreen />}
-            {screen === 'signs' && <SignsScreen />}
-            {screen === 'formats' && <FormatsScreen />}
-            {screen === 'settings' && <SettingsScreen />}
+            {/* The skeleton is one document shared by every state, so it
+                replaces the per-course screens rather than sitting beside
+                them in the rail. */}
+            {tab === 'skeleton' ? (
+              <SkeletonScreen />
+            ) : (
+              <>
+                {screen === 'course' && <CourseEditorScreen />}
+                {screen === 'questions' && <QuestionsScreen />}
+                {screen === 'signs' && <SignsScreen />}
+                {screen === 'formats' && <FormatsScreen />}
+                {screen === 'settings' && <SettingsScreen />}
+              </>
+            )}
           </Body>
         )}
         <ToastHost />

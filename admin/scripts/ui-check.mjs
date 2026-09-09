@@ -2468,6 +2468,106 @@ check(
     (signsHistoryRows()[1]?.textContent ?? '').includes('staging'),
 );
 
+// --- the universal skeleton, read-only -------------------------------------
+// The tab in the header swaps the whole body for the shared document every
+// state's course is built from. What has to be legible there is which parts
+// are not shared and which words are variables.
+await click(button('Skeleton'), 1500);
+check('the header switches to the skeleton', text().includes('Universal skeleton'));
+check(
+  'the skeleton lists its 29 universal lessons',
+  /29 universal lessons/.test(text()),
+);
+check(
+  'the skeleton names its own revision',
+  /SK-\d{4}\.\d{2}\.\d{2}-r\d+/.test(text()),
+);
+check(
+  'the state module is marked as filled in per state',
+  text().includes('per state'),
+);
+
+// A lesson every state extends: the shared cards, then each state's note.
+const skeletonLesson = find('span, div', 'Phones, Fatigue, and Road Rage');
+check('a skeleton lesson can be opened', skeletonLesson != null);
+if (skeletonLesson != null) {
+  skeletonLesson.dispatchEvent(
+    new dom.window.MouseEvent('click', { bubbles: true }),
+  );
+  await settle(600);
+}
+
+const skeletonBlocks = scope =>
+  [...dom.window.document.querySelectorAll('[data-skeleton-block]')].filter(
+    node => node.dataset.skeletonBlock === scope,
+  );
+check('shared cards are drawn', skeletonBlocks('universal').length > 0);
+check(
+  'the state notes anchored on them are drawn too',
+  skeletonBlocks('state_specific').length > 0,
+);
+check(
+  'each state block says whose it is and where it attaches',
+  /(CA|TX) only · after distraction-and-fatigue-slide-\d+/.test(text()),
+);
+// The border is the whole point: a state-specific block must not read as
+// shared content. styled-components emits the rule only when a card is
+// actually given the colour.
+// styled-components inserts through the CSSOM, so the rules are in the sheet
+// rather than in the tag's text.
+const styleText = [
+  ...[...dom.window.document.querySelectorAll('style')].map(
+    node => node.textContent ?? '',
+  ),
+  ...[...dom.window.document.styleSheets].flatMap(sheet => {
+    try {
+      return [...sheet.cssRules].map(rule => rule.cssText);
+    } catch {
+      return [];
+    }
+  }),
+]
+  .join('')
+  .replace(/\s+/g, '');
+check(
+  'state-specific blocks carry the yellow border',
+  styleText.includes('rgba(217,119,6,.55)') ||
+    styleText.includes('rgba(217,119,6,0.55)'),
+  styleText.slice(0, 200),
+);
+
+// Placeholders read as variables, not as text that happens to be there.
+const chips = () => [
+  ...dom.window.document.querySelectorAll('[data-param]'),
+];
+check('parameters render as chips', chips().length > 0);
+check(
+  'a chip is named after its parameter key',
+  chips().some(node => (node.textContent ?? '').trim().length > 0),
+);
+check(
+  'a chip says what each state fills in',
+  chips().some(node => /CA:/.test(node.getAttribute('title') ?? '')),
+);
+check('nothing here offers to edit', !text().includes('Edit lesson'));
+
+// The state module: four lessons per state, all of them state-specific.
+const stateLesson = find('span, div', 'Points, Penalties, and Police Stops');
+if (stateLesson != null) {
+  stateLesson.dispatchEvent(
+    new dom.window.MouseEvent('click', { bubbles: true }),
+  );
+  await settle(600);
+}
+check(
+  'a state lesson is state-specific throughout',
+  skeletonBlocks('state_specific').length > 0 &&
+    skeletonBlocks('universal').length === 0,
+);
+
+await click(button('State course'), 1200);
+check('the header switches back to the state course', /STATE\s*CA/.test(text()));
+
 function summarise() {
   summarised = true;
   let failed = 0;

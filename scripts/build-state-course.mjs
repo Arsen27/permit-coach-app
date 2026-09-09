@@ -5,9 +5,16 @@
 //   node scripts/build-state-course.mjs ca --check    # validate, write nothing
 //
 // Inputs
-//   courses/skeleton/course.mjs           module structure, checks' vocabulary
-//   courses/skeleton/modules/module-0N.mjs universal lessons with placeholders
-//   courses/skeleton/assets/               shared SVG library + index.json
+//   server/skeleton/skeleton.json         the universal skeleton: module
+//                                         structure, the checks' vocabulary,
+//                                         the 29 universal lessons with their
+//                                         {{param}} placeholders unresolved,
+//                                         and the picture library's alt text
+//   courses/skeleton/assets/*.svg          the pictures themselves; the
+//                                         document describes them, the files
+//                                         are still files. Regenerate the
+//                                         document with
+//                                         scripts/convert-skeleton-to-json.mjs
 //   courses/states/<xx>/state.json        vars, params (each backed by a rule
 //                                         of the state's catalog), notes,
 //                                         overrides, release metadata
@@ -31,8 +38,16 @@ import { injectEmojiEverywhere, EMOJI_PATTERN } from './emoji-layer.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const SKELETON = path.join(ROOT, 'courses/skeleton');
+const SKELETON_DOC = path.join(ROOT, 'server/skeleton/skeleton.json');
 const COMPETITOR_ROOT =
   process.env.DMV_COMPETITOR_ROOT || path.resolve(ROOT, '../dmv-competitors');
+
+// What produced a release. Bumped when this builder changes what it emits, so
+// that a document and the code that wrote it can be matched up later. It is
+// recorded in the manifest entry, never in a document, because a document's
+// bytes are hashed and a build that only changed the builder's own version
+// must not move a single hash.
+const BUILDER_VERSION = 'build-state-course/2.0.0';
 
 const [stateArg, ...flags] = process.argv.slice(2);
 if (!stateArg) {
@@ -98,8 +113,18 @@ const walkFiles = dir =>
     : [];
 
 // ------------------------------------------------------------------- inputs
-const course = await importModule(path.join(SKELETON, 'course.mjs'));
-const { MODULES, UNIVERSAL_LITERALS, STATE_TOKENS, MODULE_TEST_PICKS } = course;
+const skeleton = readJson(SKELETON_DOC);
+const MODULES = skeleton.modules.map(module => ({
+  ...module,
+  state: module.scope === 'state_specific',
+}));
+const { universalLiterals: UNIVERSAL_LITERALS, moduleTestPicks: MODULE_TEST_PICKS } =
+  skeleton.vocabulary;
+// JSON has no regular expression, so the document carries the two halves.
+const STATE_TOKENS = new RegExp(
+  skeleton.vocabulary.stateTokens.pattern,
+  skeleton.vocabulary.stateTokens.flags,
+);
 const state = readJson(path.join(STATE_DIR, 'state.json'));
 const stateLessons = fs.existsSync(path.join(STATE_DIR, 'lessons.mjs'))
   ? (await importModule(path.join(STATE_DIR, 'lessons.mjs'))).LESSONS ?? {}
@@ -109,11 +134,27 @@ const stateLessons = fs.existsSync(path.join(STATE_DIR, 'lessons.mjs'))
 // add pictures the library does not have (its module-8 lessons, say).
 const stateAssetIndexPath = path.join(STATE_DIR, 'assets/index.json');
 const stateAssetIndex = fs.existsSync(stateAssetIndexPath) ? readJson(stateAssetIndexPath) : {};
-const assetIndex = { ...readJson(path.join(SKELETON, 'assets/index.json')), ...stateAssetIndex };
+const assetIndex = { ...skeleton.assets, ...stateAssetIndex };
 const catalog = state.ruleCatalog
   ? readJson(path.join(ROOT, state.ruleCatalog))
   : { rules: [] };
 const rulesById = new Map(catalog.rules.map(rule => [rule.ruleId, rule]));
+
+// ------------------------------------------------------------- provenance
+// The revision of an input is the sha256 of its bytes: the skeleton document
+// as one file, the state package as the hash of a sorted list of its files
+// (its own outputs — the build report and the release request — excluded, or a
+// build would change its own inputs).
+const skeletonRevision = sha256(fs.readFileSync(SKELETON_DOC));
+const STATE_PACKAGE_OUTPUTS = new Set(['build-report.md', 'build-report.json', 'release.json']);
+const statePackageRevision = sha256(
+  walkFiles(STATE_DIR)
+    .map(file => path.relative(STATE_DIR, file))
+    .filter(rel => !STATE_PACKAGE_OUTPUTS.has(rel))
+    .sort()
+    .map(rel => `${rel} ${sha256(fs.readFileSync(path.join(STATE_DIR, rel)))}\n`)
+    .join(''),
+);
 
 const PREFIX = state.idPrefix;
 const VERSION = state.release.version;
@@ -307,7 +348,14 @@ const report = {
   state: state.stateCode,
   courseId: state.courseId,
   version: VERSION,
-  skeletonVersion: course.SKELETON_VERSION,
+  skeletonVersion: skeleton.skeletonVersion,
+  provenance: {
+    skeletonVersion: skeleton.skeletonVersion,
+    skeletonRevision,
+    statePackageLabel: state.release.sourceVersionLabel,
+    statePackageRevision,
+    builderVersion: BUILDER_VERSION,
+  },
   blocks: { identical: 0, rendered: 0, note: 0, override: 0, stateLesson: 0, image: 0, challenge: 0, dropped: 0 },
   questions: { identical: 0, rendered: 0, override: 0, stateLesson: 0 },
   lessons: [],
@@ -484,6 +532,19 @@ const buildLesson = (spec, module, origin, globalSequence, moduleSequence) => {
     }
   };
 
+  // The skeleton document names every slot it owns (a state note anchors on
+  // one of these names). The builder still derives them; this refuses the two
+  // ever disagreeing. State lessons carry no names — the state package is not
+  // the document — so they are only checked when present.
+  const checkIdentity = (item, anchor, conceptId, whereBlock) => {
+    if (item.anchor != null && item.anchor !== anchor) {
+      fail(whereBlock, `skeleton document calls this ${item.anchor}, the builder ${anchor}`);
+    }
+    if (conceptId != null && item.conceptId != null && item.conceptId !== conceptId) {
+      fail(whereBlock, `skeleton document concept ${item.conceptId}, the builder ${conceptId}`);
+    }
+  };
+
   for (const item of spec.cards) {
     if (item.kind === 'image') {
       const asset = libraryAsset(item.assetId, `${where} image ${item.assetId}`);
@@ -499,6 +560,7 @@ const buildLesson = (spec, module, origin, globalSequence, moduleSequence) => {
         if (baked.length) report.imagesWithNumbers.push(`${item.assetId} (${baked.join(', ')})`);
       }
       noteAsset(asset);
+      checkIdentity(item, `${bare}-image-${pad(slide + 1)}`, null, `${where} image ${item.assetId}`);
       const blockId = `${lessonId}-image-${pad(slide + 1)}`;
       blocks.push({ blockId, type: 'image', assetId: asset.assetId });
       report.blocks.image++;
@@ -510,6 +572,7 @@ const buildLesson = (spec, module, origin, globalSequence, moduleSequence) => {
       const bareBlock = `${bare}-recall-${pad(recallN)}`;
       const blockId = `${PREFIX}-${bareBlock}`;
       const recallWhere = `${where} ${bareBlock}`;
+      checkIdentity(item, bareBlock, `${bare}.recall.${pad(recallN)}`, recallWhere);
       let source = item;
       let blockOrigin = isState ? 'stateLesson' : 'identical';
       if (overrides.cards?.[bareBlock]) {
@@ -552,6 +615,7 @@ const buildLesson = (spec, module, origin, globalSequence, moduleSequence) => {
     const bareBlock = `${bare}-slide-${pad(slide)}`;
     const blockId = `${PREFIX}-${bareBlock}`;
     const cardWhere = `${where} ${bareBlock}`;
+    checkIdentity(item, bareBlock, `${bare}.slide.${pad(slide)}`, cardWhere);
     let source = item;
     let blockOrigin = isState ? 'stateLesson' : 'identical';
     if (overrides.cards?.[bareBlock]) {
@@ -672,11 +736,9 @@ const onlyModules = process.env.SKELETON_MODULES
   : null;
 for (const [index, moduleSpec] of MODULES.entries()) {
   if (onlyModules && !onlyModules.has(index + 1)) continue;
-  const lessons = moduleSpec.state
-    ? stateLessons[moduleSpec.id]
-    : (await importModule(path.join(SKELETON, 'modules', moduleSpec.file))).LESSONS;
+  const lessons = moduleSpec.state ? stateLessons[moduleSpec.id] : moduleSpec.lessons;
   if (!lessons) {
-    fail(`module ${moduleSpec.id}`, moduleSpec.state ? `state package has no lessons for it` : `no LESSONS export`);
+    fail(`module ${moduleSpec.id}`, moduleSpec.state ? `state package has no lessons for it` : `the skeleton document has no lessons for it`);
     continue;
   }
   const moduleId = `${PREFIX}-${moduleSpec.id}`;
@@ -771,7 +833,7 @@ const fmtBlocks = report.blocks;
 const md = [
   `# ${state.courseId} ${VERSION} — build report`,
   '',
-  `Skeleton ${course.SKELETON_VERSION} · state package ${state.release.sourceVersionLabel} · ${lessonDocs.length} lessons in ${modules.length} modules`,
+  `Skeleton ${skeleton.skeletonVersion} (${skeletonRevision.slice(0, 12)}) · state package ${state.release.sourceVersionLabel} (${statePackageRevision.slice(0, 12)}) · ${BUILDER_VERSION} · ${lessonDocs.length} lessons in ${modules.length} modules`,
   '',
   '## Where every block comes from',
   '',
@@ -855,7 +917,7 @@ const courseDoc = {
     targetLicense: state.course.targetLicense,
     moduleIds: modules.map(m => m.moduleId),
     sourceVersionLabel: state.release.sourceVersionLabel,
-    skeletonVersion: course.SKELETON_VERSION,
+    skeletonVersion: skeleton.skeletonVersion,
     sourceContentHash,
     sourceCheckedAt: state.release.releasedAt,
     sourceReviewStatus: 'draft_generated_human_review_required',
@@ -884,6 +946,7 @@ const entry = {
   sourceReviewStatus: 'draft_generated_human_review_required',
   publicationAuthorized: false,
   instructions: [{ op: 'full', severity: 'soft', message: state.release.updateMessage }],
+  provenance: report.provenance,
   documents: {
     modules: Object.fromEntries(moduleFiles.map(f => [path.basename(f, '.json'), docRef(f)])),
     lessons: Object.fromEntries(lessonFiles.map(f => [path.basename(f, '.json'), { moduleId: lessonModule.get(path.basename(f, '.json')), ...docRef(f) }])),
@@ -898,5 +961,6 @@ writeJson(path.join(STATE_DIR, 'release.json'), {
   courseId: state.courseId,
   version: VERSION,
   ...state.release,
+  provenance: report.provenance,
 });
 console.log(`wrote ${path.relative(ROOT, OUTPUT)} (${lessonFiles.length} lessons, ${moduleFiles.length} modules) and manifest`);

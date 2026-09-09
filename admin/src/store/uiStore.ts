@@ -5,6 +5,13 @@ import { create } from 'zustand';
 // reload — they are workstation preferences, not session state.
 
 export type Screen = 'course' | 'questions' | 'signs' | 'formats' | 'settings';
+
+// The header's two halves of the content model: one state's course, which is
+// what every screen below edits, and the universal skeleton every state's
+// course is built from. The skeleton is one document, not per state, so it has
+// no course, no version and no channel — the header hides those while it is
+// open.
+export type Tab = 'state' | 'skeleton';
 export type RightDock = 'prompt' | 'similar' | null;
 
 export type ModalState =
@@ -49,10 +56,12 @@ const loadPersisted = (): Persisted => {
 
 type UiState = Persisted & {
   screen: Screen;
+  tab: Tab;
   modal: ModalState;
   contextMenu: ContextMenuState;
   toast: string;
   setScreen: (screen: Screen) => void;
+  setTab: (tab: Tab) => void;
   toggleVersions: () => void;
   toggleLessons: () => void;
   setRightDock: (dock: RightDock) => void;
@@ -81,11 +90,13 @@ export const useUi = create<UiState>((set, get) => {
   return {
     ...persisted,
     screen: 'course',
+    tab: 'state',
     modal: null,
     contextMenu: null,
     toast: '',
 
     setScreen: screen => set({ screen }),
+    setTab: tab => set({ tab }),
     toggleVersions: () => {
       set(state => ({ versionsOpen: !state.versionsOpen }));
       persist();

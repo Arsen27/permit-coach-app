@@ -317,3 +317,111 @@ export type {
   SignsDoc,
 } from '@/data/signs/wire';
 
+// ---------------------------------------------------------------------------
+// The universal skeleton, read-only. Mirrors server/src/admin/skeleton.ts: the
+// shared lessons every state's course is built from, with each state's notes
+// shown where they attach and the state module filled in per state.
+
+export type SkeletonCard =
+  | {
+      kind: 'card';
+      type: string;
+      title: string;
+      lines: string[];
+      bullets?: string[];
+      anchor: string;
+      conceptId: string;
+    }
+  | { kind: 'image'; assetId: string; anchor: string }
+  | {
+      kind: 'recall';
+      context: string;
+      ruleMarkdown: string;
+      anchor: string;
+      conceptId: string;
+    };
+
+export type SkeletonQuestion = {
+  prompt?: string;
+  choices?: string[];
+  correct?: number;
+  explanation: string;
+  numeric?: { param: string; unit: string; offsets: number[] };
+  image?: string;
+};
+
+export type SkeletonBlock = {
+  scope: 'universal' | 'state_specific';
+  card: SkeletonCard;
+  stateCode?: string;
+  after?: string;
+  rules?: string[];
+  image?: string;
+};
+
+export type SkeletonViewLesson = {
+  id: string;
+  title: string;
+  objective: string;
+  keyPoints: string[];
+  conceptId: string;
+  challenge: SkeletonQuestion & { scenario: string };
+  blocks: SkeletonBlock[];
+  test: SkeletonQuestion[];
+  stateCode?: string;
+};
+
+export type SkeletonViewModule = {
+  id: string;
+  title: string;
+  outcome: string;
+  scope: 'universal' | 'state_specific';
+  lessons: SkeletonViewLesson[];
+};
+
+export type SkeletonAsset = {
+  alt: string;
+  width: number;
+  height: number;
+  numbers?: string[];
+};
+
+export type SkeletonView = {
+  revision: string;
+  skeletonVersion: string;
+  modules: SkeletonViewModule[];
+  assets: Record<string, SkeletonAsset>;
+  states: {
+    stateCode: string;
+    courseId: string;
+    name: string;
+    sourceVersionLabel: string;
+  }[];
+  counts: {
+    universalLessons: number;
+    universalCards: number;
+    stateNotes: number;
+    stateLessons: number;
+    parameters: number;
+  };
+};
+
+export type ParameterEntry = {
+  key: string;
+  uses: { lessonId: string; where: string }[];
+  states: {
+    stateCode: string;
+    defined: boolean;
+    value: string | number | null;
+    rule: string | null;
+    status: string | null;
+  }[];
+};
+
+export type ParameterCatalogue = {
+  revision: string;
+  skeletonVersion: string;
+  states: { stateCode: string; name: string; courseId: string }[];
+  parameters: ParameterEntry[];
+  unusedByState: { stateCode: string; keys: string[] }[];
+};

@@ -1,6 +1,6 @@
 # tx-class-c 2.0.0 — build report
 
-Skeleton SK-2026.09.06-r01 · state package TX-2026.09.06-r01 · 33 lessons in 8 modules
+Skeleton SK-2026.09.06-r01 (4b6aa56389f8) · state package TX-2026.09.06-r01 (690aad436adf) · build-state-course/2.0.0 · 33 lessons in 8 modules
 
 ## Where every block comes from
 

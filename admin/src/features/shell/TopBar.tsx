@@ -7,7 +7,7 @@ import { useUi } from '@admin/store/uiStore';
 import { stateOfCourse, useWorkspace } from '@admin/store/workspaceStore';
 import { admin } from '@admin/styles/theme';
 
-import { Chevron, Mono, Row, Spacer } from './ui';
+import { Chevron, Mono, Row, Segmented, SegmentedItem, Spacer } from './ui';
 
 // Header row from the mockup: identity, the course chip, the state picker,
 // which screen is open, and the prompt-builder toggle with its count.
@@ -28,6 +28,8 @@ const TopBar: React.FC = () => {
   const settings = useWorkspace(state => state.settings);
   const selectCourse = useWorkspace(state => state.selectCourse);
   const screen = useUi(state => state.screen);
+  const tab = useUi(state => state.tab);
+  const setTab = useUi(state => state.setTab);
   const rightDock = useUi(state => state.rightDock);
   const toggleRightDock = useUi(state => state.toggleRightDock);
   const chunkCount = usePrompt(state => state.chunks.length);
@@ -66,49 +68,74 @@ const TopBar: React.FC = () => {
         <Sub>Content Admin</Sub>
       </Row>
 
-      <Pill as="div">
-        <LiveDot />
-        <PillText>{settings?.courseName ?? 'Course'}</PillText>
-      </Pill>
+      {/* The two halves of the content model. One state's course is what
+          every screen below edits; the skeleton is the shared document all of
+          them are built from, and it has no state, version or channel of its
+          own — those disappear while it is open. */}
+      <Segmented>
+        <SegmentedItem
+          $active={tab === 'state'}
+          onClick={() => setTab('state')}
+        >
+          State course
+        </SegmentedItem>
+        <SegmentedItem
+          $active={tab === 'skeleton'}
+          onClick={() => setTab('skeleton')}
+        >
+          Skeleton
+        </SegmentedItem>
+      </Segmented>
 
-      <PickerWrap>
-        <Pill onClick={() => setPickerOpen(open => !open)}>
-          <PillLabel>STATE</PillLabel>
-          <PillValue>{usState || '—'}</PillValue>
-          <Chevron $dir="down" />
+      {tab === 'state' && (
+        <Pill as="div">
+          <LiveDot />
+          <PillText>{settings?.courseName ?? 'Course'}</PillText>
         </Pill>
-        {pickerOpen && (
-          <Dropdown onMouseLeave={() => setPickerOpen(false)}>
-            {courses.map(course => (
-              <DropdownRow
-                key={course.courseId}
-                $selected={course.courseId === courseId}
-                onClick={() => {
-                  setPickerOpen(false);
-                  void selectCourse(course.courseId);
-                }}
-              >
-                <Mono $size={10.5} $weight={700}>
-                  {course.usState}
-                </Mono>
-                <DropdownName>{course.courseId}</DropdownName>
-                <Spacer />
-                {course.courseId === courseId && <Check />}
-              </DropdownRow>
-            ))}
-            <DropdownNote>
-              Each state is its own course version tree — switching reloads the
-              lesson set and its state-specific cards.
-            </DropdownNote>
-          </Dropdown>
-        )}
-      </PickerWrap>
+      )}
+
+      {tab === 'state' && (
+        <PickerWrap>
+          <Pill onClick={() => setPickerOpen(open => !open)}>
+            <PillLabel>STATE</PillLabel>
+            <PillValue>{usState || '—'}</PillValue>
+            <Chevron $dir="down" />
+          </Pill>
+          {pickerOpen && (
+            <Dropdown onMouseLeave={() => setPickerOpen(false)}>
+              {courses.map(course => (
+                <DropdownRow
+                  key={course.courseId}
+                  $selected={course.courseId === courseId}
+                  onClick={() => {
+                    setPickerOpen(false);
+                    void selectCourse(course.courseId);
+                  }}
+                >
+                  <Mono $size={10.5} $weight={700}>
+                    {course.usState}
+                  </Mono>
+                  <DropdownName>{course.courseId}</DropdownName>
+                  <Spacer />
+                  {course.courseId === courseId && <Check />}
+                </DropdownRow>
+              ))}
+              <DropdownNote>
+                Each state is its own course version tree — switching reloads
+                the lesson set and its state-specific cards.
+              </DropdownNote>
+            </Dropdown>
+          )}
+        </PickerWrap>
+      )}
 
       <Spacer />
 
-      <ScreenTitle>{SCREEN_TITLES[screen]}</ScreenTitle>
+      <ScreenTitle>
+        {tab === 'skeleton' ? 'Universal skeleton' : SCREEN_TITLES[screen]}
+      </ScreenTitle>
       <Divider />
-      {current != null && (
+      {tab === 'state' && current != null && (
         <Channels title="What each channel serves">
           <ChannelChip
             $tone="staging"

@@ -3,6 +3,13 @@
   "courseId": "tx-class-c",
   "version": "2.0.0",
   "skeletonVersion": "SK-2026.09.06-r01",
+  "provenance": {
+    "skeletonVersion": "SK-2026.09.06-r01",
+    "skeletonRevision": "4b6aa56389f8d8bda01704c901a582baf336c0fd365a9cb94c96e43d2e30c874",
+    "statePackageLabel": "TX-2026.09.06-r01",
+    "statePackageRevision": "690aad436adf1aee7271859be84133b911dc96184189856b2ab11801ac87d75c",
+    "builderVersion": "build-state-course/2.0.0"
+  },
   "blocks": {
     "identical": 254,
     "rendered": 30,

@@ -6,12 +6,25 @@ lesson test); a state package supplies the values, the notes, and the four
 lessons of module 8. `scripts/build-state-course.mjs <xx>` renders the tree
 the server ships.
 
+The skeleton is a data document, not code:
+
 ```
+server/skeleton/skeleton.json  the skeleton itself — module list, the checks'
+                        vocabulary, the 29 universal lessons with their
+                        {{param}} placeholders unresolved, and the picture
+                        library's alt text. What the builder reads, what the
+                        server serves, and the only source of truth.
 courses/skeleton/
-  course.mjs            module list, universal literals, forbidden state tokens
-  helpers.mjs           why/rule/related/remember/trap/visual/image/recall/challenge/q/numq
-  modules/module-0N.mjs universal lessons — no literal digits, no state names
-  assets/               shared SVG library + index.json (alt, size, baked numbers)
+  assets/*.svg          the pictures themselves — files, not data
+  course.mjs            } the authoring sources the document was converted
+  helpers.mjs           } from. Editing one changes nothing until
+  modules/module-0N.mjs } scripts/convert-skeleton-to-json.mjs is re-run;
+  assets/index.json     } --check says whether the document is current.
+server/skeleton/states.json    the state packages as data, for the admin panel:
+                        parameter values, the notes each state anchors, and the
+                        state module's lessons. Regenerate with
+                        scripts/export-state-packages.mjs. Nothing builds from
+                        it — the builder reads courses/states/ directly.
 courses/states/<xx>/
   state.json            vars, params (each backed by a catalog rule), notes,
                         overrides, release metadata
@@ -61,6 +74,9 @@ without emoji. Titles, recall rules, and questions never get emoji.
 ## Building
 
 ```
+node scripts/convert-skeleton-to-json.mjs           # .mjs → server/skeleton/skeleton.json
+node scripts/convert-skeleton-to-json.mjs --check   # is the document current?
+node scripts/export-state-packages.mjs             # state packages → server/skeleton/states.json
 node scripts/build-state-course.mjs ca --check      # validate, write nothing
 node scripts/build-state-course.mjs ca              # write server/content/ca-class-c/<version>
 SKELETON_MODULES=1,2 node scripts/build-state-course.mjs ca --check   # while authoring
@@ -101,3 +117,18 @@ Warnings (reported): card outside 42–135 words; sentence over 38 words;
 a message with more than two sentences; lesson theory outside 285–560 words;
 lesson without a recall card; parameter declared but unused.
 
+## What the panel shows
+
+The admin's **Skeleton** tab (the switch in the header, next to *State course*)
+renders `server/skeleton/skeleton.json` read-only with the same card components
+the course editor uses. Two things are marked, because they are the two ways a
+state's course stops being the skeleton: a yellow border on every
+`state_specific` block — the notes a state anchors onto a shared card and the
+lessons of the state module — and a chip in place of every `{{param}}`, so a
+number or a state's name reads as the variable it is. The tab is fed by
+`GET /v1/admin/skeleton` and `GET /v1/admin/skeleton/parameters`.
+
+Every release records what produced it — the skeleton document's revision, the
+state package's, and the builder's version — in its manifest entry and in the
+`provenance` column of `course_releases`, so a release can be traced back to
+the three inputs that made it.

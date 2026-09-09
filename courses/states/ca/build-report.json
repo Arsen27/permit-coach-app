@@ -3,6 +3,13 @@
   "courseId": "ca-class-c",
   "version": "2.1.0",
   "skeletonVersion": "SK-2026.09.06-r01",
+  "provenance": {
+    "skeletonVersion": "SK-2026.09.06-r01",
+    "skeletonRevision": "4b6aa56389f8d8bda01704c901a582baf336c0fd365a9cb94c96e43d2e30c874",
+    "statePackageLabel": "CA-2026.09.06-r02",
+    "statePackageRevision": "fb61760dd71c18e7d81058a655f8d462a6ed7600c7edfd97eda4fdff68a3390e",
+    "builderVersion": "build-state-course/2.0.0"
+  },
   "blocks": {
     "identical": 250,
     "rendered": 39,

@@ -1,6 +1,6 @@
 # ca-class-c 2.1.0 — build report
 
-Skeleton SK-2026.09.06-r01 · state package CA-2026.09.06-r02 · 33 lessons in 8 modules
+Skeleton SK-2026.09.06-r01 (4b6aa56389f8) · state package CA-2026.09.06-r02 (fb61760dd71c) · build-state-course/2.0.0 · 33 lessons in 8 modules
 
 ## Where every block comes from
 
