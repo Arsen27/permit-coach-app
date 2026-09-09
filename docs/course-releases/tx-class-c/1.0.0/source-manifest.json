@@ -1,0 +1,778 @@
+{
+  "packageType": "state-driver-course-version",
+  "versionLabel": "TX-2026.08.10-r01",
+  "jurisdiction": "TX",
+  "stateSequence": 1,
+  "generatedAt": "2026-08-10",
+  "status": "draft_generated_human_review_required",
+  "publicationAuthorized": false,
+  "fileCount": 153,
+  "contentHash": "8b0418a0192ad15184a17c1ada3b8f5976bf16f97515fd6267cd320c410fec08",
+  "files": [
+    {
+      "path": "INTEGRATION-HANDOFF.md",
+      "bytes": 786,
+      "sha256": "0022986cdd97280071474b8279f2febccf24e368f9cd05f412d63255532928d7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1027,
+      "sha256": "e606460fe94b580a5fa6d1480b06dfb4f8e73db05e9e599c6f15f67be60e445c"
+    },
+    {
+      "path": "assets/index.json",
+      "bytes": 65619,
+      "sha256": "15746fea1f03846c7922cbbb55ab253b824b08f6dd68ec78320cb8bf75529615"
+    },
+    {
+      "path": "assets/tx-alcohol-drugs-asset-01.svg",
+      "bytes": 1571,
+      "sha256": "1c61ce7f8a7ecc5dc123896bae07f962c46e1464fac53c07f87b6dbc03a6f93a"
+    },
+    {
+      "path": "assets/tx-alcohol-drugs-asset-02.svg",
+      "bytes": 1810,
+      "sha256": "52dc754f6fb01de7e08bc298af1017431f3a3d648f5f8bddf1a683bb7274fa11"
+    },
+    {
+      "path": "assets/tx-alcohol-drugs-asset-03.svg",
+      "bytes": 1681,
+      "sha256": "2bb4d83bc504f9eb9f7711bdac7754d51d399ec9e5407050621130f41158498d"
+    },
+    {
+      "path": "assets/tx-bikes-motorcycles-asset-01.svg",
+      "bytes": 1521,
+      "sha256": "048ae9d45d66d05affdccc4848877a1d27c7708a84fabf28cabde7fbcf84d0ae"
+    },
+    {
+      "path": "assets/tx-bikes-motorcycles-asset-02.svg",
+      "bytes": 1760,
+      "sha256": "9b5f5fd05ac9f0a63816966b78257cb08e6b365dc322f96ff9b1d85f32d4ebcf"
+    },
+    {
+      "path": "assets/tx-bikes-motorcycles-asset-03.svg",
+      "bytes": 1635,
+      "sha256": "d9362ebbdd0ecbe2e5325da618b92899476edffe735ccfeac5c5f4c480777d79"
+    },
+    {
+      "path": "assets/tx-crashes-insurance-asset-01.svg",
+      "bytes": 1613,
+      "sha256": "ad772fd6469688b69f6d9c5d0b26ee8cbd0e129ad2554afadc2bab6d5227b75a"
+    },
+    {
+      "path": "assets/tx-crashes-insurance-asset-02.svg",
+      "bytes": 1859,
+      "sha256": "c89db116e427a50b41265f0d9575b313bd3eb6e50b8fa2b2d3c4128ffb69c9f2"
+    },
+    {
+      "path": "assets/tx-crashes-insurance-asset-03.svg",
+      "bytes": 1716,
+      "sha256": "deee1cbd6a84bc827f660022c716c1434990697d203a359d01db194e95f1c863"
+    },
+    {
+      "path": "assets/tx-distraction-fatigue-asset-01.svg",
+      "bytes": 1595,
+      "sha256": "0d8d4ec4e9b8b0030418656558bfd2be6d1443f75e97de80ffe672e447b80b09"
+    },
+    {
+      "path": "assets/tx-distraction-fatigue-asset-02.svg",
+      "bytes": 1838,
+      "sha256": "3bf898bdc9d04114fc6680be9458cce17dec23cec6685fe585f5c974f1e84d50"
+    },
+    {
+      "path": "assets/tx-distraction-fatigue-asset-03.svg",
+      "bytes": 1709,
+      "sha256": "197a699e1129c9b51f89ef92cb1ff3a2163cc51f8d0573788649507ffb7abe93"
+    },
+    {
+      "path": "assets/tx-equipment-loads-asset-01.svg",
+      "bytes": 1591,
+      "sha256": "22458765309c8627dedeb6429988e70420acb688689ab3dccb45a3796240df3d"
+    },
+    {
+      "path": "assets/tx-equipment-loads-asset-02.svg",
+      "bytes": 1832,
+      "sha256": "7987be44308fca4d15792b573a785e580039edbd31d9225e58754178fc2e3102"
+    },
+    {
+      "path": "assets/tx-equipment-loads-asset-03.svg",
+      "bytes": 1695,
+      "sha256": "653468ed3ac087f67114d3cc9d8f648317e4f81df9d83a8d73d954722b0ed7cb"
+    },
+    {
+      "path": "assets/tx-highway-entry-exit-asset-01.svg",
+      "bytes": 1565,
+      "sha256": "aa0d0160f2c8bcf89a4b363d253f6e48ef7d6fef6796f97ac6f561fef224752e"
+    },
+    {
+      "path": "assets/tx-highway-entry-exit-asset-02.svg",
+      "bytes": 1802,
+      "sha256": "842ef4888f8f8d0f63f7e3785883f989ea2fa056040b7cff20d7663f6624e4dc"
+    },
+    {
+      "path": "assets/tx-highway-entry-exit-asset-03.svg",
+      "bytes": 1669,
+      "sha256": "630e03cf9e012ac8e0870ee3ef72303f8df8ac529687284346a9ab57d0d0f438"
+    },
+    {
+      "path": "assets/tx-lane-choice-asset-01.svg",
+      "bytes": 1518,
+      "sha256": "2200bbe28b82f33ac7f62d9b07618f51a6bf419bf387a7b7e7a3438f98726310"
+    },
+    {
+      "path": "assets/tx-lane-choice-asset-02.svg",
+      "bytes": 1767,
+      "sha256": "4ed2e16c5c118ec1529a18b72dc415e41838679d4cd098c3c10346e89a704fe3"
+    },
+    {
+      "path": "assets/tx-lane-choice-asset-03.svg",
+      "bytes": 1630,
+      "sha256": "7523fe9114bb1f69910a0e74774985f4e932cb67488c6d49bfd99a228ba5d668"
+    },
+    {
+      "path": "assets/tx-large-slow-vehicles-asset-01.svg",
+      "bytes": 1572,
+      "sha256": "d1f259c4b89cf56bde599e4b1322091f56b08f067ff2a767e37f6c1d4693a949"
+    },
+    {
+      "path": "assets/tx-large-slow-vehicles-asset-02.svg",
+      "bytes": 1811,
+      "sha256": "95563587d223c98999628398b46ca9a619dbb32597038a79c9670557581e61c1"
+    },
+    {
+      "path": "assets/tx-large-slow-vehicles-asset-03.svg",
+      "bytes": 1691,
+      "sha256": "7a122f8a33896728337d08e1f2701df8663912228c909d9290d98ea3b49ba43e"
+    },
+    {
+      "path": "assets/tx-markings-asset-01.svg",
+      "bytes": 1583,
+      "sha256": "5d4656885f8db8cd7f2fc5d97fddc0ccd516e6daae785cb519df9f4616b5d3e1"
+    },
+    {
+      "path": "assets/tx-markings-asset-02.svg",
+      "bytes": 1820,
+      "sha256": "7d1b722f65f75c169611515032bb9255010adb10014f965d5b7d6bdbfcde1c94"
+    },
+    {
+      "path": "assets/tx-markings-asset-03.svg",
+      "bytes": 1702,
+      "sha256": "fb9f48234f96a75228061ba0e3a8484258726a6889105ef2ce2f0a904ab6ba2d"
+    },
+    {
+      "path": "assets/tx-night-weather-lights-asset-01.svg",
+      "bytes": 1563,
+      "sha256": "124f5aad8b5f23db5f19e9272a1aa7e916c883e52bbdee7bc3d37f6df3ec1c01"
+    },
+    {
+      "path": "assets/tx-night-weather-lights-asset-02.svg",
+      "bytes": 1802,
+      "sha256": "9e0316fa021b2dc30b2d70a595cd012c397dffe36ac6704a4aaa37660e99bed1"
+    },
+    {
+      "path": "assets/tx-night-weather-lights-asset-03.svg",
+      "bytes": 1682,
+      "sha256": "ef5622ad626a929889976f861359b50dd1597ebc4e9ed01d6df414c88318dd73"
+    },
+    {
+      "path": "assets/tx-parking-asset-01.svg",
+      "bytes": 1570,
+      "sha256": "2f6ce58a88889ecd277d9f9da2485910e72293be94251fdb224005a060f14a7a"
+    },
+    {
+      "path": "assets/tx-parking-asset-02.svg",
+      "bytes": 1808,
+      "sha256": "5abf28e897b61c7a762265c37fef1f6cd2846e1c616a8426b40b4e8df2ad1686"
+    },
+    {
+      "path": "assets/tx-parking-asset-03.svg",
+      "bytes": 1689,
+      "sha256": "b6f8dab8edcad38f435a830e1df053847a04ee9b5aa49c1d35873a1b2cc4ebe0"
+    },
+    {
+      "path": "assets/tx-passing-asset-01.svg",
+      "bytes": 1574,
+      "sha256": "62f37261f2ca61a4c581c679a793f4638d846f33f861bdd6615e12445eddcf97"
+    },
+    {
+      "path": "assets/tx-passing-asset-02.svg",
+      "bytes": 1814,
+      "sha256": "5b5f7d0aa5cf7505a317c62050f71b0cb2c8fbb5e24b33e4b6a038fc9d7a2e94"
+    },
+    {
+      "path": "assets/tx-passing-asset-03.svg",
+      "bytes": 1692,
+      "sha256": "3f2c20e1bedeb92ad8023bce9d91bfe328a41b1a990524c493f21dc4a2e4be1b"
+    },
+    {
+      "path": "assets/tx-pedestrians-roundabouts-asset-01.svg",
+      "bytes": 1586,
+      "sha256": "e745e39ee7344afcf3faceea408f7216664f382fd325a6e8a7d324328288d232"
+    },
+    {
+      "path": "assets/tx-pedestrians-roundabouts-asset-02.svg",
+      "bytes": 1826,
+      "sha256": "0ada62a26a4cb5991e3a6614fc3fe23d4daf2d57a34ac8472aabda94b8d31160"
+    },
+    {
+      "path": "assets/tx-pedestrians-roundabouts-asset-03.svg",
+      "bytes": 1706,
+      "sha256": "d1141ca56db8ff78d1fe95516b9cd5a00b9a95a8569e4d5d9d7c9aab1e37b3d3"
+    },
+    {
+      "path": "assets/tx-penalties-review-asset-01.svg",
+      "bytes": 1592,
+      "sha256": "9fa65537f9e49dc6231d5deac8607bc173852008ae6cb5021eee7864e44f3578"
+    },
+    {
+      "path": "assets/tx-penalties-review-asset-02.svg",
+      "bytes": 1826,
+      "sha256": "4a3f7c00490808a7b77b22cc132a178d6e30b40512320738b84248846e46e4b9"
+    },
+    {
+      "path": "assets/tx-penalties-review-asset-03.svg",
+      "bytes": 1712,
+      "sha256": "a1dada04a9f2af4bfc5707c07813c51e32a3366f54bc0c62490e5faeba36e551"
+    },
+    {
+      "path": "assets/tx-permits-tests-asset-01.svg",
+      "bytes": 1584,
+      "sha256": "62fe339224239bae52643488cf17ced0440ae4295f3048dab5cd64602d2c6fe0"
+    },
+    {
+      "path": "assets/tx-permits-tests-asset-02.svg",
+      "bytes": 1823,
+      "sha256": "8f73f4e52dd85c6cca3dffbc02945c53a9c1035952b2ab21fe021037f6a36a9f"
+    },
+    {
+      "path": "assets/tx-permits-tests-asset-03.svg",
+      "bytes": 1703,
+      "sha256": "7f5c93c4165a7ae2964a05f0f9f29186d82964f1d7485dcd7c658a439fbdceba"
+    },
+    {
+      "path": "assets/tx-regulatory-signs-asset-01.svg",
+      "bytes": 1536,
+      "sha256": "75314099a9383756e18bbc31779d9e642aa310258387e939943cb6cd95b42333"
+    },
+    {
+      "path": "assets/tx-regulatory-signs-asset-02.svg",
+      "bytes": 1777,
+      "sha256": "3b51d5314509f8c8032f746fd40974a4e2248fecbcf8654e5d3e5eb08f6a8632"
+    },
+    {
+      "path": "assets/tx-regulatory-signs-asset-03.svg",
+      "bytes": 1640,
+      "sha256": "fdb0c087e02e259047269f73e228cecf42fe854cc57a04fdd5ab54314d9d5ecd"
+    },
+    {
+      "path": "assets/tx-residency-transfers-asset-01.svg",
+      "bytes": 1615,
+      "sha256": "cf3e220cb9d6f427c85cc34012aef2869e59c1daccd2315a6ea2984eba195f0c"
+    },
+    {
+      "path": "assets/tx-residency-transfers-asset-02.svg",
+      "bytes": 1854,
+      "sha256": "64295f954d23d06134f17d2916a94c682b9e676cc378c10c79ce364dff4ca881"
+    },
+    {
+      "path": "assets/tx-residency-transfers-asset-03.svg",
+      "bytes": 1739,
+      "sha256": "249863bdf762233b3efb3a2f7ff7e5a2a102771d49af674e1ac86dd362b5db5d"
+    },
+    {
+      "path": "assets/tx-restraints-children-asset-01.svg",
+      "bytes": 1539,
+      "sha256": "589043dbd6af988abb736d84c09d2c3cffd92cdc9cd6bfce27b6e526d22ddb32"
+    },
+    {
+      "path": "assets/tx-restraints-children-asset-02.svg",
+      "bytes": 1781,
+      "sha256": "4d0c79ca54b912cac571d96a19ec45dec013edbc3f8c1c9ecf10ceaa70c7e165"
+    },
+    {
+      "path": "assets/tx-restraints-children-asset-03.svg",
+      "bytes": 1650,
+      "sha256": "c661bcf0ec0bb8d550b6adcc8662fb56f54cad0ddeddc609e9efbe01e702cc98"
+    },
+    {
+      "path": "assets/tx-school-emergency-work-asset-01.svg",
+      "bytes": 1591,
+      "sha256": "621dbbda106eafbaea207bd37e9596e37cac078825cd982aa7f773dc425031e3"
+    },
+    {
+      "path": "assets/tx-school-emergency-work-asset-02.svg",
+      "bytes": 1831,
+      "sha256": "eaa1e53033289c6840ab716af59c1478ecf92160d064add7063c010f1c902407"
+    },
+    {
+      "path": "assets/tx-school-emergency-work-asset-03.svg",
+      "bytes": 1712,
+      "sha256": "40d36ea689a9062abcf413b688c6c0ff6e2d72e90b894ba0f1b4d7ed806112ef"
+    },
+    {
+      "path": "assets/tx-sign-language-asset-01.svg",
+      "bytes": 1564,
+      "sha256": "d3bcff1475ab8bc3e954577bb67891c357c18e29415b24ef26c1cc51a224d461"
+    },
+    {
+      "path": "assets/tx-sign-language-asset-02.svg",
+      "bytes": 1803,
+      "sha256": "2c87f27c4c1269cb0845bfc5abf7618e33b3f254531d76042bd2f5f0fd94c296"
+    },
+    {
+      "path": "assets/tx-sign-language-asset-03.svg",
+      "bytes": 1684,
+      "sha256": "061adb7b861d1e1a9b69dda79181efdbfbc204cc97411e8874c407663e35393e"
+    },
+    {
+      "path": "assets/tx-signals-asset-01.svg",
+      "bytes": 1585,
+      "sha256": "1c8d0324ada67dd5e5cadf909f5bb496df902d79a5683bcfb3490709ae9a9ab5"
+    },
+    {
+      "path": "assets/tx-signals-asset-02.svg",
+      "bytes": 1819,
+      "sha256": "d5c7e86ceb2bbe5f393cfe7fd998166ce5d81d9365178a96a81a6336ffe98c54"
+    },
+    {
+      "path": "assets/tx-signals-asset-03.svg",
+      "bytes": 1699,
+      "sha256": "fb812b2a880993e242cf1af814e8bc1124908d85826dc33b3bc611a761599c3b"
+    },
+    {
+      "path": "assets/tx-space-scanning-asset-01.svg",
+      "bytes": 1602,
+      "sha256": "041567f977130c942b0c2ce180b2a893fca145990aa1a900ff7f742cc08ece76"
+    },
+    {
+      "path": "assets/tx-space-scanning-asset-02.svg",
+      "bytes": 1841,
+      "sha256": "735c3198d9953bad16e7eb09fb4f44db788419c02f8c471298522ad5fbda5bc4"
+    },
+    {
+      "path": "assets/tx-space-scanning-asset-03.svg",
+      "bytes": 1689,
+      "sha256": "0b0c5b3d0242abd858f42500f5f17d6c5beec53fe4f73a893c970adcedcd397c"
+    },
+    {
+      "path": "assets/tx-special-lanes-asset-01.svg",
+      "bytes": 1599,
+      "sha256": "c5ff5a3da48a5ba99fd809199acf45370c9f13bc83fd83885e9aa3e34ff4747f"
+    },
+    {
+      "path": "assets/tx-special-lanes-asset-02.svg",
+      "bytes": 1838,
+      "sha256": "15967fdd30d9a43634b575a102e4a89f9d5a8b216922063ec3e785ed0d0e682a"
+    },
+    {
+      "path": "assets/tx-special-lanes-asset-03.svg",
+      "bytes": 1718,
+      "sha256": "1e4c94e7a17496facdd76d72849a579074a93282ffd3ec319101dfc930ecb3e0"
+    },
+    {
+      "path": "assets/tx-speed-laws-asset-01.svg",
+      "bytes": 1542,
+      "sha256": "d09b0ef0f463e0e5788ffd3e51435026f8e38095072ff109db21bd018fbf1cb4"
+    },
+    {
+      "path": "assets/tx-speed-laws-asset-02.svg",
+      "bytes": 1777,
+      "sha256": "844a462ef8bde3cf84d2b53303fd1f3fddfe770762f7135ec789d6b7a77c3d72"
+    },
+    {
+      "path": "assets/tx-speed-laws-asset-03.svg",
+      "bytes": 1656,
+      "sha256": "14d1b46153b1b454ca9b4784830f565b8bbc5c2851e27d0fdc3c2c7ceaa65ac4"
+    },
+    {
+      "path": "assets/tx-stop-yield-entry-asset-01.svg",
+      "bytes": 1580,
+      "sha256": "76c662133ae4efd2e4b2c721187b3d658e5dd839e50667da60b9c7403fa23777"
+    },
+    {
+      "path": "assets/tx-stop-yield-entry-asset-02.svg",
+      "bytes": 1819,
+      "sha256": "a20d3d7aaf532fc52a9f1ba28a3d753028925194bb99f8271177835eb05caa90"
+    },
+    {
+      "path": "assets/tx-stop-yield-entry-asset-03.svg",
+      "bytes": 1695,
+      "sha256": "fd66fc17a7e3a9db55c60604b1238b19f58173bedfbc58729b4dd12fde3ab406"
+    },
+    {
+      "path": "assets/tx-turns-signals-asset-01.svg",
+      "bytes": 1547,
+      "sha256": "0a70e030ab3f5a4baa8916ab04e986c285809ae4806ea12d864eeb8fd3ddd5f8"
+    },
+    {
+      "path": "assets/tx-turns-signals-asset-02.svg",
+      "bytes": 1783,
+      "sha256": "25fab6f87ce472828d5e08c969b171956576054cd581bcc109639386af000678"
+    },
+    {
+      "path": "assets/tx-turns-signals-asset-03.svg",
+      "bytes": 1665,
+      "sha256": "55aab8f14bd736e26025679791e7114e02c0f3064200554e4dc2eed0324eeb8b"
+    },
+    {
+      "path": "assets/tx-uncontrolled-intersections-asset-01.svg",
+      "bytes": 1587,
+      "sha256": "c32321956d6f2889f1ab7aea4009b805321b610be83c9b14c4f6d5a2636b6394"
+    },
+    {
+      "path": "assets/tx-uncontrolled-intersections-asset-02.svg",
+      "bytes": 1827,
+      "sha256": "9b890245e37bc0535654905f4bec979f606ebe987502bec305d7a2381c43cabf"
+    },
+    {
+      "path": "assets/tx-uncontrolled-intersections-asset-03.svg",
+      "bytes": 1707,
+      "sha256": "4222bb979a032e1467a8c97ee68f1c7b48496707979bc7459b1c01f532cfa47d"
+    },
+    {
+      "path": "assets/tx-uturn-backing-asset-01.svg",
+      "bytes": 1538,
+      "sha256": "a175d9aa17fe3634ef7b3c18e4188ddafe32fb4030ed9d237d8a5eb1cc848ba4"
+    },
+    {
+      "path": "assets/tx-uturn-backing-asset-02.svg",
+      "bytes": 1777,
+      "sha256": "c2deb8dfe04f318ab1402a24c57791f2598a2a790ff75f33f26accd73eea5f5b"
+    },
+    {
+      "path": "assets/tx-uturn-backing-asset-03.svg",
+      "bytes": 1653,
+      "sha256": "79c8d1d9b6b4e53dc673890beb9b714aca8d524eb15a86f3c979ceb0a8b757ef"
+    },
+    {
+      "path": "assets/tx-vehicle-emergencies-asset-01.svg",
+      "bytes": 1591,
+      "sha256": "e153b6b35cc69e790e4c33a82b8079e83b7525492ad979576f69a2d2c80ac8df"
+    },
+    {
+      "path": "assets/tx-vehicle-emergencies-asset-02.svg",
+      "bytes": 1832,
+      "sha256": "25145a499b18a9ea6da75b10dae290e88923b09c94ab39668a7870334d3e426c"
+    },
+    {
+      "path": "assets/tx-vehicle-emergencies-asset-03.svg",
+      "bytes": 1702,
+      "sha256": "89576ac54c6e5e0289142b1c9284306fc91bf6c9a0a482e92af54c1f542f589f"
+    },
+    {
+      "path": "assets/tx-warning-guide-signs-asset-01.svg",
+      "bytes": 1600,
+      "sha256": "30b8d900c91047ed4984ca9b0811332bd76b27b8af6284e81e6ffa2939dc5048"
+    },
+    {
+      "path": "assets/tx-warning-guide-signs-asset-02.svg",
+      "bytes": 1842,
+      "sha256": "f3885282aa33d988c25a1d0a426de7e8c4a636b2897680df0e671c0614548e1c"
+    },
+    {
+      "path": "assets/tx-warning-guide-signs-asset-03.svg",
+      "bytes": 1718,
+      "sha256": "c50ca460d6870f7c1f95975b4d7ff4c7ac5f90d0c8184f309a3e8a7e71fabae0"
+    },
+    {
+      "path": "authoring/build-courses.mjs",
+      "bytes": 25948,
+      "sha256": "55b8b01afab426be627080e72d6edcee25bb6e3c220e7c5ef39817981793dc00"
+    },
+    {
+      "path": "authoring/seeds/shared-curriculum.mjs",
+      "bytes": 65636,
+      "sha256": "36ffa64b60bd93062ad77c03245620b2aa2e1bcc5a226eb6c9d49101acd014d5"
+    },
+    {
+      "path": "authoring/seeds/tx-state-config.json",
+      "bytes": 16532,
+      "sha256": "b09df8dc172d7c53a7f6d6069949966d6669e369327caf2ffa227d24be53869d"
+    },
+    {
+      "path": "authoring/validate-courses.mjs",
+      "bytes": 11415,
+      "sha256": "65f6e2e764b5c3f91180ebf7559220d410c22e338277ad6f066235aeb0c4069c"
+    },
+    {
+      "path": "course.json",
+      "bytes": 3729,
+      "sha256": "7f715567189ed080397f488c8eca60956ca0d9d5c499c53984bfbf04561285c2"
+    },
+    {
+      "path": "dependency-map.json",
+      "bytes": 18517,
+      "sha256": "39bb2d95c2e7508ff5e47ce26cdfa4f32372e8ed9806b8cdc80f830f917053da"
+    },
+    {
+      "path": "evidence/index.json",
+      "bytes": 42916,
+      "sha256": "e0862f12d0714e8e263ad499ac745097eec886943ad96fc69ebe35a80aabbdd4"
+    },
+    {
+      "path": "lessons/tx-alcohol-drugs.json",
+      "bytes": 5244,
+      "sha256": "702927d17755e1d51c6359eea8a96c0a24c8d9acccee1135a6e1ca9c4c5a7174"
+    },
+    {
+      "path": "lessons/tx-bikes-motorcycles.json",
+      "bytes": 5164,
+      "sha256": "ec5887b74bb11ddcef6ead88725f943da0dccced5817245820e3bb34c22fc2f6"
+    },
+    {
+      "path": "lessons/tx-crashes-insurance.json",
+      "bytes": 5322,
+      "sha256": "f89d43b3f1bdec3bf0e56964db588d2589c05afd9490a225d7f1a86c1288da40"
+    },
+    {
+      "path": "lessons/tx-distraction-fatigue.json",
+      "bytes": 5186,
+      "sha256": "bafa5dc22043c8e8bfa0077e600cdabf962cf0dd47c57283bea320b6f737a27e"
+    },
+    {
+      "path": "lessons/tx-equipment-loads.json",
+      "bytes": 5037,
+      "sha256": "10e4855ffa97060a272f531e1f931bbe6108bfdc03ccbbe3592ba97cf57888f2"
+    },
+    {
+      "path": "lessons/tx-highway-entry-exit.json",
+      "bytes": 5177,
+      "sha256": "2ed2f99df47a309b9731dfa5fcd5d8a120d5a29b1a160241d7524f9bb4a0fd67"
+    },
+    {
+      "path": "lessons/tx-lane-choice.json",
+      "bytes": 4889,
+      "sha256": "33a0f734efc61daba66bdeca900e3664349dbb0748e333fda7e2a06caf751496"
+    },
+    {
+      "path": "lessons/tx-large-slow-vehicles.json",
+      "bytes": 5231,
+      "sha256": "071bec09adda83838ba9a70b52a6c85010a034dca1123ef5791a4ab5a062a4dc"
+    },
+    {
+      "path": "lessons/tx-markings.json",
+      "bytes": 4908,
+      "sha256": "57283f72d954994e783607ba5595cfb23fdc1cd05a3b6746b349456bbaafe0ea"
+    },
+    {
+      "path": "lessons/tx-night-weather-lights.json",
+      "bytes": 5289,
+      "sha256": "c343b600d8ace12eddd4ae9daae2078a7f217ef5f6fb6dada8307917eb4112bc"
+    },
+    {
+      "path": "lessons/tx-parking.json",
+      "bytes": 4818,
+      "sha256": "3181b47291c7b74461a93e575bba6bf340f30e510d59404f7e309e9f13b42d08"
+    },
+    {
+      "path": "lessons/tx-passing.json",
+      "bytes": 4804,
+      "sha256": "ff3589f61984951b6f558019ebfccf8c13b1a8d59d185e15270e8b6207a1a711"
+    },
+    {
+      "path": "lessons/tx-pedestrians-roundabouts.json",
+      "bytes": 5455,
+      "sha256": "4d3a3783aa976231077d372dc9706992c61df56e682dc920ae4a93734f6b40ef"
+    },
+    {
+      "path": "lessons/tx-penalties-review.json",
+      "bytes": 5489,
+      "sha256": "e9d12325beb2a733dce18bbb639d1c1189c825d24dd989acf856c64dff32c9cb"
+    },
+    {
+      "path": "lessons/tx-permits-tests.json",
+      "bytes": 5820,
+      "sha256": "cb60896e67bfa210d7dcaaa35aa9b521a2cb39d86f17f09c0b45e0f4f2b2dd1a"
+    },
+    {
+      "path": "lessons/tx-regulatory-signs.json",
+      "bytes": 5086,
+      "sha256": "dbdbca9376b6f92d2aba359f16998ba26f4e8bb4c7b88984f7d2309af0088b12"
+    },
+    {
+      "path": "lessons/tx-residency-transfers.json",
+      "bytes": 5752,
+      "sha256": "ccfda9f78e4f0d6f088feaea77151d020afcbae852a90d9e0317b4eeb389687f"
+    },
+    {
+      "path": "lessons/tx-restraints-children.json",
+      "bytes": 5190,
+      "sha256": "6f4df1a03bd60f7ae72f7d698e1722a3464192891f64c989934daf6ccdd32722"
+    },
+    {
+      "path": "lessons/tx-school-emergency-work.json",
+      "bytes": 5703,
+      "sha256": "5e690069c41172c5e2bf2917925d9743a352742d08b67b2a11df35191a5b0052"
+    },
+    {
+      "path": "lessons/tx-sign-language.json",
+      "bytes": 5030,
+      "sha256": "11e446f0c4af84318be756a6a3b4ac5b6641a7db7e2dd8cc59aebde3f2ff0876"
+    },
+    {
+      "path": "lessons/tx-signals.json",
+      "bytes": 4770,
+      "sha256": "09a24c8356dd38c698d7be32e13d39bd6b5c2ed1adff33f23e6769e817b39170"
+    },
+    {
+      "path": "lessons/tx-space-scanning.json",
+      "bytes": 5070,
+      "sha256": "5b0a366e5e9f350f5068f2744f20113cf41f9db63ba4d33ee9cc2ae1d8d88292"
+    },
+    {
+      "path": "lessons/tx-special-lanes.json",
+      "bytes": 5047,
+      "sha256": "8132d5b81315c5d717a019b423158f8fb7f1474ad009cf534d4cd45c8a123e9c"
+    },
+    {
+      "path": "lessons/tx-speed-laws.json",
+      "bytes": 4968,
+      "sha256": "7fed9ac3a0a21130abfde1d9981f2178f3a9da2a531aabbc31732d53cd660325"
+    },
+    {
+      "path": "lessons/tx-stop-yield-entry.json",
+      "bytes": 5141,
+      "sha256": "bf480ce5de2425a806c97f6ddfa68b421ee46ab331d25a4495acdc946f89537e"
+    },
+    {
+      "path": "lessons/tx-turns-signals.json",
+      "bytes": 5078,
+      "sha256": "38daf5bf0eab9721e7fd932e1da1ed843da84038115439460ce24b4c77f7b018"
+    },
+    {
+      "path": "lessons/tx-uncontrolled-intersections.json",
+      "bytes": 5565,
+      "sha256": "5770084212643f3559a23eb0817cbdf9fea647c2f7b73efed1cd6b45b367d7bf"
+    },
+    {
+      "path": "lessons/tx-uturn-backing.json",
+      "bytes": 5021,
+      "sha256": "70603d46a41b34e22df2da50124f18e1cecf40523aca53357d1caef4d774d006"
+    },
+    {
+      "path": "lessons/tx-vehicle-emergencies.json",
+      "bytes": 5192,
+      "sha256": "23e6502675569367249338587bdd169a37f146720c4ce3120d6f2cbdfcff59f7"
+    },
+    {
+      "path": "lessons/tx-warning-guide-signs.json",
+      "bytes": 5376,
+      "sha256": "4d506d6516e3d370e113fc2fb83a7ceb6ff22981c5c6db03dfe9906f5740d89f"
+    },
+    {
+      "path": "module-tests.json",
+      "bytes": 5410,
+      "sha256": "6e7488ed525db042900ee2ac5048a27ae5ad375ab64b00c3218d4dda347f3c53"
+    },
+    {
+      "path": "modules/tx-control.json",
+      "bytes": 1517,
+      "sha256": "f542792032a5286ebe24804186185e389abeaaa20fe13fe2f9ab9195abc9dbcb"
+    },
+    {
+      "path": "modules/tx-finish.json",
+      "bytes": 1239,
+      "sha256": "584ee8db85ca6d42adf2369a64c2af60258fac73c91ae9cd967699c472c390ce"
+    },
+    {
+      "path": "modules/tx-lanes-highways.json",
+      "bytes": 1468,
+      "sha256": "fbbdbf70f260bfb00afc49a61a99eaf9b44b132539834156bb337e4239581773"
+    },
+    {
+      "path": "modules/tx-read-road.json",
+      "bytes": 1709,
+      "sha256": "f38581cc5827e19d9b83f192b931951d7436c362654d513587c2b9346bb6b55b"
+    },
+    {
+      "path": "modules/tx-right-of-way.json",
+      "bytes": 1761,
+      "sha256": "fe0c85b1d2bddfa063b5f3122c46eb2de4dfcdb5bbd1db514cd0bbfd8946b052"
+    },
+    {
+      "path": "modules/tx-safety-crashes.json",
+      "bytes": 1250,
+      "sha256": "3c84f4a610a6c5457ead7a01ca61b485c8739e9c53edcf870033818eb2fd0ee8"
+    },
+    {
+      "path": "modules/tx-share-road.json",
+      "bytes": 1230,
+      "sha256": "b6ca4712d790465c8d6724ec904c6039a1c66790be2bca71c8d0088f1fd93a0e"
+    },
+    {
+      "path": "modules/tx-speed-space.json",
+      "bytes": 1188,
+      "sha256": "cf5fe8ba6868a5bc50fb6386ffde879efeaf9ee43736d3376031be66c346693f"
+    },
+    {
+      "path": "questions.json",
+      "bytes": 289464,
+      "sha256": "dd98320dc8d887e72ba5d236523b4c41baa51388f84e6a05285acf82161ba8d1"
+    },
+    {
+      "path": "reports/automated-validation.json",
+      "bytes": 431,
+      "sha256": "746d2c1f46e216e4a70c9ece95e2fd50e99ec99bbfddfed23c3c7b0aab0cf0c0"
+    },
+    {
+      "path": "reports/final-qa-report.md",
+      "bytes": 778,
+      "sha256": "f2651f9b7cda49b96a0a13def303f8f4083df51977aafdad6dbc60df74e56cc6"
+    },
+    {
+      "path": "reports/final-validation.json",
+      "bytes": 431,
+      "sha256": "746d2c1f46e216e4a70c9ece95e2fd50e99ec99bbfddfed23c3c7b0aab0cf0c0"
+    },
+    {
+      "path": "reports/human-review-checklist.md",
+      "bytes": 1060,
+      "sha256": "de7f6afdc13b1eec81b8dacd8e2714c2563c6fd664fba6cb0356a623de32e8f1"
+    },
+    {
+      "path": "rules/rule-catalog.json",
+      "bytes": 90803,
+      "sha256": "35890f532fb202a6e170b275995894c086f780a1ca90d69d874383298f3544b8"
+    },
+    {
+      "path": "rules/source-expansions.json",
+      "bytes": 13400,
+      "sha256": "ac0988a086d31c341ae3eb16a98f4fd3fc837298d107f707fa6ccc08c342b016"
+    },
+    {
+      "path": "schemas/course-package.schema.json",
+      "bytes": 593,
+      "sha256": "e857cf14b29519def6d4412dcead1fbafe7b17839632facdc5cf869580c5f624"
+    },
+    {
+      "path": "source-rights/ACCESS-BLOCKED.md",
+      "bytes": 518,
+      "sha256": "685b7af8080831b2486ee36bc4310a2d69213f6458d2e8575b1a1d8e4ccfd592"
+    },
+    {
+      "path": "source-rights/SOURCE-MAP.md",
+      "bytes": 6520,
+      "sha256": "e501b5d61dfb352a771703651ad07e18819735236f963612aa0a52f047526a25"
+    },
+    {
+      "path": "source-rights/rights-registry.csv",
+      "bytes": 11840,
+      "sha256": "8f2cab2331b0e631d6367ded3e519edee2274d0b12cf3ef36e38613417361eb5"
+    },
+    {
+      "path": "source-rights/source-completeness-report.md",
+      "bytes": 873,
+      "sha256": "fa382d8759ad5beeceddfcdb614222bfc96fb12deb5c593b1b9cec594934a9f7"
+    },
+    {
+      "path": "source-rights/source-registry.csv",
+      "bytes": 20985,
+      "sha256": "3f4be92f9e9fcde2e9b99311e2ae88a8fe91bc0b9d2f10623336a522220d94b4"
+    },
+    {
+      "path": "source-rights/state-status.md",
+      "bytes": 863,
+      "sha256": "05230173fcb103f20eeb7386cf99991d9f739745bfd2f3be75822a8de5e4850b"
+    }
+  ]
+}

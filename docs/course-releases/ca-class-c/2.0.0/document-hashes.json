@@ -1,0 +1,192 @@
+{
+  "course": {
+    "sha256": "f7ffc65fa71ca5bb42dc7f5c9b3d830778fe247f82880f366d0e193741495b00",
+    "sizeBytes": 939
+  },
+  "modules": {
+    "ca-read-the-road": {
+      "sha256": "7cbb15a660784d7a97efa4fba5553fd2c257253def60697a96d0c91f563c32a4",
+      "sizeBytes": 94631
+    },
+    "ca-intersections-right-of-way": {
+      "sha256": "db936c7e3c4c78c783d8dac7cb064e66fb9ffd85b84c2b76bff335539e32a97c",
+      "sizeBytes": 91931
+    },
+    "ca-lanes-passing-freeways": {
+      "sha256": "841aced2caf117f1d4c841ad3c04d8c6963d17aa8304fc5558532e2aa1e8039c",
+      "sizeBytes": 71373
+    },
+    "ca-speed-space-parking": {
+      "sha256": "3b4f6d6256707448fdeb793cf84c50622d445773711568ab8162e892b37bc35d",
+      "sizeBytes": 54245
+    },
+    "ca-sharing-the-road": {
+      "sha256": "120b9dd728b3b66b4036979e2ee02e0794b928263d1efa02d2cec58afd303eb5",
+      "sizeBytes": 56324
+    },
+    "ca-staying-in-control": {
+      "sha256": "ef1ee9912d66df96ad31b159a9767594c777eadc4db5d44f4a9f3396fae7abf9",
+      "sizeBytes": 71810
+    },
+    "ca-vehicle-safety-collisions": {
+      "sha256": "301d493ec7f250b9efac59693285fa697410273323b6d0a0564fc7840a6d56d8",
+      "sizeBytes": 54593
+    },
+    "ca-finish-line": {
+      "sha256": "c1de8a68a0fc2772568086b7c4be1418549befe824825c71122d1622bede7094",
+      "sizeBytes": 58635
+    }
+  },
+  "lessons": {
+    "ca-sign-shapes-and-colors": {
+      "moduleId": "ca-read-the-road",
+      "sha256": "8e14e37a8926675f5e29ce5ab5e5e202b05f9b58c890770a012ccd11df750146",
+      "sizeBytes": 18160
+    },
+    "ca-regulatory-signs": {
+      "moduleId": "ca-read-the-road",
+      "sha256": "aa6e478f6f713c1a71934b869b1f33ec9853e2f75be58fe2eb490165d9ab6584",
+      "sizeBytes": 18155
+    },
+    "ca-warning-and-guide-signs": {
+      "moduleId": "ca-read-the-road",
+      "sha256": "3916e8a4e7e188683a2416ded5669cf78b438b498f0406d688748c51e6c88bac",
+      "sizeBytes": 18836
+    },
+    "ca-traffic-signals": {
+      "moduleId": "ca-read-the-road",
+      "sha256": "033b90a8488e0382a0a88b54186524b01704f6fc13b5167bb40dfa0cc8fd180d",
+      "sizeBytes": 18378
+    },
+    "ca-road-markings-and-curbs": {
+      "moduleId": "ca-read-the-road",
+      "sha256": "cc1341bee0cf01fa8276cd34b9d09c93d413ffd41a3b151ffd4ace542b682816",
+      "sizeBytes": 18586
+    },
+    "ca-uncontrolled-intersections": {
+      "moduleId": "ca-intersections-right-of-way",
+      "sha256": "5f301636bb618da30f503e09346bedb5ec2b812e0ab4e7b67e85e73e941488e8",
+      "sizeBytes": 17998
+    },
+    "ca-stop-yield-entering-traffic": {
+      "moduleId": "ca-intersections-right-of-way",
+      "sha256": "280fb0213548db36cccf4fc802c0418acc8e91f08af17e2be2fccbfb64a3833d",
+      "sizeBytes": 17835
+    },
+    "ca-turns-and-signals": {
+      "moduleId": "ca-intersections-right-of-way",
+      "sha256": "56efac12902f720ef066a5c489fb9e4ce00bd25e9dc7bd99fc767b5734c2c7fa",
+      "sizeBytes": 17348
+    },
+    "ca-u-turns-starting-backing": {
+      "moduleId": "ca-intersections-right-of-way",
+      "sha256": "24d8dd9a8ad9069c59cbc8f970c1464890c62cd444716077620e6f8f86d73828",
+      "sizeBytes": 17946
+    },
+    "ca-crosswalks-and-roundabouts": {
+      "moduleId": "ca-intersections-right-of-way",
+      "sha256": "6cc68d83c85a979dc672bbbf64f83a9d1bbdbe6bcc9400261cdc86b3be15794f",
+      "sizeBytes": 18195
+    },
+    "ca-choosing-changing-lanes": {
+      "moduleId": "ca-lanes-passing-freeways",
+      "sha256": "23c51e95ed34a793e85172e4d8efdb18596616f72959d1cc190db6c1372bb6b7",
+      "sizeBytes": 17707
+    },
+    "ca-passing-rules": {
+      "moduleId": "ca-lanes-passing-freeways",
+      "sha256": "f58b58fbd6aa85a86e5511aaefbde99c3f0746588085144b79882f107859ca0e",
+      "sizeBytes": 17151
+    },
+    "ca-freeway-merging": {
+      "moduleId": "ca-lanes-passing-freeways",
+      "sha256": "5bd51e6848e4c6c2ddc7e595cff32622d7ee8358282c273273f2ebf2e872dea6",
+      "sizeBytes": 17254
+    },
+    "ca-special-lanes": {
+      "moduleId": "ca-lanes-passing-freeways",
+      "sha256": "ef428cdc75f10b56b46876373edc52365eca0c1b62743cd63024e85740df40e9",
+      "sizeBytes": 17057
+    },
+    "ca-speed-laws": {
+      "moduleId": "ca-speed-space-parking",
+      "sha256": "9db766173a50b53c9b42c6f5b7f5216d475bbd039e520e7fa3bb66483bf4baf5",
+      "sizeBytes": 17070
+    },
+    "ca-following-distance-scanning": {
+      "moduleId": "ca-speed-space-parking",
+      "sha256": "0acb89f911a99271b4f156c6f3b862ef71a0edc2c117728049842e0469fcbeef",
+      "sizeBytes": 18010
+    },
+    "ca-parking-and-curbs": {
+      "moduleId": "ca-speed-space-parking",
+      "sha256": "31c124313f9681bab408436cf826a401782be96bd64432523bd19a086aedaaac",
+      "sizeBytes": 17264
+    },
+    "ca-bicycles-motorcycles": {
+      "moduleId": "ca-sharing-the-road",
+      "sha256": "b12bcab3dd53b89e2fbd8495ca5ff56db8f8c70ff2da05b79ae3147afd330ffd",
+      "sizeBytes": 17740
+    },
+    "ca-trucks-buses-slow-vehicles": {
+      "moduleId": "ca-sharing-the-road",
+      "sha256": "9a57cc3eb16ed8f373bd96bfeeee580b39e41ded50f163f8f145a5bdf25d2326",
+      "sizeBytes": 18007
+    },
+    "ca-emergency-school-work-zones": {
+      "moduleId": "ca-sharing-the-road",
+      "sha256": "637bc9d44e91cffd050eadce55d057c3be16a154f5cffeeb858bc2a33a541890",
+      "sizeBytes": 18634
+    },
+    "ca-night-weather-visibility": {
+      "moduleId": "ca-staying-in-control",
+      "sha256": "0bd768a24f16db671a9a7714ea8a77dd08f6231c27dfa94dbd39548cf7811c09",
+      "sizeBytes": 17452
+    },
+    "ca-skids-and-emergencies": {
+      "moduleId": "ca-staying-in-control",
+      "sha256": "20bc1f13f1e49e85c1625ce1c34a2786abfb16c38f4b47a397ee75bdcae70038",
+      "sizeBytes": 17258
+    },
+    "ca-distraction-and-fatigue": {
+      "moduleId": "ca-staying-in-control",
+      "sha256": "f4dbf9375a6ad23f29926fc345cec403dda9709414ebf4a91eb3446ab8f8b2ab",
+      "sizeBytes": 17560
+    },
+    "ca-alcohol-drugs-dui": {
+      "moduleId": "ca-staying-in-control",
+      "sha256": "39b1c8cdaefbe95a2a7f1cc62cfa338b9580005cb773711f2ea395d0289eee4c",
+      "sizeBytes": 17310
+    },
+    "ca-seat-belts-child-safety": {
+      "moduleId": "ca-vehicle-safety-collisions",
+      "sha256": "d194d40abaeb728ef7826ae80d1a9b7a079421b71717ae0f131d1963b33199d8",
+      "sizeBytes": 17529
+    },
+    "ca-equipment-loads-towing": {
+      "moduleId": "ca-vehicle-safety-collisions",
+      "sha256": "97e1189a389dd8c01c1adcb866098c7171b2d30422b4f569c4602336bdfc26a2",
+      "sizeBytes": 17278
+    },
+    "ca-crashes-and-insurance": {
+      "moduleId": "ca-vehicle-safety-collisions",
+      "sha256": "20a33027955013397b61ac49b140b6d3621b6bb978dabeccb21c2fec79e70565",
+      "sizeBytes": 17819
+    },
+    "ca-permits-provisional-licenses": {
+      "moduleId": "ca-finish-line",
+      "sha256": "9918ff9bdc6f4afdd0df01e959acc714f9d67c65c051597863c8d45e7aa7f93b",
+      "sizeBytes": 19096
+    },
+    "ca-licenses-and-registration": {
+      "moduleId": "ca-finish-line",
+      "sha256": "8278c07e7811f12d346f72165962f454c1d17bd467444e143f8ca102d442f906",
+      "sizeBytes": 18857
+    },
+    "ca-penalties-and-points": {
+      "moduleId": "ca-finish-line",
+      "sha256": "cd175332d2250c87819c4295f0d63098745fa861fc6356ec4509c8e4acb35923",
+      "sizeBytes": 18698
+    }
+  }
+}

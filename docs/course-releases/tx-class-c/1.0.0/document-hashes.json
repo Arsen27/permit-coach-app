@@ -1,0 +1,192 @@
+{
+  "course": {
+    "sha256": "3b878541576003419672ced279284cd1ad97d4972f7f2579dd941d4419f998e8",
+    "sizeBytes": 862
+  },
+  "modules": {
+    "tx-read-road": {
+      "sha256": "fbd972621e2f1939fcb6e700ee0577a7dc503678b70f6f465eb79de1055f8477",
+      "sizeBytes": 777656
+    },
+    "tx-right-of-way": {
+      "sha256": "967048b90a05d99a13d03bf2a5f1bb85a3d36faf0d64e1181338d195a13c27be",
+      "sizeBytes": 814573
+    },
+    "tx-lanes-highways": {
+      "sha256": "0094eb97a01bd8206e458ad6549c894c93d0b89fae4ceca22be1b8638a6a0b50",
+      "sizeBytes": 81877
+    },
+    "tx-speed-space": {
+      "sha256": "28bdcb253034beeb9db6d3e51c89cdfb99c5c129b269960c62995197042bd119",
+      "sizeBytes": 62038
+    },
+    "tx-share-road": {
+      "sha256": "70e9a2344e5e9716052c3cc5850d73ec2012041d046efae2b2b5256bdd750fd0",
+      "sizeBytes": 64059
+    },
+    "tx-control": {
+      "sha256": "87543ec94c03811d46278bd23b5013860464e9018659424daf2bc20273b564f9",
+      "sizeBytes": 83229
+    },
+    "tx-safety-crashes": {
+      "sha256": "11fca57098090eecda25ff7e533a992637ea9f58d6bc2f87e8fa8024d9d9ff9b",
+      "sizeBytes": 63177
+    },
+    "tx-finish": {
+      "sha256": "d32436f5597f1242cea6b3eb7352229d2e2e236ad9ebbd980f81d18a07760bb5",
+      "sizeBytes": 70116
+    }
+  },
+  "lessons": {
+    "tx-sign-language": {
+      "moduleId": "tx-read-road",
+      "sha256": "d9b7d96de3bbcbf64ae725e0b65f0c8e5da2609d2cf9b2ec9b6b48ecc301faa8",
+      "sizeBytes": 123337
+    },
+    "tx-regulatory-signs": {
+      "moduleId": "tx-read-road",
+      "sha256": "5bb6dbc9b2f3445648b91556329a8b42f405a07160f6418d37681ea80216e29c",
+      "sizeBytes": 127446
+    },
+    "tx-warning-guide-signs": {
+      "moduleId": "tx-read-road",
+      "sha256": "93fcf3b5754d027e95af72814762e3605ae57b5fcf3a0d9629d021b2c972c8ba",
+      "sizeBytes": 136570
+    },
+    "tx-signals": {
+      "moduleId": "tx-read-road",
+      "sha256": "07d129a870b277ab5ee971a988c9c367a27a8ccf205e8a2e28351f53c9db37a2",
+      "sizeBytes": 209285
+    },
+    "tx-markings": {
+      "moduleId": "tx-read-road",
+      "sha256": "399dd856e594527a31f4392fd35b65863412ef9013ba3957216a56f219c450b4",
+      "sizeBytes": 178604
+    },
+    "tx-uncontrolled-intersections": {
+      "moduleId": "tx-right-of-way",
+      "sha256": "d4ba2f66ab64b6d285a5ba0f28464a91cd01642bc238405321d8da740989e47d",
+      "sizeBytes": 114272
+    },
+    "tx-stop-yield-entry": {
+      "moduleId": "tx-right-of-way",
+      "sha256": "9a42730b1ee80b7500c603df157afaac4a9d302c45351c978e65b553bcd42049",
+      "sizeBytes": 160724
+    },
+    "tx-turns-signals": {
+      "moduleId": "tx-right-of-way",
+      "sha256": "5a23321f26756adf2b9531e3066fc1340cb8ca1db13829fb61942ef331a03e2f",
+      "sizeBytes": 182693
+    },
+    "tx-uturn-backing": {
+      "moduleId": "tx-right-of-way",
+      "sha256": "c6215321b8da827eeab9ea7453d5f09a43f7f1ed12373bae15532c5c9715f25e",
+      "sizeBytes": 185749
+    },
+    "tx-pedestrians-roundabouts": {
+      "moduleId": "tx-right-of-way",
+      "sha256": "140cab2e09695a5bc695a3d7928c0885dc3bf74f5531d6e53c85e4ec14b4c69e",
+      "sizeBytes": 168676
+    },
+    "tx-lane-choice": {
+      "moduleId": "tx-lanes-highways",
+      "sha256": "646d793ac1c85f5eadfe0768f19163058e3985fe240ccd3617a41c62e7377103",
+      "sizeBytes": 19599
+    },
+    "tx-passing": {
+      "moduleId": "tx-lanes-highways",
+      "sha256": "ddf6a21c0afa4f209e6511656cd4ecf69ab18993dd34eb5abe707a114c1236b0",
+      "sizeBytes": 20023
+    },
+    "tx-highway-entry-exit": {
+      "moduleId": "tx-lanes-highways",
+      "sha256": "0ab2a7dfd77a36109b1d48a7478d1bccbefd7622749faefd24c6939b4901dde1",
+      "sizeBytes": 20006
+    },
+    "tx-special-lanes": {
+      "moduleId": "tx-lanes-highways",
+      "sha256": "b24f24b119c4f3069f8dd423e5dfb91c7e853e246e29d27f3d0c0ffb30050dbb",
+      "sizeBytes": 20118
+    },
+    "tx-speed-laws": {
+      "moduleId": "tx-speed-space",
+      "sha256": "d3025789f98f8071f448eaaddd521b8d0ad72fe39c7e17fc039eb4f5d424bfa7",
+      "sizeBytes": 20253
+    },
+    "tx-space-scanning": {
+      "moduleId": "tx-speed-space",
+      "sha256": "6443904e7393ea9c3f66660730a194c2d95b9bd6711213493e6bc1815f43906a",
+      "sizeBytes": 20057
+    },
+    "tx-parking": {
+      "moduleId": "tx-speed-space",
+      "sha256": "6abe891869d7787bcdd267925c5d84b8b01348cb4e6d3f6d675f4ef3c3e9c80f",
+      "sizeBytes": 19950
+    },
+    "tx-bikes-motorcycles": {
+      "moduleId": "tx-share-road",
+      "sha256": "2d07fed9ef99abdf13287709d73fa8519a8bb4bfffa1ae9bfb88497e799977f6",
+      "sizeBytes": 19814
+    },
+    "tx-large-slow-vehicles": {
+      "moduleId": "tx-share-road",
+      "sha256": "8aa9891d9fc5d514e382018ff8727906bd78d2a0cf89ba25706dda9fc28f6a39",
+      "sizeBytes": 20137
+    },
+    "tx-school-emergency-work": {
+      "moduleId": "tx-share-road",
+      "sha256": "55eff6fff6d9493be3a049b145909dd4bc0c63bbb13932ce2c2bd906d8388396",
+      "sizeBytes": 22242
+    },
+    "tx-night-weather-lights": {
+      "moduleId": "tx-control",
+      "sha256": "99378adab8a493b2bc09078f9327575c20266d8bbb8e9e32919e82b3ef40b633",
+      "sizeBytes": 20424
+    },
+    "tx-vehicle-emergencies": {
+      "moduleId": "tx-control",
+      "sha256": "2c50522f4a6a2b9903eaef1165a8bc24608d0a30395d10a6985f804ae894c296",
+      "sizeBytes": 20039
+    },
+    "tx-distraction-fatigue": {
+      "moduleId": "tx-control",
+      "sha256": "de378fa886f1d7887bf4d868ba65892d8347c818bcb3d180d8767009ea183803",
+      "sizeBytes": 20191
+    },
+    "tx-alcohol-drugs": {
+      "moduleId": "tx-control",
+      "sha256": "8bbf460dfa0302c86474509baf35f4aa8ae4ff6661d74790582f97d5923b2f6a",
+      "sizeBytes": 20411
+    },
+    "tx-restraints-children": {
+      "moduleId": "tx-safety-crashes",
+      "sha256": "2ef9799f8e0d72c9533d777ad2fbd9f007a6541eb44244bfdce495b6783bf3d1",
+      "sizeBytes": 20087
+    },
+    "tx-equipment-loads": {
+      "moduleId": "tx-safety-crashes",
+      "sha256": "83b3b001bd3a4822bc22381343bde2a05d315988662cfc366840d13c370c80d6",
+      "sizeBytes": 20106
+    },
+    "tx-crashes-insurance": {
+      "moduleId": "tx-safety-crashes",
+      "sha256": "82d1b624afbfbffd67c1dbbbdb0ecbfa38bfd6a06cce9bbcdae0683dfb4f0785",
+      "sizeBytes": 21117
+    },
+    "tx-permits-tests": {
+      "moduleId": "tx-finish",
+      "sha256": "5b5340137e610d3a8f143173fe20710e9d0f4ab6581031f3909274682d82ed87",
+      "sizeBytes": 23701
+    },
+    "tx-residency-transfers": {
+      "moduleId": "tx-finish",
+      "sha256": "136eec90ae623c9ddb3097ad61815cae83bda756398e41edecacb756de063fd2",
+      "sizeBytes": 22788
+    },
+    "tx-penalties-review": {
+      "moduleId": "tx-finish",
+      "sha256": "90c52b8991c93071babc4cb38fbc2b79e2ecc44483e8fb8a9c027a2720b6643a",
+      "sizeBytes": 21809
+    }
+  }
+}

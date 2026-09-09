@@ -1,0 +1,2468 @@
+{
+  "state": "TX",
+  "courseId": "tx-class-c",
+  "version": "2.0.0",
+  "skeletonVersion": "SK-2026.09.06-r01",
+  "blocks": {
+    "identical": 254,
+    "rendered": 30,
+    "note": 20,
+    "override": 0,
+    "stateLesson": 34,
+    "image": 58,
+    "challenge": 33,
+    "dropped": 5
+  },
+  "questions": {
+    "identical": 186,
+    "rendered": 15,
+    "override": 2,
+    "stateLesson": 28
+  },
+  "lessons": [
+    {
+      "lessonId": "tx-traffic-signals",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-traffic-signals-slide-01",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "tx-traffic-signals-slide-02",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-traffic-signals-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-traffic-signals-slide-03",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "tx-traffic-signals-slide-04",
+          "origin": "identical",
+          "words": 72
+        },
+        {
+          "blockId": "tx-traffic-signals-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-traffic-signals-slide-05",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "tx-traffic-signals-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-traffic-signals-slide-06",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-traffic-signals-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-traffic-signals-slide-07",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "tx-traffic-signals-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-traffic-signals-slide-08",
+          "origin": "identical",
+          "words": 49
+        }
+      ],
+      "theoryWords": 430,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-stop-yield-entering-traffic",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-stop-yield-entering-traffic-slide-01",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-slide-02",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-slide-03",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-slide-04",
+          "origin": "identical",
+          "words": 64
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-slide-05",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-slide-06",
+          "origin": "identical",
+          "words": 64
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-slide-07",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "tx-stop-yield-entering-traffic-slide-08",
+          "origin": "identical",
+          "words": 59
+        }
+      ],
+      "theoryWords": 418,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-turns-and-signals",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-turns-and-signals-slide-01",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-turns-and-signals-slide-02",
+          "origin": "rendered",
+          "words": 60
+        },
+        {
+          "blockId": "tx-turns-and-signals-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-turns-and-signals-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-turns-and-signals-slide-03",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "tx-turns-and-signals-slide-04",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "tx-turns-and-signals-slide-05",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-turns-and-signals-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-turns-and-signals-slide-06",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-turns-and-signals-slide-07",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "tx-turns-and-signals-slide-08",
+          "origin": "identical",
+          "words": 67
+        },
+        {
+          "blockId": "tx-turns-and-signals-recall-02",
+          "origin": "identical"
+        }
+      ],
+      "theoryWords": 446,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-speed-and-space",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-speed-and-space-slide-01",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-speed-and-space-slide-02",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-speed-and-space-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-speed-and-space-slide-03",
+          "origin": "rendered",
+          "words": 52
+        },
+        {
+          "blockId": "tx-speed-and-space-note-01",
+          "origin": "note",
+          "words": 80
+        },
+        {
+          "blockId": "tx-speed-and-space-slide-04",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "tx-speed-and-space-slide-05",
+          "origin": "rendered",
+          "words": 67
+        },
+        {
+          "blockId": "tx-speed-and-space-recall-02",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-speed-and-space-slide-06",
+          "origin": "identical",
+          "words": 68
+        },
+        {
+          "blockId": "tx-speed-and-space-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-speed-and-space-slide-07",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "tx-speed-and-space-slide-08",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "tx-speed-and-space-slide-09",
+          "origin": "identical",
+          "words": 54
+        }
+      ],
+      "theoryWords": 537,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-sign-shapes-and-colors",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-sign-shapes-and-colors-slide-01",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-slide-02",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-slide-03",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-slide-04",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-slide-05",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-slide-06",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-slide-07",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-sign-shapes-and-colors-slide-08",
+          "origin": "identical",
+          "words": 59
+        }
+      ],
+      "theoryWords": 462,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-regulatory-signs",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-regulatory-signs-slide-01",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "tx-regulatory-signs-slide-02",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "tx-regulatory-signs-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-regulatory-signs-slide-03",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-regulatory-signs-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-regulatory-signs-slide-04",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "tx-regulatory-signs-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-regulatory-signs-slide-05",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "tx-regulatory-signs-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-regulatory-signs-slide-06",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "tx-regulatory-signs-slide-07",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "tx-regulatory-signs-slide-08",
+          "origin": "identical",
+          "words": 51
+        }
+      ],
+      "theoryWords": 444,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-warning-and-guide-signs",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-warning-and-guide-signs-slide-01",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-slide-02",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-slide-03",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-slide-04",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-slide-05",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-slide-06",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-slide-07",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "tx-warning-and-guide-signs-slide-08",
+          "origin": "identical",
+          "words": 58
+        }
+      ],
+      "theoryWords": 449,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-road-markings-and-curbs",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-road-markings-and-curbs-slide-01",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-slide-02",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-slide-03",
+          "origin": "identical",
+          "words": 86
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-slide-04",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-slide-05",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-slide-06",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-slide-07",
+          "origin": "identical",
+          "words": 68
+        },
+        {
+          "blockId": "tx-road-markings-and-curbs-slide-08",
+          "origin": "identical",
+          "words": 58
+        }
+      ],
+      "theoryWords": 420,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-uncontrolled-intersections",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-uncontrolled-intersections-slide-01",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-slide-02",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-slide-03",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-slide-04",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-note-01",
+          "origin": "note",
+          "words": 47
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-slide-05",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-slide-06",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-slide-07",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-slide-08",
+          "origin": "identical",
+          "words": 78
+        },
+        {
+          "blockId": "tx-uncontrolled-intersections-recall-03",
+          "origin": "identical"
+        }
+      ],
+      "theoryWords": 488,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-crosswalks-and-roundabouts",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-slide-01",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-slide-02",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-slide-03",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-slide-04",
+          "origin": "identical",
+          "words": 69
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-slide-05",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-slide-06",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-slide-07",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-crosswalks-and-roundabouts-slide-08",
+          "origin": "identical",
+          "words": 53
+        }
+      ],
+      "theoryWords": 429,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-complex-intersections",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-complex-intersections-slide-01",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "tx-complex-intersections-slide-02",
+          "origin": "identical",
+          "words": 46
+        },
+        {
+          "blockId": "tx-complex-intersections-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-complex-intersections-slide-03",
+          "origin": "identical",
+          "words": 43
+        },
+        {
+          "blockId": "tx-complex-intersections-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-complex-intersections-slide-04",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "tx-complex-intersections-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-complex-intersections-slide-05",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "tx-complex-intersections-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-complex-intersections-slide-06",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-complex-intersections-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-complex-intersections-slide-07",
+          "origin": "identical",
+          "words": 68
+        }
+      ],
+      "theoryWords": 345,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-u-turns-starting-backing",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-u-turns-starting-backing-slide-01",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-slide-02",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-slide-03",
+          "origin": "identical",
+          "words": 52
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-slide-04",
+          "origin": "identical",
+          "words": 43
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-slide-05",
+          "origin": "identical",
+          "words": 67
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-slide-06",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-note-01",
+          "origin": "note",
+          "words": 54
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-recall-01",
+          "origin": "dropped"
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-slide-07",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-slide-08",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "tx-u-turns-starting-backing-recall-02",
+          "origin": "identical"
+        }
+      ],
+      "theoryWords": 443,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-parking-and-curbs",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-parking-and-curbs-slide-01",
+          "origin": "rendered",
+          "words": 66
+        },
+        {
+          "blockId": "tx-parking-and-curbs-note-01",
+          "origin": "note",
+          "words": 88
+        },
+        {
+          "blockId": "tx-parking-and-curbs-slide-02",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "tx-parking-and-curbs-slide-03",
+          "origin": "rendered",
+          "words": 54
+        },
+        {
+          "blockId": "tx-parking-and-curbs-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-parking-and-curbs-slide-04",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "tx-parking-and-curbs-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-parking-and-curbs-slide-05",
+          "origin": "identical",
+          "words": 78
+        },
+        {
+          "blockId": "tx-parking-and-curbs-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-parking-and-curbs-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-parking-and-curbs-slide-06",
+          "origin": "rendered",
+          "words": 47
+        },
+        {
+          "blockId": "tx-parking-and-curbs-slide-07",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "tx-parking-and-curbs-slide-08",
+          "origin": "identical",
+          "words": 62
+        }
+      ],
+      "theoryWords": 513,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-choosing-changing-lanes",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-choosing-changing-lanes-slide-01",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-slide-02",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-slide-03",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-slide-04",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-slide-05",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-slide-06",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "tx-choosing-changing-lanes-slide-07",
+          "origin": "identical",
+          "words": 65
+        }
+      ],
+      "theoryWords": 415,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-passing-rules",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-passing-rules-slide-01",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "tx-passing-rules-slide-02",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "tx-passing-rules-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-passing-rules-slide-03",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "tx-passing-rules-slide-04",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-passing-rules-slide-05",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "tx-passing-rules-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-passing-rules-slide-06",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-passing-rules-note-01",
+          "origin": "note",
+          "words": 60
+        },
+        {
+          "blockId": "tx-passing-rules-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-passing-rules-slide-07",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "tx-passing-rules-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-passing-rules-slide-08",
+          "origin": "identical",
+          "words": 48
+        }
+      ],
+      "theoryWords": 449,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-freeway-merging",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-freeway-merging-slide-01",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "tx-freeway-merging-slide-02",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "tx-freeway-merging-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-freeway-merging-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-freeway-merging-slide-03",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-freeway-merging-slide-04",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "tx-freeway-merging-slide-05",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-freeway-merging-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-freeway-merging-slide-06",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "tx-freeway-merging-slide-07",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "tx-freeway-merging-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-freeway-merging-slide-08",
+          "origin": "identical",
+          "words": 42
+        }
+      ],
+      "theoryWords": 386,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-special-lanes",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-special-lanes-slide-01",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "tx-special-lanes-slide-02",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "tx-special-lanes-recall-01",
+          "origin": "dropped"
+        },
+        {
+          "blockId": "tx-special-lanes-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-special-lanes-slide-03",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "tx-special-lanes-slide-04",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "tx-special-lanes-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-special-lanes-image-05",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-special-lanes-slide-05",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-special-lanes-slide-06",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "tx-special-lanes-slide-07",
+          "origin": "identical",
+          "words": 48
+        }
+      ],
+      "theoryWords": 333,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-bicycles-motorcycles",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-bicycles-motorcycles-slide-01",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-slide-02",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-slide-03",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-slide-04",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-note-01",
+          "origin": "note",
+          "words": 51
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-recall-01",
+          "origin": "dropped"
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-slide-05",
+          "origin": "identical",
+          "words": 64
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-slide-06",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-bicycles-motorcycles-slide-07",
+          "origin": "identical",
+          "words": 52
+        }
+      ],
+      "theoryWords": 393,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-trucks-buses-slow-vehicles",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-slide-01",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-slide-02",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-slide-03",
+          "origin": "identical",
+          "words": 69
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-slide-04",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-slide-05",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-slide-06",
+          "origin": "rendered",
+          "words": 50
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-recall-03",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-slide-07",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "tx-trucks-buses-slow-vehicles-slide-08",
+          "origin": "identical",
+          "words": 59
+        }
+      ],
+      "theoryWords": 399,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-school-buses-emergency-vehicles",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-slide-01",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-slide-02",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-slide-03",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-note-01",
+          "origin": "note",
+          "words": 68
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-slide-04",
+          "origin": "rendered",
+          "words": 49
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-slide-05",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-slide-06",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "tx-school-buses-emergency-vehicles-note-02",
+          "origin": "note",
+          "words": 77
+        }
+      ],
+      "theoryWords": 429,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-rail-light-rail-work-zones",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-rail-light-rail-work-zones-slide-01",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-note-01",
+          "origin": "note",
+          "words": 42
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-slide-02",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-slide-03",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-slide-04",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-slide-05",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-note-02",
+          "origin": "note",
+          "words": 29
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-rail-light-rail-work-zones-slide-06",
+          "origin": "identical",
+          "words": 48
+        }
+      ],
+      "theoryWords": 383,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-driving-after-dark",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-driving-after-dark-slide-01",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "tx-driving-after-dark-slide-02",
+          "origin": "rendered",
+          "words": 61
+        },
+        {
+          "blockId": "tx-driving-after-dark-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-driving-after-dark-slide-03",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "tx-driving-after-dark-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-driving-after-dark-slide-04",
+          "origin": "rendered",
+          "words": 48
+        },
+        {
+          "blockId": "tx-driving-after-dark-recall-02",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-driving-after-dark-slide-05",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-driving-after-dark-recall-03",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-driving-after-dark-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-driving-after-dark-slide-06",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-driving-after-dark-slide-07",
+          "origin": "identical",
+          "words": 55
+        }
+      ],
+      "theoryWords": 354,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-weather-and-mountain-roads",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-weather-and-mountain-roads-slide-01",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "tx-weather-and-mountain-roads-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-weather-and-mountain-roads-slide-02",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "tx-weather-and-mountain-roads-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-weather-and-mountain-roads-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-weather-and-mountain-roads-slide-03",
+          "origin": "identical",
+          "words": 75
+        },
+        {
+          "blockId": "tx-weather-and-mountain-roads-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-weather-and-mountain-roads-slide-04",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "tx-weather-and-mountain-roads-image-05",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-weather-and-mountain-roads-slide-05",
+          "origin": "identical",
+          "words": 59
+        }
+      ],
+      "theoryWords": 301,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-skids-and-emergencies",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-skids-and-emergencies-slide-01",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-slide-02",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-slide-03",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-slide-04",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-slide-05",
+          "origin": "identical",
+          "words": 52
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-slide-06",
+          "origin": "identical",
+          "words": 46
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-slide-07",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "tx-skids-and-emergencies-slide-08",
+          "origin": "identical",
+          "words": 58
+        }
+      ],
+      "theoryWords": 381,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-crashes-and-insurance",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-crashes-and-insurance-slide-01",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-slide-02",
+          "origin": "rendered",
+          "words": 45
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-slide-03",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-slide-04",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-slide-05",
+          "origin": "rendered",
+          "words": 58
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-slide-06",
+          "origin": "rendered",
+          "words": 64
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-note-01",
+          "origin": "note",
+          "words": 67
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-recall-03",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-slide-07",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "tx-crashes-and-insurance-note-02",
+          "origin": "note",
+          "words": 45
+        }
+      ],
+      "theoryWords": 460,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-distraction-and-fatigue",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-distraction-and-fatigue-slide-01",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-slide-02",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-slide-03",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-note-01",
+          "origin": "note",
+          "words": 29
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-slide-04",
+          "origin": "rendered",
+          "words": 54
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-slide-05",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-recall-02",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-slide-06",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-slide-07",
+          "origin": "identical",
+          "words": 52
+        },
+        {
+          "blockId": "tx-distraction-and-fatigue-slide-08",
+          "origin": "identical",
+          "words": 54
+        }
+      ],
+      "theoryWords": 418,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-alcohol-drugs-dui",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-alcohol-drugs-dui-slide-01",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-slide-02",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-slide-03",
+          "origin": "rendered",
+          "words": 49
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-note-01",
+          "origin": "note",
+          "words": 66
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-slide-04",
+          "origin": "identical",
+          "words": 44
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-recall-02",
+          "origin": "dropped"
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-slide-05",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-slide-06",
+          "origin": "rendered",
+          "words": 49
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-slide-07",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-note-02",
+          "origin": "note",
+          "words": 45
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-slide-08",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-note-03",
+          "origin": "note",
+          "words": 50
+        },
+        {
+          "blockId": "tx-alcohol-drugs-dui-recall-04",
+          "origin": "rendered"
+        }
+      ],
+      "theoryWords": 494,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-seat-belts-child-safety",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-seat-belts-child-safety-slide-01",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-seat-belts-child-safety-slide-02",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "tx-seat-belts-child-safety-slide-03",
+          "origin": "identical",
+          "words": 46
+        },
+        {
+          "blockId": "tx-seat-belts-child-safety-slide-04",
+          "origin": "rendered",
+          "words": 71
+        },
+        {
+          "blockId": "tx-seat-belts-child-safety-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-seat-belts-child-safety-image-05",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-seat-belts-child-safety-slide-05",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "tx-seat-belts-child-safety-note-01",
+          "origin": "note",
+          "words": 87
+        },
+        {
+          "blockId": "tx-seat-belts-child-safety-slide-06",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "tx-seat-belts-child-safety-recall-02",
+          "origin": "identical"
+        }
+      ],
+      "theoryWords": 391,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-equipment-loads-towing",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "tx-equipment-loads-towing-slide-01",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-slide-02",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-note-01",
+          "origin": "note",
+          "words": 42
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-slide-03",
+          "origin": "rendered",
+          "words": 62
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-recall-01",
+          "origin": "dropped"
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-slide-04",
+          "origin": "identical",
+          "words": 67
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-recall-02",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-slide-05",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-note-02",
+          "origin": "note",
+          "words": 36
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-slide-06",
+          "origin": "identical",
+          "words": 80
+        },
+        {
+          "blockId": "tx-equipment-loads-towing-note-03",
+          "origin": "note",
+          "words": 57
+        }
+      ],
+      "theoryWords": 472,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-permit-and-knowledge-test",
+      "origin": "state",
+      "blocks": [
+        {
+          "blockId": "tx-permit-and-knowledge-test-slide-01",
+          "origin": "stateLesson",
+          "words": 69
+        },
+        {
+          "blockId": "tx-permit-and-knowledge-test-slide-02",
+          "origin": "stateLesson",
+          "words": 69
+        },
+        {
+          "blockId": "tx-permit-and-knowledge-test-recall-01",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-permit-and-knowledge-test-image-03",
+          "origin": "override"
+        },
+        {
+          "blockId": "tx-permit-and-knowledge-test-slide-03",
+          "origin": "stateLesson",
+          "words": 69
+        },
+        {
+          "blockId": "tx-permit-and-knowledge-test-slide-04",
+          "origin": "stateLesson",
+          "words": 63
+        },
+        {
+          "blockId": "tx-permit-and-knowledge-test-recall-02",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-permit-and-knowledge-test-image-05",
+          "origin": "override"
+        },
+        {
+          "blockId": "tx-permit-and-knowledge-test-slide-05",
+          "origin": "stateLesson",
+          "words": 73
+        },
+        {
+          "blockId": "tx-permit-and-knowledge-test-recall-03",
+          "origin": "stateLesson"
+        }
+      ],
+      "theoryWords": 314,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-drivers-under-18",
+      "origin": "state",
+      "blocks": [
+        {
+          "blockId": "tx-drivers-under-18-slide-01",
+          "origin": "stateLesson",
+          "words": 63
+        },
+        {
+          "blockId": "tx-drivers-under-18-slide-02",
+          "origin": "stateLesson",
+          "words": 81
+        },
+        {
+          "blockId": "tx-drivers-under-18-recall-01",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-drivers-under-18-image-03",
+          "origin": "override"
+        },
+        {
+          "blockId": "tx-drivers-under-18-slide-03",
+          "origin": "stateLesson",
+          "words": 62
+        },
+        {
+          "blockId": "tx-drivers-under-18-recall-02",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-drivers-under-18-image-04",
+          "origin": "override"
+        },
+        {
+          "blockId": "tx-drivers-under-18-slide-04",
+          "origin": "stateLesson",
+          "words": 72
+        },
+        {
+          "blockId": "tx-drivers-under-18-recall-03",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-drivers-under-18-slide-05",
+          "origin": "stateLesson",
+          "words": 48
+        }
+      ],
+      "theoryWords": 296,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-licenses-and-registration",
+      "origin": "state",
+      "blocks": [
+        {
+          "blockId": "tx-licenses-and-registration-slide-01",
+          "origin": "stateLesson",
+          "words": 57
+        },
+        {
+          "blockId": "tx-licenses-and-registration-slide-02",
+          "origin": "stateLesson",
+          "words": 54
+        },
+        {
+          "blockId": "tx-licenses-and-registration-image-03",
+          "origin": "override"
+        },
+        {
+          "blockId": "tx-licenses-and-registration-slide-03",
+          "origin": "stateLesson",
+          "words": 75
+        },
+        {
+          "blockId": "tx-licenses-and-registration-slide-04",
+          "origin": "stateLesson",
+          "words": 61
+        },
+        {
+          "blockId": "tx-licenses-and-registration-recall-01",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-licenses-and-registration-image-05",
+          "origin": "override"
+        },
+        {
+          "blockId": "tx-licenses-and-registration-slide-05",
+          "origin": "stateLesson",
+          "words": 62
+        },
+        {
+          "blockId": "tx-licenses-and-registration-recall-02",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-licenses-and-registration-slide-06",
+          "origin": "stateLesson",
+          "words": 64
+        }
+      ],
+      "theoryWords": 342,
+      "warnings": []
+    },
+    {
+      "lessonId": "tx-penalties-and-points",
+      "origin": "state",
+      "blocks": [
+        {
+          "blockId": "tx-penalties-and-points-slide-01",
+          "origin": "stateLesson",
+          "words": 50
+        },
+        {
+          "blockId": "tx-penalties-and-points-slide-02",
+          "origin": "stateLesson",
+          "words": 70
+        },
+        {
+          "blockId": "tx-penalties-and-points-recall-01",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-penalties-and-points-image-03",
+          "origin": "override"
+        },
+        {
+          "blockId": "tx-penalties-and-points-slide-03",
+          "origin": "stateLesson",
+          "words": 66
+        },
+        {
+          "blockId": "tx-penalties-and-points-recall-02",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-penalties-and-points-slide-04",
+          "origin": "stateLesson",
+          "words": 68
+        },
+        {
+          "blockId": "tx-penalties-and-points-slide-05",
+          "origin": "stateLesson",
+          "words": 63
+        },
+        {
+          "blockId": "tx-penalties-and-points-image-06",
+          "origin": "override"
+        },
+        {
+          "blockId": "tx-penalties-and-points-slide-06",
+          "origin": "stateLesson",
+          "words": 65
+        },
+        {
+          "blockId": "tx-penalties-and-points-recall-03",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "tx-penalties-and-points-slide-07",
+          "origin": "stateLesson",
+          "words": 56
+        }
+      ],
+      "theoryWords": 401,
+      "warnings": []
+    }
+  ],
+  "imagesWithNumbers": [
+    "turns-and-signals-a03 (100)",
+    "regulatory-signs-q02-a (25)",
+    "warning-and-guide-signs-a01 (35)",
+    "warning-and-guide-signs-q01-a (35)",
+    "u-turns-starting-backing-q03-a (250)",
+    "choosing-changing-lanes-q02-a (65)",
+    "rail-light-rail-work-zones-ca-warning-and-guide-signs-a01 (35)",
+    "night-weather-visibility-a01 (500, 300)",
+    "weather-and-mountain-roads-ca-night-weather-visibility-a01 (500, 300)"
+  ],
+  "params": {
+    "signal.turnDistanceFeet": {
+      "value": 100,
+      "rule": "TX_TN_545_104_SIGNAL_100_FEET",
+      "status": "verified",
+      "usedIn": [
+        "lesson turns-and-signals turns-and-signals-slide-02",
+        "lesson turns-and-signals turns-and-signals-recall-01",
+        "lesson turns-and-signals turns-and-signals-q04"
+      ]
+    },
+    "speed.maxMph": {
+      "value": 70,
+      "rule": "TX_TN_545_352_PRIMA_FACIE_LIMITS",
+      "status": "verified",
+      "usedIn": [
+        "lesson speed-and-space challenge",
+        "lesson speed-and-space speed-and-space-slide-03"
+      ]
+    },
+    "speed.twoLaneUndividedMph": {
+      "value": null,
+      "rule": null,
+      "status": "not_codified",
+      "usedIn": [
+        "lesson speed-and-space speed-and-space-slide-03"
+      ]
+    },
+    "speed.residentialMph": {
+      "value": 30,
+      "rule": "TX_TN_545_352_PRIMA_FACIE_LIMITS",
+      "status": "verified",
+      "usedIn": [
+        "lesson speed-and-space speed-and-space-slide-03"
+      ]
+    },
+    "following.seconds": {
+      "value": 2,
+      "rule": "TX_HANDBOOK_FOLLOWING_INTERVAL",
+      "status": "needs_review",
+      "usedIn": [
+        "lesson speed-and-space speed-and-space-slide-05",
+        "lesson speed-and-space speed-and-space-recall-02"
+      ]
+    },
+    "uturn.visibilityFeet": {
+      "value": null,
+      "rule": null,
+      "status": "not_codified",
+      "usedIn": [
+        "lesson u-turns-starting-backing u-turns-starting-backing-slide-06",
+        "lesson u-turns-starting-backing u-turns-starting-backing-recall-01"
+      ]
+    },
+    "parking.hydrantFeet": {
+      "value": 15,
+      "rule": "TX_TN_545_302_NO_STANDING_DISTANCES",
+      "status": "verified",
+      "usedIn": [
+        "lesson parking-and-curbs parking-and-curbs-slide-01",
+        "lesson parking-and-curbs parking-and-curbs-recall-01",
+        "lesson parking-and-curbs parking-and-curbs-slide-06",
+        "lesson parking-and-curbs parking-and-curbs-q01"
+      ]
+    },
+    "parking.curbInches": {
+      "value": 18,
+      "rule": "TX_TN_545_303_CURB_18_INCHES",
+      "status": "verified",
+      "usedIn": [
+        "lesson parking-and-curbs parking-and-curbs-slide-03",
+        "lesson parking-and-curbs parking-and-curbs-recall-01",
+        "lesson parking-and-curbs parking-and-curbs-q03"
+      ]
+    },
+    "centerLane.maxTravelFeet": {
+      "value": null,
+      "rule": null,
+      "status": "not_codified",
+      "usedIn": [
+        "lesson special-lanes special-lanes-slide-02",
+        "lesson special-lanes special-lanes-recall-01"
+      ]
+    },
+    "bikeLane.turnEntryFeet": {
+      "value": null,
+      "rule": null,
+      "status": "not_codified",
+      "usedIn": [
+        "lesson special-lanes special-lanes-slide-03"
+      ]
+    },
+    "bicycle.passingFeet": {
+      "value": null,
+      "rule": null,
+      "status": "not_codified",
+      "usedIn": [
+        "lesson bicycles-motorcycles bicycles-motorcycles-slide-04",
+        "lesson bicycles-motorcycles bicycles-motorcycles-recall-01"
+      ]
+    },
+    "smv.maxMph": {
+      "value": 25,
+      "rule": "TX_TN_547_703_SLOW_MOVING_EMBLEM",
+      "status": "verified",
+      "usedIn": [
+        "lesson trucks-buses-slow-vehicles trucks-buses-slow-vehicles-slide-06",
+        "lesson trucks-buses-slow-vehicles trucks-buses-slow-vehicles-recall-03"
+      ]
+    },
+    "emergency.followFeet": {
+      "value": 500,
+      "rule": "TX_TN_545_407_408_FOLLOWING_FIRE_APPARATUS",
+      "status": "verified",
+      "usedIn": [
+        "lesson school-buses-emergency-vehicles school-buses-emergency-vehicles-slide-04",
+        "lesson school-buses-emergency-vehicles school-buses-emergency-vehicles-q04"
+      ]
+    },
+    "lights.afterSunsetMinutes": {
+      "value": 30,
+      "rule": "TX_TN_547_302_LIGHTS_REQUIRED",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-02",
+        "lesson driving-after-dark driving-after-dark-recall-02"
+      ]
+    },
+    "lights.beforeSunriseMinutes": {
+      "value": 30,
+      "rule": "TX_TN_547_302_LIGHTS_REQUIRED",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-02",
+        "lesson driving-after-dark driving-after-dark-recall-02"
+      ]
+    },
+    "lights.visibilityFeet": {
+      "value": 1000,
+      "rule": "TX_TN_547_302_LIGHTS_REQUIRED",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-02"
+      ]
+    },
+    "highBeam.approachingFeet": {
+      "value": 500,
+      "rule": "TX_TN_547_333_DIM_HIGH_BEAMS",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-04",
+        "lesson driving-after-dark driving-after-dark-recall-03",
+        "lesson driving-after-dark driving-after-dark-q02",
+        "lesson driving-after-dark driving-after-dark-q03"
+      ]
+    },
+    "highBeam.followingFeet": {
+      "value": 300,
+      "rule": "TX_TN_547_333_DIM_HIGH_BEAMS",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-04",
+        "lesson driving-after-dark driving-after-dark-recall-03",
+        "lesson driving-after-dark driving-after-dark-q02"
+      ]
+    },
+    "crash.reportDamagePhrase": {
+      "value": "damage that leaves a vehicle unable to be driven normally",
+      "rule": "TX_TN_550_026_IMMEDIATE_REPORT",
+      "status": "verified",
+      "usedIn": [
+        "lesson crashes-and-insurance crashes-and-insurance-slide-05",
+        "lesson crashes-and-insurance crashes-and-insurance-q05"
+      ]
+    },
+    "insurance.perPerson": {
+      "value": 30000,
+      "rule": "TX_TN_601_051_072_FINANCIAL_RESPONSIBILITY",
+      "status": "verified",
+      "usedIn": [
+        "lesson crashes-and-insurance crashes-and-insurance-slide-06",
+        "lesson crashes-and-insurance crashes-and-insurance-recall-03",
+        "lesson crashes-and-insurance crashes-and-insurance-q02"
+      ]
+    },
+    "insurance.perCrash": {
+      "value": 60000,
+      "rule": "TX_TN_601_051_072_FINANCIAL_RESPONSIBILITY",
+      "status": "verified",
+      "usedIn": [
+        "lesson crashes-and-insurance crashes-and-insurance-slide-06",
+        "lesson crashes-and-insurance crashes-and-insurance-recall-03",
+        "lesson crashes-and-insurance crashes-and-insurance-q02"
+      ]
+    },
+    "insurance.property": {
+      "value": 25000,
+      "rule": "TX_TN_601_051_072_FINANCIAL_RESPONSIBILITY",
+      "status": "verified",
+      "usedIn": [
+        "lesson crashes-and-insurance crashes-and-insurance-slide-06",
+        "lesson crashes-and-insurance crashes-and-insurance-recall-03",
+        "lesson crashes-and-insurance crashes-and-insurance-q02"
+      ]
+    },
+    "phone.minorNoDeviceAge": {
+      "value": 18,
+      "rule": "TX_TN_545_424_UNDER_18_RESTRICTIONS",
+      "status": "verified",
+      "usedIn": [
+        "lesson distraction-and-fatigue distraction-and-fatigue-slide-04",
+        "lesson distraction-and-fatigue distraction-and-fatigue-recall-02",
+        "lesson distraction-and-fatigue distraction-and-fatigue-q04"
+      ]
+    },
+    "bac.adult": {
+      "value": 0.08,
+      "rule": "TX_PE_49_01_04_DWI",
+      "status": "verified",
+      "usedIn": [
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-slide-03",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-recall-01",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-q01",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-q03"
+      ]
+    },
+    "bac.under21Age": {
+      "value": 21,
+      "rule": "TX_AL_106_041_MINOR_DUI",
+      "status": "verified",
+      "usedIn": [
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-slide-03",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-recall-02"
+      ]
+    },
+    "bac.under21": {
+      "value": null,
+      "rule": null,
+      "status": "not_codified",
+      "usedIn": [
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-slide-03",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-recall-02"
+      ]
+    },
+    "refusal.firstSuspension": {
+      "value": "180 days",
+      "rule": "TX_TN_724_011_035_IMPLIED_CONSENT_REFUSAL",
+      "status": "verified",
+      "usedIn": [
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-slide-06",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-q04"
+      ]
+    },
+    "child.restraintAge": {
+      "value": 8,
+      "rule": "TX_TN_545_412_CHILD_SAFETY_SEATS",
+      "status": "verified",
+      "usedIn": [
+        "lesson seat-belts-child-safety seat-belts-child-safety-slide-04",
+        "lesson seat-belts-child-safety seat-belts-child-safety-recall-01",
+        "lesson seat-belts-child-safety seat-belts-child-safety-q03"
+      ]
+    },
+    "child.beltHeight": {
+      "value": "4 feet 9 inches",
+      "rule": "TX_TN_545_412_CHILD_SAFETY_SEATS",
+      "status": "verified",
+      "usedIn": [
+        "lesson seat-belts-child-safety seat-belts-child-safety-slide-04",
+        "lesson seat-belts-child-safety seat-belts-child-safety-recall-01"
+      ]
+    },
+    "equipment.hornFeet": {
+      "value": 200,
+      "rule": "TX_TN_547_EQUIPMENT_BASICS",
+      "status": "verified",
+      "usedIn": [
+        "lesson equipment-loads-towing equipment-loads-towing-slide-03",
+        "lesson equipment-loads-towing equipment-loads-towing-recall-02",
+        "lesson equipment-loads-towing equipment-loads-towing-q03"
+      ]
+    },
+    "equipment.treadInches": {
+      "value": null,
+      "rule": null,
+      "status": "not_codified",
+      "usedIn": [
+        "lesson equipment-loads-towing equipment-loads-towing-slide-03",
+        "lesson equipment-loads-towing equipment-loads-towing-recall-01"
+      ]
+    }
+  },
+  "notes": 20,
+  "overrides": 2,
+  "warnings": [],
+  "errors": [],
+  "competitorOverlaps": {
+    "Zutobi": {
+      "files": 61,
+      "shared": 0
+    },
+    "myDMV": {
+      "files": 37,
+      "shared": 0
+    }
+  }
+}

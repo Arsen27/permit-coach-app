@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "vite/client"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@admin/*": [
+        "src/*"
+      ],
+      "@/*": [
+        "../src/*"
+      ],
+      "react-native": [
+        "../node_modules/react-native"
+      ],
+      "react-native-svg": [
+        "src/shims/react-native-svg.tsx"
+      ],
+      "react-native-safe-area-context": [
+        "src/shims/react-native-safe-area-context.tsx"
+      ],
+      "@react-native-async-storage/async-storage": [
+        "src/shims/async-storage.ts"
+      ]
+    }
+  },
+  "include": [
+    "src",
+    "vite.config.ts",
+    "vite.smoke.config.ts",
+    "../src/components/lesson",
+    "../src/data/course/v2",
+    "../src/theme/styled.d.ts",
+    "../src/data/signs",
+    "../src/components/SignArt.tsx"
+  ]
+}

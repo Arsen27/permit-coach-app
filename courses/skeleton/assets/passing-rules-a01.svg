@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">When Passing Is Legal—and When It Is Not - Complete pass</title><desc id="desc">Complete pass diagram supporting When Passing Is Legal—and When It Is Not. The written lesson contains the complete rule and does not require the image to understand the answer.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7C3AED"/></marker></defs>
+<rect width="1200" height="675" rx="42" fill="#F8FAFC"/>
+<text x="70" y="82" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#7C3AED">CALIFORNIA KNOWLEDGE COURSE</text>
+<text x="70" y="130" font-family="Arial, sans-serif" font-size="38" font-weight="800" fill="#0F172A">Complete pass</text>
+<rect x="50" y="155" width="1100" height="430" rx="34" fill="#EDE9FE"/><rect x="90" y="250" width="1020" height="260" rx="28" fill="#475569"/><path d="M90 336H1110M90 424H1110" stroke="#fff" stroke-width="6" stroke-dasharray="30 22"/><rect x="250" y="275" width="105" height="50" rx="20" fill="#38BDF8"/><rect x="520" y="365" width="105" height="50" rx="20" fill="#F97316"/><rect x="790" y="445" width="105" height="50" rx="20" fill="#22C55E"/><path d="M360 300C470 300 470 390 510 390" fill="none" stroke="#7C3AED" stroke-width="14" marker-end="url(#arrow)"/>
+<rect x="70" y="595" width="1060" height="2" fill="#CBD5E1"/>
+<text x="70" y="635" font-family="Arial, sans-serif" font-size="22" fill="#475569">When Passing Is Legal—and When It Is Not</text>
+<text x="1130" y="635" text-anchor="end" font-family="Arial, sans-serif" font-size="18" fill="#64748B">Original instructional diagram</text>
+</svg>

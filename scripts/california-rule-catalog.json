@@ -1,0 +1,4441 @@
+{
+  "catalogId": "ca-rule-catalog-ca-2026.08.22-r02",
+  "jurisdiction": "CA",
+  "targetLicense": "ordinary non-commercial passenger driver license",
+  "courseVersion": "CA-2026.08.22-r02",
+  "sourceCheckedAt": "2026-08-20",
+  "rulesEffectiveThrough": null,
+  "legalFreshnessStatus": "source_checked_effective_through_review_pending",
+  "status": "ready_for_review",
+  "versionBindingStatus": "blocked_missing_release_metadata",
+  "courseGenerationStatus": "blocked_scoped_conflicts_and_release_metadata",
+  "ruleCount": 141,
+  "allowedStatuses": [
+    "verified"
+  ],
+  "rules": [
+    {
+      "ruleId": "CA_VEH_12500_LICENSE_REQUIRED",
+      "conceptId": "license_required",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A person may not drive a motor vehicle on a California highway without a valid license or an applicable statutory exemption.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 12500",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=12500",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH01_12500-13020.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "718931dfe98e82bd115d8756af439e940542d6fc3539ba736ea904aa8469a121",
+          "localSizeBytes": 488206,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_12509_INSTRUCTION_PERMIT",
+      "conceptId": "instruction_permit_supervision",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A Class C instruction permit allows practice only under the supervision conditions stated in the permit law.",
+      "valueType": "age_and_supervision",
+      "values": {
+        "minimumPermitAgeYears": 15.5
+      },
+      "conditions": [
+        "ordinary noncommercial Class C instruction permit"
+      ],
+      "exceptions": [
+        "statutory exemptions and other permit classes are outside this course"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 12509",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=12509",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH01_12500-13020.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "718931dfe98e82bd115d8756af439e940542d6fc3539ba736ea904aa8469a121",
+          "localSizeBytes": 488206,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_12814_6_PROVISIONAL_ELIGIBILITY",
+      "conceptId": "provisional_license_eligibility",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A minor must be at least 16, complete the required education and training, hold the permit for at least six months, and document 50 practice hours including 10 at night before provisional licensing.",
+      "valueType": "compound_numeric",
+      "values": {
+        "minimumLicenseAgeYears": 16,
+        "permitHoldingMonths": 6,
+        "practiceHours": 50,
+        "nightPracticeHours": 10
+      },
+      "conditions": [
+        "applicant is under 18"
+      ],
+      "exceptions": [
+        "the statute contains limited program-specific alternatives"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 12814.6",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=12814.6",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH01_12500-13020.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "718931dfe98e82bd115d8756af439e940542d6fc3539ba736ea904aa8469a121",
+          "localSizeBytes": 488206,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_12814_6_PROVISIONAL_RESTRICTIONS",
+      "conceptId": "provisional_license_restrictions",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "During the first 12 months of a provisional license, the driver generally may not drive from 11 p.m. to 5 a.m. or transport passengers under 20 without qualifying supervision.",
+      "valueType": "compound_time_age",
+      "values": {
+        "restrictionMonths": 12,
+        "restrictedStart": "23:00",
+        "restrictedEnd": "05:00",
+        "passengerAgeUnder": 20,
+        "supervisorMinimumAgeYears": 25
+      },
+      "conditions": [
+        "driver is under 18 and within the first 12 months of provisional licensing"
+      ],
+      "exceptions": [
+        "medical, school, employment, and immediate-family necessity exceptions require specified signed documentation"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 12814.6",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=12814.6",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH01_12500-13020.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "718931dfe98e82bd115d8756af439e940542d6fc3539ba736ea904aa8469a121",
+          "localSizeBytes": 488206,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_12951_LICENSE_POSSESSION",
+      "conceptId": "license_possession",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A licensed driver must keep the valid driver license in immediate possession while driving and present it to a peace officer on lawful demand.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 12951",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=12951",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH01_12500-13020.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "718931dfe98e82bd115d8756af439e940542d6fc3539ba736ea904aa8469a121",
+          "localSizeBytes": 488206,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_14600_ADDRESS_CHANGE",
+      "conceptId": "dmv_address_change",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver must notify DMV of a new residence or mailing address within 10 days.",
+      "valueType": "numeric_time",
+      "values": {
+        "time": 10,
+        "unit": "days"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 14600",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=14600",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH04_14600-14611.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fd4177cad6fd29c73183d4b2feb89423d3a672a94f55fd1c0f5f98707e2773f8",
+          "localSizeBytes": 280616,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_DMV_KNOWLEDGE_PASSING_SCORE",
+      "conceptId": "knowledge_test_passing_score",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "The California DMV publishes an 80 percent passing score for the learner-permit knowledge test.",
+      "valueType": "percentage",
+      "values": {
+        "passingScorePercent": 80
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California DMV official procedure page",
+          "officialUrl": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/learners-permits/",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-exam-guides/California/California_Learners_Permits_2026-08-01.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "386e1ac144599759e3e581b35af311a1e1edcc119955f709ce9fc8a81efec12b",
+          "localSizeBytes": 134523,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_DMV_KNOWLEDGE_TEST_ATTEMPTS",
+      "conceptId": "knowledge_test_attempts",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "An applicant has three attempts to pass each required knowledge test. Failing the same test three times invalidates the application and requires reapplication.",
+      "valueType": "numeric_count",
+      "values": {
+        "attemptsPerRequiredTest": 3
+      },
+      "conditions": [
+        "attempts are counted separately for each required knowledge test"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California DMV official procedure page",
+          "officialUrl": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/driver-licenses-dl/",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-exam-guides/California/CA_DMV_Drivers_Licenses_Knowledge_Test_Attempts_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "1d006fdb5156681026e401c27835b01cb14e013c8616c37e58c68f3f2e678634",
+          "localSizeBytes": 140285,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_CCR_T13_20_03_VISION_STANDARD",
+      "conceptId": "vision_screening_standard",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Applicants and renewing drivers must meet DMV's vision screening standard or follow the regulation's alternative examination and drive-test process.",
+      "valueType": "visual_acuity",
+      "values": {
+        "bothEyes": "20/40",
+        "oneEye": "20/40",
+        "otherEyeAtLeast": "20/70"
+      },
+      "conditions": [
+        "driver license application or renewal"
+      ],
+      "exceptions": [
+        "the regulation provides document, specialist-report, drive-test, and monitoring pathways"
+      ],
+      "sources": [
+        {
+          "citation": "13 California Code of Regulations § 20.03",
+          "officialUrl": "https://govt.westlaw.com/calregs/Document/I6C40F3C0C8D511EF8CF29B1A067B8E9C?viewType=FullText",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_regulation_independent_explanation",
+          "localFile": "state-dmv-regulations/California/CA_CCR_T13_S20_03_FullText.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "648e2c2377593558f47969f26315e25d00e5336182d47d23a6b0dd7a4e12f16e",
+          "localSizeBytes": 19394,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_516_RESIDENCY",
+      "conceptId": "vehicle_registration_residency",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "For vehicle-registration purposes, California residency turns on intent to live or remain in the state on more than a temporary or transient basis. Presence for six months or more in a 12-month period creates a rebuttable presumption, and section 516 lists additional evidence of residency.",
+      "valueType": "compound_time",
+      "values": {
+        "presenceMonthsAtLeast": 6,
+        "measurementPeriodMonths": 12
+      },
+      "conditions": [
+        "determining residency for vehicle registration"
+      ],
+      "exceptions": [
+        "the six-month rule is a rebuttable presumption rather than the only way to establish residency"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 516",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=516",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_S516_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "04570a1e349368774ff14a4a5b4fbdc135f6f0e2553c81fc4cbd84268a68ad5c",
+          "localSizeBytes": 165913,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_4152_5_6700_NEW_RESIDENT_REGISTRATION",
+      "conceptId": "new_resident_vehicle_registration",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "When an out-of-state vehicle becomes subject to California registration because its owner accepts gainful employment or establishes California residency, the owner must apply for California registration within 20 days.",
+      "valueType": "numeric_time",
+      "values": {
+        "registrationDeadlineDays": 20
+      },
+      "conditions": [
+        "vehicle was last registered in another jurisdiction",
+        "California registration has become required"
+      ],
+      "exceptions": [
+        "the statutory exceptions in sections 4152.5, 6700.2, and related nonresident provisions"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 4152.5",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=4152.5",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_S4152_5_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "4c8fe308b5def2a652c0f7e4daf795bfc6323f4f520b1b6426e312d85aea3ecf",
+          "localSizeBytes": 162192,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Vehicle Code § 6700",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=6700",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_S6700_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "314b2b71e78babedd257e51de3abbade04dac2ecb5ede83fd955deb15ff88cbe",
+          "localSizeBytes": 163543,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_5900_SELLER_TRANSFER_NOTICE",
+      "conceptId": "seller_vehicle_transfer_notice",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "When the registered owner sells or transfers a vehicle and delivers possession, the owner must notify DMV within five calendar days with the required sale, party, and vehicle information.",
+      "valueType": "numeric_time",
+      "values": {
+        "noticeDeadlineCalendarDays": 5
+      },
+      "conditions": [
+        "vehicle is registered under the California Vehicle Code",
+        "title or interest and possession are transferred"
+      ],
+      "exceptions": [
+        "when the registered owner lacks possession, the person in physical possession has the notice duty; a wholesale-auction transfer follows the statute's information pathway"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 5900",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=5900",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_S5900_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "67f7e6390eb399409f2c1ea9d039a50d13fb22c0f56b952e8b589fb0cb1517b4",
+          "localSizeBytes": 163439,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_5902_BUYER_TRANSFER_APPLICATION",
+      "conceptId": "buyer_vehicle_transfer_application",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A transferee who receives a properly endorsed certificate of ownership must forward it with the proper transfer fee and apply for transfer of registration within 10 days.",
+      "valueType": "numeric_time",
+      "values": {
+        "applicationDeadlineDays": 10
+      },
+      "conditions": [
+        "the transferee has received a properly endorsed certificate of ownership"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 5902",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=5902",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_S5902_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "6203585953cba20154774d3e6cd5023ea3e625d1dd29cc05ad9f3656cc039826",
+          "localSizeBytes": 162265,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_27315_SEAT_BELTS",
+      "conceptId": "seat_belt_use",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Drivers and passengers in covered motor vehicles must be properly restrained by an available safety belt, subject to statutory exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 27315",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=27315",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH05_Other_Equipment_27000-28160.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b34f8420952640673d76ae8084e335fc0497852b04559c93ea696746b7ff5163",
+          "localSizeBytes": 902643,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_27360_27363_CHILD_RESTRAINT",
+      "conceptId": "child_restraint_under_eight",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A child under eight must generally be secured in an appropriate child passenger restraint system in a rear seat. A child under two must generally use a rear-facing system unless the child is at least 40 pounds or at least 40 inches tall. Section 27363 supplies the medical, emergency, size, belt, and front-seat exceptions.",
+      "valueType": "compound_age_size",
+      "values": {
+        "ageUnderYears": 8,
+        "rearFacingAgeUnderYears": 2,
+        "rearFacingWeightExceptionPoundsAtLeast": 40,
+        "rearFacingHeightExceptionInchesAtLeast": 40,
+        "safetyBeltHeightExceptionInchesAtLeast": 57
+      },
+      "conditions": [
+        "child is transported in a covered motor vehicle on a highway",
+        "the restraint must meet applicable federal safety standards and manufacturer height and weight limits"
+      ],
+      "exceptions": [
+        "a court-authorized medical or size exemption",
+        "a life-threatening emergency or authorized emergency vehicle when no restraint is available, with the child secured by a safety belt",
+        "specified belt and front-seat configurations in section 27363"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 27360",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=27360",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH05_Other_Equipment_27000-28160.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b34f8420952640673d76ae8084e335fc0497852b04559c93ea696746b7ff5163",
+          "localSizeBytes": 902643,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Vehicle Code § 27363",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=27363",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH05_Other_Equipment_27000-28160.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b34f8420952640673d76ae8084e335fc0497852b04559c93ea696746b7ff5163",
+          "localSizeBytes": 902643,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_27360_5_CHILD_PASSENGER",
+      "conceptId": "child_passenger_eight_to_sixteen",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A child who is at least eight but under sixteen must be properly restrained by an appropriate child restraint or safety belt.",
+      "valueType": "age_range",
+      "values": {
+        "minimumAgeYears": 8,
+        "ageUnderYears": 16
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 27360.5",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=27360.5",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH05_Other_Equipment_27000-28160.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b34f8420952640673d76ae8084e335fc0497852b04559c93ea696746b7ff5163",
+          "localSizeBytes": 902643,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_15620_UNATTENDED_CHILD",
+      "conceptId": "unattended_child_vehicle",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A child age six or younger may not be left unattended in a vehicle when conditions create a significant risk or when the engine is running or the keys remain in the ignition, unless supervised as the statute permits.",
+      "valueType": "numeric_age",
+      "values": {
+        "ageYearsOrYounger": 6,
+        "supervisorMinimumAgeYears": 12
+      },
+      "conditions": [],
+      "exceptions": [
+        "supervision and emergency-response provisions in the statute"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 15620",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=15620",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_7_CH02_15620.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9707ec8752e04f3d9f40c60f58ebe3c93b428b5edaf9eef8ab5fa78d3824753c",
+          "localSizeBytes": 132617,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_27400_BOTH_EARS_COVERED",
+      "conceptId": "headsets_earplugs",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver or bicyclist generally may not wear a headset covering, earplugs in, or earphones covering both ears.",
+      "valueType": "count",
+      "values": {
+        "coveredEars": 2
+      },
+      "conditions": [],
+      "exceptions": [
+        "listed hearing-protection, emergency, and occupational exceptions"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 27400",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=27400",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH05_Other_Equipment_27000-28160.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b34f8420952640673d76ae8084e335fc0497852b04559c93ea696746b7ff5163",
+          "localSizeBytes": 902643,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_26708_DRIVER_VIEW",
+      "conceptId": "windshield_obstruction",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not operate with prohibited material or objects obstructing the windshield or side windows, subject to the statute's specific placements and exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 26708",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=26708",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH04_Windshields_Mirrors_26700-26712.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a8ca8f3d28db9e487705c9463a1ad4340ee799ba232a40516c8f7d76c805842c",
+          "localSizeBytes": 277603,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_26709_MIRRORS",
+      "conceptId": "rearview_mirrors",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A motor vehicle must have the rearview mirrors required by section 26709, including a mirror on the driver's side.",
+      "valueType": "count",
+      "values": {
+        "typicalMinimumMirrors": 2,
+        "requiredDriverSideMirrors": 1
+      },
+      "conditions": [
+        "vehicle configuration and rearward view determine the full requirement"
+      ],
+      "exceptions": [
+        "vehicle-specific exceptions in the statute"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 26709",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=26709",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH04_Windshields_Mirrors_26700-26712.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a8ca8f3d28db9e487705c9463a1ad4340ee799ba232a40516c8f7d76c805842c",
+          "localSizeBytes": 277603,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_26450_BRAKES",
+      "conceptId": "vehicle_brakes",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A motor vehicle must be equipped with service brakes and the additional braking equipment required by law.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 26450",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=26450",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH03_Brakes_26301-26522.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "98a9bc2bb08bf26236d1d228a6b239b79939356a87f15ff31e7bfd817b08e0a0",
+          "localSizeBytes": 349606,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_27000_HORN",
+      "conceptId": "vehicle_horn",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A motor vehicle must have a horn in good working order that can be heard under normal conditions from at least 200 feet.",
+      "valueType": "numeric_distance",
+      "values": {
+        "distance": 200,
+        "unit": "feet"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 27000",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=27000",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH05_Other_Equipment_27000-28160.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b34f8420952640673d76ae8084e335fc0497852b04559c93ea696746b7ff5163",
+          "localSizeBytes": 902643,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_24250_24400_HEADLIGHT_USE",
+      "conceptId": "headlight_use",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Required vehicle lighting must be used during darkness — from 30 minutes after sunset until 30 minutes before sunrise, or when visibility is under 1,000 feet — and whenever windshield wipers are in continuous use for weather.",
+      "valueType": "numeric_distance",
+      "values": {
+        "visibilityDistance": 1000,
+        "visibilityUnit": "feet",
+        "darknessAfterSunsetMinutes": 30,
+        "darknessBeforeSunriseMinutes": 30
+      },
+      "conditions": [],
+      "exceptions": [
+        "vehicle-specific lighting provisions"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 24250",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=24250",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH02_24250-26106.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "936d02f0614462e2ad2f48d86dce09e7e0360c6ba4701da6db66a839a830de13",
+          "localSizeBytes": 322005,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Vehicle Code § 24400",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=24400",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH02_24250-26106.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "936d02f0614462e2ad2f48d86dce09e7e0360c6ba4701da6db66a839a830de13",
+          "localSizeBytes": 322005,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "sourceNote": "Darkness window per Veh. Code § 280 as stated in the handbook."
+    },
+    {
+      "ruleId": "CA_VEH_24409_HIGH_BEAM_DIMMING",
+      "conceptId": "high_beam_dimming",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "High beams must be dimmed for an approaching vehicle within 500 feet and when following another vehicle within 300 feet.",
+      "valueType": "compound_distance",
+      "values": {
+        "approachingDistanceFeet": 500,
+        "followingDistanceFeet": 300
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 24409",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=24409",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH02_24250-26106.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "936d02f0614462e2ad2f48d86dce09e7e0360c6ba4701da6db66a839a830de13",
+          "localSizeBytes": 322005,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_27465_TIRE_TREAD",
+      "conceptId": "minimum_tire_tread",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "For a pneumatic tire not covered by a more specific statutory category, highway use is prohibited when tread depth is less than 1/32 inch in any two adjacent grooves at any location on the tire.",
+      "valueType": "compound_depth_count",
+      "values": {
+        "minimumTreadInches": "1/32",
+        "adjacentGrooves": 2
+      },
+      "conditions": [
+        "pneumatic tire used on a highway",
+        "paragraphs (2) and (3) do not supply a different minimum"
+      ],
+      "exceptions": [
+        "temporary spare installed as emergency service on a disabled vehicle",
+        "different minimums for specified Section 34500 vehicle tires and snow tires used in posted traction-device control areas",
+        "implements of husbandry"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 27465",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=27465",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH05_Other_Equipment_27000-28160.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b34f8420952640673d76ae8084e335fc0497852b04559c93ea696746b7ff5163",
+          "localSizeBytes": 902643,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21461_OBEY_TRAFFIC_CONTROLS",
+      "conceptId": "obey_traffic_control_devices",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver must obey an applicable official traffic-control device unless directed otherwise by an authorized officer or covered by a statutory exception.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21461",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21461",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21451_GREEN_SIGNAL",
+      "conceptId": "green_signal",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A green circular signal permits the indicated movement, but turning traffic must yield as required to pedestrians and other traffic lawfully within the intersection or crosswalk.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21451",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21451",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21452_YELLOW_SIGNAL",
+      "conceptId": "yellow_signal",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A steady yellow signal warns that the related green movement is ending and a red indication will follow. A steady yellow arrow means the protected turning time is ending: a driver who cannot stop safely, or who is already in the intersection, cautiously completes the turn and reads the next indication.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21452",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21452",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21453_RED_SIGNAL",
+      "conceptId": "red_signal_and_turns",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A steady red requires a stop at the marked limit line, before the crosswalk, or before entering the intersection; specified right turns and one-way-to-one-way left turns are allowed only after stopping, yielding, and checking for prohibitory signs.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21453",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21453",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21457_FLASHING_SIGNAL",
+      "conceptId": "flashing_signal",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A flashing red requires a full stop at the lawful stopping point before proceeding under stop-sign rules; a flashing yellow permits proceeding only with caution.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21457",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21457",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21451_21453_ARROW_SIGNAL",
+      "conceptId": "arrow_signal",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A green arrow permits only the movement it indicates as a protected turn — oncoming traffic is held by a red signal — plus any movement permitted by another indication shown at the same time, while requiring the applicable yield. A steady red arrow prohibits the movement it indicates until an indication permitting that movement is shown; no turn, including a right turn, may be made against a red arrow.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21451",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21451",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Vehicle Code § 21453",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21453",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21454_LANE_USE_CONTROL",
+      "conceptId": "lane_use_control_signal",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "For an overhead lane-use control signal, green permits travel in the lane, steady yellow warns of a lane-control change, steady red prohibits entering or traveling in the lane, and flashing yellow permits lane use only for a left turn to or from the highway.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21454",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21454",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21456_PEDESTRIAN_SIGNAL",
+      "conceptId": "pedestrian_signal",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Pedestrian signal indications control pedestrian movement and require drivers to respect pedestrians lawfully in or entering the roadway.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21456",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21456",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22450_STOP_POSITION",
+      "conceptId": "stop_sign_position",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "At a stop sign, a driver must stop at the limit line, before the near-side crosswalk, or at the nearest point with a view of approaching traffic before entering the intersection or crossing.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22450",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22450",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH08_22450-22456.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "57e35742dd4f449710d1df54b6d41c1b18e3e347fe029cc9bd72bce186f1dea5",
+          "localSizeBytes": 254132,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21460_DOUBLE_LINES",
+      "conceptId": "double_parallel_lines",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver generally may not cross double parallel solid lines, subject to the listed turning, designated-lane, and obstruction exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21460",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21460",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21460_5_MEDIAN_AND_CENTER_TURN",
+      "conceptId": "painted_barrier_center_turn_lane",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Two sets of double parallel lines spaced two feet or more apart form a barrier; a two-way left-turn lane may be entered only for permitted left turns or U-turns and for no more than 200 feet.",
+      "valueType": "compound_distance",
+      "values": {
+        "barrierSpacingFeetAtLeast": 2,
+        "centerLaneMaximumTravelFeet": 200
+      },
+      "conditions": [],
+      "exceptions": [
+        "designated openings and statutory emergency or authorized uses"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21460.5",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21460.5",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_MUTCD_2A_03_SIGN_CLASSES",
+      "conceptId": "sign_classification",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "California classifies signs as regulatory, warning, or guide signs according to their function.",
+      "valueType": "enumeration",
+      "values": {
+        "classes": [
+          "regulatory",
+          "warning",
+          "guide"
+        ]
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California MUTCD 2026 § 2A.03",
+          "officialUrl": "https://dot.ca.gov/programs/safety-programs/camutcd",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": "2026-01-18",
+          "effectiveTo": null,
+          "rightsStatus": "usable_with_source_tracking_no_logos",
+          "localFile": "state-mutcd/California/California_MUTCD_2026_Complete.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a3a0ab0659672a5c0959d963849176f173d768147743b87d85d9eb398e2343d9",
+          "localSizeBytes": 122143863,
+          "snapshotVerifiedAt": "2026-08-22"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_MUTCD_2A_05_SIGN_SHAPES",
+      "conceptId": "sign_shapes",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Distinctive sign shapes communicate specific functions, including the octagon for STOP, downward triangle for YIELD, pennant for no-passing zones, and pentagon for school areas.",
+      "valueType": "mapping",
+      "values": {
+        "stop": "octagon",
+        "yield": "downward-pointing triangle",
+        "noPassingZone": "pennant",
+        "school": "pentagon"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California MUTCD 2026 § 2A.05",
+          "officialUrl": "https://dot.ca.gov/programs/safety-programs/camutcd",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": "2026-01-18",
+          "effectiveTo": null,
+          "rightsStatus": "usable_with_source_tracking_no_logos",
+          "localFile": "state-mutcd/California/California_MUTCD_2026_Complete.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a3a0ab0659672a5c0959d963849176f173d768147743b87d85d9eb398e2343d9",
+          "localSizeBytes": 122143863,
+          "snapshotVerifiedAt": "2026-08-22"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_MUTCD_2A_06_SIGN_COLORS",
+      "conceptId": "sign_colors",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Standard sign colors are assigned consistent traffic-control meanings under the California MUTCD.",
+      "valueType": "mapping_reference",
+      "values": {
+        "referenceTable": "CA MUTCD Table 2A-2"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California MUTCD 2026 § 2A.06",
+          "officialUrl": "https://dot.ca.gov/programs/safety-programs/camutcd",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": "2026-01-18",
+          "effectiveTo": null,
+          "rightsStatus": "usable_with_source_tracking_no_logos",
+          "localFile": "state-mutcd/California/California_MUTCD_2026_Complete.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a3a0ab0659672a5c0959d963849176f173d768147743b87d85d9eb398e2343d9",
+          "localSizeBytes": 122143863,
+          "snapshotVerifiedAt": "2026-08-22"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_MUTCD_3A_03_MARKING_COLORS",
+      "conceptId": "marking_colors",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Yellow markings separate opposing traffic or mark specified left-edge conditions; white markings separate traffic moving in the same direction and mark the right edge, subject to the manual's detailed uses.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California MUTCD 2026 § 3A.03",
+          "officialUrl": "https://dot.ca.gov/programs/safety-programs/camutcd",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": "2026-01-18",
+          "effectiveTo": null,
+          "rightsStatus": "usable_with_source_tracking_no_logos",
+          "localFile": "state-mutcd/California/California_MUTCD_2026_Complete.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a3a0ab0659672a5c0959d963849176f173d768147743b87d85d9eb398e2343d9",
+          "localSizeBytes": 122143863,
+          "snapshotVerifiedAt": "2026-08-22"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21650_RIGHT_HALF",
+      "conceptId": "keep_right",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A vehicle generally must be driven on the right half of the roadway, subject to the listed passing, obstruction, one-way, and roadway-design exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21650",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21650",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21654_SLOW_TRAFFIC_RIGHT",
+      "conceptId": "slow_traffic_keep_right",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A vehicle moving slower than the normal speed of traffic must use the right-hand lane or stay as close as practicable to the right edge, except when passing or preparing for a left turn.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21654",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21654",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21656_USE_TURNOUT",
+      "conceptId": "slow_vehicle_turnout",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "On a two-lane highway where passing is unsafe, a slow vehicle followed by five or more vehicles must use a designated turnout or other sufficient area when safe.",
+      "valueType": "numeric_count",
+      "values": {
+        "followingVehiclesAtLeast": 5
+      },
+      "conditions": [
+        "two-lane highway; passing unsafe; driver is moving slower than normal traffic"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21656",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21656",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21658_LANE_DISCIPLINE",
+      "conceptId": "lane_change_safety",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A vehicle must stay as nearly as practical within one lane and may not move from it until the movement can be made with reasonable safety.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21658",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21658",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21655_5_HOV",
+      "conceptId": "hov_lane_rules",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Drivers may use preferential lanes only when they satisfy the posted vehicle-occupancy, vehicle-class, access, and operating-time requirements.",
+      "valueType": "posted_variable",
+      "values": {
+        "valuesControlledBy": "official signs and markings"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21655.5",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21655.5",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21209_MOTOR_VEHICLE_BIKE_LANE",
+      "conceptId": "motor_vehicle_bike_lane_entry",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A motor vehicle may enter a bicycle lane only to park where permitted, enter or leave the roadway, or prepare for a turn within 200 feet of the intersection.",
+      "valueType": "numeric_distance",
+      "values": {
+        "turnPreparationDistance": 200,
+        "unit": "feet"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21209",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21209",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH01_21000-21300.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b5f8c45bda9f34a4f9428e52a380140b75635c5f4adfa6e121f926637d9bfd9a",
+          "localSizeBytes": 359233,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21717_CROSS_BIKE_LANE_TO_TURN",
+      "conceptId": "cross_bike_lane_before_turn",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "When a turn requires crossing an adjacent bicycle lane, the driver must enter the bicycle lane before making the turn and turn as section 22100 requires.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21717",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21717",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21750_PASS_LEFT",
+      "conceptId": "overtake_on_left",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver overtaking another vehicle generally must pass safely to the left and may not return right until safely clear.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21750",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21750",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21751_CLEAR_VIEW_PASS",
+      "conceptId": "passing_clear_view",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not cross into opposing traffic to pass unless the left side is clearly visible and free of oncoming traffic for enough distance to complete the pass safely.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21751",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21751",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21752_NO_PASSING_LOCATIONS",
+      "conceptId": "passing_prohibited_locations",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Passing on the left side of the center is prohibited near specified curves, grades, intersections, and railroad crossings when the statutory visibility and distance conditions apply.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21752",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21752",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21754_21755_PASS_RIGHT",
+      "conceptId": "passing_on_right",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Passing on the right is allowed only in the situations listed by law and only when the movement can be made safely without leaving the paved or main-traveled part of the roadway.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21754",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21754",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Vehicle Code § 21755",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21755",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21760_PASS_BICYCLE",
+      "conceptId": "passing_bicycle",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver passing a bicycle must keep at least three feet; when practicable and lawful, change lanes to pass a bicycle in the same lane, or otherwise slow and pass only without endangering the bicyclist.",
+      "valueType": "numeric_distance",
+      "values": {
+        "minimumClearance": 3,
+        "unit": "feet"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21760",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21760",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21759_ANIMALS",
+      "conceptId": "passing_animals",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "When approaching a horse or livestock, a driver must control the vehicle and reduce speed or stop as necessary to avoid frightening the animal and protect people and animals.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21759",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21759",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21718_FREEWAY_STOPPING",
+      "conceptId": "freeway_stopping",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Stopping, parking, or standing on a fully controlled-access freeway is prohibited except for the specific safety, legal, work, disability, or designated-location exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21718",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21718",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22100_TURN_POSITION",
+      "conceptId": "turn_position",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Right and left turns must begin and end from the roadway positions and lanes specified by section 22100, including applicable bicycle-lane and marked-lane conditions. Handbook guidance: a right turn begins and ends in the lane closest to the right edge without swinging wide; a left turn onto a two-way street ends in the left lane closest to the middle of the road; a left or right turn from a one-way street onto a one-way street with three or more open lanes may end in any open lane.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22100",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22100",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22100_5_U_TURN_SIGNAL",
+      "conceptId": "u_turn_at_controlled_intersection",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A U-turn at a signal-controlled intersection is allowed only as section 21451 permits and must begin from the far-left lawful lane.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22100.5",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22100.5",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22102_U_TURN_BUSINESS",
+      "conceptId": "u_turn_business_district",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "In a business district, a U-turn is prohibited except at an intersection or a provided opening on a divided highway.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22102",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22102",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22103_U_TURN_RESIDENCE",
+      "conceptId": "u_turn_residence_district",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "In a residence district, a U-turn is prohibited when another vehicle is approaching from either direction within 200 feet, except at an intersection where a traffic-control device controls the approaching vehicle.",
+      "valueType": "numeric_distance",
+      "values": {
+        "approachingVehicleDistance": 200,
+        "unit": "feet"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22103",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22103",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22104_U_TURN_FIRE_STATION",
+      "conceptId": "u_turn_fire_station",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not make a U-turn in front of or use the driveway approaches of a fire station to reverse direction.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22104",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22104",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22105_U_TURN_VISIBILITY",
+      "conceptId": "u_turn_visibility",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A U-turn is prohibited unless the driver has an unobstructed view for 200 feet in both directions.",
+      "valueType": "numeric_distance",
+      "values": {
+        "clearViewEachDirection": 200,
+        "unit": "feet"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22105",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22105",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22106_BACKING",
+      "conceptId": "backing_safety",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not start from a stopped, standing, or parked position or back on a highway until the movement can be made with reasonable safety.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22106",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22106",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22107_MOVE_AND_SIGNAL",
+      "conceptId": "turn_or_lateral_move",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not turn or move right or left until the movement is reasonably safe and must signal when another vehicle may be affected.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22107",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22107",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22108_TURN_SIGNAL_DISTANCE",
+      "conceptId": "turn_signal_distance",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A turn signal must be given continuously during the final 100 feet before the turn.",
+      "valueType": "numeric_distance",
+      "values": {
+        "distance": 100,
+        "unit": "feet"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22108",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22108",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22111_HAND_SIGNALS",
+      "conceptId": "hand_and_arm_signals",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Required hand-and-arm signals are made from the left side: arm horizontal for left, upward for right, and downward for slowing or stopping, with the bicycle exception stated by law.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22111",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22111",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH06_22100-22113.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "9161b7552ccb81c5a64ee514408c4474eb4fdee205f172e6b16cc70a3c57188c",
+          "localSizeBytes": 149920,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21800_UNCONTROLLED_INTERSECTION",
+      "conceptId": "uncontrolled_intersection_right_of_way",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "At an uncontrolled intersection, a driver must yield under the arrival-time and vehicle-on-the-right rules in section 21800.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21800",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21800",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH04_21800-21809.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fb837c3cb84e68f9abbb0391460295f8b0d25392f6ca5f11ed3f6384605219c6",
+          "localSizeBytes": 238194,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21801_LEFT_TURN_YIELD",
+      "conceptId": "left_turn_yield",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver turning left or making a U-turn must yield to approaching traffic close enough to be hazardous, then may complete the turn when reasonably safe.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21801",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21801",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH04_21800-21809.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fb837c3cb84e68f9abbb0391460295f8b0d25392f6ca5f11ed3f6384605219c6",
+          "localSizeBytes": 238194,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21802_YIELD_SIGN",
+      "conceptId": "yield_sign_right_of_way",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver facing a yield sign must slow to a reasonable speed, stop if necessary, and yield to traffic close enough to be an immediate hazard.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21802",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21802",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH04_21800-21809.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fb837c3cb84e68f9abbb0391460295f8b0d25392f6ca5f11ed3f6384605219c6",
+          "localSizeBytes": 238194,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21804_ENTERING_HIGHWAY",
+      "conceptId": "entering_highway_yield",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver entering or crossing a highway from property or an alley must yield to traffic close enough to be an immediate hazard and continue yielding until the movement is reasonably safe.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21804",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21804",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH04_21800-21809.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fb837c3cb84e68f9abbb0391460295f8b0d25392f6ca5f11ed3f6384605219c6",
+          "localSizeBytes": 238194,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21806_EMERGENCY_VEHICLE",
+      "conceptId": "approaching_emergency_vehicle",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "When an authorized emergency vehicle approaches with the required warning, drivers must move as required toward the right edge and stop clear of intersections until it passes, subject to officer direction and divided-highway limits.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21806",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21806",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH04_21800-21809.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fb837c3cb84e68f9abbb0391460295f8b0d25392f6ca5f11ed3f6384605219c6",
+          "localSizeBytes": 238194,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21809_MOVE_OVER",
+      "conceptId": "move_over_slow_down",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Approaching a qualifying stationary vehicle displaying emergency, amber, hazard, or other warning devices, a driver must move to a nonadjacent available lane when practicable and lawful; otherwise slow to a reasonable and prudent safe speed.",
+      "valueType": "effective_rule",
+      "values": {
+        "effectiveFrom": "2026-01-01"
+      },
+      "conditions": [],
+      "exceptions": [
+        "does not apply when the stationary vehicle is not adjacent to the highway or is separated by a protective barrier"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21809",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21809",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH04_21800-21809.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fb837c3cb84e68f9abbb0391460295f8b0d25392f6ca5f11ed3f6384605219c6",
+          "localSizeBytes": 238194,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21950_CROSSWALK",
+      "conceptId": "pedestrian_crosswalk",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver must yield to a pedestrian crossing within a marked or unmarked crosswalk and exercise due care, while pedestrians may not suddenly enter the path of a vehicle too close to stop safely.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21950",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21950",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH05_21949-21971.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "494742b5e16b296c8f19b97ab6851000aeac849dfc10246b8f8d01e22240b4ed",
+          "localSizeBytes": 274969,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21951_STOPPED_AT_CROSSWALK",
+      "conceptId": "no_pass_at_crosswalk",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not overtake and pass a vehicle stopped at a crosswalk to permit a pedestrian to cross.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21951",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21951",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH05_21949-21971.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "494742b5e16b296c8f19b97ab6851000aeac849dfc10246b8f8d01e22240b4ed",
+          "localSizeBytes": 274969,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21954_OUTSIDE_CROSSWALK",
+      "conceptId": "pedestrian_outside_crosswalk",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A pedestrian crossing outside a marked or unmarked crosswalk must yield to vehicles close enough to be an immediate hazard, without relieving drivers of their duty of care.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21954",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21954",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH05_21949-21971.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "494742b5e16b296c8f19b97ab6851000aeac849dfc10246b8f8d01e22240b4ed",
+          "localSizeBytes": 274969,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21964_BLIND_PEDESTRIAN",
+      "conceptId": "blind_pedestrian",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver must yield to a blind pedestrian using a predominantly white cane or guide dog and take precautions necessary to avoid injury.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21964",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21964",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH05_21949-21971.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "494742b5e16b296c8f19b97ab6851000aeac849dfc10246b8f8d01e22240b4ed",
+          "localSizeBytes": 274969,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22454_SCHOOL_BUS",
+      "conceptId": "school_bus_red_signal",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "When a school bus displays flashing red lights and the stop signal arm, drivers approaching from either direction must stop and remain stopped until the signal ceases, subject to divided or multilane highway exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22454",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22454",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH08_22450-22456.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "57e35742dd4f449710d1df54b6d41c1b18e3e347fe029cc9bd72bce186f1dea5",
+          "localSizeBytes": 254132,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22350_BASIC_SPEED_LAW",
+      "conceptId": "basic_speed_law",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not travel faster than is reasonable or prudent for weather, visibility, traffic, roadway surface and width, and may never drive at a speed that endangers people or property.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22350",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22350",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH07_22348-22445_6.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "5691ce9d33bfc8455f63018f050eeb02d535ec241d8ae69a993787563faecdfe",
+          "localSizeBytes": 346933,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22349_MAXIMUM_SPEED",
+      "conceptId": "maximum_speed_limits",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Unless a lower limit applies, the maximum is 65 mph; on a two-lane undivided highway it is 55 mph unless a higher limit is lawfully posted.",
+      "valueType": "compound_speed",
+      "values": {
+        "generalMaximumMph": 65,
+        "twoLaneUndividedMaximumMph": 55
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22349",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22349",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH07_22348-22445_6.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "5691ce9d33bfc8455f63018f050eeb02d535ec241d8ae69a993787563faecdfe",
+          "localSizeBytes": 346933,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22356_POSTED_70",
+      "conceptId": "posted_seventy_limit",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A 70 mph maximum applies only on highways where the Department of Transportation has made the required determination and signs authorize that speed.",
+      "valueType": "numeric_speed",
+      "values": {
+        "maximumMph": 70
+      },
+      "conditions": [
+        "lawfully posted eligible highway"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22356",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22356",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH07_22348-22445_6.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "5691ce9d33bfc8455f63018f050eeb02d535ec241d8ae69a993787563faecdfe",
+          "localSizeBytes": 346933,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22352_FIFTEEN_MPH",
+      "conceptId": "prima_facie_fifteen",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "The prima facie speed limit is 15 mph at a blind intersection, in an alley, and within 100 feet of a railroad crossing where the tracks are not visible for 400 feet in both directions; a controlled crossing (gates, warning signal, or flagman) lifts the railroad condition.",
+      "valueType": "numeric_speed",
+      "values": {
+        "speedMph": 15,
+        "railroadApproachFeet": 100,
+        "trackVisibilityFeet": 400
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22352",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22352",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH07_22348-22445_6.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "5691ce9d33bfc8455f63018f050eeb02d535ec241d8ae69a993787563faecdfe",
+          "localSizeBytes": 346933,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22352_TWENTY_FIVE_MPH",
+      "conceptId": "prima_facie_twenty_five",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "The prima facie speed limit is 25 mph in qualifying business or residence districts and school-zone conditions unless another lawful limit applies.",
+      "valueType": "numeric_speed",
+      "values": {
+        "speedMph": 25
+      },
+      "conditions": [],
+      "exceptions": [
+        "posted local limits and the statute's school-zone timing, child-presence, and roadway conditions"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22352",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22352",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH07_22348-22445_6.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "5691ce9d33bfc8455f63018f050eeb02d535ec241d8ae69a993787563faecdfe",
+          "localSizeBytes": 346933,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22400_IMPEDING_TRAFFIC",
+      "conceptId": "minimum_safe_speed",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not travel so slowly as to impede normal and reasonable traffic unless reduced speed is necessary for safe operation or required by law.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22400",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22400",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH07_22348-22445_6.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "5691ce9d33bfc8455f63018f050eeb02d535ec241d8ae69a993787563faecdfe",
+          "localSizeBytes": 346933,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22406_TOWING_SPEED",
+      "conceptId": "towing_speed_limit",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A listed vehicle, including a passenger vehicle towing another vehicle, may not exceed 55 mph.",
+      "valueType": "numeric_speed",
+      "values": {
+        "maximumMph": 55
+      },
+      "conditions": [
+        "vehicle falls within a listed category"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22406",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22406",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH07_22348-22445_6.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "5691ce9d33bfc8455f63018f050eeb02d535ec241d8ae69a993787563faecdfe",
+          "localSizeBytes": 346933,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22500_PROHIBITED_STOPPING",
+      "conceptId": "prohibited_stopping_places",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Stopping, parking, or leaving a vehicle is prohibited in the locations listed by section 22500 — including double parking on the roadway side of a parked vehicle — subject to traffic, safety, officer-direction, and statutory exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22500",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22500",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH09_22500-22526.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fd716225788f286a77a764b9f72b94d6f135f16f93e6eea43d8187aad5466a79",
+          "localSizeBytes": 563157,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22502_CURB_PARKING",
+      "conceptId": "curb_parking_position",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A vehicle parked on a roadway must be positioned in the lawful direction and generally within 18 inches of the appropriate curb, subject to one-way and local-rule provisions.",
+      "valueType": "numeric_distance",
+      "values": {
+        "maximumCurbDistance": 18,
+        "unit": "inches"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22502",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22502",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH09_22500-22526.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fd716225788f286a77a764b9f72b94d6f135f16f93e6eea43d8187aad5466a79",
+          "localSizeBytes": 563157,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22514_FIRE_HYDRANT",
+      "conceptId": "fire_hydrant_clearance",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A vehicle may not stop, park, or stand within 15 feet of a fire hydrant unless a statutory exception applies.",
+      "valueType": "numeric_distance",
+      "values": {
+        "minimumClearance": 15,
+        "unit": "feet"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22514",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22514",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH09_22500-22526.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fd716225788f286a77a764b9f72b94d6f135f16f93e6eea43d8187aad5466a79",
+          "localSizeBytes": 563157,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22515_UNATTENDED_VEHICLE",
+      "conceptId": "unattended_vehicle",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Before leaving a vehicle unattended, the driver must stop the engine, set the brake, and on a grade turn the front wheels toward the curb or side of the highway, subject to the statute's exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22515",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22515",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH09_22500-22526.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fd716225788f286a77a764b9f72b94d6f135f16f93e6eea43d8187aad5466a79",
+          "localSizeBytes": 563157,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22517_OPENING_DOOR",
+      "conceptId": "opening_vehicle_door",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A person may not open a vehicle door into moving traffic unless reasonably safe and may not leave it open longer than necessary.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22517",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22517",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH09_22500-22526.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fd716225788f286a77a764b9f72b94d6f135f16f93e6eea43d8187aad5466a79",
+          "localSizeBytes": 563157,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22507_8_ACCESSIBLE_PARKING",
+      "conceptId": "accessible_parking_spaces",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not park in a properly designated accessible space, access aisle, or related marked area without the required authorization and compliance.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22507.8",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22507.8",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH09_22500-22526.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fd716225788f286a77a764b9f72b94d6f135f16f93e6eea43d8187aad5466a79",
+          "localSizeBytes": 563157,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23123_HANDHELD_PHONE",
+      "conceptId": "handheld_phone_call",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "An adult driver may not use a handheld wireless telephone while driving; any permitted voice communication must satisfy the hands-free conditions and statutory exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23123",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23123",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23123_5_WIRELESS_DEVICE",
+      "conceptId": "wireless_device_use",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not hold and operate a handheld wireless device while driving; mounted single-swipe or single-tap use is allowed only under the statute's placement and operation conditions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23123.5",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23123.5",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23124_MINOR_WIRELESS",
+      "conceptId": "minor_wireless_device",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver under 18 may not use a wireless telephone or electronic communication device while driving, even hands-free, except for emergency purposes.",
+      "valueType": "numeric_age",
+      "values": {
+        "ageUnderYears": 18
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23124",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23124",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23103_RECKLESS_DRIVING",
+      "conceptId": "reckless_driving",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Driving with willful or wanton disregard for the safety of people or property is reckless driving.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23103",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23103",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23111_FLAMING_SUBSTANCE",
+      "conceptId": "throwing_burning_material",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "No occupant or pedestrian may throw or discharge a cigarette, match, or other flaming or glowing substance on or near a road or highway.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23111",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23111",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23113_SECURE_LOAD",
+      "conceptId": "secure_vehicle_load",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A vehicle may not be driven unless its load is constructed, covered, or secured to prevent contents from dropping, sifting, leaking, blowing, spilling, or otherwise escaping as prohibited by section 23113.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23113",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23113",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23116_TRUCK_BED_PASSENGERS",
+      "conceptId": "passengers_in_truck_bed",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver generally may not transport a person in the back of a pickup or flatbed truck on a highway unless a statutory restraint or other exception applies.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23116",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23116",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23117_ANIMALS_IN_LOAD_SPACE",
+      "conceptId": "animals_in_truck_bed",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "An animal transported in a vehicle's load space must be protected by an enclosure, required racks, tethering, or a secured container so it cannot fall, jump, or be thrown out, subject to ranching and livestock exceptions.",
+      "valueType": "numeric_height",
+      "values": {
+        "sideAndTailRackHeightAtLeast": 46,
+        "unit": "inches"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23117",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23117",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_27602_DRIVER_VISIBLE_DISPLAY",
+      "conceptId": "driver_visible_video_display",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not operate a vehicle with a prohibited video display visible from the driver's seat, subject to navigation, vehicle information, camera, and other listed exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 27602",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=27602",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH05_Other_Equipment_27000-28160.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b34f8420952640673d76ae8084e335fc0497852b04559c93ea696746b7ff5163",
+          "localSizeBytes": 902643,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_HSC_118948_118949_SMOKING_WITH_MINOR",
+      "conceptId": "smoking_with_minor_in_vehicle",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A person may not smoke a tobacco product in a motor vehicle, whether moving or at rest, when a minor is present. A violation is an infraction with a fine of no more than $100, but an officer may not stop a vehicle solely to determine whether this article is being violated.",
+      "valueType": "monetary_maximum",
+      "values": {
+        "maximumFineDollars": 100
+      },
+      "conditions": [
+        "a minor is present in the motor vehicle"
+      ],
+      "exceptions": [
+        "an FDA-approved cessation or therapeutic product marketed and sold solely for its approved purpose is excluded from the incorporated tobacco-product definition",
+        "the statute prohibits a stop made solely to investigate this article"
+      ],
+      "sources": [
+        {
+          "citation": "California Health and Safety Code § 118948",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=HSC&sectionNum=118948.",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_HSC_S118948_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "fb89598d0e0fc72eceef2aa2aa08549bc63fc14001247a4d3a211e31f88a7016",
+          "localSizeBytes": 162844,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Health and Safety Code § 118949",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=HSC&sectionNum=118949.",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_HSC_S118949_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "2d059a3599122c976a8a5b03675823c759644c743bbd68fd5a329e9d3e9e012b",
+          "localSizeBytes": 162253,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Business and Professions Code § 22950.5",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=22950.5.",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_BPC_S22950_5_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "fd336d5edaaff334a42242756a94b55d59a953a74e78d25039677577b0665895",
+          "localSizeBytes": 163585,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21706_FOLLOW_EMERGENCY",
+      "conceptId": "following_emergency_vehicle",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A vehicle may not follow an authorized emergency vehicle responding with required warning equipment within 300 feet, except for authorized official vehicles.",
+      "valueType": "numeric_distance",
+      "values": {
+        "minimumFollowingDistance": 300,
+        "unit": "feet"
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21706",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21706",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21708_FIRE_HOSE",
+      "conceptId": "crossing_fire_hose",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A vehicle may not be driven over an unprotected fire hose without consent of the fire department official in command.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21708",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21708",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23152_DUI_IMPAIRMENT",
+      "conceptId": "dui_impairment",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "It is unlawful to drive while under the influence of alcohol, a drug, or their combined influence.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23152",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23152",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23152_BAC",
+      "conceptId": "adult_bac_limit",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "It is unlawful for a person with 0.08 percent or more blood alcohol by weight to drive.",
+      "valueType": "percentage",
+      "values": {
+        "bacPercent": 0.08
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23152",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23152",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23136_UNDER_21_ZERO_TOLERANCE",
+      "conceptId": "under_21_bac",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A person under 21 may not drive with a preliminary alcohol screening result of 0.01 percent or more, subject to the statute's procedures.",
+      "valueType": "percentage_and_age",
+      "values": {
+        "ageUnderYears": 21,
+        "bacPercent": 0.01
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23136",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23136",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23140_UNDER_21_BAC",
+      "conceptId": "under_21_point_zero_five",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A person under 21 may not drive with 0.05 percent or more blood alcohol by weight.",
+      "valueType": "percentage_and_age",
+      "values": {
+        "ageUnderYears": 21,
+        "bacPercent": 0.05
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23140",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23140",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23154_DUI_PROBATION_BAC",
+      "conceptId": "dui_probation_bac",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A person on DUI probation may not drive with 0.01 percent or more blood alcohol, subject to the statute's testing and administrative procedures.",
+      "valueType": "percentage",
+      "values": {
+        "bacPercent": 0.01
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23154",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23154",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23612_CHEMICAL_TEST",
+      "conceptId": "implied_consent",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A person who lawfully drives is deemed to consent to specified chemical testing after a lawful DUI arrest, with the choices and conditions stated by section 23612.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23612",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23612",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_5_CH04_23610-23675.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "4e8298134946dbb22e5a95057dae903a14ed0be7ffe5dd5fa25c6758f13859ef",
+          "localSizeBytes": 330648,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_13353_TEST_REFUSAL",
+      "conceptId": "chemical_test_refusal",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Refusing or failing to complete a required chemical test triggers the administrative suspension or revocation periods specified in section 13353.",
+      "valueType": "graduated_time",
+      "values": {
+        "firstRefusalYears": 1
+      },
+      "conditions": [],
+      "exceptions": [
+        "longer periods apply to specified prior events; hearing and notice procedures apply"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 13353",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=13353",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH02_13100-13559.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "67cffc6ac0e96c35b3a42bbb174eb271be4041961e01e3d0026f1c6aa286e70e",
+          "localSizeBytes": 465135,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23221_DRINKING_IN_VEHICLE",
+      "conceptId": "drinking_alcohol_in_vehicle",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver and passenger may not drink an alcoholic beverage in a motor vehicle on a highway, subject to statutory passenger-area exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23221",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23221",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_23222_OPEN_CONTAINER",
+      "conceptId": "open_container",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not possess an opened alcoholic-beverage container, and may not possess opened cannabis as specified, while driving on a highway, subject to statutory storage and vehicle exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23222",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23222",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_16020_FINANCIAL_RESPONSIBILITY",
+      "conceptId": "financial_responsibility",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Drivers and vehicle owners must be able to establish financial responsibility at all times as section 16020 requires.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 16020",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=16020",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D07_CH01_16000-16078.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6c220ff91beabb9991be5743d54f2223b602b82013462694a6268e1b7e061cb",
+          "localSizeBytes": 394500,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_16056_LIABILITY_LIMITS",
+      "conceptId": "minimum_liability_limits",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "For policies or bonds issued or renewed on or after January 1, 2025, the minimum liability limits are $30,000 for one person's injury or death, $60,000 for two or more, and $15,000 for property damage.",
+      "valueType": "money_limits",
+      "values": {
+        "onePersonInjuryDeathUsd": 30000,
+        "multiplePersonsInjuryDeathUsd": 60000,
+        "propertyDamageUsd": 15000
+      },
+      "conditions": [
+        "policy or bond issued or renewed on or after 2025-01-01"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 16056",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=16056",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D07_CH01_16000-16078.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6c220ff91beabb9991be5743d54f2223b602b82013462694a6268e1b7e061cb",
+          "localSizeBytes": 394500,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_16028_PROOF_ON_DEMAND",
+      "conceptId": "proof_of_financial_responsibility",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver must provide evidence of financial responsibility when a peace officer lawfully demands it in the circumstances described by section 16028.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 16028",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=16028",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D07_CH01_16000-16078.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6c220ff91beabb9991be5743d54f2223b602b82013462694a6268e1b7e061cb",
+          "localSizeBytes": 394500,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_16000_COLLISION_DMV_REPORT",
+      "conceptId": "dmv_collision_report",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver must report a collision to DMV within 10 days when it causes injury, death, or more than $1,000 in property damage to any one person.",
+      "valueType": "compound_threshold",
+      "values": {
+        "reportWithinDays": 10,
+        "propertyDamageOverUsd": 1000
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 16000",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=16000",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D07_CH01_16000-16078.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6c220ff91beabb9991be5743d54f2223b602b82013462694a6268e1b7e061cb",
+          "localSizeBytes": 394500,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_20001_INJURY_COLLISION_STOP",
+      "conceptId": "injury_collision_stop",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver involved in a collision causing injury or death must stop and fulfill the statutory duties.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 20001",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=20001",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D10_CH01_20000-20018.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "1598c913a53c35cfa81ab2223d6d58fe32e410bed4367ce9cabdd1c692491a1f",
+          "localSizeBytes": 258248,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_20002_PROPERTY_COLLISION",
+      "conceptId": "property_damage_collision",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "After a property-damage-only collision, a driver must stop and provide the required identifying information or leave the required written notice and notify police when the owner cannot be found.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 20002",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=20002",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D10_CH01_20000-20018.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "1598c913a53c35cfa81ab2223d6d58fe32e410bed4367ce9cabdd1c692491a1f",
+          "localSizeBytes": 258248,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_20003_INJURY_INFORMATION_AID",
+      "conceptId": "injury_collision_information_aid",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "After an injury or death collision, the driver must provide identifying information and render reasonable assistance, including arranging transportation for medical care when necessary or requested.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 20003",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=20003",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D10_CH01_20000-20018.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "1598c913a53c35cfa81ab2223d6d58fe32e410bed4367ce9cabdd1c692491a1f",
+          "localSizeBytes": 258248,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_20008_POLICE_REPORT",
+      "conceptId": "injury_collision_police_report",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "The driver must make the required written report to CHP or local police within 24 hours after a collision causing injury or death, unless a qualifying officer report has been made.",
+      "valueType": "numeric_time",
+      "values": {
+        "reportWithinHours": 24
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 20008",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=20008",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D10_CH01_20000-20018.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "1598c913a53c35cfa81ab2223d6d58fe32e410bed4367ce9cabdd1c692491a1f",
+          "localSizeBytes": 258248,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_16070_UNINSURED_COLLISION",
+      "conceptId": "uninsured_collision_suspension",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "DMV must suspend under section 16070 when a driver in a reportable collision fails to provide required evidence of financial responsibility, subject to notice, hearing, and statutory exceptions.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 16070",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=16070",
+          "checkedAt": "2026-08-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D07_CH01_16000-16078.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6c220ff91beabb9991be5743d54f2223b602b82013462694a6268e1b7e061cb",
+          "localSizeBytes": 394500,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_UC_SCAN_AND_PREDICT",
+      "conceptId": "hazard_scanning",
+      "jurisdiction": "CA",
+      "ruleType": "universal-concept",
+      "legalClaim": false,
+      "authoringRule": "Continuously scan ahead, to the sides, behind, and through intersections so developing hazards are noticed early.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [],
+      "sourceNote": "Instructional safety concept only; it must not be phrased as a California legal requirement.",
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_UC_SPACE_CUSHION",
+      "conceptId": "space_cushion",
+      "jurisdiction": "CA",
+      "ruleType": "universal-concept",
+      "legalClaim": false,
+      "authoringRule": "Maintain usable space around the vehicle and increase it when visibility, traction, traffic, or stopping distance worsens.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [],
+      "sourceNote": "Instructional safety concept only; it must not be phrased as a California legal requirement.",
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_UC_BLIND_SPOT_CHECK",
+      "conceptId": "blind_spot_check",
+      "jurisdiction": "CA",
+      "ruleType": "universal-concept",
+      "legalClaim": false,
+      "authoringRule": "Before a lateral movement, use mirrors and a direct shoulder check for road users hidden in blind spots.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [],
+      "sourceNote": "Instructional safety concept only; it must not be phrased as a California legal requirement.",
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_UC_FATIGUE_SELF_CHECK",
+      "conceptId": "fatigue_risk",
+      "jurisdiction": "CA",
+      "ruleType": "universal-concept",
+      "legalClaim": false,
+      "authoringRule": "Do not begin or continue driving when fatigue prevents alert observation, timely decisions, or safe control.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [],
+      "sourceNote": "Instructional safety concept only; it must not be phrased as a California legal requirement.",
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_UC_WEATHER_ADAPTATION",
+      "conceptId": "adverse_weather",
+      "jurisdiction": "CA",
+      "ruleType": "universal-concept",
+      "legalClaim": false,
+      "authoringRule": "Reduce speed, increase following space, and make smooth control inputs when rain, fog, wind, snow, darkness, or glare reduces safety.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [],
+      "sourceNote": "Instructional safety concept only; it must not be phrased as a California legal requirement.",
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_UC_SKID_RESPONSE",
+      "conceptId": "skid_response",
+      "jurisdiction": "CA",
+      "ruleType": "universal-concept",
+      "legalClaim": false,
+      "authoringRule": "When traction is lost, avoid abrupt inputs, look toward the intended path, and recover control progressively.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [],
+      "sourceNote": "Instructional safety concept only; it must not be phrased as a California legal requirement.",
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_UC_VEHICLE_FAILURE",
+      "conceptId": "vehicle_failure_response",
+      "jurisdiction": "CA",
+      "ruleType": "universal-concept",
+      "legalClaim": false,
+      "authoringRule": "For a tire, brake, steering, or power failure, keep control first, communicate, move out of traffic when possible, and stop in the safest available place.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [],
+      "sourceNote": "Instructional safety concept only; it must not be phrased as a California legal requirement.",
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_UC_COLLISION_AVOIDANCE",
+      "conceptId": "collision_avoidance_priority",
+      "jurisdiction": "CA",
+      "ruleType": "universal-concept",
+      "legalClaim": false,
+      "authoringRule": "When a conflict develops, reduce speed and choose the path that best protects people while preserving vehicle control.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [],
+      "sourceNote": "Instructional safety concept only; it must not be phrased as a California legal requirement.",
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_MUTCD_COMMON_SIGN_MEANINGS",
+      "conceptId": "common_sign_meanings",
+      "jurisdiction": "CA",
+      "ruleType": "traffic-control-standard",
+      "legalClaim": false,
+      "authoringRule": "Use the official sign design and function to identify common regulatory, warning, guide, school, railroad, and temporary traffic-control messages; apply a legal duty only through the controlling law or regulatory device.",
+      "valueType": "controlled_vocabulary",
+      "values": {
+        "families": [
+          "regulatory",
+          "warning",
+          "guide",
+          "school",
+          "railroad",
+          "temporary traffic control"
+        ]
+      },
+      "conditions": [
+        "sign is an official traffic-control device"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California MUTCD 2026, Parts 2, 6, and 8",
+          "officialUrl": "https://dot.ca.gov/programs/safety-programs/camutcd",
+          "checkedAt": "2026-08-10",
+          "rightsStatus": "usable_with_source_tracking_no_logos",
+          "localFile": "state-mutcd/California/California_MUTCD_2026_Complete.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a3a0ab0659672a5c0959d963849176f173d768147743b87d85d9eb398e2343d9",
+          "localSizeBytes": 122143863,
+          "snapshotVerifiedAt": "2026-08-22"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.10-r01"
+    },
+    {
+      "ruleId": "CA_MUTCD_MARKING_PATTERNS",
+      "conceptId": "common_marking_patterns",
+      "jurisdiction": "CA",
+      "ruleType": "traffic-control-standard",
+      "legalClaim": false,
+      "authoringRule": "Official pavement-marking color and pattern distinguish opposing or same-direction traffic and identify permissive, restrictive, channelizing, and barrier functions.",
+      "valueType": "marking_system",
+      "values": {
+        "reference": "California MUTCD Part 3"
+      },
+      "conditions": [
+        "official marking is present"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California MUTCD 2026, Part 3",
+          "officialUrl": "https://dot.ca.gov/programs/safety-programs/camutcd",
+          "checkedAt": "2026-08-10",
+          "rightsStatus": "usable_with_source_tracking_no_logos",
+          "localFile": "state-mutcd/California/California_MUTCD_2026_Complete.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a3a0ab0659672a5c0959d963849176f173d768147743b87d85d9eb398e2343d9",
+          "localSizeBytes": 122143863,
+          "snapshotVerifiedAt": "2026-08-22"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.10-r01"
+    },
+    {
+      "ruleId": "CA_VEH_21458_CURB_COLORS",
+      "conceptId": "curb_color_controls",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Where local parking regulations are indicated by curb paint, red prohibits stopping, standing, and parking subject to the bus-zone case; yellow and white serve defined loading uses; green marks local time-limited parking; blue is reserved for authorized disabled parking.",
+      "valueType": "color_meanings",
+      "values": {
+        "red": "no stopping standing or parking",
+        "yellow": "loading under local time rule",
+        "white": "passenger loading or specified mail use",
+        "green": "time-limited parking",
+        "blue": "authorized disabled parking"
+      },
+      "conditions": [
+        "local authority has enacted the parking regulation and indicated it with curb paint"
+      ],
+      "exceptions": [
+        "red bus loading zone case",
+        "days and hours prescribed by local ordinance"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21458",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21458",
+          "checkedAt": "2026-08-10",
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.10-r01"
+    },
+    {
+      "ruleId": "CA_MUTCD_ROUNDABOUT_CONTROL",
+      "conceptId": "roundabout_control",
+      "jurisdiction": "CA",
+      "ruleType": "traffic-control-standard",
+      "legalClaim": false,
+      "authoringRule": "YIELD signs control roundabout approaches rather than the circulatory roadway; official one-way, circulation, lane-control, and pavement markings direct entry and movement. Traffic enters heading to the right of the central island and travels in a counterclockwise direction; do not stop or pass inside, and a missed exit means continuing around.",
+      "valueType": "control_pattern",
+      "values": {
+        "entryControl": "YIELD",
+        "circulation": "one-way as officially indicated"
+      },
+      "conditions": [
+        "official roundabout controls are installed"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California MUTCD 2026 §§ 2B.10, 2B.49, 2B.51 and Chapter 3D",
+          "officialUrl": "https://dot.ca.gov/programs/safety-programs/camutcd",
+          "checkedAt": "2026-08-10",
+          "rightsStatus": "usable_with_source_tracking_no_logos",
+          "localFile": "state-mutcd/California/California_MUTCD_2026_Complete.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a3a0ab0659672a5c0959d963849176f173d768147743b87d85d9eb398e2343d9",
+          "localSizeBytes": 122143863,
+          "snapshotVerifiedAt": "2026-08-22"
+        },
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.10-r01"
+    },
+    {
+      "ruleId": "CA_VEH_21703_REASONABLE_FOLLOWING",
+      "conceptId": "reasonable_following_distance",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver may not follow another vehicle more closely than is reasonable and prudent after considering that vehicle’s speed, traffic, and roadway conditions.",
+      "valueType": "contextual",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21703",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21703",
+          "checkedAt": "2026-08-10",
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.10-r01"
+    },
+    {
+      "ruleId": "CA_VEH_21658_1_LANE_SPLITTING",
+      "conceptId": "lane_splitting_definition",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "California defines lane splitting as a two-wheeled motorcycle traveling between rows of stopped or moving vehicles in the same lane on divided or undivided roads; the statute authorizes CHP safety guidelines.",
+      "valueType": "definition",
+      "values": {},
+      "conditions": [
+        "motorcycle has two wheels in contact with the ground"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21658.1",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21658.1",
+          "checkedAt": "2026-08-10",
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.10-r01"
+    },
+    {
+      "ruleId": "CA_MUTCD_WORK_ZONE_CONTROLS",
+      "conceptId": "work_zone_controls",
+      "jurisdiction": "CA",
+      "ruleType": "traffic-control-standard",
+      "legalClaim": false,
+      "authoringRule": "Temporary traffic-control signs, channelizing devices, arrow boards, signals, and authorized flagger directions define the work-zone path and must be interpreted with the applicable traffic-control law.",
+      "valueType": "temporary_control_system",
+      "values": {
+        "reference": "California MUTCD Part 6"
+      },
+      "conditions": [
+        "official temporary traffic control is present"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California MUTCD 2026, Part 6",
+          "officialUrl": "https://dot.ca.gov/programs/safety-programs/camutcd",
+          "checkedAt": "2026-08-10",
+          "rightsStatus": "usable_with_source_tracking_no_logos",
+          "localFile": "state-mutcd/California/California_MUTCD_2026_Complete.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "a3a0ab0659672a5c0959d963849176f173d768147743b87d85d9eb398e2343d9",
+          "localSizeBytes": 122143863,
+          "snapshotVerifiedAt": "2026-08-22"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.10-r01"
+    },
+    {
+      "ruleId": "CA_VEH_12810_POINT_VALUES",
+      "conceptId": "violation_point_values",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "California assigns two points to the specified serious convictions, one point to other safe-operation traffic convictions unless excepted, and one point to a collision for which DMV deems the operator responsible.",
+      "valueType": "point_values",
+      "values": {
+        "specifiedSeriousConvictionPoints": 2,
+        "generalSafeOperationConvictionPoints": 1,
+        "responsibleCollisionPoints": 1
+      },
+      "conditions": [],
+      "exceptions": [
+        "statutory no-point exceptions and single-occasion rule"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 12810",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=12810",
+          "checkedAt": "2026-08-10",
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH01_12500-13020.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "718931dfe98e82bd115d8756af439e940542d6fc3539ba736ea904aa8469a121",
+          "localSizeBytes": 488206,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.10-r01"
+    },
+    {
+      "ruleId": "CA_VEH_12810_5_NEGLIGENT_OPERATOR",
+      "conceptId": "negligent_operator_thresholds",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "For the ordinary Class C or M context, four points in 12 months, six in 24 months, or eight in 36 months creates a prima facie negligent-operator presumption, subject to the statute’s DMV hearing and mileage considerations.",
+      "valueType": "compound_numeric",
+      "values": {
+        "points12Months": 4,
+        "points24Months": 6,
+        "points36Months": 8
+      },
+      "conditions": [
+        "ordinary Class C or M context described by the statute"
+      ],
+      "exceptions": [
+        "commercial-license higher-threshold framework and statutory hearing considerations"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 12810.5",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=12810.5",
+          "checkedAt": "2026-08-10",
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH01_12500-13020.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "718931dfe98e82bd115d8756af439e940542d6fc3539ba736ea904aa8469a121",
+          "localSizeBytes": 488206,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.10-r01"
+    },
+    {
+      "ruleId": "CA_VEH_23225_OPEN_CONTAINER_STORAGE",
+      "conceptId": "open_container_storage",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "An opened alcoholic-beverage container may not be kept in the passenger compartment, including the glove compartment; keep it in the trunk. Passenger exceptions apply for buses, taxis, campers, and motorhomes.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [
+        "container has been opened, seal broken, or contents partially removed"
+      ],
+      "exceptions": [
+        "passengers in a bus, taxi, camper, or motorhome per statute"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23225",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23225",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.24-r04"
+    },
+    {
+      "ruleId": "CA_VEH_24615_SLOW_MOVING_EMBLEM",
+      "conceptId": "slow_moving_vehicle_emblem",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A slow-moving vehicle emblem (an orange and red triangle) marks vehicles that usually travel at 25 mph or less, such as farm and road-maintenance vehicles.",
+      "valueType": "numeric_speed",
+      "values": {
+        "typicalMaxSpeedMph": 25
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 24615",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=24615",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D12_CH02_24250-26106.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "936d02f0614462e2ad2f48d86dce09e7e0360c6ba4701da6db66a839a830de13",
+          "localSizeBytes": 322005,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.24-r04"
+    },
+    {
+      "ruleId": "CA_VEH_23575_IGNITION_INTERLOCK",
+      "conceptId": "dui_ignition_interlock",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "After a DUI conviction, the court or DMV may require an ignition interlock device: the engine will not start until a breath sample passes the test.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [
+        "DUI conviction and applicable statutory criteria"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23575",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23575",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_5_CH02_23530-23598.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "35a2d192108ce076c5c53d6bab75d3e00efaf22d67d00f7308189d3f8ccd4e03",
+          "localSizeBytes": 542347,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.24-r04"
+    },
+    {
+      "ruleId": "CA_HANDBOOK_FUNERAL_PROCESSION",
+      "conceptId": "funeral_procession",
+      "jurisdiction": "CA",
+      "ruleType": "handbook-guidance",
+      "legalClaim": true,
+      "authoringRule": "A funeral procession led by a traffic officer has the right-of-way. Vehicles in the procession carry windshield markers and headlights on; do not interfere with or cut through the procession — interrupting it can be ticketed.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [
+        "procession is led by a traffic officer"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.24-r04"
+    },
+    {
+      "ruleId": "CA_HANDBOOK_MEDICAL_REPORTING",
+      "conceptId": "medical_fitness_reporting",
+      "jurisdiction": "CA",
+      "ruleType": "handbook-guidance",
+      "legalClaim": true,
+      "authoringRule": "Physicians are required to report patients at least 14 years old to DMV for medical conditions that may affect safe driving, such as a lapse of consciousness; DMV can then reexamine the driver.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.24-r04"
+    },
+    {
+      "ruleId": "CA_HANDBOOK_SLIPPERY_SPOTS",
+      "conceptId": "slippery_surfaces",
+      "jurisdiction": "CA",
+      "ruleType": "handbook-guidance",
+      "legalClaim": false,
+      "authoringRule": "Bridges and overpasses tend to freeze before the rest of the road; shaded areas freeze first and dry out last. If your brakes get wet, dry them by lightly pressing the accelerator and brake pedals at the same time until they work again.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.08.24-r04"
+    },
+    {
+      "ruleId": "CA_HANDBOOK_FLASHING_YELLOW_ARROW",
+      "conceptId": "flashing_yellow_arrow",
+      "jurisdiction": "CA",
+      "ruleType": "handbook-guidance",
+      "legalClaim": true,
+      "authoringRule": "A flashing yellow arrow permits the turn, but the turn is not protected from other traffic: proceed to turn only after yielding to oncoming traffic, and proceed with caution.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [
+        "signal head shows a flashing yellow arrow for the turning movement"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        },
+        {
+          "citation": "California Vehicle Code § 21457",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21457.",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH02_21350-21468.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "ef84e260c816a46be7a60bc7a7ddfbf1cc95a9850f4c972aee3947709b1a30c7",
+          "localSizeBytes": 277178,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.09.02-r03"
+    },
+    {
+      "ruleId": "CA_HANDBOOK_DEDICATED_RIGHT_TURN_LANE",
+      "conceptId": "dedicated_right_turn_lane",
+      "jurisdiction": "CA",
+      "ruleType": "handbook-guidance",
+      "legalClaim": true,
+      "authoringRule": "A dedicated right-turn lane does not merge into another lane and allows the right turn without stopping, even when through lanes face a red signal. A traffic light or sign posted for the dedicated lane itself must be obeyed, and drivers must always yield to pedestrians in the crosswalk when turning.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [
+        "a dedicated right-turn lane separated from through lanes"
+      ],
+      "exceptions": [
+        "a light or sign posted for the dedicated lane controls it"
+      ],
+      "sources": [
+        {
+          "citation": "California Driver's Handbook (current edition)",
+          "officialUrl": "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/",
+          "checkedAt": "2026-09-02",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "procedural_reference_independent_explanation",
+          "localFile": "state-driver-manuals/California_Driver_Manual.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "63c96b38efd7cf7d139e98f12dad5f4a412d336451740cd1506208ee13cf3b82",
+          "localSizeBytes": 10651870,
+          "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "CA-2026.09.02-r03"
+    }
+  ],
+  "snapshotLibrary": {
+    "materialsRoot": "dmv-materials",
+    "verifiedAt": "2026-09-02",
+    "note": "Every source lists the local snapshot file that backs it, with the SHA-256 and size of the snapshot at verification time. Paths are relative to the dmv-materials library root."
+  }
+}

@@ -1,0 +1,17 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+
+import App from './App';
+import './styles/appFonts.css';
+
+const container = document.getElementById('root');
+
+if (container == null) {
+  throw new Error('admin: #root is missing');
+}
+
+createRoot(container).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);

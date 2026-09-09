@@ -82,21 +82,31 @@ yarn-error.log
 # `npm run course:export-server`, then committed from inside server/.
 /server/
 
-# Not part of the app repo — admin panel, authoring/tooling scripts, docs.
-# They exist only in the local working copy.
-/admin/
-/scripts/
-/docs/
-# Tests the ignored tooling; breaks on a clone without scripts/.
-__tests__/courseImportV2.test.ts
+# The authoring toolchain — the admin panel, the course builders and their
+# docs — used to be ignored as side tools. It is the main asset now, and it
+# existed in exactly one copy, on one disk, until this was written down. So
+# admin/, scripts/ and docs/ are tracked, where they already sit: the builder
+# addresses everything by relative path, and moving a directory would break it.
+# admin/node_modules and admin/.smoke stay out through admin/.gitignore.
 
-# Local working materials — course sources, design/integration handoffs.
-# The repo itself is only the mobile app; course content ships via the server repo.
-/courses/
+# Course material: everything under courses/ is out by default and the two
+# packages the builder actually reads are named back in. The default is
+# "ignore" on purpose — courses/ is also where 500+ MB of competitor course
+# material and every superseded dated handoff snapshot land. Nothing rebuilds
+# from those, and a blocklist would only hold until the next directory
+# appeared.
+/courses/*
+!/courses/skeleton/
+!/courses/states/
+
+# Local working materials that are nobody's source.
 /_to_delete/
 /design_handoff_dmv_prep_glass/
 /*_Integration_Handoff_*/
-/*.zip
+
+# An archive is never a source: each of these is a snapshot of something that
+# is either tracked above or deliberately not.
+*.zip
 
 # Course packages built for the content server; pushed, not committed.
 /out/

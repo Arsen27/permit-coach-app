@@ -1,0 +1,36 @@
+{
+  "packageFormat": "dmv-course-package-v1",
+  "courseId": "ca-2026-08-10-r01",
+  "courseUuid": "ba551c67-fb15-5c29-a1b4-7f89832e85f4",
+  "versionLabel": "CA-2026.08.10-r01",
+  "releaseDate": "2026-08-10",
+  "dailyRevision": 1,
+  "stateSequence": 3,
+  "status": "draft_generated_human_review_required",
+  "counts": {
+    "modules": 8,
+    "lessons": 30,
+    "questions": 150,
+    "moduleTests": 8,
+    "assets": 90,
+    "evidenceCards": 30,
+    "rules": 135
+  },
+  "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "rootFiles": [
+    "README.md",
+    "INTEGRATION-HANDOFF.md",
+    "course.json",
+    "questions.json",
+    "module-tests.json",
+    "assets/index.json",
+    "evidence/index.json",
+    "dependency-map.json",
+    "rules/rule-catalog.json",
+    "reports/automated-validation.json",
+    "reports/final-validation.json",
+    "reports/final-qa-report.md"
+  ],
+  "hashedFiles": [],
+  "publicationAuthorized": false
+}

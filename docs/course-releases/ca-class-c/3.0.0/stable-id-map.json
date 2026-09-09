@@ -1,0 +1,4192 @@
+{
+  "courseId": "ca-class-c",
+  "uuidNamespace": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+  "entries": [
+    {
+      "entity": "course",
+      "sourceId": "ca-2026-08-10-r01",
+      "sourceUuid": "ba551c67-fb15-5c29-a1b4-7f89832e85f4",
+      "stableId": "ca-class-c",
+      "uuid": "42c56211-3560-52a6-8a83-7ee942dd50e6"
+    },
+    {
+      "entity": "module",
+      "sourceId": "ca-2026-08-10-r01-m01",
+      "sourceUuid": "58cd72d8-aa5c-59c0-a696-35439a12188a",
+      "stableId": "ca-read-the-road",
+      "uuid": "d996f47a-4f9a-55a5-b7fe-f145777039f8"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "ca-2026-08-10-r01-m01-test",
+      "stableId": "ca-read-the-road-test",
+      "uuid": "42a620cf-abbb-55de-a6a7-f55bbd34f018"
+    },
+    {
+      "entity": "module",
+      "sourceId": "ca-2026-08-10-r01-m02",
+      "sourceUuid": "7f675664-8c04-5d67-93a2-72d8831e06ca",
+      "stableId": "ca-intersections-right-of-way",
+      "uuid": "084f6cd3-f87f-53c7-8506-238b9bfe6553"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "ca-2026-08-10-r01-m02-test",
+      "stableId": "ca-intersections-right-of-way-test",
+      "uuid": "061304f3-7188-53b3-864f-a960ed4c3e66"
+    },
+    {
+      "entity": "module",
+      "sourceId": "ca-2026-08-10-r01-m03",
+      "sourceUuid": "571029e5-283a-5125-99bd-1ff02715f7f1",
+      "stableId": "ca-lanes-passing-freeways",
+      "uuid": "4d66d55b-42b8-5e9f-a669-41d3a20a6851"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "ca-2026-08-10-r01-m03-test",
+      "stableId": "ca-lanes-passing-freeways-test",
+      "uuid": "7e9671b3-c3b1-59da-9e1e-a997e2f4b952"
+    },
+    {
+      "entity": "module",
+      "sourceId": "ca-2026-08-10-r01-m04",
+      "sourceUuid": "adc09d93-455b-5cf4-908f-1db6b089f918",
+      "stableId": "ca-speed-space-parking",
+      "uuid": "0254d439-7951-5666-bda5-f5fdf84f69ee"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "ca-2026-08-10-r01-m04-test",
+      "stableId": "ca-speed-space-parking-test",
+      "uuid": "acb73523-121c-58a5-9113-3c3577513945"
+    },
+    {
+      "entity": "module",
+      "sourceId": "ca-2026-08-10-r01-m05",
+      "sourceUuid": "8671dff1-2941-5524-9e9f-1538f90a9b38",
+      "stableId": "ca-sharing-the-road",
+      "uuid": "ef2e275f-892e-5df0-bc90-9979dcbcbb47"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "ca-2026-08-10-r01-m05-test",
+      "stableId": "ca-sharing-the-road-test",
+      "uuid": "7f38d6ae-f080-5c64-b26b-e3bd5b9a8cbd"
+    },
+    {
+      "entity": "module",
+      "sourceId": "ca-2026-08-10-r01-m06",
+      "sourceUuid": "8a2a3d46-3bbd-52c0-b559-d76cba5ca437",
+      "stableId": "ca-staying-in-control",
+      "uuid": "75267ada-93fb-5dcd-82f1-017741169231"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "ca-2026-08-10-r01-m06-test",
+      "stableId": "ca-staying-in-control-test",
+      "uuid": "ee654cf6-79fc-57e3-a2d3-a2062af9c855"
+    },
+    {
+      "entity": "module",
+      "sourceId": "ca-2026-08-10-r01-m07",
+      "sourceUuid": "6aa64570-ab78-524d-82d2-03a0bc541db5",
+      "stableId": "ca-vehicle-safety-collisions",
+      "uuid": "e2e9fae2-cab6-5683-a96c-9f984026529e"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "ca-2026-08-10-r01-m07-test",
+      "stableId": "ca-vehicle-safety-collisions-test",
+      "uuid": "5479ec9e-1d9e-5249-8128-c9be719f5a2b"
+    },
+    {
+      "entity": "module",
+      "sourceId": "ca-2026-08-10-r01-m08",
+      "sourceUuid": "aeaa985b-aa11-57e2-8d07-af835acb5b54",
+      "stableId": "ca-finish-line",
+      "uuid": "a66adb73-9bbd-5c2a-8e4f-97f50d9a3c00"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "ca-2026-08-10-r01-m08-test",
+      "stableId": "ca-finish-line-test",
+      "uuid": "a41d632e-61f3-5ab8-ad70-c9308abf66d6"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m01-l01",
+      "sourceUuid": "fae3cb14-b478-5564-ba68-819f4582d468",
+      "stableId": "ca-sign-shapes-and-colors",
+      "uuid": "9605fd6e-e693-59a9-9116-b3b423667fda"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q01",
+      "sourceUuid": "4b315ae5-d0c0-55b0-83df-fa39637786c9",
+      "stableId": "ca-sign-shapes-and-colors-q01",
+      "uuid": "4dad4855-c581-5b13-a357-f3048e99e129"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q01-asset",
+      "sourceUuid": "b9e71012-d7df-5794-aabe-124398e00183",
+      "stableId": "ca-sign-shapes-and-colors-q01-a",
+      "uuid": "592437cb-979f-59df-9c2c-5b73e14aa8e5"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q02",
+      "sourceUuid": "7cc524a4-1881-5db4-83a3-3821f2daee28",
+      "stableId": "ca-sign-shapes-and-colors-q02",
+      "uuid": "2880e5cd-6144-5381-bfb9-a743aadf77aa"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q02-asset",
+      "sourceUuid": "8fbab5bf-10e0-5b5b-bdf1-fc6af6b6b3d3",
+      "stableId": "ca-sign-shapes-and-colors-q02-a",
+      "uuid": "efa99b97-4009-5c8e-adad-8a5863bbe1d3"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q03",
+      "sourceUuid": "7755384e-c823-5deb-8e54-7cdfdca45297",
+      "stableId": "ca-sign-shapes-and-colors-q03",
+      "uuid": "80c7d48b-2f9a-5357-a026-86e44dfab168"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q03-asset",
+      "sourceUuid": "a930d873-4a8e-5326-b310-25403f347628",
+      "stableId": "ca-sign-shapes-and-colors-q03-a",
+      "uuid": "19cdd53b-2e87-5527-b76c-8813d97c0943"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q04",
+      "sourceUuid": "1baa208f-af12-5a94-b985-ecf6a1559293",
+      "stableId": "ca-sign-shapes-and-colors-q04",
+      "uuid": "cbababfc-727e-5d36-b913-fefb97435e1e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q04-asset",
+      "sourceUuid": "56e7405a-0d11-51b3-a577-62df9032b1c9",
+      "stableId": "ca-sign-shapes-and-colors-q04-a",
+      "uuid": "8a6475ce-cc90-5178-9595-9c66d2f38134"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q05",
+      "sourceUuid": "1182b85d-0ff4-5ec7-997b-8ff6a782313c",
+      "stableId": "ca-sign-shapes-and-colors-q05",
+      "uuid": "812bfa94-b1b9-5090-a89a-9faac58e20d2"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-q05-asset",
+      "sourceUuid": "def68bf2-30d2-5ae1-8c13-598ca5abb064",
+      "stableId": "ca-sign-shapes-and-colors-q05-a",
+      "uuid": "b84b6810-9e95-5889-8587-7cc022d238a8"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-asset-01",
+      "sourceUuid": "df4a5dc1-4f79-5bda-ad13-e52e0a31ee23",
+      "stableId": "ca-sign-shapes-and-colors-a01",
+      "uuid": "b6598349-5042-5977-855d-ae4b2e4c5511"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-asset-02",
+      "sourceUuid": "fcd1792a-d573-528c-b511-e6e6d3b91d02",
+      "stableId": "ca-sign-shapes-and-colors-a02",
+      "uuid": "7785eb82-b7b4-5b44-9789-1a0705673cd8"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-asset-03",
+      "sourceUuid": "c76888a3-6c01-5db9-96b4-d0089b33f6d7",
+      "stableId": "ca-sign-shapes-and-colors-a03",
+      "uuid": "4eba741a-b4af-56b3-936a-f0a07f917bba"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b01",
+      "stableId": "ca-sign-shapes-and-colors-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b02",
+      "stableId": "ca-sign-shapes-and-colors-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b03",
+      "stableId": "ca-sign-shapes-and-colors-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b04",
+      "stableId": "ca-sign-shapes-and-colors-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b05",
+      "stableId": "ca-sign-shapes-and-colors-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b06",
+      "stableId": "ca-sign-shapes-and-colors-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b07",
+      "stableId": "ca-sign-shapes-and-colors-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b08",
+      "stableId": "ca-sign-shapes-and-colors-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b09",
+      "stableId": "ca-sign-shapes-and-colors-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b10",
+      "stableId": "ca-sign-shapes-and-colors-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b11",
+      "stableId": "ca-sign-shapes-and-colors-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l01-b12",
+      "stableId": "ca-sign-shapes-and-colors-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m01-l02",
+      "sourceUuid": "96bbb947-df00-5759-9dfe-63df47cf609f",
+      "stableId": "ca-regulatory-signs",
+      "uuid": "9f57a09a-c900-5d51-a13a-6dca44bf029a"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q01",
+      "sourceUuid": "715fdfbc-1fb0-5266-b161-9e967b057787",
+      "stableId": "ca-regulatory-signs-q01",
+      "uuid": "30c3be5e-babe-511a-b716-35361ac3d73a"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q01-asset",
+      "sourceUuid": "797333ea-e3e9-53f9-8989-52bc5216a7d0",
+      "stableId": "ca-regulatory-signs-q01-a",
+      "uuid": "ed293908-9c48-5d5b-ad66-c095b3b1ccda"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q02",
+      "sourceUuid": "7be37f34-5458-5ac7-a86d-aa9f0b817931",
+      "stableId": "ca-regulatory-signs-q02",
+      "uuid": "3f31a3e9-51e2-54c8-ac9a-1f26902f89bc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q02-asset",
+      "sourceUuid": "45442d77-43e9-5649-b90a-cc8b103a3b42",
+      "stableId": "ca-regulatory-signs-q02-a",
+      "uuid": "4a79adca-ecbb-5be2-8ccb-1c5626026a47"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q03",
+      "sourceUuid": "1abd3f58-d8e9-5c8e-a252-704572059a54",
+      "stableId": "ca-regulatory-signs-q03",
+      "uuid": "f2ee48a2-ec17-52c1-b6dc-82ae8c0e0efa"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q03-asset",
+      "sourceUuid": "c7300d57-57a3-53f6-b669-b37e4e8732a2",
+      "stableId": "ca-regulatory-signs-q03-a",
+      "uuid": "77cf10df-af81-597d-a0f2-b48b1e6deaa9"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q04",
+      "sourceUuid": "fa096385-4998-5550-b84f-5c0dbcb3e411",
+      "stableId": "ca-regulatory-signs-q04",
+      "uuid": "bfe90c5f-8832-5308-be2d-7b29c402c475"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q04-asset",
+      "sourceUuid": "ad30d902-8510-5122-ad6a-7f1742cce716",
+      "stableId": "ca-regulatory-signs-q04-a",
+      "uuid": "a3121c7c-619a-572a-b101-eb5d372de3a3"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q05",
+      "sourceUuid": "8fa4fe5d-0faa-52c0-be54-f7400d2ed877",
+      "stableId": "ca-regulatory-signs-q05",
+      "uuid": "4bb63367-574c-5c6f-b30f-ad9612759c22"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-q05-asset",
+      "sourceUuid": "2bf23462-76a8-59d7-9e3b-2e559b3de2dc",
+      "stableId": "ca-regulatory-signs-q05-a",
+      "uuid": "318e143b-3c63-5c05-aeaf-7f07549a6318"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-asset-01",
+      "sourceUuid": "26a3ee1a-9615-567a-a43f-eb8317eeb2d9",
+      "stableId": "ca-regulatory-signs-a01",
+      "uuid": "dc374bac-0dd3-5d30-87d6-403710c1e25b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-asset-02",
+      "sourceUuid": "46b32b20-0186-5641-8600-957c7c3ca1a8",
+      "stableId": "ca-regulatory-signs-a02",
+      "uuid": "af6c5d01-4aee-5c43-a7b0-a40966722d85"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-asset-03",
+      "sourceUuid": "53096f26-9bbc-53c1-a35d-70f76a430b30",
+      "stableId": "ca-regulatory-signs-a03",
+      "uuid": "460c7b2d-07a7-5361-bf3b-7522e41bf776"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b01",
+      "stableId": "ca-regulatory-signs-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b02",
+      "stableId": "ca-regulatory-signs-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b03",
+      "stableId": "ca-regulatory-signs-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b04",
+      "stableId": "ca-regulatory-signs-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b05",
+      "stableId": "ca-regulatory-signs-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b06",
+      "stableId": "ca-regulatory-signs-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b07",
+      "stableId": "ca-regulatory-signs-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b08",
+      "stableId": "ca-regulatory-signs-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b09",
+      "stableId": "ca-regulatory-signs-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b10",
+      "stableId": "ca-regulatory-signs-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b11",
+      "stableId": "ca-regulatory-signs-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l02-b12",
+      "stableId": "ca-regulatory-signs-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m01-l03",
+      "sourceUuid": "fd0bdc05-5be7-5974-8975-a80052bfdc1b",
+      "stableId": "ca-warning-and-guide-signs",
+      "uuid": "0e4b07f6-a93a-544f-9d85-04d16ca19d0e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q01",
+      "sourceUuid": "0b4b5551-f0f0-522b-a2c7-63363024d3f0",
+      "stableId": "ca-warning-and-guide-signs-q01",
+      "uuid": "5b36b948-1bc3-5e17-978f-a1ab4276c53e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q01-asset",
+      "sourceUuid": "8eecb8e0-e915-5ca8-a703-d6d67352f3f9",
+      "stableId": "ca-warning-and-guide-signs-q01-a",
+      "uuid": "66e65273-2079-5e0b-a30f-4d3f02338e4d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q02",
+      "sourceUuid": "73fef230-c5c3-5272-b701-41eabbdbd965",
+      "stableId": "ca-warning-and-guide-signs-q02",
+      "uuid": "7693ca61-970e-55dc-80de-afd6bc2aa472"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q02-asset",
+      "sourceUuid": "96f472a9-686d-58a7-a0f3-e0c9d2a70a4a",
+      "stableId": "ca-warning-and-guide-signs-q02-a",
+      "uuid": "b1a9d3e2-70f6-55c2-9b2b-69c9ed13979c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q03",
+      "sourceUuid": "e6e21bdf-2037-5926-b6ce-8c30ff546dcc",
+      "stableId": "ca-warning-and-guide-signs-q03",
+      "uuid": "bed1d4bf-1242-5a1c-9984-7a72e39d10dc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q03-asset",
+      "sourceUuid": "5647e81e-fb93-5387-ab48-30d58f7ef77a",
+      "stableId": "ca-warning-and-guide-signs-q03-a",
+      "uuid": "e0df1a70-4e43-5394-bd1b-a106b5dbb542"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q04",
+      "sourceUuid": "fbb3b4b1-4d03-5365-b4f2-c79614d5adce",
+      "stableId": "ca-warning-and-guide-signs-q04",
+      "uuid": "909baa61-6237-5a19-a9ab-7af67d0b6727"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q04-asset",
+      "sourceUuid": "cfd80b07-34b0-509e-b639-1c7b0736023f",
+      "stableId": "ca-warning-and-guide-signs-q04-a",
+      "uuid": "46d12818-9c50-551b-9611-85f8950938f5"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q05",
+      "sourceUuid": "bfd6bce2-d2af-5336-8ee6-677d8dc45244",
+      "stableId": "ca-warning-and-guide-signs-q05",
+      "uuid": "6598690d-5de5-5b1a-a94f-1664202db39e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-q05-asset",
+      "sourceUuid": "db42509e-f1b7-5295-a8ed-7251e98660c2",
+      "stableId": "ca-warning-and-guide-signs-q05-a",
+      "uuid": "8af80eda-d918-5a11-b3a1-97daa3e089f1"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-asset-01",
+      "sourceUuid": "7f814a4c-0daf-50da-a7dc-adc1d2a1219c",
+      "stableId": "ca-warning-and-guide-signs-a01",
+      "uuid": "a71b3ee5-c53a-5d19-8cc1-1fb4a8205b5e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-asset-02",
+      "sourceUuid": "24231ee8-319d-51b6-8b95-4a7e0dedf1af",
+      "stableId": "ca-warning-and-guide-signs-a02",
+      "uuid": "cbfe0203-960c-5051-9f3a-0c14ca271deb"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-asset-03",
+      "sourceUuid": "43251dcf-ca24-55b5-a1e6-2eb8fb1f37a7",
+      "stableId": "ca-warning-and-guide-signs-a03",
+      "uuid": "741f7485-4f00-5a92-8bee-3239a47d16d0"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b01",
+      "stableId": "ca-warning-and-guide-signs-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b02",
+      "stableId": "ca-warning-and-guide-signs-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b03",
+      "stableId": "ca-warning-and-guide-signs-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b04",
+      "stableId": "ca-warning-and-guide-signs-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b05",
+      "stableId": "ca-warning-and-guide-signs-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b06",
+      "stableId": "ca-warning-and-guide-signs-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b07",
+      "stableId": "ca-warning-and-guide-signs-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b08",
+      "stableId": "ca-warning-and-guide-signs-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b09",
+      "stableId": "ca-warning-and-guide-signs-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b10",
+      "stableId": "ca-warning-and-guide-signs-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b11",
+      "stableId": "ca-warning-and-guide-signs-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l03-b12",
+      "stableId": "ca-warning-and-guide-signs-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m01-l04",
+      "sourceUuid": "18c20fb7-c0ab-5e6a-a25c-454fc6787a63",
+      "stableId": "ca-traffic-signals",
+      "uuid": "f8b99baf-a05f-56f0-a403-522187df7c8e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q01",
+      "sourceUuid": "17f188eb-76cb-5929-af6b-c065aa1edaeb",
+      "stableId": "ca-traffic-signals-q01",
+      "uuid": "10de32e7-a0aa-52c4-807b-6aeb1fca390e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q01-asset",
+      "sourceUuid": "74a24f2d-80a9-51f7-b1bf-ef28e04e41f0",
+      "stableId": "ca-traffic-signals-q01-a",
+      "uuid": "b7f318a9-7b36-5804-be4f-c2d942467f95"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q02",
+      "sourceUuid": "f9c96700-0a8e-51b1-97de-63205432849f",
+      "stableId": "ca-traffic-signals-q02",
+      "uuid": "ed375d1a-1965-5d30-83ef-6f354d93ad9c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q02-asset",
+      "sourceUuid": "59f6eb1f-61bc-580f-a8d4-b934b597d6c7",
+      "stableId": "ca-traffic-signals-q02-a",
+      "uuid": "b62b5af8-cde0-5b20-ab2b-15e2c7e9dc4f"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q03",
+      "sourceUuid": "52839ce4-048b-5121-aa3c-34d8b96f6c0d",
+      "stableId": "ca-traffic-signals-q03",
+      "uuid": "9c70d293-9658-56f9-b3eb-a39132e728ef"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q03-asset",
+      "sourceUuid": "61d3b17f-48bb-52ee-9b7c-21eb01b9be8d",
+      "stableId": "ca-traffic-signals-q03-a",
+      "uuid": "f833434d-3fb9-59e7-982a-92247d838431"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q04",
+      "sourceUuid": "c812fcd5-da42-534b-ba01-61d09cb5d47e",
+      "stableId": "ca-traffic-signals-q04",
+      "uuid": "6976374f-ab9b-5286-9efa-c2ed68deb7b1"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q04-asset",
+      "sourceUuid": "a1a6d429-87b9-5051-bf3e-acda8602d284",
+      "stableId": "ca-traffic-signals-q04-a",
+      "uuid": "482370c1-2ec1-583a-88df-bff795d08a02"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q05",
+      "sourceUuid": "e02b503e-1d25-5976-8f07-5b5c22618ea4",
+      "stableId": "ca-traffic-signals-q05",
+      "uuid": "ea46451f-84e0-55ef-8875-e830a2d363f0"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-q05-asset",
+      "sourceUuid": "12512a9f-da7e-514a-879f-25cba084f3eb",
+      "stableId": "ca-traffic-signals-q05-a",
+      "uuid": "9fca59d8-a062-5f05-9067-12980b339cf2"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-asset-01",
+      "sourceUuid": "bff574bd-208f-5870-b7d7-a29855c7d811",
+      "stableId": "ca-traffic-signals-a01",
+      "uuid": "855bf91f-475b-5436-83f0-1a153f18d60e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-asset-02",
+      "sourceUuid": "edfad567-2aed-5d31-8c7d-42369e792e23",
+      "stableId": "ca-traffic-signals-a02",
+      "uuid": "15ed270d-32a9-562c-857f-15310f5a1377"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-asset-03",
+      "sourceUuid": "cc60d789-6d07-5bc5-9064-86bcf65ddcdb",
+      "stableId": "ca-traffic-signals-a03",
+      "uuid": "10aa726f-24f5-5eb7-b1de-a9c5e2310708"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b01",
+      "stableId": "ca-traffic-signals-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b02",
+      "stableId": "ca-traffic-signals-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b03",
+      "stableId": "ca-traffic-signals-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b04",
+      "stableId": "ca-traffic-signals-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b05",
+      "stableId": "ca-traffic-signals-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b06",
+      "stableId": "ca-traffic-signals-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b07",
+      "stableId": "ca-traffic-signals-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b08",
+      "stableId": "ca-traffic-signals-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b09",
+      "stableId": "ca-traffic-signals-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b10",
+      "stableId": "ca-traffic-signals-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b11",
+      "stableId": "ca-traffic-signals-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l04-b12",
+      "stableId": "ca-traffic-signals-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m01-l05",
+      "sourceUuid": "cee07ebc-5eb8-58dc-b03b-0ddf5a3193d4",
+      "stableId": "ca-road-markings-and-curbs",
+      "uuid": "dc079334-6021-5520-b4ba-2efbcc2d40c4"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q01",
+      "sourceUuid": "b1a4be2c-6f97-5f78-9c7d-e481fe9650b9",
+      "stableId": "ca-road-markings-and-curbs-q01",
+      "uuid": "b3dca5c3-13f6-5220-9bd2-2edb3b5e8e68"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q01-asset",
+      "sourceUuid": "ed982721-93c2-5d60-97f4-7eb22fd6d700",
+      "stableId": "ca-road-markings-and-curbs-q01-a",
+      "uuid": "47cc4125-c96a-5f60-a736-095ece01135b"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q02",
+      "sourceUuid": "403b0c71-36d2-5a0e-990d-c7543526ba58",
+      "stableId": "ca-road-markings-and-curbs-q02",
+      "uuid": "85496157-85d1-551d-91ee-1141be56634d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q02-asset",
+      "sourceUuid": "ed57f044-8857-5991-a701-405a249ae55b",
+      "stableId": "ca-road-markings-and-curbs-q02-a",
+      "uuid": "30e4014e-d7fe-5433-8a11-ba6a006cb99c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q03",
+      "sourceUuid": "24696a02-0c9f-5095-9238-8df085a9551a",
+      "stableId": "ca-road-markings-and-curbs-q03",
+      "uuid": "75a99ed3-7e00-58bc-9a81-ea6c222ef71b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q03-asset",
+      "sourceUuid": "ed7208cf-c546-5d3e-80f8-bd68df7db0ab",
+      "stableId": "ca-road-markings-and-curbs-q03-a",
+      "uuid": "b52f2d04-b379-5a8d-8736-e07ed1cd74be"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q04",
+      "sourceUuid": "e72347d7-d099-5505-a8af-c08820e77dc7",
+      "stableId": "ca-road-markings-and-curbs-q04",
+      "uuid": "0b08b79f-b7f5-5647-975f-3eb59c6a706e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q04-asset",
+      "sourceUuid": "d52dd46d-0b19-587d-8a6a-98597cc503b2",
+      "stableId": "ca-road-markings-and-curbs-q04-a",
+      "uuid": "a1220ab2-bcbc-5d67-b82a-a93c1448c79d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q05",
+      "sourceUuid": "9fe6ff23-38bf-5ba2-932d-f6a0cc7fc36b",
+      "stableId": "ca-road-markings-and-curbs-q05",
+      "uuid": "833a7ff3-1554-534a-9bdc-72747f4d988f"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-q05-asset",
+      "sourceUuid": "22cb7ce5-bc32-5782-8be2-280cf46814ec",
+      "stableId": "ca-road-markings-and-curbs-q05-a",
+      "uuid": "44e628c0-5804-5f85-bdb0-d7f691d608b5"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-asset-01",
+      "sourceUuid": "8801a47f-41ff-5231-a2fb-ad48fcb74d05",
+      "stableId": "ca-road-markings-and-curbs-a01",
+      "uuid": "4dc0aa62-ebef-55b2-8c58-adb0ec558053"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-asset-02",
+      "sourceUuid": "e99a05c6-b8a5-5f80-aa41-de59ae32deaf",
+      "stableId": "ca-road-markings-and-curbs-a02",
+      "uuid": "a365a809-d5a7-57ca-a4cf-31c7318ecef3"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-asset-03",
+      "sourceUuid": "6d26fb99-f7f0-52e7-8d1f-a915720b5233",
+      "stableId": "ca-road-markings-and-curbs-a03",
+      "uuid": "49d9e6e9-c9d7-5d6c-9674-15c73317572f"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b01",
+      "stableId": "ca-road-markings-and-curbs-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b02",
+      "stableId": "ca-road-markings-and-curbs-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b03",
+      "stableId": "ca-road-markings-and-curbs-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b04",
+      "stableId": "ca-road-markings-and-curbs-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b05",
+      "stableId": "ca-road-markings-and-curbs-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b06",
+      "stableId": "ca-road-markings-and-curbs-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b07",
+      "stableId": "ca-road-markings-and-curbs-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b08",
+      "stableId": "ca-road-markings-and-curbs-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b09",
+      "stableId": "ca-road-markings-and-curbs-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b10",
+      "stableId": "ca-road-markings-and-curbs-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b11",
+      "stableId": "ca-road-markings-and-curbs-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m01-l05-b12",
+      "stableId": "ca-road-markings-and-curbs-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m02-l01",
+      "sourceUuid": "228db3f7-c99f-5f24-8d99-3cf3dad79f3d",
+      "stableId": "ca-uncontrolled-intersections",
+      "uuid": "07dd88e1-628e-50a2-9953-69208caed294"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q01",
+      "sourceUuid": "915d634a-7e7e-5093-a1d5-7c21c400bef4",
+      "stableId": "ca-uncontrolled-intersections-q01",
+      "uuid": "3d13113d-45e8-5781-b2e9-e8bdf0f88573"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q01-asset",
+      "sourceUuid": "ecb8cd1e-880d-557b-b188-5d36b12cc739",
+      "stableId": "ca-uncontrolled-intersections-q01-a",
+      "uuid": "5aa075b4-2103-5d7e-8c75-9c39ae9c2659"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q02",
+      "sourceUuid": "9053f56e-95b9-5f7f-a19e-69e3860514cf",
+      "stableId": "ca-uncontrolled-intersections-q02",
+      "uuid": "702483fa-8a68-5ba2-8deb-33e7aa80f2fa"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q02-asset",
+      "sourceUuid": "8de12a08-aec9-5c80-86af-e496a3681918",
+      "stableId": "ca-uncontrolled-intersections-q02-a",
+      "uuid": "41d12f4b-f6f7-5a7a-9c2f-ad2cf38fa947"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q03",
+      "sourceUuid": "7f8bd13e-fc2a-5722-94e0-3e6b7f1507fa",
+      "stableId": "ca-uncontrolled-intersections-q03",
+      "uuid": "419f707c-ba14-5876-b01e-30accd0cb713"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q03-asset",
+      "sourceUuid": "97f616e6-ec14-527d-a1db-20e45441fbf4",
+      "stableId": "ca-uncontrolled-intersections-q03-a",
+      "uuid": "5082ddbe-97f5-5fef-a938-7a11cb559bb2"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q04",
+      "sourceUuid": "092a93dd-029a-53ca-9c29-fe1c1a9eb400",
+      "stableId": "ca-uncontrolled-intersections-q04",
+      "uuid": "bd12bd64-619d-518d-bcda-7bb93c93c976"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q04-asset",
+      "sourceUuid": "43e50c5d-ee99-51bd-b35a-5798cb6f6f51",
+      "stableId": "ca-uncontrolled-intersections-q04-a",
+      "uuid": "26819c73-8a27-5bf9-89b5-bee79a7cdeda"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q05",
+      "sourceUuid": "3f2ad37f-985d-5563-adf7-2188eb1673b4",
+      "stableId": "ca-uncontrolled-intersections-q05",
+      "uuid": "499c7009-fdd3-51fe-8b4b-669e64179728"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-q05-asset",
+      "sourceUuid": "acb0a283-1cc0-536d-a17e-2474214c1003",
+      "stableId": "ca-uncontrolled-intersections-q05-a",
+      "uuid": "18fd48b1-2782-5e8d-957a-f01d50770f8d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-asset-01",
+      "sourceUuid": "da0899ee-1cb1-5750-9190-e62964ab7b94",
+      "stableId": "ca-uncontrolled-intersections-a01",
+      "uuid": "5dea8295-5fbc-5cd5-8e5f-f879cce7946d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-asset-02",
+      "sourceUuid": "da733312-ae90-5391-acbb-80d071e4b945",
+      "stableId": "ca-uncontrolled-intersections-a02",
+      "uuid": "b709ad0d-6c3b-5d44-8211-53cac87239bf"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-asset-03",
+      "sourceUuid": "7b6965ee-50ec-551a-b5ef-8c5c814eafde",
+      "stableId": "ca-uncontrolled-intersections-a03",
+      "uuid": "d82cf3b2-7c53-5ec5-9f7b-f91a83a96106"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b01",
+      "stableId": "ca-uncontrolled-intersections-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b02",
+      "stableId": "ca-uncontrolled-intersections-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b03",
+      "stableId": "ca-uncontrolled-intersections-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b04",
+      "stableId": "ca-uncontrolled-intersections-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b05",
+      "stableId": "ca-uncontrolled-intersections-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b06",
+      "stableId": "ca-uncontrolled-intersections-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b07",
+      "stableId": "ca-uncontrolled-intersections-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b08",
+      "stableId": "ca-uncontrolled-intersections-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b09",
+      "stableId": "ca-uncontrolled-intersections-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b10",
+      "stableId": "ca-uncontrolled-intersections-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b11",
+      "stableId": "ca-uncontrolled-intersections-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l01-b12",
+      "stableId": "ca-uncontrolled-intersections-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m02-l02",
+      "sourceUuid": "f87947d3-c91b-58c3-9589-80f237fd1022",
+      "stableId": "ca-stop-yield-entering-traffic",
+      "uuid": "081bc740-9927-56ed-ac99-5acdaa8b8582"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q01",
+      "sourceUuid": "608f3562-b3eb-5853-aa9a-62a736062a76",
+      "stableId": "ca-stop-yield-entering-traffic-q01",
+      "uuid": "d2aa0e25-396b-57c9-850f-aaa741c737e6"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q01-asset",
+      "sourceUuid": "13e41fb9-403c-5fe7-8271-61a108273767",
+      "stableId": "ca-stop-yield-entering-traffic-q01-a",
+      "uuid": "eafd1c22-a449-565b-b92c-7970fd9a7100"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q02",
+      "sourceUuid": "fc2451bc-fdfb-57d8-8f2c-cad7a9c97cd8",
+      "stableId": "ca-stop-yield-entering-traffic-q02",
+      "uuid": "53b27543-f968-5132-994a-1035bb613b5a"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q02-asset",
+      "sourceUuid": "12fe0ee5-c8f9-5f68-b403-1c0f8672bfe8",
+      "stableId": "ca-stop-yield-entering-traffic-q02-a",
+      "uuid": "efd23f0f-3b18-59d5-a6d6-c347d71fe7a2"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q03",
+      "sourceUuid": "47b66df2-e323-57ad-9eef-6e08f7eee3a7",
+      "stableId": "ca-stop-yield-entering-traffic-q03",
+      "uuid": "d35751bd-0e30-503f-8bc0-d84502747b1b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q03-asset",
+      "sourceUuid": "7d18b329-ae1d-50f6-b3c9-7d1a8939f9bc",
+      "stableId": "ca-stop-yield-entering-traffic-q03-a",
+      "uuid": "5bd8ccdb-c8e7-546f-a525-18d58dc1edcf"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q04",
+      "sourceUuid": "9640a189-ee10-577b-bf41-1f55396c454a",
+      "stableId": "ca-stop-yield-entering-traffic-q04",
+      "uuid": "03923b18-ebca-5619-a98e-c453552b9540"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q04-asset",
+      "sourceUuid": "6cff611b-5c73-5a57-bbef-b133e6fbdc11",
+      "stableId": "ca-stop-yield-entering-traffic-q04-a",
+      "uuid": "8ad7e15a-32a9-5a71-9b44-fdf5a2a8a895"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q05",
+      "sourceUuid": "b15c3956-dfb8-5766-93c3-b13cbcd4825d",
+      "stableId": "ca-stop-yield-entering-traffic-q05",
+      "uuid": "91ad89f1-e53f-5659-bcaa-c2d5da082f8a"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-q05-asset",
+      "sourceUuid": "e39bed93-ca3c-5976-ac1f-5d460128246e",
+      "stableId": "ca-stop-yield-entering-traffic-q05-a",
+      "uuid": "5ae4b302-f0a3-550b-bc5a-6b21763c7846"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-asset-01",
+      "sourceUuid": "89ea9388-a7e4-56b7-b06d-0f3a3a6fa900",
+      "stableId": "ca-stop-yield-entering-traffic-a01",
+      "uuid": "a3cd9aee-1bde-5a5d-bb56-dc8f2a09fb87"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-asset-02",
+      "sourceUuid": "6668fcdf-2385-5b59-b556-5ab9d622346b",
+      "stableId": "ca-stop-yield-entering-traffic-a02",
+      "uuid": "7eaaf4e2-466f-58bc-97f9-ef40ca66fed7"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-asset-03",
+      "sourceUuid": "dc6fa23a-8f3e-57e5-b458-ac5a44a24111",
+      "stableId": "ca-stop-yield-entering-traffic-a03",
+      "uuid": "3c5edcb4-296c-562e-a7d4-70c810900c49"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b01",
+      "stableId": "ca-stop-yield-entering-traffic-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b02",
+      "stableId": "ca-stop-yield-entering-traffic-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b03",
+      "stableId": "ca-stop-yield-entering-traffic-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b04",
+      "stableId": "ca-stop-yield-entering-traffic-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b05",
+      "stableId": "ca-stop-yield-entering-traffic-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b06",
+      "stableId": "ca-stop-yield-entering-traffic-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b07",
+      "stableId": "ca-stop-yield-entering-traffic-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b08",
+      "stableId": "ca-stop-yield-entering-traffic-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b09",
+      "stableId": "ca-stop-yield-entering-traffic-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b10",
+      "stableId": "ca-stop-yield-entering-traffic-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b11",
+      "stableId": "ca-stop-yield-entering-traffic-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l02-b12",
+      "stableId": "ca-stop-yield-entering-traffic-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m02-l03",
+      "sourceUuid": "ef2d6295-dfd8-5978-ba26-c3054492d3fd",
+      "stableId": "ca-turns-and-signals",
+      "uuid": "d035824d-8073-5458-94e3-39f634338070"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q01",
+      "sourceUuid": "79d291c4-fca9-5ed0-9647-038aeefd2c8e",
+      "stableId": "ca-turns-and-signals-q01",
+      "uuid": "45a84344-125e-56cd-95a7-3c3ef700a599"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q01-asset",
+      "sourceUuid": "894e7115-d6d6-5f92-b1ae-4665bcc2fbc7",
+      "stableId": "ca-turns-and-signals-q01-a",
+      "uuid": "3af12944-9e0b-53c4-847c-cdd33c2f509c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q02",
+      "sourceUuid": "fb73b4ca-aea3-5d00-84ae-3663043a5192",
+      "stableId": "ca-turns-and-signals-q02",
+      "uuid": "07a04aba-9e85-5e28-a6a1-bfb5dd98d2df"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q02-asset",
+      "sourceUuid": "d25aec4a-a873-525f-ac78-22af37bf26d0",
+      "stableId": "ca-turns-and-signals-q02-a",
+      "uuid": "80eb9a3f-094d-516d-9b7c-2d8df3e4e43d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q03",
+      "sourceUuid": "ad8f106f-6f8f-5a42-8aee-837f13ce664e",
+      "stableId": "ca-turns-and-signals-q03",
+      "uuid": "4b8c51fd-089b-5c34-b49b-00c6a39a464d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q03-asset",
+      "sourceUuid": "2d0478a9-caba-5366-ac23-08f55e4b1b4d",
+      "stableId": "ca-turns-and-signals-q03-a",
+      "uuid": "8c16c5e6-ecf3-5748-b914-6934450dcba4"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q04",
+      "sourceUuid": "fd20c7ec-b4ed-5a72-8e2c-44dbd73a6151",
+      "stableId": "ca-turns-and-signals-q04",
+      "uuid": "2b3fc825-ec76-5569-9f2e-df7d60767cc8"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q04-asset",
+      "sourceUuid": "fe76da9e-4446-52ff-bdb4-269545e17eda",
+      "stableId": "ca-turns-and-signals-q04-a",
+      "uuid": "f7de196e-c9f5-5f35-b4de-b2210e441493"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q05",
+      "sourceUuid": "ee2c3f95-60c6-5489-9867-5f5c6bee63f5",
+      "stableId": "ca-turns-and-signals-q05",
+      "uuid": "214fad9d-48df-53fd-b24e-1f16f07d6bc7"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-q05-asset",
+      "sourceUuid": "45adc7b0-0b09-585f-8aab-ae9d77dfe647",
+      "stableId": "ca-turns-and-signals-q05-a",
+      "uuid": "0b097719-0783-519d-bcc2-36f513aa9744"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-asset-01",
+      "sourceUuid": "5e313b97-7950-54a9-b8e5-995cee5126e5",
+      "stableId": "ca-turns-and-signals-a01",
+      "uuid": "60b00780-1f03-5cad-8852-1628e237c7c2"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-asset-02",
+      "sourceUuid": "ece6d7e3-4678-59a7-a353-f4ff6893b50c",
+      "stableId": "ca-turns-and-signals-a02",
+      "uuid": "5caa0b6b-dc99-58d5-b0ff-ed1339b6b93b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-asset-03",
+      "sourceUuid": "1f21b929-4dac-52e9-b540-8320dd1ac80b",
+      "stableId": "ca-turns-and-signals-a03",
+      "uuid": "a151d27e-3c72-5c9f-9c41-300cbd70f15a"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b01",
+      "stableId": "ca-turns-and-signals-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b02",
+      "stableId": "ca-turns-and-signals-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b03",
+      "stableId": "ca-turns-and-signals-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b04",
+      "stableId": "ca-turns-and-signals-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b05",
+      "stableId": "ca-turns-and-signals-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b06",
+      "stableId": "ca-turns-and-signals-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b07",
+      "stableId": "ca-turns-and-signals-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b08",
+      "stableId": "ca-turns-and-signals-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b09",
+      "stableId": "ca-turns-and-signals-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b10",
+      "stableId": "ca-turns-and-signals-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b11",
+      "stableId": "ca-turns-and-signals-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l03-b12",
+      "stableId": "ca-turns-and-signals-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m02-l04",
+      "sourceUuid": "889dca6f-edae-54c2-90e2-2d5f55e1e9eb",
+      "stableId": "ca-u-turns-starting-backing",
+      "uuid": "c3e68d10-791a-5140-b27d-17cd12666e85"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q01",
+      "sourceUuid": "bc3f8d05-280a-5674-b6e3-5480a46216ef",
+      "stableId": "ca-u-turns-starting-backing-q01",
+      "uuid": "a1618659-85b8-51ad-89ed-7eec2066b7bc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q01-asset",
+      "sourceUuid": "2fda03dd-2529-5cad-8be1-d8f994d9b8fd",
+      "stableId": "ca-u-turns-starting-backing-q01-a",
+      "uuid": "5cd5eef6-4e82-596f-bd5b-f60568809303"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q02",
+      "sourceUuid": "f06431e7-1d48-59ed-a94c-829cb72502a4",
+      "stableId": "ca-u-turns-starting-backing-q02",
+      "uuid": "9435eeb3-7117-5386-824e-ac2bc034fcd4"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q02-asset",
+      "sourceUuid": "1c93c926-0c96-506c-bd47-4531b2b7c2f6",
+      "stableId": "ca-u-turns-starting-backing-q02-a",
+      "uuid": "33596efb-923d-5f9f-900e-c06787faf679"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q03",
+      "sourceUuid": "818a50b2-a8f7-55e9-b047-6b77888475ca",
+      "stableId": "ca-u-turns-starting-backing-q03",
+      "uuid": "f8c6ecc2-2384-58f8-b849-736682ce0dcb"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q03-asset",
+      "sourceUuid": "91169975-63c0-59ea-860b-fb34342afcc1",
+      "stableId": "ca-u-turns-starting-backing-q03-a",
+      "uuid": "71aa5f81-6c56-5ac9-81b5-178c082ca2ac"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q04",
+      "sourceUuid": "7ed60041-17b8-540c-bf4f-ef4ac3152788",
+      "stableId": "ca-u-turns-starting-backing-q04",
+      "uuid": "1c4f3484-5c6a-5020-a405-158136cdf2f0"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q04-asset",
+      "sourceUuid": "2eeb0c78-ed6c-542f-95d5-b62a91241826",
+      "stableId": "ca-u-turns-starting-backing-q04-a",
+      "uuid": "ba7d411d-1dc0-5e72-8e61-913adc53b316"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q05",
+      "sourceUuid": "0ebd473b-fce7-57f9-ae75-13d25604e840",
+      "stableId": "ca-u-turns-starting-backing-q05",
+      "uuid": "eece3b3d-c4f0-55ec-a7a6-8db78a30ed51"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-q05-asset",
+      "sourceUuid": "b64f260f-f6a7-5358-b3b9-a4f094f9899e",
+      "stableId": "ca-u-turns-starting-backing-q05-a",
+      "uuid": "b6675cd2-ca06-5397-b632-20cfb2417898"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-asset-01",
+      "sourceUuid": "bb3e7e5a-8059-5b42-add7-67d87b8845d4",
+      "stableId": "ca-u-turns-starting-backing-a01",
+      "uuid": "fb7b9829-59de-5837-af2d-87f8a830cba5"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-asset-02",
+      "sourceUuid": "ec15c60e-da63-554b-82e5-83da48366807",
+      "stableId": "ca-u-turns-starting-backing-a02",
+      "uuid": "fd7d564c-34f0-5276-8456-608f1a1b903e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-asset-03",
+      "sourceUuid": "8cfee229-6ddc-5785-bffe-21258d769617",
+      "stableId": "ca-u-turns-starting-backing-a03",
+      "uuid": "b28cb24e-3f39-5170-a44b-aae197e7de9e"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b01",
+      "stableId": "ca-u-turns-starting-backing-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b02",
+      "stableId": "ca-u-turns-starting-backing-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b03",
+      "stableId": "ca-u-turns-starting-backing-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b04",
+      "stableId": "ca-u-turns-starting-backing-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b05",
+      "stableId": "ca-u-turns-starting-backing-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b06",
+      "stableId": "ca-u-turns-starting-backing-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b07",
+      "stableId": "ca-u-turns-starting-backing-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b08",
+      "stableId": "ca-u-turns-starting-backing-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b09",
+      "stableId": "ca-u-turns-starting-backing-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b10",
+      "stableId": "ca-u-turns-starting-backing-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b11",
+      "stableId": "ca-u-turns-starting-backing-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l04-b12",
+      "stableId": "ca-u-turns-starting-backing-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m02-l05",
+      "sourceUuid": "2d36b61f-ebcd-5f8a-a375-ac48fae1a014",
+      "stableId": "ca-crosswalks-and-roundabouts",
+      "uuid": "401e6be2-14c2-57ba-89d5-9ca99c9fdc84"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q01",
+      "sourceUuid": "71dfe62d-7120-5241-8a35-6fad18bb361b",
+      "stableId": "ca-crosswalks-and-roundabouts-q01",
+      "uuid": "b4a9e844-b540-501a-b33c-172816d8dc80"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q01-asset",
+      "sourceUuid": "eb18115a-32f8-529a-a81f-191481eb1ad5",
+      "stableId": "ca-crosswalks-and-roundabouts-q01-a",
+      "uuid": "93101f1c-33cc-551d-b20e-d6d4adc68d33"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q02",
+      "sourceUuid": "b8b15425-8210-56e2-b84c-d12d68d4943f",
+      "stableId": "ca-crosswalks-and-roundabouts-q02",
+      "uuid": "c45524e1-bf38-5e17-8044-138916ff0f81"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q02-asset",
+      "sourceUuid": "d16b5649-2708-54c0-a19a-eb0cf9af1bf0",
+      "stableId": "ca-crosswalks-and-roundabouts-q02-a",
+      "uuid": "35575241-055b-5c70-a813-c91bfb95f0bf"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q03",
+      "sourceUuid": "89cf872a-5971-5d93-91d6-d9240f6253af",
+      "stableId": "ca-crosswalks-and-roundabouts-q03",
+      "uuid": "9625712d-2cb7-5128-9fc8-20360dd1ef48"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q03-asset",
+      "sourceUuid": "53900699-cd87-55a7-8674-d455c6c9e3a2",
+      "stableId": "ca-crosswalks-and-roundabouts-q03-a",
+      "uuid": "6722d620-1c3a-5a8e-a766-664aa172936c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q04",
+      "sourceUuid": "ea190694-c560-5de0-a041-0302a4e6f8b6",
+      "stableId": "ca-crosswalks-and-roundabouts-q04",
+      "uuid": "4fc1b70f-8dc6-5392-9d09-e8bd111ce2cd"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q04-asset",
+      "sourceUuid": "17d83945-b4f0-54d7-8b53-573c26062693",
+      "stableId": "ca-crosswalks-and-roundabouts-q04-a",
+      "uuid": "8b477df1-fe60-533b-970a-132e6f9dedf2"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q05",
+      "sourceUuid": "8283d214-7103-5afe-84f0-2e8edd53aa7c",
+      "stableId": "ca-crosswalks-and-roundabouts-q05",
+      "uuid": "1fcaea58-bca4-5c5f-8fc4-d6add07065ad"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-q05-asset",
+      "sourceUuid": "a976135a-2a76-55d2-9d08-54a4edac394e",
+      "stableId": "ca-crosswalks-and-roundabouts-q05-a",
+      "uuid": "42b2e796-ebd2-55bb-b98c-98dec50af645"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-asset-01",
+      "sourceUuid": "e9c179a4-2bad-56e7-99c3-ea361ee0869d",
+      "stableId": "ca-crosswalks-and-roundabouts-a01",
+      "uuid": "77632fed-95bc-51a0-9929-7d28e088ed53"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-asset-02",
+      "sourceUuid": "23b26fec-08d7-511a-acfd-180fa29a240c",
+      "stableId": "ca-crosswalks-and-roundabouts-a02",
+      "uuid": "9d3a5de6-acb6-56cf-9cf5-02ba740184aa"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-asset-03",
+      "sourceUuid": "0ad87947-6774-568f-bca1-b412f087f4be",
+      "stableId": "ca-crosswalks-and-roundabouts-a03",
+      "uuid": "35e8d2fd-a885-5385-ab4c-e6623178d683"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b01",
+      "stableId": "ca-crosswalks-and-roundabouts-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b02",
+      "stableId": "ca-crosswalks-and-roundabouts-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b03",
+      "stableId": "ca-crosswalks-and-roundabouts-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b04",
+      "stableId": "ca-crosswalks-and-roundabouts-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b05",
+      "stableId": "ca-crosswalks-and-roundabouts-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b06",
+      "stableId": "ca-crosswalks-and-roundabouts-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b07",
+      "stableId": "ca-crosswalks-and-roundabouts-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b08",
+      "stableId": "ca-crosswalks-and-roundabouts-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b09",
+      "stableId": "ca-crosswalks-and-roundabouts-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b10",
+      "stableId": "ca-crosswalks-and-roundabouts-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b11",
+      "stableId": "ca-crosswalks-and-roundabouts-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m02-l05-b12",
+      "stableId": "ca-crosswalks-and-roundabouts-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m03-l01",
+      "sourceUuid": "9228139e-1cfe-5e1e-b578-ccb578a23437",
+      "stableId": "ca-choosing-changing-lanes",
+      "uuid": "7f837361-8c7d-52ed-93d0-949ec244b719"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q01",
+      "sourceUuid": "aac76a7b-239b-5ba4-9567-5bdc575799da",
+      "stableId": "ca-choosing-changing-lanes-q01",
+      "uuid": "1b21ae34-6651-56c4-8852-bf2b2364e005"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q01-asset",
+      "sourceUuid": "d7a631bf-2753-5dd5-9b57-50ed42c4c1b3",
+      "stableId": "ca-choosing-changing-lanes-q01-a",
+      "uuid": "73b9ac6f-421e-5215-af27-396e9514653f"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q02",
+      "sourceUuid": "57f4e745-ebfc-58a7-b22b-d8bc63118166",
+      "stableId": "ca-choosing-changing-lanes-q02",
+      "uuid": "da70c534-429f-506f-8392-b3961e09f618"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q02-asset",
+      "sourceUuid": "6697575f-9940-53a7-9e01-45789a74ca23",
+      "stableId": "ca-choosing-changing-lanes-q02-a",
+      "uuid": "56d0cb04-38ad-5d3d-91c6-ac714d7f562e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q03",
+      "sourceUuid": "edc264f4-b0b6-5383-9417-826a387fc217",
+      "stableId": "ca-choosing-changing-lanes-q03",
+      "uuid": "2cab3482-b4a5-5393-99f6-5b2bfbdc1b8c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q03-asset",
+      "sourceUuid": "7d19bca1-5c23-50d2-b830-1c0c258eed90",
+      "stableId": "ca-choosing-changing-lanes-q03-a",
+      "uuid": "d02830ae-bc1a-5cc8-b1f4-bd46af947bee"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q04",
+      "sourceUuid": "136f82f7-b3f2-5bc5-9b27-0efa092d5f10",
+      "stableId": "ca-choosing-changing-lanes-q04",
+      "uuid": "e2d3b8ba-24e5-5bfd-ab69-8bd4e7f4ca3e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q04-asset",
+      "sourceUuid": "b0026e99-eec9-5bf2-816f-5a20b8a32e69",
+      "stableId": "ca-choosing-changing-lanes-q04-a",
+      "uuid": "d224da0c-3367-58e4-8a42-5302d3aaa4ef"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q05",
+      "sourceUuid": "f183adf8-a969-56e7-8304-55981af0212e",
+      "stableId": "ca-choosing-changing-lanes-q05",
+      "uuid": "0c726efd-d102-5772-bc31-d2360d91136b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-q05-asset",
+      "sourceUuid": "aed84a8d-a309-51c5-b03c-ae75ee71554c",
+      "stableId": "ca-choosing-changing-lanes-q05-a",
+      "uuid": "1e08235e-4a31-52db-945f-389295aeb988"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-asset-01",
+      "sourceUuid": "e3306aae-403c-5cda-9a2e-67c6e39ccd32",
+      "stableId": "ca-choosing-changing-lanes-a01",
+      "uuid": "c2ebd4e5-1804-552f-b3fe-b5e1057ed6d0"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-asset-02",
+      "sourceUuid": "153655af-bf32-530a-94cd-055ca1d8200f",
+      "stableId": "ca-choosing-changing-lanes-a02",
+      "uuid": "c21d98b5-321d-5324-8c6f-1d16a217bc0b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-asset-03",
+      "sourceUuid": "ed9f95da-9cd1-59c9-bb9e-1a4b92b7e1c0",
+      "stableId": "ca-choosing-changing-lanes-a03",
+      "uuid": "046a4b23-d6d5-52b0-bffa-5cbc44616563"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b01",
+      "stableId": "ca-choosing-changing-lanes-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b02",
+      "stableId": "ca-choosing-changing-lanes-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b03",
+      "stableId": "ca-choosing-changing-lanes-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b04",
+      "stableId": "ca-choosing-changing-lanes-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b05",
+      "stableId": "ca-choosing-changing-lanes-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b06",
+      "stableId": "ca-choosing-changing-lanes-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b07",
+      "stableId": "ca-choosing-changing-lanes-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b08",
+      "stableId": "ca-choosing-changing-lanes-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b09",
+      "stableId": "ca-choosing-changing-lanes-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b10",
+      "stableId": "ca-choosing-changing-lanes-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b11",
+      "stableId": "ca-choosing-changing-lanes-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l01-b12",
+      "stableId": "ca-choosing-changing-lanes-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m03-l02",
+      "sourceUuid": "f2d7128d-0561-5cc3-b5ad-a8241e1cae31",
+      "stableId": "ca-passing-rules",
+      "uuid": "f642d463-5844-50ed-ba71-5e3254553570"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-q01",
+      "sourceUuid": "80bb167e-9947-524f-beac-9ccf63a4fe93",
+      "stableId": "ca-passing-rules-q01",
+      "uuid": "80906e74-03f2-58a7-aaa4-ee37a1cb876d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-q02",
+      "sourceUuid": "5ba19c96-70d3-5d44-85c9-8ed9a6830e3f",
+      "stableId": "ca-passing-rules-q02",
+      "uuid": "a988a403-2aa3-5ad8-98a1-4dbe79b23f48"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-q03",
+      "sourceUuid": "4b7c923f-9ca5-5b3d-b5c5-42392b220270",
+      "stableId": "ca-passing-rules-q03",
+      "uuid": "f51df101-1222-5b78-85a6-aa1335e9ee61"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-q04",
+      "sourceUuid": "fd1d3970-5ef7-577d-a319-fe19221f1737",
+      "stableId": "ca-passing-rules-q04",
+      "uuid": "f31372e8-a1b7-5c8c-9b78-c6e19b88c454"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-q05",
+      "sourceUuid": "f292d4e5-823d-5dc1-b2a0-f637ae683db8",
+      "stableId": "ca-passing-rules-q05",
+      "uuid": "3d4ce039-9498-533d-a828-f392f5f0718a"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-asset-01",
+      "sourceUuid": "7782dabf-6670-547e-b2bd-99c4f4ae13a0",
+      "stableId": "ca-passing-rules-a01",
+      "uuid": "242e1431-8d93-5435-8703-d6dc4c96b8ad"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-asset-02",
+      "sourceUuid": "38cc2907-22bd-556a-813e-1420b0eebd6d",
+      "stableId": "ca-passing-rules-a02",
+      "uuid": "a6b8b6c3-4aa7-55ff-a938-13302cc2c514"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-asset-03",
+      "sourceUuid": "a17d64bc-e240-5e19-9f0b-58a8566bc6fd",
+      "stableId": "ca-passing-rules-a03",
+      "uuid": "441bc0a1-b44b-5013-a2ce-5b2f5b846c81"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b01",
+      "stableId": "ca-passing-rules-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b02",
+      "stableId": "ca-passing-rules-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b03",
+      "stableId": "ca-passing-rules-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b04",
+      "stableId": "ca-passing-rules-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b05",
+      "stableId": "ca-passing-rules-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b06",
+      "stableId": "ca-passing-rules-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b07",
+      "stableId": "ca-passing-rules-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b08",
+      "stableId": "ca-passing-rules-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b09",
+      "stableId": "ca-passing-rules-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b10",
+      "stableId": "ca-passing-rules-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b11",
+      "stableId": "ca-passing-rules-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l02-b12",
+      "stableId": "ca-passing-rules-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m03-l03",
+      "sourceUuid": "81ce8027-c6ff-5603-a972-d7d076ae9e48",
+      "stableId": "ca-freeway-merging",
+      "uuid": "23f89c84-78d8-50d5-b74c-a9898b12ab55"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-q01",
+      "sourceUuid": "8493bc31-eb45-550d-a685-aed091ecbbe6",
+      "stableId": "ca-freeway-merging-q01",
+      "uuid": "7fab4ca8-73e6-5850-a846-e664a9619ef4"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-q02",
+      "sourceUuid": "408fe6b6-58b8-5132-8d7e-b7b73c36f0ac",
+      "stableId": "ca-freeway-merging-q02",
+      "uuid": "ccc1eef1-d656-56cf-a7d7-a975e3f69afa"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-q03",
+      "sourceUuid": "640be3f7-af37-5200-9494-10c3a8a16705",
+      "stableId": "ca-freeway-merging-q03",
+      "uuid": "866d0e6a-6e45-5212-8aa6-b0c0fe7fccf9"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-q04",
+      "sourceUuid": "65266da2-4613-5f20-bd6d-8c25305d782f",
+      "stableId": "ca-freeway-merging-q04",
+      "uuid": "ee533ea6-4fc7-5776-a9b9-dcce1f291782"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-q05",
+      "sourceUuid": "84892bc8-7658-5d1f-9127-c932dc39904f",
+      "stableId": "ca-freeway-merging-q05",
+      "uuid": "d9643bb0-d1ff-5228-942e-9d84d4db13fb"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-asset-01",
+      "sourceUuid": "84f2a948-86f8-5344-8cf6-dfef7263555d",
+      "stableId": "ca-freeway-merging-a01",
+      "uuid": "b16b518c-b7d0-5f8c-89ff-ce91243d7b41"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-asset-02",
+      "sourceUuid": "572358f0-aa4e-54a5-8bf1-d9c007db04f4",
+      "stableId": "ca-freeway-merging-a02",
+      "uuid": "87faf8ba-5e29-586d-bca4-0d3d77882b88"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-asset-03",
+      "sourceUuid": "e23cac94-d7d9-5aa0-9255-7398510e4137",
+      "stableId": "ca-freeway-merging-a03",
+      "uuid": "9cdfca61-5d67-5fd6-aee1-e90cb0800ca1"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b01",
+      "stableId": "ca-freeway-merging-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b02",
+      "stableId": "ca-freeway-merging-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b03",
+      "stableId": "ca-freeway-merging-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b04",
+      "stableId": "ca-freeway-merging-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b05",
+      "stableId": "ca-freeway-merging-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b06",
+      "stableId": "ca-freeway-merging-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b07",
+      "stableId": "ca-freeway-merging-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b08",
+      "stableId": "ca-freeway-merging-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b09",
+      "stableId": "ca-freeway-merging-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b10",
+      "stableId": "ca-freeway-merging-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b11",
+      "stableId": "ca-freeway-merging-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l03-b12",
+      "stableId": "ca-freeway-merging-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m03-l04",
+      "sourceUuid": "235029e4-886d-5580-bcc7-a0bdc31e52a5",
+      "stableId": "ca-special-lanes",
+      "uuid": "c8d73d21-04ae-55b0-a695-f6fa346052c8"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-q01",
+      "sourceUuid": "ee5db3f4-7982-5bf5-8ef7-eea1038fe01f",
+      "stableId": "ca-special-lanes-q01",
+      "uuid": "474ef2ae-1bca-5927-a13a-04bf1cbf059e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-q02",
+      "sourceUuid": "260fbb8c-9c8c-5a0f-ba29-5736e15905f1",
+      "stableId": "ca-special-lanes-q02",
+      "uuid": "042c84be-49b2-5295-8372-bfe2f8572254"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-q03",
+      "sourceUuid": "66f45f4c-7f4a-5ab4-9b74-1a5430d6a474",
+      "stableId": "ca-special-lanes-q03",
+      "uuid": "4c5ccb5f-aba8-5186-90a6-6d48ecad848c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-q04",
+      "sourceUuid": "1a35ea6e-a61f-5cc2-be90-d70ad252f9d8",
+      "stableId": "ca-special-lanes-q04",
+      "uuid": "b3a32949-0045-5adb-bbc0-71c918e38f37"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-q05",
+      "sourceUuid": "3b7e4b95-7d28-5ca8-b310-b2fc84f13058",
+      "stableId": "ca-special-lanes-q05",
+      "uuid": "de6abdcd-f610-514b-8bbd-48b05022143f"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-asset-01",
+      "sourceUuid": "208df0d5-0fc1-594e-a19f-9b691001bff7",
+      "stableId": "ca-special-lanes-a01",
+      "uuid": "f15b7b34-9ac8-5d24-ae25-08adc80dbfc2"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-asset-02",
+      "sourceUuid": "a96a3616-5916-50df-94a5-f4ce34989770",
+      "stableId": "ca-special-lanes-a02",
+      "uuid": "1ff1b159-c30c-5c93-82b9-6195107546bc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-asset-03",
+      "sourceUuid": "1c3a6df1-ba93-56f7-941a-bed80d0cf369",
+      "stableId": "ca-special-lanes-a03",
+      "uuid": "aadef57c-3d71-56c3-91e4-0e35166ef480"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b01",
+      "stableId": "ca-special-lanes-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b02",
+      "stableId": "ca-special-lanes-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b03",
+      "stableId": "ca-special-lanes-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b04",
+      "stableId": "ca-special-lanes-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b05",
+      "stableId": "ca-special-lanes-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b06",
+      "stableId": "ca-special-lanes-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b07",
+      "stableId": "ca-special-lanes-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b08",
+      "stableId": "ca-special-lanes-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b09",
+      "stableId": "ca-special-lanes-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b10",
+      "stableId": "ca-special-lanes-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b11",
+      "stableId": "ca-special-lanes-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m03-l04-b12",
+      "stableId": "ca-special-lanes-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m04-l01",
+      "sourceUuid": "166d30b4-3dc1-58d0-9551-db515ef4e3c6",
+      "stableId": "ca-speed-laws",
+      "uuid": "7782e530-5025-5f1f-b5d7-6b6dc07a2dad"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-q01",
+      "sourceUuid": "5de8001a-3085-5a14-8185-09bd4fe19a32",
+      "stableId": "ca-speed-laws-q01",
+      "uuid": "68424e78-1206-5108-b25b-02cdd9efda23"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-q02",
+      "sourceUuid": "07da5c88-5ec4-5187-8033-5d2f1d22c7ad",
+      "stableId": "ca-speed-laws-q02",
+      "uuid": "879c11ab-48c1-5fc8-bfb4-de1c8bc3c564"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-q03",
+      "sourceUuid": "6d79be71-f4b7-5405-86d2-001b56a1915a",
+      "stableId": "ca-speed-laws-q03",
+      "uuid": "5a3c7a2f-20f3-505b-b484-793feb5ed50d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-q04",
+      "sourceUuid": "dde6d15b-9c26-53c3-b4c6-6b4b70f75d7a",
+      "stableId": "ca-speed-laws-q04",
+      "uuid": "6f6af1ff-5dac-5809-98ac-f18d9710d312"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-q05",
+      "sourceUuid": "bed120ba-3ec0-58cf-a21e-6de9159f3718",
+      "stableId": "ca-speed-laws-q05",
+      "uuid": "cd2ece0f-fc6e-53dd-bb0c-269134b37e13"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-asset-01",
+      "sourceUuid": "49f9c805-ee52-5236-a3db-e005f7a19a99",
+      "stableId": "ca-speed-laws-a01",
+      "uuid": "7c40b32c-ea67-55c0-a407-f8a251e4ddfc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-asset-02",
+      "sourceUuid": "0f628023-03c2-5823-b02e-7185a3c8e639",
+      "stableId": "ca-speed-laws-a02",
+      "uuid": "cb6c8c32-96d9-5fe4-a813-f70202c0fc82"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-asset-03",
+      "sourceUuid": "716b6630-590f-51b3-aae8-bba8bc8ba2cc",
+      "stableId": "ca-speed-laws-a03",
+      "uuid": "003eb2d0-ed8a-57a4-a44f-60e15f03ce27"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b01",
+      "stableId": "ca-speed-laws-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b02",
+      "stableId": "ca-speed-laws-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b03",
+      "stableId": "ca-speed-laws-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b04",
+      "stableId": "ca-speed-laws-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b05",
+      "stableId": "ca-speed-laws-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b06",
+      "stableId": "ca-speed-laws-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b07",
+      "stableId": "ca-speed-laws-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b08",
+      "stableId": "ca-speed-laws-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b09",
+      "stableId": "ca-speed-laws-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b10",
+      "stableId": "ca-speed-laws-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b11",
+      "stableId": "ca-speed-laws-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l01-b12",
+      "stableId": "ca-speed-laws-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m04-l02",
+      "sourceUuid": "424deed2-dc4f-5727-9131-7b5ec494cb66",
+      "stableId": "ca-following-distance-scanning",
+      "uuid": "4ac0832d-857f-5179-b1c0-583f460b0d40"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-q01",
+      "sourceUuid": "dbe74bfd-b281-58e3-8254-68435f7efde2",
+      "stableId": "ca-following-distance-scanning-q01",
+      "uuid": "4927a6a3-699b-5c7c-b389-8015250a38c6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-q02",
+      "sourceUuid": "b25a985d-5d16-5ba4-9d70-7f54cae6face",
+      "stableId": "ca-following-distance-scanning-q02",
+      "uuid": "dc9876ee-fc09-5777-82ba-ec50cdbef2dc"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-q03",
+      "sourceUuid": "326feda8-fc6c-5f0c-a32a-e7c7ed102282",
+      "stableId": "ca-following-distance-scanning-q03",
+      "uuid": "ed32b20f-dafc-5691-81a5-8abbe364e92c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-q04",
+      "sourceUuid": "6372926d-0dc9-5a38-9d7d-5ce97df99308",
+      "stableId": "ca-following-distance-scanning-q04",
+      "uuid": "b3b4d686-2abe-5a6b-9c27-0304238204a8"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-q05",
+      "sourceUuid": "0ca729ba-5e54-57c2-88f1-5d884eceb8ac",
+      "stableId": "ca-following-distance-scanning-q05",
+      "uuid": "ab0206e5-20e1-57ed-8aae-3b963fc58164"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-asset-01",
+      "sourceUuid": "31753852-c1e4-55c2-b28e-2cfe99b64aaa",
+      "stableId": "ca-following-distance-scanning-a01",
+      "uuid": "4dfd0109-1fcf-540d-a700-9ec04df6ac39"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-asset-02",
+      "sourceUuid": "f887d12a-c59b-56e2-9405-26469d874505",
+      "stableId": "ca-following-distance-scanning-a02",
+      "uuid": "f7d993ac-71a0-53e3-ab97-6aa7578be4dc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-asset-03",
+      "sourceUuid": "ce3d5305-8bc3-5c20-ab21-d2991a2190f8",
+      "stableId": "ca-following-distance-scanning-a03",
+      "uuid": "b35d2d6c-3d40-5921-bd02-ae44bd490b45"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b01",
+      "stableId": "ca-following-distance-scanning-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b02",
+      "stableId": "ca-following-distance-scanning-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b03",
+      "stableId": "ca-following-distance-scanning-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b04",
+      "stableId": "ca-following-distance-scanning-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b05",
+      "stableId": "ca-following-distance-scanning-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b06",
+      "stableId": "ca-following-distance-scanning-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b07",
+      "stableId": "ca-following-distance-scanning-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b08",
+      "stableId": "ca-following-distance-scanning-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b09",
+      "stableId": "ca-following-distance-scanning-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b10",
+      "stableId": "ca-following-distance-scanning-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b11",
+      "stableId": "ca-following-distance-scanning-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l02-b12",
+      "stableId": "ca-following-distance-scanning-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m04-l03",
+      "sourceUuid": "5392bb30-b3f2-52c3-8be0-466d835e604e",
+      "stableId": "ca-parking-and-curbs",
+      "uuid": "459dd05f-4900-56a8-9bf2-caf558a5c08b"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-q01",
+      "sourceUuid": "64c75ab3-e518-599a-a8ff-fc0cb16c2b61",
+      "stableId": "ca-parking-and-curbs-q01",
+      "uuid": "bff3121a-55ae-51a9-8d66-7d4336c24a9d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-q02",
+      "sourceUuid": "566adddb-fb2f-5e32-a385-8c07f021343b",
+      "stableId": "ca-parking-and-curbs-q02",
+      "uuid": "83ca64fe-f450-5b29-82c2-5c2e65122621"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-q03",
+      "sourceUuid": "01f1db83-2bcb-5706-8d6c-48e92ed62237",
+      "stableId": "ca-parking-and-curbs-q03",
+      "uuid": "dd469550-da0e-5beb-8793-a80f874bc3bd"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-q04",
+      "sourceUuid": "0dfec8ec-e038-5ae6-81d6-c4bac5c49d98",
+      "stableId": "ca-parking-and-curbs-q04",
+      "uuid": "9b4a7150-fc9d-5b3b-828c-3968f5e30236"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-q05",
+      "sourceUuid": "338d4ad5-2eaa-53cc-919f-afa8d65b0e7a",
+      "stableId": "ca-parking-and-curbs-q05",
+      "uuid": "f8afc64b-6ab3-561b-93da-b77ffb067f3c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-asset-01",
+      "sourceUuid": "a355bc49-aadd-5ebb-9abf-7e52ec04c83f",
+      "stableId": "ca-parking-and-curbs-a01",
+      "uuid": "7db02c41-166a-5b59-a2e0-4686bc2e326f"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-asset-02",
+      "sourceUuid": "99c872a5-03fa-5381-848e-b43634e6b567",
+      "stableId": "ca-parking-and-curbs-a02",
+      "uuid": "458acbca-4c7c-50dc-8644-9f631f23a0e7"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-asset-03",
+      "sourceUuid": "7bf743b4-5ba1-5d49-a219-8e3036487f90",
+      "stableId": "ca-parking-and-curbs-a03",
+      "uuid": "884a2a49-37ee-5313-b406-add7088be593"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b01",
+      "stableId": "ca-parking-and-curbs-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b02",
+      "stableId": "ca-parking-and-curbs-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b03",
+      "stableId": "ca-parking-and-curbs-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b04",
+      "stableId": "ca-parking-and-curbs-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b05",
+      "stableId": "ca-parking-and-curbs-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b06",
+      "stableId": "ca-parking-and-curbs-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b07",
+      "stableId": "ca-parking-and-curbs-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b08",
+      "stableId": "ca-parking-and-curbs-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b09",
+      "stableId": "ca-parking-and-curbs-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b10",
+      "stableId": "ca-parking-and-curbs-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b11",
+      "stableId": "ca-parking-and-curbs-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m04-l03-b12",
+      "stableId": "ca-parking-and-curbs-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m05-l01",
+      "sourceUuid": "41db8f6d-f6aa-5992-905b-0607e84a9ed6",
+      "stableId": "ca-bicycles-motorcycles",
+      "uuid": "19b586e8-c111-5160-b31f-ef0e3d0604c0"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-q01",
+      "sourceUuid": "37d9d067-2415-5edd-aca7-54852b2df678",
+      "stableId": "ca-bicycles-motorcycles-q01",
+      "uuid": "1f042fcb-e002-5e37-a70a-8074db2893c8"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-q02",
+      "sourceUuid": "d570b026-e9a2-5bfa-9a86-5298d2ca9690",
+      "stableId": "ca-bicycles-motorcycles-q02",
+      "uuid": "0fa9484c-077a-50e6-ac22-d972d0f53406"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-q03",
+      "sourceUuid": "78b31736-a9b7-5aa4-82a2-f7e39b54bdfe",
+      "stableId": "ca-bicycles-motorcycles-q03",
+      "uuid": "24b4979e-6027-5741-b2b2-71f066511f75"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-q04",
+      "sourceUuid": "e823c36f-ad8f-5d89-8820-a400c6bba6df",
+      "stableId": "ca-bicycles-motorcycles-q04",
+      "uuid": "3b3ba083-8157-5f45-b568-ad6d80dd28a6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-q05",
+      "sourceUuid": "69b6f410-466e-59a2-9f4f-41a56a806f85",
+      "stableId": "ca-bicycles-motorcycles-q05",
+      "uuid": "8b7a2ffc-2275-5273-85d1-4873b852118c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-asset-01",
+      "sourceUuid": "71ab8fae-fe1e-50a0-8c78-8b44e9835f8a",
+      "stableId": "ca-bicycles-motorcycles-a01",
+      "uuid": "e586dc31-a039-5036-b0cc-8c25b6504b9b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-asset-02",
+      "sourceUuid": "a8068e3d-5672-5bbb-a0cb-c89d3b48fdf3",
+      "stableId": "ca-bicycles-motorcycles-a02",
+      "uuid": "53766482-09e8-5a3b-adab-0b8cd566a935"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-asset-03",
+      "sourceUuid": "f1ef14f9-788c-5f7c-8e24-cc579a888d56",
+      "stableId": "ca-bicycles-motorcycles-a03",
+      "uuid": "c62c1762-d7bc-5e07-95cb-65c0d67451d9"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b01",
+      "stableId": "ca-bicycles-motorcycles-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b02",
+      "stableId": "ca-bicycles-motorcycles-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b03",
+      "stableId": "ca-bicycles-motorcycles-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b04",
+      "stableId": "ca-bicycles-motorcycles-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b05",
+      "stableId": "ca-bicycles-motorcycles-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b06",
+      "stableId": "ca-bicycles-motorcycles-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b07",
+      "stableId": "ca-bicycles-motorcycles-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b08",
+      "stableId": "ca-bicycles-motorcycles-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b09",
+      "stableId": "ca-bicycles-motorcycles-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b10",
+      "stableId": "ca-bicycles-motorcycles-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b11",
+      "stableId": "ca-bicycles-motorcycles-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l01-b12",
+      "stableId": "ca-bicycles-motorcycles-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m05-l02",
+      "sourceUuid": "b606895b-8e52-5faf-aea5-d16230e1452f",
+      "stableId": "ca-trucks-buses-slow-vehicles",
+      "uuid": "044598cf-218c-55ac-9e07-aaeb3239071e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-q01",
+      "sourceUuid": "ab859872-a885-5652-b71f-6efd122d4f98",
+      "stableId": "ca-trucks-buses-slow-vehicles-q01",
+      "uuid": "cba95498-bd8a-56a4-9322-0ba2b6fb7e2f"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-q02",
+      "sourceUuid": "cf54bb9e-2167-5c68-a763-121cc74b1e5d",
+      "stableId": "ca-trucks-buses-slow-vehicles-q02",
+      "uuid": "c94ae423-0932-58aa-9c4e-4beab8a8d387"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-q03",
+      "sourceUuid": "c5b0e334-0830-5e22-9721-f3d8589ae298",
+      "stableId": "ca-trucks-buses-slow-vehicles-q03",
+      "uuid": "94035818-b88f-5404-a949-78f77cf82c31"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-q04",
+      "sourceUuid": "c62558c0-4d48-517a-a244-26ac49174506",
+      "stableId": "ca-trucks-buses-slow-vehicles-q04",
+      "uuid": "e08d89dd-15a5-5ada-adf9-3e572db51a16"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-q05",
+      "sourceUuid": "fc3c356e-c7e8-5a02-acad-02742ef3756e",
+      "stableId": "ca-trucks-buses-slow-vehicles-q05",
+      "uuid": "56358201-4936-595b-ada9-d9b8bfde17bb"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-asset-01",
+      "sourceUuid": "27b1cc7d-67ae-519d-b58c-b1e4eb007d8e",
+      "stableId": "ca-trucks-buses-slow-vehicles-a01",
+      "uuid": "081be46f-b78c-5ae2-95db-8f4b6420712e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-asset-02",
+      "sourceUuid": "282762a1-2ee9-5dd5-9848-562ccac976ca",
+      "stableId": "ca-trucks-buses-slow-vehicles-a02",
+      "uuid": "1b58ab9c-8c36-5317-b271-4c5ede49e524"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-asset-03",
+      "sourceUuid": "0359cb80-501a-57f6-90e7-b9a43e99804b",
+      "stableId": "ca-trucks-buses-slow-vehicles-a03",
+      "uuid": "255b96e3-8b0f-5695-a4f3-1e4330ed1c27"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b01",
+      "stableId": "ca-trucks-buses-slow-vehicles-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b02",
+      "stableId": "ca-trucks-buses-slow-vehicles-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b03",
+      "stableId": "ca-trucks-buses-slow-vehicles-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b04",
+      "stableId": "ca-trucks-buses-slow-vehicles-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b05",
+      "stableId": "ca-trucks-buses-slow-vehicles-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b06",
+      "stableId": "ca-trucks-buses-slow-vehicles-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b07",
+      "stableId": "ca-trucks-buses-slow-vehicles-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b08",
+      "stableId": "ca-trucks-buses-slow-vehicles-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b09",
+      "stableId": "ca-trucks-buses-slow-vehicles-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b10",
+      "stableId": "ca-trucks-buses-slow-vehicles-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b11",
+      "stableId": "ca-trucks-buses-slow-vehicles-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l02-b12",
+      "stableId": "ca-trucks-buses-slow-vehicles-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m05-l03",
+      "sourceUuid": "349ddf6b-14b7-5e64-82bf-5ea1cefea3a0",
+      "stableId": "ca-emergency-school-work-zones",
+      "uuid": "28471afb-e875-54b7-9a77-10245a392137"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-q01",
+      "sourceUuid": "28c4f7d5-f914-5d06-b57b-1d0bbb5bc8b4",
+      "stableId": "ca-emergency-school-work-zones-q01",
+      "uuid": "b26aa722-2d46-5517-9a8b-3cd7f84d5d16"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-q02",
+      "sourceUuid": "4ea5f253-9f0a-5a6a-89f3-108decd3cb36",
+      "stableId": "ca-emergency-school-work-zones-q02",
+      "uuid": "a761644c-b597-5305-b030-761c5879bc0d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-q03",
+      "sourceUuid": "d3d7eff3-77d3-581b-a466-ffd31bb58f1b",
+      "stableId": "ca-emergency-school-work-zones-q03",
+      "uuid": "33a6ef2f-fc35-5d40-bde2-f1b2d3f5a93b"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-q04",
+      "sourceUuid": "1bf4c4ac-f24a-5d74-a359-7c7da011e12e",
+      "stableId": "ca-emergency-school-work-zones-q04",
+      "uuid": "2a469546-a8e5-51be-b21c-3c1399da3a61"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-q05",
+      "sourceUuid": "ad6fd55e-f63c-5eec-88e7-f6d1fb8bf97c",
+      "stableId": "ca-emergency-school-work-zones-q05",
+      "uuid": "7efe3fe4-2cf7-552b-b03c-dfb6de6daa4a"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-asset-01",
+      "sourceUuid": "156cbb68-c152-5154-ab4c-732f7bc3ef62",
+      "stableId": "ca-emergency-school-work-zones-a01",
+      "uuid": "9e91ebc3-9720-5f51-9cb6-bea437734d80"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-asset-02",
+      "sourceUuid": "b2caf365-613b-5226-83b5-c40262e4d945",
+      "stableId": "ca-emergency-school-work-zones-a02",
+      "uuid": "6d83e271-c36c-5762-b0e4-0b64f23de7e4"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-asset-03",
+      "sourceUuid": "8f1eca43-bf89-5deb-a9a0-4c76eb4c011a",
+      "stableId": "ca-emergency-school-work-zones-a03",
+      "uuid": "b3a424bb-ed97-556c-9d02-f95c1af7a180"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b01",
+      "stableId": "ca-emergency-school-work-zones-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b02",
+      "stableId": "ca-emergency-school-work-zones-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b03",
+      "stableId": "ca-emergency-school-work-zones-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b04",
+      "stableId": "ca-emergency-school-work-zones-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b05",
+      "stableId": "ca-emergency-school-work-zones-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b06",
+      "stableId": "ca-emergency-school-work-zones-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b07",
+      "stableId": "ca-emergency-school-work-zones-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b08",
+      "stableId": "ca-emergency-school-work-zones-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b09",
+      "stableId": "ca-emergency-school-work-zones-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b10",
+      "stableId": "ca-emergency-school-work-zones-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b11",
+      "stableId": "ca-emergency-school-work-zones-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m05-l03-b12",
+      "stableId": "ca-emergency-school-work-zones-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m06-l01",
+      "sourceUuid": "a534d771-d8f3-5de6-9c18-66595c88a7e1",
+      "stableId": "ca-night-weather-visibility",
+      "uuid": "0905f2d6-7669-5667-9551-52bd23ff9a44"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-q01",
+      "sourceUuid": "266a911a-d8b6-575f-9787-14d1b01105b1",
+      "stableId": "ca-night-weather-visibility-q01",
+      "uuid": "79b663f7-eec6-5490-b23a-7ccd5853848f"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-q02",
+      "sourceUuid": "f37973d4-9a9e-57ff-a434-1996cc53a7a5",
+      "stableId": "ca-night-weather-visibility-q02",
+      "uuid": "dd3203fc-beaf-5764-9399-19be74ed9663"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-q03",
+      "sourceUuid": "8eb7414f-896b-5883-bf44-dfd4f725ad56",
+      "stableId": "ca-night-weather-visibility-q03",
+      "uuid": "8888a68e-e407-5bb1-b8a7-7ec1ef03cdc5"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-q04",
+      "sourceUuid": "d4c4e1b4-5dfd-5f98-b51b-19b6fc6e045e",
+      "stableId": "ca-night-weather-visibility-q04",
+      "uuid": "007576b6-f574-5249-923b-02e83f0bdd95"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-q05",
+      "sourceUuid": "b3f267fb-61c2-5d23-b797-c2b289f668ac",
+      "stableId": "ca-night-weather-visibility-q05",
+      "uuid": "1666c76a-fefa-5072-8382-f5ce5e531b5d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-asset-01",
+      "sourceUuid": "165f56a7-18d6-5ab3-9aed-93883b3c226e",
+      "stableId": "ca-night-weather-visibility-a01",
+      "uuid": "9559dec3-fc9a-579b-a287-d58f142740ca"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-asset-02",
+      "sourceUuid": "92ea8fde-b4dd-5bf0-a770-83c665dcb913",
+      "stableId": "ca-night-weather-visibility-a02",
+      "uuid": "379ebe7b-3f0b-5cf9-9d97-293eacd6e250"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-asset-03",
+      "sourceUuid": "f262895e-c47d-502d-a2a1-3e5f467f6c85",
+      "stableId": "ca-night-weather-visibility-a03",
+      "uuid": "bade562e-91ab-50aa-ad71-114a66b5f942"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b01",
+      "stableId": "ca-night-weather-visibility-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b02",
+      "stableId": "ca-night-weather-visibility-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b03",
+      "stableId": "ca-night-weather-visibility-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b04",
+      "stableId": "ca-night-weather-visibility-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b05",
+      "stableId": "ca-night-weather-visibility-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b06",
+      "stableId": "ca-night-weather-visibility-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b07",
+      "stableId": "ca-night-weather-visibility-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b08",
+      "stableId": "ca-night-weather-visibility-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b09",
+      "stableId": "ca-night-weather-visibility-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b10",
+      "stableId": "ca-night-weather-visibility-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b11",
+      "stableId": "ca-night-weather-visibility-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l01-b12",
+      "stableId": "ca-night-weather-visibility-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m06-l02",
+      "sourceUuid": "41f60bb5-7fff-5a94-8cca-cbecbb04c325",
+      "stableId": "ca-skids-and-emergencies",
+      "uuid": "1cd29b77-5dbf-52f5-9e4b-6305af99c737"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-q01",
+      "sourceUuid": "b81d22b3-f6bb-5d90-aea4-a8f5def67db8",
+      "stableId": "ca-skids-and-emergencies-q01",
+      "uuid": "f19a6b56-29ea-5d16-8899-e064f540b22a"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-q02",
+      "sourceUuid": "7ff29f85-3449-5fef-b1c3-e2b0c7d85d20",
+      "stableId": "ca-skids-and-emergencies-q02",
+      "uuid": "a1e719cc-38fb-5178-a826-792584b93ab9"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-q03",
+      "sourceUuid": "97d79b17-d4df-5b85-8e38-31f427d5b576",
+      "stableId": "ca-skids-and-emergencies-q03",
+      "uuid": "b0125140-de0a-5670-a1a0-de4d5224f0ac"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-q04",
+      "sourceUuid": "7daf5936-2b73-5092-8c0d-967b8755b906",
+      "stableId": "ca-skids-and-emergencies-q04",
+      "uuid": "c456fc7f-8eba-5330-9d3e-d6c79fa546ed"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-q05",
+      "sourceUuid": "a5364c86-9362-559e-ae2b-4516cb93fead",
+      "stableId": "ca-skids-and-emergencies-q05",
+      "uuid": "a4991986-1a78-570f-80b3-73b8928fbe4b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-asset-01",
+      "sourceUuid": "7c02cf42-e7d5-56b1-b6ab-29c2e7d8fbae",
+      "stableId": "ca-skids-and-emergencies-a01",
+      "uuid": "44b8813c-2921-5078-a719-b754fac06a63"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-asset-02",
+      "sourceUuid": "ba166ab3-18f1-52bf-a042-96a98dab6317",
+      "stableId": "ca-skids-and-emergencies-a02",
+      "uuid": "f240657a-064c-5058-b076-140ea88a5fa7"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-asset-03",
+      "sourceUuid": "6a47d643-0cf8-5028-930f-815378afbe85",
+      "stableId": "ca-skids-and-emergencies-a03",
+      "uuid": "55d2f8a3-c7ec-5c95-b034-fedafdf717b0"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b01",
+      "stableId": "ca-skids-and-emergencies-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b02",
+      "stableId": "ca-skids-and-emergencies-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b03",
+      "stableId": "ca-skids-and-emergencies-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b04",
+      "stableId": "ca-skids-and-emergencies-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b05",
+      "stableId": "ca-skids-and-emergencies-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b06",
+      "stableId": "ca-skids-and-emergencies-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b07",
+      "stableId": "ca-skids-and-emergencies-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b08",
+      "stableId": "ca-skids-and-emergencies-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b09",
+      "stableId": "ca-skids-and-emergencies-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b10",
+      "stableId": "ca-skids-and-emergencies-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b11",
+      "stableId": "ca-skids-and-emergencies-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l02-b12",
+      "stableId": "ca-skids-and-emergencies-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m06-l03",
+      "sourceUuid": "a46f1ce0-fd15-5c7c-875d-2cdce31e5160",
+      "stableId": "ca-distraction-and-fatigue",
+      "uuid": "cb68bab2-18bd-5543-9cf7-e8d302c2e55c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-q01",
+      "sourceUuid": "375c7e5a-bf8b-583e-b865-d348bc126714",
+      "stableId": "ca-distraction-and-fatigue-q01",
+      "uuid": "6886ca8a-1ff9-5f4e-af1d-afeca1655e75"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-q02",
+      "sourceUuid": "3f4a0409-2ce7-57ff-a501-e1b50f0b2def",
+      "stableId": "ca-distraction-and-fatigue-q02",
+      "uuid": "c264f285-3c14-5286-9538-c0c3ac3d1302"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-q03",
+      "sourceUuid": "7ae00f45-0a30-50f4-bd1c-aa75c1a9c937",
+      "stableId": "ca-distraction-and-fatigue-q03",
+      "uuid": "ef2673df-ec90-53ff-b135-fa590bd7bdf0"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-q04",
+      "sourceUuid": "966e5bdc-5390-5fff-a06d-54c0911b6966",
+      "stableId": "ca-distraction-and-fatigue-q04",
+      "uuid": "99870394-c369-5da9-ae89-531158e27c39"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-q05",
+      "sourceUuid": "1b2e1a9a-c330-53d8-baad-aac59a93dc11",
+      "stableId": "ca-distraction-and-fatigue-q05",
+      "uuid": "4ab8c44b-eac1-5c47-a76c-6a6e292eabce"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-asset-01",
+      "sourceUuid": "e8dd38d6-bbb1-51d6-827d-89b65235f885",
+      "stableId": "ca-distraction-and-fatigue-a01",
+      "uuid": "9c650f1b-5cc4-51d2-acce-2c7ee997c6a2"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-asset-02",
+      "sourceUuid": "2994ee69-e66a-5973-9fd5-a732c8c469c4",
+      "stableId": "ca-distraction-and-fatigue-a02",
+      "uuid": "1143ea2b-3210-53b1-bf89-14bc699b1f7f"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-asset-03",
+      "sourceUuid": "0fc48969-26c4-51ea-a646-80dd0cf572f0",
+      "stableId": "ca-distraction-and-fatigue-a03",
+      "uuid": "faac9c9e-513d-5724-b24f-2e600d3b1d67"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b01",
+      "stableId": "ca-distraction-and-fatigue-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b02",
+      "stableId": "ca-distraction-and-fatigue-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b03",
+      "stableId": "ca-distraction-and-fatigue-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b04",
+      "stableId": "ca-distraction-and-fatigue-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b05",
+      "stableId": "ca-distraction-and-fatigue-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b06",
+      "stableId": "ca-distraction-and-fatigue-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b07",
+      "stableId": "ca-distraction-and-fatigue-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b08",
+      "stableId": "ca-distraction-and-fatigue-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b09",
+      "stableId": "ca-distraction-and-fatigue-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b10",
+      "stableId": "ca-distraction-and-fatigue-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b11",
+      "stableId": "ca-distraction-and-fatigue-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l03-b12",
+      "stableId": "ca-distraction-and-fatigue-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m06-l04",
+      "sourceUuid": "dd57d7b9-a374-5b09-b914-645bef6b4e56",
+      "stableId": "ca-alcohol-drugs-dui",
+      "uuid": "827886d9-49b3-51cb-85f1-cce0a0330b77"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-q01",
+      "sourceUuid": "6295a854-f96c-52f7-8db1-7aafc1eedd3d",
+      "stableId": "ca-alcohol-drugs-dui-q01",
+      "uuid": "d938921a-4ebe-5f0a-b365-61b0033b2ca7"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-q02",
+      "sourceUuid": "691c133b-9c25-58b5-a7a2-ce55b1bb391b",
+      "stableId": "ca-alcohol-drugs-dui-q02",
+      "uuid": "979b5cb4-1bf6-5b53-b44f-2e8c559006bc"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-q03",
+      "sourceUuid": "9019be2e-a1c2-5d8b-99bc-9a2a7ff92de2",
+      "stableId": "ca-alcohol-drugs-dui-q03",
+      "uuid": "42862cf3-015d-5c9b-aa21-d5a289e33473"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-q04",
+      "sourceUuid": "c44c6155-7134-5068-b81d-23c2ab3a809d",
+      "stableId": "ca-alcohol-drugs-dui-q04",
+      "uuid": "acbb30cb-af56-5edb-8672-751eea02e416"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-q05",
+      "sourceUuid": "cc29ea8a-034b-5897-b4cf-f9b10e869c3e",
+      "stableId": "ca-alcohol-drugs-dui-q05",
+      "uuid": "8eb57352-7626-5b46-84d3-f4ad7c102ef1"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-asset-01",
+      "sourceUuid": "dce59b97-abf5-5d5d-a50c-78ac408bad23",
+      "stableId": "ca-alcohol-drugs-dui-a01",
+      "uuid": "b0c992a3-2e04-5feb-9289-a2686d215599"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-asset-02",
+      "sourceUuid": "9c7a4b29-6851-513e-8ef7-9441b3446d94",
+      "stableId": "ca-alcohol-drugs-dui-a02",
+      "uuid": "099cb98a-c5b3-5e0a-a325-abbf5fc87e06"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-asset-03",
+      "sourceUuid": "d24dbfa2-e793-5847-bbe5-d6498077b830",
+      "stableId": "ca-alcohol-drugs-dui-a03",
+      "uuid": "c698e07b-5521-5eb8-9620-b0b0cef0a7ed"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b01",
+      "stableId": "ca-alcohol-drugs-dui-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b02",
+      "stableId": "ca-alcohol-drugs-dui-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b03",
+      "stableId": "ca-alcohol-drugs-dui-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b04",
+      "stableId": "ca-alcohol-drugs-dui-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b05",
+      "stableId": "ca-alcohol-drugs-dui-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b06",
+      "stableId": "ca-alcohol-drugs-dui-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b07",
+      "stableId": "ca-alcohol-drugs-dui-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b08",
+      "stableId": "ca-alcohol-drugs-dui-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b09",
+      "stableId": "ca-alcohol-drugs-dui-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b10",
+      "stableId": "ca-alcohol-drugs-dui-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b11",
+      "stableId": "ca-alcohol-drugs-dui-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m06-l04-b12",
+      "stableId": "ca-alcohol-drugs-dui-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m07-l01",
+      "sourceUuid": "8a28ece1-6bdb-592e-bd68-326ceef41ea9",
+      "stableId": "ca-seat-belts-child-safety",
+      "uuid": "f511ebe3-00e1-5413-8a5b-e855ab5bcf87"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-q01",
+      "sourceUuid": "c0e2c6ee-679c-5863-ac6b-7cecc6b03dc2",
+      "stableId": "ca-seat-belts-child-safety-q01",
+      "uuid": "72e2b0bf-6deb-5e40-80e3-2991b09d3840"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-q02",
+      "sourceUuid": "30ad9304-301f-5820-8a89-5fed3b6fc5f7",
+      "stableId": "ca-seat-belts-child-safety-q02",
+      "uuid": "30882fbb-6dee-50b2-a795-d7c73d97f076"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-q03",
+      "sourceUuid": "1625e442-edfa-5a12-930f-c506c468ee93",
+      "stableId": "ca-seat-belts-child-safety-q03",
+      "uuid": "9ac524d1-5554-561d-8a84-a190772cd726"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-q04",
+      "sourceUuid": "61068b30-8b7a-53b6-899c-466f53cc5e5a",
+      "stableId": "ca-seat-belts-child-safety-q04",
+      "uuid": "4c35063e-56cf-5c79-8ce5-9552ebea954c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-q05",
+      "sourceUuid": "cd346435-d15c-50cd-b573-acf5d1c1b60e",
+      "stableId": "ca-seat-belts-child-safety-q05",
+      "uuid": "618cec1b-f856-5c36-ab78-78b684f9721b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-asset-01",
+      "sourceUuid": "e59ddee1-ce09-579f-bfde-5ceb7f39fcb1",
+      "stableId": "ca-seat-belts-child-safety-a01",
+      "uuid": "77ab6757-6d12-51ba-85e5-099c1b1efb72"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-asset-02",
+      "sourceUuid": "029a3736-ea19-5b3b-936e-da4c3e32f14a",
+      "stableId": "ca-seat-belts-child-safety-a02",
+      "uuid": "316790f7-f45b-5afa-b408-5479c189ef2e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-asset-03",
+      "sourceUuid": "3ad8df4d-8a95-5fcb-9f01-4cdd1d249fe5",
+      "stableId": "ca-seat-belts-child-safety-a03",
+      "uuid": "a799861f-6605-5de4-9d50-3be4c4f388ac"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b01",
+      "stableId": "ca-seat-belts-child-safety-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b02",
+      "stableId": "ca-seat-belts-child-safety-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b03",
+      "stableId": "ca-seat-belts-child-safety-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b04",
+      "stableId": "ca-seat-belts-child-safety-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b05",
+      "stableId": "ca-seat-belts-child-safety-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b06",
+      "stableId": "ca-seat-belts-child-safety-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b07",
+      "stableId": "ca-seat-belts-child-safety-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b08",
+      "stableId": "ca-seat-belts-child-safety-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b09",
+      "stableId": "ca-seat-belts-child-safety-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b10",
+      "stableId": "ca-seat-belts-child-safety-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b11",
+      "stableId": "ca-seat-belts-child-safety-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l01-b12",
+      "stableId": "ca-seat-belts-child-safety-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m07-l02",
+      "sourceUuid": "fb285c4c-77fe-5325-9898-54982f010353",
+      "stableId": "ca-equipment-loads-towing",
+      "uuid": "73661571-817d-58c5-b590-ef3d26ea73c9"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-q01",
+      "sourceUuid": "4ba6f4c1-6e16-5901-a0df-d9ece465ff59",
+      "stableId": "ca-equipment-loads-towing-q01",
+      "uuid": "49d322bb-7379-54c8-a09c-ef1a9208af30"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-q02",
+      "sourceUuid": "4f286717-2d04-5bf3-8a0a-884a0caaf571",
+      "stableId": "ca-equipment-loads-towing-q02",
+      "uuid": "4f911593-fd3a-5df1-9475-791cb30f5ac3"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-q03",
+      "sourceUuid": "78ff70f9-5db8-5826-81d4-3a2a0e7a2cdf",
+      "stableId": "ca-equipment-loads-towing-q03",
+      "uuid": "b7ebcc17-52e9-5491-99a5-406c59f1c92e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-q04",
+      "sourceUuid": "b9699f95-b96b-5d99-9576-dd86a47f3779",
+      "stableId": "ca-equipment-loads-towing-q04",
+      "uuid": "ee34d2fc-14a3-51e8-bc93-5c0ca0421c1c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-q05",
+      "sourceUuid": "e57eae3e-9135-54f2-9cdd-27091e437b01",
+      "stableId": "ca-equipment-loads-towing-q05",
+      "uuid": "2b909d13-a7dc-590b-81fb-d1fe61902470"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-asset-01",
+      "sourceUuid": "decabd42-fe0d-59f3-aebb-f06138776da9",
+      "stableId": "ca-equipment-loads-towing-a01",
+      "uuid": "b3e39000-069c-5711-abb9-3da451fc9298"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-asset-02",
+      "sourceUuid": "f50e580b-4fe3-5d50-9687-f8be8d602c24",
+      "stableId": "ca-equipment-loads-towing-a02",
+      "uuid": "2fa39e05-9fba-55d5-9252-dc36a86b51c6"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-asset-03",
+      "sourceUuid": "11700e9d-78a0-535f-9876-0b83f191f52c",
+      "stableId": "ca-equipment-loads-towing-a03",
+      "uuid": "2ade3c1e-d67d-5ae3-817b-ffbabd5e7722"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b01",
+      "stableId": "ca-equipment-loads-towing-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b02",
+      "stableId": "ca-equipment-loads-towing-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b03",
+      "stableId": "ca-equipment-loads-towing-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b04",
+      "stableId": "ca-equipment-loads-towing-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b05",
+      "stableId": "ca-equipment-loads-towing-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b06",
+      "stableId": "ca-equipment-loads-towing-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b07",
+      "stableId": "ca-equipment-loads-towing-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b08",
+      "stableId": "ca-equipment-loads-towing-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b09",
+      "stableId": "ca-equipment-loads-towing-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b10",
+      "stableId": "ca-equipment-loads-towing-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b11",
+      "stableId": "ca-equipment-loads-towing-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l02-b12",
+      "stableId": "ca-equipment-loads-towing-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m07-l03",
+      "sourceUuid": "d4fa8ccb-77b1-527e-b3d2-a50d96646cda",
+      "stableId": "ca-crashes-and-insurance",
+      "uuid": "acea1bde-dfe9-5ddf-b832-f4f2fd76ec3d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-q01",
+      "sourceUuid": "4e4e63ee-6925-5828-8f33-732f1a7c0a8c",
+      "stableId": "ca-crashes-and-insurance-q01",
+      "uuid": "6d455135-d4f7-531d-92c4-3c0f78212c06"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-q02",
+      "sourceUuid": "3be73330-3fa1-5f4d-9c6d-978989cb1f83",
+      "stableId": "ca-crashes-and-insurance-q02",
+      "uuid": "65e95007-60ee-5036-bfb3-3b545d42cdf0"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-q03",
+      "sourceUuid": "ba53629c-f5b1-57c2-8036-1fac434fa0fd",
+      "stableId": "ca-crashes-and-insurance-q03",
+      "uuid": "98c22248-556b-5e2f-8560-c1803d308247"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-q04",
+      "sourceUuid": "c28b644d-c372-5f1d-b6e8-ddb43f49f749",
+      "stableId": "ca-crashes-and-insurance-q04",
+      "uuid": "ed37da4d-7c02-5607-bf77-bc10e6640a7f"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-q05",
+      "sourceUuid": "69899ef1-13aa-548b-bac9-bd949fed40c0",
+      "stableId": "ca-crashes-and-insurance-q05",
+      "uuid": "d45ac44a-abf4-5a4c-8c03-a42f33105123"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-asset-01",
+      "sourceUuid": "7dbe6425-9329-5ede-b17d-9b7371ba4659",
+      "stableId": "ca-crashes-and-insurance-a01",
+      "uuid": "cf27ff0c-f534-50b0-b1f1-5de13c768ec4"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-asset-02",
+      "sourceUuid": "cd00d638-647f-5d9d-9179-8541adc71020",
+      "stableId": "ca-crashes-and-insurance-a02",
+      "uuid": "87f0025b-6e48-5a4b-9365-dcc1361d60a6"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-asset-03",
+      "sourceUuid": "83dd0e3b-fa39-5f83-b2f9-d609ba49dbaf",
+      "stableId": "ca-crashes-and-insurance-a03",
+      "uuid": "de7f7c4a-34c1-599d-9376-bcf6162a6d9c"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b01",
+      "stableId": "ca-crashes-and-insurance-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b02",
+      "stableId": "ca-crashes-and-insurance-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b03",
+      "stableId": "ca-crashes-and-insurance-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b04",
+      "stableId": "ca-crashes-and-insurance-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b05",
+      "stableId": "ca-crashes-and-insurance-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b06",
+      "stableId": "ca-crashes-and-insurance-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b07",
+      "stableId": "ca-crashes-and-insurance-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b08",
+      "stableId": "ca-crashes-and-insurance-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b09",
+      "stableId": "ca-crashes-and-insurance-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b10",
+      "stableId": "ca-crashes-and-insurance-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b11",
+      "stableId": "ca-crashes-and-insurance-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m07-l03-b12",
+      "stableId": "ca-crashes-and-insurance-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m08-l01",
+      "sourceUuid": "84995b48-feff-54db-bd0e-d2e250ce2615",
+      "stableId": "ca-permits-provisional-licenses",
+      "uuid": "208842e7-19bb-588c-ae38-1b549396d644"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-q01",
+      "sourceUuid": "decc4b1b-b47a-5dd3-b65e-9b2f0b627aea",
+      "stableId": "ca-permits-provisional-licenses-q01",
+      "uuid": "68a8afcc-b642-5254-b488-2ee752b5a1a6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-q02",
+      "sourceUuid": "1ac2b862-3e92-5f4a-a9f4-26113d0787f2",
+      "stableId": "ca-permits-provisional-licenses-q02",
+      "uuid": "ed63ccb5-0d16-5981-bfda-9bcad9558a6e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-q03",
+      "sourceUuid": "8f12cd4c-2612-5c3d-a299-1b3759154146",
+      "stableId": "ca-permits-provisional-licenses-q03",
+      "uuid": "86c20d5b-dd60-5321-98b5-b4305e68dcc1"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-q04",
+      "sourceUuid": "faa9d11e-8bd4-582e-8bba-ae4e55bed677",
+      "stableId": "ca-permits-provisional-licenses-q04",
+      "uuid": "f744609d-bed6-5973-935c-6576d6c8ec19"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-q05",
+      "sourceUuid": "a3564c18-ee2f-5cdb-9030-ea33f4ffab78",
+      "stableId": "ca-permits-provisional-licenses-q05",
+      "uuid": "d10e9d72-20be-5a49-8ab3-19c1893ce74d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-asset-01",
+      "sourceUuid": "edb31c9e-7c65-5536-a58a-b3c4e9e1c40b",
+      "stableId": "ca-permits-provisional-licenses-a01",
+      "uuid": "e845ec9f-75c4-5328-bf53-00a54c675fe0"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-asset-02",
+      "sourceUuid": "c7c35bc5-df3c-5fda-a3b1-8567f06f34ef",
+      "stableId": "ca-permits-provisional-licenses-a02",
+      "uuid": "ae052418-c80f-5e33-9d27-3503ec34333b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-asset-03",
+      "sourceUuid": "adcec31b-d17d-5ffd-8c83-7bc5d1bac90a",
+      "stableId": "ca-permits-provisional-licenses-a03",
+      "uuid": "a93178c1-80a4-5c60-9b8e-c3e50fbf63dc"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b01",
+      "stableId": "ca-permits-provisional-licenses-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b02",
+      "stableId": "ca-permits-provisional-licenses-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b03",
+      "stableId": "ca-permits-provisional-licenses-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b04",
+      "stableId": "ca-permits-provisional-licenses-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b05",
+      "stableId": "ca-permits-provisional-licenses-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b06",
+      "stableId": "ca-permits-provisional-licenses-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b07",
+      "stableId": "ca-permits-provisional-licenses-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b08",
+      "stableId": "ca-permits-provisional-licenses-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b09",
+      "stableId": "ca-permits-provisional-licenses-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b10",
+      "stableId": "ca-permits-provisional-licenses-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b11",
+      "stableId": "ca-permits-provisional-licenses-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l01-b12",
+      "stableId": "ca-permits-provisional-licenses-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m08-l02",
+      "sourceUuid": "170e9dfd-47a1-5f1f-bc12-ba7568012d21",
+      "stableId": "ca-licenses-and-registration",
+      "uuid": "fd0fe92c-b088-536c-a663-a2241b563ce0"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-q01",
+      "sourceUuid": "3bab9e37-69cd-5ce0-84ad-d8611100259f",
+      "stableId": "ca-licenses-and-registration-q01",
+      "uuid": "c5c4839b-881e-5016-afc0-b24e953c87b0"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-q02",
+      "sourceUuid": "af5c5fde-eb97-50f9-a31d-09d8fde1b6ce",
+      "stableId": "ca-licenses-and-registration-q02",
+      "uuid": "828d68d5-73c6-57cb-aa0e-ffc6c7caa544"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-q03",
+      "sourceUuid": "00b96045-2d06-50ae-b5d2-573cba5d4ca9",
+      "stableId": "ca-licenses-and-registration-q03",
+      "uuid": "5d9ca64c-7f08-5c22-a127-d7f9f3c18cc6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-q04",
+      "sourceUuid": "677ebc62-756d-547a-a770-fd6cc5a77532",
+      "stableId": "ca-licenses-and-registration-q04",
+      "uuid": "236486b4-8234-5b92-a23d-80d3d095ab46"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-q05",
+      "sourceUuid": "3c10f40c-49dd-56ca-8ae9-741531ebae52",
+      "stableId": "ca-licenses-and-registration-q05",
+      "uuid": "463f132c-a6a7-534a-a11f-1eea32bff5d4"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-asset-01",
+      "sourceUuid": "b7a98786-74ca-5ff8-8d1c-518d0c2a2fee",
+      "stableId": "ca-licenses-and-registration-a01",
+      "uuid": "19a96ae8-1d24-5b96-81c1-d0ab05c6ab5f"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-asset-02",
+      "sourceUuid": "bcb2155b-ab2e-5ec3-8aef-1298fa609798",
+      "stableId": "ca-licenses-and-registration-a02",
+      "uuid": "0aa5adb8-7b27-537c-baa7-197c6d38cf4c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-asset-03",
+      "sourceUuid": "1f200deb-abe7-58a8-9877-439c4503dd50",
+      "stableId": "ca-licenses-and-registration-a03",
+      "uuid": "b2e18f2d-5c65-5c09-8a58-0451aebe79a4"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b01",
+      "stableId": "ca-licenses-and-registration-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b02",
+      "stableId": "ca-licenses-and-registration-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b03",
+      "stableId": "ca-licenses-and-registration-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b04",
+      "stableId": "ca-licenses-and-registration-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b05",
+      "stableId": "ca-licenses-and-registration-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b06",
+      "stableId": "ca-licenses-and-registration-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b07",
+      "stableId": "ca-licenses-and-registration-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b08",
+      "stableId": "ca-licenses-and-registration-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b09",
+      "stableId": "ca-licenses-and-registration-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b10",
+      "stableId": "ca-licenses-and-registration-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b11",
+      "stableId": "ca-licenses-and-registration-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l02-b12",
+      "stableId": "ca-licenses-and-registration-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "ca-2026-08-10-r01-m08-l03",
+      "sourceUuid": "44df0873-7404-5230-b792-8327b2e4dd56",
+      "stableId": "ca-penalties-and-points",
+      "uuid": "09cc86a8-98fa-5403-836b-df4194762cea"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-q01",
+      "sourceUuid": "69fa1b1d-2481-5aa6-85fa-f3591a1d0f34",
+      "stableId": "ca-penalties-and-points-q01",
+      "uuid": "806610e9-b4b0-5e1a-8198-1b65f6f34ced"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-q02",
+      "sourceUuid": "b5480f42-01e4-5141-9767-0f65cb370f94",
+      "stableId": "ca-penalties-and-points-q02",
+      "uuid": "fa68219a-92b3-5ea8-86a3-612be342d17c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-q03",
+      "sourceUuid": "a0dcb274-fe38-5e91-917d-6ebf9705c20b",
+      "stableId": "ca-penalties-and-points-q03",
+      "uuid": "6f096b28-369f-50f4-bbc3-23e8ca338bc4"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-q04",
+      "sourceUuid": "0a1b6270-3ab7-5f1b-82ec-ba3a4b0e6fa5",
+      "stableId": "ca-penalties-and-points-q04",
+      "uuid": "0288b875-1542-5a02-9fc9-b4838e1e6f13"
+    },
+    {
+      "entity": "question",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-q05",
+      "sourceUuid": "8903c7e6-15d2-562e-9c1d-067cabbf3ef3",
+      "stableId": "ca-penalties-and-points-q05",
+      "uuid": "67d2b99a-05dd-59c4-94e3-33b234dc8785"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-asset-01",
+      "sourceUuid": "0eface82-260e-5586-bf41-ce664bcec894",
+      "stableId": "ca-penalties-and-points-a01",
+      "uuid": "6deb66c5-8d8c-59fc-a6bc-d9eaccac1620"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-asset-02",
+      "sourceUuid": "b936f425-86f9-5934-bcb1-0f3ebbcca6e6",
+      "stableId": "ca-penalties-and-points-a02",
+      "uuid": "bb819b8f-a2f9-533a-be24-1edfa444bcb3"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-asset-03",
+      "sourceUuid": "ef9f8874-a021-5e59-8e99-505a8d569789",
+      "stableId": "ca-penalties-and-points-a03",
+      "uuid": "e03bc6c9-b3bd-5bc0-bdc2-92fd1b96fccb"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b01",
+      "stableId": "ca-penalties-and-points-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b02",
+      "stableId": "ca-penalties-and-points-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b03",
+      "stableId": "ca-penalties-and-points-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b04",
+      "stableId": "ca-penalties-and-points-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b05",
+      "stableId": "ca-penalties-and-points-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b06",
+      "stableId": "ca-penalties-and-points-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b07",
+      "stableId": "ca-penalties-and-points-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b08",
+      "stableId": "ca-penalties-and-points-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b09",
+      "stableId": "ca-penalties-and-points-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b10",
+      "stableId": "ca-penalties-and-points-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b11",
+      "stableId": "ca-penalties-and-points-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "ca-2026-08-10-r01-m08-l03-b12",
+      "stableId": "ca-penalties-and-points-b12"
+    }
+  ]
+}

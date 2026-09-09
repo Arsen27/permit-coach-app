@@ -1,0 +1,2513 @@
+{
+  "state": "CA",
+  "courseId": "ca-class-c",
+  "version": "2.1.0",
+  "skeletonVersion": "SK-2026.09.06-r01",
+  "blocks": {
+    "identical": 250,
+    "rendered": 39,
+    "note": 23,
+    "override": 0,
+    "stateLesson": 34,
+    "image": 65,
+    "challenge": 33,
+    "dropped": 0
+  },
+  "questions": {
+    "identical": 172,
+    "rendered": 17,
+    "override": 14,
+    "stateLesson": 28
+  },
+  "lessons": [
+    {
+      "lessonId": "ca-traffic-signals",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-traffic-signals-slide-01",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "ca-traffic-signals-slide-02",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-traffic-signals-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-traffic-signals-slide-03",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "ca-traffic-signals-slide-04",
+          "origin": "identical",
+          "words": 72
+        },
+        {
+          "blockId": "ca-traffic-signals-note-01",
+          "origin": "note",
+          "words": 43
+        },
+        {
+          "blockId": "ca-traffic-signals-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-traffic-signals-slide-05",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "ca-traffic-signals-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-traffic-signals-slide-06",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-traffic-signals-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-traffic-signals-slide-07",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "ca-traffic-signals-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-traffic-signals-slide-08",
+          "origin": "identical",
+          "words": 49
+        }
+      ],
+      "theoryWords": 466,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-stop-yield-entering-traffic",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-stop-yield-entering-traffic-slide-01",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-slide-02",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-slide-03",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-slide-04",
+          "origin": "identical",
+          "words": 64
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-slide-05",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-slide-06",
+          "origin": "identical",
+          "words": 64
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-slide-07",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "ca-stop-yield-entering-traffic-slide-08",
+          "origin": "identical",
+          "words": 59
+        }
+      ],
+      "theoryWords": 418,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-turns-and-signals",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-turns-and-signals-slide-01",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-turns-and-signals-slide-02",
+          "origin": "rendered",
+          "words": 60
+        },
+        {
+          "blockId": "ca-turns-and-signals-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-turns-and-signals-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-turns-and-signals-slide-03",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "ca-turns-and-signals-slide-04",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "ca-turns-and-signals-slide-05",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-turns-and-signals-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-turns-and-signals-slide-06",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-turns-and-signals-slide-07",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "ca-turns-and-signals-slide-08",
+          "origin": "identical",
+          "words": 67
+        },
+        {
+          "blockId": "ca-turns-and-signals-note-01",
+          "origin": "note",
+          "words": 41
+        },
+        {
+          "blockId": "ca-turns-and-signals-recall-02",
+          "origin": "identical"
+        }
+      ],
+      "theoryWords": 481,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-speed-and-space",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-speed-and-space-slide-01",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-speed-and-space-slide-02",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-speed-and-space-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-speed-and-space-slide-03",
+          "origin": "rendered",
+          "words": 68
+        },
+        {
+          "blockId": "ca-speed-and-space-note-image-01",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-speed-and-space-note-01",
+          "origin": "note",
+          "words": 61
+        },
+        {
+          "blockId": "ca-speed-and-space-note-image-02",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-speed-and-space-note-02",
+          "origin": "note",
+          "words": 33
+        },
+        {
+          "blockId": "ca-speed-and-space-slide-04",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "ca-speed-and-space-slide-05",
+          "origin": "rendered",
+          "words": 67
+        },
+        {
+          "blockId": "ca-speed-and-space-recall-02",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-speed-and-space-slide-06",
+          "origin": "identical",
+          "words": 68
+        },
+        {
+          "blockId": "ca-speed-and-space-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-speed-and-space-slide-07",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "ca-speed-and-space-slide-08",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "ca-speed-and-space-slide-09",
+          "origin": "identical",
+          "words": 54
+        }
+      ],
+      "theoryWords": 559,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-sign-shapes-and-colors",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-sign-shapes-and-colors-slide-01",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-slide-02",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-slide-03",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-slide-04",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-slide-05",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-slide-06",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-slide-07",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-sign-shapes-and-colors-slide-08",
+          "origin": "identical",
+          "words": 59
+        }
+      ],
+      "theoryWords": 462,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-regulatory-signs",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-regulatory-signs-slide-01",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "ca-regulatory-signs-slide-02",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "ca-regulatory-signs-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-regulatory-signs-slide-03",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-regulatory-signs-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-regulatory-signs-slide-04",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "ca-regulatory-signs-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-regulatory-signs-slide-05",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "ca-regulatory-signs-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-regulatory-signs-slide-06",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "ca-regulatory-signs-slide-07",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "ca-regulatory-signs-slide-08",
+          "origin": "identical",
+          "words": 51
+        }
+      ],
+      "theoryWords": 444,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-warning-and-guide-signs",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-warning-and-guide-signs-slide-01",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-slide-02",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-slide-03",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-slide-04",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-slide-05",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-slide-06",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-slide-07",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "ca-warning-and-guide-signs-slide-08",
+          "origin": "identical",
+          "words": 58
+        }
+      ],
+      "theoryWords": 449,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-road-markings-and-curbs",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-road-markings-and-curbs-slide-01",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-slide-02",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-slide-03",
+          "origin": "identical",
+          "words": 86
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-slide-04",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-slide-05",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-slide-06",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-note-01",
+          "origin": "note",
+          "words": 49
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-slide-07",
+          "origin": "identical",
+          "words": 68
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-note-02",
+          "origin": "note",
+          "words": 61
+        },
+        {
+          "blockId": "ca-road-markings-and-curbs-slide-08",
+          "origin": "identical",
+          "words": 58
+        }
+      ],
+      "theoryWords": 521,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-uncontrolled-intersections",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-uncontrolled-intersections-slide-01",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-slide-02",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-slide-03",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-slide-04",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-slide-05",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-slide-06",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-slide-07",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-note-01",
+          "origin": "note",
+          "words": 32
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-slide-08",
+          "origin": "identical",
+          "words": 78
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-note-02",
+          "origin": "note",
+          "words": 36
+        },
+        {
+          "blockId": "ca-uncontrolled-intersections-recall-03",
+          "origin": "identical"
+        }
+      ],
+      "theoryWords": 510,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-crosswalks-and-roundabouts",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-slide-01",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-slide-02",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-slide-03",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-slide-04",
+          "origin": "identical",
+          "words": 69
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-slide-05",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-slide-06",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-slide-07",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-crosswalks-and-roundabouts-slide-08",
+          "origin": "identical",
+          "words": 53
+        }
+      ],
+      "theoryWords": 429,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-complex-intersections",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-complex-intersections-slide-01",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "ca-complex-intersections-slide-02",
+          "origin": "identical",
+          "words": 46
+        },
+        {
+          "blockId": "ca-complex-intersections-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-complex-intersections-slide-03",
+          "origin": "identical",
+          "words": 43
+        },
+        {
+          "blockId": "ca-complex-intersections-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-complex-intersections-slide-04",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "ca-complex-intersections-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-complex-intersections-slide-05",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "ca-complex-intersections-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-complex-intersections-slide-06",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-complex-intersections-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-complex-intersections-slide-07",
+          "origin": "identical",
+          "words": 68
+        }
+      ],
+      "theoryWords": 345,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-u-turns-starting-backing",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-u-turns-starting-backing-slide-01",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-slide-02",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-slide-03",
+          "origin": "identical",
+          "words": 52
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-slide-04",
+          "origin": "identical",
+          "words": 43
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-slide-05",
+          "origin": "identical",
+          "words": 67
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-slide-06",
+          "origin": "rendered",
+          "words": 61
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-note-01",
+          "origin": "note",
+          "words": 61
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-slide-07",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-slide-08",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "ca-u-turns-starting-backing-recall-02",
+          "origin": "identical"
+        }
+      ],
+      "theoryWords": 461,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-parking-and-curbs",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-parking-and-curbs-slide-01",
+          "origin": "rendered",
+          "words": 66
+        },
+        {
+          "blockId": "ca-parking-and-curbs-slide-02",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "ca-parking-and-curbs-slide-03",
+          "origin": "rendered",
+          "words": 54
+        },
+        {
+          "blockId": "ca-parking-and-curbs-note-image-01",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-parking-and-curbs-note-01",
+          "origin": "note",
+          "words": 35
+        },
+        {
+          "blockId": "ca-parking-and-curbs-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-parking-and-curbs-slide-04",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "ca-parking-and-curbs-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-parking-and-curbs-slide-05",
+          "origin": "identical",
+          "words": 78
+        },
+        {
+          "blockId": "ca-parking-and-curbs-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-parking-and-curbs-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-parking-and-curbs-slide-06",
+          "origin": "rendered",
+          "words": 47
+        },
+        {
+          "blockId": "ca-parking-and-curbs-slide-07",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "ca-parking-and-curbs-slide-08",
+          "origin": "identical",
+          "words": 62
+        }
+      ],
+      "theoryWords": 458,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-choosing-changing-lanes",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-choosing-changing-lanes-slide-01",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-note-01",
+          "origin": "note",
+          "words": 35
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-slide-02",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-slide-03",
+          "origin": "identical",
+          "words": 66
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-slide-04",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-slide-05",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-slide-06",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "ca-choosing-changing-lanes-slide-07",
+          "origin": "identical",
+          "words": 65
+        }
+      ],
+      "theoryWords": 445,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-passing-rules",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-passing-rules-slide-01",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "ca-passing-rules-slide-02",
+          "origin": "identical",
+          "words": 59
+        },
+        {
+          "blockId": "ca-passing-rules-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-passing-rules-slide-03",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "ca-passing-rules-slide-04",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-passing-rules-slide-05",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "ca-passing-rules-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-passing-rules-slide-06",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-passing-rules-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-passing-rules-slide-07",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "ca-passing-rules-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-passing-rules-slide-08",
+          "origin": "identical",
+          "words": 48
+        }
+      ],
+      "theoryWords": 394,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-freeway-merging",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-freeway-merging-slide-01",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "ca-freeway-merging-slide-02",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "ca-freeway-merging-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-freeway-merging-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-freeway-merging-slide-03",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-freeway-merging-slide-04",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "ca-freeway-merging-slide-05",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-freeway-merging-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-freeway-merging-slide-06",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "ca-freeway-merging-slide-07",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "ca-freeway-merging-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-freeway-merging-slide-08",
+          "origin": "identical",
+          "words": 42
+        }
+      ],
+      "theoryWords": 386,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-special-lanes",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-special-lanes-slide-01",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "ca-special-lanes-slide-02",
+          "origin": "rendered",
+          "words": 80
+        },
+        {
+          "blockId": "ca-special-lanes-note-01",
+          "origin": "note",
+          "words": 37
+        },
+        {
+          "blockId": "ca-special-lanes-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-special-lanes-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-special-lanes-slide-03",
+          "origin": "rendered",
+          "words": 71
+        },
+        {
+          "blockId": "ca-special-lanes-slide-04",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "ca-special-lanes-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-special-lanes-image-05",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-special-lanes-slide-05",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-special-lanes-slide-06",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "ca-special-lanes-slide-07",
+          "origin": "identical",
+          "words": 48
+        }
+      ],
+      "theoryWords": 391,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-bicycles-motorcycles",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-bicycles-motorcycles-slide-01",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-slide-02",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-slide-03",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-slide-04",
+          "origin": "rendered",
+          "words": 69
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-slide-05",
+          "origin": "identical",
+          "words": 64
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-slide-06",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-note-01",
+          "origin": "note",
+          "words": 51
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-bicycles-motorcycles-slide-07",
+          "origin": "identical",
+          "words": 52
+        }
+      ],
+      "theoryWords": 405,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-trucks-buses-slow-vehicles",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-slide-01",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-slide-02",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-slide-03",
+          "origin": "identical",
+          "words": 69
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-slide-04",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-slide-05",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-slide-06",
+          "origin": "rendered",
+          "words": 50
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-recall-03",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-slide-07",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "ca-trucks-buses-slow-vehicles-slide-08",
+          "origin": "identical",
+          "words": 59
+        }
+      ],
+      "theoryWords": 399,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-school-buses-emergency-vehicles",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-slide-01",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-slide-02",
+          "origin": "identical",
+          "words": 51
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-slide-03",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-note-01",
+          "origin": "note",
+          "words": 52
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-slide-04",
+          "origin": "rendered",
+          "words": 49
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-slide-05",
+          "origin": "identical",
+          "words": 54
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-school-buses-emergency-vehicles-slide-06",
+          "origin": "identical",
+          "words": 70
+        }
+      ],
+      "theoryWords": 339,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-rail-light-rail-work-zones",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-rail-light-rail-work-zones-slide-01",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-rail-light-rail-work-zones-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-rail-light-rail-work-zones-slide-02",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "ca-rail-light-rail-work-zones-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-rail-light-rail-work-zones-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-rail-light-rail-work-zones-slide-03",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "ca-rail-light-rail-work-zones-slide-04",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "ca-rail-light-rail-work-zones-slide-05",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-rail-light-rail-work-zones-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-rail-light-rail-work-zones-slide-06",
+          "origin": "identical",
+          "words": 48
+        }
+      ],
+      "theoryWords": 324,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-driving-after-dark",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-driving-after-dark-slide-01",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "ca-driving-after-dark-slide-02",
+          "origin": "rendered",
+          "words": 61
+        },
+        {
+          "blockId": "ca-driving-after-dark-note-01",
+          "origin": "note",
+          "words": 21
+        },
+        {
+          "blockId": "ca-driving-after-dark-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-driving-after-dark-slide-03",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "ca-driving-after-dark-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-driving-after-dark-slide-04",
+          "origin": "rendered",
+          "words": 48
+        },
+        {
+          "blockId": "ca-driving-after-dark-recall-02",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-driving-after-dark-slide-05",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-driving-after-dark-recall-03",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-driving-after-dark-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-driving-after-dark-slide-06",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-driving-after-dark-slide-07",
+          "origin": "identical",
+          "words": 55
+        }
+      ],
+      "theoryWords": 371,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-weather-and-mountain-roads",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-weather-and-mountain-roads-slide-01",
+          "origin": "identical",
+          "words": 65
+        },
+        {
+          "blockId": "ca-weather-and-mountain-roads-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-weather-and-mountain-roads-slide-02",
+          "origin": "identical",
+          "words": 63
+        },
+        {
+          "blockId": "ca-weather-and-mountain-roads-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-weather-and-mountain-roads-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-weather-and-mountain-roads-slide-03",
+          "origin": "identical",
+          "words": 75
+        },
+        {
+          "blockId": "ca-weather-and-mountain-roads-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-weather-and-mountain-roads-slide-04",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "ca-weather-and-mountain-roads-image-05",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-weather-and-mountain-roads-slide-05",
+          "origin": "identical",
+          "words": 59
+        }
+      ],
+      "theoryWords": 301,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-skids-and-emergencies",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-skids-and-emergencies-slide-01",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-slide-02",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-slide-03",
+          "origin": "identical",
+          "words": 50
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-slide-04",
+          "origin": "identical",
+          "words": 62
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-slide-05",
+          "origin": "identical",
+          "words": 52
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-slide-06",
+          "origin": "identical",
+          "words": 46
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-slide-07",
+          "origin": "identical",
+          "words": 60
+        },
+        {
+          "blockId": "ca-skids-and-emergencies-slide-08",
+          "origin": "identical",
+          "words": 58
+        }
+      ],
+      "theoryWords": 381,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-crashes-and-insurance",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-crashes-and-insurance-slide-01",
+          "origin": "identical",
+          "words": 48
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-slide-02",
+          "origin": "rendered",
+          "words": 45
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-slide-03",
+          "origin": "identical",
+          "words": 58
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-slide-04",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-slide-05",
+          "origin": "rendered",
+          "words": 58
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-recall-02",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-slide-06",
+          "origin": "rendered",
+          "words": 64
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-note-image-01",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-note-01",
+          "origin": "note",
+          "words": 77
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-recall-03",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-slide-07",
+          "origin": "identical",
+          "words": 57
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-note-image-02",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-crashes-and-insurance-note-02",
+          "origin": "note",
+          "words": 54
+        }
+      ],
+      "theoryWords": 478,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-distraction-and-fatigue",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-distraction-and-fatigue-slide-01",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-slide-02",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-slide-03",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-note-01",
+          "origin": "note",
+          "words": 54
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-slide-04",
+          "origin": "rendered",
+          "words": 54
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-recall-01",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-slide-05",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-recall-02",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-slide-06",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-slide-07",
+          "origin": "identical",
+          "words": 52
+        },
+        {
+          "blockId": "ca-distraction-and-fatigue-slide-08",
+          "origin": "identical",
+          "words": 54
+        }
+      ],
+      "theoryWords": 442,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-alcohol-drugs-dui",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-alcohol-drugs-dui-slide-01",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-slide-02",
+          "origin": "identical",
+          "words": 47
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-slide-03",
+          "origin": "rendered",
+          "words": 61
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-note-image-01",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-note-01",
+          "origin": "note",
+          "words": 51
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-slide-04",
+          "origin": "identical",
+          "words": 44
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-recall-02",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-slide-05",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-slide-06",
+          "origin": "rendered",
+          "words": 49
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-slide-07",
+          "origin": "identical",
+          "words": 49
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-recall-03",
+          "origin": "identical"
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-slide-08",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-note-02",
+          "origin": "note",
+          "words": 35
+        },
+        {
+          "blockId": "ca-alcohol-drugs-dui-recall-04",
+          "origin": "rendered"
+        }
+      ],
+      "theoryWords": 442,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-seat-belts-child-safety",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-seat-belts-child-safety-slide-01",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-slide-02",
+          "origin": "identical",
+          "words": 53
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-slide-03",
+          "origin": "identical",
+          "words": 46
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-slide-04",
+          "origin": "rendered",
+          "words": 71
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-image-05",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-slide-05",
+          "origin": "identical",
+          "words": 61
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-note-image-01",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-note-01",
+          "origin": "note",
+          "words": 69
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-slide-06",
+          "origin": "identical",
+          "words": 56
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-note-02",
+          "origin": "note",
+          "words": 61
+        },
+        {
+          "blockId": "ca-seat-belts-child-safety-recall-02",
+          "origin": "identical"
+        }
+      ],
+      "theoryWords": 427,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-equipment-loads-towing",
+      "origin": "skeleton",
+      "blocks": [
+        {
+          "blockId": "ca-equipment-loads-towing-slide-01",
+          "origin": "identical",
+          "words": 45
+        },
+        {
+          "blockId": "ca-equipment-loads-towing-slide-02",
+          "origin": "identical",
+          "words": 55
+        },
+        {
+          "blockId": "ca-equipment-loads-towing-slide-03",
+          "origin": "rendered",
+          "words": 82
+        },
+        {
+          "blockId": "ca-equipment-loads-towing-recall-01",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-equipment-loads-towing-slide-04",
+          "origin": "identical",
+          "words": 67
+        },
+        {
+          "blockId": "ca-equipment-loads-towing-recall-02",
+          "origin": "rendered"
+        },
+        {
+          "blockId": "ca-equipment-loads-towing-slide-05",
+          "origin": "identical",
+          "words": 70
+        },
+        {
+          "blockId": "ca-equipment-loads-towing-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-equipment-loads-towing-slide-06",
+          "origin": "identical",
+          "words": 80
+        },
+        {
+          "blockId": "ca-equipment-loads-towing-note-01",
+          "origin": "note",
+          "words": 55
+        }
+      ],
+      "theoryWords": 420,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-permit-and-knowledge-test",
+      "origin": "state",
+      "blocks": [
+        {
+          "blockId": "ca-permit-and-knowledge-test-slide-01",
+          "origin": "stateLesson",
+          "words": 43
+        },
+        {
+          "blockId": "ca-permit-and-knowledge-test-slide-02",
+          "origin": "stateLesson",
+          "words": 80
+        },
+        {
+          "blockId": "ca-permit-and-knowledge-test-recall-01",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-permit-and-knowledge-test-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-permit-and-knowledge-test-slide-03",
+          "origin": "stateLesson",
+          "words": 49
+        },
+        {
+          "blockId": "ca-permit-and-knowledge-test-recall-02",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-permit-and-knowledge-test-slide-04",
+          "origin": "stateLesson",
+          "words": 78
+        },
+        {
+          "blockId": "ca-permit-and-knowledge-test-recall-03",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-permit-and-knowledge-test-image-05",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-permit-and-knowledge-test-slide-05",
+          "origin": "stateLesson",
+          "words": 69
+        }
+      ],
+      "theoryWords": 294,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-drivers-under-18",
+      "origin": "state",
+      "blocks": [
+        {
+          "blockId": "ca-drivers-under-18-slide-01",
+          "origin": "stateLesson",
+          "words": 63
+        },
+        {
+          "blockId": "ca-drivers-under-18-slide-02",
+          "origin": "stateLesson",
+          "words": 67
+        },
+        {
+          "blockId": "ca-drivers-under-18-recall-01",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-drivers-under-18-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-drivers-under-18-slide-03",
+          "origin": "stateLesson",
+          "words": 73
+        },
+        {
+          "blockId": "ca-drivers-under-18-recall-02",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-drivers-under-18-image-04",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-drivers-under-18-slide-04",
+          "origin": "stateLesson",
+          "words": 76
+        },
+        {
+          "blockId": "ca-drivers-under-18-recall-03",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-drivers-under-18-slide-05",
+          "origin": "stateLesson",
+          "words": 62
+        }
+      ],
+      "theoryWords": 313,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-licenses-and-registration",
+      "origin": "state",
+      "blocks": [
+        {
+          "blockId": "ca-licenses-and-registration-slide-01",
+          "origin": "stateLesson",
+          "words": 61
+        },
+        {
+          "blockId": "ca-licenses-and-registration-slide-02",
+          "origin": "stateLesson",
+          "words": 54
+        },
+        {
+          "blockId": "ca-licenses-and-registration-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-licenses-and-registration-slide-03",
+          "origin": "stateLesson",
+          "words": 60
+        },
+        {
+          "blockId": "ca-licenses-and-registration-slide-04",
+          "origin": "stateLesson",
+          "words": 54
+        },
+        {
+          "blockId": "ca-licenses-and-registration-recall-01",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-licenses-and-registration-image-05",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-licenses-and-registration-slide-05",
+          "origin": "stateLesson",
+          "words": 54
+        },
+        {
+          "blockId": "ca-licenses-and-registration-recall-02",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-licenses-and-registration-slide-06",
+          "origin": "stateLesson",
+          "words": 73
+        }
+      ],
+      "theoryWords": 325,
+      "warnings": []
+    },
+    {
+      "lessonId": "ca-penalties-and-points",
+      "origin": "state",
+      "blocks": [
+        {
+          "blockId": "ca-penalties-and-points-slide-01",
+          "origin": "stateLesson",
+          "words": 50
+        },
+        {
+          "blockId": "ca-penalties-and-points-slide-02",
+          "origin": "stateLesson",
+          "words": 77
+        },
+        {
+          "blockId": "ca-penalties-and-points-recall-01",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-penalties-and-points-image-03",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-penalties-and-points-slide-03",
+          "origin": "stateLesson",
+          "words": 46
+        },
+        {
+          "blockId": "ca-penalties-and-points-recall-02",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-penalties-and-points-slide-04",
+          "origin": "stateLesson",
+          "words": 59
+        },
+        {
+          "blockId": "ca-penalties-and-points-slide-05",
+          "origin": "stateLesson",
+          "words": 58
+        },
+        {
+          "blockId": "ca-penalties-and-points-image-06",
+          "origin": "image"
+        },
+        {
+          "blockId": "ca-penalties-and-points-slide-06",
+          "origin": "stateLesson",
+          "words": 64
+        },
+        {
+          "blockId": "ca-penalties-and-points-recall-03",
+          "origin": "stateLesson"
+        },
+        {
+          "blockId": "ca-penalties-and-points-slide-07",
+          "origin": "stateLesson",
+          "words": 57
+        }
+      ],
+      "theoryWords": 374,
+      "warnings": []
+    }
+  ],
+  "imagesWithNumbers": [
+    "turns-and-signals-a03 (100)",
+    "regulatory-signs-q02-a (25)",
+    "warning-and-guide-signs-a01 (35)",
+    "warning-and-guide-signs-q01-a (35)",
+    "u-turns-starting-backing-q03-a (250)",
+    "choosing-changing-lanes-q02-a (65)",
+    "rail-light-rail-work-zones-ca-warning-and-guide-signs-a01 (35)",
+    "night-weather-visibility-a01 (500, 300)",
+    "weather-and-mountain-roads-ca-night-weather-visibility-a01 (500, 300)"
+  ],
+  "params": {
+    "signal.turnDistanceFeet": {
+      "value": 100,
+      "rule": "CA_VEH_22108_TURN_SIGNAL_DISTANCE",
+      "status": "verified",
+      "usedIn": [
+        "lesson turns-and-signals turns-and-signals-slide-02",
+        "lesson turns-and-signals turns-and-signals-recall-01",
+        "lesson turns-and-signals turns-and-signals-q04"
+      ]
+    },
+    "speed.maxMph": {
+      "value": 65,
+      "rule": "CA_VEH_22349_MAXIMUM_SPEED",
+      "status": "verified",
+      "usedIn": [
+        "lesson speed-and-space challenge",
+        "lesson speed-and-space speed-and-space-slide-03"
+      ]
+    },
+    "speed.twoLaneUndividedMph": {
+      "value": 55,
+      "rule": "CA_VEH_22349_MAXIMUM_SPEED",
+      "status": "verified",
+      "usedIn": [
+        "lesson speed-and-space speed-and-space-slide-03"
+      ]
+    },
+    "speed.residentialMph": {
+      "value": 25,
+      "rule": "CA_VEH_22352_TWENTY_FIVE_MPH",
+      "status": "verified",
+      "usedIn": [
+        "lesson speed-and-space speed-and-space-slide-03"
+      ]
+    },
+    "following.seconds": {
+      "value": 3,
+      "rule": null,
+      "status": "needs_review",
+      "usedIn": [
+        "lesson speed-and-space speed-and-space-slide-05",
+        "lesson speed-and-space speed-and-space-recall-02"
+      ]
+    },
+    "uturn.visibilityFeet": {
+      "value": 200,
+      "rule": "CA_VEH_22105_U_TURN_VISIBILITY",
+      "status": "verified",
+      "usedIn": [
+        "lesson u-turns-starting-backing u-turns-starting-backing-slide-06",
+        "lesson u-turns-starting-backing u-turns-starting-backing-recall-01"
+      ]
+    },
+    "parking.hydrantFeet": {
+      "value": 15,
+      "rule": "CA_VEH_22514_FIRE_HYDRANT",
+      "status": "verified",
+      "usedIn": [
+        "lesson parking-and-curbs parking-and-curbs-slide-01",
+        "lesson parking-and-curbs parking-and-curbs-recall-01",
+        "lesson parking-and-curbs parking-and-curbs-slide-06",
+        "lesson parking-and-curbs parking-and-curbs-q01"
+      ]
+    },
+    "parking.curbInches": {
+      "value": 18,
+      "rule": "CA_VEH_22502_CURB_PARKING",
+      "status": "verified",
+      "usedIn": [
+        "lesson parking-and-curbs parking-and-curbs-slide-03",
+        "lesson parking-and-curbs parking-and-curbs-recall-01",
+        "lesson parking-and-curbs parking-and-curbs-q03"
+      ]
+    },
+    "centerLane.maxTravelFeet": {
+      "value": 200,
+      "rule": "CA_VEH_21460_5_MEDIAN_AND_CENTER_TURN",
+      "status": "verified",
+      "usedIn": [
+        "lesson special-lanes special-lanes-slide-02",
+        "lesson special-lanes special-lanes-recall-01"
+      ]
+    },
+    "bikeLane.turnEntryFeet": {
+      "value": 200,
+      "rule": "CA_VEH_21209_MOTOR_VEHICLE_BIKE_LANE",
+      "status": "verified",
+      "usedIn": [
+        "lesson special-lanes special-lanes-slide-03",
+        "lesson special-lanes special-lanes-q05"
+      ]
+    },
+    "bicycle.passingFeet": {
+      "value": 3,
+      "rule": "CA_VEH_21760_PASS_BICYCLE",
+      "status": "verified",
+      "usedIn": [
+        "lesson bicycles-motorcycles bicycles-motorcycles-slide-04",
+        "lesson bicycles-motorcycles bicycles-motorcycles-recall-01",
+        "lesson bicycles-motorcycles bicycles-motorcycles-q02"
+      ]
+    },
+    "smv.maxMph": {
+      "value": 25,
+      "rule": "CA_VEH_24615_SLOW_MOVING_EMBLEM",
+      "status": "verified",
+      "usedIn": [
+        "lesson trucks-buses-slow-vehicles trucks-buses-slow-vehicles-slide-06",
+        "lesson trucks-buses-slow-vehicles trucks-buses-slow-vehicles-recall-03"
+      ]
+    },
+    "emergency.followFeet": {
+      "value": 300,
+      "rule": "CA_VEH_21706_FOLLOW_EMERGENCY",
+      "status": "verified",
+      "usedIn": [
+        "lesson school-buses-emergency-vehicles school-buses-emergency-vehicles-slide-04",
+        "lesson school-buses-emergency-vehicles school-buses-emergency-vehicles-q04"
+      ]
+    },
+    "lights.afterSunsetMinutes": {
+      "value": 30,
+      "rule": "CA_VEH_24250_24400_HEADLIGHT_USE",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-02",
+        "lesson driving-after-dark driving-after-dark-recall-02"
+      ]
+    },
+    "lights.beforeSunriseMinutes": {
+      "value": 30,
+      "rule": "CA_VEH_24250_24400_HEADLIGHT_USE",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-02",
+        "lesson driving-after-dark driving-after-dark-recall-02"
+      ]
+    },
+    "lights.visibilityFeet": {
+      "value": 1000,
+      "rule": "CA_VEH_24250_24400_HEADLIGHT_USE",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-02"
+      ]
+    },
+    "highBeam.approachingFeet": {
+      "value": 500,
+      "rule": "CA_VEH_24409_HIGH_BEAM_DIMMING",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-04",
+        "lesson driving-after-dark driving-after-dark-recall-03",
+        "lesson driving-after-dark driving-after-dark-q02",
+        "lesson driving-after-dark driving-after-dark-q03"
+      ]
+    },
+    "highBeam.followingFeet": {
+      "value": 300,
+      "rule": "CA_VEH_24409_HIGH_BEAM_DIMMING",
+      "status": "verified",
+      "usedIn": [
+        "lesson driving-after-dark driving-after-dark-slide-04",
+        "lesson driving-after-dark driving-after-dark-recall-03",
+        "lesson driving-after-dark driving-after-dark-q02"
+      ]
+    },
+    "crash.reportDamagePhrase": {
+      "value": "more than $1,000 in damage to one person’s property",
+      "rule": "CA_VEH_16000_COLLISION_DMV_REPORT",
+      "status": "verified",
+      "usedIn": [
+        "lesson crashes-and-insurance crashes-and-insurance-slide-05",
+        "lesson crashes-and-insurance crashes-and-insurance-q05"
+      ]
+    },
+    "insurance.perPerson": {
+      "value": 30000,
+      "rule": "CA_VEH_16056_LIABILITY_LIMITS",
+      "status": "verified",
+      "usedIn": [
+        "lesson crashes-and-insurance crashes-and-insurance-slide-06",
+        "lesson crashes-and-insurance crashes-and-insurance-recall-03",
+        "lesson crashes-and-insurance crashes-and-insurance-q02"
+      ]
+    },
+    "insurance.perCrash": {
+      "value": 60000,
+      "rule": "CA_VEH_16056_LIABILITY_LIMITS",
+      "status": "verified",
+      "usedIn": [
+        "lesson crashes-and-insurance crashes-and-insurance-slide-06",
+        "lesson crashes-and-insurance crashes-and-insurance-recall-03",
+        "lesson crashes-and-insurance crashes-and-insurance-q02"
+      ]
+    },
+    "insurance.property": {
+      "value": 15000,
+      "rule": "CA_VEH_16056_LIABILITY_LIMITS",
+      "status": "verified",
+      "usedIn": [
+        "lesson crashes-and-insurance crashes-and-insurance-slide-06",
+        "lesson crashes-and-insurance crashes-and-insurance-recall-03",
+        "lesson crashes-and-insurance crashes-and-insurance-q02"
+      ]
+    },
+    "phone.minorNoDeviceAge": {
+      "value": 18,
+      "rule": "CA_VEH_23124_MINOR_WIRELESS",
+      "status": "verified",
+      "usedIn": [
+        "lesson distraction-and-fatigue distraction-and-fatigue-slide-04",
+        "lesson distraction-and-fatigue distraction-and-fatigue-recall-02",
+        "lesson distraction-and-fatigue distraction-and-fatigue-q04"
+      ]
+    },
+    "bac.adult": {
+      "value": 0.08,
+      "rule": "CA_VEH_23152_BAC",
+      "status": "verified",
+      "usedIn": [
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-slide-03",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-recall-01",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-q01",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-q03"
+      ]
+    },
+    "bac.under21Age": {
+      "value": 21,
+      "rule": "CA_VEH_23136_UNDER_21_ZERO_TOLERANCE",
+      "status": "verified",
+      "usedIn": [
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-slide-03",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-recall-02"
+      ]
+    },
+    "bac.under21": {
+      "value": 0.01,
+      "rule": "CA_VEH_23136_UNDER_21_ZERO_TOLERANCE",
+      "status": "verified",
+      "usedIn": [
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-slide-03",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-recall-02"
+      ]
+    },
+    "refusal.firstSuspension": {
+      "value": "1 year",
+      "rule": "CA_VEH_13353_TEST_REFUSAL",
+      "status": "verified",
+      "usedIn": [
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-slide-06",
+        "lesson alcohol-drugs-dui alcohol-drugs-dui-q04"
+      ]
+    },
+    "child.restraintAge": {
+      "value": 8,
+      "rule": "CA_VEH_27360_27363_CHILD_RESTRAINT",
+      "status": "verified",
+      "usedIn": [
+        "lesson seat-belts-child-safety seat-belts-child-safety-slide-04",
+        "lesson seat-belts-child-safety seat-belts-child-safety-recall-01",
+        "lesson seat-belts-child-safety seat-belts-child-safety-q03"
+      ]
+    },
+    "child.beltHeight": {
+      "value": "4 feet 9 inches",
+      "rule": "CA_VEH_27360_27363_CHILD_RESTRAINT",
+      "status": "verified",
+      "usedIn": [
+        "lesson seat-belts-child-safety seat-belts-child-safety-slide-04",
+        "lesson seat-belts-child-safety seat-belts-child-safety-recall-01"
+      ]
+    },
+    "equipment.hornFeet": {
+      "value": 200,
+      "rule": "CA_VEH_27000_HORN",
+      "status": "verified",
+      "usedIn": [
+        "lesson equipment-loads-towing equipment-loads-towing-slide-03",
+        "lesson equipment-loads-towing equipment-loads-towing-recall-02",
+        "lesson equipment-loads-towing equipment-loads-towing-q03"
+      ]
+    },
+    "equipment.treadInches": {
+      "value": "1/32",
+      "rule": "CA_VEH_27465_TIRE_TREAD",
+      "status": "verified",
+      "usedIn": [
+        "lesson equipment-loads-towing equipment-loads-towing-slide-03",
+        "lesson equipment-loads-towing equipment-loads-towing-recall-01"
+      ]
+    }
+  },
+  "notes": 23,
+  "overrides": 14,
+  "warnings": [],
+  "errors": [],
+  "competitorOverlaps": {
+    "Zutobi": {
+      "files": 61,
+      "shared": 0
+    },
+    "myDMV": {
+      "files": 37,
+      "shared": 0
+    }
+  }
+}

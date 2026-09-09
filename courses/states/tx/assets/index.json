@@ -1,0 +1,45 @@
+{
+ "signals-q05-asset": {
+  "alt": "Evening overhead view of a six-lane boulevard crossing a smaller street, with cars and a cyclist moving on green, stopped cars on the side street and pedestrians crossing it.",
+  "width": 1200,
+  "height": 675
+ },
+ "drivers-under-18-shared-02": {
+  "alt": "Driver's view at night of a road with two red WRONG WAY signs on posts at either side and two cars approaching head-on with their headlights on.",
+  "width": 1200,
+  "height": 675
+ },
+ "permit-and-knowledge-test-shared-01": {
+  "alt": "Seven signs on a plain studio background: a red octagon and a red circle, a yellow diamond and an orange diamond, and below them a green destination sign, a blue hospital sign and a brown recreation sign.",
+  "width": 1200,
+  "height": 675
+ },
+ "permit-and-knowledge-test-shared-02": {
+  "alt": "Overhead view of a four-lane street: a gold car in the inner lane has its left signal on with a hundred-foot dimension marked back from the intersection, and a green car signals left as it pulls out of a row of parked cars.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "100"
+  ]
+ },
+ "penalties-and-points-shared-01": {
+  "alt": "Driver's view at night of a road with two red WRONG WAY signs on posts at either side and two cars approaching head-on with their headlights on.",
+  "width": 1200,
+  "height": 675
+ },
+ "penalties-and-points-shared-02": {
+  "alt": "Night driver's view of a two-lane road approaching a crossroads where the overhead signal shows a steady yellow and an oncoming car waits beyond the intersection.",
+  "width": 1200,
+  "height": 675
+ },
+ "licenses-and-registration-shared-01": {
+  "alt": "Overhead view of a suburban street where an orange car angles out of a kerbside parking space with its left signal on; a shaded wedge marks the blind spot behind its left rear, and a cyclist and an approaching car are already in the traffic lane.",
+  "width": 1200,
+  "height": 675
+ },
+ "licenses-and-registration-shared-02": {
+  "alt": "Driver's view of a three-lane one-way street approaching a signal on a mast arm, with a green street sign overhead, a speed limit sign and a yellow pedestrian diamond on the right.",
+  "width": 1200,
+  "height": 675
+ }
+}

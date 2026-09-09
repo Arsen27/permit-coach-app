@@ -1,0 +1,816 @@
+{
+ "alcohol-drugs-dui-a02": {
+  "alt": "0.08-0.05-0.01 diagram supporting Alcohol, Drugs, DUI, and Chemical Testing. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "alcohol-drugs-dui-a03": {
+  "alt": "Test and refusal diagram supporting Alcohol, Drugs, DUI, and Chemical Testing. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "alcohol-drugs-dui-a01": {
+  "alt": "Impairment vs BAC diagram supporting Alcohol, Drugs, DUI, and Chemical Testing. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "bicycles-motorcycles-a02": {
+  "alt": "Right-turn conflict diagram supporting Bicycles and Motorcycles. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "bicycles-motorcycles-a03": {
+  "alt": "Motorcycle blind spot diagram supporting Bicycles and Motorcycles. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "bicycles-motorcycles-a01": {
+  "alt": "Three-foot pass diagram supporting Bicycles and Motorcycles. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "choosing-changing-lanes-a02": {
+  "alt": "Overhead view of a divided highway with two lanes each way through farmland; a slow box truck holds the right-hand lane while quicker cars use the left lane to pass, and a cyclist rides near the right edge.",
+  "width": 1200,
+  "height": 675
+ },
+ "choosing-changing-lanes-a03": {
+  "alt": "Driver's view of a three-lane road with a braking car ahead, a car alongside in the next lane, and a following car reflected in the left door mirror.",
+  "width": 1200,
+  "height": 675
+ },
+ "choosing-changing-lanes-a01": {
+  "alt": "Overhead view of a city street approaching a crossroads, where each car sits centred in the lane whose pavement arrow matches its movement: left turn, straight ahead or right turn.",
+  "width": 1200,
+  "height": 675
+ },
+ "choosing-changing-lanes-q01-a": {
+  "alt": "Overhead view of a city street where an orange car in the kerb lane is behind a cyclist, with a grey car travelling in the next lane just off its rear corner.",
+  "width": 1200,
+  "height": 675
+ },
+ "choosing-changing-lanes-q02-a": {
+  "alt": "Driver's view at dusk of a three-lane highway with cars in the left and right lanes drawing ahead, and a 65 mph speed limit sign on the shoulder.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "65"
+  ]
+ },
+ "choosing-changing-lanes-q03-a": {
+  "alt": "Overhead view of a two-lane road marked with double yellow lines, a slow truck leading five cars, an oncoming car in the other lane and a paved turnout ahead on the right.",
+  "width": 1200,
+  "height": 675
+ },
+ "choosing-changing-lanes-q04-a": {
+  "alt": "Overhead view of a three-lane highway where an orange car has moved partly across the lane line while other cars travel nearby.",
+  "width": 1200,
+  "height": 675
+ },
+ "choosing-changing-lanes-q05-a": {
+  "alt": "Overhead view of a car with pale wedges showing the areas its door mirrors and rear-view mirror reflect, and a motorcycle riding just behind the car on the right, outside those wedges.",
+  "width": 1200,
+  "height": 675
+ },
+ "complex-intersections-ca-turns-and-signals-q03-a": {
+  "alt": "Driver's view at an intersection with circular green signals overhead, two oncoming cars close in the opposing lanes, and a left-turn arrow painted in the driver's lane.",
+  "width": 1200,
+  "height": 675
+ },
+ "complex-intersections-ca-turns-and-signals-a02": {
+  "alt": "Overhead view of a wide city intersection: a gold car sits in a marked left-turn lane, a solid arrow curves into the receiving lane closest to the centre line with a tick beside it, and a dashed arrow sweeping across to the far lane is crossed out.",
+  "width": 1200,
+  "height": 675
+ },
+ "complex-intersections-ca-traffic-signals-a01": {
+  "alt": "Overhead view of a city street with two signalised crossings: at the near one the signal is green and a car waits to turn left across an approaching oncoming car, while at the next crossing the signal has turned yellow and a car is braking.",
+  "width": 1200,
+  "height": 675
+ },
+ "crashes-and-insurance-a02": {
+  "alt": "30-60-15 diagram supporting Crashes, Reporting, Insurance, and Financial Responsibility. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "crashes-and-insurance-a03": {
+  "alt": "24 hours vs 10 days diagram supporting Crashes, Reporting, Insurance, and Financial Responsibility. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "crashes-and-insurance-a01": {
+  "alt": "Crash decision diagram supporting Crashes, Reporting, Insurance, and Financial Responsibility. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "crosswalks-and-roundabouts-a02": {
+  "alt": "Overhead view of a crossroads where pedestrians cross on both sides: one crossing is painted with white stripes, the other has only kerb ramps and no paint, and a car waits at each.",
+  "width": 1200,
+  "height": 675
+ },
+ "crosswalks-and-roundabouts-a03": {
+  "alt": "Overhead view of a four-lane street: a person waits at the kerb mid-block while traffic passes, and a person with a white cane crosses in a striped crosswalk with cars stopped.",
+  "width": 1200,
+  "height": 675
+ },
+ "crosswalks-and-roundabouts-a01": {
+  "alt": "Driver's view of a suburban street with a striped crosswalk ahead; a person stands at the kerb beside a parked white van that hides most of them.",
+  "width": 1200,
+  "height": 675
+ },
+ "crosswalks-and-roundabouts-q01-a": {
+  "alt": "Driver's view of a three-lane street; a white car in the next lane to the right has stopped with brake lights on at a striped crosswalk.",
+  "width": 1200,
+  "height": 675
+ },
+ "crosswalks-and-roundabouts-q02-a": {
+  "alt": "Overhead view of a T-junction where two pedestrians cross the unpainted mouth of the side street while a car signals to turn in from the main road.",
+  "width": 1200,
+  "height": 675
+ },
+ "crosswalks-and-roundabouts-q03-a": {
+  "alt": "Overhead view of a two-lane one-way street: a white car has stopped at a striped crosswalk while an orange car approaches in the next lane, with the area beyond the stopped car shaded out of view.",
+  "width": 1200,
+  "height": 675
+ },
+ "crosswalks-and-roundabouts-q04-a": {
+  "alt": "Driver's view at dusk of a person with a white cane stepping off the kerb into the roadway ahead.",
+  "width": 1200,
+  "height": 675
+ },
+ "crosswalks-and-roundabouts-q05-a": {
+  "alt": "Overhead view of a single-lane roundabout with yield signs on all four approaches, a red car approaching from the south and a blue car already circulating.",
+  "width": 1200,
+  "height": 675
+ },
+ "distraction-and-fatigue-a02": {
+  "alt": "Minor restriction diagram supporting Phones, Distraction, Fatigue, and Reckless Choices. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "distraction-and-fatigue-a03": {
+  "alt": "Fatigue stop diagram supporting Phones, Distraction, Fatigue, and Reckless Choices. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "distraction-and-fatigue-a01": {
+  "alt": "Phone rules diagram supporting Phones, Distraction, Fatigue, and Reckless Choices. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "drivers-under-18-ca-permits-provisional-licenses-a02": {
+  "alt": "50 plus 10 diagram supporting Permits, Provisional Licenses, Vision, and Knowledge Tests. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "drivers-under-18-ca-permits-provisional-licenses-a03": {
+  "alt": "Three attempts diagram supporting Permits, Provisional Licenses, Vision, and Knowledge Tests. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "drivers-under-18-ca-permits-provisional-licenses-a01": {
+  "alt": "License timeline diagram supporting Permits, Provisional Licenses, Vision, and Knowledge Tests. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "night-weather-visibility-a02": {
+  "alt": "Visible stopping space diagram supporting Night, Weather, Visibility, and Lights. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "night-weather-visibility-a03": {
+  "alt": "Low traction diagram supporting Night, Weather, Visibility, and Lights. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "night-weather-visibility-a01": {
+  "alt": "Diagram of high-beam dimming distances: 500 feet for an approaching vehicle and 300 feet when following another vehicle.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "500",
+   "300"
+  ]
+ },
+ "equipment-loads-towing-a02": {
+  "alt": "200 and tread diagram supporting Vehicle Equipment, Visibility, Loads, and Towing. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "equipment-loads-towing-a03": {
+  "alt": "Secure load diagram supporting Vehicle Equipment, Visibility, Loads, and Towing. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "equipment-loads-towing-a01": {
+  "alt": "Clear view diagram supporting Vehicle Equipment, Visibility, Loads, and Towing. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "freeway-merging-a02": {
+  "alt": "Exit planning diagram supporting Merging, Entering, and Leaving Freeways. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "freeway-merging-a03": {
+  "alt": "Emergency stop diagram supporting Merging, Entering, and Leaving Freeways. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "freeway-merging-a01": {
+  "alt": "Merge gap diagram supporting Merging, Entering, and Leaving Freeways. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "licenses-and-registration-a02": {
+  "alt": "Residency trigger diagram supporting Licenses, Residency, Registration, and Vehicle Transfers. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "licenses-and-registration-a03": {
+  "alt": "5-10-20 clocks diagram supporting Licenses, Residency, Registration, and Vehicle Transfers. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "licenses-and-registration-a01": {
+  "alt": "License possession diagram supporting Licenses, Residency, Registration, and Vehicle Transfers. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "parking-and-curbs-a02": {
+  "alt": "Diagram of California parking distances: a car parked within 18 inches of the curb and a car kept 15 feet from a fire hydrant.",
+  "width": 1200,
+  "height": 675
+ },
+ "parking-and-curbs-a03": {
+  "alt": "Hill wheels diagram supporting Parking, Curbs, Hills, and Roadside Stops. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "parking-and-curbs-a01": {
+  "alt": "Parking conflicts diagram supporting Parking, Curbs, Hills, and Roadside Stops. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "passing-rules-a02": {
+  "alt": "Hidden hill diagram supporting When Passing Is Legal—and When It Is Not. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "passing-rules-a03": {
+  "alt": "Right-side limits diagram supporting When Passing Is Legal—and When It Is Not. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "passing-rules-a01": {
+  "alt": "Complete pass diagram supporting When Passing Is Legal—and When It Is Not. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "penalties-and-points-a02": {
+  "alt": "4-6-8 windows diagram supporting Penalties, Points, and Final Exam Traps. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "penalties-and-points-a03": {
+  "alt": "Exam-trap filter diagram supporting Penalties, Points, and Final Exam Traps. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "penalties-and-points-a01": {
+  "alt": "One vs two points diagram supporting Penalties, Points, and Final Exam Traps. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "permits-provisional-licenses-a02": {
+  "alt": "50 plus 10 diagram supporting Permits, Provisional Licenses, Vision, and Knowledge Tests. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "permits-provisional-licenses-a03": {
+  "alt": "Three attempts diagram supporting Permits, Provisional Licenses, Vision, and Knowledge Tests. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "permits-provisional-licenses-a01": {
+  "alt": "License timeline diagram supporting Permits, Provisional Licenses, Vision, and Knowledge Tests. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "rail-light-rail-work-zones-ca-warning-and-guide-signs-a02": {
+  "alt": "Seven yellow warning diamonds side by side showing a curve, a crossroad, a merge, a divided highway, a lane ending, a slippery surface and a traffic signal ahead.",
+  "width": 1200,
+  "height": 675
+ },
+ "rail-light-rail-work-zones-ca-warning-and-guide-signs-a03": {
+  "alt": "Driver's view of a two-lane road approaching a railroad crossing with a round yellow advance warning sign, an RXR pavement legend, crossbuck masts with raised gates, and open road beyond the tracks.",
+  "width": 1200,
+  "height": 675
+ },
+ "rail-light-rail-work-zones-ca-warning-and-guide-signs-a01": {
+  "alt": "Driver's view of a three-lane highway at dusk with a green overhead destination sign on a mast arm and a yellow curve warning sign with a 35 mph advisory plaque on the right shoulder.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "35"
+  ]
+ },
+ "rail-light-rail-work-zones-ca-warning-and-guide-signs-q04-a": {
+  "alt": "Overhead view of a road crossing railroad tracks, with crossbucks, an RXR pavement legend and a stop line before the tracks, and a line of cars stopped with brake lights just beyond the far rail.",
+  "width": 1200,
+  "height": 675
+ },
+ "rail-light-rail-work-zones-ca-warning-and-guide-signs-q05-a": {
+  "alt": "Driver's view of a work zone where an orange warning sign, a line of cones and a flagger holding a SLOW paddle channel traffic away from a faded centre line.",
+  "width": 1200,
+  "height": 675
+ },
+ "regulatory-signs-a02": {
+  "alt": "Overhead view of a two-lane road with two side streets joining it: at the left one a car waits at a stop line beside an octagonal sign, at the right one a car rolls up to a row of triangular yield markings beside a triangular sign.",
+  "width": 1200,
+  "height": 675
+ },
+ "regulatory-signs-a03": {
+  "alt": "Overhead view of a freeway off-ramp curving down to a surface street, with a pair of do-not-enter signs at the ramp mouth, wrong-way signs farther up the ramp, and cars travelling down it.",
+  "width": 1200,
+  "height": 675
+ },
+ "regulatory-signs-a01": {
+  "alt": "Driver's view of a city arterial where an overhead no-left-turn sign and a lane-use arrow sign hang above the lanes, a roadside post carries a no-trucks sign above a timed parking sign, and a one-way sign stands at a side street.",
+  "width": 1200,
+  "height": 675
+ },
+ "regulatory-signs-q01-a": {
+  "alt": "Driver's view from a ramp ending at a one-way street, with a do-not-enter sign and a wrong-way sign on the left side of the junction and a one-way sign with a right arrow on the far side.",
+  "width": 1200,
+  "height": 675
+ },
+ "regulatory-signs-q02-a": {
+  "alt": "Three roadside sign assemblies side by side: a downward-pointing triangle, a yellow curve warning diamond with a small yellow 25 mph plaque below it, and a red octagon.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "25"
+  ]
+ },
+ "regulatory-signs-q03-a": {
+  "alt": "Overhead view of a wide arterial crossing a smaller street, with an orange car signalling left in the inner lane and a white circular sign showing a slashed U-turn arrow at the far corner.",
+  "width": 1200,
+  "height": 675
+ },
+ "regulatory-signs-q04-a": {
+  "alt": "Driver's view along a dusk city street with three cars approaching head-on with headlights lit, parked cars facing the same way at the kerb, and a wrong-way sign on the right.",
+  "width": 1200,
+  "height": 675
+ },
+ "regulatory-signs-q05-a": {
+  "alt": "Driver's view of an intersection where the overhead signals show red while a police officer stands in the roadway with one arm out and one arm raised, waving traffic on.",
+  "width": 1200,
+  "height": 675
+ },
+ "road-markings-and-curbs-a02": {
+  "alt": "Overhead view of a freeway carriageway where lanes are divided by broken white lines, one boundary is a single solid white line, and the carpool lane on the left is closed off by double solid white lines that open into a short broken section.",
+  "width": 1200,
+  "height": 675
+ },
+ "road-markings-and-curbs-a03": {
+  "alt": "Overhead view of a city block whose curb is painted in five successive colours - red, yellow, white, green and blue - with a fire hydrant at the red section, a box truck at the yellow, parked cars at the white and green, and an empty stall with a wheelchair symbol at the blue.",
+  "width": 1200,
+  "height": 675
+ },
+ "road-markings-and-curbs-a01": {
+  "alt": "Overhead view of a four-lane city street: a double yellow line runs between the two directions of traffic, broken white lines divide the lanes travelling the same way, and solid white lines mark both outer edges.",
+  "width": 1200,
+  "height": 675
+ },
+ "road-markings-and-curbs-q01-a": {
+  "alt": "Driver's view of a two-lane country highway where the broken yellow centre line changes to two solid yellow lines further ahead, with a slow truck in the lane in front and an oncoming car approaching.",
+  "width": 1200,
+  "height": 675
+ },
+ "road-markings-and-curbs-q02-a": {
+  "alt": "Driver's view at dusk of a four-lane undivided road with a yellow line down the middle, oncoming headlights on the far side and two cars ahead travelling the same way.",
+  "width": 1200,
+  "height": 675
+ },
+ "road-markings-and-curbs-q03-a": {
+  "alt": "Driver's view of a freeway from the lane beside the carpool lane, which carries painted diamonds and is separated by two solid white lines, with a concrete barrier along the far left.",
+  "width": 1200,
+  "height": 675
+ },
+ "road-markings-and-curbs-q04-a": {
+  "alt": "Overhead view of a wide arterial road whose centre carries two pairs of solid yellow lines with a strip of bare pavement between them, traffic flowing in both directions.",
+  "width": 1200,
+  "height": 675
+ },
+ "road-markings-and-curbs-q05-a": {
+  "alt": "Driver's view along a downtown street where the curb on the right is painted red for the whole block, with a fire hydrant and street trees on the sidewalk and cars parked at the opposite curb.",
+  "width": 1200,
+  "height": 675
+ },
+ "emergency-school-work-zones-a02": {
+  "alt": "Move over or slow diagram supporting Emergency Vehicles, School Buses, and Work Zones. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "emergency-school-work-zones-a03": {
+  "alt": "School-bus stop diagram supporting Emergency Vehicles, School Buses, and Work Zones. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "emergency-school-work-zones-a01": {
+  "alt": "Clear then pull right diagram supporting Emergency Vehicles, School Buses, and Work Zones. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "seat-belts-child-safety-a02": {
+  "alt": "40 and 40 diagram supporting Seat Belts, Child Passengers, and Smoking with a Minor. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "seat-belts-child-safety-a03": {
+  "alt": "Minor present diagram supporting Seat Belts, Child Passengers, and Smoking with a Minor. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "seat-belts-child-safety-a01": {
+  "alt": "Restraint path diagram supporting Seat Belts, Child Passengers, and Smoking with a Minor. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "sign-shapes-and-colors-a02": {
+  "alt": "Four roadside signs with distinctive silhouettes: a red octagon, a downward-pointing triangle, a yellow pennant and a five-sided school sign.",
+  "width": 1200,
+  "height": 675
+ },
+ "sign-shapes-and-colors-a03": {
+  "alt": "Six signs sharing familiar shapes but different colours: yellow, orange and yellow-green diamonds above a green guide sign, a blue services sign and a brown recreation sign.",
+  "width": 1200,
+  "height": 675
+ },
+ "sign-shapes-and-colors-a01": {
+  "alt": "Driver's view of a highway with three different roadside signs: a white speed limit sign, a yellow warning diamond and a green guide sign.",
+  "width": 1200,
+  "height": 675
+ },
+ "sign-shapes-and-colors-q01-a": {
+  "alt": "Driver's view of a two-lane road with a plain yellow diamond sign standing on the right shoulder ahead and an oncoming car in the opposite lane.",
+  "width": 1200,
+  "height": 675
+ },
+ "sign-shapes-and-colors-q02-a": {
+  "alt": "Three roadside signs side by side: a white circular sign with a slashed left-turn arrow, a yellow diamond with a deer symbol, and a green destination sign.",
+  "width": 1200,
+  "height": 675
+ },
+ "sign-shapes-and-colors-q03-a": {
+  "alt": "Driver's view approaching a junction where a downward-pointing triangular sign stands on the right shoulder.",
+  "width": 1200,
+  "height": 675
+ },
+ "sign-shapes-and-colors-q04-a": {
+  "alt": "Driver's view of a highway lane narrowed by orange cones and barrels, with an orange diamond sign showing a worker on the right shoulder.",
+  "width": 1200,
+  "height": 675
+ },
+ "sign-shapes-and-colors-q05-a": {
+  "alt": "Driver's view of a three-lane road with an overhead gantry carrying lane-use arrow signs above the left and centre lanes.",
+  "width": 1200,
+  "height": 675
+ },
+ "skids-and-emergencies-a02": {
+  "alt": "Tire failure diagram supporting Skids, Vehicle Failures, and Last-Second Choices. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "skids-and-emergencies-a03": {
+  "alt": "Escape path diagram supporting Skids, Vehicle Failures, and Last-Second Choices. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "skids-and-emergencies-a01": {
+  "alt": "Skid recovery diagram supporting Skids, Vehicle Failures, and Last-Second Choices. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "special-lanes-a02": {
+  "alt": "HOV control diagram supporting Turn Lanes, Bicycle Lanes, HOV Lanes, and Barriers. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "special-lanes-a03": {
+  "alt": "Bike-lane entry diagram supporting Turn Lanes, Bicycle Lanes, HOV Lanes, and Barriers. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "special-lanes-a01": {
+  "alt": "Barrier vs turn lane diagram supporting Turn Lanes, Bicycle Lanes, HOV Lanes, and Barriers. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "speed-laws-a02": {
+  "alt": "Diagram of California highway limits: 65 mph on most highways, 70 mph only where posted, and 55 mph on two-lane undivided roads or when towing.",
+  "width": 1200,
+  "height": 675
+ },
+ "speed-laws-a03": {
+  "alt": "Diagram of California's low-speed zones: 15 mph at blind intersections, in alleys, and near obscured railroad crossings, and 25 mph in residential districts and school zones.",
+  "width": 1200,
+  "height": 675
+ },
+ "speed-laws-a01": {
+  "alt": "Speed decision diagram: a car choosing a lower speed than the posted limit as fog, rain, and traffic reduce the safe margin.",
+  "width": 1200,
+  "height": 675
+ },
+ "following-distance-scanning-a01": {
+  "alt": "Scanning zones diagram supporting Following Distance, Stopping Distance, and Scanning. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "stop-yield-entering-traffic-a02": {
+  "alt": "Overhead view of one through street with three side streets joining it: the first has a crosswalk and a limit line, the second only a crosswalk, and the third no markings at all with a building on the corner.",
+  "width": 1200,
+  "height": 675
+ },
+ "stop-yield-entering-traffic-a03": {
+  "alt": "Overhead view of a merging lane joining a four-lane road, with a yield sign beside the ramp and a blue car already travelling in the lane the white car is merging into.",
+  "width": 1200,
+  "height": 675
+ },
+ "stop-yield-entering-traffic-a01": {
+  "alt": "Overhead view of a two-way-stop intersection: a yellow car waits at the painted limit line on the side street while a pedestrian uses the crosswalk in front of it and traffic passes along the through street.",
+  "width": 1200,
+  "height": 675
+ },
+ "stop-yield-entering-traffic-q01-a": {
+  "alt": "Overhead view of a residential intersection with a stop sign and a painted crosswalk across the side street but no limit line; a purple car is still approaching and a pedestrian waits on the corner.",
+  "width": 1200,
+  "height": 675
+ },
+ "stop-yield-entering-traffic-q02-a": {
+  "alt": "Driver's view at dusk approaching a stop sign, with a white limit line painted across the lane and a crosswalk just beyond it.",
+  "width": 1200,
+  "height": 675
+ },
+ "stop-yield-entering-traffic-q03-a": {
+  "alt": "Overhead view of a car stopped at a limit line on a side street, with a parked box truck at the kerb hiding the near lane of the cross street and a shaded area showing what the driver cannot see.",
+  "width": 1200,
+  "height": 675
+ },
+ "stop-yield-entering-traffic-q04-a": {
+  "alt": "Driver's view approaching a yield sign where the wide cross street ahead is empty in both directions.",
+  "width": 1200,
+  "height": 675
+ },
+ "stop-yield-entering-traffic-q05-a": {
+  "alt": "Overhead view of a car in a driveway between two hedges, nose at the edge of a sidewalk where a pedestrian and a wheelchair user are travelling, with traffic and a cyclist on the street beyond.",
+  "width": 1200,
+  "height": 675
+ },
+ "traffic-signals-a02": {
+  "alt": "Overhead view of a red-signalled intersection: one car stops with its bumper on the painted limit line, a second car in the kerb lane waits with its right indicator on, and a car on the other approach, which has no limit line, stops short of the crosswalk while cross traffic moves.",
+  "width": 1200,
+  "height": 675
+ },
+ "traffic-signals-a03": {
+  "alt": "Night driver's view of a three-lane road under an overhead gantry showing a red X, a yellow X and a green downward arrow above the lanes, with a yellow beacon flashing over the junction ahead.",
+  "width": 1200,
+  "height": 675
+ },
+ "traffic-signals-a01": {
+  "alt": "Overhead view of a city street with two signalised crossings: at the near one the signal is green and a car waits to turn left across an approaching oncoming car, while at the next crossing the signal has turned yellow and a car is braking.",
+  "width": 1200,
+  "height": 675
+ },
+ "traffic-signals-q01-a": {
+  "alt": "Overhead view of an intersection where a signal is green and an SUV in the kerb lane approaches with its right indicator flashing while two people walk in the crosswalk across the side street.",
+  "width": 1200,
+  "height": 675
+ },
+ "traffic-signals-q02-a": {
+  "alt": "Driver's view on an overcast city street where the two overhead signal heads above the driver's lanes are showing steady yellow at the intersection ahead.",
+  "width": 1200,
+  "height": 675
+ },
+ "traffic-signals-q03-a": {
+  "alt": "Driver's view from the front of a right-turn lane at an intersection, with a circular red signal over the through lane and a red arrow signal pointing right over the turn lane.",
+  "width": 1200,
+  "height": 675
+ },
+ "traffic-signals-q04-a": {
+  "alt": "Dusk driver's view of a two-lane country road approaching a crossroad where a single beacon hanging on a span wire is flashing red.",
+  "width": 1200,
+  "height": 675
+ },
+ "traffic-signals-q05-a": {
+  "alt": "Driver's view while turning at a corner in late afternoon light, with two people still walking across the crosswalk ahead and a pedestrian signal showing an orange raised hand beside the number one.",
+  "width": 1200,
+  "height": 675
+ },
+ "trucks-buses-slow-vehicles-a02": {
+  "alt": "Wide turn diagram supporting Trucks, Buses, Slow Vehicles, and Animals. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "trucks-buses-slow-vehicles-a03": {
+  "alt": "Animal approach diagram supporting Trucks, Buses, Slow Vehicles, and Animals. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "trucks-buses-slow-vehicles-a01": {
+  "alt": "Truck no-zones diagram supporting Trucks, Buses, Slow Vehicles, and Animals. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "turns-and-signals-a02": {
+  "alt": "Overhead view of a wide city intersection: a gold car sits in a marked left-turn lane, a solid arrow curves into the receiving lane closest to the centre line with a tick beside it, and a dashed arrow sweeping across to the far lane is crossed out.",
+  "width": 1200,
+  "height": 675
+ },
+ "turns-and-signals-a03": {
+  "alt": "Overhead view of a dry-country road where a red car signals right before a side street, with a dimension arrow along the shoulder marked 100 FT between the car and the corner.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "100"
+  ]
+ },
+ "turns-and-signals-a01": {
+  "alt": "Overhead view of a suburban crossroads: a blue car in the right lane signals right, holds close to the curb, and a curved arrow shows its path into the near lane of the side street while two pedestrians finish crossing.",
+  "width": 1200,
+  "height": 675
+ },
+ "turns-and-signals-q01-a": {
+  "alt": "Overhead view of a city street where an orange car in the right-hand lane signals right at an intersection while a bicyclist rides in the green bike lane beside it.",
+  "width": 1200,
+  "height": 675
+ },
+ "turns-and-signals-q02-a": {
+  "alt": "Night-time overhead view of an intersection with an orange car part-way through a left turn and three empty lanes of the cross street ahead of it.",
+  "width": 1200,
+  "height": 675
+ },
+ "turns-and-signals-q03-a": {
+  "alt": "Driver's view at an intersection with circular green signals overhead, two oncoming cars close in the opposing lanes, and a left-turn arrow painted in the driver's lane.",
+  "width": 1200,
+  "height": 675
+ },
+ "turns-and-signals-q04-a": {
+  "alt": "Overhead view of a purple car in the left lane with its left indicator lit, some distance short of a crossroads, with a plain dimension arrow spanning the gap.",
+  "width": 1200,
+  "height": 675
+ },
+ "turns-and-signals-q05-a": {
+  "alt": "Driver's view of a blue car ahead on a two-lane road with the driver's left arm extended out of the window and pointing toward the ground.",
+  "width": 1200,
+  "height": 675
+ },
+ "u-turns-starting-backing-a02": {
+  "alt": "Overhead view of a suburban street lined with houses; a yellow car in the right-hand lane traces a loop back the other way, with one car approaching ahead and one behind, and a distance of two hundred feet marked each way.",
+  "width": 1200,
+  "height": 675
+ },
+ "u-turns-starting-backing-a03": {
+  "alt": "Overhead view of a road passing a red fire station with a fire engine on its apron and red-painted kerb; a dashed loop crosses the station frontage, and sight distances of two hundred feet are marked in both directions.",
+  "width": 1200,
+  "height": 675
+ },
+ "u-turns-starting-backing-a01": {
+  "alt": "Overhead view of a signalised city intersection with shops on every corner; a yellow car waits in the innermost left lane under a green signal, and a curved path loops from that lane back into the opposite lanes.",
+  "width": 1200,
+  "height": 675
+ },
+ "u-turns-starting-backing-q01-a": {
+  "alt": "Overhead view of a residential street running up the frame; a yellow car in the near lane traces a loop back the other way while a red car comes down the opposing lane a short distance ahead.",
+  "width": 1200,
+  "height": 675
+ },
+ "u-turns-starting-backing-q02-a": {
+  "alt": "Overhead view of a business street divided by a landscaped median with a gap midblock and a cross street near the right, shops, a customer car park and footways on both sides.",
+  "width": 1200,
+  "height": 675
+ },
+ "u-turns-starting-backing-q03-a": {
+  "alt": "Driver's view along a residential street at dusk with a red car approaching far up the opposing lane and the distance to it marked as 250 feet.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "250"
+  ]
+ },
+ "u-turns-starting-backing-q04-a": {
+  "alt": "Driver's view of a straight two-lane street with a red fire station and its apparatus bays directly ahead on the left, a fire engine inside an open bay and red-painted kerb across the driveway apron.",
+  "width": 1200,
+  "height": 675
+ },
+ "u-turns-starting-backing-q05-a": {
+  "alt": "Overhead view of a yellow car parked at a kerb with its reversing lights on, a small child and a ball close behind it and a cyclist coming up the traffic lane.",
+  "width": 1200,
+  "height": 675
+ },
+ "uncontrolled-intersections-a02": {
+  "alt": "Driver's view approaching a country crossroads with no signs, where a red pickup is already in the middle of the intersection crossing from left to right.",
+  "width": 1200,
+  "height": 675
+ },
+ "uncontrolled-intersections-a03": {
+  "alt": "Overhead view of a dry rural crossroads with no signs: a red car arriving from the left continues across while a blue car arriving from the top waits.",
+  "width": 1200,
+  "height": 675
+ },
+ "uncontrolled-intersections-a01": {
+  "alt": "Overhead view of a residential crossing with no signs: a blue car holds back at the mouth of the intersection while a grey SUV drives straight through from its left.",
+  "width": 1200,
+  "height": 675
+ },
+ "uncontrolled-intersections-q01-a": {
+  "alt": "Overhead view of a suburban crossing with no signs or signals, with a blue car approaching from the bottom and a white car approaching from the right at the same distance.",
+  "width": 1200,
+  "height": 675
+ },
+ "uncontrolled-intersections-q02-a": {
+  "alt": "Overhead view of a four-lane street crossing a narrow street with no signs; a green SUV is already in the middle of the intersection while a red car approaches on the wide street.",
+  "width": 1200,
+  "height": 675
+ },
+ "uncontrolled-intersections-q03-a": {
+  "alt": "Overhead view of a city all-way stop with crosswalks and stop signs on every corner: a white car sits at its limit line while a blue car rolls up to the limit line on the cross street.",
+  "width": 1200,
+  "height": 675
+ },
+ "uncontrolled-intersections-q04-a": {
+  "alt": "Overhead view of an unsigned crossing in an industrial area: a green car travelling to the left and a silver car coming up from the bottom are the same distance from the intersection.",
+  "width": 1200,
+  "height": 675
+ },
+ "uncontrolled-intersections-q05-a": {
+  "alt": "Driver's view of a road that ends at an unsigned T intersection, with a red car and a dark SUV travelling on the continuing road across the front.",
+  "width": 1200,
+  "height": 675
+ },
+ "warning-and-guide-signs-a02": {
+  "alt": "Seven yellow warning diamonds side by side showing a curve, a crossroad, a merge, a divided highway, a lane ending, a slippery surface and a traffic signal ahead.",
+  "width": 1200,
+  "height": 675
+ },
+ "warning-and-guide-signs-a03": {
+  "alt": "Driver's view of a two-lane road approaching a railroad crossing with a round yellow advance warning sign, an RXR pavement legend, crossbuck masts with raised gates, and open road beyond the tracks.",
+  "width": 1200,
+  "height": 675
+ },
+ "warning-and-guide-signs-a01": {
+  "alt": "Driver's view of a three-lane highway at dusk with a green overhead destination sign on a mast arm and a yellow curve warning sign with a 35 mph advisory plaque on the right shoulder.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "35"
+  ]
+ },
+ "warning-and-guide-signs-q01-a": {
+  "alt": "Driver's view of a two-lane road bending right through dry hills, with a guardrail and chevron markers on the outside of the bend and a yellow curve warning sign with a 35 mph plaque on the right shoulder.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "35"
+  ]
+ },
+ "warning-and-guide-signs-q02-a": {
+  "alt": "Overhead view of a roadway where the right-hand of two same-direction lanes tapers away, with a yellow lane-ends warning sign beside the road and cars travelling in both directions.",
+  "width": 1200,
+  "height": 675
+ },
+ "warning-and-guide-signs-q03-a": {
+  "alt": "Overhead view of a school block with a school building, sidewalks on both sides, a marked crosswalk, SCHOOL painted on the pavement, parked cars at the curb, children walking and a yellow-green school warning sign.",
+  "width": 1200,
+  "height": 675
+ },
+ "warning-and-guide-signs-q04-a": {
+  "alt": "Overhead view of a road crossing railroad tracks, with crossbucks, an RXR pavement legend and a stop line before the tracks, and a line of cars stopped with brake lights just beyond the far rail.",
+  "width": 1200,
+  "height": 675
+ },
+ "warning-and-guide-signs-q05-a": {
+  "alt": "Driver's view of a work zone where an orange warning sign, a line of cones and a flagger holding a SLOW paddle channel traffic away from a faded centre line.",
+  "width": 1200,
+  "height": 675
+ },
+ "weather-and-mountain-roads-ca-night-weather-visibility-a02": {
+  "alt": "Visible stopping space diagram supporting Night, Weather, Visibility, and Lights. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "weather-and-mountain-roads-ca-night-weather-visibility-a03": {
+  "alt": "Low traction diagram supporting Night, Weather, Visibility, and Lights. The written lesson contains the complete rule and does not require the image to understand the answer.",
+  "width": 1200,
+  "height": 675
+ },
+ "weather-and-mountain-roads-ca-night-weather-visibility-a01": {
+  "alt": "Diagram of high-beam dimming distances: 500 feet for an approaching vehicle and 300 feet when following another vehicle.",
+  "width": 1200,
+  "height": 675,
+  "numbers": [
+   "500",
+   "300"
+  ]
+ }
+}

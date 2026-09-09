@@ -1,0 +1,264 @@
+{
+  "stateCode": "TX",
+  "courseId": "tx-class-c",
+  "idPrefix": "tx",
+  "ruleCatalog": "scripts/texas-rule-catalog.json",
+  "vars": {
+    "state": "Texas",
+    "agency": "DPS",
+    "agencyLong": "Department of Public Safety",
+    "highwayPatrol": "DPS"
+  },
+  "course": {
+    "title": "Texas Class C Driver License Course",
+    "subtitle": "Pass the Texas knowledge test and drive with judgment.",
+    "targetLicense": "Class C"
+  },
+  "release": {
+    "version": "2.0.0",
+    "minAppVersion": "1.1.1",
+    "sourceVersionLabel": "TX-2026.09.06-r01",
+    "releasedAt": "2026-09-06",
+    "notes": "Texas rebuilt on the universal skeleton: the same 33-lesson chat format as California, with Texas values rendered into the universal cards, short Texas notes after the cards they extend, and four Texas lessons in module 8. Every number is backed by the Texas rule catalog; handbook-only values are marked needs_review in the build report.",
+    "updateKind": "course",
+    "updateSubtype": "offer",
+    "updateMessage": "The Texas course has been rebuilt from the ground up: 33 lessons in a conversational format with scenario openers, recall cards, and fresh tests. Your progress in the previous Texas course will not carry over."
+  },
+  "params": {
+    "signal.turnDistanceFeet": { "value": 100, "rule": "TX_TN_545_104_SIGNAL_100_FEET" },
+    "speed.maxMph": { "value": 70, "rule": "TX_TN_545_352_PRIMA_FACIE_LIMITS" },
+    "speed.twoLaneUndividedMph": { "value": null, "note": "Texas sets no separate two-lane undivided limit" },
+    "speed.residentialMph": { "value": 30, "rule": "TX_TN_545_352_PRIMA_FACIE_LIMITS", "note": "Texas calls it an urban district" },
+    "following.seconds": { "value": 2, "rule": "TX_HANDBOOK_FOLLOWING_INTERVAL", "note": "handbook interval; catalog rule is needs_review until the DL-7 PDF is checked" },
+    "uturn.visibilityFeet": { "value": null, "note": "Texas codifies only the curve/crest 500-foot rule — see the note" },
+    "parking.hydrantFeet": { "value": 15, "rule": "TX_TN_545_302_NO_STANDING_DISTANCES" },
+    "parking.curbInches": { "value": 18, "rule": "TX_TN_545_303_CURB_18_INCHES" },
+    "centerLane.maxTravelFeet": { "value": null, "note": "no statutory travel distance in a two-way left-turn lane" },
+    "bikeLane.turnEntryFeet": { "value": null, "note": "no statutory entry distance; question overridden" },
+    "bicycle.passingFeet": { "value": null, "note": "no statewide minimum passing distance; question overridden" },
+    "smv.maxMph": { "value": 25, "rule": "TX_TN_547_703_SLOW_MOVING_EMBLEM" },
+    "emergency.followFeet": { "value": 500, "rule": "TX_TN_545_407_408_FOLLOWING_FIRE_APPARATUS" },
+    "lights.afterSunsetMinutes": { "value": 30, "rule": "TX_TN_547_302_LIGHTS_REQUIRED" },
+    "lights.beforeSunriseMinutes": { "value": 30, "rule": "TX_TN_547_302_LIGHTS_REQUIRED" },
+    "lights.visibilityFeet": { "value": 1000, "rule": "TX_TN_547_302_LIGHTS_REQUIRED" },
+    "highBeam.approachingFeet": { "value": 500, "rule": "TX_TN_547_333_DIM_HIGH_BEAMS" },
+    "highBeam.followingFeet": { "value": 300, "rule": "TX_TN_547_333_DIM_HIGH_BEAMS" },
+    "crash.reportDamagePhrase": { "value": "damage that leaves a vehicle unable to be driven normally", "rule": "TX_TN_550_026_IMMEDIATE_REPORT" },
+    "insurance.perPerson": { "value": 30000, "rule": "TX_TN_601_051_072_FINANCIAL_RESPONSIBILITY" },
+    "insurance.perCrash": { "value": 60000, "rule": "TX_TN_601_051_072_FINANCIAL_RESPONSIBILITY" },
+    "insurance.property": { "value": 25000, "rule": "TX_TN_601_051_072_FINANCIAL_RESPONSIBILITY" },
+    "phone.minorNoDeviceAge": { "value": 18, "rule": "TX_TN_545_424_UNDER_18_RESTRICTIONS" },
+    "bac.adult": { "value": 0.08, "rule": "TX_PE_49_01_04_DWI" },
+    "bac.under21Age": { "value": 21, "rule": "TX_AL_106_041_MINOR_DUI" },
+    "bac.under21": { "value": null, "note": "any detectable amount — see the note" },
+    "refusal.firstSuspension": { "value": "180 days", "rule": "TX_TN_724_011_035_IMPLIED_CONSENT_REFUSAL" },
+    "child.restraintAge": { "value": 8, "rule": "TX_TN_545_412_CHILD_SAFETY_SEATS" },
+    "child.beltHeight": { "value": "4 feet 9 inches", "rule": "TX_TN_545_412_CHILD_SAFETY_SEATS" },
+    "equipment.hornFeet": { "value": 200, "rule": "TX_TN_547_EQUIPMENT_BASICS" },
+    "equipment.treadInches": { "value": null, "note": "tread depth is not in the Texas catalog; sentence and recall drop" }
+  },
+  "notes": [
+    {
+      "after": "speed-and-space-slide-03",
+      "title": "Texas default limits",
+      "lines": [
+        "Unless a sign says otherwise: 30 mph on an urban district street, 15 mph in an alley or on a beach.",
+        "70 mph on a state- or U.S.-numbered highway outside an urban district, including farm-to-market roads; 60 mph on other roads outside an urban district.",
+        "The Transportation Commission may post higher limits after an engineering study — up to 75 mph, 80 on designated highways, and 85 where the road was engineered for it."
+      ],
+      "rules": ["TX_TN_545_352_PRIMA_FACIE_LIMITS", "TX_TN_545_353_COMMISSION_MAXIMUM"]
+    },
+    {
+      "after": "uncontrolled-intersections-slide-04",
+      "title": "The bigger road goes first in Texas",
+      "lines": [
+        "At an uncontrolled intersection, a driver on a one- or two-lane road yields to a divided highway or a road with three or more marked lanes.",
+        "A driver on an unpaved road yields to traffic on the paved road."
+      ],
+      "rules": ["TX_TN_545_151_BIG_ROAD_PAVED_ROAD"]
+    },
+    {
+      "after": "u-turns-starting-backing-slide-06",
+      "title": "Turning around in Texas",
+      "lines": [
+        "Never turn around near a curve or the crest of a hill where a driver approaching from either direction within 500 feet cannot see you.",
+        "Texas freeways often provide a turnaround lane that links the frontage roads under the bridge — use it instead of a U-turn through the intersection."
+      ],
+      "rules": ["TX_TN_545_102_TURNAROUND_CURVE_CREST", "TX_TMUTCD_2B_30A_TURNAROUND_LANES"]
+    },
+    {
+      "after": "parking-and-curbs-slide-01",
+      "title": "Texas no-parking distances",
+      "lines": ["Except to pick up or drop off a passenger, do not stand or park:"],
+      "bullets": [
+        "Within 15 feet of a fire hydrant.",
+        "Within 20 feet of a crosswalk at an intersection.",
+        "Within 30 feet on the approach to a stop sign, yield sign, or signal at the side of the road.",
+        "Within 20 feet of a fire station driveway, or within 75 feet across the street from a signed one.",
+        "In front of any driveway, in an intersection, on a crosswalk, or on railroad tracks."
+      ],
+      "rules": ["TX_TN_545_302_NO_STANDING_DISTANCES", "TX_TN_545_302_NO_STOPPING_IN_INTERSECTION"]
+    },
+    {
+      "after": "passing-rules-slide-06",
+      "title": "Shoulders and intersections in Texas",
+      "lines": [
+        "Texas lets you use a paved (improved) shoulder on the right to pass a vehicle that is slowing, stopped, or preparing to turn left — only when it is necessary and safe. An unpaved shoulder is never a passing lane.",
+        "Never drive left of the center within 100 feet of an intersection or a railroad crossing."
+      ],
+      "rules": ["TX_TN_545_058_IMPROVED_SHOULDER", "TX_TN_545_056_NO_LEFT_OF_CENTER_100_FEET"]
+    },
+    {
+      "after": "bicycles-motorcycles-slide-04",
+      "title": "Passing a bicycle in Texas",
+      "lines": [
+        "The Transportation Code sets no statewide minimum passing distance for a bicycle. You must pass at a safe distance, and the handbook treats three feet as the practical minimum.",
+        "Change lanes when practical; if the road is too narrow to pass safely, slow and stay behind."
+      ],
+      "rules": ["TX_HANDBOOK_PASSING_BICYCLE_SAFE_DISTANCE"]
+    },
+    {
+      "after": "school-buses-emergency-vehicles-slide-03",
+      "title": "Texas move-over: vacate or slow 20 under",
+      "lines": [
+        "Approaching a stopped emergency vehicle, tow truck, TxDOT or utility vehicle with its lights on, vacate the lane next to it when the road has two or more lanes in your direction.",
+        "If you cannot, slow to 20 mph below the limit — or to 5 mph when the limit is 25 or less. Fines run from $500 to $1,250."
+      ],
+      "rules": ["TX_TN_545_157_MOVE_OVER_SLOW_DOWN"]
+    },
+    {
+      "after": "school-buses-emergency-vehicles-slide-06",
+      "title": "Texas school-bus rule",
+      "lines": [
+        "Stop before reaching a school bus with its red lights flashing and stop arm out, from either direction, and stay stopped until the bus moves, the driver waves you on, or the lights go off.",
+        "You need not stop when the bus is on the other roadway of a divided highway. Passing a stopped school bus costs $500 to $1,250, and $1,000 to $2,000 for a repeat within five years."
+      ],
+      "rules": ["TX_TN_545_066_SCHOOL_BUS"]
+    },
+    {
+      "after": "rail-light-rail-work-zones-slide-01",
+      "title": "Where to stop for a train in Texas",
+      "lines": [
+        "When a signal, a gate, a flagger, or an approaching train warns you, stop between 15 and 50 feet from the nearest rail and stay stopped until it is safe and lawful to proceed."
+      ],
+      "rules": ["TX_TN_545_251_RAILROAD_STOP"]
+    },
+    {
+      "after": "rail-light-rail-work-zones-slide-05",
+      "title": "Work-zone fines double",
+      "lines": [
+        "A traffic offense committed in a construction or maintenance zone while workers are present carries doubled minimum and maximum fines when the citation says so."
+      ],
+      "rules": ["TX_TN_542_404_WORK_ZONE_FINES"]
+    },
+    {
+      "after": "crashes-and-insurance-slide-06",
+      "title": "Reporting a crash in Texas",
+      "lines": [
+        "When a crash injures or kills someone, or leaves a vehicle unable to be driven normally, notify the local police, the sheriff, or the nearest DPS office immediately, by the quickest means.",
+        "The investigating officer files the written crash report when the crash caused injury, death, or $1,000 or more in damage. Texas has no separate driver report to mail in."
+      ],
+      "rules": ["TX_TN_550_026_IMMEDIATE_REPORT", "TX_TN_550_062_OFFICER_REPORT"]
+    },
+    {
+      "after": "crashes-and-insurance-slide-07",
+      "title": "Driving uninsured in Texas",
+      "lines": [
+        "Show proof of coverage on paper or on your phone when a peace officer or another driver in a crash asks.",
+        "Driving without financial responsibility costs $175 to $350 the first time and up to $1,000 for a repeat offense."
+      ],
+      "rules": ["TX_TN_601_051_072_FINANCIAL_RESPONSIBILITY"]
+    },
+    {
+      "after": "distraction-and-fatigue-slide-03",
+      "title": "Texas phone rules",
+      "lines": [
+        "Statewide, no reading, writing, or sending electronic messages while driving.",
+        "In a school crossing zone, no handheld wireless device at all unless the vehicle is stopped."
+      ],
+      "rules": ["TX_TN_545_4251_TEXTING_BAN", "TX_TN_545_425_SCHOOL_CROSSING_ZONE_PHONES"]
+    },
+    {
+      "after": "alcohol-drugs-dui-slide-03",
+      "title": "Texas: under 21 means any detectable amount",
+      "lines": [
+        "A driver under 21 with any detectable amount of alcohol commits DUI by a minor, with community service and a license suspension.",
+        "For adults, 0.15 or more raises a first DWI to a more serious offense; a first DWI already carries at least 72 hours of confinement, and six days with an open container in the driver’s possession."
+      ],
+      "rules": ["TX_AL_106_041_MINOR_DUI", "TX_PE_49_01_04_DWI"]
+    },
+    {
+      "after": "alcohol-drugs-dui-slide-07",
+      "title": "Failed or refused tests in Texas",
+      "lines": [
+        "A failed breath or blood test suspends an adult license for 90 days, or one year with a prior alcohol-related contact in the last 10 years.",
+        "A refusal costs 180 days, or two years with a prior contact."
+      ],
+      "rules": ["TX_TN_524_022_ALR_SUSPENSION", "TX_TN_724_011_035_IMPLIED_CONSENT_REFUSAL"]
+    },
+    {
+      "after": "alcohol-drugs-dui-slide-08",
+      "title": "What counts as the passenger area",
+      "lines": [
+        "In Texas the passenger area does not include a locked glove compartment, the trunk, or the space behind the last upright seat in a vehicle without a trunk.",
+        "An open container anywhere else is an offense whether the car is moving, stopped, or parked."
+      ],
+      "rules": ["TX_PE_49_031_OPEN_CONTAINER"]
+    },
+    {
+      "after": "seat-belts-child-safety-slide-05",
+      "title": "Texas belt and seat rules",
+      "lines": [
+        "Everyone 15 and older must wear a safety belt in any seat that has one, front or back; the driver is responsible for any unbelted child under 17.",
+        "A child under 8 rides in a child safety seat used according to its instructions unless the child is taller than 4 feet 9 inches — the fine is $25 to $250.",
+        "Texas sets no separate rear-facing age: the seat’s own instructions decide when a child moves forward-facing and then to a booster."
+      ],
+      "rules": ["TX_TN_545_413_SAFETY_BELTS", "TX_TN_545_412_CHILD_SAFETY_SEATS"]
+    },
+    {
+      "after": "equipment-loads-towing-slide-02",
+      "title": "No more safety inspection",
+      "lines": [
+        "Texas no longer requires an annual safety inspection for non-commercial vehicles; owners pay an inspection fee with registration instead, and some counties still require an emissions test.",
+        "That makes the pre-trip walk-around yours to do."
+      ],
+      "rules": ["TX_TXDMV_INSPECTION_REPLACEMENT"]
+    },
+    {
+      "after": "equipment-loads-towing-slide-05",
+      "title": "Projecting loads",
+      "lines": [
+        "A load that extends 4 feet or more beyond the rear of the vehicle needs two red lamps visible from 500 feet at night and red flags at least 12 inches square by day."
+      ],
+      "rules": ["TX_TN_547_382_PROJECTING_LOADS"]
+    },
+    {
+      "after": "equipment-loads-towing-slide-06",
+      "title": "Pickup beds and the front seat",
+      "lines": [
+        "No child under 18 may ride in the open bed of a pickup, a flatbed, or an open trailer; the fine is $25 to $200.",
+        "Do not drive with a load, or with more than three people in the front seat, that blocks your view or your control of the vehicle."
+      ],
+      "rules": ["TX_TN_545_414_OPEN_TRUCK_BEDS", "TX_TN_545_417_VIEW_OBSTRUCTION"]
+    }
+  ],
+  "overrides": {
+    "cards": {},
+    "questions": {
+      "special-lanes-q05": {
+        "prompt": "You are about to turn right across a bicycle lane in Texas. What must you do?",
+        "choices": ["Yield to cyclists in the lane and cross it only where the markings allow, just before the turn", "Drive in the bicycle lane for the whole block", "Turn across it without checking; the lane is reserved for bikes"],
+        "correct": 0,
+        "explanation": "A bicycle lane is reserved for bicycles; a motor vehicle crosses it only to turn, after yielding to anyone already in it.",
+        "rules": ["TX_TMUTCD_9E_BICYCLE_LANES"]
+      },
+      "bicycles-motorcycles-q02": {
+        "prompt": "How should you pass a bicycle in Texas?",
+        "choices": ["Squeeze past inside the same lane", "Sound the horn and hold your line", "Slow, leave a safe distance, and change lanes when practical"],
+        "correct": 2,
+        "explanation": "Texas requires a safe passing distance; the handbook treats three feet as the practical minimum, and changing lanes is the safest way to give it.",
+        "rules": ["TX_HANDBOOK_PASSING_BICYCLE_SAFE_DISTANCE"]
+      }
+    }
+  }
+}

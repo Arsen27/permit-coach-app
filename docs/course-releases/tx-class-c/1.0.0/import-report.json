@@ -1,0 +1,449 @@
+{
+  "stableCourseId": "tx-class-c",
+  "deliveryVersion": "1.0.0",
+  "generatedFrom": {
+    "packageDir": "/Users/arsen/Documents/indie/dmv-learning/courses/Texas_DMV_Course_TX2026.08.10r01_Illustrated_20260811",
+    "versionLabel": "TX-2026.08.10-r01",
+    "status": "draft_generated_human_review_required",
+    "publicationAuthorized": false,
+    "contentHash": "8b0418a0192ad15184a17c1ada3b8f5976bf16f97515fd6267cd320c410fec08",
+    "contentHashNote": "Per-file SVG sha256 values and cross-report consistency verified. The package does not document a formula for recomputing manifest.contentHash from delivered bytes, so it is recorded as-is.",
+    "hashedFileCount": 153,
+    "finalValidationStatus": "passed",
+    "staleValidationReportAccepted": true,
+    "warnings": [
+      "32 files differ from manifest.files hashes: the package was re-assembled after the manifest was written, so the delivered bytes were never covered by its integrity sweep (accepted via --allow-stale-validation-report)",
+      "final-validation contentHash differs from manifest contentHash: the QA report was produced from different bytes than this package ships (accepted via --allow-stale-validation-report)"
+    ]
+  },
+  "counts": {
+    "modules": 8,
+    "lessons": 30,
+    "questions": 150,
+    "moduleTests": 8,
+    "moduleTestQuestionRefs": 80,
+    "assets": 140,
+    "blocksPerLesson": 12,
+    "questionsPerLesson": 5,
+    "assetsPerLesson": 3
+  },
+  "manifestVersion": {
+    "version": "1.0.0",
+    "status": "release_candidate",
+    "instructions": [
+      {
+        "op": "full",
+        "severity": "soft",
+        "message": "The Texas course was added."
+      }
+    ]
+  },
+  "strippedAuditFields": [
+    "primaryRuleIds",
+    "reinforcementRuleIds",
+    "evidenceId",
+    "blueprintId",
+    "estimatedVisibleWordCount",
+    "status",
+    "courseVersion",
+    "relatedRuleIds (questions)",
+    "rightsStatus/source (assets)",
+    "official URLs, rights registry, dependency map, QA reports, authoring files"
+  ],
+  "auditLessonFields": {
+    "tx-sign-language": {
+      "sourceLessonId": "tx-sign-language",
+      "blueprintId": "us-state-course-sign-language",
+      "primaryRuleIds": [
+        "TX_SIGN_LANGUAGE_01",
+        "TX_SIGN_LANGUAGE_02",
+        "TX_SIGN_LANGUAGE_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-sign-language-evidence",
+      "estimatedVisibleWordCount": 307,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-regulatory-signs": {
+      "sourceLessonId": "tx-regulatory-signs",
+      "blueprintId": "us-state-course-regulatory-signs",
+      "primaryRuleIds": [
+        "TX_REGULATORY_SIGNS_01",
+        "TX_REGULATORY_SIGNS_02",
+        "TX_REGULATORY_SIGNS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-regulatory-signs-evidence",
+      "estimatedVisibleWordCount": 310,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-warning-guide-signs": {
+      "sourceLessonId": "tx-warning-guide-signs",
+      "blueprintId": "us-state-course-warning-guide-signs",
+      "primaryRuleIds": [
+        "TX_WARNING_GUIDE_SIGNS_01",
+        "TX_WARNING_GUIDE_SIGNS_02",
+        "TX_WARNING_GUIDE_SIGNS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-warning-guide-signs-evidence",
+      "estimatedVisibleWordCount": 328,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-signals": {
+      "sourceLessonId": "tx-signals",
+      "blueprintId": "us-state-course-signals",
+      "primaryRuleIds": [
+        "TX_SIGNALS_01",
+        "TX_SIGNALS_02",
+        "TX_SIGNALS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-signals-evidence",
+      "estimatedVisibleWordCount": 310,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-markings": {
+      "sourceLessonId": "tx-markings",
+      "blueprintId": "us-state-course-markings",
+      "primaryRuleIds": [
+        "TX_MARKINGS_01",
+        "TX_MARKINGS_02",
+        "TX_MARKINGS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-markings-evidence",
+      "estimatedVisibleWordCount": 309,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-uncontrolled-intersections": {
+      "sourceLessonId": "tx-uncontrolled-intersections",
+      "blueprintId": "us-state-course-uncontrolled-intersections",
+      "primaryRuleIds": [
+        "TX_UNCONTROLLED_INTERSECTIONS_01",
+        "TX_UNCONTROLLED_INTERSECTIONS_02",
+        "TX_UNCONTROLLED_INTERSECTIONS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-uncontrolled-intersections-evidence",
+      "estimatedVisibleWordCount": 320,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-stop-yield-entry": {
+      "sourceLessonId": "tx-stop-yield-entry",
+      "blueprintId": "us-state-course-stop-yield-entry",
+      "primaryRuleIds": [
+        "TX_STOP_YIELD_ENTRY_01",
+        "TX_STOP_YIELD_ENTRY_02",
+        "TX_STOP_YIELD_ENTRY_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-stop-yield-entry-evidence",
+      "estimatedVisibleWordCount": 314,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-turns-signals": {
+      "sourceLessonId": "tx-turns-signals",
+      "blueprintId": "us-state-course-turns-signals",
+      "primaryRuleIds": [
+        "TX_TURNS_SIGNALS_01",
+        "TX_TURNS_SIGNALS_02",
+        "TX_TURNS_SIGNALS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-turns-signals-evidence",
+      "estimatedVisibleWordCount": 320,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-uturn-backing": {
+      "sourceLessonId": "tx-uturn-backing",
+      "blueprintId": "us-state-course-uturn-backing",
+      "primaryRuleIds": [
+        "TX_UTURN_BACKING_01",
+        "TX_UTURN_BACKING_02",
+        "TX_UTURN_BACKING_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-uturn-backing-evidence",
+      "estimatedVisibleWordCount": 312,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-pedestrians-roundabouts": {
+      "sourceLessonId": "tx-pedestrians-roundabouts",
+      "blueprintId": "us-state-course-pedestrians-roundabouts",
+      "primaryRuleIds": [
+        "TX_PEDESTRIANS_ROUNDABOUTS_01",
+        "TX_PEDESTRIANS_ROUNDABOUTS_02",
+        "TX_PEDESTRIANS_ROUNDABOUTS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-pedestrians-roundabouts-evidence",
+      "estimatedVisibleWordCount": 323,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-lane-choice": {
+      "sourceLessonId": "tx-lane-choice",
+      "blueprintId": "us-state-course-lane-choice",
+      "primaryRuleIds": [
+        "TX_LANE_CHOICE_01",
+        "TX_LANE_CHOICE_02",
+        "TX_LANE_CHOICE_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-lane-choice-evidence",
+      "estimatedVisibleWordCount": 320,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-passing": {
+      "sourceLessonId": "tx-passing",
+      "blueprintId": "us-state-course-passing",
+      "primaryRuleIds": [
+        "TX_PASSING_01",
+        "TX_PASSING_02",
+        "TX_PASSING_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-passing-evidence",
+      "estimatedVisibleWordCount": 316,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-highway-entry-exit": {
+      "sourceLessonId": "tx-highway-entry-exit",
+      "blueprintId": "us-state-course-highway-entry-exit",
+      "primaryRuleIds": [
+        "TX_HIGHWAY_ENTRY_EXIT_01",
+        "TX_HIGHWAY_ENTRY_EXIT_02",
+        "TX_HIGHWAY_ENTRY_EXIT_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-highway-entry-exit-evidence",
+      "estimatedVisibleWordCount": 320,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-special-lanes": {
+      "sourceLessonId": "tx-special-lanes",
+      "blueprintId": "us-state-course-special-lanes",
+      "primaryRuleIds": [
+        "TX_SPECIAL_LANES_01",
+        "TX_SPECIAL_LANES_02",
+        "TX_SPECIAL_LANES_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-special-lanes-evidence",
+      "estimatedVisibleWordCount": 316,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-speed-laws": {
+      "sourceLessonId": "tx-speed-laws",
+      "blueprintId": "us-state-course-speed-laws",
+      "primaryRuleIds": [
+        "TX_SPEED_LAWS_01",
+        "TX_SPEED_LAWS_02",
+        "TX_SPEED_LAWS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-speed-laws-evidence",
+      "estimatedVisibleWordCount": 322,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-space-scanning": {
+      "sourceLessonId": "tx-space-scanning",
+      "blueprintId": "us-state-course-space-scanning",
+      "primaryRuleIds": [
+        "TX_SPACE_SCANNING_01",
+        "TX_SPACE_SCANNING_02",
+        "TX_SPACE_SCANNING_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-space-scanning-evidence",
+      "estimatedVisibleWordCount": 308,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-parking": {
+      "sourceLessonId": "tx-parking",
+      "blueprintId": "us-state-course-parking",
+      "primaryRuleIds": [
+        "TX_PARKING_01",
+        "TX_PARKING_02",
+        "TX_PARKING_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-parking-evidence",
+      "estimatedVisibleWordCount": 307,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-bikes-motorcycles": {
+      "sourceLessonId": "tx-bikes-motorcycles",
+      "blueprintId": "us-state-course-bikes-motorcycles",
+      "primaryRuleIds": [
+        "TX_BIKES_MOTORCYCLES_01",
+        "TX_BIKES_MOTORCYCLES_02",
+        "TX_BIKES_MOTORCYCLES_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-bikes-motorcycles-evidence",
+      "estimatedVisibleWordCount": 315,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-large-slow-vehicles": {
+      "sourceLessonId": "tx-large-slow-vehicles",
+      "blueprintId": "us-state-course-large-slow-vehicles",
+      "primaryRuleIds": [
+        "TX_LARGE_SLOW_VEHICLES_01",
+        "TX_LARGE_SLOW_VEHICLES_02",
+        "TX_LARGE_SLOW_VEHICLES_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-large-slow-vehicles-evidence",
+      "estimatedVisibleWordCount": 318,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-school-emergency-work": {
+      "sourceLessonId": "tx-school-emergency-work",
+      "blueprintId": "us-state-course-school-emergency-work",
+      "primaryRuleIds": [
+        "TX_SCHOOL_EMERGENCY_WORK_01",
+        "TX_SCHOOL_EMERGENCY_WORK_02",
+        "TX_SCHOOL_EMERGENCY_WORK_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-school-emergency-work-evidence",
+      "estimatedVisibleWordCount": 396,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-night-weather-lights": {
+      "sourceLessonId": "tx-night-weather-lights",
+      "blueprintId": "us-state-course-night-weather-lights",
+      "primaryRuleIds": [
+        "TX_NIGHT_WEATHER_LIGHTS_01",
+        "TX_NIGHT_WEATHER_LIGHTS_02",
+        "TX_NIGHT_WEATHER_LIGHTS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-night-weather-lights-evidence",
+      "estimatedVisibleWordCount": 317,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-vehicle-emergencies": {
+      "sourceLessonId": "tx-vehicle-emergencies",
+      "blueprintId": "us-state-course-vehicle-emergencies",
+      "primaryRuleIds": [
+        "TX_VEHICLE_EMERGENCIES_01",
+        "TX_VEHICLE_EMERGENCIES_02",
+        "TX_VEHICLE_EMERGENCIES_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-vehicle-emergencies-evidence",
+      "estimatedVisibleWordCount": 311,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-distraction-fatigue": {
+      "sourceLessonId": "tx-distraction-fatigue",
+      "blueprintId": "us-state-course-distraction-fatigue",
+      "primaryRuleIds": [
+        "TX_DISTRACTION_FATIGUE_01",
+        "TX_DISTRACTION_FATIGUE_02",
+        "TX_DISTRACTION_FATIGUE_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-distraction-fatigue-evidence",
+      "estimatedVisibleWordCount": 304,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-alcohol-drugs": {
+      "sourceLessonId": "tx-alcohol-drugs",
+      "blueprintId": "us-state-course-alcohol-drugs",
+      "primaryRuleIds": [
+        "TX_ALCOHOL_DRUGS_01",
+        "TX_ALCOHOL_DRUGS_02",
+        "TX_ALCOHOL_DRUGS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-alcohol-drugs-evidence",
+      "estimatedVisibleWordCount": 346,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-restraints-children": {
+      "sourceLessonId": "tx-restraints-children",
+      "blueprintId": "us-state-course-restraints-children",
+      "primaryRuleIds": [
+        "TX_RESTRAINTS_CHILDREN_01",
+        "TX_RESTRAINTS_CHILDREN_02",
+        "TX_RESTRAINTS_CHILDREN_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-restraints-children-evidence",
+      "estimatedVisibleWordCount": 319,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-equipment-loads": {
+      "sourceLessonId": "tx-equipment-loads",
+      "blueprintId": "us-state-course-equipment-loads",
+      "primaryRuleIds": [
+        "TX_EQUIPMENT_LOADS_01",
+        "TX_EQUIPMENT_LOADS_02",
+        "TX_EQUIPMENT_LOADS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-equipment-loads-evidence",
+      "estimatedVisibleWordCount": 294,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-crashes-insurance": {
+      "sourceLessonId": "tx-crashes-insurance",
+      "blueprintId": "us-state-course-crashes-insurance",
+      "primaryRuleIds": [
+        "TX_CRASHES_INSURANCE_01",
+        "TX_CRASHES_INSURANCE_02",
+        "TX_CRASHES_INSURANCE_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-crashes-insurance-evidence",
+      "estimatedVisibleWordCount": 318,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-permits-tests": {
+      "sourceLessonId": "tx-permits-tests",
+      "blueprintId": "us-state-course-permits-tests",
+      "primaryRuleIds": [
+        "TX_PERMITS_TESTS_01",
+        "TX_PERMITS_TESTS_02",
+        "TX_PERMITS_TESTS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-permits-tests-evidence",
+      "estimatedVisibleWordCount": 416,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-residency-transfers": {
+      "sourceLessonId": "tx-residency-transfers",
+      "blueprintId": "us-state-course-residency-transfers",
+      "primaryRuleIds": [
+        "TX_RESIDENCY_TRANSFERS_01",
+        "TX_RESIDENCY_TRANSFERS_02",
+        "TX_RESIDENCY_TRANSFERS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-residency-transfers-evidence",
+      "estimatedVisibleWordCount": 370,
+      "status": "draft_generated_human_review_required"
+    },
+    "tx-penalties-review": {
+      "sourceLessonId": "tx-penalties-review",
+      "blueprintId": "us-state-course-penalties-review",
+      "primaryRuleIds": [
+        "TX_PENALTIES_REVIEW_01",
+        "TX_PENALTIES_REVIEW_02",
+        "TX_PENALTIES_REVIEW_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "tx-penalties-review-evidence",
+      "estimatedVisibleWordCount": 364,
+      "status": "draft_generated_human_review_required"
+    }
+  },
+  "warnings": [
+    "32 files differ from manifest.files hashes: the package was re-assembled after the manifest was written, so the delivered bytes were never covered by its integrity sweep (accepted via --allow-stale-validation-report)",
+    "final-validation contentHash differs from manifest contentHash: the QA report was produced from different bytes than this package ships (accepted via --allow-stale-validation-report)"
+  ]
+}

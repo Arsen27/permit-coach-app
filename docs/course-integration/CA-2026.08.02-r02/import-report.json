@@ -1,0 +1,106 @@
+{
+  "versionLabel": "CA-2026.08.02-r02",
+  "courseUuid": "39ffc1a5-8f13-5b6b-9eb0-0594435ed913",
+  "courseId": "ca-2026-08-02-r02",
+  "status": "ready_for_review",
+  "packageDir": "/Users/arsen/Documents/indie/dmv-learning/California_DMV_Course_CA-2026.08.02-r02_Integration_Handoff_2026-08-03/CA-2026.08.02-r02",
+  "importedAt": "2026-08-03T20:07:56.094Z",
+  "checksumsVerified": 112,
+  "counts": {
+    "modules": 13,
+    "lessons": 73,
+    "lessonQuestions": 146,
+    "moduleTestQuestions": 83,
+    "totalQuestions": 229
+  },
+  "entities": {
+    "courseVersion": {
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 1,
+      "failed": 0
+    },
+    "modules": {
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 13,
+      "failed": 0
+    },
+    "lessons": {
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 73,
+      "failed": 0
+    },
+    "moduleTests": {
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 13,
+      "failed": 0
+    },
+    "questions": {
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 229,
+      "failed": 0
+    }
+  },
+  "warnings": [
+    "learner-visible text contains 1125 internal rule-code mentions (e.g. CA_VEH_12500_LICENSE_REQUIRED); flag for human review of explanation phrasing"
+  ],
+  "strippedFields": {
+    "course": [
+      "blockedClaims",
+      "qaStatus"
+    ],
+    "module": [
+      "blueprintId",
+      "jurisdiction",
+      "state",
+      "courseVersion",
+      "status",
+      "qaStatus",
+      "lessonCount",
+      "lessonQuestionCount",
+      "sourceCheckedAt",
+      "rulesEffectiveThrough",
+      "legalFreshnessStatus"
+    ],
+    "lesson": [
+      "blueprintId",
+      "moduleUuid",
+      "jurisdiction",
+      "state",
+      "courseVersion",
+      "status",
+      "dependsOnRules",
+      "citations",
+      "sourceCheckedAt",
+      "rulesEffectiveThrough",
+      "legalFreshnessStatus",
+      "internalQa",
+      "content.heroVisualBrief",
+      "content.plainEnglishExplanation[].ruleId",
+      "content.numbersAndLimits[].ruleId"
+    ],
+    "question": [
+      "state",
+      "jurisdiction",
+      "courseVersion",
+      "correctAnswer",
+      "distractors",
+      "relatedRuleIds",
+      "dependsOnRules",
+      "citations",
+      "citation",
+      "visualBrief"
+    ]
+  },
+  "notImported": [
+    "rules.json (audit layer, stays in the handoff package)",
+    "dependency-map.json (audit layer)",
+    "evidence/ (audit layer)",
+    "reports/ (editorial QA)",
+    "visual briefs (production instructions; no finished assets exist yet)"
+  ]
+}

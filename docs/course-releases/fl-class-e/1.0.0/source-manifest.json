@@ -1,0 +1,773 @@
+{
+  "packageType": "state-driver-course-version",
+  "versionLabel": "FL-2026.08.10-r01",
+  "jurisdiction": "FL",
+  "stateSequence": 1,
+  "generatedAt": "2026-08-10",
+  "status": "draft_generated_human_review_required",
+  "publicationAuthorized": false,
+  "fileCount": 152,
+  "contentHash": "8bbb0b75742a4b178047248f8879b8afdc515b304ef35dd5c22eb477e11cd78c",
+  "files": [
+    {
+      "path": "INTEGRATION-HANDOFF.md",
+      "bytes": 786,
+      "sha256": "004074e3bf2b84d00b0c98863334eea7816b1e91da892e5a6431cb350ab0a831"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1029,
+      "sha256": "a03128667894d40b71fa9e55b17d8981a84ecce8341e65043c1ed93ed900509c"
+    },
+    {
+      "path": "assets/fl-alcohol-drugs-asset-01.svg",
+      "bytes": 1573,
+      "sha256": "ec5bd3a75b66031956a079dd609d07abfb1181803b0deb068b38fa108a6544eb"
+    },
+    {
+      "path": "assets/fl-alcohol-drugs-asset-02.svg",
+      "bytes": 1812,
+      "sha256": "c7de4f48e962f50ed887edf1ceb8d329b95a997c19b9138db3b84be77ad2e714"
+    },
+    {
+      "path": "assets/fl-alcohol-drugs-asset-03.svg",
+      "bytes": 1683,
+      "sha256": "32b616fef7c0054cb27098292f6d35a696d214311cebbf2ece9f599c396398a5"
+    },
+    {
+      "path": "assets/fl-bikes-motorcycles-asset-01.svg",
+      "bytes": 1523,
+      "sha256": "df8a9dde1f0098848b1876bbf55e9ca5c6148962f134dae058a31189660bf3db"
+    },
+    {
+      "path": "assets/fl-bikes-motorcycles-asset-02.svg",
+      "bytes": 1762,
+      "sha256": "db3543a0ab69bd78abc6073da1bf1c96781301c45410dc6f6c0ba1bcb72dfc30"
+    },
+    {
+      "path": "assets/fl-bikes-motorcycles-asset-03.svg",
+      "bytes": 1637,
+      "sha256": "46833109255baf7564aeb7b3eb3761f7d0355c9fe12b35b423f5ad6b277010c3"
+    },
+    {
+      "path": "assets/fl-crashes-insurance-asset-01.svg",
+      "bytes": 1615,
+      "sha256": "16b93ff2d7c99fe0af9e062aa1568f8cb9b806776e0c90cacf4480f4b00753e2"
+    },
+    {
+      "path": "assets/fl-crashes-insurance-asset-02.svg",
+      "bytes": 1861,
+      "sha256": "f7ed3891a40db4f93f5737862711138aab74822df27096cb974cf187a27b4489"
+    },
+    {
+      "path": "assets/fl-crashes-insurance-asset-03.svg",
+      "bytes": 1718,
+      "sha256": "446d44b1a90299be439c30583679a2839c91e24a897585686989d3e4d62ce3ea"
+    },
+    {
+      "path": "assets/fl-distraction-fatigue-asset-01.svg",
+      "bytes": 1597,
+      "sha256": "3d932bce44198721491ac9a647bfe9186144c188cdc6c284d991ff737f854e1a"
+    },
+    {
+      "path": "assets/fl-distraction-fatigue-asset-02.svg",
+      "bytes": 1840,
+      "sha256": "7833b19b2c99f18786074520517edc05ef811d7c96829a3895e0f7227cffc71e"
+    },
+    {
+      "path": "assets/fl-distraction-fatigue-asset-03.svg",
+      "bytes": 1711,
+      "sha256": "b6b4a434fb35ff7bc0acb416134ad3ee7218096ab6ac23b32abab62ee8f37d76"
+    },
+    {
+      "path": "assets/fl-equipment-loads-asset-01.svg",
+      "bytes": 1593,
+      "sha256": "f6e720d89c560647885a69d24f41f1a962e2e49cfc94f9dc2bcfb1dd1292c984"
+    },
+    {
+      "path": "assets/fl-equipment-loads-asset-02.svg",
+      "bytes": 1834,
+      "sha256": "3259b29ff7fe007eaefd8c04f5b60a8216b4a3da38375977ea8f1708c74a5b87"
+    },
+    {
+      "path": "assets/fl-equipment-loads-asset-03.svg",
+      "bytes": 1697,
+      "sha256": "3d43fcffa6a3a3fe863d1683a3910a545f31c5b1a7a3c7b9462c236591d98635"
+    },
+    {
+      "path": "assets/fl-highway-entry-exit-asset-01.svg",
+      "bytes": 1567,
+      "sha256": "4c45cb1b2c060727d8e1ef665b86db420e4d1214bc93137d49d417b72809ddb0"
+    },
+    {
+      "path": "assets/fl-highway-entry-exit-asset-02.svg",
+      "bytes": 1804,
+      "sha256": "eeb1722435560dabc6acbd015312dca510370c74d663fe982607aa755bfc6a21"
+    },
+    {
+      "path": "assets/fl-highway-entry-exit-asset-03.svg",
+      "bytes": 1671,
+      "sha256": "43fdb2014e3e4441932039f2fbd37854aa35bce84008c291bdb32d97a9c9b648"
+    },
+    {
+      "path": "assets/fl-lane-choice-asset-01.svg",
+      "bytes": 1520,
+      "sha256": "e0eca9882771c4850bb7f9a7cff8fcf72a36867400bf5683b4155281cec59cec"
+    },
+    {
+      "path": "assets/fl-lane-choice-asset-02.svg",
+      "bytes": 1769,
+      "sha256": "aeb32e701dec54f7eb2fd23c82dc2e9e78751b6a43e81460bdc3eed2fc025a0c"
+    },
+    {
+      "path": "assets/fl-lane-choice-asset-03.svg",
+      "bytes": 1632,
+      "sha256": "d264b0faced58ae851f309e4bbc5c3273b7ce7b2ecbd834af661d48f59dd04dc"
+    },
+    {
+      "path": "assets/fl-large-slow-vehicles-asset-01.svg",
+      "bytes": 1574,
+      "sha256": "cda65e5843745d31f744b45a1ea3ba8c101121b84ebfe9221818f8ecd9d72393"
+    },
+    {
+      "path": "assets/fl-large-slow-vehicles-asset-02.svg",
+      "bytes": 1813,
+      "sha256": "cb74e5eb86e5377f5f7ad2a5e4b21f1d7e09646234c2b35eaf4ae4bc915f6e5b"
+    },
+    {
+      "path": "assets/fl-large-slow-vehicles-asset-03.svg",
+      "bytes": 1693,
+      "sha256": "475d77d2ec6d4ebfd1befce36fe72e91dd459edda8dfaf5966defe9846709779"
+    },
+    {
+      "path": "assets/fl-markings-asset-01.svg",
+      "bytes": 1585,
+      "sha256": "5a8a7aefc44f0035e7fe14e42c82068bafcebaace03a39afe8c04c77378fe8f2"
+    },
+    {
+      "path": "assets/fl-markings-asset-02.svg",
+      "bytes": 1822,
+      "sha256": "e6ed5b7db56f61bb1c5a7a923686272aac78c1b0147eb0e18820ae6ceb18ab8d"
+    },
+    {
+      "path": "assets/fl-markings-asset-03.svg",
+      "bytes": 1704,
+      "sha256": "a0718b1b65a5aba235fa7f5467293eb224b7a64de01ca371065c5c1bc1488e06"
+    },
+    {
+      "path": "assets/fl-night-weather-lights-asset-01.svg",
+      "bytes": 1565,
+      "sha256": "2a6bde73996f07348810eafc3dae9a774b56eb0679203a34b8d60981382a8056"
+    },
+    {
+      "path": "assets/fl-night-weather-lights-asset-02.svg",
+      "bytes": 1804,
+      "sha256": "80da6543367c3ba424f1968038dffdc571fb391d66edb325ff23f10bbf5ae59b"
+    },
+    {
+      "path": "assets/fl-night-weather-lights-asset-03.svg",
+      "bytes": 1684,
+      "sha256": "d7e2727698bdf82e42c37f4abd528c7c9538966aaa497904621a5d681d9c80f9"
+    },
+    {
+      "path": "assets/fl-parking-asset-01.svg",
+      "bytes": 1572,
+      "sha256": "82e610e5409b38d7301c4b36685f034276b9eb3d5e6ed9a65d599af025e08bed"
+    },
+    {
+      "path": "assets/fl-parking-asset-02.svg",
+      "bytes": 1810,
+      "sha256": "f2c0fb4a13a5c6ab2e3f62d1b210401d095264938e086368e8119ca38bc81cf1"
+    },
+    {
+      "path": "assets/fl-parking-asset-03.svg",
+      "bytes": 1691,
+      "sha256": "5714f7f177a55ca2b98a2e7aba06034c15ff8b749eed27f3157738989192eb27"
+    },
+    {
+      "path": "assets/fl-passing-asset-01.svg",
+      "bytes": 1576,
+      "sha256": "fcb4d5b781985e9a73d38a6e69d4f0ee0df39436f5c50b9d6c401285e95380ee"
+    },
+    {
+      "path": "assets/fl-passing-asset-02.svg",
+      "bytes": 1816,
+      "sha256": "c5aafc3f804c54903f0dcddb142115ce4c00ddec5f5f87690dcb21091d5f1e8c"
+    },
+    {
+      "path": "assets/fl-passing-asset-03.svg",
+      "bytes": 1694,
+      "sha256": "20874c6e02971e8cf16df56b3e1bd1109491908e8d4fa71ce1fb5db6b8b89947"
+    },
+    {
+      "path": "assets/fl-pedestrians-roundabouts-asset-01.svg",
+      "bytes": 1588,
+      "sha256": "a222282aac4f5415f9b71c281a8fbc7e85f9f449e1d4e7807c3d40f1ababbe3a"
+    },
+    {
+      "path": "assets/fl-pedestrians-roundabouts-asset-02.svg",
+      "bytes": 1828,
+      "sha256": "111a4189a2dc148800826ff428cef136ba3613fe72208120434d23916189ee56"
+    },
+    {
+      "path": "assets/fl-pedestrians-roundabouts-asset-03.svg",
+      "bytes": 1708,
+      "sha256": "699e026af3214aa850ec7a13d413626bdf63709a449b76647364615fea7a96f0"
+    },
+    {
+      "path": "assets/fl-penalties-review-asset-01.svg",
+      "bytes": 1594,
+      "sha256": "0196ee6654ca6f99408f083d7c033f70225c3b85bda19761d902789cb6d16a61"
+    },
+    {
+      "path": "assets/fl-penalties-review-asset-02.svg",
+      "bytes": 1828,
+      "sha256": "4c5d1e1b635b316cc8e94a04bd94f5e5e0be06d9454e8bf13c6db3f15de6b85e"
+    },
+    {
+      "path": "assets/fl-penalties-review-asset-03.svg",
+      "bytes": 1714,
+      "sha256": "76d36db4d86a58bf2e7ad3b51ebfa2e93237d140b6f8d00044aa207ae9c52fe6"
+    },
+    {
+      "path": "assets/fl-permits-tests-asset-01.svg",
+      "bytes": 1586,
+      "sha256": "65003c0d9666556bcf102b27aa006edd4dc47c138af3220b530a13486bacac3f"
+    },
+    {
+      "path": "assets/fl-permits-tests-asset-02.svg",
+      "bytes": 1825,
+      "sha256": "cd1b6628c3f44225c4aa40426e5d31fea881add972ad21ba3509c5ce9256794d"
+    },
+    {
+      "path": "assets/fl-permits-tests-asset-03.svg",
+      "bytes": 1705,
+      "sha256": "6b7b97c8d6ea532014114d502bc4a23582aa0c3ac7f79af738ece066222fb560"
+    },
+    {
+      "path": "assets/fl-regulatory-signs-asset-01.svg",
+      "bytes": 1538,
+      "sha256": "18f130b76c54f5989de7057d4544b9a2078dfd2a9bc9485ee29df426ae280f9e"
+    },
+    {
+      "path": "assets/fl-regulatory-signs-asset-02.svg",
+      "bytes": 1779,
+      "sha256": "e4dce58e0d4780996de7b794dcd9f2a5aecddf403c27dafa6bb4a7edfff4dbee"
+    },
+    {
+      "path": "assets/fl-regulatory-signs-asset-03.svg",
+      "bytes": 1642,
+      "sha256": "65f2585789ac73c939b76a5f5183a8f8671e15e552cdf9dd444c609513727611"
+    },
+    {
+      "path": "assets/fl-residency-transfers-asset-01.svg",
+      "bytes": 1617,
+      "sha256": "f55a232792b348b5ea73d62fb4fb38ccd89129ee1dcf3e4dfa9cc1830b3e6712"
+    },
+    {
+      "path": "assets/fl-residency-transfers-asset-02.svg",
+      "bytes": 1856,
+      "sha256": "24909fa38ea0ba7f28cde3b75a5040d583f58da82a02bd16cce0e7ecc31549be"
+    },
+    {
+      "path": "assets/fl-residency-transfers-asset-03.svg",
+      "bytes": 1741,
+      "sha256": "fb087133c030991577d8f4b16e0593b965a396b54ca91238dc461448c74b0846"
+    },
+    {
+      "path": "assets/fl-restraints-children-asset-01.svg",
+      "bytes": 1541,
+      "sha256": "527197155742f583d8013c7eae37cbb934745bc54478d1209ed220c078051d32"
+    },
+    {
+      "path": "assets/fl-restraints-children-asset-02.svg",
+      "bytes": 1783,
+      "sha256": "9ea2dbf71964174611b7ebee4bee5f32c541cac33681d70fb6b0f9697758d2e5"
+    },
+    {
+      "path": "assets/fl-restraints-children-asset-03.svg",
+      "bytes": 1652,
+      "sha256": "18cfb8c7f8174de465467b21cf388065b4230fbd98b5d425a0a30d8f209655c2"
+    },
+    {
+      "path": "assets/fl-school-emergency-work-asset-01.svg",
+      "bytes": 1593,
+      "sha256": "936377ec837741e6ec402f852f79be6bf3a8a13822aad238f306e5699daa97e8"
+    },
+    {
+      "path": "assets/fl-school-emergency-work-asset-02.svg",
+      "bytes": 1833,
+      "sha256": "51581c6804b776de0d4c96b0cdafbbc48b504c5c0ac76af5ea4910a87880d420"
+    },
+    {
+      "path": "assets/fl-school-emergency-work-asset-03.svg",
+      "bytes": 1714,
+      "sha256": "787bbac96223b2d02f02df62fd4e2ab537dffac65b52b8b355c17f000e0fdeba"
+    },
+    {
+      "path": "assets/fl-sign-language-asset-01.svg",
+      "bytes": 1566,
+      "sha256": "18546737782dae48ff235d00c0c8691ce89d0924d38e407f027948f949e60b05"
+    },
+    {
+      "path": "assets/fl-sign-language-asset-02.svg",
+      "bytes": 1805,
+      "sha256": "df5700d05295c17cbaee6ed104b5d8f8761fc511c2a4bb010c7c228b3d8d8526"
+    },
+    {
+      "path": "assets/fl-sign-language-asset-03.svg",
+      "bytes": 1686,
+      "sha256": "f48b6e28b5e54ff720da83e1e08b0800163439b9f5e1452930df980dd5bab990"
+    },
+    {
+      "path": "assets/fl-signals-asset-01.svg",
+      "bytes": 1587,
+      "sha256": "6f8d6613488a99c17090ce21a4466392d1a49e4788a74c1d7be23e5b6face940"
+    },
+    {
+      "path": "assets/fl-signals-asset-02.svg",
+      "bytes": 1821,
+      "sha256": "f979cf07abfd13feeffb69caf209ef5ec9fbf7d48b042881903735407c459f82"
+    },
+    {
+      "path": "assets/fl-signals-asset-03.svg",
+      "bytes": 1701,
+      "sha256": "e0b8b9bac6d90e38666ddaa33fcdd07bad0c9ee8e8e3d0654b7bd83031880fef"
+    },
+    {
+      "path": "assets/fl-space-scanning-asset-01.svg",
+      "bytes": 1604,
+      "sha256": "25119642fc3767236c278cfe1545e37c587d493a4a92004c1018b1227674058e"
+    },
+    {
+      "path": "assets/fl-space-scanning-asset-02.svg",
+      "bytes": 1843,
+      "sha256": "e5ae8c27dae795bc6fa50a5140f84e6fe0ddae1ba590328a5e8b90b561b88f54"
+    },
+    {
+      "path": "assets/fl-space-scanning-asset-03.svg",
+      "bytes": 1691,
+      "sha256": "69bef334ba1a59f541195362ffa67749527cb8b92c31f0dcb8dc8867884aed7c"
+    },
+    {
+      "path": "assets/fl-special-lanes-asset-01.svg",
+      "bytes": 1601,
+      "sha256": "090d84512fced4b65db2d46c128da82cf02d7d94bb5d80988df241340bf7a173"
+    },
+    {
+      "path": "assets/fl-special-lanes-asset-02.svg",
+      "bytes": 1840,
+      "sha256": "0d7cad1608bcec4162b1fa5de57f6c0b3a9f84ddd99f03a8c4403423de583caa"
+    },
+    {
+      "path": "assets/fl-special-lanes-asset-03.svg",
+      "bytes": 1720,
+      "sha256": "b9a49192b42f7a76cb7d0eaf0f0de00c5adcbfe55906ccdd1b306b9d6325b033"
+    },
+    {
+      "path": "assets/fl-speed-laws-asset-01.svg",
+      "bytes": 1550,
+      "sha256": "81cd3020be99e622cc4b1dd97548cce4b8dbc5c7dbc602f3e256f378896a56ab"
+    },
+    {
+      "path": "assets/fl-speed-laws-asset-02.svg",
+      "bytes": 1785,
+      "sha256": "c8f7bc94c2e20136e132a6838b0b2f0ca15013ede03fb5fcdda26cba2c9d2220"
+    },
+    {
+      "path": "assets/fl-speed-laws-asset-03.svg",
+      "bytes": 1664,
+      "sha256": "a838b566e7fc92df23c71963510d204b1f45483e8ccc3f3c44abd0e20315d5a7"
+    },
+    {
+      "path": "assets/fl-stop-yield-entry-asset-01.svg",
+      "bytes": 1582,
+      "sha256": "1cfc7b9ff0ec5ee5a1c6ec100b71cbd77b234adfabb9cf6f8f42081b4f9080fc"
+    },
+    {
+      "path": "assets/fl-stop-yield-entry-asset-02.svg",
+      "bytes": 1821,
+      "sha256": "17e3c9fb02884b195ff25e04d9e16c31a613b254ee0575686248c7b45170424c"
+    },
+    {
+      "path": "assets/fl-stop-yield-entry-asset-03.svg",
+      "bytes": 1697,
+      "sha256": "7fc9392aa4b6ead9af7a1987571c89143038b4fe264995eef0a23536699df40c"
+    },
+    {
+      "path": "assets/fl-turns-signals-asset-01.svg",
+      "bytes": 1549,
+      "sha256": "2390d3c95db3f0b5b6973b6a75585066bad0e7e885531f9d64a1aa0fa6868e42"
+    },
+    {
+      "path": "assets/fl-turns-signals-asset-02.svg",
+      "bytes": 1785,
+      "sha256": "7c03d5aeff3b1102716daf555cdc50e52cf36cd39bc2831b84d8201c135eb05d"
+    },
+    {
+      "path": "assets/fl-turns-signals-asset-03.svg",
+      "bytes": 1667,
+      "sha256": "1166f02be8362762a30b97d24ac507592ce44b7981527dd414fa5a184ba2877b"
+    },
+    {
+      "path": "assets/fl-uncontrolled-intersections-asset-01.svg",
+      "bytes": 1589,
+      "sha256": "f52235c9198667feecd2aeef38c0f11f53760175ddc4996268ea554ca6737b6b"
+    },
+    {
+      "path": "assets/fl-uncontrolled-intersections-asset-02.svg",
+      "bytes": 1829,
+      "sha256": "b5b10b8960e4050d9e81bd063b018763c8ea915bc726c965428af01e6acb4d55"
+    },
+    {
+      "path": "assets/fl-uncontrolled-intersections-asset-03.svg",
+      "bytes": 1709,
+      "sha256": "e465827a6c425186d0a99050bb32abfd2e12e0faa14b2eb74fcbd295461fb029"
+    },
+    {
+      "path": "assets/fl-uturn-backing-asset-01.svg",
+      "bytes": 1540,
+      "sha256": "9c73f03baddc31519760c1c8171058bfae25e05d882195e0e6e9ef4f3ce9aace"
+    },
+    {
+      "path": "assets/fl-uturn-backing-asset-02.svg",
+      "bytes": 1779,
+      "sha256": "9fc4bfe7f6ab825b40c084ec4cf0d6d08e9a92d0f6b3fd536eddf2d8be35a592"
+    },
+    {
+      "path": "assets/fl-uturn-backing-asset-03.svg",
+      "bytes": 1655,
+      "sha256": "790014ae3b53eb33f2c14e23d1cb7a8809e1b677d44ebaffec6f17883be12f5e"
+    },
+    {
+      "path": "assets/fl-vehicle-emergencies-asset-01.svg",
+      "bytes": 1593,
+      "sha256": "db4192de16180163a51ae32d3fc6d54a1364a5d6e840f843b5a35db692627ea5"
+    },
+    {
+      "path": "assets/fl-vehicle-emergencies-asset-02.svg",
+      "bytes": 1834,
+      "sha256": "7d263863786aeaa0aa1b0b6adc3df9a6beff7ac5bf87d6df490b6d38ec15c9d7"
+    },
+    {
+      "path": "assets/fl-vehicle-emergencies-asset-03.svg",
+      "bytes": 1704,
+      "sha256": "cdf7a556adf8fb8f18be48335005d6c1ae54f5d6486b5f3b710f06a3781f9353"
+    },
+    {
+      "path": "assets/fl-warning-guide-signs-asset-01.svg",
+      "bytes": 1602,
+      "sha256": "88be2ccc96261ae5c1940d825e7a395a42ddffe0d7a724887cb7726ce3083569"
+    },
+    {
+      "path": "assets/fl-warning-guide-signs-asset-02.svg",
+      "bytes": 1844,
+      "sha256": "4ae24a50d9fc81fb5ebce262906785e7e86f32f868bbea8c8407fee85ef5a9d5"
+    },
+    {
+      "path": "assets/fl-warning-guide-signs-asset-03.svg",
+      "bytes": 1720,
+      "sha256": "37b6208b31cb11be46b1da0d90e92905c5bad395c11cbf73374f50fa618ec9a8"
+    },
+    {
+      "path": "assets/index.json",
+      "bytes": 65625,
+      "sha256": "69c9926e54e6c847bad033a38fdf22fa3bfff94a98b72cd324c30350210dd963"
+    },
+    {
+      "path": "authoring/build-courses.mjs",
+      "bytes": 25948,
+      "sha256": "55b8b01afab426be627080e72d6edcee25bb6e3c220e7c5ef39817981793dc00"
+    },
+    {
+      "path": "authoring/seeds/fl-state-config.json",
+      "bytes": 15573,
+      "sha256": "cdc8ad81f44842eb62074e0bc332bbb1c282d3a1147f754e87d284a46dcae485"
+    },
+    {
+      "path": "authoring/seeds/shared-curriculum.mjs",
+      "bytes": 65636,
+      "sha256": "36ffa64b60bd93062ad77c03245620b2aa2e1bcc5a226eb6c9d49101acd014d5"
+    },
+    {
+      "path": "authoring/validate-courses.mjs",
+      "bytes": 11415,
+      "sha256": "65f6e2e764b5c3f91180ebf7559220d410c22e338277ad6f066235aeb0c4069c"
+    },
+    {
+      "path": "course.json",
+      "bytes": 3737,
+      "sha256": "9c88a7b76ffba4bd14546093ff1c4bc4e316fe5bf1c4c08276b17658a1e87d67"
+    },
+    {
+      "path": "dependency-map.json",
+      "bytes": 18517,
+      "sha256": "a89c9301f4f35736432b61d14e0be2fc1c425f00765e9f8c5498841a80df3a85"
+    },
+    {
+      "path": "evidence/index.json",
+      "bytes": 43022,
+      "sha256": "02c4bdedda72e5636c6fd300df10801cc6cd7701cfcfe140437eeba40e6d4fc9"
+    },
+    {
+      "path": "lessons/fl-alcohol-drugs.json",
+      "bytes": 5243,
+      "sha256": "e06c0ae845026fa73ac8c181bc7ee0ea7bbd2557da14baa93c9db8c51761b59c"
+    },
+    {
+      "path": "lessons/fl-bikes-motorcycles.json",
+      "bytes": 5155,
+      "sha256": "518dc8c29bea8dc7f5bf7a762b8ecec68e9cd5e212662d735642ca074df5cadd"
+    },
+    {
+      "path": "lessons/fl-crashes-insurance.json",
+      "bytes": 5388,
+      "sha256": "12bcf0214bf3f5ebac8992e4455384078f8baa5ee5b2ae32541a8273f50711e1"
+    },
+    {
+      "path": "lessons/fl-distraction-fatigue.json",
+      "bytes": 5191,
+      "sha256": "5ef5fe1336cd22f1d7299a53a09e828d1497b6c76a31dd852b1aa711b38f6422"
+    },
+    {
+      "path": "lessons/fl-equipment-loads.json",
+      "bytes": 5038,
+      "sha256": "aa38e3a101700580c73cda0a777c25cc7362accc6f0c3bfb1c2bf3485c62e4a4"
+    },
+    {
+      "path": "lessons/fl-highway-entry-exit.json",
+      "bytes": 5216,
+      "sha256": "1728c59a1fdaffcd640f26d6910aa8bf3febe0dff5061a5c8b28fa477f5f0a62"
+    },
+    {
+      "path": "lessons/fl-lane-choice.json",
+      "bytes": 4884,
+      "sha256": "92d437c7a3789ee0875b172f424e7e979bf9e397fe98f6924fce9dd53aeca9e2"
+    },
+    {
+      "path": "lessons/fl-large-slow-vehicles.json",
+      "bytes": 5218,
+      "sha256": "2dbe184fbe5d4c6b146a0edcbee4352a63f7c56b8867daa7ba4bd9f113d24d56"
+    },
+    {
+      "path": "lessons/fl-markings.json",
+      "bytes": 4965,
+      "sha256": "498a78af748eb0ce57934f61b5dd5bfed757e4aa8aa09bd4207171ac412ceeac"
+    },
+    {
+      "path": "lessons/fl-night-weather-lights.json",
+      "bytes": 5201,
+      "sha256": "5b04ad769ae335d5c648810ac344680602f870f076fbd91c28f3ba228199d2b1"
+    },
+    {
+      "path": "lessons/fl-parking.json",
+      "bytes": 4814,
+      "sha256": "9698fc7fe58cf8d526cb7c898af52cc217d556d4b8b55a1d7cdc12e3f35a27a9"
+    },
+    {
+      "path": "lessons/fl-passing.json",
+      "bytes": 4800,
+      "sha256": "62d2b22df3e98675aecc6d95317c45f6da0812e8cc25a600a38b1edc73d31308"
+    },
+    {
+      "path": "lessons/fl-pedestrians-roundabouts.json",
+      "bytes": 5455,
+      "sha256": "f30ea5fe4f4cda0c19f434e5debfc255f6ab9a3e5c14b341e789a74d4138be03"
+    },
+    {
+      "path": "lessons/fl-penalties-review.json",
+      "bytes": 5459,
+      "sha256": "0ba2c17eff6b9a55bd73c0e41f00a57f23a88b71562f8bc63f819b9cda0fd245"
+    },
+    {
+      "path": "lessons/fl-permits-tests.json",
+      "bytes": 5744,
+      "sha256": "843dfdc83e1f312961fe95f40436122b9044c6fef8d7f5ce51f28e5a08b69b28"
+    },
+    {
+      "path": "lessons/fl-regulatory-signs.json",
+      "bytes": 5134,
+      "sha256": "4c0904b186e2be5ee3cfafd1b8cc914480ad6f3001da44c237186ddb1be03f22"
+    },
+    {
+      "path": "lessons/fl-residency-transfers.json",
+      "bytes": 5787,
+      "sha256": "9ab68090b0c9fa293eba40192b0e24d0dad74fd9d66edd09afcd0db3bacea984"
+    },
+    {
+      "path": "lessons/fl-restraints-children.json",
+      "bytes": 5258,
+      "sha256": "8b6d9130ed90fa478fbf7b73c070a5f9a6029d218e9766b5fa2b8e7e2e33c5fa"
+    },
+    {
+      "path": "lessons/fl-school-emergency-work.json",
+      "bytes": 5505,
+      "sha256": "3cf46299b9fd9847e9102840947bf963c7c33b11c27fbad42e1c81dfcd8da034"
+    },
+    {
+      "path": "lessons/fl-sign-language.json",
+      "bytes": 5087,
+      "sha256": "6494fa92b7363bb21f2094ee18f59e160809829ea18f83835e9c6fafe047196c"
+    },
+    {
+      "path": "lessons/fl-signals.json",
+      "bytes": 4765,
+      "sha256": "7b0d63ab627c09f9e13444320d2def45e7daf43cc30cdbb77c260ac20077acda"
+    },
+    {
+      "path": "lessons/fl-space-scanning.json",
+      "bytes": 5066,
+      "sha256": "fc738ca771c7b9b9410972993a8eb4a183d31d28167f90ea0c1707bc38438405"
+    },
+    {
+      "path": "lessons/fl-special-lanes.json",
+      "bytes": 5091,
+      "sha256": "b0c772ed44dfa23bc07ecb28ee4bfd332391dd2a01f85a3f5f9f4f03005385bc"
+    },
+    {
+      "path": "lessons/fl-speed-laws.json",
+      "bytes": 4966,
+      "sha256": "d6c3b6227acfb52cc04619a571c5a1f9135fab46c75b9a59fb3b451ca03eb177"
+    },
+    {
+      "path": "lessons/fl-stop-yield-entry.json",
+      "bytes": 5127,
+      "sha256": "369cd0d2c29ac9e0ab364cdcfe7827664bd0d2f46fb735875cd18c984322563e"
+    },
+    {
+      "path": "lessons/fl-turns-signals.json",
+      "bytes": 5088,
+      "sha256": "55d402dac0e4ec065e08fdc1bb23ccc631a9b7674450551b6a51f2042bda5089"
+    },
+    {
+      "path": "lessons/fl-uncontrolled-intersections.json",
+      "bytes": 5560,
+      "sha256": "ce2b216b93c53d59cd1598af970cfde6b5c1bc13509b0ff664c8dc60bc00da60"
+    },
+    {
+      "path": "lessons/fl-uturn-backing.json",
+      "bytes": 5016,
+      "sha256": "2e61254d0a331600c16d8963926a03bc9c5b3d04c2568a579f0e1d1635373d9e"
+    },
+    {
+      "path": "lessons/fl-vehicle-emergencies.json",
+      "bytes": 5184,
+      "sha256": "8d0f7825e58480508d9cce9442def0e34fdb69596a8ae47aaccbc2b42463c6ff"
+    },
+    {
+      "path": "lessons/fl-warning-guide-signs.json",
+      "bytes": 5425,
+      "sha256": "f8eaad36dfc50d5a1fd95e13a89d5cdc38e3cea2185db1451fbd33131849220c"
+    },
+    {
+      "path": "module-tests.json",
+      "bytes": 5410,
+      "sha256": "e09e7a9a4777afbec3b13634bfa36a85d9b21a837ae112956caedf8b986ea2bd"
+    },
+    {
+      "path": "modules/fl-control.json",
+      "bytes": 1517,
+      "sha256": "2cb1a2a9ee94d31cf9f6a5a745825161afea72198d3a82057d4c8424644b056b"
+    },
+    {
+      "path": "modules/fl-finish.json",
+      "bytes": 1241,
+      "sha256": "15234b7ca6fc274b4ce01bfe5a927ba7ad296fa7f98ec6ad7f642bde93b99a4c"
+    },
+    {
+      "path": "modules/fl-lanes-highways.json",
+      "bytes": 1468,
+      "sha256": "0a4df8fb6d64d432855fb70cf4d3d5dc6f2ecb9bdb87709602ac3a98be336837"
+    },
+    {
+      "path": "modules/fl-read-road.json",
+      "bytes": 1709,
+      "sha256": "e03be5062888402c5121d0e68a55b6af27c4a2fe6533454b5bf76aa77905d170"
+    },
+    {
+      "path": "modules/fl-right-of-way.json",
+      "bytes": 1761,
+      "sha256": "bbd000483ee64fa4bcbe01a4c5ad3808fe40693a28b5b9ca5590ca1ff14b3472"
+    },
+    {
+      "path": "modules/fl-safety-crashes.json",
+      "bytes": 1250,
+      "sha256": "b9187ff79e020f822ed315e8060bb3e3cb75d0126196a7425e639d487fad3260"
+    },
+    {
+      "path": "modules/fl-share-road.json",
+      "bytes": 1230,
+      "sha256": "6ef29e2da60bbf7370105befb86cf2a1ce099fe17c6c58d96bee93570c7a9c93"
+    },
+    {
+      "path": "modules/fl-speed-space.json",
+      "bytes": 1190,
+      "sha256": "0a0f93a49cf8ca031555bba0360f1ead4abb39260e6fdaa2ac6d38e7092c30fd"
+    },
+    {
+      "path": "questions.json",
+      "bytes": 289398,
+      "sha256": "15564474a05b0658c88f242cfc4c7d89811ecd96f1d6ff4b3e4dfef759285a2d"
+    },
+    {
+      "path": "reports/automated-validation.json",
+      "bytes": 431,
+      "sha256": "fce08a05bc5b80ab3809f9871c926fd2c849a7e208505b303fcbd2023d00e20b"
+    },
+    {
+      "path": "reports/final-qa-report.md",
+      "bytes": 778,
+      "sha256": "7b1ede19de215f8f29db3c5139bbed223a4e5c72a37a38e8ac387fec958d8f71"
+    },
+    {
+      "path": "reports/final-validation.json",
+      "bytes": 431,
+      "sha256": "fce08a05bc5b80ab3809f9871c926fd2c849a7e208505b303fcbd2023d00e20b"
+    },
+    {
+      "path": "reports/human-review-checklist.md",
+      "bytes": 1060,
+      "sha256": "0d41e41bb054862ac47def10908d943f35557ef944336534c79b0cd915405a45"
+    },
+    {
+      "path": "rules/rule-catalog.json",
+      "bytes": 88341,
+      "sha256": "1f50af2fec01834561cec93607f95b5015cc3d15721f6a3b704cc9b71b4b2046"
+    },
+    {
+      "path": "rules/source-expansions.json",
+      "bytes": 12451,
+      "sha256": "d7626f91555e3c05737892820615a1478525c78bda9576ca73bc16f04741e6d6"
+    },
+    {
+      "path": "schemas/course-package.schema.json",
+      "bytes": 593,
+      "sha256": "c71b069db1031a1f1967f796f3ff66949838540dbbb1ec3180b9b1ff14a4f26e"
+    },
+    {
+      "path": "source-rights/SOURCE-MAP.md",
+      "bytes": 3846,
+      "sha256": "adbe3dd1cac0c3ce1e2226c564db3e685f3145932d60a94137dc8b2c1418e911"
+    },
+    {
+      "path": "source-rights/rights-registry.csv",
+      "bytes": 5568,
+      "sha256": "a59e97503bfc38b803ee7b84def7fb57578fefc812b824ba15c4bf7ef5dedc90"
+    },
+    {
+      "path": "source-rights/source-completeness-report.md",
+      "bytes": 965,
+      "sha256": "5bd2b150e13da377fd775f05df1c70230a9299905d7d8de909038f14b4cd29b2"
+    },
+    {
+      "path": "source-rights/source-registry.csv",
+      "bytes": 10275,
+      "sha256": "44344dd777b0c5eaf588befd27c5d0005d47076c996eb307d05b1249484fbb51"
+    },
+    {
+      "path": "source-rights/state-status.md",
+      "bytes": 1024,
+      "sha256": "e90efe286a35f83ec4757556a05116f8ab283545bc368bd02adfb9c9c6702447"
+    }
+  ]
+}

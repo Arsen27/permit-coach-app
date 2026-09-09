@@ -1,0 +1,11 @@
+{
+  "courseId": "tx-class-c",
+  "version": "2.0.0",
+  "minAppVersion": "1.1.1",
+  "sourceVersionLabel": "TX-2026.09.06-r01",
+  "releasedAt": "2026-09-06",
+  "notes": "Texas rebuilt on the universal skeleton: the same 33-lesson chat format as California, with Texas values rendered into the universal cards, short Texas notes after the cards they extend, and four Texas lessons in module 8. Every number is backed by the Texas rule catalog; handbook-only values are marked needs_review in the build report.",
+  "updateKind": "course",
+  "updateSubtype": "offer",
+  "updateMessage": "The Texas course has been rebuilt from the ground up: 33 lessons in a conversational format with scenario openers, recall cards, and fresh tests. Your progress in the previous Texas course will not carry over."
+}

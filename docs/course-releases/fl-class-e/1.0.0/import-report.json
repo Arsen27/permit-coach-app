@@ -1,0 +1,449 @@
+{
+  "stableCourseId": "fl-class-e",
+  "deliveryVersion": "1.0.0",
+  "generatedFrom": {
+    "packageDir": "/Users/arsen/Documents/indie/dmv-learning/courses/Florida_DMV_Course_FL2026.08.10r01_Illustrated_20260811",
+    "versionLabel": "FL-2026.08.10-r01",
+    "status": "draft_generated_human_review_required",
+    "publicationAuthorized": false,
+    "contentHash": "8bbb0b75742a4b178047248f8879b8afdc515b304ef35dd5c22eb477e11cd78c",
+    "contentHashNote": "Per-file SVG sha256 values and cross-report consistency verified. The package does not document a formula for recomputing manifest.contentHash from delivered bytes, so it is recorded as-is.",
+    "hashedFileCount": 152,
+    "finalValidationStatus": "passed",
+    "staleValidationReportAccepted": true,
+    "warnings": [
+      "32 files differ from manifest.files hashes: the package was re-assembled after the manifest was written, so the delivered bytes were never covered by its integrity sweep (accepted via --allow-stale-validation-report)",
+      "final-validation contentHash differs from manifest contentHash: the QA report was produced from different bytes than this package ships (accepted via --allow-stale-validation-report)"
+    ]
+  },
+  "counts": {
+    "modules": 8,
+    "lessons": 30,
+    "questions": 150,
+    "moduleTests": 8,
+    "moduleTestQuestionRefs": 80,
+    "assets": 140,
+    "blocksPerLesson": 12,
+    "questionsPerLesson": 5,
+    "assetsPerLesson": 3
+  },
+  "manifestVersion": {
+    "version": "1.0.0",
+    "status": "release_candidate",
+    "instructions": [
+      {
+        "op": "full",
+        "severity": "soft",
+        "message": "The Florida course was added."
+      }
+    ]
+  },
+  "strippedAuditFields": [
+    "primaryRuleIds",
+    "reinforcementRuleIds",
+    "evidenceId",
+    "blueprintId",
+    "estimatedVisibleWordCount",
+    "status",
+    "courseVersion",
+    "relatedRuleIds (questions)",
+    "rightsStatus/source (assets)",
+    "official URLs, rights registry, dependency map, QA reports, authoring files"
+  ],
+  "auditLessonFields": {
+    "fl-sign-language": {
+      "sourceLessonId": "fl-sign-language",
+      "blueprintId": "us-state-course-sign-language",
+      "primaryRuleIds": [
+        "FL_SIGN_LANGUAGE_01",
+        "FL_SIGN_LANGUAGE_02",
+        "FL_SIGN_LANGUAGE_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-sign-language-evidence",
+      "estimatedVisibleWordCount": 316,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-regulatory-signs": {
+      "sourceLessonId": "fl-regulatory-signs",
+      "blueprintId": "us-state-course-regulatory-signs",
+      "primaryRuleIds": [
+        "FL_REGULATORY_SIGNS_01",
+        "FL_REGULATORY_SIGNS_02",
+        "FL_REGULATORY_SIGNS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-regulatory-signs-evidence",
+      "estimatedVisibleWordCount": 318,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-warning-guide-signs": {
+      "sourceLessonId": "fl-warning-guide-signs",
+      "blueprintId": "us-state-course-warning-guide-signs",
+      "primaryRuleIds": [
+        "FL_WARNING_GUIDE_SIGNS_01",
+        "FL_WARNING_GUIDE_SIGNS_02",
+        "FL_WARNING_GUIDE_SIGNS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-warning-guide-signs-evidence",
+      "estimatedVisibleWordCount": 336,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-signals": {
+      "sourceLessonId": "fl-signals",
+      "blueprintId": "us-state-course-signals",
+      "primaryRuleIds": [
+        "FL_SIGNALS_01",
+        "FL_SIGNALS_02",
+        "FL_SIGNALS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-signals-evidence",
+      "estimatedVisibleWordCount": 309,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-markings": {
+      "sourceLessonId": "fl-markings",
+      "blueprintId": "us-state-course-markings",
+      "primaryRuleIds": [
+        "FL_MARKINGS_01",
+        "FL_MARKINGS_02",
+        "FL_MARKINGS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-markings-evidence",
+      "estimatedVisibleWordCount": 318,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-uncontrolled-intersections": {
+      "sourceLessonId": "fl-uncontrolled-intersections",
+      "blueprintId": "us-state-course-uncontrolled-intersections",
+      "primaryRuleIds": [
+        "FL_UNCONTROLLED_INTERSECTIONS_01",
+        "FL_UNCONTROLLED_INTERSECTIONS_02",
+        "FL_UNCONTROLLED_INTERSECTIONS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-uncontrolled-intersections-evidence",
+      "estimatedVisibleWordCount": 319,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-stop-yield-entry": {
+      "sourceLessonId": "fl-stop-yield-entry",
+      "blueprintId": "us-state-course-stop-yield-entry",
+      "primaryRuleIds": [
+        "FL_STOP_YIELD_ENTRY_01",
+        "FL_STOP_YIELD_ENTRY_02",
+        "FL_STOP_YIELD_ENTRY_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-stop-yield-entry-evidence",
+      "estimatedVisibleWordCount": 312,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-turns-signals": {
+      "sourceLessonId": "fl-turns-signals",
+      "blueprintId": "us-state-course-turns-signals",
+      "primaryRuleIds": [
+        "FL_TURNS_SIGNALS_01",
+        "FL_TURNS_SIGNALS_02",
+        "FL_TURNS_SIGNALS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-turns-signals-evidence",
+      "estimatedVisibleWordCount": 320,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-uturn-backing": {
+      "sourceLessonId": "fl-uturn-backing",
+      "blueprintId": "us-state-course-uturn-backing",
+      "primaryRuleIds": [
+        "FL_UTURN_BACKING_01",
+        "FL_UTURN_BACKING_02",
+        "FL_UTURN_BACKING_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-uturn-backing-evidence",
+      "estimatedVisibleWordCount": 311,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-pedestrians-roundabouts": {
+      "sourceLessonId": "fl-pedestrians-roundabouts",
+      "blueprintId": "us-state-course-pedestrians-roundabouts",
+      "primaryRuleIds": [
+        "FL_PEDESTRIANS_ROUNDABOUTS_01",
+        "FL_PEDESTRIANS_ROUNDABOUTS_02",
+        "FL_PEDESTRIANS_ROUNDABOUTS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-pedestrians-roundabouts-evidence",
+      "estimatedVisibleWordCount": 324,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-lane-choice": {
+      "sourceLessonId": "fl-lane-choice",
+      "blueprintId": "us-state-course-lane-choice",
+      "primaryRuleIds": [
+        "FL_LANE_CHOICE_01",
+        "FL_LANE_CHOICE_02",
+        "FL_LANE_CHOICE_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-lane-choice-evidence",
+      "estimatedVisibleWordCount": 319,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-passing": {
+      "sourceLessonId": "fl-passing",
+      "blueprintId": "us-state-course-passing",
+      "primaryRuleIds": [
+        "FL_PASSING_01",
+        "FL_PASSING_02",
+        "FL_PASSING_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-passing-evidence",
+      "estimatedVisibleWordCount": 315,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-highway-entry-exit": {
+      "sourceLessonId": "fl-highway-entry-exit",
+      "blueprintId": "us-state-course-highway-entry-exit",
+      "primaryRuleIds": [
+        "FL_HIGHWAY_ENTRY_EXIT_01",
+        "FL_HIGHWAY_ENTRY_EXIT_02",
+        "FL_HIGHWAY_ENTRY_EXIT_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-highway-entry-exit-evidence",
+      "estimatedVisibleWordCount": 327,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-special-lanes": {
+      "sourceLessonId": "fl-special-lanes",
+      "blueprintId": "us-state-course-special-lanes",
+      "primaryRuleIds": [
+        "FL_SPECIAL_LANES_01",
+        "FL_SPECIAL_LANES_02",
+        "FL_SPECIAL_LANES_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-special-lanes-evidence",
+      "estimatedVisibleWordCount": 324,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-speed-laws": {
+      "sourceLessonId": "fl-speed-laws",
+      "blueprintId": "us-state-course-speed-laws",
+      "primaryRuleIds": [
+        "FL_SPEED_LAWS_01",
+        "FL_SPEED_LAWS_02",
+        "FL_SPEED_LAWS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-speed-laws-evidence",
+      "estimatedVisibleWordCount": 315,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-space-scanning": {
+      "sourceLessonId": "fl-space-scanning",
+      "blueprintId": "us-state-course-space-scanning",
+      "primaryRuleIds": [
+        "FL_SPACE_SCANNING_01",
+        "FL_SPACE_SCANNING_02",
+        "FL_SPACE_SCANNING_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-space-scanning-evidence",
+      "estimatedVisibleWordCount": 307,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-parking": {
+      "sourceLessonId": "fl-parking",
+      "blueprintId": "us-state-course-parking",
+      "primaryRuleIds": [
+        "FL_PARKING_01",
+        "FL_PARKING_02",
+        "FL_PARKING_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-parking-evidence",
+      "estimatedVisibleWordCount": 306,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-bikes-motorcycles": {
+      "sourceLessonId": "fl-bikes-motorcycles",
+      "blueprintId": "us-state-course-bikes-motorcycles",
+      "primaryRuleIds": [
+        "FL_BIKES_MOTORCYCLES_01",
+        "FL_BIKES_MOTORCYCLES_02",
+        "FL_BIKES_MOTORCYCLES_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-bikes-motorcycles-evidence",
+      "estimatedVisibleWordCount": 314,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-large-slow-vehicles": {
+      "sourceLessonId": "fl-large-slow-vehicles",
+      "blueprintId": "us-state-course-large-slow-vehicles",
+      "primaryRuleIds": [
+        "FL_LARGE_SLOW_VEHICLES_01",
+        "FL_LARGE_SLOW_VEHICLES_02",
+        "FL_LARGE_SLOW_VEHICLES_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-large-slow-vehicles-evidence",
+      "estimatedVisibleWordCount": 316,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-school-emergency-work": {
+      "sourceLessonId": "fl-school-emergency-work",
+      "blueprintId": "us-state-course-school-emergency-work",
+      "primaryRuleIds": [
+        "FL_SCHOOL_EMERGENCY_WORK_01",
+        "FL_SCHOOL_EMERGENCY_WORK_02",
+        "FL_SCHOOL_EMERGENCY_WORK_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-school-emergency-work-evidence",
+      "estimatedVisibleWordCount": 358,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-night-weather-lights": {
+      "sourceLessonId": "fl-night-weather-lights",
+      "blueprintId": "us-state-course-night-weather-lights",
+      "primaryRuleIds": [
+        "FL_NIGHT_WEATHER_LIGHTS_01",
+        "FL_NIGHT_WEATHER_LIGHTS_02",
+        "FL_NIGHT_WEATHER_LIGHTS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-night-weather-lights-evidence",
+      "estimatedVisibleWordCount": 303,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-vehicle-emergencies": {
+      "sourceLessonId": "fl-vehicle-emergencies",
+      "blueprintId": "us-state-course-vehicle-emergencies",
+      "primaryRuleIds": [
+        "FL_VEHICLE_EMERGENCIES_01",
+        "FL_VEHICLE_EMERGENCIES_02",
+        "FL_VEHICLE_EMERGENCIES_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-vehicle-emergencies-evidence",
+      "estimatedVisibleWordCount": 310,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-distraction-fatigue": {
+      "sourceLessonId": "fl-distraction-fatigue",
+      "blueprintId": "us-state-course-distraction-fatigue",
+      "primaryRuleIds": [
+        "FL_DISTRACTION_FATIGUE_01",
+        "FL_DISTRACTION_FATIGUE_02",
+        "FL_DISTRACTION_FATIGUE_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-distraction-fatigue-evidence",
+      "estimatedVisibleWordCount": 301,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-alcohol-drugs": {
+      "sourceLessonId": "fl-alcohol-drugs",
+      "blueprintId": "us-state-course-alcohol-drugs",
+      "primaryRuleIds": [
+        "FL_ALCOHOL_DRUGS_01",
+        "FL_ALCOHOL_DRUGS_02",
+        "FL_ALCOHOL_DRUGS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-alcohol-drugs-evidence",
+      "estimatedVisibleWordCount": 349,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-restraints-children": {
+      "sourceLessonId": "fl-restraints-children",
+      "blueprintId": "us-state-course-restraints-children",
+      "primaryRuleIds": [
+        "FL_RESTRAINTS_CHILDREN_01",
+        "FL_RESTRAINTS_CHILDREN_02",
+        "FL_RESTRAINTS_CHILDREN_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-restraints-children-evidence",
+      "estimatedVisibleWordCount": 326,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-equipment-loads": {
+      "sourceLessonId": "fl-equipment-loads",
+      "blueprintId": "us-state-course-equipment-loads",
+      "primaryRuleIds": [
+        "FL_EQUIPMENT_LOADS_01",
+        "FL_EQUIPMENT_LOADS_02",
+        "FL_EQUIPMENT_LOADS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-equipment-loads-evidence",
+      "estimatedVisibleWordCount": 294,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-crashes-insurance": {
+      "sourceLessonId": "fl-crashes-insurance",
+      "blueprintId": "us-state-course-crashes-insurance",
+      "primaryRuleIds": [
+        "FL_CRASHES_INSURANCE_01",
+        "FL_CRASHES_INSURANCE_02",
+        "FL_CRASHES_INSURANCE_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-crashes-insurance-evidence",
+      "estimatedVisibleWordCount": 322,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-permits-tests": {
+      "sourceLessonId": "fl-permits-tests",
+      "blueprintId": "us-state-course-permits-tests",
+      "primaryRuleIds": [
+        "FL_PERMITS_TESTS_01",
+        "FL_PERMITS_TESTS_02",
+        "FL_PERMITS_TESTS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-permits-tests-evidence",
+      "estimatedVisibleWordCount": 389,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-residency-transfers": {
+      "sourceLessonId": "fl-residency-transfers",
+      "blueprintId": "us-state-course-residency-transfers",
+      "primaryRuleIds": [
+        "FL_RESIDENCY_TRANSFERS_01",
+        "FL_RESIDENCY_TRANSFERS_02",
+        "FL_RESIDENCY_TRANSFERS_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-residency-transfers-evidence",
+      "estimatedVisibleWordCount": 370,
+      "status": "draft_generated_human_review_required"
+    },
+    "fl-penalties-review": {
+      "sourceLessonId": "fl-penalties-review",
+      "blueprintId": "us-state-course-penalties-review",
+      "primaryRuleIds": [
+        "FL_PENALTIES_REVIEW_01",
+        "FL_PENALTIES_REVIEW_02",
+        "FL_PENALTIES_REVIEW_03"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "fl-penalties-review-evidence",
+      "estimatedVisibleWordCount": 368,
+      "status": "draft_generated_human_review_required"
+    }
+  },
+  "warnings": [
+    "32 files differ from manifest.files hashes: the package was re-assembled after the manifest was written, so the delivered bytes were never covered by its integrity sweep (accepted via --allow-stale-validation-report)",
+    "final-validation contentHash differs from manifest contentHash: the QA report was produced from different bytes than this package ships (accepted via --allow-stale-validation-report)"
+  ]
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Phones, Distraction, Fatigue, and Reckless Choices - Phone rules</title><desc id="desc">Phone rules diagram supporting Phones, Distraction, Fatigue, and Reckless Choices. The written lesson contains the complete rule and does not require the image to understand the answer.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#475569"/></marker></defs>
+<rect width="1200" height="675" rx="42" fill="#F8FAFC"/>
+<text x="70" y="82" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#475569">CALIFORNIA KNOWLEDGE COURSE</text>
+<text x="70" y="130" font-family="Arial, sans-serif" font-size="38" font-weight="800" fill="#0F172A">Phone rules</text>
+<rect x="50" y="155" width="1100" height="430" rx="34" fill="#E2E8F0"/><rect x="100" y="410" width="1000" height="130" rx="25" fill="#334155"/><path d="M120 475H1080" stroke="#F8FAFC" stroke-width="6" stroke-dasharray="32 24"/><path d="M260 200L230 260M390 190L360 250M520 210L490 270M650 185L620 245M780 205L750 265M910 190L880 250" stroke="#38BDF8" stroke-width="12"/><rect x="485" y="420" width="130" height="62" rx="22" fill="#EF4444"/><path d="M625 451H875" stroke="#475569" stroke-width="12" marker-end="url(#arrow)"/>
+<rect x="70" y="595" width="1060" height="2" fill="#CBD5E1"/>
+<text x="70" y="635" font-family="Arial, sans-serif" font-size="22" fill="#475569">Phones, Distraction, Fatigue, and Reckless Choices</text>
+<text x="1130" y="635" text-anchor="end" font-family="Arial, sans-serif" font-size="18" fill="#64748B">Original instructional diagram</text>
+</svg>

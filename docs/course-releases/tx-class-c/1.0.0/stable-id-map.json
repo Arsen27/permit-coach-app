@@ -1,0 +1,4157 @@
+{
+  "courseId": "tx-class-c",
+  "uuidNamespace": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+  "entries": [
+    {
+      "entity": "course",
+      "sourceId": "tx-class-c",
+      "sourceUuid": "fd533781-6da9-578a-a457-1951f4749091",
+      "stableId": "tx-class-c",
+      "uuid": "0465f3d9-a57c-574b-a455-60acabc03961"
+    },
+    {
+      "entity": "module",
+      "sourceId": "tx-read-road",
+      "sourceUuid": "ba28cdc0-e78f-528b-9b2f-1b44377c51aa",
+      "stableId": "tx-read-road",
+      "uuid": "3efe1c2e-ebe2-53e0-8856-5bface59937f"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "tx-read-road-test",
+      "stableId": "tx-read-road-test",
+      "uuid": "9a497591-d788-5666-91e9-d4bb57a1fa30"
+    },
+    {
+      "entity": "module",
+      "sourceId": "tx-right-of-way",
+      "sourceUuid": "36d31c28-7fdc-5f3a-980c-a7b530411ffe",
+      "stableId": "tx-right-of-way",
+      "uuid": "d93c0536-4939-5c80-b29b-531933875e05"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "tx-right-of-way-test",
+      "stableId": "tx-right-of-way-test",
+      "uuid": "d7f7abc2-89ae-51dc-836c-a575125d13bf"
+    },
+    {
+      "entity": "module",
+      "sourceId": "tx-lanes-highways",
+      "sourceUuid": "781f559c-fda7-5d12-9832-ab779a5e7c52",
+      "stableId": "tx-lanes-highways",
+      "uuid": "a76eefcb-445b-5d41-a4ac-e4be6995e8f3"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "tx-lanes-highways-test",
+      "stableId": "tx-lanes-highways-test",
+      "uuid": "5efdfb7e-71eb-5b79-b7b6-cff17678e909"
+    },
+    {
+      "entity": "module",
+      "sourceId": "tx-speed-space",
+      "sourceUuid": "f01b1263-6cd6-509c-b190-1a0e328440db",
+      "stableId": "tx-speed-space",
+      "uuid": "0b5987bc-a659-5f15-a413-bd271198d4bc"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "tx-speed-space-test",
+      "stableId": "tx-speed-space-test",
+      "uuid": "a6961bb5-c904-5ad9-ba38-afbce50c7b47"
+    },
+    {
+      "entity": "module",
+      "sourceId": "tx-share-road",
+      "sourceUuid": "dfffe058-ceaf-5e0f-a5ce-53674bf01d73",
+      "stableId": "tx-share-road",
+      "uuid": "75d10e42-2cce-5029-9df6-cdab5e781d6c"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "tx-share-road-test",
+      "stableId": "tx-share-road-test",
+      "uuid": "13a0d212-c532-5a04-a721-20c2f25e20c3"
+    },
+    {
+      "entity": "module",
+      "sourceId": "tx-control",
+      "sourceUuid": "239dd833-74b0-5690-bd5a-fc3e67b2b0a9",
+      "stableId": "tx-control",
+      "uuid": "3041a204-2fa3-540e-b562-9a94240bf41c"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "tx-control-test",
+      "stableId": "tx-control-test",
+      "uuid": "97237ddd-5d6e-5ac6-8594-041b2df0a079"
+    },
+    {
+      "entity": "module",
+      "sourceId": "tx-safety-crashes",
+      "sourceUuid": "36c051d0-574f-54e1-8b75-69b9150d1b3d",
+      "stableId": "tx-safety-crashes",
+      "uuid": "1162d509-d34b-50b2-a234-066e7f6766b2"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "tx-safety-crashes-test",
+      "stableId": "tx-safety-crashes-test",
+      "uuid": "3e661b30-94b6-5218-97aa-38952f737c90"
+    },
+    {
+      "entity": "module",
+      "sourceId": "tx-finish",
+      "sourceUuid": "1f3538dd-7b16-57aa-ad74-afa839a1f88c",
+      "stableId": "tx-finish",
+      "uuid": "6230c735-1e7e-5ab9-8627-f4bd60b4f6cc"
+    },
+    {
+      "entity": "moduleTest",
+      "sourceId": "tx-finish-test",
+      "stableId": "tx-finish-test",
+      "uuid": "c9a675ca-461a-5db1-b63c-66a73fd095de"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-sign-language",
+      "sourceUuid": "42903fc1-98a2-5141-9817-956b74646cd5",
+      "stableId": "tx-sign-language",
+      "uuid": "4a37ee56-c5c1-5fcb-b878-7e8e5be72a50"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-sign-language-q01",
+      "sourceUuid": "e9d9ab54-3216-5b7b-b68a-ec78dcc039f4",
+      "stableId": "tx-sign-language-q01",
+      "uuid": "c9528257-92d3-5945-8e89-3f65f845ae14"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-sign-language-q01-asset",
+      "sourceUuid": "e9ea29f1-67c2-5ca2-a8c1-3d1a07a6dd15",
+      "stableId": "tx-sign-language-q01-asset",
+      "uuid": "a2c7dee6-6cc3-5389-ae56-a84f397c1f4b"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-sign-language-q02",
+      "sourceUuid": "71fe4733-6bd5-5927-a1bf-871283ec599d",
+      "stableId": "tx-sign-language-q02",
+      "uuid": "117103ba-5668-52ca-9426-e955e82b28fc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-sign-language-q02-asset",
+      "sourceUuid": "c5c9916e-3359-5a4b-bb93-8c4dd54c2c35",
+      "stableId": "tx-sign-language-q02-asset",
+      "uuid": "bcfcab64-c3d7-5b9a-a5bd-061ab26d3f23"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-sign-language-q03",
+      "sourceUuid": "3d2e4b37-9a25-52d0-bbe2-fa292eba5cf8",
+      "stableId": "tx-sign-language-q03",
+      "uuid": "957f7492-1f90-54a6-8237-85f5d5637860"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-sign-language-q03-asset",
+      "sourceUuid": "c68123c8-1032-5c25-9e7c-c4dfe45a91dc",
+      "stableId": "tx-sign-language-q03-asset",
+      "uuid": "a19f0a59-38ff-549f-b147-37cd7e743b6d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-sign-language-q04",
+      "sourceUuid": "d99f093b-a133-5d6a-94ac-d6977d1e34e2",
+      "stableId": "tx-sign-language-q04",
+      "uuid": "d01d4466-70d5-54c2-ad03-773c76866452"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-sign-language-q04-asset",
+      "sourceUuid": "f840ff1f-6dd9-57cd-9111-7a3198a5c5f4",
+      "stableId": "tx-sign-language-q04-asset",
+      "uuid": "e9123d2f-df6b-51ab-8fa9-15baa1e5d8f9"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-sign-language-q05",
+      "sourceUuid": "87dee06c-8562-5d92-a588-1c2c59a26cf8",
+      "stableId": "tx-sign-language-q05",
+      "uuid": "4bc4e3a5-2c2e-5e55-b699-18b7a6b2b55f"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-sign-language-q05-asset",
+      "sourceUuid": "834d22ee-baeb-5d1c-94f6-7ffacbdfe457",
+      "stableId": "tx-sign-language-q05-asset",
+      "uuid": "7f8a9b59-e72b-5603-bd61-babc08fecf01"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-sign-language-asset-01",
+      "sourceUuid": "c0eccc12-78a8-5df3-b7db-f58ff1611c3b",
+      "stableId": "tx-sign-language-asset-01",
+      "uuid": "8d5f586a-e6d1-5754-8c5e-b0626817a2bb"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-sign-language-asset-02",
+      "sourceUuid": "a27eb765-2743-529d-a931-6eb8d02d2f11",
+      "stableId": "tx-sign-language-asset-02",
+      "uuid": "916efb78-e807-5e60-8e12-f252924051d1"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-sign-language-asset-03",
+      "sourceUuid": "58eabf62-7751-52e0-8d95-43bea12821b3",
+      "stableId": "tx-sign-language-asset-03",
+      "uuid": "0a3f3725-506a-5ea8-879e-a298cb2c2a77"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b01",
+      "stableId": "tx-sign-language-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b02",
+      "stableId": "tx-sign-language-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b03",
+      "stableId": "tx-sign-language-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b04",
+      "stableId": "tx-sign-language-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b05",
+      "stableId": "tx-sign-language-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b06",
+      "stableId": "tx-sign-language-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b07",
+      "stableId": "tx-sign-language-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b08",
+      "stableId": "tx-sign-language-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b09",
+      "stableId": "tx-sign-language-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b10",
+      "stableId": "tx-sign-language-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b11",
+      "stableId": "tx-sign-language-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-sign-language-b12",
+      "stableId": "tx-sign-language-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-regulatory-signs",
+      "sourceUuid": "66717f3e-2fd0-54b2-a12c-8dbed95a95ad",
+      "stableId": "tx-regulatory-signs",
+      "uuid": "48ae72ee-9cc0-5761-81d7-dba1b7caa7b7"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-regulatory-signs-q01",
+      "sourceUuid": "4a579b7e-2f28-54eb-95d5-fd3ad226d533",
+      "stableId": "tx-regulatory-signs-q01",
+      "uuid": "b19162b5-ff76-5946-bb35-3f6fde9d93bf"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-regulatory-signs-q01-asset",
+      "sourceUuid": "e31fb677-23f3-5b7c-b2e1-4ce313422174",
+      "stableId": "tx-regulatory-signs-q01-asset",
+      "uuid": "94c02a57-bfe6-5f1d-92a2-a994a18aa4c6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-regulatory-signs-q02",
+      "sourceUuid": "8f849a6b-076c-5d4d-a70d-0f730a07eb05",
+      "stableId": "tx-regulatory-signs-q02",
+      "uuid": "bcd62140-b594-5bea-b272-ab64a27074cd"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-regulatory-signs-q02-asset",
+      "sourceUuid": "6f3a25cb-2f1e-5bcf-9c59-b220b366d39d",
+      "stableId": "tx-regulatory-signs-q02-asset",
+      "uuid": "5e337c34-f985-58e1-88e2-e7aa646b9390"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-regulatory-signs-q03",
+      "sourceUuid": "5db8cf29-4a1e-5174-b697-430a732a3db6",
+      "stableId": "tx-regulatory-signs-q03",
+      "uuid": "8e188aa1-c088-54b7-a3c8-5c1f58b951c8"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-regulatory-signs-q03-asset",
+      "sourceUuid": "a51ea6d8-6acb-5df3-94dd-238139656994",
+      "stableId": "tx-regulatory-signs-q03-asset",
+      "uuid": "fa9280a3-72ed-5a6a-9ed3-ed9987a54818"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-regulatory-signs-q04",
+      "sourceUuid": "12bb656b-c961-5087-b6f5-f54abe06d9ab",
+      "stableId": "tx-regulatory-signs-q04",
+      "uuid": "30ef1a1c-3841-5331-bfcc-98ab9768efa3"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-regulatory-signs-q04-asset",
+      "sourceUuid": "305cc549-9a79-507f-ac1e-da929d740651",
+      "stableId": "tx-regulatory-signs-q04-asset",
+      "uuid": "91ec32a9-ccbe-5e89-8466-722533511bf5"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-regulatory-signs-q05",
+      "sourceUuid": "85b7f5ec-7a8e-5267-83f8-c89893053a69",
+      "stableId": "tx-regulatory-signs-q05",
+      "uuid": "0c8e65e9-74ef-54dc-8725-eeef9ab1d1db"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-regulatory-signs-q05-asset",
+      "sourceUuid": "ea44e6ee-99ed-559b-ae97-01d42f357083",
+      "stableId": "tx-regulatory-signs-q05-asset",
+      "uuid": "5775a6d4-4401-557e-9e23-4cb15b1957cd"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-regulatory-signs-asset-01",
+      "sourceUuid": "5b0beb67-969a-5b85-be23-29fce69709c4",
+      "stableId": "tx-regulatory-signs-asset-01",
+      "uuid": "77e2128f-74ff-5473-9382-f6b25b6e3dc3"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-regulatory-signs-asset-02",
+      "sourceUuid": "f49660b4-3f9a-5b54-9170-245fd6a197ad",
+      "stableId": "tx-regulatory-signs-asset-02",
+      "uuid": "f200e936-a575-546d-92c8-7a710daca4bd"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-regulatory-signs-asset-03",
+      "sourceUuid": "278f196c-d529-5bca-92d4-48bc0d40a653",
+      "stableId": "tx-regulatory-signs-asset-03",
+      "uuid": "2c385000-1f2f-510a-afe5-712d57d71128"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b01",
+      "stableId": "tx-regulatory-signs-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b02",
+      "stableId": "tx-regulatory-signs-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b03",
+      "stableId": "tx-regulatory-signs-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b04",
+      "stableId": "tx-regulatory-signs-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b05",
+      "stableId": "tx-regulatory-signs-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b06",
+      "stableId": "tx-regulatory-signs-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b07",
+      "stableId": "tx-regulatory-signs-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b08",
+      "stableId": "tx-regulatory-signs-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b09",
+      "stableId": "tx-regulatory-signs-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b10",
+      "stableId": "tx-regulatory-signs-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b11",
+      "stableId": "tx-regulatory-signs-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-regulatory-signs-b12",
+      "stableId": "tx-regulatory-signs-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-warning-guide-signs",
+      "sourceUuid": "8d89ae81-917e-5c83-ab73-a59b03498cec",
+      "stableId": "tx-warning-guide-signs",
+      "uuid": "7811f91f-63aa-580d-ab2c-560c87295ec4"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-warning-guide-signs-q01",
+      "sourceUuid": "80d03993-e818-56a5-b1c6-dde29f9000a0",
+      "stableId": "tx-warning-guide-signs-q01",
+      "uuid": "50d8ae13-f3eb-5883-afbf-6be4ce8a123b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-warning-guide-signs-q01-asset",
+      "sourceUuid": "e2742726-8840-5f71-83e6-1e494fe3d4d6",
+      "stableId": "tx-warning-guide-signs-q01-asset",
+      "uuid": "ce015206-64fa-583f-96ed-b2939d3262fd"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-warning-guide-signs-q02",
+      "sourceUuid": "f096fa0a-e78e-5aaa-9787-efe1593db0d2",
+      "stableId": "tx-warning-guide-signs-q02",
+      "uuid": "d0975342-1a02-5380-95f8-1dfd552a8116"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-warning-guide-signs-q02-asset",
+      "sourceUuid": "14cbb052-4b65-5720-ab74-be97a47ea418",
+      "stableId": "tx-warning-guide-signs-q02-asset",
+      "uuid": "70a60861-553a-5056-957f-5a24a412d183"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-warning-guide-signs-q03",
+      "sourceUuid": "d510bda2-b8fd-5cbb-8d56-902bf7f23541",
+      "stableId": "tx-warning-guide-signs-q03",
+      "uuid": "0935f46a-8a2c-5fe1-a4ee-50c776a214e6"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-warning-guide-signs-q03-asset",
+      "sourceUuid": "c9c6708e-b509-5fd7-a7d7-c0ba89d1cc57",
+      "stableId": "tx-warning-guide-signs-q03-asset",
+      "uuid": "1a88b6f0-ad3d-5850-b9e3-e717c0ea3402"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-warning-guide-signs-q04",
+      "sourceUuid": "3fc94f65-7350-5cd1-8a3e-6290a374e32e",
+      "stableId": "tx-warning-guide-signs-q04",
+      "uuid": "771390f8-6aa7-5bf9-a721-02724230efdd"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-warning-guide-signs-q04-asset",
+      "sourceUuid": "64e7f901-e0d2-50c3-b7dc-71da16273f56",
+      "stableId": "tx-warning-guide-signs-q04-asset",
+      "uuid": "61669933-f614-582d-92e9-1c5b848a270f"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-warning-guide-signs-q05",
+      "sourceUuid": "befe3f00-15d7-56bb-b55f-fa87c8b2db51",
+      "stableId": "tx-warning-guide-signs-q05",
+      "uuid": "e0ef49d0-1e4a-5d1e-8d82-a90a38324e08"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-warning-guide-signs-q05-asset",
+      "sourceUuid": "aaacb2eb-e744-505b-b059-ef90d6cff078",
+      "stableId": "tx-warning-guide-signs-q05-asset",
+      "uuid": "1cebf0f8-0db5-548d-9584-87ed4fa66fe3"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-warning-guide-signs-asset-01",
+      "sourceUuid": "29174558-5e68-5e67-9e90-a22ed6485245",
+      "stableId": "tx-warning-guide-signs-asset-01",
+      "uuid": "d69ee2c0-8ea4-5fb6-a811-b68f144a2115"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-warning-guide-signs-asset-02",
+      "sourceUuid": "8301a5a4-904a-5b7b-a38e-2169f6ab68ac",
+      "stableId": "tx-warning-guide-signs-asset-02",
+      "uuid": "e073f0f3-239b-5c63-a40e-38a958ed03ed"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-warning-guide-signs-asset-03",
+      "sourceUuid": "e5733e17-33af-5948-87a5-d7acf1ea23e5",
+      "stableId": "tx-warning-guide-signs-asset-03",
+      "uuid": "d78723c7-32c4-5b2f-8874-abdd8c63f898"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b01",
+      "stableId": "tx-warning-guide-signs-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b02",
+      "stableId": "tx-warning-guide-signs-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b03",
+      "stableId": "tx-warning-guide-signs-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b04",
+      "stableId": "tx-warning-guide-signs-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b05",
+      "stableId": "tx-warning-guide-signs-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b06",
+      "stableId": "tx-warning-guide-signs-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b07",
+      "stableId": "tx-warning-guide-signs-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b08",
+      "stableId": "tx-warning-guide-signs-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b09",
+      "stableId": "tx-warning-guide-signs-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b10",
+      "stableId": "tx-warning-guide-signs-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b11",
+      "stableId": "tx-warning-guide-signs-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-warning-guide-signs-b12",
+      "stableId": "tx-warning-guide-signs-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-signals",
+      "sourceUuid": "13464f92-e876-5a22-99cc-a1a983870bf4",
+      "stableId": "tx-signals",
+      "uuid": "02013c29-28bf-51ff-839b-e3571619d23f"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-signals-q01",
+      "sourceUuid": "64492902-4360-50c5-a6be-e0fcdeb3e6c1",
+      "stableId": "tx-signals-q01",
+      "uuid": "7315338d-b939-5f52-adba-c01ccec5899d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-signals-q01-asset",
+      "sourceUuid": "176cb675-3000-538e-b6ac-341906880dcc",
+      "stableId": "tx-signals-q01-asset",
+      "uuid": "542cab02-5861-5a20-94a0-31fc3e798b65"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-signals-q02",
+      "sourceUuid": "0c3e3d32-c4cd-5e4f-a5d8-fa43c2c000ad",
+      "stableId": "tx-signals-q02",
+      "uuid": "f9d92c85-d0eb-5842-8240-996fa23a4504"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-signals-q02-asset",
+      "sourceUuid": "bca59dd1-024a-5472-9192-100de4027fed",
+      "stableId": "tx-signals-q02-asset",
+      "uuid": "4fc9dd78-75d8-5e25-b3db-09d424d76232"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-signals-q03",
+      "sourceUuid": "1033bd5e-c1b5-51b4-a362-07bf705ef6f1",
+      "stableId": "tx-signals-q03",
+      "uuid": "d51105fc-6dc7-510f-8f97-f2b27a6a781d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-signals-q03-asset",
+      "sourceUuid": "2b5c2ab6-0544-5ef7-93a0-9105be78189a",
+      "stableId": "tx-signals-q03-asset",
+      "uuid": "ea55edce-485a-57cc-95a9-243d5ecf8d22"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-signals-q04",
+      "sourceUuid": "7238d503-5b7f-5242-8cee-3a5f74056765",
+      "stableId": "tx-signals-q04",
+      "uuid": "272909c7-a3ed-5d68-b64f-071ad6086582"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-signals-q04-asset",
+      "sourceUuid": "6bfc87e4-0ab2-51ab-97bf-8c49f12a73d2",
+      "stableId": "tx-signals-q04-asset",
+      "uuid": "ccb5f1bb-e334-5e3b-a88f-e319012d52e1"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-signals-q05",
+      "sourceUuid": "fc908340-8121-558e-a30b-2e12753f31ba",
+      "stableId": "tx-signals-q05",
+      "uuid": "e621249d-d081-5d2d-aa89-a46f0d5d543d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-signals-q05-asset",
+      "sourceUuid": "f3aee714-0891-5254-bd39-04f65149b545",
+      "stableId": "tx-signals-q05-asset",
+      "uuid": "4afcf5d9-d360-5761-9c8f-89d32c0eb6e8"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-signals-asset-01",
+      "sourceUuid": "675bb046-a475-59e8-9650-362c1e093c27",
+      "stableId": "tx-signals-asset-01",
+      "uuid": "cbe24885-3742-5ebc-92e8-74364ebd42b6"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-signals-asset-02",
+      "sourceUuid": "36a4e96d-b40c-544c-bd03-8bb90bde843e",
+      "stableId": "tx-signals-asset-02",
+      "uuid": "52d57432-31bf-5021-a0be-956c002ba5dc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-signals-asset-03",
+      "sourceUuid": "60f25af1-cc92-5c53-ac43-de98ff33d7c2",
+      "stableId": "tx-signals-asset-03",
+      "uuid": "b7560e31-3042-5512-8e33-411f71c6f287"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b01",
+      "stableId": "tx-signals-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b02",
+      "stableId": "tx-signals-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b03",
+      "stableId": "tx-signals-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b04",
+      "stableId": "tx-signals-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b05",
+      "stableId": "tx-signals-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b06",
+      "stableId": "tx-signals-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b07",
+      "stableId": "tx-signals-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b08",
+      "stableId": "tx-signals-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b09",
+      "stableId": "tx-signals-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b10",
+      "stableId": "tx-signals-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b11",
+      "stableId": "tx-signals-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-signals-b12",
+      "stableId": "tx-signals-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-markings",
+      "sourceUuid": "f00752b0-b726-5568-bc73-eeefec23fd1f",
+      "stableId": "tx-markings",
+      "uuid": "43a3c6af-d151-549f-b0db-1bc3b92228cf"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-markings-q01",
+      "sourceUuid": "bc15ffc4-078c-5957-9e91-db08726ba8c5",
+      "stableId": "tx-markings-q01",
+      "uuid": "92d3c0ab-4152-5a08-b594-4b8ccd4acf56"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-markings-q01-asset",
+      "sourceUuid": "0df07813-da9e-5edb-8865-5e664305313b",
+      "stableId": "tx-markings-q01-asset",
+      "uuid": "503b3072-2dbe-5f7a-8c3e-0a7d456f4073"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-markings-q02",
+      "sourceUuid": "e43c5fab-7483-5b0e-9404-c80a0bee043e",
+      "stableId": "tx-markings-q02",
+      "uuid": "edbde3f4-e75e-57dc-a102-195beae2969c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-markings-q02-asset",
+      "sourceUuid": "74f48f02-0584-5af1-8dd9-7311abf16b16",
+      "stableId": "tx-markings-q02-asset",
+      "uuid": "23e24616-e8a6-57f5-8acc-377c082aa84d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-markings-q03",
+      "sourceUuid": "4f339d94-feb7-5372-83d7-f49e9e121f96",
+      "stableId": "tx-markings-q03",
+      "uuid": "c9787bee-b060-5933-b2ea-8ae454a12624"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-markings-q03-asset",
+      "sourceUuid": "d647067a-1a24-5a26-b85b-9edfbf1330a4",
+      "stableId": "tx-markings-q03-asset",
+      "uuid": "c4a850de-76bf-5d7e-8fae-6e50a9ac6ca7"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-markings-q04",
+      "sourceUuid": "8615d0f3-26a3-5bcd-8bbf-cac9e59f24c7",
+      "stableId": "tx-markings-q04",
+      "uuid": "966c4266-bf76-54a8-8296-95c706721e71"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-markings-q04-asset",
+      "sourceUuid": "f3d4bb0e-da7e-539a-aa54-99491bd46445",
+      "stableId": "tx-markings-q04-asset",
+      "uuid": "57f083c2-1a86-5c6e-b419-4443704760b6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-markings-q05",
+      "sourceUuid": "54698c2a-15df-54aa-8044-69220ba36ef3",
+      "stableId": "tx-markings-q05",
+      "uuid": "b822003b-4865-5c23-a899-1bdf3e0857f5"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-markings-q05-asset",
+      "sourceUuid": "e097c734-f9a0-5229-9460-eaff3a513387",
+      "stableId": "tx-markings-q05-asset",
+      "uuid": "11a821d9-ab5e-5d93-a318-e8068b13e24d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-markings-asset-01",
+      "sourceUuid": "1f072cb8-fa42-5dce-a983-5a379d56d584",
+      "stableId": "tx-markings-asset-01",
+      "uuid": "a218b055-978e-50bd-9633-42e5631684fe"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-markings-asset-02",
+      "sourceUuid": "0b024649-b3cd-5c8b-92e7-9a1e6322c9f7",
+      "stableId": "tx-markings-asset-02",
+      "uuid": "1f8b81e9-11a9-59bb-9961-b513a0d60d5d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-markings-asset-03",
+      "sourceUuid": "90289b9c-a284-5ffa-96ec-fc2915df4d2b",
+      "stableId": "tx-markings-asset-03",
+      "uuid": "ebb97129-3df1-5081-bae1-acc43880bcd7"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b01",
+      "stableId": "tx-markings-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b02",
+      "stableId": "tx-markings-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b03",
+      "stableId": "tx-markings-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b04",
+      "stableId": "tx-markings-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b05",
+      "stableId": "tx-markings-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b06",
+      "stableId": "tx-markings-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b07",
+      "stableId": "tx-markings-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b08",
+      "stableId": "tx-markings-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b09",
+      "stableId": "tx-markings-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b10",
+      "stableId": "tx-markings-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b11",
+      "stableId": "tx-markings-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-markings-b12",
+      "stableId": "tx-markings-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-uncontrolled-intersections",
+      "sourceUuid": "15a04593-4366-508e-afdc-bfb1da19e2f3",
+      "stableId": "tx-uncontrolled-intersections",
+      "uuid": "cf874565-aca8-5aa9-859c-c539ed519062"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uncontrolled-intersections-q01",
+      "sourceUuid": "e9235224-d71d-595a-921d-235274934a7a",
+      "stableId": "tx-uncontrolled-intersections-q01",
+      "uuid": "fb726edf-6894-5013-bb64-3648a0acd802"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uncontrolled-intersections-q01-asset",
+      "sourceUuid": "d4d026e4-3d42-5aae-b998-6179e97b2161",
+      "stableId": "tx-uncontrolled-intersections-q01-asset",
+      "uuid": "e4c76d08-0a1e-515e-99d5-24001eff4697"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uncontrolled-intersections-q02",
+      "sourceUuid": "fe35a078-892e-5c05-a3ca-3b7805e4c4dd",
+      "stableId": "tx-uncontrolled-intersections-q02",
+      "uuid": "0dd9c799-e735-53ee-a06a-7fc481db4eb5"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uncontrolled-intersections-q02-asset",
+      "sourceUuid": "407e2e9a-af97-5cb2-b979-b1c7d1389657",
+      "stableId": "tx-uncontrolled-intersections-q02-asset",
+      "uuid": "6c0afd5d-9ab5-5dc7-a281-ffc7a243ca97"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uncontrolled-intersections-q03",
+      "sourceUuid": "7fc5abfe-0113-54c6-8e1b-64771a5d1fc7",
+      "stableId": "tx-uncontrolled-intersections-q03",
+      "uuid": "2db0caf8-79f5-5f89-be19-ec22541b1b81"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uncontrolled-intersections-q03-asset",
+      "sourceUuid": "95d7e7d2-7d05-5360-bcdd-798b2222aab5",
+      "stableId": "tx-uncontrolled-intersections-q03-asset",
+      "uuid": "1be16bb0-77fe-5646-a981-1afb12fe508a"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uncontrolled-intersections-q04",
+      "sourceUuid": "d172f0a1-2b4d-5f17-86bc-2908adb1c7b7",
+      "stableId": "tx-uncontrolled-intersections-q04",
+      "uuid": "8fe8db75-f18a-5d24-9400-6748361ab6df"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uncontrolled-intersections-q04-asset",
+      "sourceUuid": "62e5445b-f90a-5cf7-8dbe-9b05adb014b5",
+      "stableId": "tx-uncontrolled-intersections-q04-asset",
+      "uuid": "9e5cfa2a-2758-5367-bdde-81c74cc11ba2"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uncontrolled-intersections-q05",
+      "sourceUuid": "bedbce5c-7543-5a5a-8aa1-1559c3e4dbf0",
+      "stableId": "tx-uncontrolled-intersections-q05",
+      "uuid": "30d78668-7adc-55bd-a950-0ae8394bbeec"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uncontrolled-intersections-q05-asset",
+      "sourceUuid": "7c7a6225-78e1-5220-a4ae-3370f4a9801b",
+      "stableId": "tx-uncontrolled-intersections-q05-asset",
+      "uuid": "097c5e2e-79f1-56f8-a542-e44fd5796956"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uncontrolled-intersections-asset-01",
+      "sourceUuid": "8761df64-4656-5ba8-8648-0144c97adfbd",
+      "stableId": "tx-uncontrolled-intersections-asset-01",
+      "uuid": "2a3c7ecf-26d7-5a24-b4a7-a116f2fd14d5"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uncontrolled-intersections-asset-02",
+      "sourceUuid": "905b0315-769a-55bf-96cf-893698c61b50",
+      "stableId": "tx-uncontrolled-intersections-asset-02",
+      "uuid": "e584cc4d-c958-54d0-84b0-71a5af096c23"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uncontrolled-intersections-asset-03",
+      "sourceUuid": "0a4d941d-bda3-55d1-af71-124fced5b531",
+      "stableId": "tx-uncontrolled-intersections-asset-03",
+      "uuid": "6a1256ee-f6a9-598c-af8b-619b95c1df72"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b01",
+      "stableId": "tx-uncontrolled-intersections-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b02",
+      "stableId": "tx-uncontrolled-intersections-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b03",
+      "stableId": "tx-uncontrolled-intersections-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b04",
+      "stableId": "tx-uncontrolled-intersections-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b05",
+      "stableId": "tx-uncontrolled-intersections-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b06",
+      "stableId": "tx-uncontrolled-intersections-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b07",
+      "stableId": "tx-uncontrolled-intersections-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b08",
+      "stableId": "tx-uncontrolled-intersections-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b09",
+      "stableId": "tx-uncontrolled-intersections-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b10",
+      "stableId": "tx-uncontrolled-intersections-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b11",
+      "stableId": "tx-uncontrolled-intersections-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uncontrolled-intersections-b12",
+      "stableId": "tx-uncontrolled-intersections-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-stop-yield-entry",
+      "sourceUuid": "a7974dac-2674-5c44-9e6e-39d2c426709a",
+      "stableId": "tx-stop-yield-entry",
+      "uuid": "0a017e22-d2c0-576c-86ee-540b73697801"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-stop-yield-entry-q01",
+      "sourceUuid": "961f37ae-6c03-55e0-8a4f-5b9aaec9a59e",
+      "stableId": "tx-stop-yield-entry-q01",
+      "uuid": "2202dca6-bdff-5d2f-ab3b-a98a488a0915"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-stop-yield-entry-q01-asset",
+      "sourceUuid": "caa3d99e-a0ae-5ac9-a51b-8d34373c8293",
+      "stableId": "tx-stop-yield-entry-q01-asset",
+      "uuid": "cdaeaf46-faca-56fe-aaf5-942ed564bcf0"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-stop-yield-entry-q02",
+      "sourceUuid": "e2348467-1122-5344-9563-bca09f8a03f3",
+      "stableId": "tx-stop-yield-entry-q02",
+      "uuid": "c434fc1d-7980-5d73-9f75-f31f7adf7d95"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-stop-yield-entry-q02-asset",
+      "sourceUuid": "1e019490-815b-5635-81ff-5480d5d97551",
+      "stableId": "tx-stop-yield-entry-q02-asset",
+      "uuid": "d9c4ff47-b8d9-5f41-a225-0c2505b307a7"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-stop-yield-entry-q03",
+      "sourceUuid": "f6ea7a6f-b00d-56e8-a9fc-4522478bc624",
+      "stableId": "tx-stop-yield-entry-q03",
+      "uuid": "7f5d2c62-83ef-5730-9fa9-b153e13552f2"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-stop-yield-entry-q03-asset",
+      "sourceUuid": "9f6a5081-3401-5068-8e1d-5446558aa276",
+      "stableId": "tx-stop-yield-entry-q03-asset",
+      "uuid": "2cc19f19-eb44-5bdd-95c7-d3d315054c96"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-stop-yield-entry-q04",
+      "sourceUuid": "e7844620-f2f2-56a3-b38c-a667df5338c7",
+      "stableId": "tx-stop-yield-entry-q04",
+      "uuid": "c80c8150-19ac-5d93-baca-a6ecc5dbf837"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-stop-yield-entry-q04-asset",
+      "sourceUuid": "320698c2-e9f3-577a-b095-4adfb789ea9d",
+      "stableId": "tx-stop-yield-entry-q04-asset",
+      "uuid": "5c834c3b-8f43-5b21-bb55-a98bb696aeb5"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-stop-yield-entry-q05",
+      "sourceUuid": "afeee9ba-21bc-598a-b032-6fef0fc5ddbc",
+      "stableId": "tx-stop-yield-entry-q05",
+      "uuid": "84aa6110-2cc7-5597-9ce6-b704eae565da"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-stop-yield-entry-q05-asset",
+      "sourceUuid": "da26433a-c36d-5c04-a93e-b56f31c450f4",
+      "stableId": "tx-stop-yield-entry-q05-asset",
+      "uuid": "564e65c3-b1ff-574e-a671-1454e7fdc81e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-stop-yield-entry-asset-01",
+      "sourceUuid": "e2d50886-2f6d-5c73-846b-d074c02eab8f",
+      "stableId": "tx-stop-yield-entry-asset-01",
+      "uuid": "c33f357e-c630-5c6f-85b6-f16a4bace246"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-stop-yield-entry-asset-02",
+      "sourceUuid": "34a25ede-5c1c-590a-8e2f-4e6458d96f61",
+      "stableId": "tx-stop-yield-entry-asset-02",
+      "uuid": "e6969c4b-6bc3-52f7-ae0a-ac3df4cefa1d"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-stop-yield-entry-asset-03",
+      "sourceUuid": "12bf8650-6030-5edd-8fbe-542d1b7aa605",
+      "stableId": "tx-stop-yield-entry-asset-03",
+      "uuid": "9b5bf9bc-78d9-5647-a588-fc3b33e8ad5c"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b01",
+      "stableId": "tx-stop-yield-entry-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b02",
+      "stableId": "tx-stop-yield-entry-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b03",
+      "stableId": "tx-stop-yield-entry-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b04",
+      "stableId": "tx-stop-yield-entry-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b05",
+      "stableId": "tx-stop-yield-entry-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b06",
+      "stableId": "tx-stop-yield-entry-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b07",
+      "stableId": "tx-stop-yield-entry-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b08",
+      "stableId": "tx-stop-yield-entry-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b09",
+      "stableId": "tx-stop-yield-entry-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b10",
+      "stableId": "tx-stop-yield-entry-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b11",
+      "stableId": "tx-stop-yield-entry-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-stop-yield-entry-b12",
+      "stableId": "tx-stop-yield-entry-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-turns-signals",
+      "sourceUuid": "af3eab92-6108-5793-87dc-fe8ca8eea859",
+      "stableId": "tx-turns-signals",
+      "uuid": "ead2562d-81f5-5c44-8454-b9df7ed2e9cb"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-turns-signals-q01",
+      "sourceUuid": "7d454ac0-d18d-5a40-90ca-4e4f794a87f1",
+      "stableId": "tx-turns-signals-q01",
+      "uuid": "a6e93a82-a57c-5085-ada0-f6aebf29a96e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-turns-signals-q01-asset",
+      "sourceUuid": "6f1b6639-dbee-5892-9f9b-6fd6b4183bd9",
+      "stableId": "tx-turns-signals-q01-asset",
+      "uuid": "8480b4d6-ce5b-5de6-b33c-75b8222107f1"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-turns-signals-q02",
+      "sourceUuid": "79a769c3-20b4-5824-9937-f220d78096b9",
+      "stableId": "tx-turns-signals-q02",
+      "uuid": "d4f66eb4-b3f2-5869-8dcb-0bd03fa349aa"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-turns-signals-q02-asset",
+      "sourceUuid": "97935a91-4071-5fba-84cd-a36f490716e0",
+      "stableId": "tx-turns-signals-q02-asset",
+      "uuid": "959a8f7c-6ead-55ba-8549-9316577fdf08"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-turns-signals-q03",
+      "sourceUuid": "dc2fb950-2066-5ecb-aecb-d5ef98a0c7ca",
+      "stableId": "tx-turns-signals-q03",
+      "uuid": "57d203fb-8962-5eb5-aee0-7f7e47a28f56"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-turns-signals-q03-asset",
+      "sourceUuid": "a9c81ff4-3d6c-5737-9e64-46bff3819fde",
+      "stableId": "tx-turns-signals-q03-asset",
+      "uuid": "c33121f2-38c4-57f4-823f-dbbdcd181fbb"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-turns-signals-q04",
+      "sourceUuid": "b949dcf9-ca6b-5e86-8901-2fe09d5973d6",
+      "stableId": "tx-turns-signals-q04",
+      "uuid": "c449f643-5b76-5cf5-9e43-f3a3606442b9"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-turns-signals-q04-asset",
+      "sourceUuid": "dea54ac6-4b0f-53b7-b178-82cd521a90e8",
+      "stableId": "tx-turns-signals-q04-asset",
+      "uuid": "e0e3f021-9725-5b72-bb5a-02b448292c80"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-turns-signals-q05",
+      "sourceUuid": "0ecfccd4-b043-51f7-a1f2-b260f7801360",
+      "stableId": "tx-turns-signals-q05",
+      "uuid": "26475d89-8a46-5d7d-834f-c3320fc56748"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-turns-signals-q05-asset",
+      "sourceUuid": "fbd65075-84ff-57a2-9a37-2cbd4307ea60",
+      "stableId": "tx-turns-signals-q05-asset",
+      "uuid": "c3c39579-4049-5362-9004-51ef2f6ddf73"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-turns-signals-asset-01",
+      "sourceUuid": "6f6bb065-d763-5663-ae48-29e15bc91316",
+      "stableId": "tx-turns-signals-asset-01",
+      "uuid": "4098a23a-9144-522c-80aa-d8b26f536281"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-turns-signals-asset-02",
+      "sourceUuid": "34c4e5bf-7c5e-578f-be7f-dca77e3c7375",
+      "stableId": "tx-turns-signals-asset-02",
+      "uuid": "b23176ab-1d24-5210-9802-120eb0b6e87a"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-turns-signals-asset-03",
+      "sourceUuid": "d6871410-a4e8-5377-9891-48279bcd0714",
+      "stableId": "tx-turns-signals-asset-03",
+      "uuid": "67e8ca81-e3d6-5770-9b29-eea2bb06c3b5"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b01",
+      "stableId": "tx-turns-signals-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b02",
+      "stableId": "tx-turns-signals-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b03",
+      "stableId": "tx-turns-signals-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b04",
+      "stableId": "tx-turns-signals-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b05",
+      "stableId": "tx-turns-signals-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b06",
+      "stableId": "tx-turns-signals-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b07",
+      "stableId": "tx-turns-signals-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b08",
+      "stableId": "tx-turns-signals-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b09",
+      "stableId": "tx-turns-signals-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b10",
+      "stableId": "tx-turns-signals-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b11",
+      "stableId": "tx-turns-signals-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-turns-signals-b12",
+      "stableId": "tx-turns-signals-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-uturn-backing",
+      "sourceUuid": "fe9ab4c3-5d78-5ea7-a397-84300a7f106b",
+      "stableId": "tx-uturn-backing",
+      "uuid": "4e7c75f5-dec0-58b9-9df3-9e9959d796c6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uturn-backing-q01",
+      "sourceUuid": "5b305dcc-a44d-5515-8649-45e486e24daf",
+      "stableId": "tx-uturn-backing-q01",
+      "uuid": "0542de68-58ae-5778-bda0-44eeb2d6627c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uturn-backing-q01-asset",
+      "sourceUuid": "0fc82531-d6fa-56c2-ae83-4ccad67ab62d",
+      "stableId": "tx-uturn-backing-q01-asset",
+      "uuid": "8fe3741b-c8c5-585f-acd9-bef8eabbe61d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uturn-backing-q02",
+      "sourceUuid": "54441963-6115-528d-ba30-f59e4cc8706d",
+      "stableId": "tx-uturn-backing-q02",
+      "uuid": "6d754f24-6ddb-5e66-bdff-6742ea7d4a4c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uturn-backing-q02-asset",
+      "sourceUuid": "211b2e12-b3a4-54e0-8b8c-84af57f9df94",
+      "stableId": "tx-uturn-backing-q02-asset",
+      "uuid": "68ed9f1e-dd01-5a80-a70f-88e91c4a167e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uturn-backing-q03",
+      "sourceUuid": "7c76f977-94b5-57c3-bc3a-e726fcd7bf91",
+      "stableId": "tx-uturn-backing-q03",
+      "uuid": "3661ecc1-31e1-52bf-9759-b10697e97e6f"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uturn-backing-q03-asset",
+      "sourceUuid": "b7ae36e4-5c33-575a-8232-0e719a10a311",
+      "stableId": "tx-uturn-backing-q03-asset",
+      "uuid": "beb290ab-f033-54e3-9ff9-6b4e65068c01"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uturn-backing-q04",
+      "sourceUuid": "dd02293f-9deb-5b2a-b76d-e91e25ca7ca4",
+      "stableId": "tx-uturn-backing-q04",
+      "uuid": "bffd666f-6def-5711-9894-e61164c89528"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uturn-backing-q04-asset",
+      "sourceUuid": "0588a2b7-dc80-5aee-b33f-ae245705080e",
+      "stableId": "tx-uturn-backing-q04-asset",
+      "uuid": "82227d28-cac7-5e97-b7bb-981f8c3353f4"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-uturn-backing-q05",
+      "sourceUuid": "869bb05d-d866-55ac-b4f0-14f2b7cdbf7b",
+      "stableId": "tx-uturn-backing-q05",
+      "uuid": "cc2e5f97-88e4-5c69-ba4d-974f95836bdc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uturn-backing-q05-asset",
+      "sourceUuid": "6ed95e10-ff33-50be-ad87-486f57613cce",
+      "stableId": "tx-uturn-backing-q05-asset",
+      "uuid": "e9eeb987-20b8-53ab-a32b-e1400db7e8d7"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uturn-backing-asset-01",
+      "sourceUuid": "07f64d70-8f21-578e-9bac-6ff16da8e43f",
+      "stableId": "tx-uturn-backing-asset-01",
+      "uuid": "e495057b-7b72-5bb9-8f0b-5c89305f4bee"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uturn-backing-asset-02",
+      "sourceUuid": "d30cb7b0-780e-566d-8031-35ec7f5fe590",
+      "stableId": "tx-uturn-backing-asset-02",
+      "uuid": "6c8449c2-f63b-5957-89f7-6a69ba00dae1"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-uturn-backing-asset-03",
+      "sourceUuid": "32a54555-2e85-5fbf-82ee-a03a5043d4f6",
+      "stableId": "tx-uturn-backing-asset-03",
+      "uuid": "10f92274-fb80-5e93-b2f7-1f9612883c02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b01",
+      "stableId": "tx-uturn-backing-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b02",
+      "stableId": "tx-uturn-backing-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b03",
+      "stableId": "tx-uturn-backing-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b04",
+      "stableId": "tx-uturn-backing-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b05",
+      "stableId": "tx-uturn-backing-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b06",
+      "stableId": "tx-uturn-backing-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b07",
+      "stableId": "tx-uturn-backing-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b08",
+      "stableId": "tx-uturn-backing-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b09",
+      "stableId": "tx-uturn-backing-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b10",
+      "stableId": "tx-uturn-backing-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b11",
+      "stableId": "tx-uturn-backing-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-uturn-backing-b12",
+      "stableId": "tx-uturn-backing-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-pedestrians-roundabouts",
+      "sourceUuid": "7cf23091-686c-5591-b5d8-443d153d8545",
+      "stableId": "tx-pedestrians-roundabouts",
+      "uuid": "8c96637f-d1b2-575b-9c74-47daf87c798c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-pedestrians-roundabouts-q01",
+      "sourceUuid": "94c79221-1f0e-59fe-905e-e432ad5f5ed4",
+      "stableId": "tx-pedestrians-roundabouts-q01",
+      "uuid": "5195ade3-4f60-5767-b518-19f155755001"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-pedestrians-roundabouts-q01-asset",
+      "sourceUuid": "f204c3bc-a748-51b5-8bdd-0622a6e57332",
+      "stableId": "tx-pedestrians-roundabouts-q01-asset",
+      "uuid": "7816829d-62ad-501c-949f-c88eff7becd2"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-pedestrians-roundabouts-q02",
+      "sourceUuid": "a5a0f80b-baff-564b-95b9-ab2aff6ecfe6",
+      "stableId": "tx-pedestrians-roundabouts-q02",
+      "uuid": "2518aacc-6cfd-5be6-b367-bea6baba3882"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-pedestrians-roundabouts-q02-asset",
+      "sourceUuid": "420ecec7-b8aa-5d05-a3c0-84b73cb9016f",
+      "stableId": "tx-pedestrians-roundabouts-q02-asset",
+      "uuid": "233866ca-2e7a-5d3c-913a-2d58449df5c1"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-pedestrians-roundabouts-q03",
+      "sourceUuid": "4351faee-93e1-5572-b4a5-44728cf63a68",
+      "stableId": "tx-pedestrians-roundabouts-q03",
+      "uuid": "875e9cff-7aa1-591d-9d50-d5e1ece1fcae"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-pedestrians-roundabouts-q03-asset",
+      "sourceUuid": "b79e350a-6199-5b7d-b094-77c1d3b79687",
+      "stableId": "tx-pedestrians-roundabouts-q03-asset",
+      "uuid": "c3b54844-1e2a-55ee-8d8a-1b786676db05"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-pedestrians-roundabouts-q04",
+      "sourceUuid": "6fa9e6a6-3d3e-550f-ba49-2b7613830baf",
+      "stableId": "tx-pedestrians-roundabouts-q04",
+      "uuid": "ddc27cb1-25c0-57b9-8d52-74191b2a7d2b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-pedestrians-roundabouts-q04-asset",
+      "sourceUuid": "fd800d40-9c91-5aad-9724-ba0ce97cad46",
+      "stableId": "tx-pedestrians-roundabouts-q04-asset",
+      "uuid": "9fe32f2f-0a4b-53bb-843a-f185ae7608b2"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-pedestrians-roundabouts-q05",
+      "sourceUuid": "d1d33876-b129-5e0e-9c5b-34ab7efcda25",
+      "stableId": "tx-pedestrians-roundabouts-q05",
+      "uuid": "737a4fe5-f35e-591b-9bf0-c40595b5270a"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-pedestrians-roundabouts-q05-asset",
+      "sourceUuid": "c5d0fc95-1664-5aea-bbf6-2f1a99b11bc4",
+      "stableId": "tx-pedestrians-roundabouts-q05-asset",
+      "uuid": "ed92d5cc-b635-5979-981b-9c220475ff60"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-pedestrians-roundabouts-asset-01",
+      "sourceUuid": "5eca0da2-2caa-5fc9-8f42-46440c340285",
+      "stableId": "tx-pedestrians-roundabouts-asset-01",
+      "uuid": "a651410c-fd41-51e6-8875-e8baf04a9fdf"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-pedestrians-roundabouts-asset-02",
+      "sourceUuid": "a78e2381-dc1b-5ddd-9833-1b537052920d",
+      "stableId": "tx-pedestrians-roundabouts-asset-02",
+      "uuid": "0c6d1ceb-79e2-54e9-ac13-3bbd0765d28e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-pedestrians-roundabouts-asset-03",
+      "sourceUuid": "c340f673-1910-5692-862b-c03d75302dcd",
+      "stableId": "tx-pedestrians-roundabouts-asset-03",
+      "uuid": "91654a3e-2ec3-5f91-b14d-19e93dffcc62"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b01",
+      "stableId": "tx-pedestrians-roundabouts-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b02",
+      "stableId": "tx-pedestrians-roundabouts-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b03",
+      "stableId": "tx-pedestrians-roundabouts-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b04",
+      "stableId": "tx-pedestrians-roundabouts-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b05",
+      "stableId": "tx-pedestrians-roundabouts-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b06",
+      "stableId": "tx-pedestrians-roundabouts-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b07",
+      "stableId": "tx-pedestrians-roundabouts-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b08",
+      "stableId": "tx-pedestrians-roundabouts-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b09",
+      "stableId": "tx-pedestrians-roundabouts-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b10",
+      "stableId": "tx-pedestrians-roundabouts-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b11",
+      "stableId": "tx-pedestrians-roundabouts-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-pedestrians-roundabouts-b12",
+      "stableId": "tx-pedestrians-roundabouts-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-lane-choice",
+      "sourceUuid": "97a58e45-394a-57c8-803e-b2ea2fdc2743",
+      "stableId": "tx-lane-choice",
+      "uuid": "a78e9e1c-3e7e-5998-a49a-72d40dc039a3"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-lane-choice-q01",
+      "sourceUuid": "6b41c400-1b46-59f0-9d92-a73916995903",
+      "stableId": "tx-lane-choice-q01",
+      "uuid": "d287e8fb-7962-534c-8ee9-875346adbdf9"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-lane-choice-asset-01",
+      "sourceUuid": "3c5f8e9d-2c00-561e-af24-471e5f461fd0",
+      "stableId": "tx-lane-choice-asset-01",
+      "uuid": "840ce626-6d82-561b-8fa3-bac50adb4c1a"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-lane-choice-q02",
+      "sourceUuid": "89917752-18fd-5786-a6da-d0920de116aa",
+      "stableId": "tx-lane-choice-q02",
+      "uuid": "38c4e308-0c1d-5112-8949-4589882f0d1e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-lane-choice-q03",
+      "sourceUuid": "7a4f2282-0d26-5b04-96a8-0768db4cdae2",
+      "stableId": "tx-lane-choice-q03",
+      "uuid": "90ab64e0-2df7-5e40-a947-8c445551c149"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-lane-choice-asset-02",
+      "sourceUuid": "d56e8de9-7e39-5545-b723-7dea403e0284",
+      "stableId": "tx-lane-choice-asset-02",
+      "uuid": "214c4c91-8084-5e7c-93d3-7d74d5af1a95"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-lane-choice-q04",
+      "sourceUuid": "2f40c97c-d99d-50c8-bbf0-4093a10bed9a",
+      "stableId": "tx-lane-choice-q04",
+      "uuid": "77f4b8bd-6f48-54ef-9162-a9330b5223ac"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-lane-choice-asset-03",
+      "sourceUuid": "d03a6da1-0fb5-57cb-ad11-e00e11bfc991",
+      "stableId": "tx-lane-choice-asset-03",
+      "uuid": "e6e0c4f1-2037-5e81-b369-5b9fa110afad"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-lane-choice-q05",
+      "sourceUuid": "1ffd8309-5ecb-5ff7-b604-b6ed968658ef",
+      "stableId": "tx-lane-choice-q05",
+      "uuid": "a7dc0b66-87c6-51bd-b995-f9d5c69b0edb"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b01",
+      "stableId": "tx-lane-choice-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b02",
+      "stableId": "tx-lane-choice-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b03",
+      "stableId": "tx-lane-choice-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b04",
+      "stableId": "tx-lane-choice-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b05",
+      "stableId": "tx-lane-choice-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b06",
+      "stableId": "tx-lane-choice-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b07",
+      "stableId": "tx-lane-choice-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b08",
+      "stableId": "tx-lane-choice-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b09",
+      "stableId": "tx-lane-choice-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b10",
+      "stableId": "tx-lane-choice-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b11",
+      "stableId": "tx-lane-choice-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-lane-choice-b12",
+      "stableId": "tx-lane-choice-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-passing",
+      "sourceUuid": "ff37ad10-cf4f-5077-87a2-d5a39f89369d",
+      "stableId": "tx-passing",
+      "uuid": "335f6ecd-9577-5469-bff1-576c4f25ed20"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-passing-q01",
+      "sourceUuid": "9306855a-3471-546f-a9b8-0fb417437927",
+      "stableId": "tx-passing-q01",
+      "uuid": "211b8a42-d580-55f9-9f35-b68a0447bbb2"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-passing-asset-01",
+      "sourceUuid": "10a7a842-961f-52a8-8dde-be93d9c2eb98",
+      "stableId": "tx-passing-asset-01",
+      "uuid": "7ff0d0a9-8ce0-5581-9cf5-ebe7e0b8e4c0"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-passing-q02",
+      "sourceUuid": "49b576bb-5112-526f-ba40-a6c007fa777b",
+      "stableId": "tx-passing-q02",
+      "uuid": "d7db9e6d-4ad9-5689-a142-627fc877e349"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-passing-q03",
+      "sourceUuid": "8c6b0af7-c2b7-51f6-938f-3dec7ad1be3d",
+      "stableId": "tx-passing-q03",
+      "uuid": "b9d703ab-c1f8-56c8-a65a-b01835456190"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-passing-asset-02",
+      "sourceUuid": "3ea4a882-e4f4-5f6a-a44e-05304fa668c2",
+      "stableId": "tx-passing-asset-02",
+      "uuid": "5bd58d6a-9400-52e0-9147-8e20bd27d20d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-passing-q04",
+      "sourceUuid": "7ece8e15-ca1c-5aa3-a85d-d374589a3ddd",
+      "stableId": "tx-passing-q04",
+      "uuid": "ae20f8ba-453f-5ac0-a658-4c31a6224382"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-passing-asset-03",
+      "sourceUuid": "8a50d8a0-0b90-58f4-a37e-6e8782b2fac7",
+      "stableId": "tx-passing-asset-03",
+      "uuid": "9e6a461b-e82f-5166-ac03-622237e4fc71"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-passing-q05",
+      "sourceUuid": "9fe8a4cb-f80b-57ac-8134-97478b50d3d5",
+      "stableId": "tx-passing-q05",
+      "uuid": "cb3ff20a-6cb8-57a6-a700-9c767df91b98"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b01",
+      "stableId": "tx-passing-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b02",
+      "stableId": "tx-passing-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b03",
+      "stableId": "tx-passing-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b04",
+      "stableId": "tx-passing-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b05",
+      "stableId": "tx-passing-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b06",
+      "stableId": "tx-passing-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b07",
+      "stableId": "tx-passing-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b08",
+      "stableId": "tx-passing-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b09",
+      "stableId": "tx-passing-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b10",
+      "stableId": "tx-passing-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b11",
+      "stableId": "tx-passing-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-passing-b12",
+      "stableId": "tx-passing-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-highway-entry-exit",
+      "sourceUuid": "5fe6071b-1b87-5c31-9b5e-fc14f17dc053",
+      "stableId": "tx-highway-entry-exit",
+      "uuid": "c2a3b2b1-8072-5bc6-aa55-a1f286666072"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-highway-entry-exit-q01",
+      "sourceUuid": "c52e57ba-ee7f-5d83-943d-7aac7b9194ad",
+      "stableId": "tx-highway-entry-exit-q01",
+      "uuid": "fd230876-982f-5af5-bcce-6edea6b30271"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-highway-entry-exit-asset-01",
+      "sourceUuid": "89e2422c-2e24-561a-889e-49d4949c8e86",
+      "stableId": "tx-highway-entry-exit-asset-01",
+      "uuid": "b8f2c392-d920-531a-ad4b-5f63c5a5d199"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-highway-entry-exit-q02",
+      "sourceUuid": "12e8f5cf-b366-50de-b8fb-d79988318746",
+      "stableId": "tx-highway-entry-exit-q02",
+      "uuid": "a2dbaf63-1fb0-549a-a3e2-043c202ed7d8"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-highway-entry-exit-q03",
+      "sourceUuid": "1f2b1258-84e0-5baa-8692-49043d196a73",
+      "stableId": "tx-highway-entry-exit-q03",
+      "uuid": "332a78a3-4065-5564-b980-830dfb3474ca"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-highway-entry-exit-asset-02",
+      "sourceUuid": "1160e74a-cdea-506d-b02d-c47d49e552ed",
+      "stableId": "tx-highway-entry-exit-asset-02",
+      "uuid": "271193d5-0a54-5bcd-9790-8284d4e19f2c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-highway-entry-exit-q04",
+      "sourceUuid": "44b61a16-8ea2-5b47-a6f3-46633ca8a14b",
+      "stableId": "tx-highway-entry-exit-q04",
+      "uuid": "2a0e500b-353c-5f1b-92bb-3ed434e95cc9"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-highway-entry-exit-asset-03",
+      "sourceUuid": "844fd179-737c-505c-94cb-431dd039ae61",
+      "stableId": "tx-highway-entry-exit-asset-03",
+      "uuid": "79c5b4de-0507-5729-a82e-8942af1e3e95"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-highway-entry-exit-q05",
+      "sourceUuid": "cb14af20-dd47-56ed-bd0c-94c9bd5759a0",
+      "stableId": "tx-highway-entry-exit-q05",
+      "uuid": "0714d4d4-6fef-591c-88bb-c1a5d131d9b2"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b01",
+      "stableId": "tx-highway-entry-exit-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b02",
+      "stableId": "tx-highway-entry-exit-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b03",
+      "stableId": "tx-highway-entry-exit-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b04",
+      "stableId": "tx-highway-entry-exit-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b05",
+      "stableId": "tx-highway-entry-exit-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b06",
+      "stableId": "tx-highway-entry-exit-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b07",
+      "stableId": "tx-highway-entry-exit-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b08",
+      "stableId": "tx-highway-entry-exit-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b09",
+      "stableId": "tx-highway-entry-exit-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b10",
+      "stableId": "tx-highway-entry-exit-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b11",
+      "stableId": "tx-highway-entry-exit-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-highway-entry-exit-b12",
+      "stableId": "tx-highway-entry-exit-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-special-lanes",
+      "sourceUuid": "4048113e-acff-5ca4-8b89-a5f47a0bbaa2",
+      "stableId": "tx-special-lanes",
+      "uuid": "def23edc-16a0-5061-8658-5bbc47eb1cab"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-special-lanes-q01",
+      "sourceUuid": "04c83fd8-5bae-5405-ac54-108193e55f39",
+      "stableId": "tx-special-lanes-q01",
+      "uuid": "82c128f6-8a0e-51b4-92b3-3d35ce44ac3b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-special-lanes-asset-01",
+      "sourceUuid": "827dbba5-bf0e-5336-8564-38a5e63ee51c",
+      "stableId": "tx-special-lanes-asset-01",
+      "uuid": "491f4de1-1e9b-5aa5-8744-58eb4cbf0b0e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-special-lanes-q02",
+      "sourceUuid": "8ec15635-1d80-53e9-a377-a1a42958c354",
+      "stableId": "tx-special-lanes-q02",
+      "uuid": "05078eba-08a5-59ac-a6e0-1cfdab6a0bf1"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-special-lanes-q03",
+      "sourceUuid": "a1565616-2232-579b-8496-7eb72fb7a49a",
+      "stableId": "tx-special-lanes-q03",
+      "uuid": "cc191da6-6804-5e29-984e-600bb399fef4"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-special-lanes-asset-02",
+      "sourceUuid": "2995a9ae-7067-55f7-aaa6-79001026c0e2",
+      "stableId": "tx-special-lanes-asset-02",
+      "uuid": "0932db70-06cf-57f1-970c-c80fccb7a836"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-special-lanes-q04",
+      "sourceUuid": "c7855058-ff40-57e1-b5f3-46d0ba8a0ce8",
+      "stableId": "tx-special-lanes-q04",
+      "uuid": "e303a813-b9ca-5fd5-98ef-f2d525659eba"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-special-lanes-asset-03",
+      "sourceUuid": "db8d80ec-8013-5042-8128-55b307111f1a",
+      "stableId": "tx-special-lanes-asset-03",
+      "uuid": "2fdc9dcc-59c7-5334-9f41-ad9133ba2797"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-special-lanes-q05",
+      "sourceUuid": "f3c242b9-9dcd-5f81-b31f-562cf646b8fb",
+      "stableId": "tx-special-lanes-q05",
+      "uuid": "5cf47930-5cb1-5e9e-a40c-a6a1cc187adf"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b01",
+      "stableId": "tx-special-lanes-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b02",
+      "stableId": "tx-special-lanes-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b03",
+      "stableId": "tx-special-lanes-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b04",
+      "stableId": "tx-special-lanes-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b05",
+      "stableId": "tx-special-lanes-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b06",
+      "stableId": "tx-special-lanes-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b07",
+      "stableId": "tx-special-lanes-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b08",
+      "stableId": "tx-special-lanes-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b09",
+      "stableId": "tx-special-lanes-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b10",
+      "stableId": "tx-special-lanes-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b11",
+      "stableId": "tx-special-lanes-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-special-lanes-b12",
+      "stableId": "tx-special-lanes-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-speed-laws",
+      "sourceUuid": "90149f82-83fb-51b8-b0e0-ba722a4455f8",
+      "stableId": "tx-speed-laws",
+      "uuid": "8bb4addf-92cc-52a0-bf99-d3bbd98a3a06"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-speed-laws-q01",
+      "sourceUuid": "6895b76b-82f2-5fe5-9a35-cb314bc650ab",
+      "stableId": "tx-speed-laws-q01",
+      "uuid": "4eb0cdf4-15a1-50cc-b2d6-b84e27a91335"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-speed-laws-asset-01",
+      "sourceUuid": "b5a2a4fe-c433-5222-a4f5-ddd3a802e180",
+      "stableId": "tx-speed-laws-asset-01",
+      "uuid": "9abdc005-cd56-5371-a2b8-f74797342e7e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-speed-laws-q02",
+      "sourceUuid": "beb580b1-6d84-56c2-8940-593ee47dfd54",
+      "stableId": "tx-speed-laws-q02",
+      "uuid": "3bd22cd2-c293-5959-b33c-636ded84b0bc"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-speed-laws-q03",
+      "sourceUuid": "f37a95e7-e758-5fd7-9424-1da392c81f88",
+      "stableId": "tx-speed-laws-q03",
+      "uuid": "4a79c8b1-4772-5f80-9278-55123ac1268a"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-speed-laws-asset-02",
+      "sourceUuid": "54b9c288-6f2f-5460-a43b-9cabedcae8de",
+      "stableId": "tx-speed-laws-asset-02",
+      "uuid": "2497000e-0225-5141-ad5c-fe2106356d8b"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-speed-laws-q04",
+      "sourceUuid": "c7942e6c-bd90-5335-9cb5-a4814bbbd8e7",
+      "stableId": "tx-speed-laws-q04",
+      "uuid": "323fadd6-09b4-55aa-80c9-e1469c80f666"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-speed-laws-asset-03",
+      "sourceUuid": "2b587c9e-ec89-5bfa-a86b-82164f17d5ab",
+      "stableId": "tx-speed-laws-asset-03",
+      "uuid": "f9be0130-5dd4-5f32-b427-d2a40ca28153"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-speed-laws-q05",
+      "sourceUuid": "99e10e89-50ac-5aa3-80d0-88ea86e9a2f7",
+      "stableId": "tx-speed-laws-q05",
+      "uuid": "0534b863-a9ee-590c-b724-9da9f53be697"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b01",
+      "stableId": "tx-speed-laws-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b02",
+      "stableId": "tx-speed-laws-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b03",
+      "stableId": "tx-speed-laws-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b04",
+      "stableId": "tx-speed-laws-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b05",
+      "stableId": "tx-speed-laws-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b06",
+      "stableId": "tx-speed-laws-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b07",
+      "stableId": "tx-speed-laws-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b08",
+      "stableId": "tx-speed-laws-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b09",
+      "stableId": "tx-speed-laws-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b10",
+      "stableId": "tx-speed-laws-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b11",
+      "stableId": "tx-speed-laws-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-speed-laws-b12",
+      "stableId": "tx-speed-laws-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-space-scanning",
+      "sourceUuid": "e6ddf1ff-2f6b-5ba1-b29e-5793d0b21d79",
+      "stableId": "tx-space-scanning",
+      "uuid": "583249b2-ce2a-56ea-aac5-862a5692d542"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-space-scanning-q01",
+      "sourceUuid": "08be5856-5ec6-529d-878c-6a357849204d",
+      "stableId": "tx-space-scanning-q01",
+      "uuid": "6de8556a-28fc-5ac4-b632-568a95d50262"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-space-scanning-asset-01",
+      "sourceUuid": "cb689284-8b16-50f9-86e9-4f54381f3b21",
+      "stableId": "tx-space-scanning-asset-01",
+      "uuid": "e31ee834-78c8-5481-aa24-12646b1e59cd"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-space-scanning-q02",
+      "sourceUuid": "16d4f784-315b-5fc2-85ec-dfc491165607",
+      "stableId": "tx-space-scanning-q02",
+      "uuid": "9bf2938f-dafe-5ed3-8d6d-880ba3bebc19"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-space-scanning-q03",
+      "sourceUuid": "6e5e6e59-c628-536b-81a7-97ce07602381",
+      "stableId": "tx-space-scanning-q03",
+      "uuid": "9f065e5c-5b57-526d-bfd0-741e747d3834"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-space-scanning-asset-02",
+      "sourceUuid": "dbb8076b-d277-5e05-9d22-5046146959ec",
+      "stableId": "tx-space-scanning-asset-02",
+      "uuid": "255139c9-671a-5886-a01a-79d692695bc1"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-space-scanning-q04",
+      "sourceUuid": "9d6f451c-f34d-56e1-a85d-2f872515bb94",
+      "stableId": "tx-space-scanning-q04",
+      "uuid": "57177b3a-9ce4-515b-a64c-df5df2f002af"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-space-scanning-asset-03",
+      "sourceUuid": "65927768-5526-531f-b34e-01cd46cfeaa1",
+      "stableId": "tx-space-scanning-asset-03",
+      "uuid": "b4a5567d-1a4a-5c00-bef1-2d97569b7d21"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-space-scanning-q05",
+      "sourceUuid": "ffc5db97-937b-5149-9529-e35a9068315e",
+      "stableId": "tx-space-scanning-q05",
+      "uuid": "36a33891-4ff2-561f-b13b-5df0ad0e390b"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b01",
+      "stableId": "tx-space-scanning-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b02",
+      "stableId": "tx-space-scanning-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b03",
+      "stableId": "tx-space-scanning-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b04",
+      "stableId": "tx-space-scanning-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b05",
+      "stableId": "tx-space-scanning-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b06",
+      "stableId": "tx-space-scanning-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b07",
+      "stableId": "tx-space-scanning-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b08",
+      "stableId": "tx-space-scanning-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b09",
+      "stableId": "tx-space-scanning-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b10",
+      "stableId": "tx-space-scanning-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b11",
+      "stableId": "tx-space-scanning-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-space-scanning-b12",
+      "stableId": "tx-space-scanning-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-parking",
+      "sourceUuid": "3f8f5d6f-b312-539d-b432-7a9b1b726c9d",
+      "stableId": "tx-parking",
+      "uuid": "7652d5ed-ebd0-58dd-a3ae-61824d67acbc"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-parking-q01",
+      "sourceUuid": "542e2bd5-6bc5-51d0-b2d3-b70220a3f859",
+      "stableId": "tx-parking-q01",
+      "uuid": "21e0dd96-5717-522d-9f03-18c8c3c4228b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-parking-asset-01",
+      "sourceUuid": "d10344fb-2de4-5b94-8407-ffef845cf6c7",
+      "stableId": "tx-parking-asset-01",
+      "uuid": "da75914e-12da-5cea-9d08-64dec9dec61b"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-parking-q02",
+      "sourceUuid": "e48ae834-230b-58c2-a7d6-580617379cb5",
+      "stableId": "tx-parking-q02",
+      "uuid": "968b2a65-4da0-5eb4-b9fe-63f0fe752fc1"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-parking-q03",
+      "sourceUuid": "b83c8ab0-d7c1-58e6-a041-9d50112ab76e",
+      "stableId": "tx-parking-q03",
+      "uuid": "0ef77e7b-7fe6-5b57-bd20-90f586f42ffd"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-parking-asset-02",
+      "sourceUuid": "b1304fcd-30aa-5dbc-859e-7d0666b40242",
+      "stableId": "tx-parking-asset-02",
+      "uuid": "b1f2fb06-3eed-5b79-b30f-28ce81e12558"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-parking-q04",
+      "sourceUuid": "3b3a6eba-1942-58ea-a83a-dc9bdd01fc49",
+      "stableId": "tx-parking-q04",
+      "uuid": "b71cee17-8682-5481-89b7-56a2d1ef4346"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-parking-asset-03",
+      "sourceUuid": "05471d37-758a-556e-8449-df6a7159b118",
+      "stableId": "tx-parking-asset-03",
+      "uuid": "6459f344-5051-5a26-9e04-29bd1c8b219a"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-parking-q05",
+      "sourceUuid": "b1b2c217-4f45-52eb-b280-0e24caf9fd3e",
+      "stableId": "tx-parking-q05",
+      "uuid": "31c2ce2f-aa94-56d2-8610-4759d57166ec"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b01",
+      "stableId": "tx-parking-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b02",
+      "stableId": "tx-parking-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b03",
+      "stableId": "tx-parking-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b04",
+      "stableId": "tx-parking-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b05",
+      "stableId": "tx-parking-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b06",
+      "stableId": "tx-parking-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b07",
+      "stableId": "tx-parking-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b08",
+      "stableId": "tx-parking-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b09",
+      "stableId": "tx-parking-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b10",
+      "stableId": "tx-parking-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b11",
+      "stableId": "tx-parking-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-parking-b12",
+      "stableId": "tx-parking-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-bikes-motorcycles",
+      "sourceUuid": "e06d71a7-539b-5d87-b1b2-29c566f7d7b6",
+      "stableId": "tx-bikes-motorcycles",
+      "uuid": "c89327e2-be97-53dd-8826-8adbed9176f5"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-bikes-motorcycles-q01",
+      "sourceUuid": "2f02c1f6-072e-5ddf-aa7f-f14dfa4abeb9",
+      "stableId": "tx-bikes-motorcycles-q01",
+      "uuid": "524a087a-049d-5684-81f5-0844dc403281"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-bikes-motorcycles-asset-01",
+      "sourceUuid": "dff956a1-b8aa-5d5c-b5cb-dfe5f3aa94d3",
+      "stableId": "tx-bikes-motorcycles-asset-01",
+      "uuid": "d9160866-fa7e-5b56-b5cd-d1579df95a59"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-bikes-motorcycles-q02",
+      "sourceUuid": "9ebff414-5b6d-5e4c-8222-383e37eca083",
+      "stableId": "tx-bikes-motorcycles-q02",
+      "uuid": "647f355c-8d7c-5eda-aab2-b3692e14db56"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-bikes-motorcycles-q03",
+      "sourceUuid": "41091f7c-bcc5-5955-9e58-a86c14756716",
+      "stableId": "tx-bikes-motorcycles-q03",
+      "uuid": "a2ae13e0-e101-5917-b4fc-1b9b6bce6c4c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-bikes-motorcycles-asset-02",
+      "sourceUuid": "b47d54d6-634a-5c75-993a-482541edf973",
+      "stableId": "tx-bikes-motorcycles-asset-02",
+      "uuid": "01b7482f-c009-56e4-8596-cd23f427a351"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-bikes-motorcycles-q04",
+      "sourceUuid": "2193a11a-1d66-5a22-8b52-7df3b25f5d8c",
+      "stableId": "tx-bikes-motorcycles-q04",
+      "uuid": "c1da95de-5762-5666-8e72-eda28a0b9394"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-bikes-motorcycles-asset-03",
+      "sourceUuid": "66eda184-b418-5f56-889a-59dd258a5648",
+      "stableId": "tx-bikes-motorcycles-asset-03",
+      "uuid": "f5b0d0b5-e8b4-5e86-a1a7-7d1dc1307327"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-bikes-motorcycles-q05",
+      "sourceUuid": "fdc7e00f-0400-5034-a9ab-cc447c818ca9",
+      "stableId": "tx-bikes-motorcycles-q05",
+      "uuid": "da323f07-929f-510e-af1f-01724648d282"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b01",
+      "stableId": "tx-bikes-motorcycles-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b02",
+      "stableId": "tx-bikes-motorcycles-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b03",
+      "stableId": "tx-bikes-motorcycles-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b04",
+      "stableId": "tx-bikes-motorcycles-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b05",
+      "stableId": "tx-bikes-motorcycles-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b06",
+      "stableId": "tx-bikes-motorcycles-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b07",
+      "stableId": "tx-bikes-motorcycles-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b08",
+      "stableId": "tx-bikes-motorcycles-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b09",
+      "stableId": "tx-bikes-motorcycles-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b10",
+      "stableId": "tx-bikes-motorcycles-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b11",
+      "stableId": "tx-bikes-motorcycles-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-bikes-motorcycles-b12",
+      "stableId": "tx-bikes-motorcycles-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-large-slow-vehicles",
+      "sourceUuid": "a99dff68-c2f3-5187-8f51-45887bccd417",
+      "stableId": "tx-large-slow-vehicles",
+      "uuid": "8f45caa2-3466-5208-83fc-775cb1bc6e02"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-large-slow-vehicles-q01",
+      "sourceUuid": "a8a65694-6b03-5a0a-b994-7fb4ebfee570",
+      "stableId": "tx-large-slow-vehicles-q01",
+      "uuid": "b07a55cb-1f7c-590c-99ec-e0bd9809470c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-large-slow-vehicles-asset-01",
+      "sourceUuid": "f827eda3-c355-5300-ab50-861d812cc4fe",
+      "stableId": "tx-large-slow-vehicles-asset-01",
+      "uuid": "99925629-eb19-5ef9-b97a-d1383c771398"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-large-slow-vehicles-q02",
+      "sourceUuid": "21157028-a22c-535e-bef1-338307cb936a",
+      "stableId": "tx-large-slow-vehicles-q02",
+      "uuid": "1b424360-a9b3-5bfc-be9b-37490414e016"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-large-slow-vehicles-q03",
+      "sourceUuid": "a2171440-bed0-5c32-a613-4ed2829da152",
+      "stableId": "tx-large-slow-vehicles-q03",
+      "uuid": "fc9a38f8-1eaf-56b6-800a-1f5748eb729e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-large-slow-vehicles-asset-02",
+      "sourceUuid": "98dd225c-b425-5e3f-ae16-37a4dada4ec7",
+      "stableId": "tx-large-slow-vehicles-asset-02",
+      "uuid": "a215e703-7784-5ca1-828c-21253020970e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-large-slow-vehicles-q04",
+      "sourceUuid": "ead9ff99-f6b6-562c-8aa3-a759022174ca",
+      "stableId": "tx-large-slow-vehicles-q04",
+      "uuid": "277c6fa5-e679-533e-923d-c9ac7b6351fa"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-large-slow-vehicles-asset-03",
+      "sourceUuid": "987b73b3-557f-51d7-804b-d6cbebbb4a10",
+      "stableId": "tx-large-slow-vehicles-asset-03",
+      "uuid": "ae33a76e-3329-5ad5-9430-f4d141e8eb5b"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-large-slow-vehicles-q05",
+      "sourceUuid": "727a2edc-0e5a-581f-ac8c-cb4438dcad08",
+      "stableId": "tx-large-slow-vehicles-q05",
+      "uuid": "33763ae6-5221-5dd3-a32b-c35b69dbce8d"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b01",
+      "stableId": "tx-large-slow-vehicles-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b02",
+      "stableId": "tx-large-slow-vehicles-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b03",
+      "stableId": "tx-large-slow-vehicles-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b04",
+      "stableId": "tx-large-slow-vehicles-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b05",
+      "stableId": "tx-large-slow-vehicles-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b06",
+      "stableId": "tx-large-slow-vehicles-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b07",
+      "stableId": "tx-large-slow-vehicles-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b08",
+      "stableId": "tx-large-slow-vehicles-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b09",
+      "stableId": "tx-large-slow-vehicles-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b10",
+      "stableId": "tx-large-slow-vehicles-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b11",
+      "stableId": "tx-large-slow-vehicles-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-large-slow-vehicles-b12",
+      "stableId": "tx-large-slow-vehicles-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-school-emergency-work",
+      "sourceUuid": "c2081588-888a-5f8b-8a19-a426475e0282",
+      "stableId": "tx-school-emergency-work",
+      "uuid": "ab7657ab-21e4-5f2e-b6d5-384952ae68ff"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-school-emergency-work-q01",
+      "sourceUuid": "4b345474-736a-5e39-a127-e98a43f7ac11",
+      "stableId": "tx-school-emergency-work-q01",
+      "uuid": "02091697-3618-5cd4-a06a-0887e35f2df0"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-school-emergency-work-asset-01",
+      "sourceUuid": "1e70569c-03a2-52c9-9f20-f59cbd8fc129",
+      "stableId": "tx-school-emergency-work-asset-01",
+      "uuid": "827337b7-5b2d-5e61-950b-65b04b224c00"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-school-emergency-work-q02",
+      "sourceUuid": "63fb25df-7e49-5551-bc2e-41ba4e631c24",
+      "stableId": "tx-school-emergency-work-q02",
+      "uuid": "cb8a5a99-b9bf-5bf0-988c-7991582879a6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-school-emergency-work-q03",
+      "sourceUuid": "a46bdc23-4377-53a7-883b-025be10fc1f6",
+      "stableId": "tx-school-emergency-work-q03",
+      "uuid": "92895734-0192-5bcf-9177-485341123b53"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-school-emergency-work-asset-02",
+      "sourceUuid": "aeb02531-eb3a-5813-8a2a-4a986b05ed15",
+      "stableId": "tx-school-emergency-work-asset-02",
+      "uuid": "f821c989-e399-51cb-a1ce-3da186b9d436"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-school-emergency-work-q04",
+      "sourceUuid": "8c7944c8-ba95-532b-97d0-008f358fe7db",
+      "stableId": "tx-school-emergency-work-q04",
+      "uuid": "e241beaa-20ea-5e41-bb2c-1fc8922b4476"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-school-emergency-work-asset-03",
+      "sourceUuid": "f5b7cefb-c4fe-5a36-9095-c10f4b14adac",
+      "stableId": "tx-school-emergency-work-asset-03",
+      "uuid": "922cd270-4149-5a32-b1fa-1f90d324a74c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-school-emergency-work-q05",
+      "sourceUuid": "ddf496f8-9b21-5d3c-b3be-175807478127",
+      "stableId": "tx-school-emergency-work-q05",
+      "uuid": "84c9fee3-46d4-5d0c-8dbf-20d532f7d88b"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b01",
+      "stableId": "tx-school-emergency-work-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b02",
+      "stableId": "tx-school-emergency-work-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b03",
+      "stableId": "tx-school-emergency-work-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b04",
+      "stableId": "tx-school-emergency-work-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b05",
+      "stableId": "tx-school-emergency-work-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b06",
+      "stableId": "tx-school-emergency-work-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b07",
+      "stableId": "tx-school-emergency-work-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b08",
+      "stableId": "tx-school-emergency-work-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b09",
+      "stableId": "tx-school-emergency-work-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b10",
+      "stableId": "tx-school-emergency-work-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b11",
+      "stableId": "tx-school-emergency-work-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-school-emergency-work-b12",
+      "stableId": "tx-school-emergency-work-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-night-weather-lights",
+      "sourceUuid": "03275519-07c7-540a-b1cc-d6f8248534b4",
+      "stableId": "tx-night-weather-lights",
+      "uuid": "1e4278e0-c4fa-590a-94aa-79707a3baba6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-night-weather-lights-q01",
+      "sourceUuid": "e236accd-a941-5d8d-869f-9ba4f369dd14",
+      "stableId": "tx-night-weather-lights-q01",
+      "uuid": "fe81f84e-efa9-5d57-a736-ab6c6d2f2a58"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-night-weather-lights-asset-01",
+      "sourceUuid": "b1801189-de2f-510a-b3b6-d051fadb0460",
+      "stableId": "tx-night-weather-lights-asset-01",
+      "uuid": "039530b1-5e8b-5c63-904c-e6e8bedfb5a7"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-night-weather-lights-q02",
+      "sourceUuid": "792ee12f-c07c-5ad0-8652-532afdd42074",
+      "stableId": "tx-night-weather-lights-q02",
+      "uuid": "5e0d6592-8c0a-53cd-984f-dd12edf89f58"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-night-weather-lights-q03",
+      "sourceUuid": "6ae16395-7de8-5f9c-839b-7d7a09d02524",
+      "stableId": "tx-night-weather-lights-q03",
+      "uuid": "3e6150cb-1d02-5413-936d-371a5d932bf7"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-night-weather-lights-asset-02",
+      "sourceUuid": "7931dd42-ba04-527e-a8a2-f7b8e7919333",
+      "stableId": "tx-night-weather-lights-asset-02",
+      "uuid": "c9c3f3f0-5418-5b5c-b276-f6857126d8ab"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-night-weather-lights-q04",
+      "sourceUuid": "7dec5410-84f2-5af0-a9e3-5571b51b9807",
+      "stableId": "tx-night-weather-lights-q04",
+      "uuid": "aad018ed-d471-55fa-90c9-150cd12472dd"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-night-weather-lights-asset-03",
+      "sourceUuid": "79189d1a-aab5-5833-bae9-7fa9b6d8bb73",
+      "stableId": "tx-night-weather-lights-asset-03",
+      "uuid": "c7d905de-d06a-5326-9c21-4e8d9a6101db"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-night-weather-lights-q05",
+      "sourceUuid": "a6e5e933-e77b-5200-8c64-b97937b32fe6",
+      "stableId": "tx-night-weather-lights-q05",
+      "uuid": "55b83c42-a675-525e-936d-167832140f8e"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b01",
+      "stableId": "tx-night-weather-lights-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b02",
+      "stableId": "tx-night-weather-lights-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b03",
+      "stableId": "tx-night-weather-lights-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b04",
+      "stableId": "tx-night-weather-lights-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b05",
+      "stableId": "tx-night-weather-lights-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b06",
+      "stableId": "tx-night-weather-lights-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b07",
+      "stableId": "tx-night-weather-lights-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b08",
+      "stableId": "tx-night-weather-lights-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b09",
+      "stableId": "tx-night-weather-lights-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b10",
+      "stableId": "tx-night-weather-lights-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b11",
+      "stableId": "tx-night-weather-lights-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-night-weather-lights-b12",
+      "stableId": "tx-night-weather-lights-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-vehicle-emergencies",
+      "sourceUuid": "034b8fd8-a7c9-582d-bf4a-1b8481ac3e76",
+      "stableId": "tx-vehicle-emergencies",
+      "uuid": "56df9ed7-3dda-582f-8ae8-e4621341834d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-vehicle-emergencies-q01",
+      "sourceUuid": "4d723ca1-c190-539e-bec3-e8f14eeb6a3a",
+      "stableId": "tx-vehicle-emergencies-q01",
+      "uuid": "4295e6c5-8fd3-5095-b4e9-a476ba42e09e"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-vehicle-emergencies-asset-01",
+      "sourceUuid": "39df7feb-5160-5d50-985d-18fdf80e5e46",
+      "stableId": "tx-vehicle-emergencies-asset-01",
+      "uuid": "6e9c9b6d-7ace-5432-a821-f35a63eca51b"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-vehicle-emergencies-q02",
+      "sourceUuid": "344af595-b6e5-5550-ac2c-0614b32dcbb4",
+      "stableId": "tx-vehicle-emergencies-q02",
+      "uuid": "2260f921-7cc1-5fb0-92ef-dac73bb179ed"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-vehicle-emergencies-q03",
+      "sourceUuid": "0abb74dd-d93b-5424-9ac4-2da43d1a00b1",
+      "stableId": "tx-vehicle-emergencies-q03",
+      "uuid": "429c3d47-5ea4-5ca7-a193-8d3065b2fc89"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-vehicle-emergencies-asset-02",
+      "sourceUuid": "b8aed675-a243-50ea-a53e-8cf4ce262626",
+      "stableId": "tx-vehicle-emergencies-asset-02",
+      "uuid": "4cf33e20-b992-50e9-a374-145311d027a5"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-vehicle-emergencies-q04",
+      "sourceUuid": "8303588e-847c-5671-a47e-167f9cb92f05",
+      "stableId": "tx-vehicle-emergencies-q04",
+      "uuid": "ced4c716-3882-5a24-b4fe-eadcc980d2b8"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-vehicle-emergencies-asset-03",
+      "sourceUuid": "b8967fab-994d-56c8-adfa-78a302ac0027",
+      "stableId": "tx-vehicle-emergencies-asset-03",
+      "uuid": "6aabeb78-6878-57d2-807a-ec4e6e0e41fb"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-vehicle-emergencies-q05",
+      "sourceUuid": "695a5254-d2d1-5476-a9cc-cc0eb43eb805",
+      "stableId": "tx-vehicle-emergencies-q05",
+      "uuid": "660ad57f-ec49-5998-961b-f186f70a677b"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b01",
+      "stableId": "tx-vehicle-emergencies-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b02",
+      "stableId": "tx-vehicle-emergencies-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b03",
+      "stableId": "tx-vehicle-emergencies-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b04",
+      "stableId": "tx-vehicle-emergencies-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b05",
+      "stableId": "tx-vehicle-emergencies-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b06",
+      "stableId": "tx-vehicle-emergencies-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b07",
+      "stableId": "tx-vehicle-emergencies-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b08",
+      "stableId": "tx-vehicle-emergencies-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b09",
+      "stableId": "tx-vehicle-emergencies-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b10",
+      "stableId": "tx-vehicle-emergencies-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b11",
+      "stableId": "tx-vehicle-emergencies-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-vehicle-emergencies-b12",
+      "stableId": "tx-vehicle-emergencies-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-distraction-fatigue",
+      "sourceUuid": "e3cc1dff-5859-5013-a2a9-dc300260cc74",
+      "stableId": "tx-distraction-fatigue",
+      "uuid": "d3e42be6-26b7-59c9-9563-fc3237c49276"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-distraction-fatigue-q01",
+      "sourceUuid": "30a90fce-1a5d-5899-8921-ee368ea3fafe",
+      "stableId": "tx-distraction-fatigue-q01",
+      "uuid": "06ee79a3-43c1-58a6-9335-97365f98c530"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-distraction-fatigue-asset-01",
+      "sourceUuid": "ee096092-a6b1-5db2-bd7e-c5fe21e8bcc8",
+      "stableId": "tx-distraction-fatigue-asset-01",
+      "uuid": "d5bc69ad-6958-5ade-8825-dd8b59e9e7e6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-distraction-fatigue-q02",
+      "sourceUuid": "f83c9b4c-8bf7-55dd-ab5d-7f29cc9eeba2",
+      "stableId": "tx-distraction-fatigue-q02",
+      "uuid": "e6a55104-240c-58f6-9fbe-03cfbd9fe797"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-distraction-fatigue-q03",
+      "sourceUuid": "9ae2254a-6746-5b7b-8e43-38f67af2cf7b",
+      "stableId": "tx-distraction-fatigue-q03",
+      "uuid": "a0c3fced-ceac-5982-8f13-56567564d1e3"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-distraction-fatigue-asset-02",
+      "sourceUuid": "99ab9512-71b9-5b61-9d5c-a180292c9d80",
+      "stableId": "tx-distraction-fatigue-asset-02",
+      "uuid": "2660ee97-7c0c-5f86-94ee-7fb1c1a2dea7"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-distraction-fatigue-q04",
+      "sourceUuid": "a209764b-b3b7-53ce-b8c7-c7bb8ade9b89",
+      "stableId": "tx-distraction-fatigue-q04",
+      "uuid": "d40f20c0-38bf-5af0-88fe-ed8e5cc939dc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-distraction-fatigue-asset-03",
+      "sourceUuid": "131a3194-ecc1-508e-8415-957aa504a1b8",
+      "stableId": "tx-distraction-fatigue-asset-03",
+      "uuid": "abc59c92-75e8-51ba-92ee-8d7a730ee059"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-distraction-fatigue-q05",
+      "sourceUuid": "23507ef7-40d7-57b6-b02c-b4fbdc9157aa",
+      "stableId": "tx-distraction-fatigue-q05",
+      "uuid": "59067a86-6877-5bab-a4c9-7f4b93abb6ab"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b01",
+      "stableId": "tx-distraction-fatigue-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b02",
+      "stableId": "tx-distraction-fatigue-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b03",
+      "stableId": "tx-distraction-fatigue-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b04",
+      "stableId": "tx-distraction-fatigue-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b05",
+      "stableId": "tx-distraction-fatigue-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b06",
+      "stableId": "tx-distraction-fatigue-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b07",
+      "stableId": "tx-distraction-fatigue-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b08",
+      "stableId": "tx-distraction-fatigue-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b09",
+      "stableId": "tx-distraction-fatigue-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b10",
+      "stableId": "tx-distraction-fatigue-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b11",
+      "stableId": "tx-distraction-fatigue-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-distraction-fatigue-b12",
+      "stableId": "tx-distraction-fatigue-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-alcohol-drugs",
+      "sourceUuid": "7884210e-4931-5721-9ef1-be4bbdb12818",
+      "stableId": "tx-alcohol-drugs",
+      "uuid": "46bcb782-e5e3-5ac4-9887-1f1a64a9f031"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-alcohol-drugs-q01",
+      "sourceUuid": "b0502c30-39a3-52e5-baf1-577c126839a1",
+      "stableId": "tx-alcohol-drugs-q01",
+      "uuid": "1e170764-c2e3-52f4-bde3-5b7cf3276642"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-alcohol-drugs-asset-01",
+      "sourceUuid": "7e1d0c66-4c60-5fb8-a635-6bc40ef4b5e0",
+      "stableId": "tx-alcohol-drugs-asset-01",
+      "uuid": "f96b91a9-3595-5cb6-b584-3df7d965317d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-alcohol-drugs-q02",
+      "sourceUuid": "960478c8-b5a8-5d80-ac04-dcac7677cfdf",
+      "stableId": "tx-alcohol-drugs-q02",
+      "uuid": "b903ee3e-cfba-5bb2-9c5f-5f3ee2121555"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-alcohol-drugs-q03",
+      "sourceUuid": "ec67dd85-a80f-5e57-95eb-5e401f558862",
+      "stableId": "tx-alcohol-drugs-q03",
+      "uuid": "254afdf2-e997-589c-a797-b95ee8877d17"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-alcohol-drugs-asset-02",
+      "sourceUuid": "2dcb48e9-9e5e-5e94-ae29-871e8fd9c5c1",
+      "stableId": "tx-alcohol-drugs-asset-02",
+      "uuid": "613d2f19-6288-52ee-a610-c96d370f5bf8"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-alcohol-drugs-q04",
+      "sourceUuid": "849437f0-ba44-5f22-943a-48c88de35c27",
+      "stableId": "tx-alcohol-drugs-q04",
+      "uuid": "d90dfabc-c88c-5a94-8d3b-f6821019a942"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-alcohol-drugs-asset-03",
+      "sourceUuid": "d00d3a0c-81ac-591d-8367-70923570e7d0",
+      "stableId": "tx-alcohol-drugs-asset-03",
+      "uuid": "a853eb7d-189d-5d35-9de9-327d3d6b424c"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-alcohol-drugs-q05",
+      "sourceUuid": "9a9636fc-91b0-5408-87f4-d5a58991c2e8",
+      "stableId": "tx-alcohol-drugs-q05",
+      "uuid": "56a255c1-acc5-5938-ade8-d1b807aa9fdd"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b01",
+      "stableId": "tx-alcohol-drugs-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b02",
+      "stableId": "tx-alcohol-drugs-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b03",
+      "stableId": "tx-alcohol-drugs-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b04",
+      "stableId": "tx-alcohol-drugs-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b05",
+      "stableId": "tx-alcohol-drugs-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b06",
+      "stableId": "tx-alcohol-drugs-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b07",
+      "stableId": "tx-alcohol-drugs-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b08",
+      "stableId": "tx-alcohol-drugs-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b09",
+      "stableId": "tx-alcohol-drugs-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b10",
+      "stableId": "tx-alcohol-drugs-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b11",
+      "stableId": "tx-alcohol-drugs-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-alcohol-drugs-b12",
+      "stableId": "tx-alcohol-drugs-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-restraints-children",
+      "sourceUuid": "b6458b8c-393d-56e9-95e7-351f8bee400f",
+      "stableId": "tx-restraints-children",
+      "uuid": "0faa02ca-147b-56a7-b99a-116d68d9ca4d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-restraints-children-q01",
+      "sourceUuid": "7a0338d4-dc02-5342-b47c-e7fd4b7a5516",
+      "stableId": "tx-restraints-children-q01",
+      "uuid": "6c211a32-69ad-5af8-b6b0-fa4b6013d354"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-restraints-children-asset-01",
+      "sourceUuid": "0eab1290-5dfb-5f58-b7e4-88e10bff6d89",
+      "stableId": "tx-restraints-children-asset-01",
+      "uuid": "0f5fd103-fbb1-5004-a72d-cf7e9105ed45"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-restraints-children-q02",
+      "sourceUuid": "ccc391a2-304b-5436-8c46-fb23714ceef9",
+      "stableId": "tx-restraints-children-q02",
+      "uuid": "58ea8da9-f9ae-5e95-ac3c-61fcdf42b2c1"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-restraints-children-q03",
+      "sourceUuid": "e30586b1-657d-5d9f-b91e-23c48e602ee7",
+      "stableId": "tx-restraints-children-q03",
+      "uuid": "4e739980-8c46-537b-bbb4-b02c111837dc"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-restraints-children-asset-02",
+      "sourceUuid": "9a8b4815-4ad7-537a-8ed2-e9b59f686fa6",
+      "stableId": "tx-restraints-children-asset-02",
+      "uuid": "e7f39efb-d78d-5a29-b971-ec5837f2087e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-restraints-children-q04",
+      "sourceUuid": "f1ac2288-0e3e-5d04-a2e8-12e4388fd876",
+      "stableId": "tx-restraints-children-q04",
+      "uuid": "2a3e459c-3a4d-5aa4-a2a2-906942ba6cc4"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-restraints-children-asset-03",
+      "sourceUuid": "112ef7fe-0a98-5c9d-a7e9-2165065a43ad",
+      "stableId": "tx-restraints-children-asset-03",
+      "uuid": "44389868-a08d-5f30-9e63-eb7516b886b5"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-restraints-children-q05",
+      "sourceUuid": "773297dd-bb5a-533e-a84f-07c13030e5f9",
+      "stableId": "tx-restraints-children-q05",
+      "uuid": "c5d16da0-0bf5-5200-a4cb-13fa7f95dc84"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b01",
+      "stableId": "tx-restraints-children-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b02",
+      "stableId": "tx-restraints-children-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b03",
+      "stableId": "tx-restraints-children-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b04",
+      "stableId": "tx-restraints-children-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b05",
+      "stableId": "tx-restraints-children-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b06",
+      "stableId": "tx-restraints-children-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b07",
+      "stableId": "tx-restraints-children-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b08",
+      "stableId": "tx-restraints-children-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b09",
+      "stableId": "tx-restraints-children-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b10",
+      "stableId": "tx-restraints-children-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b11",
+      "stableId": "tx-restraints-children-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-restraints-children-b12",
+      "stableId": "tx-restraints-children-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-equipment-loads",
+      "sourceUuid": "52ca0239-96e6-5f4a-a351-f1b8db37fa13",
+      "stableId": "tx-equipment-loads",
+      "uuid": "dfe19d6a-e46a-5698-bb4b-70d795ec1339"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-equipment-loads-q01",
+      "sourceUuid": "ca0e71af-2b46-5caa-b328-ab0f78e8db13",
+      "stableId": "tx-equipment-loads-q01",
+      "uuid": "bb349425-a8c1-5303-b456-79d518364a00"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-equipment-loads-asset-01",
+      "sourceUuid": "0c53a3d2-6dea-5580-9554-759cc8b17592",
+      "stableId": "tx-equipment-loads-asset-01",
+      "uuid": "2beb7d99-4a1b-5bb7-8522-b13a4ce58aa1"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-equipment-loads-q02",
+      "sourceUuid": "89ace2ca-2309-5a85-beb7-1427b2de3ad0",
+      "stableId": "tx-equipment-loads-q02",
+      "uuid": "1cde1f59-991f-5923-a89b-b4939fc14bd9"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-equipment-loads-q03",
+      "sourceUuid": "fd2827ae-4bec-5d60-8f72-af0735c66144",
+      "stableId": "tx-equipment-loads-q03",
+      "uuid": "d57c86f3-de54-520f-9edd-4411c8917f1b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-equipment-loads-asset-02",
+      "sourceUuid": "cdea104a-e0e8-5778-8222-4b8ed11ee089",
+      "stableId": "tx-equipment-loads-asset-02",
+      "uuid": "a36a27eb-2f32-5357-a43c-33667c0ac409"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-equipment-loads-q04",
+      "sourceUuid": "5b36e8c1-5631-5802-9a5d-1f86340f2d43",
+      "stableId": "tx-equipment-loads-q04",
+      "uuid": "e45229a8-2f7c-5a9b-bee7-bf214d5f4340"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-equipment-loads-asset-03",
+      "sourceUuid": "7144355e-7de4-58ee-b677-15330da8c8c8",
+      "stableId": "tx-equipment-loads-asset-03",
+      "uuid": "f13a2bab-c5b0-575a-8fb5-2839761a2c5f"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-equipment-loads-q05",
+      "sourceUuid": "23b33c79-67b7-52a0-afc4-15b11a34e3de",
+      "stableId": "tx-equipment-loads-q05",
+      "uuid": "e2aa2246-4be5-5a6f-a902-39a9ad459e5e"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b01",
+      "stableId": "tx-equipment-loads-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b02",
+      "stableId": "tx-equipment-loads-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b03",
+      "stableId": "tx-equipment-loads-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b04",
+      "stableId": "tx-equipment-loads-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b05",
+      "stableId": "tx-equipment-loads-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b06",
+      "stableId": "tx-equipment-loads-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b07",
+      "stableId": "tx-equipment-loads-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b08",
+      "stableId": "tx-equipment-loads-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b09",
+      "stableId": "tx-equipment-loads-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b10",
+      "stableId": "tx-equipment-loads-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b11",
+      "stableId": "tx-equipment-loads-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-equipment-loads-b12",
+      "stableId": "tx-equipment-loads-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-crashes-insurance",
+      "sourceUuid": "f1641302-210f-558f-bb60-4f0044d2f0e1",
+      "stableId": "tx-crashes-insurance",
+      "uuid": "20ec3f84-a152-56c5-93e8-6a9b4abf8822"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-crashes-insurance-q01",
+      "sourceUuid": "eef60f67-d16b-51b2-be08-7592bde46032",
+      "stableId": "tx-crashes-insurance-q01",
+      "uuid": "43a2ca61-b07a-50a5-b66d-3e2fa6f48ed5"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-crashes-insurance-asset-01",
+      "sourceUuid": "f1c1eedf-0c12-5a75-b5c4-181c24268ae8",
+      "stableId": "tx-crashes-insurance-asset-01",
+      "uuid": "8d649133-897d-53de-89c3-ac3e720128ce"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-crashes-insurance-q02",
+      "sourceUuid": "b9c2b00b-8094-5535-8938-e5aab59012d6",
+      "stableId": "tx-crashes-insurance-q02",
+      "uuid": "76909e77-4b49-51c9-8c07-aab482778a2e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-crashes-insurance-q03",
+      "sourceUuid": "31e049d9-bbdb-53a8-9116-035abfd5680a",
+      "stableId": "tx-crashes-insurance-q03",
+      "uuid": "0362e108-bdef-5c15-a3d1-e0a13ffb9735"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-crashes-insurance-asset-02",
+      "sourceUuid": "ed84169f-0dbe-5ba8-a374-a46ca165cae9",
+      "stableId": "tx-crashes-insurance-asset-02",
+      "uuid": "948cd395-1631-5d34-a738-19f6b75dacdc"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-crashes-insurance-q04",
+      "sourceUuid": "e7eabf25-a14a-5b63-8b2d-314c6352637a",
+      "stableId": "tx-crashes-insurance-q04",
+      "uuid": "003e0b62-0faa-5bf1-8638-efab9f87b152"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-crashes-insurance-asset-03",
+      "sourceUuid": "ee3ee3bb-bbe2-5be2-bbbd-881e5214b036",
+      "stableId": "tx-crashes-insurance-asset-03",
+      "uuid": "3b5be313-e299-5376-af5f-efa1894d0caa"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-crashes-insurance-q05",
+      "sourceUuid": "b8f76af8-e65f-5c56-a24f-a5244045195f",
+      "stableId": "tx-crashes-insurance-q05",
+      "uuid": "a6c1979a-c07f-5442-a237-c7c7e937e3ad"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b01",
+      "stableId": "tx-crashes-insurance-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b02",
+      "stableId": "tx-crashes-insurance-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b03",
+      "stableId": "tx-crashes-insurance-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b04",
+      "stableId": "tx-crashes-insurance-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b05",
+      "stableId": "tx-crashes-insurance-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b06",
+      "stableId": "tx-crashes-insurance-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b07",
+      "stableId": "tx-crashes-insurance-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b08",
+      "stableId": "tx-crashes-insurance-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b09",
+      "stableId": "tx-crashes-insurance-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b10",
+      "stableId": "tx-crashes-insurance-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b11",
+      "stableId": "tx-crashes-insurance-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-crashes-insurance-b12",
+      "stableId": "tx-crashes-insurance-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-permits-tests",
+      "sourceUuid": "a728f28f-a8d1-5369-88fb-d3cbc3040659",
+      "stableId": "tx-permits-tests",
+      "uuid": "6feb9733-bda1-5cf8-9c8c-c8a89176a121"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-permits-tests-q01",
+      "sourceUuid": "8b931993-e367-579d-bcc5-af01efda7a03",
+      "stableId": "tx-permits-tests-q01",
+      "uuid": "a6e9cf0a-1811-5a46-99e8-f56c28e08b0b"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-permits-tests-asset-01",
+      "sourceUuid": "4baa6ef6-70f8-549b-a1b9-bfca4a6c804d",
+      "stableId": "tx-permits-tests-asset-01",
+      "uuid": "cf6a8991-4608-52dd-86dc-aac95009606a"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-permits-tests-q02",
+      "sourceUuid": "727507a5-656d-5407-ad4e-d7a80c869999",
+      "stableId": "tx-permits-tests-q02",
+      "uuid": "75530624-fb45-50d0-a86a-3273fa63cd1e"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-permits-tests-q03",
+      "sourceUuid": "d914bbf3-c847-5528-8ef2-5f89a2a76512",
+      "stableId": "tx-permits-tests-q03",
+      "uuid": "80db09b4-45b3-577f-b298-42c20f954150"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-permits-tests-asset-02",
+      "sourceUuid": "b8cda2a2-9229-5b96-b8d8-82140fcf9ddb",
+      "stableId": "tx-permits-tests-asset-02",
+      "uuid": "4228bc84-99da-50d0-8731-161dd2330b35"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-permits-tests-q04",
+      "sourceUuid": "6f5f1014-ebd1-59df-b3bc-747727ff7d53",
+      "stableId": "tx-permits-tests-q04",
+      "uuid": "8b8ad8a6-7494-5117-ab36-195534f294d1"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-permits-tests-asset-03",
+      "sourceUuid": "4c3c1f30-1613-5a3c-ab5c-377c767c4c2d",
+      "stableId": "tx-permits-tests-asset-03",
+      "uuid": "a4c61987-0ccb-5012-b4be-4a0a711d184f"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-permits-tests-q05",
+      "sourceUuid": "a8aaeece-2a81-53ad-ab34-7400dabcd06f",
+      "stableId": "tx-permits-tests-q05",
+      "uuid": "c5a7f343-41d8-517d-81d6-e45120a4caa4"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b01",
+      "stableId": "tx-permits-tests-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b02",
+      "stableId": "tx-permits-tests-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b03",
+      "stableId": "tx-permits-tests-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b04",
+      "stableId": "tx-permits-tests-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b05",
+      "stableId": "tx-permits-tests-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b06",
+      "stableId": "tx-permits-tests-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b07",
+      "stableId": "tx-permits-tests-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b08",
+      "stableId": "tx-permits-tests-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b09",
+      "stableId": "tx-permits-tests-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b10",
+      "stableId": "tx-permits-tests-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b11",
+      "stableId": "tx-permits-tests-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-permits-tests-b12",
+      "stableId": "tx-permits-tests-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-residency-transfers",
+      "sourceUuid": "efd11392-a64c-5596-8444-6726421840ec",
+      "stableId": "tx-residency-transfers",
+      "uuid": "a0621aee-7978-5514-9672-6923ecc0f6ef"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-residency-transfers-q01",
+      "sourceUuid": "65a4817b-5ce0-5cac-b238-4ca17f798a0f",
+      "stableId": "tx-residency-transfers-q01",
+      "uuid": "9160b987-451b-5321-b095-4d6098aa367c"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-residency-transfers-asset-01",
+      "sourceUuid": "a74ad093-5e00-5420-9617-9dd4fc0c5e5f",
+      "stableId": "tx-residency-transfers-asset-01",
+      "uuid": "bca25a7c-da4b-5f9d-8bf9-aeda1c26bad6"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-residency-transfers-q02",
+      "sourceUuid": "42baf48b-3789-5eff-93ea-af42ac899a57",
+      "stableId": "tx-residency-transfers-q02",
+      "uuid": "4bcd3416-7453-540e-b5e3-39100fc31599"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-residency-transfers-q03",
+      "sourceUuid": "03427f50-a40d-56db-bf19-66986e466e87",
+      "stableId": "tx-residency-transfers-q03",
+      "uuid": "ce443957-aca3-5241-92d7-9c6607c957fb"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-residency-transfers-asset-02",
+      "sourceUuid": "7699dcaf-aebe-58b6-b87d-27e841af7f6c",
+      "stableId": "tx-residency-transfers-asset-02",
+      "uuid": "e7618e5e-b321-5227-8a2a-bfadda690ab2"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-residency-transfers-q04",
+      "sourceUuid": "7b7a7384-b092-5792-9616-93ec8f23e32f",
+      "stableId": "tx-residency-transfers-q04",
+      "uuid": "fb762f15-6172-5e1b-b9ad-13b221ec76fb"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-residency-transfers-asset-03",
+      "sourceUuid": "a6cfd451-91b0-5abc-acb4-ad7971b345dc",
+      "stableId": "tx-residency-transfers-asset-03",
+      "uuid": "9e6ce06c-2da3-5e0f-950d-b2002eb4bdf7"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-residency-transfers-q05",
+      "sourceUuid": "9bcaba7b-ebf0-5eae-aa99-0f3a28a12423",
+      "stableId": "tx-residency-transfers-q05",
+      "uuid": "6ae9aa0c-7a61-50fb-a63f-f5d9bbfc6238"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b01",
+      "stableId": "tx-residency-transfers-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b02",
+      "stableId": "tx-residency-transfers-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b03",
+      "stableId": "tx-residency-transfers-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b04",
+      "stableId": "tx-residency-transfers-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b05",
+      "stableId": "tx-residency-transfers-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b06",
+      "stableId": "tx-residency-transfers-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b07",
+      "stableId": "tx-residency-transfers-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b08",
+      "stableId": "tx-residency-transfers-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b09",
+      "stableId": "tx-residency-transfers-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b10",
+      "stableId": "tx-residency-transfers-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b11",
+      "stableId": "tx-residency-transfers-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-residency-transfers-b12",
+      "stableId": "tx-residency-transfers-b12"
+    },
+    {
+      "entity": "lesson",
+      "sourceId": "tx-penalties-review",
+      "sourceUuid": "333b350e-93ef-5f50-9440-06a180dfba45",
+      "stableId": "tx-penalties-review",
+      "uuid": "f903f649-9b74-5a2b-b2b2-b900ab5dc358"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-penalties-review-q01",
+      "sourceUuid": "d660fa40-00f8-5e33-98fa-063896888b3b",
+      "stableId": "tx-penalties-review-q01",
+      "uuid": "5cc8972c-a04d-585f-a89d-38190ad83a6f"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-penalties-review-asset-01",
+      "sourceUuid": "ed38e470-f323-5af1-969e-376a7c0a9c21",
+      "stableId": "tx-penalties-review-asset-01",
+      "uuid": "9e78fcd4-06f2-5fba-a734-8d5ecdf6702a"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-penalties-review-q02",
+      "sourceUuid": "dcca2951-bdb7-5d87-b98d-88e32d13f2ce",
+      "stableId": "tx-penalties-review-q02",
+      "uuid": "071d8031-e228-55ee-b62e-0d4b6421e715"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-penalties-review-q03",
+      "sourceUuid": "83d6e3ee-522d-5f0e-880b-8a1ebb700cca",
+      "stableId": "tx-penalties-review-q03",
+      "uuid": "366df969-e8f9-5957-87fb-0d2a27310bae"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-penalties-review-asset-02",
+      "sourceUuid": "274a9ad0-4203-534d-b99b-08d4152b9877",
+      "stableId": "tx-penalties-review-asset-02",
+      "uuid": "5c6324ba-fb9f-51f4-af97-01431c327238"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-penalties-review-q04",
+      "sourceUuid": "b94ce84d-33b7-5ffe-b4c9-1210df57a2fb",
+      "stableId": "tx-penalties-review-q04",
+      "uuid": "283b7059-191d-5aeb-b117-0399edc4f7a6"
+    },
+    {
+      "entity": "asset",
+      "sourceId": "tx-penalties-review-asset-03",
+      "sourceUuid": "1f3e2d86-5639-5065-94e7-6a9071287d4f",
+      "stableId": "tx-penalties-review-asset-03",
+      "uuid": "add3d69e-b1fb-5e8b-bdab-22c1cbd2147d"
+    },
+    {
+      "entity": "question",
+      "sourceId": "tx-penalties-review-q05",
+      "sourceUuid": "2a4d1ea6-22b1-54cb-a197-662eb3bd86e8",
+      "stableId": "tx-penalties-review-q05",
+      "uuid": "ad27139d-6b09-505d-852e-c9e2c3329fb8"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b01",
+      "stableId": "tx-penalties-review-b01"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b02",
+      "stableId": "tx-penalties-review-b02"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b03",
+      "stableId": "tx-penalties-review-b03"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b04",
+      "stableId": "tx-penalties-review-b04"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b05",
+      "stableId": "tx-penalties-review-b05"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b06",
+      "stableId": "tx-penalties-review-b06"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b07",
+      "stableId": "tx-penalties-review-b07"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b08",
+      "stableId": "tx-penalties-review-b08"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b09",
+      "stableId": "tx-penalties-review-b09"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b10",
+      "stableId": "tx-penalties-review-b10"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b11",
+      "stableId": "tx-penalties-review-b11"
+    },
+    {
+      "entity": "block",
+      "sourceId": "tx-penalties-review-b12",
+      "stableId": "tx-penalties-review-b12"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "course": {
+    "sha256": "26b2fad0069309cd95b5a4e25b2619765bd54e8bfde49f6ad78c20edf074aa18",
+    "sizeBytes": 866
+  },
+  "modules": {
+    "fl-read-road": {
+      "sha256": "8396a525fb5d0681e7c48db49d824daf3d2eec866c124e2b2ef8ac62ca1de5dd",
+      "sizeBytes": 777862
+    },
+    "fl-right-of-way": {
+      "sha256": "49408a62a03c1264772561d01c93260c2c87e3af04f4406e8534d0516d015745",
+      "sizeBytes": 814749
+    },
+    "fl-lanes-highways": {
+      "sha256": "4ece4f2348784ffb309ec3fa5d12009612c74801b416fd2b75bb08e2dd903f5c",
+      "sizeBytes": 81975
+    },
+    "fl-speed-space": {
+      "sha256": "d7624ff5d1e0b3fbbfa9222455e830f5acf10bb447dca88e1999416b01114768",
+      "sizeBytes": 62074
+    },
+    "fl-share-road": {
+      "sha256": "0fb538284cc0062fb260b37263176f541b54c6d47404776fcccbbb660d68ce2c",
+      "sizeBytes": 63149
+    },
+    "fl-control": {
+      "sha256": "e9f3a1d9b64be2a7a3594b575d340e9cd0e86988e3a536bfe9bb627f68bf33bb",
+      "sizeBytes": 83111
+    },
+    "fl-safety-crashes": {
+      "sha256": "ce094ba7a9baf347ba90207bc17a05701e117fba4d369884ef3fc23cea528575",
+      "sizeBytes": 63886
+    },
+    "fl-finish": {
+      "sha256": "acdfcaffd83546694c10e61826c6e4f06c2685787a3356530af6cc8cc7888b8c",
+      "sizeBytes": 70007
+    }
+  },
+  "lessons": {
+    "fl-sign-language": {
+      "moduleId": "fl-read-road",
+      "sha256": "44ecd294096e3ac9bc164f22fdee9157cdef9fe360c7eebf801c6b61e03d2e04",
+      "sizeBytes": 123394
+    },
+    "fl-regulatory-signs": {
+      "moduleId": "fl-read-road",
+      "sha256": "3704e5d8b5e27b254204b683a67eb6fedb80f9546032d50e8b54c675a82dadf0",
+      "sizeBytes": 127494
+    },
+    "fl-warning-guide-signs": {
+      "moduleId": "fl-read-road",
+      "sha256": "635222c136b792e66c590ffc5fa0b4f15be95e2109b573f3f871d7736aef27ce",
+      "sizeBytes": 136619
+    },
+    "fl-signals": {
+      "moduleId": "fl-read-road",
+      "sha256": "670605d3bbf3cb3140a8ced4a82116431d98a7f482898c43c4fde6971b40bd06",
+      "sizeBytes": 209280
+    },
+    "fl-markings": {
+      "moduleId": "fl-read-road",
+      "sha256": "9074597be5218c2ce84229db875cfbad413841620df5fb0d9b440f0ea8363039",
+      "sizeBytes": 178661
+    },
+    "fl-uncontrolled-intersections": {
+      "moduleId": "fl-right-of-way",
+      "sha256": "3d80cd0140d75ed1af0841d9e020de279564e3706bacc3a14945afb822f374f9",
+      "sizeBytes": 114267
+    },
+    "fl-stop-yield-entry": {
+      "moduleId": "fl-right-of-way",
+      "sha256": "0ba10498788992e02dd64d69e3627860bcd0efe3da315815e1bc8cf7cd83d1e4",
+      "sizeBytes": 160710
+    },
+    "fl-turns-signals": {
+      "moduleId": "fl-right-of-way",
+      "sha256": "91e9b355c6882160fb657efb0d3961150fc913ba1ec3f8c61caedbf9397a7a5f",
+      "sizeBytes": 182893
+    },
+    "fl-uturn-backing": {
+      "moduleId": "fl-right-of-way",
+      "sha256": "d1ad777e2b2a1d0ea759c65ceb3ee85ef36930efb109d2ba41369d4b9377c2a3",
+      "sizeBytes": 185744
+    },
+    "fl-pedestrians-roundabouts": {
+      "moduleId": "fl-right-of-way",
+      "sha256": "bfba11290fa0f345f109e64ec2762c9d4312d3d10484389803d2c02ac1087efb",
+      "sizeBytes": 168676
+    },
+    "fl-lane-choice": {
+      "moduleId": "fl-lanes-highways",
+      "sha256": "a3bd3e0df3ef7a8121d99d483893002cd43370952bc45057ba6e2cd565aea719",
+      "sizeBytes": 19600
+    },
+    "fl-passing": {
+      "moduleId": "fl-lanes-highways",
+      "sha256": "4ea3e155f7a39d70600171957ed140061608e2438d8ec5cd433d4d1d02aaf0e4",
+      "sizeBytes": 20025
+    },
+    "fl-highway-entry-exit": {
+      "moduleId": "fl-lanes-highways",
+      "sha256": "1213584b0435aeaf353f5fa62acc54f6a18e98687ec28f21e0e0e677d30ef2d2",
+      "sizeBytes": 20051
+    },
+    "fl-special-lanes": {
+      "moduleId": "fl-lanes-highways",
+      "sha256": "a12471a2daa80fcc4d72a84f2aaa94398bc0a4b3d93d368198591c7deef5ef8a",
+      "sizeBytes": 20168
+    },
+    "fl-speed-laws": {
+      "moduleId": "fl-speed-space",
+      "sha256": "1313c171de3a91ae7408525b462bd9ea03ef5f53514779931ee7a48fd3b28959",
+      "sizeBytes": 20285
+    },
+    "fl-space-scanning": {
+      "moduleId": "fl-speed-space",
+      "sha256": "0e416cf2fa1def890af18e817e585166024dda9e14c684214d57822a2b6218b7",
+      "sizeBytes": 20059
+    },
+    "fl-parking": {
+      "moduleId": "fl-speed-space",
+      "sha256": "c52d0db6c22b3a8bfd41b9fa4142f0c247b1081419af57bc5bc11bed753fc378",
+      "sizeBytes": 19952
+    },
+    "fl-bikes-motorcycles": {
+      "moduleId": "fl-share-road",
+      "sha256": "0772809c5964937deb73451904bf00d26bc55bb8083eed84d3d7896a00e79139",
+      "sizeBytes": 19811
+    },
+    "fl-large-slow-vehicles": {
+      "moduleId": "fl-share-road",
+      "sha256": "36c1acf635a446a9842aaccb303ed4b29c891f604fb50e383479d535f8d0a255",
+      "sizeBytes": 20130
+    },
+    "fl-school-emergency-work": {
+      "moduleId": "fl-share-road",
+      "sha256": "2755be1cf1a1ccbebff9531b72030519beef831e181e5ea16ad2f417c95045ec",
+      "sizeBytes": 21342
+    },
+    "fl-night-weather-lights": {
+      "moduleId": "fl-control",
+      "sha256": "a6572b00397535c686b544e759b738869ce8e12b77469a033de3ee0381786c7a",
+      "sizeBytes": 20048
+    },
+    "fl-vehicle-emergencies": {
+      "moduleId": "fl-control",
+      "sha256": "7a839c81ffb3ea5404835e38ae29250aa5f6cb1a5ec86c7da3a7883be8192be6",
+      "sizeBytes": 20037
+    },
+    "fl-distraction-fatigue": {
+      "moduleId": "fl-control",
+      "sha256": "bc06d7a44e21d7e8c8981a8c0b876be921167fa6c028eb578ed048a51b47a89c",
+      "sizeBytes": 20282
+    },
+    "fl-alcohol-drugs": {
+      "moduleId": "fl-control",
+      "sha256": "53b8540dc487aa490d85018816db7b493baad7fbc8d93a7ac28c881e7506b067",
+      "sizeBytes": 20580
+    },
+    "fl-restraints-children": {
+      "moduleId": "fl-safety-crashes",
+      "sha256": "f02baca444d12d1d3a73dc1d32ec1dce63587a0fe3b47b6b81793de195646d52",
+      "sizeBytes": 20453
+    },
+    "fl-equipment-loads": {
+      "moduleId": "fl-safety-crashes",
+      "sha256": "ef105538b2963fee3fa8770bfed35c6eaddc9887bf182e989644b2f3ec738121",
+      "sizeBytes": 20113
+    },
+    "fl-crashes-insurance": {
+      "moduleId": "fl-safety-crashes",
+      "sha256": "1a54a08b5b306f611843e5fd8e9a7a1ae43d92034e9f6d9559dba36beb5213c7",
+      "sizeBytes": 21453
+    },
+    "fl-permits-tests": {
+      "moduleId": "fl-finish",
+      "sha256": "088aecf348d287757eed2efca37a6a6001d3c56a5c28ea9b192969822b722632",
+      "sizeBytes": 23407
+    },
+    "fl-residency-transfers": {
+      "moduleId": "fl-finish",
+      "sha256": "58bc6ab47041b038c79c75ba301432eadd41e8d480e8285c9535fa927781d137",
+      "sizeBytes": 23071
+    },
+    "fl-penalties-review": {
+      "moduleId": "fl-finish",
+      "sha256": "38c6e7284c7f4271c1e58fdfe62b7572f64aa11beba0a4c76fedc695c7f0c2c2",
+      "sizeBytes": 21709
+    }
+  }
+}

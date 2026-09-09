@@ -1,0 +1,31 @@
+{
+  "name": "dmv-admin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "smoke": "vite build --config vite.smoke.config.ts && node scripts/renderer-smoke.mjs",
+    "ui-check": "bash scripts/ui-check.sh",
+    "test": "tsx --test scripts/model-tests.mts scripts/slide-tests.mts"
+  },
+  "dependencies": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native-web": "^0.21.2",
+    "styled-components": "^6.4.4",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "jsdom": "^29.1.1",
+    "tsx": "^4.23.12",
+    "typescript": "^5.8.3",
+    "vite": "^8.2.1"
+  }
+}

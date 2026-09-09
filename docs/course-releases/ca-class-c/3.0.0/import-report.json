@@ -1,0 +1,588 @@
+{
+  "stableCourseId": "ca-class-c",
+  "deliveryVersion": "3.0.0",
+  "generatedFrom": {
+    "packageDir": "/private/tmp/claude-501/-Users-arsen-Documents-indie-dmv-learning/47603855-4afd-4829-8b22-1c2de025eeab/scratchpad/illustrated",
+    "versionLabel": "CA-2026.08.10-r01",
+    "releaseDate": "2026-08-10",
+    "status": "draft_generated_human_review_required",
+    "publicationAuthorized": false,
+    "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "contentHashNote": "Per-file SVG sha256 values and cross-report consistency verified. The package does not document a formula for recomputing manifest.contentHash from delivered bytes, so it is recorded as-is.",
+    "hashedFileCount": 0,
+    "finalValidationStatus": "automated_qa_passed_human_reviews_required",
+    "staleValidationReportAccepted": true,
+    "warnings": [
+      "final-validation contentHash differs from manifest contentHash: the QA report was produced from different bytes than this package ships, so the delivered content did not pass the package QA gate (accepted via --allow-stale-validation-report)",
+      "manifest count assets: says 90, package ships 145"
+    ]
+  },
+  "counts": {
+    "modules": 8,
+    "lessons": 30,
+    "questions": 150,
+    "moduleTests": 8,
+    "moduleTestQuestionRefs": 80,
+    "assets": 145,
+    "blocksPerLesson": 12,
+    "questionsPerLesson": 5,
+    "assetsPerLesson": 3
+  },
+  "manifestVersion": {
+    "version": "3.0.0",
+    "releasedAt": "2026-08-10",
+    "status": "release_candidate",
+    "instructions": [
+      {
+        "op": "full",
+        "severity": "soft",
+        "message": "The California course now has new illustrations."
+      }
+    ]
+  },
+  "strippedAuditFields": [
+    "primaryRuleIds",
+    "reinforcementRuleIds",
+    "evidenceId",
+    "blueprintId",
+    "estimatedVisibleWordCount",
+    "status",
+    "courseVersion",
+    "relatedRuleIds (questions)",
+    "rightsStatus/source (assets)",
+    "official URLs, rights registry, dependency map, QA reports, authoring files"
+  ],
+  "auditLessonFields": {
+    "ca-sign-shapes-and-colors": {
+      "sourceLessonId": "ca-2026-08-10-r01-m01-l01",
+      "blueprintId": "ca-r03-bp-m01-l01",
+      "primaryRuleIds": [
+        "CA_MUTCD_2A_03_SIGN_CLASSES",
+        "CA_MUTCD_2A_05_SIGN_SHAPES",
+        "CA_MUTCD_2A_06_SIGN_COLORS"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "ca-2026-08-10-r01-m01-l01-evidence",
+      "estimatedVisibleWordCount": 514,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-regulatory-signs": {
+      "sourceLessonId": "ca-2026-08-10-r01-m01-l02",
+      "blueprintId": "ca-r03-bp-m01-l02",
+      "primaryRuleIds": [
+        "CA_VEH_21461_OBEY_TRAFFIC_CONTROLS",
+        "CA_MUTCD_COMMON_SIGN_MEANINGS"
+      ],
+      "reinforcementRuleIds": [
+        "CA_MUTCD_2A_03_SIGN_CLASSES",
+        "CA_MUTCD_2A_05_SIGN_SHAPES",
+        "CA_MUTCD_2A_06_SIGN_COLORS",
+        "CA_VEH_22450_STOP_POSITION"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m01-l02-evidence",
+      "estimatedVisibleWordCount": 533,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-warning-and-guide-signs": {
+      "sourceLessonId": "ca-2026-08-10-r01-m01-l03",
+      "blueprintId": "ca-r03-bp-m01-l03",
+      "primaryRuleIds": [],
+      "reinforcementRuleIds": [
+        "CA_MUTCD_2A_03_SIGN_CLASSES",
+        "CA_MUTCD_2A_05_SIGN_SHAPES",
+        "CA_MUTCD_2A_06_SIGN_COLORS",
+        "CA_VEH_22350_BASIC_SPEED_LAW",
+        "CA_MUTCD_COMMON_SIGN_MEANINGS",
+        "CA_MUTCD_WORK_ZONE_CONTROLS"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m01-l03-evidence",
+      "estimatedVisibleWordCount": 560,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-traffic-signals": {
+      "sourceLessonId": "ca-2026-08-10-r01-m01-l04",
+      "blueprintId": "ca-r03-bp-m01-l04",
+      "primaryRuleIds": [
+        "CA_VEH_21451_GREEN_SIGNAL",
+        "CA_VEH_21452_YELLOW_SIGNAL",
+        "CA_VEH_21453_RED_SIGNAL",
+        "CA_VEH_21457_FLASHING_SIGNAL",
+        "CA_VEH_21451_21453_ARROW_SIGNAL",
+        "CA_VEH_21454_LANE_USE_CONTROL",
+        "CA_VEH_21456_PEDESTRIAN_SIGNAL"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21461_OBEY_TRAFFIC_CONTROLS"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m01-l04-evidence",
+      "estimatedVisibleWordCount": 551,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-road-markings-and-curbs": {
+      "sourceLessonId": "ca-2026-08-10-r01-m01-l05",
+      "blueprintId": "ca-r03-bp-m01-l05",
+      "primaryRuleIds": [
+        "CA_VEH_21460_DOUBLE_LINES",
+        "CA_MUTCD_3A_03_MARKING_COLORS",
+        "CA_MUTCD_MARKING_PATTERNS",
+        "CA_VEH_21458_CURB_COLORS"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21461_OBEY_TRAFFIC_CONTROLS"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m01-l05-evidence",
+      "estimatedVisibleWordCount": 516,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-uncontrolled-intersections": {
+      "sourceLessonId": "ca-2026-08-10-r01-m02-l01",
+      "blueprintId": "ca-r03-bp-m02-l01",
+      "primaryRuleIds": [
+        "CA_VEH_21800_UNCONTROLLED_INTERSECTION"
+      ],
+      "reinforcementRuleIds": [
+        "CA_UC_SCAN_AND_PREDICT",
+        "CA_UC_COLLISION_AVOIDANCE"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m02-l01-evidence",
+      "estimatedVisibleWordCount": 552,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-stop-yield-entering-traffic": {
+      "sourceLessonId": "ca-2026-08-10-r01-m02-l02",
+      "blueprintId": "ca-r03-bp-m02-l02",
+      "primaryRuleIds": [
+        "CA_VEH_22450_STOP_POSITION",
+        "CA_VEH_21802_YIELD_SIGN",
+        "CA_VEH_21804_ENTERING_HIGHWAY"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21461_OBEY_TRAFFIC_CONTROLS",
+        "CA_VEH_21950_CROSSWALK"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m02-l02-evidence",
+      "estimatedVisibleWordCount": 546,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-turns-and-signals": {
+      "sourceLessonId": "ca-2026-08-10-r01-m02-l03",
+      "blueprintId": "ca-r03-bp-m02-l03",
+      "primaryRuleIds": [
+        "CA_VEH_22100_TURN_POSITION",
+        "CA_VEH_22107_MOVE_AND_SIGNAL",
+        "CA_VEH_22108_TURN_SIGNAL_DISTANCE",
+        "CA_VEH_22111_HAND_SIGNALS",
+        "CA_VEH_21801_LEFT_TURN_YIELD"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21717_CROSS_BIKE_LANE_TO_TURN",
+        "CA_VEH_21451_GREEN_SIGNAL",
+        "CA_VEH_21453_RED_SIGNAL"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m02-l03-evidence",
+      "estimatedVisibleWordCount": 544,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-u-turns-starting-backing": {
+      "sourceLessonId": "ca-2026-08-10-r01-m02-l04",
+      "blueprintId": "ca-r03-bp-m02-l04",
+      "primaryRuleIds": [
+        "CA_VEH_22100_5_U_TURN_SIGNAL",
+        "CA_VEH_22102_U_TURN_BUSINESS",
+        "CA_VEH_22103_U_TURN_RESIDENCE",
+        "CA_VEH_22104_U_TURN_FIRE_STATION",
+        "CA_VEH_22105_U_TURN_VISIBILITY",
+        "CA_VEH_22106_BACKING"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_22107_MOVE_AND_SIGNAL"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m02-l04-evidence",
+      "estimatedVisibleWordCount": 535,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-crosswalks-and-roundabouts": {
+      "sourceLessonId": "ca-2026-08-10-r01-m02-l05",
+      "blueprintId": "ca-r03-bp-m02-l05",
+      "primaryRuleIds": [
+        "CA_VEH_21950_CROSSWALK",
+        "CA_VEH_21951_STOPPED_AT_CROSSWALK",
+        "CA_VEH_21954_OUTSIDE_CROSSWALK",
+        "CA_VEH_21964_BLIND_PEDESTRIAN",
+        "CA_MUTCD_ROUNDABOUT_CONTROL"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21456_PEDESTRIAN_SIGNAL",
+        "CA_UC_SCAN_AND_PREDICT"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m02-l05-evidence",
+      "estimatedVisibleWordCount": 574,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-choosing-changing-lanes": {
+      "sourceLessonId": "ca-2026-08-10-r01-m03-l01",
+      "blueprintId": "ca-r03-bp-m03-l01",
+      "primaryRuleIds": [
+        "CA_VEH_21650_RIGHT_HALF",
+        "CA_VEH_21654_SLOW_TRAFFIC_RIGHT",
+        "CA_VEH_21656_USE_TURNOUT",
+        "CA_VEH_21658_LANE_DISCIPLINE",
+        "CA_UC_BLIND_SPOT_CHECK"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_22107_MOVE_AND_SIGNAL",
+        "CA_UC_SCAN_AND_PREDICT"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m03-l01-evidence",
+      "estimatedVisibleWordCount": 564,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-passing-rules": {
+      "sourceLessonId": "ca-2026-08-10-r01-m03-l02",
+      "blueprintId": "ca-r03-bp-m03-l02",
+      "primaryRuleIds": [
+        "CA_VEH_21750_PASS_LEFT",
+        "CA_VEH_21751_CLEAR_VIEW_PASS",
+        "CA_VEH_21752_NO_PASSING_LOCATIONS",
+        "CA_VEH_21754_21755_PASS_RIGHT"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21460_DOUBLE_LINES",
+        "CA_UC_COLLISION_AVOIDANCE"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m03-l02-evidence",
+      "estimatedVisibleWordCount": 503,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-freeway-merging": {
+      "sourceLessonId": "ca-2026-08-10-r01-m03-l03",
+      "blueprintId": "ca-r03-bp-m03-l03",
+      "primaryRuleIds": [
+        "CA_VEH_21718_FREEWAY_STOPPING"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21658_LANE_DISCIPLINE",
+        "CA_VEH_22107_MOVE_AND_SIGNAL",
+        "CA_VEH_21804_ENTERING_HIGHWAY",
+        "CA_UC_SCAN_AND_PREDICT",
+        "CA_UC_SPACE_CUSHION",
+        "CA_UC_BLIND_SPOT_CHECK",
+        "CA_VEH_21703_REASONABLE_FOLLOWING"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m03-l03-evidence",
+      "estimatedVisibleWordCount": 534,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-special-lanes": {
+      "sourceLessonId": "ca-2026-08-10-r01-m03-l04",
+      "blueprintId": "ca-r03-bp-m03-l04",
+      "primaryRuleIds": [
+        "CA_VEH_21460_5_MEDIAN_AND_CENTER_TURN",
+        "CA_VEH_21655_5_HOV",
+        "CA_VEH_21209_MOTOR_VEHICLE_BIKE_LANE",
+        "CA_VEH_21717_CROSS_BIKE_LANE_TO_TURN"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_22100_TURN_POSITION",
+        "CA_UC_BLIND_SPOT_CHECK"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m03-l04-evidence",
+      "estimatedVisibleWordCount": 511,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-speed-laws": {
+      "sourceLessonId": "ca-2026-08-10-r01-m04-l01",
+      "blueprintId": "ca-r03-bp-m04-l01",
+      "primaryRuleIds": [
+        "CA_VEH_22350_BASIC_SPEED_LAW",
+        "CA_VEH_22349_MAXIMUM_SPEED",
+        "CA_VEH_22356_POSTED_70",
+        "CA_VEH_22352_FIFTEEN_MPH",
+        "CA_VEH_22352_TWENTY_FIVE_MPH",
+        "CA_VEH_22400_IMPEDING_TRAFFIC",
+        "CA_VEH_22406_TOWING_SPEED"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21654_SLOW_TRAFFIC_RIGHT",
+        "CA_UC_WEATHER_ADAPTATION"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m04-l01-evidence",
+      "estimatedVisibleWordCount": 507,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-following-distance-scanning": {
+      "sourceLessonId": "ca-2026-08-10-r01-m04-l02",
+      "blueprintId": "ca-r03-bp-m04-l02",
+      "primaryRuleIds": [
+        "CA_UC_SCAN_AND_PREDICT",
+        "CA_UC_SPACE_CUSHION",
+        "CA_VEH_21703_REASONABLE_FOLLOWING"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_22350_BASIC_SPEED_LAW",
+        "CA_UC_BLIND_SPOT_CHECK",
+        "CA_UC_COLLISION_AVOIDANCE"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m04-l02-evidence",
+      "estimatedVisibleWordCount": 493,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-parking-and-curbs": {
+      "sourceLessonId": "ca-2026-08-10-r01-m04-l03",
+      "blueprintId": "ca-r03-bp-m04-l03",
+      "primaryRuleIds": [
+        "CA_VEH_22500_PROHIBITED_STOPPING",
+        "CA_VEH_22502_CURB_PARKING",
+        "CA_VEH_22514_FIRE_HYDRANT",
+        "CA_VEH_22515_UNATTENDED_VEHICLE",
+        "CA_VEH_22517_OPENING_DOOR",
+        "CA_VEH_22507_8_ACCESSIBLE_PARKING"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21718_FREEWAY_STOPPING",
+        "CA_VEH_22106_BACKING",
+        "CA_VEH_22107_MOVE_AND_SIGNAL",
+        "CA_VEH_21458_CURB_COLORS"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m04-l03-evidence",
+      "estimatedVisibleWordCount": 489,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-bicycles-motorcycles": {
+      "sourceLessonId": "ca-2026-08-10-r01-m05-l01",
+      "blueprintId": "ca-r03-bp-m05-l01",
+      "primaryRuleIds": [
+        "CA_VEH_21760_PASS_BICYCLE",
+        "CA_VEH_21658_1_LANE_SPLITTING"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21209_MOTOR_VEHICLE_BIKE_LANE",
+        "CA_VEH_21717_CROSS_BIKE_LANE_TO_TURN",
+        "CA_UC_SPACE_CUSHION",
+        "CA_UC_BLIND_SPOT_CHECK"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m05-l01-evidence",
+      "estimatedVisibleWordCount": 541,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-trucks-buses-slow-vehicles": {
+      "sourceLessonId": "ca-2026-08-10-r01-m05-l02",
+      "blueprintId": "ca-r03-bp-m05-l02",
+      "primaryRuleIds": [
+        "CA_VEH_21759_ANIMALS"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21656_USE_TURNOUT",
+        "CA_UC_SCAN_AND_PREDICT",
+        "CA_UC_SPACE_CUSHION",
+        "CA_VEH_21703_REASONABLE_FOLLOWING"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m05-l02-evidence",
+      "estimatedVisibleWordCount": 550,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-emergency-school-work-zones": {
+      "sourceLessonId": "ca-2026-08-10-r01-m05-l03",
+      "blueprintId": "ca-r03-bp-m05-l03",
+      "primaryRuleIds": [
+        "CA_VEH_21806_EMERGENCY_VEHICLE",
+        "CA_VEH_21809_MOVE_OVER",
+        "CA_VEH_22454_SCHOOL_BUS",
+        "CA_VEH_21706_FOLLOW_EMERGENCY",
+        "CA_VEH_21708_FIRE_HOSE",
+        "CA_MUTCD_WORK_ZONE_CONTROLS"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_21461_OBEY_TRAFFIC_CONTROLS",
+        "CA_UC_COLLISION_AVOIDANCE"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m05-l03-evidence",
+      "estimatedVisibleWordCount": 548,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-night-weather-visibility": {
+      "sourceLessonId": "ca-2026-08-10-r01-m06-l01",
+      "blueprintId": "ca-r03-bp-m06-l01",
+      "primaryRuleIds": [
+        "CA_VEH_24250_24400_HEADLIGHT_USE",
+        "CA_VEH_24409_HIGH_BEAM_DIMMING",
+        "CA_UC_WEATHER_ADAPTATION"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_22350_BASIC_SPEED_LAW",
+        "CA_UC_SPACE_CUSHION",
+        "CA_VEH_21703_REASONABLE_FOLLOWING"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m06-l01-evidence",
+      "estimatedVisibleWordCount": 527,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-skids-and-emergencies": {
+      "sourceLessonId": "ca-2026-08-10-r01-m06-l02",
+      "blueprintId": "ca-r03-bp-m06-l02",
+      "primaryRuleIds": [
+        "CA_UC_SKID_RESPONSE",
+        "CA_UC_VEHICLE_FAILURE",
+        "CA_UC_COLLISION_AVOIDANCE"
+      ],
+      "reinforcementRuleIds": [
+        "CA_UC_SCAN_AND_PREDICT",
+        "CA_UC_SPACE_CUSHION"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m06-l02-evidence",
+      "estimatedVisibleWordCount": 461,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-distraction-and-fatigue": {
+      "sourceLessonId": "ca-2026-08-10-r01-m06-l03",
+      "blueprintId": "ca-r03-bp-m06-l03",
+      "primaryRuleIds": [
+        "CA_VEH_27400_BOTH_EARS_COVERED",
+        "CA_VEH_23123_HANDHELD_PHONE",
+        "CA_VEH_23123_5_WIRELESS_DEVICE",
+        "CA_VEH_23124_MINOR_WIRELESS",
+        "CA_VEH_23103_RECKLESS_DRIVING",
+        "CA_VEH_23111_FLAMING_SUBSTANCE",
+        "CA_VEH_27602_DRIVER_VISIBLE_DISPLAY",
+        "CA_UC_FATIGUE_SELF_CHECK"
+      ],
+      "reinforcementRuleIds": [
+        "CA_UC_SCAN_AND_PREDICT"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m06-l03-evidence",
+      "estimatedVisibleWordCount": 489,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-alcohol-drugs-dui": {
+      "sourceLessonId": "ca-2026-08-10-r01-m06-l04",
+      "blueprintId": "ca-r03-bp-m06-l04",
+      "primaryRuleIds": [
+        "CA_VEH_23152_DUI_IMPAIRMENT",
+        "CA_VEH_23152_BAC",
+        "CA_VEH_23136_UNDER_21_ZERO_TOLERANCE",
+        "CA_VEH_23140_UNDER_21_BAC",
+        "CA_VEH_23154_DUI_PROBATION_BAC",
+        "CA_VEH_23612_CHEMICAL_TEST",
+        "CA_VEH_13353_TEST_REFUSAL",
+        "CA_VEH_23221_DRINKING_IN_VEHICLE",
+        "CA_VEH_23222_OPEN_CONTAINER"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "ca-2026-08-10-r01-m06-l04-evidence",
+      "estimatedVisibleWordCount": 488,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-seat-belts-child-safety": {
+      "sourceLessonId": "ca-2026-08-10-r01-m07-l01",
+      "blueprintId": "ca-r03-bp-m07-l01",
+      "primaryRuleIds": [
+        "CA_VEH_27315_SEAT_BELTS",
+        "CA_VEH_27360_27363_CHILD_RESTRAINT",
+        "CA_VEH_27360_5_CHILD_PASSENGER",
+        "CA_VEH_15620_UNATTENDED_CHILD",
+        "CA_HSC_118948_118949_SMOKING_WITH_MINOR"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "ca-2026-08-10-r01-m07-l01-evidence",
+      "estimatedVisibleWordCount": 545,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-equipment-loads-towing": {
+      "sourceLessonId": "ca-2026-08-10-r01-m07-l02",
+      "blueprintId": "ca-r03-bp-m07-l02",
+      "primaryRuleIds": [
+        "CA_VEH_26708_DRIVER_VIEW",
+        "CA_VEH_26709_MIRRORS",
+        "CA_VEH_26450_BRAKES",
+        "CA_VEH_27000_HORN",
+        "CA_VEH_27465_TIRE_TREAD",
+        "CA_VEH_23113_SECURE_LOAD",
+        "CA_VEH_23116_TRUCK_BED_PASSENGERS",
+        "CA_VEH_23117_ANIMALS_IN_LOAD_SPACE"
+      ],
+      "reinforcementRuleIds": [
+        "CA_VEH_24250_24400_HEADLIGHT_USE",
+        "CA_VEH_22406_TOWING_SPEED"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m07-l02-evidence",
+      "estimatedVisibleWordCount": 527,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-crashes-and-insurance": {
+      "sourceLessonId": "ca-2026-08-10-r01-m07-l03",
+      "blueprintId": "ca-r03-bp-m07-l03",
+      "primaryRuleIds": [
+        "CA_VEH_16020_FINANCIAL_RESPONSIBILITY",
+        "CA_VEH_16056_LIABILITY_LIMITS",
+        "CA_VEH_16028_PROOF_ON_DEMAND",
+        "CA_VEH_16000_COLLISION_DMV_REPORT",
+        "CA_VEH_20001_INJURY_COLLISION_STOP",
+        "CA_VEH_20002_PROPERTY_COLLISION",
+        "CA_VEH_20003_INJURY_INFORMATION_AID",
+        "CA_VEH_20008_POLICE_REPORT",
+        "CA_VEH_16070_UNINSURED_COLLISION"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "ca-2026-08-10-r01-m07-l03-evidence",
+      "estimatedVisibleWordCount": 525,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-permits-provisional-licenses": {
+      "sourceLessonId": "ca-2026-08-10-r01-m08-l01",
+      "blueprintId": "ca-r03-bp-m08-l01",
+      "primaryRuleIds": [
+        "CA_VEH_12509_INSTRUCTION_PERMIT",
+        "CA_VEH_12814_6_PROVISIONAL_ELIGIBILITY",
+        "CA_VEH_12814_6_PROVISIONAL_RESTRICTIONS",
+        "CA_DMV_KNOWLEDGE_PASSING_SCORE",
+        "CA_DMV_KNOWLEDGE_TEST_ATTEMPTS",
+        "CA_CCR_T13_20_03_VISION_STANDARD"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "ca-2026-08-10-r01-m08-l01-evidence",
+      "estimatedVisibleWordCount": 524,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-licenses-and-registration": {
+      "sourceLessonId": "ca-2026-08-10-r01-m08-l02",
+      "blueprintId": "ca-r03-bp-m08-l02",
+      "primaryRuleIds": [
+        "CA_VEH_12500_LICENSE_REQUIRED",
+        "CA_VEH_12951_LICENSE_POSSESSION",
+        "CA_VEH_14600_ADDRESS_CHANGE",
+        "CA_VEH_516_RESIDENCY",
+        "CA_VEH_4152_5_6700_NEW_RESIDENT_REGISTRATION",
+        "CA_VEH_5900_SELLER_TRANSFER_NOTICE",
+        "CA_VEH_5902_BUYER_TRANSFER_APPLICATION"
+      ],
+      "reinforcementRuleIds": [],
+      "evidenceId": "ca-2026-08-10-r01-m08-l02-evidence",
+      "estimatedVisibleWordCount": 470,
+      "status": "draft_generated_human_review_required"
+    },
+    "ca-penalties-and-points": {
+      "sourceLessonId": "ca-2026-08-10-r01-m08-l03",
+      "blueprintId": "ca-r03-bp-m08-l03",
+      "primaryRuleIds": [
+        "CA_VEH_12810_POINT_VALUES",
+        "CA_VEH_12810_5_NEGLIGENT_OPERATOR"
+      ],
+      "reinforcementRuleIds": [
+        "CA_DMV_KNOWLEDGE_TEST_ATTEMPTS",
+        "CA_VEH_12814_6_PROVISIONAL_RESTRICTIONS",
+        "CA_VEH_23152_DUI_IMPAIRMENT",
+        "CA_VEH_23152_BAC",
+        "CA_VEH_13353_TEST_REFUSAL",
+        "CA_VEH_16070_UNINSURED_COLLISION",
+        "CA_HSC_118948_118949_SMOKING_WITH_MINOR"
+      ],
+      "evidenceId": "ca-2026-08-10-r01-m08-l03-evidence",
+      "estimatedVisibleWordCount": 510,
+      "status": "draft_generated_human_review_required"
+    }
+  },
+  "warnings": [
+    "final-validation contentHash differs from manifest contentHash: the QA report was produced from different bytes than this package ships, so the delivered content did not pass the package QA gate (accepted via --allow-stale-validation-report)",
+    "manifest count assets: says 90, package ships 145"
+  ]
+}

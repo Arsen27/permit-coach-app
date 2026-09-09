@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Crashes, Reporting, Insurance, and Financial Responsibility - Crash decision</title><desc id="desc">Crash decision diagram supporting Crashes, Reporting, Insurance, and Financial Responsibility. The written lesson contains the complete rule and does not require the image to understand the answer.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#DC2626"/></marker></defs>
+<rect width="1200" height="675" rx="42" fill="#F8FAFC"/>
+<text x="70" y="82" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#DC2626">CALIFORNIA KNOWLEDGE COURSE</text>
+<text x="70" y="130" font-family="Arial, sans-serif" font-size="38" font-weight="800" fill="#0F172A">Crash decision</text>
+<rect x="50" y="155" width="1100" height="430" rx="34" fill="#FEE2E2"/><path d="M250 400C250 320 320 265 430 265H735C850 265 930 330 930 410V475H250Z" fill="#2563EB"/><circle cx="410" cy="470" r="65" fill="#111827"/><circle cx="780" cy="470" r="65" fill="#111827"/><path d="M590 235L690 275V365C690 430 645 480 590 505C535 480 490 430 490 365V275Z" fill="#DC2626" opacity=".9"/><path d="M545 360L575 390L640 325" fill="none" stroke="#fff" stroke-width="18"/>
+<rect x="70" y="595" width="1060" height="2" fill="#CBD5E1"/>
+<text x="70" y="635" font-family="Arial, sans-serif" font-size="22" fill="#475569">Crashes, Reporting, Insurance, and Financial Responsibility</text>
+<text x="1130" y="635" text-anchor="end" font-family="Arial, sans-serif" font-size="18" fill="#64748B">Original instructional diagram</text>
+</svg>

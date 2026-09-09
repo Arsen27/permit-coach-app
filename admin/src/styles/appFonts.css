@@ -1,0 +1,29 @@
+/* The shared card renderer asks for the app's bundled families by their
+   PostScript names ("font-family: PlusJakartaSans-Bold"). Registering the very
+   same TTFs here makes the phone simulator match the device typography. */
+
+@font-face {
+  font-family: 'PlusJakartaSans-Regular';
+  src: url('../../../assets/fonts/PlusJakartaSans-Regular.ttf') format('truetype');
+  font-display: block;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-Medium';
+  src: url('../../../assets/fonts/PlusJakartaSans-Medium.ttf') format('truetype');
+  font-display: block;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-SemiBold';
+  src: url('../../../assets/fonts/PlusJakartaSans-SemiBold.ttf') format('truetype');
+  font-display: block;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-Bold';
+  src: url('../../../assets/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
+  font-display: block;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-ExtraBold';
+  src: url('../../../assets/fonts/PlusJakartaSans-ExtraBold.ttf') format('truetype');
+  font-display: block;
+}
