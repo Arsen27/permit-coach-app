@@ -53,14 +53,25 @@ export const anchorOfSelection = (
     return null;
   }
   const lines = [...card.querySelectorAll<HTMLElement>('[data-line]')];
-  const startEl = lineOf(selection.anchorNode);
-  const endEl = lineOf(selection.focusNode) ?? startEl;
-  if (startEl == null) {
+  if (lines.length === 0) {
     return null;
   }
+  // A drag that starts on the card's number or its kicker begins outside any
+  // line — and selecting a whole card that way is the most natural gesture
+  // there is. Falling back to the card's full span is right there: the
+  // selection really does cover all of it.
+  const startEl = lineOf(selection.anchorNode);
+  const endEl = lineOf(selection.focusNode);
+  const numberOf = (element: HTMLElement | null, fallback: number): number =>
+    element == null ? fallback : Number(element.dataset.line);
+  const first = Number(lines[0].dataset.line);
+  const last = Number(lines[lines.length - 1].dataset.line);
   // A selection dragged upwards has its focus before its anchor.
-  const a = Number(startEl.dataset.line);
-  const b = Number((endEl ?? startEl).dataset.line);
+  const a = numberOf(startEl, first);
+  const b = numberOf(
+    endEl,
+    startEl == null ? last : Number(startEl.dataset.line),
+  );
   const fromLine = Math.min(a, b);
   const toLine = Math.max(a, b);
 

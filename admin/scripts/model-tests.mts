@@ -6,7 +6,10 @@ import { diffWords, runsForSide } from '../src/model/diff.js';
 import type { RenderCard } from '../src/model/renderCard.js';
 import { failureFor } from '../src/store/loadFailure.js';
 import { originOf } from '../src/model/blockOrigin.js';
-import { describeAnchor } from '../src/model/excerptAnchor.js';
+import {
+  anchorOfSelection,
+  describeAnchor,
+} from '../src/model/excerptAnchor.js';
 import { buildPromptText } from '../src/model/promptText.js';
 
 // The diff and the pairing decide what an editor believes changed, so they are
@@ -183,7 +186,10 @@ test('the empty pane can say why it is empty', () => {
     'lesson: 404',
   );
   // With no lesson chosen, the outline's own failure is what to say.
-  assert.equal(failureFor(errors, 'draft:ca-class-c:3-3-1', null), 'outline: 500');
+  assert.equal(
+    failureFor(errors, 'draft:ca-class-c:3-3-1', null),
+    'outline: 500',
+  );
   // A lesson that loaded falls back to the outline's state, and a version
   // that never failed says nothing at all.
   assert.equal(failureFor(errors, 'draft:ca-class-c:9-9-9', null), null);
@@ -299,4 +305,69 @@ test('one line reads as one line, not a range', () => {
     }),
     'Exam trap · card 1 of 9 · line 4',
   );
+});
+
+test('a whole-card selection still reports a place', async () => {
+  // The card's number and kicker are chrome, not lines: a drag that starts on
+  // them used to yield no anchor at all, which is exactly the gesture an
+  // operator makes to quote a card whole. Needs a real DOM, so jsdom stands in
+  // for the browser the panel actually runs in.
+  const { JSDOM } = await import('jsdom');
+  const dom = new JSDOM('<!doctype html><body></body>');
+  const { document } = dom.window;
+  const previousNode = (globalThis as { Node?: unknown }).Node;
+  (globalThis as { Node?: unknown }).Node = dom.window.Node;
+
+  const card = document.createElement('article');
+  Object.assign(card.dataset, {
+    blockId: 'ca-traffic-signals-slide-06',
+    cardIndex: '6',
+    cardCount: '14',
+    kicker: 'California specific',
+    lessonId: 'ca-traffic-signals',
+  });
+  const badge = document.createElement('span');
+  badge.textContent = '06';
+  card.appendChild(badge);
+  for (const [n, value] of [
+    [1, 'Red arrows and limit lines in California'],
+    [2, 'A red arrow means no turn at all.'],
+  ] as [number, string][]) {
+    const line = document.createElement('p');
+    line.dataset.line = String(n);
+    line.textContent = value;
+    card.appendChild(line);
+  }
+  document.body.appendChild(card);
+
+  const anchor = anchorOfSelection({
+    rangeCount: 1,
+    anchorNode: badge.firstChild,
+    focusNode: badge.firstChild,
+    toString: () => '06 Red arrows',
+  } as unknown as Selection);
+
+  assert.notEqual(anchor, null);
+  assert.equal(anchor!.blockId, 'ca-traffic-signals-slide-06');
+  assert.equal(anchor!.lessonId, 'ca-traffic-signals');
+  assert.equal(anchor!.fromLine, 1);
+  assert.equal(anchor!.toLine, 2);
+  assert.equal(anchor!.lineTexts.length, 2);
+  assert.equal(
+    describeAnchor(anchor!),
+    'California specific · card 6 of 14 · lines 1–2',
+  );
+
+  // And a drag that does start inside a line still reports just that line.
+  const one = anchorOfSelection({
+    rangeCount: 1,
+    anchorNode: card.querySelectorAll('[data-line]')[1].firstChild,
+    focusNode: card.querySelectorAll('[data-line]')[1].firstChild,
+    toString: () => 'no turn at all',
+  } as unknown as Selection);
+  assert.equal(one!.fromLine, 2);
+  assert.equal(one!.toLine, 2);
+  assert.deepEqual(one!.lineTexts, ['A red arrow means no turn at all.']);
+
+  (globalThis as { Node?: unknown }).Node = previousNode;
 });
