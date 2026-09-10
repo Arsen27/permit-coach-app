@@ -50,12 +50,33 @@ should use it for anything in CA or TX:
 | `skeleton_status` | source revision, per-member package revision, edits waiting to be cut, released/staging/production versions |
 | `skeleton_read` | `{query}` → anchors with a ≤120-character excerpt and scope; `{anchor}` or `{questionId}` → that one block plus what each state resolves it to |
 | `skeleton_edit` | a shared card or question — **every state gets it** |
-| `state_edit` | one state only: an override, a note, a state lesson card, a parameter or a picture. `patch: null` reverts |
+| `state_create` | starts a state: an empty package the skeleton renders against. Joins no train |
+| `state_edit` | one state only: an override, a note, a state lesson card, a parameter, a picture, or `{kind: train}` membership. `patch: null` reverts |
 | `train_generate` | builds every member at one version; **a dry run unless `dryRun: false`** |
 | `train_publish` | points staging at an already-generated version, for every member |
 
 `create_draft` / `edit_block` / `release_draft` remain the path for imported
-courses that nothing regenerates — Florida, and the git-era releases.
+courses that nothing regenerates — the git-era releases, and any course that
+has no package.
+
+### Adding a state
+
+Neither step needs a deploy any more. `state_create` writes the package; the
+placeholders, notes and lessons are then edited into it with `state_edit`; and
+`state_edit {kind: 'train', patch: {member: true}}` puts it on the train.
+
+Membership is a `train` flag on the package — it exports and travels with it —
+rather than a literal in `generate.ts`, and the flag is guarded: **joining runs
+the builder for that state at the version the train would move to next, and is
+refused, with the builder's own reasons, if it does not build.** Generation is
+all-or-nothing, so a half-built member would refuse the release for the states
+that are finished; a new state must never arrive as an outage for the ones that
+work. A package may stay unfinished for as long as its author needs. It simply
+cannot be a member while it is.
+
+A joining state brings its own release history, which may be ahead of the
+train's — fl-class-e was cut by hand at 1.0.0 long before any of this — so the
+train's next number clears both.
 
 Two properties hold whichever door an edit comes through, because both call the
 same functions in `server/src/admin/skeletonService.ts`:
