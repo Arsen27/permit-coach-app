@@ -2812,7 +2812,7 @@ for (const courseId of ['ca-class-c', 'tx-class-c']) {
 for (const courseId of ['ca-class-c', 'tx-class-c']) {
   const bootstrap = await fetch(
     `http://localhost:${PORT}/v1/bootstrap?course=${courseId}&channel=staging&courseVersion=0.0.1`,
-    { headers: { 'X-Staging-Key': TEST_STAGING_KEY } },
+    { headers: { 'X-Staging-Key': 'ui-check-staging-key' } },
   ).then(response => response.json());
   const cut = (bootstrap.course.pendingVersions ?? []).find(
     entry => entry.version === version,
@@ -2832,6 +2832,111 @@ for (const courseId of ['ca-class-c', 'tx-class-c']) {
 
 await click(button('State course'), 1200);
 check('the header switches back to the state course', /STATE\s*CA/.test(text()));
+
+// --- the prompt builder knows where an excerpt came from -------------------
+// A quote alone is ambiguous: the same sentence lives in more than one slide,
+// and a fragment of one matches half a dozen. The request has to name the
+// block and the lines, or a model edits the wrong card with a clear
+// conscience.
+await click(button('State course'), 900);
+// The run has wandered through signs and the skeleton by now, so come back to
+// the course editor and its text view before looking for a card.
+await click(find('span, div, button', 'Course'), 1200);
+await click(button('Text'), 900);
+
+const firstBody = dom.window.document.querySelector(
+  '[data-block-id] p[data-line]',
+);
+check(
+  'cards carry line numbers',
+  firstBody != null,
+  text().slice(0, 160),
+);
+const cardEl = firstBody?.closest('[data-block-id]');
+if (firstBody != null && cardEl != null) {
+check(
+  'and a card names the block it is',
+  /-(slide|b|recall|image|challenge)/.test(cardEl?.dataset.blockId ?? ''),
+  cardEl?.dataset.blockId,
+);
+// The compare view puts two different lessons side by side, so it does not
+// claim a card total for either — the block id pins the card there. A single
+// lesson view knows both.
+check(
+  'and its place in the lesson',
+  Number(cardEl?.dataset.cardIndex) > 0 &&
+    (cardEl?.dataset.cardCount == null ||
+      Number(cardEl.dataset.cardCount) > 0),
+  `${cardEl?.dataset.cardIndex}/${cardEl?.dataset.cardCount}`,
+);
+
+// A run of text inside that line, the way an operator drags over it. jsdom's
+// Selection has no addRange, so the browser API is stubbed with exactly what
+// the panel reads off it — the check is about our resolution of a selection,
+// not about jsdom's.
+const textNode = firstBody.firstChild;
+const selected = (textNode.textContent ?? '')
+  .slice(0, Math.min(24, textNode.textContent.length))
+  .trim();
+dom.window.getSelection = () => ({
+  rangeCount: 1,
+  anchorNode: textNode,
+  focusNode: textNode,
+  toString: () => selected,
+  removeAllRanges() {},
+});
+check('a selection can be made in a card', selected.length > 0, selected);
+
+firstBody.dispatchEvent(
+  new dom.window.MouseEvent('contextmenu', {
+    bubbles: true,
+    cancelable: true,
+    clientX: 200,
+    clientY: 200,
+  }),
+);
+await settle(400);
+check('right-clicking a selection offers to collect it', text().includes('Add to prompt'));
+await click(button('Add to prompt'), 700);
+
+// The panel shows the place before anything is copied out.
+check('the prompt builder opens with the excerpt', text().includes('Prompt builder'));
+const expectedLine = Number(firstBody.dataset.line);
+const place =
+  cardEl.dataset.cardCount == null
+    ? `card ${cardEl.dataset.cardIndex}`
+    : `card ${cardEl.dataset.cardIndex} of ${cardEl.dataset.cardCount}`;
+check(
+  'and says which card and line it came from',
+  new RegExp(`${place} · line ${expectedLine}`).test(text()),
+  text().slice(text().indexOf('Prompt builder'), text().indexOf('Prompt builder') + 400),
+);
+
+// And the request itself carries the block id, which is what edit_block takes.
+// copyText falls back to a textarea when there is no clipboard — jsdom has
+// none — so stubbing execCommand is enough to read exactly what would land on
+// the operator's clipboard.
+let promptText = null;
+// copyText prefers navigator.clipboard and falls back to a textarea; both are
+// stubbed so the check reads exactly what would reach the operator.
+dom.window.navigator.clipboard = { writeText: async value => { promptText = value; } };
+dom.window.document.execCommand = () => {
+  const areas = [...dom.window.document.querySelectorAll('textarea')];
+  promptText = areas[areas.length - 1]?.value ?? null;
+  return true;
+};
+await click(button('Copy prompt'), 600);
+check(
+  'the copied request names the block id',
+  promptText != null && promptText.includes(cardEl.dataset.blockId),
+  promptText?.slice(0, 300),
+);
+check(
+  'and quotes the whole line the fragment sits in',
+  promptText != null &&
+    promptText.includes(`${expectedLine}. ${firstBody.textContent.trim()}`),
+);
+}
 
 function summarise() {
   summarised = true;

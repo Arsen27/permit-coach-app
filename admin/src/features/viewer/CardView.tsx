@@ -36,6 +36,11 @@ export const kickerColor = (kicker: CardMeta): string =>
 type Props = {
   card: RenderCard;
   index: number;
+  // What the card belongs to, so an excerpt taken out of it can say where it
+  // came from. The viewer that knows the lesson passes them; a preview that
+  // does not simply leaves them off.
+  lessonId?: string;
+  cardCount?: number;
   slots?: CardSlots;
   badge?: 'added' | 'removed';
   borderColor?: string;
@@ -46,6 +51,8 @@ type Props = {
 const CardView: React.FC<Props> = ({
   card,
   index,
+  lessonId,
+  cardCount,
   slots,
   badge,
   borderColor,
@@ -55,9 +62,22 @@ const CardView: React.FC<Props> = ({
   const color = kickerColor(card.kicker);
   const bodies = slots?.bodies ?? card.bodies;
   const options = slots?.options;
+  // Line 1 is the title, then each body line, then the question and its
+  // answers. `line` walks that order as the card is drawn, so the numbers a
+  // reader could count off the screen are the numbers an excerpt reports.
+  let line = 0;
+  const nextLine = () => (line += 1);
 
   return (
-    <Card $border={borderColor} $compact={compact}>
+    <Card
+      $border={borderColor}
+      $compact={compact}
+      data-block-id={card.refs.blockId ?? card.key}
+      data-card-index={index + 1}
+      {...(cardCount != null && { 'data-card-count': cardCount })}
+      {...(lessonId != null && { 'data-lesson-id': lessonId })}
+      data-kicker={card.kicker.label}
+    >
       <Head>
         <Index>{String(index + 1).padStart(2, '0')}</Index>
         <Kicker $color={color}>{card.kicker.label}</Kicker>
@@ -69,11 +89,15 @@ const CardView: React.FC<Props> = ({
       </Head>
 
       {(slots?.title ?? card.title).toString().length > 0 && (
-        <Title $compact={compact}>{slots?.title ?? card.title}</Title>
+        <Title $compact={compact} data-line={nextLine()}>
+          {slots?.title ?? card.title}
+        </Title>
       )}
 
       {bodies.map((body, bodyIndex) => (
-        <Body key={bodyIndex}>{body}</Body>
+        <Body key={bodyIndex} data-line={nextLine()}>
+          {body}
+        </Body>
       ))}
 
       {card.image != null && (
@@ -106,14 +130,16 @@ const CardView: React.FC<Props> = ({
         </Figure>
       ))}
 
-      {(slots?.ask ?? card.ask) != null && <Ask>{slots?.ask ?? card.ask}</Ask>}
+      {(slots?.ask ?? card.ask) != null && (
+        <Ask data-line={nextLine()}>{slots?.ask ?? card.ask}</Ask>
+      )}
 
       {card.options != null && card.options.length > 0 && (
         <Options>
           {card.options.map((option, optionIndex) => (
             <Option key={option.id} $correct={option.correct}>
               {option.correct ? <Tick /> : <Radio />}
-              <OptionText $correct={option.correct}>
+              <OptionText $correct={option.correct} data-line={nextLine()}>
                 {options?.[optionIndex] ?? option.text}
               </OptionText>
             </Option>

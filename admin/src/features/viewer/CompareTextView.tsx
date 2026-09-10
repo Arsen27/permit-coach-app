@@ -17,6 +17,10 @@ type Props = {
   leftLabel: string;
   rightLabel: string;
   leftAbsentNote?: string | null;
+  // Each pane can be a different lesson, so an excerpt taken from one must not
+  // be able to claim the other's id.
+  leftLessonId?: string;
+  rightLessonId?: string;
 };
 
 const slotsFor = (
@@ -50,6 +54,8 @@ const CompareTextView: React.FC<Props> = ({
   leftLabel,
   rightLabel,
   leftAbsentNote,
+  leftLessonId,
+  rightLessonId,
 }) => (
   <Wrap>
     {leftAbsentNote != null && <Banner>{leftAbsentNote}</Banner>}
@@ -64,6 +70,7 @@ const CompareTextView: React.FC<Props> = ({
                 compact
                 card={row.left}
                 index={index}
+                {...(leftLessonId != null && { lessonId: leftLessonId })}
                 slots={slotsFor(row, 'after', row.left)}
                 artworkChanged={row.artworkChanged}
                 badge={row.added ? 'added' : undefined}
@@ -79,6 +86,7 @@ const CompareTextView: React.FC<Props> = ({
                 compact
                 card={row.right}
                 index={index}
+                {...(rightLessonId != null && { lessonId: rightLessonId })}
                 slots={slotsFor(row, 'before', row.right)}
                 artworkChanged={row.artworkChanged}
                 badge={row.removed ? 'removed' : undefined}

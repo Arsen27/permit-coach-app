@@ -55,7 +55,12 @@ const SingleTextView: React.FC<Props> = ({
                 onPromote={() => onPromote?.(where.bareId)}
               />
             )}
-            <CardView card={card} index={index} />
+            <CardView
+              card={card}
+              index={index}
+              lessonId={lesson.lessonId}
+              cardCount={lesson.cards.length}
+            />
           </div>
         );
       })}

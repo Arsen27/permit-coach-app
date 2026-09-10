@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import type { ExcerptAnchor } from '@admin/model/excerptAnchor';
+
 // The prompt builder: excerpts picked out of lessons with a note each, copied
 // out as one markdown request.
 
@@ -8,6 +10,10 @@ export type PromptChunk = {
   text: string;
   source: string;
   note: string;
+  // The card and lines the excerpt was taken from. A quote alone is ambiguous
+  // — the same sentence lives in more than one slide — so the request names a
+  // place instead of asking a model to search for one.
+  anchor?: ExcerptAnchor | null;
 };
 
 type PromptState = {

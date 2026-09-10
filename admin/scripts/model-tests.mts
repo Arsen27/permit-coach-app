@@ -6,6 +6,8 @@ import { diffWords, runsForSide } from '../src/model/diff.js';
 import type { RenderCard } from '../src/model/renderCard.js';
 import { failureFor } from '../src/store/loadFailure.js';
 import { originOf } from '../src/model/blockOrigin.js';
+import { describeAnchor } from '../src/model/excerptAnchor.js';
+import { buildPromptText } from '../src/model/promptText.js';
 
 // The diff and the pairing decide what an editor believes changed, so they are
 // covered directly rather than only through the UI.
@@ -221,4 +223,80 @@ test('originOf reads a block id against the skeleton and the state overrides', (
   // A block id that already lacks the prefix is read as it stands.
   assert.equal(originOf(origins, 'traffic-signals-slide-01')?.origin, 'shared');
   assert.equal(originOf(null, 'ca-anything'), null);
+});
+
+// --- where an excerpt came from -------------------------------------------
+// A quote alone is ambiguous: the same sentence lives in more than one slide.
+// The request has to name the block and the lines, or a model will edit the
+// wrong card with a clear conscience.
+
+test('the prompt names the block and the lines an excerpt came from', () => {
+  const anchor = {
+    lessonId: 'ca-traffic-signals',
+    blockId: 'ca-traffic-signals-slide-02',
+    cardIndex: 3,
+    cardCount: 14,
+    kicker: 'Core rule',
+    fromLine: 2,
+    toLine: 3,
+    lineTexts: [
+      'Someone may still be in the intersection.',
+      'Let pedestrians, cyclists, and vehicles clear your path.',
+    ],
+  };
+  const text = buildPromptText(
+    [
+      {
+        id: 'c1',
+        text: 'clear your path',
+        source: 'v1.0.1 · STOP, YIELD, or Keep Going?',
+        note: 'Say who yields first.',
+        anchor,
+      },
+    ],
+    '',
+    { courseTitle: 'California', usState: 'CA', versionLabel: 'v1.0.1' },
+  );
+
+  assert.match(text, /Lesson: `ca-traffic-signals`/);
+  assert.match(text, /Block: `ca-traffic-signals-slide-02`/);
+  assert.match(text, /Core rule · card 3 of 14 · lines 2–3/);
+  // The lines are quoted whole and numbered from the card's own count, so the
+  // fragment can be located inside them.
+  assert.match(text, /^2\. Someone may still be in the intersection\.$/m);
+  assert.match(
+    text,
+    /^3\. Let pedestrians, cyclists, and vehicles clear your path\.$/m,
+  );
+  assert.match(text, /> clear your path/);
+  assert.match(text, /Requested change: Say who yields first\./);
+  // And the numbering is explained rather than left to be guessed at.
+  assert.match(text, /Line 1 of a card is its/);
+});
+
+test('an excerpt with no place claims none', () => {
+  const text = buildPromptText(
+    [{ id: 'c1', text: 'a quote', source: 'v1 · lesson', note: '' }],
+    '',
+    { courseTitle: 'California', usState: 'CA', versionLabel: 'v1' },
+  );
+  assert.doesNotMatch(text, /Block:/);
+  assert.doesNotMatch(text, /Line 1 of a card/);
+  assert.match(text, /> a quote/);
+});
+
+test('one line reads as one line, not a range', () => {
+  assert.equal(
+    describeAnchor({
+      lessonId: 'l',
+      blockId: 'b',
+      cardIndex: 1,
+      cardCount: 9,
+      kicker: 'Exam trap',
+      fromLine: 4,
+      toLine: 4,
+      lineTexts: ['x'],
+    }),
+    'Exam trap · card 1 of 9 · line 4',
+  );
 });

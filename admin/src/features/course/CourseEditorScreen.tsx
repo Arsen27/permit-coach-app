@@ -27,6 +27,7 @@ import CompareTextView from '@admin/features/viewer/CompareTextView';
 import SingleTextView from '@admin/features/viewer/SingleTextView';
 import ViewerToolbar from '@admin/features/viewer/ViewerToolbar';
 import { buildCompare } from '@admin/model/compare';
+import { anchorOfSelection, describeAnchor } from '@admin/model/excerptAnchor';
 import { renderCardsFromLessonDoc } from '@admin/model/renderCard';
 import { formatLabel } from '@admin/model/versionDescriptor';
 import {
@@ -419,22 +420,31 @@ const CourseEditorScreen: React.FC = () => {
           height: window.innerHeight,
         }),
         text: selection,
+        // Read now, while the selection still exists.
+        anchor: anchorOfSelection(window.getSelection()),
       });
     },
     [openContextMenu],
   );
 
+  const contextMenu = useUi(state => state.contextMenu);
   const collectExcerpt = useCallback(
     (text: string) => {
+      const anchor = contextMenu?.anchor ?? null;
       addChunk({
         text,
         source: `${version?.label ?? ''} · ${entry?.rendered.title ?? ''}`,
         note: '',
+        anchor,
       });
       setRightDock('prompt');
-      showToast('Added to prompt');
+      showToast(
+        anchor == null
+          ? 'Added to prompt'
+          : `Added to prompt · ${describeAnchor(anchor)}`,
+      );
     },
-    [addChunk, version, entry, setRightDock, showToast],
+    [addChunk, contextMenu, version, entry, setRightDock, showToast],
   );
 
   // Which course the search runs against, in the shape the API expects.
@@ -599,6 +609,10 @@ const CourseEditorScreen: React.FC = () => {
                 rows={compare.rows}
                 leftLabel={version.label}
                 rightLabel={reference.label}
+                leftLessonId={entry.rendered.lessonId}
+                {...(referenceEntry != null && {
+                  rightLessonId: referenceEntry.rendered.lessonId,
+                })}
                 leftAbsentNote={
                   syncOn && referenceEntry == null
                     ? `This lesson does not exist in ${reference.label} — everything in ${version.label} is new.`

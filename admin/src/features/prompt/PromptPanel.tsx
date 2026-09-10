@@ -6,6 +6,7 @@ import { buildPromptText, copyText } from '@admin/model/promptText';
 import type { PromptContext } from '@admin/model/promptText';
 import { usePrompt } from '@admin/store/promptStore';
 import { useUi } from '@admin/store/uiStore';
+import { describeAnchor } from '@admin/model/excerptAnchor';
 import { admin } from '@admin/styles/theme';
 
 // Collected excerpts with a note each, copied out as one request. Every
@@ -64,6 +65,15 @@ const PromptPanel: React.FC<Props> = ({ context }) => {
               <CardHead>
                 <Index>{String(index + 1).padStart(2, '0')}</Index>
                 <Source title={chunk.source}>{chunk.source}</Source>
+                {chunk.anchor != null && (
+                  <Where
+                    title={`${chunk.anchor.blockId} · ${describeAnchor(
+                      chunk.anchor,
+                    )}`}
+                  >
+                    {describeAnchor(chunk.anchor)}
+                  </Where>
+                )}
                 <IconButton title="Remove" onClick={() => remove(chunk.id)}>
                   ✕
                 </IconButton>
@@ -263,4 +273,14 @@ const Clear = styled.button`
   &:hover {
     background: #efeff1;
   }
+`;
+
+// Where the excerpt sits, shown beside its source so the operator can see what
+// the request will claim before it is copied out.
+const Where = styled.span`
+  font: 600 9.5px ${admin.mono};
+  color: ${admin.faint};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

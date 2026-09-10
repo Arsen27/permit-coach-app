@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import type { ExcerptAnchor } from '@admin/model/excerptAnchor';
+
 // Panel geometry, transient chrome and anything else that is about the shell
 // rather than the content. Collapse states and the phone scale survive a
 // reload — they are workstation preferences, not session state.
@@ -26,6 +28,9 @@ export type ContextMenuState = {
   x: number;
   y: number;
   text: string;
+  // Resolved while the selection is still live: once the menu is open the
+  // click has usually collapsed it, and by then there is nothing left to ask.
+  anchor?: ExcerptAnchor | null;
 } | null;
 
 type Persisted = {
