@@ -5,6 +5,16 @@
 // the same way.
 
 export const EMOJI_CONCEPTS = [
+  // Signal arrows and qualified signal colours come first so they win the
+  // overlap against the bare "red light" / "green curb" entries below:
+  // "steady yellow arrow" is one concept, not "yellow" plus "arrow".
+  [/\b(?:flashing |steady |solid )?red arrows?\b/i, '🔴➡️'],
+  [/\b(?:flashing |steady |solid )?yellow arrows?\b/i, '🟡➡️'],
+  [/\b(?:flashing |steady |solid )?green arrows?\b/i, '🟢➡️'],
+  [/\b(?:flashing|steady|solid|circular|round) red\b/i, '🔴'],
+  [/\b(?:flashing|steady|solid|circular|round) yellow\b/i, '🟡'],
+  [/\b(?:flashing|steady|solid|circular|round) green\b/i, '🟢'],
+  [/\b(?:all|four|4)-way stops?\b/i, '🛑'],
   [/\bred curb\b/i, '🔴'],
   [/\byellow curb\b/i, '🟡'],
   [/\bwhite curb\b/i, '⚪'],
