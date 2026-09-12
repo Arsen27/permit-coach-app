@@ -110,3 +110,9 @@ yarn-error.log
 
 # Course packages built for the content server; pushed, not committed.
 /out/
+
+# The unpacked FHWA sign archives (SHS 2024), dropped here to be picked from:
+# 9 GB of vector graphics that are published federal source, not ours. A sign
+# the courses actually use is copied into courses/skeleton/assets/ under its
+# own name and committed there — one file, deliberately.
+/docs/signs/
