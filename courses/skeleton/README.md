@@ -16,10 +16,15 @@ server/skeleton/skeleton.json  the skeleton itself — module list, the checks'
                         server serves, and the only source of truth.
 courses/skeleton/
   assets/*.svg          the pictures themselves — files, not data
-  course.mjs            } the authoring sources the document was converted
-  helpers.mjs           } from. Editing one changes nothing until
-  modules/module-0N.mjs } scripts/convert-skeleton-to-json.mjs is re-run;
-  assets/index.json     } --check says whether the document is current.
+  course.mjs            } the authoring sources the document was first
+  helpers.mjs           } converted from, kept as history. They are NOT the
+  modules/module-0N.mjs } source any more — authoring lives in Postgres and
+  assets/index.json     } the document is written by the server's
+                        } `npm run authoring:export`. Re-running
+                        } convert-skeleton-to-json.mjs would renumber every
+                        } card from its position, which drops cards inserted
+                        } since (slide-04a and friends) and orphans the state
+                        } notes and overrides that name them.
 server/skeleton/states.json    the state packages as data: parameter values,
                         the notes each state anchors, its overrides, and the
                         state module's lessons.

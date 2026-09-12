@@ -72,9 +72,17 @@ const plain = (value, where) => {
 // The identity the builder derives for every card, added here so that the
 // document names its own slots. A state note anchors on one of these
 // ("distraction-and-fatigue-slide-03"), and the concept id is what the app's
-// mastery model counts — both are positional, so they are written down rather
-// than left to be recomputed by whoever reads the document next. The builder
-// checks its own numbering against them on every build.
+// mastery model counts.
+//
+// CAREFUL: this numbering is positional, and the document is no longer made
+// from these sources. Authoring moved into Postgres, and a card inserted there
+// is named from the card before it — slide-04a after slide-04 — precisely so
+// that nothing already in the lesson is renamed. Re-running this converter
+// would number every card from its position again, which drops the inserted
+// cards, renames everything after them, and orphans the state notes and
+// overrides pointing at the old names. Treat it as the historical import it
+// is; `npm run authoring:export` in the server is what writes the document
+// now.
 const pad = n => String(n).padStart(2, '0');
 const withIdentity = (lessonId, cards) => {
   let slide = 0;
