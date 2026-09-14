@@ -11,9 +11,12 @@ export const EMOJI_CONCEPTS = [
   [/\b(?:flashing |steady |solid )?red arrows?\b/i, '🔴➡️'],
   [/\b(?:flashing |steady |solid )?yellow arrows?\b/i, '🟡➡️'],
   [/\b(?:flashing |steady |solid )?green arrows?\b/i, '🟢➡️'],
-  [/\b(?:flashing|steady|solid|circular|round) red\b/i, '🔴'],
-  [/\b(?:flashing|steady|solid|circular|round) yellow\b/i, '🟡'],
-  [/\b(?:flashing|steady|solid|circular|round) green\b/i, '🟢'],
+  // …and a qualified colour is a signal only when the thing it qualifies is
+  // one. "Double solid yellow lines" is paint and "a round yellow sign" is a
+  // sign; both were being marked as though a light had come on.
+  [/\b(?:flashing|steady|solid|circular|round) red\b(?!\s+(?:lines?|curbs?|zones?|paint|stripes?|signs?|plaques?)\b)/i, '🔴'],
+  [/\b(?:flashing|steady|solid|circular|round) yellow\b(?!\s+(?:lines?|curbs?|zones?|paint|stripes?|signs?|plaques?)\b)/i, '🟡'],
+  [/\b(?:flashing|steady|solid|circular|round) green\b(?!\s+(?:lines?|curbs?|zones?|paint|stripes?|signs?|plaques?)\b)/i, '🟢'],
   [/\b(?:all|four|4)-way stops?\b/i, '🛑'],
   [/\bred curb\b/i, '🔴'],
   [/\byellow curb\b/i, '🟡'],
@@ -64,12 +67,46 @@ export const EMOJI_CONCEPTS = [
   [/\bmirrors?\b/i, '🪞'],
   [/\bblind spots?\b/i, '👀'],
   [/\bfreeways?\b/i, '🛣️'],
+  // `traffic` is a car only when it is moving traffic. Hyphenated it is half a
+  // compound — "merging-traffic sign" — and a glyph inside a word breaks the
+  // word; followed by "sign" or "control" it names a thing about traffic
+  // rather than the traffic itself.
   [
-    /\bvehicle traffic\b|\btraffic\b(?! (?:lights?|signals?))|(?<!emergency )(?<!slow-moving )\bvehicles?\b|\bcars?\b(?! seats?)/i,
+    /\bvehicle traffic\b|(?<!-)\btraffic\b(?!\s+(?:lights?|signals?|signs?|control|pattern))|(?<!emergency )(?<!slow-moving )\bvehicles?\b|\bcars?\b(?! seats?)/i,
     '🚗',
   ],
 ];
 export const EMOJI_PATTERN = /\p{Extended_Pictographic}/u;
+
+// A line that forbids something says so before it is read.
+//
+// "Do not", "Never" and "Stay out" are the three ways this course tells a
+// learner not to do a thing, and a prohibition read as advice is the one
+// misreading with a cost attached. The mark goes at the front of the line,
+// where it is seen before the sentence rather than inside it.
+//
+// A line that already opens with an emoji is left alone: some were marked by
+// hand before this rule existed, and two exclamation marks in a row is worse
+// than none.
+const PROHIBITION = /^(?:Do not\b|Never\b|Stay out\b)/;
+const PROHIBITION_MARK = '❗️';
+// The bullet or list marker a line may open with, which sits in front of the
+// words rather than being one of them.
+const LINE_MARKER = /^(\s*(?:[-*•]\s+)?)(.*)$/;
+
+export const markProhibitions = text => {
+  if (text == null || text.length === 0) return text;
+  return text
+    .split('\n')
+    .map(line => {
+      const [, marker, body] = LINE_MARKER.exec(line);
+      if (!PROHIBITION.test(body)) return line;
+      // Already carries one, by hand or by an earlier pass.
+      if (EMOJI_PATTERN.test([...body][0] ?? '')) return line;
+      return `${marker}${PROHIBITION_MARK} ${body}`;
+    })
+    .join('\n');
+};
 
 export const injectEmoji = (text, budget, usedEmoji) => {
   if (budget.count <= 0) return text;
@@ -103,8 +140,11 @@ export const injectEmoji = (text, budget, usedEmoji) => {
 // letter). Overlaps are resolved in vocabulary order — "school bus" wins over
 // "bus", "traffic light" over "traffic" — and a word already carrying its
 // emoji is left alone. Recall rules, questions and titles never get emoji.
-export const injectEmojiEverywhere = text => {
-  if (text == null || text.length === 0) return text;
+export const injectEmojiEverywhere = input => {
+  if (input == null || input.length === 0) return input;
+  // The prohibition mark first, so a concept emoji lands inside the sentence
+  // rather than in front of the warning.
+  const text = markProhibitions(input);
   const taken = [];
   const inserts = [];
   const overlaps = (start, end) =>
