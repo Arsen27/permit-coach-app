@@ -4,7 +4,11 @@ import styled from 'styled-components';
 import { IconButton, PrimaryButton, Spacer } from '@admin/features/shell/ui';
 import { buildPromptText, copyText } from '@admin/model/promptText';
 import type { PromptContext } from '@admin/model/promptText';
-import { usePrompt } from '@admin/store/promptStore';
+import {
+  PROMPT_BOARDS,
+  PROMPT_BOARD_LABEL,
+  usePrompt,
+} from '@admin/store/promptStore';
 import { useUi } from '@admin/store/uiStore';
 import { describeAnchor } from '@admin/model/excerptAnchor';
 import { admin } from '@admin/styles/theme';
@@ -16,12 +20,16 @@ import { admin } from '@admin/styles/theme';
 type Props = { context: PromptContext };
 
 const PromptPanel: React.FC<Props> = ({ context }) => {
-  const chunks = usePrompt(state => state.chunks);
-  const overallNote = usePrompt(state => state.overallNote);
+  const board = usePrompt(state => state.board);
+  const boards = usePrompt(state => state.boards);
+  const setBoard = usePrompt(state => state.setBoard);
   const setNote = usePrompt(state => state.setNote);
   const remove = usePrompt(state => state.remove);
   const setOverallNote = usePrompt(state => state.setOverallNote);
   const clear = usePrompt(state => state.clear);
+
+  const { chunks, overallNote } = boards[board];
+  const label = PROMPT_BOARD_LABEL[board].toLowerCase();
 
   const setRightDock = useUi(state => state.setRightDock);
   const showToast = useUi(state => state.showToast);
@@ -30,11 +38,30 @@ const PromptPanel: React.FC<Props> = ({ context }) => {
     const ok = await copyText(buildPromptText(chunks, overallNote, context));
     showToast(
       ok
-        ? `Prompt copied · ${chunks.length} excerpt${
+        ? `${PROMPT_BOARD_LABEL[board]} prompt copied · ${chunks.length} excerpt${
             chunks.length === 1 ? '' : 's'
           }`
         : 'Copy failed — select the text manually',
     );
+  };
+
+  // What is collected outlives the page now, so emptying a board is the one
+  // action here that can lose work — and it asks first.
+  const clearBoard = () => {
+    const filled = chunks.length > 0 || overallNote.trim().length > 0;
+    if (
+      filled &&
+      !window.confirm(
+        `Clear the ${label} prompt? ${chunks.length} excerpt${
+          chunks.length === 1 ? '' : 's'
+        } and its instructions go, and the ${
+          board === 'text' ? 'images' : 'text'
+        } prompt is left alone.`,
+      )
+    ) {
+      return;
+    }
+    clear();
   };
 
   return (
@@ -42,13 +69,30 @@ const PromptPanel: React.FC<Props> = ({ context }) => {
       <Head>
         <Title>Prompt builder</Title>
         <Spacer />
-        <Count>
-          {chunks.length} excerpt{chunks.length === 1 ? '' : 's'}
-        </Count>
         <IconButton title="Close" onClick={() => setRightDock(null)}>
           ✕
         </IconButton>
       </Head>
+
+      <Tabs role="tablist">
+        {PROMPT_BOARDS.map(name => (
+          <Tab
+            key={name}
+            role="tab"
+            type="button"
+            aria-selected={name === board}
+            $active={name === board}
+            onClick={() => setBoard(name)}
+          >
+            {PROMPT_BOARD_LABEL[name]}
+            {boards[name].chunks.length > 0 && (
+              <TabCount $active={name === board}>
+                {boards[name].chunks.length}
+              </TabCount>
+            )}
+          </Tab>
+        ))}
+      </Tabs>
 
       <Body>
         {chunks.length === 0 && (
@@ -56,6 +100,9 @@ const PromptPanel: React.FC<Props> = ({ context }) => {
             Select any text in a lesson and right-click to add it here. Each
             excerpt keeps its version and lesson reference; add your own
             instruction under it, then copy the whole thing as one prompt.
+            {board === 'images'
+              ? ' This board is for artwork requests; the text board is kept separately.'
+              : ' This board is for wording; the images board is kept separately.'}
           </Empty>
         )}
 
@@ -93,13 +140,17 @@ const PromptPanel: React.FC<Props> = ({ context }) => {
         <Overall
           rows={4}
           value={overallNote}
-          placeholder="e.g. Rewrite for 8th-grade reading level, keep all numeric values"
+          placeholder={
+            board === 'images'
+              ? 'e.g. Redraw at 16:9, keep the sign shapes exactly as the federal library has them'
+              : 'e.g. Rewrite for 8th-grade reading level, keep all numeric values'
+          }
           onChange={event => setOverallNote(event.target.value)}
         />
       </Body>
 
       <Foot>
-        <Clear onClick={clear}>Clear</Clear>
+        <Clear onClick={clearBoard}>Clear</Clear>
         <Spacer />
         <PrimaryButton
           disabled={chunks.length === 0}
@@ -140,9 +191,40 @@ const Title = styled.span`
   color: ${admin.ink};
 `;
 
-const Count = styled.span`
-  font: 600 10px ${admin.mono};
-  color: ${admin.dim2};
+// Two boards, side by side, each carrying how much is waiting in it — so the
+// one not being looked at is never out of mind.
+const Tabs = styled.div`
+  flex: none;
+  display: flex;
+  gap: 4px;
+  padding: 8px 10px;
+  border-bottom: 1px solid ${admin.line2};
+`;
+
+const Tab = styled.button<{ $active: boolean }>`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: 1px solid ${props => (props.$active ? admin.line3 : 'transparent')};
+  border-radius: 8px;
+  background: ${props => (props.$active ? admin.surface : 'transparent')};
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: ${props => (props.$active ? 800 : 600)};
+  color: ${props => (props.$active ? admin.ink : admin.dim)};
+  cursor: pointer;
+
+  &:hover {
+    background: ${props => (props.$active ? admin.surface : '#efeff1')};
+  }
+`;
+
+const TabCount = styled.span<{ $active: boolean }>`
+  font: 600 9.5px ${admin.mono};
+  color: ${props => (props.$active ? admin.dim : admin.faint)};
 `;
 
 const Body = styled.div`
