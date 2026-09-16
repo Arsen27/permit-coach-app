@@ -56,49 +56,65 @@ const CompareTextView: React.FC<Props> = ({
   leftAbsentNote,
   leftLessonId,
   rightLessonId,
-}) => (
-  <Wrap>
-    {leftAbsentNote != null && <Banner>{leftAbsentNote}</Banner>}
-    <Grid>
-      {rows.map((row, index) => (
-        <React.Fragment key={row.key}>
-          <Cell>
-            {row.left == null ? (
-              <Missing>Not in {leftLabel}</Missing>
-            ) : (
-              <CardView
-                compact
-                card={row.left}
-                index={index}
-                {...(leftLessonId != null && { lessonId: leftLessonId })}
-                slots={slotsFor(row, 'after', row.left)}
-                artworkChanged={row.artworkChanged}
-                badge={row.added ? 'added' : undefined}
-                borderColor={row.added ? admin.diff.addedBorder : undefined}
-              />
-            )}
-          </Cell>
-          <Cell>
-            {row.right == null ? (
-              <Missing>Not in {rightLabel}</Missing>
-            ) : (
-              <CardView
-                compact
-                card={row.right}
-                index={index}
-                {...(rightLessonId != null && { lessonId: rightLessonId })}
-                slots={slotsFor(row, 'before', row.right)}
-                artworkChanged={row.artworkChanged}
-                badge={row.removed ? 'removed' : undefined}
-                borderColor={row.removed ? admin.diff.removedBorder : undefined}
-              />
-            )}
-          </Cell>
-        </React.Fragment>
-      ))}
-    </Grid>
-  </Wrap>
-);
+}) => {
+  // Each side counts its own cards. Rows no longer line up one-to-one — a card
+  // that is only in one version stands opposite a gap — so the row's position
+  // is nobody's card number, and the number a card shows here has to be the one
+  // it shows everywhere else.
+  let leftNumber = -1;
+  let rightNumber = -1;
+  const numbered = rows.map(row => ({
+    row,
+    left: row.left == null ? -1 : (leftNumber += 1),
+    right: row.right == null ? -1 : (rightNumber += 1),
+  }));
+
+  return (
+    <Wrap>
+      {leftAbsentNote != null && <Banner>{leftAbsentNote}</Banner>}
+      <Grid>
+        {numbered.map(({ row, left, right }) => (
+          <React.Fragment key={row.key}>
+            <Cell>
+              {row.left == null ? (
+                <Missing>Not in {leftLabel}</Missing>
+              ) : (
+                <CardView
+                  compact
+                  card={row.left}
+                  index={left}
+                  {...(leftLessonId != null && { lessonId: leftLessonId })}
+                  slots={slotsFor(row, 'after', row.left)}
+                  artworkChanged={row.artworkChanged}
+                  badge={row.added ? 'added' : undefined}
+                  borderColor={row.added ? admin.diff.addedBorder : undefined}
+                />
+              )}
+            </Cell>
+            <Cell>
+              {row.right == null ? (
+                <Missing>Not in {rightLabel}</Missing>
+              ) : (
+                <CardView
+                  compact
+                  card={row.right}
+                  index={right}
+                  {...(rightLessonId != null && { lessonId: rightLessonId })}
+                  slots={slotsFor(row, 'before', row.right)}
+                  artworkChanged={row.artworkChanged}
+                  badge={row.removed ? 'removed' : undefined}
+                  borderColor={
+                    row.removed ? admin.diff.removedBorder : undefined
+                  }
+                />
+              )}
+            </Cell>
+          </React.Fragment>
+        ))}
+      </Grid>
+    </Wrap>
+  );
+};
 
 export default CompareTextView;
 

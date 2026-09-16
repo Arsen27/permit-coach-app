@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import { buildCompare } from '../src/model/compare.js';
+import { cardWordCount } from '../src/model/renderCard.js';
 import { diffWords, runsForSide } from '../src/model/diff.js';
 import type { RenderCard } from '../src/model/renderCard.js';
 import { failureFor } from '../src/store/loadFailure.js';
@@ -82,6 +83,123 @@ test('compare pairs cards by position and totals the word changes', () => {
     result.rows[1].diff?.title.every(run => run.kind === 0),
     true,
   );
+});
+
+test('a deleted card leaves a gap, and the rest stay lined up', () => {
+  // The case that prompted this: one slide removed from the middle. Paired by
+  // position, every card below it would sit opposite its neighbour and read as
+  // rewritten; paired by id, only the gap is reported.
+  const body = (n: number) => [`The body of card ${n}, which did not change.`];
+  const reference = [
+    card({ key: 'slide-01', title: 'One', bodies: body(1) }),
+    card({ key: 'slide-02', title: 'Two', bodies: body(2) }),
+    card({ key: 'slide-03', title: 'Three', bodies: body(3) }),
+    card({ key: 'slide-04', title: 'Four', bodies: body(4) }),
+  ];
+  const selected = [
+    card({ key: 'slide-01', title: 'One', bodies: body(1) }),
+    card({ key: 'slide-03', title: 'Three', bodies: body(3) }),
+    card({ key: 'slide-04', title: 'Four', bodies: body(4) }),
+  ];
+
+  const result = buildCompare(selected, reference, true);
+
+  // Four rows: the three that survive, and the gap where the second was.
+  assert.equal(result.rows.length, 4);
+  assert.deepEqual(
+    result.rows.map(row => [row.left?.key, row.right?.key]),
+    [
+      ['slide-01', 'slide-01'],
+      [undefined, 'slide-02'],
+      ['slide-03', 'slide-03'],
+      ['slide-04', 'slide-04'],
+    ],
+  );
+
+  // The gap is the only thing reported, and it is reported as a removal.
+  assert.equal(result.rows[1].removed, true);
+  assert.equal(result.rows[1].left, undefined);
+  assert.equal(result.stats.insertions, 0);
+  assert.equal(
+    result.stats.deletions,
+    cardWordCount(reference[1]),
+    'only the deleted card counts as deleted',
+  );
+
+  // And nothing below the gap reads as changed.
+  for (const row of [result.rows[2], result.rows[3]]) {
+    assert.equal(row.added, false);
+    assert.equal(row.removed, false);
+    assert.equal(
+      row.diff?.title.every(run => run.kind === 0),
+      true,
+      `${row.key} title should be untouched`,
+    );
+    assert.equal(
+      row.diff?.bodies.every(runs => runs.every(run => run.kind === 0)),
+      true,
+      `${row.key} body should be untouched`,
+    );
+  }
+});
+
+test('a card inserted in the middle is the only thing added', () => {
+  const reference = [
+    card({ key: 'slide-01', title: 'One' }),
+    card({ key: 'slide-02', title: 'Two' }),
+  ];
+  const selected = [
+    card({ key: 'slide-01', title: 'One' }),
+    // An inserted card takes a letter, so the card after it keeps its id.
+    card({ key: 'slide-01a', title: 'Brand new card' }),
+    card({ key: 'slide-02', title: 'Two' }),
+  ];
+
+  const result = buildCompare(selected, reference, true);
+  assert.deepEqual(
+    result.rows.map(row => [row.left?.key, row.right?.key]),
+    [
+      ['slide-01', 'slide-01'],
+      ['slide-01a', undefined],
+      ['slide-02', 'slide-02'],
+    ],
+  );
+  assert.equal(result.rows[1].added, true);
+  assert.equal(result.stats.deletions, 0);
+  // The row keys stay unique even though one side is empty.
+  assert.equal(new Set(result.rows.map(row => row.key)).size, 3);
+});
+
+test('a card that moved is one removal and one addition, not a rewrite', () => {
+  const reference = [
+    card({ key: 'a', title: 'Alpha' }),
+    card({ key: 'b', title: 'Bravo' }),
+    card({ key: 'c', title: 'Charlie' }),
+  ];
+  const selected = [
+    card({ key: 'b', title: 'Bravo' }),
+    card({ key: 'c', title: 'Charlie' }),
+    card({ key: 'a', title: 'Alpha' }),
+  ];
+
+  const result = buildCompare(selected, reference, true);
+  const paired = result.rows.filter(
+    row => row.left != null && row.right != null,
+  );
+  // Whichever way the alignment resolves it, the two cards that did not move
+  // are paired with themselves and nothing is reported as reworded.
+  assert.deepEqual(
+    paired.map(row => row.left?.key),
+    ['b', 'c'],
+  );
+  assert.equal(result.rows.filter(row => row.added).length, 1);
+  assert.equal(result.rows.filter(row => row.removed).length, 1);
+  for (const row of paired) {
+    assert.equal(
+      row.diff?.title.every(run => run.kind === 0),
+      true,
+    );
+  }
 });
 
 test('cards missing on one side are reported as added or removed', () => {
