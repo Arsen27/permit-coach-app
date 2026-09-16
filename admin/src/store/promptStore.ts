@@ -5,25 +5,32 @@ import type { ExcerptAnchor } from '@admin/model/excerptAnchor';
 // The prompt builder: excerpts picked out of lessons with a note each, copied
 // out as one markdown request.
 //
-// Two boards, not one. A request about wording and a request about artwork are
-// different jobs with different instructions, and collecting them into one list
-// meant finishing the first before starting the second — or copying a prompt
-// that asked for both at once. They behave identically; they simply do not see
-// each other.
+// Three boards, not one. A request about wording, one about artwork and one
+// about schemas are different jobs with different instructions, and collecting
+// them into one list meant finishing the first before starting the second — or
+// copying a prompt that asked for all of them at once. They behave identically;
+// they simply do not see each other.
+//
+// Everything below is derived from PROMPT_BOARDS, so a fourth board is that
+// list and a label: nothing here counts to two, and nothing asks "the other
+// one" as though there were only one of them.
 //
 // What is collected survives the page, the browser being closed, and a redeploy
 // of the panel, because it is written to localStorage on every change. The work
 // of picking twenty excerpts out of a course is worth more than the page that
 // was holding them, and it used to live only until a refresh.
 
-export type PromptBoard = 'text' | 'images';
-
-export const PROMPT_BOARDS: readonly PromptBoard[] = ['text', 'images'];
-
-export const PROMPT_BOARD_LABEL: Record<PromptBoard, string> = {
+export const PROMPT_BOARD_LABEL = {
   text: 'Text',
   images: 'Images',
-};
+  schemas: 'Schemas',
+} as const;
+
+export type PromptBoard = keyof typeof PROMPT_BOARD_LABEL;
+
+export const PROMPT_BOARDS = Object.keys(
+  PROMPT_BOARD_LABEL,
+) as readonly PromptBoard[];
 
 export type PromptChunk = {
   id: string;
@@ -62,10 +69,13 @@ const KEY = 'permitcoach.prompt';
 // reading rather than guessing at it.
 const SHAPE = 1;
 
-const emptyBoards = (): Boards => ({
-  text: { chunks: [], overallNote: '' },
-  images: { chunks: [], overallNote: '' },
-});
+const emptyBoards = (): Boards =>
+  Object.fromEntries(
+    PROMPT_BOARDS.map(board => [
+      board,
+      { chunks: [], overallNote: '' } satisfies PromptBoardState,
+    ]),
+  ) as unknown as Boards;
 
 const isBoard = (value: unknown): value is PromptBoard =>
   typeof value === 'string' && (PROMPT_BOARDS as string[]).includes(value);
@@ -105,7 +115,7 @@ const boardOf = (value: unknown): PromptBoardState => {
 type Stored = { board: PromptBoard; boards: Boards };
 
 const load = (): Stored => {
-  const fallback: Stored = { board: 'text', boards: emptyBoards() };
+  const fallback: Stored = { board: PROMPT_BOARDS[0], boards: emptyBoards() };
   try {
     const stored = localStorage.getItem(KEY);
     if (stored == null) {
@@ -114,11 +124,10 @@ const load = (): Stored => {
     const raw = JSON.parse(stored) as Record<string, unknown>;
     const boards = (raw.boards ?? {}) as Record<string, unknown>;
     return {
-      board: isBoard(raw.board) ? raw.board : 'text',
-      boards: {
-        text: boardOf(boards.text),
-        images: boardOf(boards.images),
-      },
+      board: isBoard(raw.board) ? raw.board : PROMPT_BOARDS[0],
+      boards: Object.fromEntries(
+        PROMPT_BOARDS.map(board => [board, boardOf(boards[board])]),
+      ) as unknown as Boards,
     };
   } catch {
     return fallback;

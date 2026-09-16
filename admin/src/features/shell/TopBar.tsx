@@ -32,10 +32,13 @@ const TopBar: React.FC = () => {
   const setTab = useUi(state => state.setTab);
   const rightDock = useUi(state => state.rightDock);
   const toggleRightDock = useUi(state => state.toggleRightDock);
-  // Both boards, because work waiting on the one that is not open is still
-  // work waiting.
-  const chunkCount = usePrompt(
-    state => state.boards.text.chunks.length + state.boards.images.chunks.length,
+  // Every board, because work waiting on one that is not open is still work
+  // waiting — and counting them by name is how a new board goes uncounted.
+  const chunkCount = usePrompt(state =>
+    Object.values(state.boards).reduce(
+      (total, board) => total + board.chunks.length,
+      0,
+    ),
   );
   const session = useAuth(state => state.session);
   const authMode = useAuth(state => state.config?.mode ?? 'open');

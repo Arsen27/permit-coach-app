@@ -8,6 +8,7 @@ import {
   PROMPT_BOARDS,
   PROMPT_BOARD_LABEL,
   usePrompt,
+  type PromptBoard,
 } from '@admin/store/promptStore';
 import { useUi } from '@admin/store/uiStore';
 import { describeAnchor } from '@admin/model/excerptAnchor';
@@ -18,6 +19,22 @@ import { admin } from '@admin/styles/theme';
 // it is looking at.
 
 type Props = { context: PromptContext };
+
+// What each board collects, in the two places the panel says it out loud. A
+// new board adds a line to each rather than another branch in the markup.
+const BOARD_IS_FOR: Record<PromptBoard, string> = {
+  text: 'wording',
+  images: 'artwork requests',
+  schemas: 'schemas and diagrams',
+};
+
+const BOARD_PLACEHOLDER: Record<PromptBoard, string> = {
+  text: 'e.g. Rewrite for 8th-grade reading level, keep all numeric values',
+  images:
+    'e.g. Redraw at 16:9, keep the sign shapes exactly as the federal library has them',
+  schemas:
+    'e.g. One diagram per rule, label every lane, no text the card already says',
+};
 
 const PromptPanel: React.FC<Props> = ({ context }) => {
   const board = usePrompt(state => state.board);
@@ -46,17 +63,19 @@ const PromptPanel: React.FC<Props> = ({ context }) => {
   };
 
   // What is collected outlives the page now, so emptying a board is the one
-  // action here that can lose work — and it asks first.
+  // action here that can lose work — and it asks first, naming what goes and
+  // what stays.
   const clearBoard = () => {
     const filled = chunks.length > 0 || overallNote.trim().length > 0;
+    const others = PROMPT_BOARDS.filter(name => name !== board)
+      .map(name => PROMPT_BOARD_LABEL[name].toLowerCase())
+      .join(' and ');
     if (
       filled &&
       !window.confirm(
         `Clear the ${label} prompt? ${chunks.length} excerpt${
           chunks.length === 1 ? '' : 's'
-        } and its instructions go, and the ${
-          board === 'text' ? 'images' : 'text'
-        } prompt is left alone.`,
+        } and its instructions go, and the ${others} prompts are left alone.`,
       )
     ) {
       return;
@@ -100,9 +119,7 @@ const PromptPanel: React.FC<Props> = ({ context }) => {
             Select any text in a lesson and right-click to add it here. Each
             excerpt keeps its version and lesson reference; add your own
             instruction under it, then copy the whole thing as one prompt.
-            {board === 'images'
-              ? ' This board is for artwork requests; the text board is kept separately.'
-              : ' This board is for wording; the images board is kept separately.'}
+            {` This board is for ${BOARD_IS_FOR[board]}; the other boards are kept separately.`}
           </Empty>
         )}
 
@@ -140,11 +157,7 @@ const PromptPanel: React.FC<Props> = ({ context }) => {
         <Overall
           rows={4}
           value={overallNote}
-          placeholder={
-            board === 'images'
-              ? 'e.g. Redraw at 16:9, keep the sign shapes exactly as the federal library has them'
-              : 'e.g. Rewrite for 8th-grade reading level, keep all numeric values'
-          }
+          placeholder={BOARD_PLACEHOLDER[board]}
           onChange={event => setOverallNote(event.target.value)}
         />
       </Body>
