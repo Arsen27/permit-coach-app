@@ -42,8 +42,12 @@ export const EMOJI_CONCEPTS = [
   [/\bschool (?:zones?|areas?|crossings?)\b/i, '🏫'],
   [/\bstop signs?\b/i, '🛑'],
   [/\btraffic (?:lights?|signals?)\b/i, '🚦'],
-  [/\bT[- ]intersections?\b/, '𝗧'],
-  [/\bintersections?\b/i, '✛'],
+  // A T-intersection is left unmarked. The only glyph that ever looked like
+  // one was a bold letter T, which read as a typo standing in front of the
+  // word it repeated: "A 𝗧 T-intersection". The lookbehind keeps ✛ off it as
+  // well — without it the entry would match the "intersection" half and put the
+  // mark inside the word.
+  [/(?<!\bT[- ])\bintersections?\b/i, '✛'],
   [/\broundabouts?\b/i, '🔄'],
   [/\bU-turns?\b/, '↩️'],
   [/\bcrash(?:es)?\b|\bcollisions?\b/i, '💥'],
