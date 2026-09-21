@@ -96,6 +96,18 @@ const LessonsColumn: React.FC<Props> = ({ version, onEditModuleTest }) => {
     return { modules: outline?.modules.length ?? 0, lessons };
   }, [outline]);
 
+  // The sidebar numbers lessons across the whole course, not within each
+  // module: module 2 picks up where module 1 left off.
+  const lessonOffsets = useMemo(() => {
+    const offsets: number[] = [];
+    let running = 0;
+    for (const module of outline?.modules ?? []) {
+      offsets.push(running);
+      running += module.lessons.length;
+    }
+    return offsets;
+  }, [outline]);
+
   const isDraft = version?.kind === 'draft';
 
   const mutate = async (op: StructureOp) => {
@@ -265,7 +277,7 @@ const LessonsColumn: React.FC<Props> = ({ version, onEditModuleTest }) => {
               <LessonRow
                 key={lesson.lessonId}
                 lesson={lesson}
-                index={lessonIndex}
+                index={(lessonOffsets[moduleIndex] ?? 0) + lessonIndex}
                 selected={lesson.lessonId === lessonId}
                 isReference={
                   compareOn &&
