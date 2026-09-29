@@ -128,6 +128,74 @@ check(
 check('checkpoint card rendered', text().includes('Checkpoint'));
 check('read-only chrome for a release', text().includes('Read-only'));
 
+// --- archive download ---------------------------------------------------------
+// The selected version's row offers the whole version as a zip of HTML pages.
+// jsdom cannot save a file, so the blob handed to the download link is kept
+// and its directory read back.
+{
+  let archive = null;
+  let archiveName = '';
+  dom.window.URL.createObjectURL = blob => {
+    archive = blob;
+    return 'blob:archive';
+  };
+  dom.window.URL.revokeObjectURL = () => {};
+  const clickAnchor = dom.window.HTMLAnchorElement.prototype.click;
+  dom.window.HTMLAnchorElement.prototype.click = function () {
+    archiveName = this.download;
+  };
+  const downloadButton = dom.window.document.querySelector(
+    '[data-download-archive]',
+  );
+  check('the selected version offers an archive', downloadButton != null);
+  if (downloadButton != null) {
+    downloadButton.dispatchEvent(
+      new dom.window.MouseEvent('click', { bubbles: true }),
+    );
+    for (let tries = 0; tries < 60 && archive == null; tries += 1) {
+      await settle(250);
+    }
+  }
+  dom.window.HTMLAnchorElement.prototype.click = clickAnchor;
+  const names = [];
+  if (archive != null) {
+    const bytes = new Uint8Array(await archive.arrayBuffer());
+    const view = new DataView(bytes.buffer);
+    const end = bytes.length - 22;
+    let cursor = view.getUint32(end + 16, true);
+    for (let index = 0; index < view.getUint16(end + 10, true); index += 1) {
+      const length = view.getUint16(cursor + 28, true);
+      names.push(
+        new TextDecoder().decode(
+          bytes.slice(cursor + 46, cursor + 46 + length),
+        ),
+      );
+      cursor += 46 + length;
+    }
+  }
+  check(
+    'the archive is named after the version',
+    archiveName === 'ca-class-c v1.0.0.zip',
+    archiveName,
+  );
+  check(
+    'the archive holds a contents page, lessons and module tests by module',
+    names.includes('ca-class-c v1.0.0/index.html') &&
+      names.some(name =>
+        /^ca-class-c v1\.0\.0\/01 [^/]+\/01 [^/]+\.html$/.test(name),
+      ) &&
+      names.some(name => name.endsWith('/Module test.html')),
+    names.slice(0, 5).join(' | '),
+  );
+  check(
+    'the archive carries the pictures inside each module',
+    names.some(name =>
+      /^ca-class-c v1\.0\.0\/\d+ [^/]+\/images\/.+\.(svg|png|jpg)$/.test(name),
+    ),
+  );
+  check('the download reports its file', text().includes('Downloaded'));
+}
+
 // Click a different lesson and confirm the viewer follows.
 const button = label =>
   [...dom.window.document.querySelectorAll('button')].find(node =>

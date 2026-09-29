@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { adminApi } from '@admin/api/adminApi';
 import type { ChannelMove } from '@admin/api/types';
+import { downloadCourseArchive } from '@admin/features/versions/downloadCourseArchive';
 import type { VersionDescriptor } from '@admin/model/versionDescriptor';
 import {
   CHANNEL_CHIPS,
@@ -38,6 +39,9 @@ type RowProps = {
   onClick: () => void;
   // Offered on a selected draft: the only kind of version that can go.
   onDelete?: () => void;
+  // Offered on a selected version of ours: the whole version as HTML pages
+  // and pictures in one zip. Null while one is being put together.
+  onDownload?: (() => void) | null;
 };
 
 const VersionRow: React.FC<RowProps> = ({
@@ -46,6 +50,7 @@ const VersionRow: React.FC<RowProps> = ({
   isReference,
   onClick,
   onDelete,
+  onDownload,
 }) => {
   const status = admin.status[statusOf(version)];
 
@@ -79,6 +84,20 @@ const VersionRow: React.FC<RowProps> = ({
         <Chip $color={status.col} $bg={status.bg}>
           {status.chip}
         </Chip>
+        {onDownload !== undefined && (
+          <IconButton
+            title="Download archive: every lesson and test as HTML, with pictures"
+            aria-label="Download archive"
+            data-download-archive
+            disabled={onDownload == null}
+            onClick={event => {
+              event.stopPropagation();
+              onDownload?.();
+            }}
+          >
+            {onDownload == null ? '…' : '↓'}
+          </IconButton>
+        )}
         {onDelete != null && (
           <IconButton
             title="Delete draft"
@@ -114,6 +133,7 @@ const VersionsSidebar: React.FC = () => {
   const reloadVersions = useWorkspace(state => state.reloadVersions);
   const invalidate = useDocs(state => state.invalidate);
   const showToast = useUi(state => state.showToast);
+  const [archiving, setArchiving] = useState(false);
 
   // Every move a channel ever made, newest first. Loaded when opened, and
   // again whenever the pointers change, so a publish shows up at once.
@@ -167,6 +187,19 @@ const VersionsSidebar: React.FC = () => {
     }
   };
 
+  // The version's lessons, tests and pictures as a zip of HTML pages.
+  const downloadArchive = async (version: VersionDescriptor) => {
+    setArchiving(true);
+    try {
+      const name = await downloadCourseArchive(version, showToast);
+      showToast(`Downloaded ${name}`);
+    } catch (error) {
+      showToast(`Archive failed: ${(error as Error).message}`);
+    } finally {
+      setArchiving(false);
+    }
+  };
+
   if (!open) {
     return (
       <CollapsedRail title="Show versions" onClick={toggle}>
@@ -196,6 +229,13 @@ const VersionsSidebar: React.FC = () => {
             version.kind === 'draft' && version.key === selectedKey
               ? () => void deleteDraft(version)
               : undefined
+          }
+          onDownload={
+            version.key !== selectedKey
+              ? undefined
+              : archiving
+              ? null
+              : () => void downloadArchive(version)
           }
         />
       ))}

@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "smoke": "vite build --config vite.smoke.config.ts && node scripts/renderer-smoke.mjs",
     "ui-check": "bash scripts/ui-check.sh",
-    "test": "tsx --test scripts/model-tests.mts scripts/slide-tests.mts scripts/prompt-tests.mts"
+    "test": "tsx --test scripts/model-tests.mts scripts/slide-tests.mts scripts/prompt-tests.mts scripts/archive-tests.mts"
   },
   "dependencies": {
     "react": "19.2.3",
