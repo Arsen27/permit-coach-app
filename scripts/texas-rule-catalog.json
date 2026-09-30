@@ -9,7 +9,7 @@
   "status": "ready_for_review",
   "versionBindingStatus": "bound",
   "courseGenerationStatus": "generated_from_catalog_rules",
-  "ruleCount": 133,
+  "ruleCount": 135,
   "allowedStatuses": [
     "verified",
     "needs_review"
@@ -235,7 +235,7 @@
         {
           "citation": "Texas MUTCD 2025, Section 4A.03",
           "officialUrl": "https://ftp.txdot.gov/pub/txdot-info/trf/tmutcd/2025/2025_tmutcd.pdf",
-          "checkedAt": "2026-09-05",
+          "checkedAt": "2026-09-30",
           "effectiveFrom": "2026-01-18",
           "effectiveTo": null,
           "rightsStatus": "official_traffic_control_standard_independent_explanation_no_logos",
@@ -243,11 +243,10 @@
           "localSha256": "6f74a89c8f2c9f41a5785c45ab2b9d00a308d5bfdac93a13f130318b9b18be2a",
           "localSizeBytes": 45509287,
           "retrievedAt": "2026-08-10",
-          "snapshotVerifiedAt": "2026-09-05"
+          "snapshotVerifiedAt": "2026-09-30"
         }
       ],
-      "status": "needs_review",
-      "reviewNote": "Meaning taken from Texas MUTCD 2025 §4A.03 C.2, which Texas adopts by rule; Transportation Code §544.007 speaks only of a \"steady red signal\". Confirm the Texas Driver Handbook (DL-7, January 2026) teaches the same red-arrow allowance before production.",
+      "status": "verified",
       "addedForVersion": "TX-2026.09.05-r01"
     },
     {
@@ -516,6 +515,35 @@
           "localSha256": "0015cff7e777079c2ee4efb73d9879350ee979d2fe970b93e5c064f5ae7e18da",
           "localSizeBytes": 308586,
           "snapshotVerifiedAt": "2026-09-05"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "TX-2026.09.05-r01"
+    },
+    {
+      "ruleId": "TX_TN_545_154_FRONTAGE_ROAD_YIELD",
+      "conceptId": "frontage_road_yield",
+      "jurisdiction": "TX",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver on the access or feeder road of a limited-access or controlled-access highway — the frontage road — must yield to a vehicle entering or about to enter the frontage road from the highway, and to a vehicle leaving or about to leave the frontage road to enter the highway.",
+      "valueType": "none",
+      "values": {},
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "Texas Transportation Code § 545.154",
+          "officialUrl": "https://statutes.capitol.texas.gov/Docs/TN/htm/TN.545.htm#545.154",
+          "checkedAt": "2026-09-30",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/Texas/TN_CH545_official_current_2026-08-10.html",
+          "retrievedAt": "2026-08-10",
+          "localSha256": "0015cff7e777079c2ee4efb73d9879350ee979d2fe970b93e5c064f5ae7e18da",
+          "localSizeBytes": 308586,
+          "snapshotVerifiedAt": "2026-09-30"
         }
       ],
       "status": "verified",
@@ -930,29 +958,33 @@
       "jurisdiction": "TX",
       "ruleType": "handbook-guidance",
       "legalClaim": false,
-      "authoringRule": "A time-based cushion is the practical way to keep the assured clear distance the law requires: count at least 2 seconds behind the vehicle ahead in good conditions and stretch it to 3 or 4 seconds when the road is wet, visibility is poor, or you are behind a large vehicle. The interval is guidance, not a statutory number.",
+      "authoringRule": "A time-based cushion is the practical way to keep the assured clear distance the law requires. In good road conditions the handbook sets the minimum at 2 seconds behind the vehicle ahead at 30 mph or less and at 4 seconds above 30 mph, and it calls a 4-second interval the best practice for a beginning or less experienced driver. Poor road conditions call for more time than that. The interval is guidance, not a statutory number.",
       "valueType": "numeric_time",
       "values": {
-        "minimumSecondsGoodConditions": 2,
-        "seconds": 3,
+        "speedThresholdMph": 30,
+        "minimumSecondsAtOrBelowThreshold": 2,
+        "minimumSecondsAboveThreshold": 4,
+        "beginnerSeconds": 4,
         "unit": "seconds"
       },
-      "conditions": [],
+      "conditions": [
+        "good road conditions",
+        "more time in poor road conditions"
+      ],
       "exceptions": [],
       "sources": [
         {
-          "citation": "Texas Driver Handbook (DL-7), revised January 2026 — following distance",
+          "citation": "Texas Driver Handbook (DL-7), revised January 2026 — Chapter 8, Speed and Speed Limits: following distance",
           "officialUrl": "https://www.dps.texas.gov/internetforms/Forms/DL-7.pdf",
-          "checkedAt": "2026-09-05",
+          "checkedAt": "2026-09-30",
           "effectiveFrom": null,
           "effectiveTo": null,
           "rightsStatus": "official_guidance_paraphrase_only_no_brand_assets",
-          "localFile": null,
-          "retrievedAt": null,
-          "localSha256": null,
-          "localSizeBytes": null,
-          "snapshotVerifiedAt": null,
-          "note": "Handbook PDF not yet in the dmv-materials library; verify when state-driver-manuals/Texas/DL-7.pdf lands."
+          "localFile": "state-dmv-guidance/Texas/Texas_Driver_Handbook_DL-7_checked_2026-09-30.pdf",
+          "retrievedAt": "2026-09-30",
+          "localSha256": "5239ff7c4ec7c15e643425fd3a0d4aaabafb358c58144c7a14218dfbe21e8a6d",
+          "localSizeBytes": 28912252,
+          "snapshotVerifiedAt": "2026-09-30"
         },
         {
           "citation": "Texas Transportation Code § 545.062",
@@ -968,8 +1000,7 @@
           "snapshotVerifiedAt": "2026-09-05"
         }
       ],
-      "status": "needs_review",
-      "reviewNote": "Confirm the exact seconds the January 2026 DL-7 handbook recommends once the PDF is in the library.",
+      "status": "verified",
       "addedForVersion": "TX-2026.09.05-r01"
     },
     {
@@ -1862,6 +1893,39 @@
       "addedForVersion": "TX-2026.09.05-r01"
     },
     {
+      "ruleId": "TX_TN_545_302_NO_PARKING_NEAR_RAILROAD_CROSSING",
+      "conceptId": "no_parking_near_railroad_crossing",
+      "jurisdiction": "TX",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Except temporarily to load or unload merchandise or passengers, a driver may not park a vehicle, occupied or not, within 50 feet of the nearest rail of a railroad crossing.",
+      "valueType": "numeric_distance",
+      "values": {
+        "nearestRailFeet": 50
+      },
+      "conditions": [],
+      "exceptions": [
+        "temporarily loading or unloading merchandise or passengers"
+      ],
+      "sources": [
+        {
+          "citation": "Texas Transportation Code § 545.302(c)",
+          "officialUrl": "https://statutes.capitol.texas.gov/Docs/TN/htm/TN.545.htm#545.302",
+          "checkedAt": "2026-09-30",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/Texas/TN_CH545_official_current_2026-08-10.html",
+          "retrievedAt": "2026-08-10",
+          "localSha256": "0015cff7e777079c2ee4efb73d9879350ee979d2fe970b93e5c064f5ae7e18da",
+          "localSizeBytes": 308586,
+          "snapshotVerifiedAt": "2026-09-30"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "TX-2026.09.05-r01"
+    },
+    {
       "ruleId": "TX_TN_545_151_UNCONTROLLED_INTERSECTION_RIGHT",
       "conceptId": "uncontrolled_intersection_right",
       "jurisdiction": "TX",
@@ -2354,7 +2418,7 @@
           "localSha256": null,
           "localSizeBytes": null,
           "snapshotVerifiedAt": null,
-          "note": "Handbook PDF not yet in the dmv-materials library; verify when state-driver-manuals/Texas/DL-7.pdf lands."
+          "note": "Not yet checked against the DL-7 PDF in the dmv-materials library (state-dmv-guidance/Texas/Texas_Driver_Handbook_DL-7_checked_2026-09-30.pdf)."
         },
         {
           "citation": "Texas Transportation Code § 545.404(a)",
@@ -2520,7 +2584,7 @@
           "localSha256": null,
           "localSizeBytes": null,
           "snapshotVerifiedAt": null,
-          "note": "Handbook PDF not yet in the dmv-materials library; verify when state-driver-manuals/Texas/DL-7.pdf lands."
+          "note": "Not yet checked against the DL-7 PDF in the dmv-materials library (state-dmv-guidance/Texas/Texas_Driver_Handbook_DL-7_checked_2026-09-30.pdf)."
         }
       ],
       "status": "needs_review",
@@ -3167,7 +3231,7 @@
           "localSha256": null,
           "localSizeBytes": null,
           "snapshotVerifiedAt": null,
-          "note": "Handbook PDF not yet in the dmv-materials library; verify when state-driver-manuals/Texas/DL-7.pdf lands."
+          "note": "Not yet checked against the DL-7 PDF in the dmv-materials library (state-dmv-guidance/Texas/Texas_Driver_Handbook_DL-7_checked_2026-09-30.pdf)."
         }
       ],
       "status": "needs_review",
@@ -4475,7 +4539,7 @@
           "localSha256": null,
           "localSizeBytes": null,
           "snapshotVerifiedAt": null,
-          "note": "Handbook PDF not yet in the dmv-materials library; verify when state-driver-manuals/Texas/DL-7.pdf lands."
+          "note": "Not yet checked against the DL-7 PDF in the dmv-materials library (state-dmv-guidance/Texas/Texas_Driver_Handbook_DL-7_checked_2026-09-30.pdf)."
         }
       ],
       "status": "needs_review",
@@ -4843,7 +4907,7 @@
           "localSha256": null,
           "localSizeBytes": null,
           "snapshotVerifiedAt": null,
-          "note": "Handbook PDF not yet in the dmv-materials library; verify when state-driver-manuals/Texas/DL-7.pdf lands."
+          "note": "Not yet checked against the DL-7 PDF in the dmv-materials library (state-dmv-guidance/Texas/Texas_Driver_Handbook_DL-7_checked_2026-09-30.pdf)."
         }
       ],
       "status": "needs_review",
@@ -5093,7 +5157,7 @@
           "localSha256": null,
           "localSizeBytes": null,
           "snapshotVerifiedAt": null,
-          "note": "Handbook PDF not yet in the dmv-materials library; verify when state-driver-manuals/Texas/DL-7.pdf lands."
+          "note": "Not yet checked against the DL-7 PDF in the dmv-materials library (state-dmv-guidance/Texas/Texas_Driver_Handbook_DL-7_checked_2026-09-30.pdf)."
         },
         {
           "citation": "Texas Transportation Code § 521.292",
@@ -5220,6 +5284,6 @@
   "snapshotLibrary": {
     "materialsRoot": "dmv-materials",
     "verifiedAt": "2026-09-05",
-    "note": "Every statute and standard source lists the local snapshot file that backs it, with the SHA-256 and size of the snapshot at verification time. Paths are relative to the dmv-materials library root. Handbook sources are pending the DL-7 PDF."
+    "note": "Every statute and standard source lists the local snapshot file that backs it, with the SHA-256 and size of the snapshot at verification time. Paths are relative to the dmv-materials library root. A handbook source cites the DL-7 PDF snapshot once its rule has been checked against it; the others are pending that check."
   }
 }

@@ -39,6 +39,10 @@ const TMUTCD_PDF = {
   localSizeBytes: 45509287,
 };
 
+// The DL-7 handbook, in the library since 2026-09-30. A handbook source cites
+// the snapshot only once its rule has been checked against it.
+const DL7_PDF = 'state-dmv-guidance/Texas/Texas_Driver_Handbook_DL-7_checked_2026-09-30.pdf';
+
 const CODES = {
   TN: { name: 'Texas Transportation Code', prefix: 'TN' },
   PE: { name: 'Texas Penal Code', prefix: 'PE' },
@@ -53,33 +57,49 @@ export const resolveSource = source => {
     return {
       citation: `${code.name} § ${source.section}${source.sub ? `(${source.sub})` : ''}`,
       officialUrl: `https://statutes.capitol.texas.gov/Docs/${code.prefix}/htm/${code.prefix}.${chapter}.htm#${source.section}`,
-      checkedAt: CHECKED_AT,
+      checkedAt: source.checkedAt ?? CHECKED_AT,
       effectiveFrom: null,
       effectiveTo: null,
       rightsStatus: 'primary_authority_independent_explanation',
       localFile,
       retrievedAt: SNAPSHOT_DATE,
       ...snapshot(localFile),
-      snapshotVerifiedAt: CHECKED_AT,
+      snapshotVerifiedAt: source.checkedAt ?? CHECKED_AT,
     };
   }
   if (source.kind === 'tmutcd') {
     return {
       citation: `Texas MUTCD 2025, Section ${source.section}`,
       officialUrl: 'https://ftp.txdot.gov/pub/txdot-info/trf/tmutcd/2025/2025_tmutcd.pdf',
-      checkedAt: CHECKED_AT,
+      checkedAt: source.checkedAt ?? CHECKED_AT,
       effectiveFrom: '2026-01-18',
       effectiveTo: null,
       rightsStatus: 'official_traffic_control_standard_independent_explanation_no_logos',
       ...TMUTCD_PDF,
       retrievedAt: SNAPSHOT_DATE,
-      snapshotVerifiedAt: CHECKED_AT,
+      snapshotVerifiedAt: source.checkedAt ?? CHECKED_AT,
     };
   }
   if (source.kind === 'handbook') {
+    const citation = `Texas Driver Handbook (DL-7), revised January 2026${source.topic ? ` — ${source.topic}` : ''}`;
+    const officialUrl = 'https://www.dps.texas.gov/internetforms/Forms/DL-7.pdf';
+    if (source.checkedAt) {
+      return {
+        citation,
+        officialUrl,
+        checkedAt: source.checkedAt,
+        effectiveFrom: null,
+        effectiveTo: null,
+        rightsStatus: 'official_guidance_paraphrase_only_no_brand_assets',
+        localFile: DL7_PDF,
+        retrievedAt: source.checkedAt,
+        ...snapshot(DL7_PDF),
+        snapshotVerifiedAt: source.checkedAt,
+      };
+    }
     return {
-      citation: `Texas Driver Handbook (DL-7), revised January 2026${source.topic ? ` — ${source.topic}` : ''}`,
-      officialUrl: 'https://www.dps.texas.gov/internetforms/Forms/DL-7.pdf',
+      citation,
+      officialUrl,
       checkedAt: CHECKED_AT,
       effectiveFrom: null,
       effectiveTo: null,
@@ -89,7 +109,7 @@ export const resolveSource = source => {
       localSha256: null,
       localSizeBytes: null,
       snapshotVerifiedAt: null,
-      note: 'Handbook PDF not yet in the dmv-materials library; verify when state-driver-manuals/Texas/DL-7.pdf lands.',
+      note: `Not yet checked against the DL-7 PDF in the dmv-materials library (${DL7_PDF}).`,
     };
   }
   if (source.kind === 'txdmv') {
@@ -150,7 +170,7 @@ const catalog = {
   snapshotLibrary: {
     materialsRoot: 'dmv-materials',
     verifiedAt: CHECKED_AT,
-    note: 'Every statute and standard source lists the local snapshot file that backs it, with the SHA-256 and size of the snapshot at verification time. Paths are relative to the dmv-materials library root. Handbook sources are pending the DL-7 PDF.',
+    note: 'Every statute and standard source lists the local snapshot file that backs it, with the SHA-256 and size of the snapshot at verification time. Paths are relative to the dmv-materials library root. A handbook source cites the DL-7 PDF snapshot once its rule has been checked against it; the others are pending that check.',
   },
 };
 

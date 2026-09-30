@@ -9,7 +9,7 @@
   "status": "ready_for_review",
   "versionBindingStatus": "blocked_missing_release_metadata",
   "courseGenerationStatus": "blocked_scoped_conflicts_and_release_metadata",
-  "ruleCount": 141,
+  "ruleCount": 148,
   "allowedStatuses": [
     "verified"
   ],
@@ -1176,6 +1176,39 @@
           "localSha256": "57e35742dd4f449710d1df54b6d41c1b18e3e347fe029cc9bd72bce186f1dea5",
           "localSizeBytes": 254132,
           "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22451_RAIL_CROSSING_STOP_DISTANCE",
+      "conceptId": "rail_crossing_stop_distance",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Approaching a railroad or rail transit crossing, a driver must stop no closer than 15 feet to the nearest rail, and wait until it is safe to go, whenever a clearly visible electric or mechanical signal or a flagger warns that a train is coming or passing, or a train is plainly visible or sounding its horn and is near or fast enough to be an immediate hazard. Nobody may go through, around or under a crossing gate while it is closed.",
+      "valueType": "numeric_distance",
+      "values": {
+        "minimumFeetFromNearestRail": 15
+      },
+      "conditions": [
+        "a signal device or a flagger warns of an approaching or passing train",
+        "an approaching train is plainly visible or audible and is an immediate hazard"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22451",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22451",
+          "checkedAt": "2026-09-30",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH08_22450-22456.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "57e35742dd4f449710d1df54b6d41c1b18e3e347fe029cc9bd72bce186f1dea5",
+          "localSizeBytes": 254132,
+          "snapshotVerifiedAt": "2026-09-30"
         }
       ],
       "status": "verified"
@@ -2685,6 +2718,68 @@
       "status": "verified"
     },
     {
+      "ruleId": "CA_VEH_22521_NO_PARKING_NEAR_RAIL",
+      "conceptId": "no_parking_near_rail",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Nobody may park a vehicle on a railroad track or within 7.5 feet of the nearest rail.",
+      "valueType": "numeric_distance",
+      "values": {
+        "minimumFeetFromNearestRail": 7.5
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22521",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22521",
+          "checkedAt": "2026-09-30",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH09_22500-22526.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fd716225788f286a77a764b9f72b94d6f135f16f93e6eea43d8187aad5466a79",
+          "localSizeBytes": 563157,
+          "snapshotVerifiedAt": "2026-09-30"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_22522_SIDEWALK_RAMP_PARKING",
+      "conceptId": "sidewalk_ramp_parking",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "Nobody may park within 3 feet of a sidewalk access ramp built for people with disabilities, at a crosswalk or anywhere else on a sidewalk, when the area next to the ramp is marked by a sign or by red paint.",
+      "valueType": "numeric_distance",
+      "values": {
+        "minimumFeetFromRamp": 3
+      },
+      "conditions": [
+        "the area next to the ramp is marked by a sign or red paint"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 22522",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=22522",
+          "checkedAt": "2026-09-30",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH09_22500-22526.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "fd716225788f286a77a764b9f72b94d6f135f16f93e6eea43d8187aad5466a79",
+          "localSizeBytes": 563157,
+          "snapshotVerifiedAt": "2026-09-30"
+        }
+      ],
+      "status": "verified"
+    },
+    {
       "ruleId": "CA_VEH_22514_FIRE_HYDRANT",
       "conceptId": "fire_hydrant_clearance",
       "jurisdiction": "CA",
@@ -2965,6 +3060,40 @@
           "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
           "localSizeBytes": 294794,
           "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_24604_REAR_PROJECTING_LOAD",
+      "conceptId": "rear_projecting_load",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "When a load, or part of the vehicle, extends 4 feet or more beyond the rear as measured from the taillamps, its far end must be marked: in darkness with 2 red lights, in addition to the taillamps, plainly visible from at least 500 feet to the sides and rear; at any other time with a solid red or fluorescent orange flag or cloth at least 18 inches square — one when the projection is 2 feet wide or less, two marking its width when it is wider.",
+      "valueType": "compound_numeric",
+      "values": {
+        "rearOverhangFeet": 4,
+        "nightRedLights": 2,
+        "lightsVisibleFeet": 500,
+        "flagMinimumInchesSquare": 18,
+        "singleFlagMaxWidthFeet": 2
+      },
+      "conditions": [],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 24604",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=24604",
+          "checkedAt": "2026-09-30",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_S24604_checked_2026-08-02.html",
+          "retrievedAt": "2026-08-02",
+          "localSha256": "cb8edd42e8975c40ec8da03c688f6a8d020b02c19fd5537cc639221beae2a74f",
+          "localSizeBytes": 162831,
+          "snapshotVerifiedAt": "2026-09-30"
         }
       ],
       "status": "verified"
@@ -3443,6 +3572,39 @@
       "status": "verified"
     },
     {
+      "ruleId": "CA_VEH_23224_UNDER_21_ALCOHOL_IN_VEHICLE",
+      "conceptId": "under_21_alcohol_in_vehicle",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver under 21 may not knowingly drive a vehicle carrying any alcoholic beverage, even in a closed container, and a passenger under 21 may not knowingly have one in the vehicle, unless a parent, a responsible adult relative, another adult the parent designated, or a legal guardian is with them, or they are working for an alcoholic beverage licensee during regular working hours.",
+      "valueType": "numeric_age",
+      "values": {
+        "underAge": 21
+      },
+      "conditions": [],
+      "exceptions": [
+        "accompanied by a parent, responsible adult relative, adult designated by the parent, or legal guardian",
+        "employed by an alcoholic beverage licensee and carrying it during regular hours in the course of that work"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 23224",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=23224",
+          "checkedAt": "2026-09-30",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH12_23100-23249_50.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "b6d616722781e04613d900a742ee11cf98da8ea38586c56acc33addc6dee68fd",
+          "localSizeBytes": 294794,
+          "snapshotVerifiedAt": "2026-09-30"
+        }
+      ],
+      "status": "verified"
+    },
+    {
       "ruleId": "CA_VEH_16020_FINANCIAL_RESPONSIBILITY",
       "conceptId": "financial_responsibility",
       "jurisdiction": "CA",
@@ -3653,7 +3815,7 @@
       "jurisdiction": "CA",
       "ruleType": "state-rule",
       "legalClaim": true,
-      "authoringRule": "The driver must make the required written report to CHP or local police within 24 hours after a collision causing injury or death, unless a qualifying officer report has been made.",
+      "authoringRule": "Within 24 hours after a collision that injures or kills anyone, the driver must make a written report to the California Highway Patrol or, if the collision happened in a city, to the CHP or that city's police department. The driver may have someone else make the report for them, and the duty stands even when an officer came to the scene.",
       "valueType": "numeric_time",
       "values": {
         "reportWithinHours": 24
@@ -3664,7 +3826,7 @@
         {
           "citation": "California Vehicle Code § 20008",
           "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=20008",
-          "checkedAt": "2026-08-02",
+          "checkedAt": "2026-09-30",
           "effectiveFrom": null,
           "effectiveTo": null,
           "rightsStatus": "primary_authority_independent_explanation",
@@ -3672,7 +3834,7 @@
           "retrievedAt": "2026-08-01",
           "localSha256": "1598c913a53c35cfa81ab2223d6d58fe32e410bed4367ce9cabdd1c692491a1f",
           "localSizeBytes": 258248,
-          "snapshotVerifiedAt": "2026-09-02"
+          "snapshotVerifiedAt": "2026-09-30"
         }
       ],
       "status": "verified"

@@ -11,8 +11,12 @@ const tn = (section, sub) => ({ kind: 'statute', code: 'TN', section, sub });
 const pe = (section, sub) => ({ kind: 'statute', code: 'PE', section, sub });
 const al = (section, sub) => ({ kind: 'statute', code: 'AL', section, sub });
 const tmutcd = section => ({ kind: 'tmutcd', section });
-const handbook = topic => ({ kind: 'handbook', topic });
+// A handbook source carries the date it was checked against the DL-7 PDF in
+// the library; one without a date is still waiting for that check.
+const handbook = (topic, checkedAt) => ({ kind: 'handbook', topic, ...(checkedAt && { checkedAt }) });
 const txdmv = () => ({ kind: 'txdmv' });
+// A source re-read on a later date than the catalogue's own check.
+const checkedOn = (checkedAt, source) => ({ ...source, checkedAt });
 
 export const RULES = [
   // ---------------------------------------------------------------------------
@@ -56,10 +60,7 @@ export const RULES = [
       'A steady red arrow means stop for the movement it points to, at the stop line, the near-side crosswalk or the intersection edge, and remain stopped until an indication to proceed appears. Under the Texas MUTCD the same turn-on-red allowance applies to a red arrow as to a circular red: after stopping, a right turn, or a left turn from a one-way street into a one-way street, is permitted in the arrow direction unless a traffic control device prohibits turning on red, subject to stop-sign yielding rules.',
     conditions: ['complete stop first', 'movement limited to the arrow direction', 'yield as after a stop sign'],
     exceptions: ['a NO TURN ON RED or similar device prohibits the turn'],
-    sources: [tmutcd('4A.03')],
-    status: 'needs_review',
-    reviewNote:
-      'Meaning taken from Texas MUTCD 2025 §4A.03 C.2, which Texas adopts by rule; Transportation Code §544.007 speaks only of a "steady red signal". Confirm the Texas Driver Handbook (DL-7, January 2026) teaches the same red-arrow allowance before production.',
+    sources: [checkedOn('2026-09-30', tmutcd('4A.03'))],
   },
   {
     ruleId: 'TX_TMUTCD_4A_04_FLASHING_YELLOW_ARROW',
@@ -118,6 +119,13 @@ export const RULES = [
     authoringRule:
       'After stopping at a stop sign or slowing at a yield sign, the driver must yield to vehicles that are in the intersection or approaching so closely on the other roadway that entering would be an immediate hazard, and may proceed only after that yielding. A driver who passes a yield sign without stopping and then collides with a vehicle in the intersection is treated as prima facie evidence of failing to yield.',
     sources: [tn('545.153')],
+  },
+  {
+    ruleId: 'TX_TN_545_154_FRONTAGE_ROAD_YIELD',
+    conceptId: 'frontage_road_yield',
+    authoringRule:
+      'A driver on the access or feeder road of a limited-access or controlled-access highway — the frontage road — must yield to a vehicle entering or about to enter the frontage road from the highway, and to a vehicle leaving or about to leave the frontage road to enter the highway.',
+    sources: [checkedOn('2026-09-30', tn('545.154'))],
   },
   {
     ruleId: 'TX_TN_545_155_DRIVEWAY_ALLEY_ENTRY',
@@ -228,12 +236,11 @@ export const RULES = [
     ruleType: 'handbook-guidance',
     legalClaim: false,
     valueType: 'numeric_time',
-    values: { minimumSecondsGoodConditions: 2, seconds: 3, unit: 'seconds' },
+    values: { speedThresholdMph: 30, minimumSecondsAtOrBelowThreshold: 2, minimumSecondsAboveThreshold: 4, beginnerSeconds: 4, unit: 'seconds' },
     authoringRule:
-      'A time-based cushion is the practical way to keep the assured clear distance the law requires: count at least 2 seconds behind the vehicle ahead in good conditions and stretch it to 3 or 4 seconds when the road is wet, visibility is poor, or you are behind a large vehicle. The interval is guidance, not a statutory number.',
-    sources: [handbook('following distance'), tn('545.062')],
-    status: 'needs_review',
-    reviewNote: 'Confirm the exact seconds the January 2026 DL-7 handbook recommends once the PDF is in the library.',
+      'A time-based cushion is the practical way to keep the assured clear distance the law requires. In good road conditions the handbook sets the minimum at 2 seconds behind the vehicle ahead at 30 mph or less and at 4 seconds above 30 mph, and it calls a 4-second interval the best practice for a beginning or less experienced driver. Poor road conditions call for more time than that. The interval is guidance, not a statutory number.',
+    conditions: ['good road conditions', 'more time in poor road conditions'],
+    sources: [handbook('Chapter 8, Speed and Speed Limits: following distance', '2026-09-30'), tn('545.062')],
   },
 
   // ---------------------------------------------------------------------------
@@ -409,6 +416,16 @@ export const RULES = [
     authoringRule:
       'Except momentarily to pick up or drop off a passenger, a driver may not stand or park in front of a public or private driveway, within 15 feet of a fire hydrant, within 20 feet of a crosswalk at an intersection, within 30 feet on the approach to a flashing signal, stop sign, yield sign or traffic signal at the side of the road, within 20 feet of a fire station driveway or within 75 feet across the street from a signed fire station entrance, or where an official sign prohibits standing. Stopping is also barred within 30 feet of the ends of a safety zone.',
     sources: [tn('545.302', 'b'), tn('545.302', 'a')],
+  },
+  {
+    ruleId: 'TX_TN_545_302_NO_PARKING_NEAR_RAILROAD_CROSSING',
+    conceptId: 'no_parking_near_railroad_crossing',
+    valueType: 'numeric_distance',
+    values: { nearestRailFeet: 50 },
+    authoringRule:
+      'Except temporarily to load or unload merchandise or passengers, a driver may not park a vehicle, occupied or not, within 50 feet of the nearest rail of a railroad crossing.',
+    exceptions: ['temporarily loading or unloading merchandise or passengers'],
+    sources: [checkedOn('2026-09-30', tn('545.302', 'c'))],
   },
 
   {
