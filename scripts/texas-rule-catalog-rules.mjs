@@ -780,6 +780,17 @@ export const RULES = [
       'Light rail transit crossings use crossbucks, STOP or YIELD signs, signals and gates like railroad crossings, and trains in city streets can approach from behind traffic or run beside it. Drivers obey the crossing controls, never turn across the path of an approaching rail vehicle, and stay off the tracks when traffic is stopped ahead.',
     sources: [tmutcd('8B.05'), tmutcd('8A.01'), tn('545.302', 'a')],
   },
+  {
+    ruleId: 'TX_TN_545_202_PASSING_STREETCAR',
+    conceptId: 'passing_stopped_streetcar',
+    valueType: 'numeric_distance',
+    values: { minimumFeetBehindDoor: 5 },
+    authoringRule:
+      'A driver passing to the right of a streetcar that is stopped or about to stop to take on or let off passengers must stop at least 5 feet behind its nearest running board or door and stay stopped until every passenger has boarded or, after getting off, has reached a place of safety. Where a safety zone has been established, the driver need not stop and may pass the streetcar at a reasonable speed, with due caution for pedestrians.',
+    conditions: ['the streetcar is stopped or about to stop to take on or let off passengers'],
+    exceptions: ['a safety zone has been established'],
+    sources: [checkedOn('2026-10-01', tn('545.202'))],
+  },
 
   {
     ruleId: 'TX_TN_545_251_RAILROAD_STOP',

@@ -9,7 +9,7 @@
   "status": "ready_for_review",
   "versionBindingStatus": "bound",
   "courseGenerationStatus": "generated_from_catalog_rules",
-  "ruleCount": 135,
+  "ruleCount": 136,
   "allowedStatuses": [
     "verified",
     "needs_review"
@@ -3539,6 +3539,41 @@
           "localSha256": "0015cff7e777079c2ee4efb73d9879350ee979d2fe970b93e5c064f5ae7e18da",
           "localSizeBytes": 308586,
           "snapshotVerifiedAt": "2026-09-05"
+        }
+      ],
+      "status": "verified",
+      "addedForVersion": "TX-2026.09.05-r01"
+    },
+    {
+      "ruleId": "TX_TN_545_202_PASSING_STREETCAR",
+      "conceptId": "passing_stopped_streetcar",
+      "jurisdiction": "TX",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver passing to the right of a streetcar that is stopped or about to stop to take on or let off passengers must stop at least 5 feet behind its nearest running board or door and stay stopped until every passenger has boarded or, after getting off, has reached a place of safety. Where a safety zone has been established, the driver need not stop and may pass the streetcar at a reasonable speed, with due caution for pedestrians.",
+      "valueType": "numeric_distance",
+      "values": {
+        "minimumFeetBehindDoor": 5
+      },
+      "conditions": [
+        "the streetcar is stopped or about to stop to take on or let off passengers"
+      ],
+      "exceptions": [
+        "a safety zone has been established"
+      ],
+      "sources": [
+        {
+          "citation": "Texas Transportation Code § 545.202",
+          "officialUrl": "https://statutes.capitol.texas.gov/Docs/TN/htm/TN.545.htm#545.202",
+          "checkedAt": "2026-10-01",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/Texas/TN_CH545_official_current_2026-08-10.html",
+          "retrievedAt": "2026-08-10",
+          "localSha256": "0015cff7e777079c2ee4efb73d9879350ee979d2fe970b93e5c064f5ae7e18da",
+          "localSizeBytes": 308586,
+          "snapshotVerifiedAt": "2026-10-01"
         }
       ],
       "status": "verified",

@@ -9,7 +9,7 @@
   "status": "ready_for_review",
   "versionBindingStatus": "blocked_missing_release_metadata",
   "courseGenerationStatus": "blocked_scoped_conflicts_and_release_metadata",
-  "ruleCount": 148,
+  "ruleCount": 150,
   "allowedStatuses": [
     "verified"
   ],
@@ -38,6 +38,38 @@
           "localSha256": "718931dfe98e82bd115d8756af439e940542d6fc3539ba736ea904aa8469a121",
           "localSizeBytes": 488206,
           "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_12505_NEW_RESIDENT_10_DAYS",
+      "conceptId": "new_resident_license_grace_period",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A person who may drive in California without a California license under a nonresident exemption, such as a valid license from another state or country, may keep driving here for no more than 10 days from the day they become a California resident. After becoming a resident they may not drive for work in California at all until they have a license from the DMV.",
+      "valueType": "numeric_time",
+      "values": {
+        "maximumDaysAfterBecomingResident": 10
+      },
+      "conditions": [
+        "the person holds a nonresident exemption from the license requirement"
+      ],
+      "exceptions": [],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 12505(c)",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=12505",
+          "checkedAt": "2026-10-01",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D06_CH01_12500-13020.html",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "718931dfe98e82bd115d8756af439e940542d6fc3539ba736ea904aa8469a121",
+          "localSizeBytes": 488206,
+          "snapshotVerifiedAt": "2026-10-01"
         }
       ],
       "status": "verified"
@@ -1725,6 +1757,41 @@
           "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
           "localSizeBytes": 466867,
           "snapshotVerifiedAt": "2026-09-02"
+        }
+      ],
+      "status": "verified"
+    },
+    {
+      "ruleId": "CA_VEH_21756_PASSING_STREETCAR",
+      "conceptId": "passing_stopped_streetcar",
+      "jurisdiction": "CA",
+      "ruleType": "state-rule",
+      "legalClaim": true,
+      "authoringRule": "A driver overtaking an interurban electric car or streetcar that is stopped or about to stop to take on or let off passengers must stop behind its nearest running board or door and stay stopped until every passenger has boarded or, after getting off, has reached a place of safety. Where a safety zone has been established, or at an intersection controlled by an officer or a traffic signal, the driver need not stop and may pass the streetcar at no more than 10 mph, with due caution for pedestrians.",
+      "valueType": "numeric_speed",
+      "values": {
+        "maximumPassingMph": 10
+      },
+      "conditions": [
+        "the streetcar is stopped or about to stop to take on or let off passengers"
+      ],
+      "exceptions": [
+        "a safety zone has been established",
+        "an officer or a traffic signal controls the intersection"
+      ],
+      "sources": [
+        {
+          "citation": "California Vehicle Code § 21756",
+          "officialUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21756",
+          "checkedAt": "2026-10-01",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "rightsStatus": "primary_authority_independent_explanation",
+          "localFile": "state-primary-law/California/CA_VEH_D11_CH03_21650-21761.pdf",
+          "retrievedAt": "2026-08-01",
+          "localSha256": "148a14489753128ae60894b9f9c09f284500e10f296ab0f99044897b04459b8e",
+          "localSizeBytes": 466867,
+          "snapshotVerifiedAt": "2026-10-01"
         }
       ],
       "status": "verified"
